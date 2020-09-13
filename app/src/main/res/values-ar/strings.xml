@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">عقارز</string>
+    <string name="empty_label">هذا الحقل مطلوب !</string>
+    <string name="invalid_mobile">  رقم الجوال مكون فقط من 14 أرقام ! </string>
+    <string name="does_not_match"> كلمتا المرور غير متطابقتين !   </string>
+    <string name="invalid_pass">كلمة المرور يجب أن تكون 6 احرف أو أكثر وتتكون من حروف وأرقام!  </string>
+    <string name="invalid_name"> الأسم يجب أن يكون 6 أحرف أو أكثر! </string>
+    <string name="message_email_correctly">الرجاء قم بإدخال الإيميل بشكل صحيح</string>
+    <string name="no_connection">لا يوجد اتصال بالانترنت \nتفعيل الانترنت\n</string>
+    <string name="weak">يجب أن تكون كلمة المرور حروف وأرقام</string>
+    <string name="no_cancel">لا، إلغاء</string>
+    <string name="success">نجاح</string>
+    <string name="ok">أوك </string>
+    <string name="cancel">إلغاء</string>
+    <string name="phone_number">رقم الهاتف </string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="sign_up">انشاء حساب </string>
+    <string name="don_t_have_an_account">ليس لديك حساب ؟</string>
+    <string name="hint_email_address">أدخل البريد الإلكتروني ؟</string>
+    <string name="forgot_your_password">هل نسيت كلمة المرور ؟</string>
+    <string name="forgot_password_desc">أدخل بريدك الإلكتروني المسجل لإرسال رابط إعادة تعيين كلمة المرور</string>
+    <string name="send_code"> إرسال رمز التحقق</string>
+    <string name="new_account">حساب جديد  </string>
+    <string name="name">الاسم </string>
+    <string name="create_account">التسجيل</string>
+    <string name="have_an_account">لديك حساب بالفعل ؟ </string>
+    <string name="verify_account"> تحقق من حسابك</string>
+    <string name="verify_now">  تحقق الآن </string>
+    <string name="resend_again"> إعادة الإرسال بعد 30 ثانيه</string>
+    <string name="resend_now"> إعادة الإرسال </string>
+    <string name="reset_pass"> إعادة تعيين كلمة المرور </string>
+    <string name="reset">إعادة تعيين</string>
+    <string name="enter_verification">قم بادخال رمز التفعيل الذي وصل على هاتفك المحمول.</string>
+    <string name="home">الرئيسية</string>
+    <string name="orders">الطلبات</string>
+    <string name="subscriptions">الاشتراكات</string>
+    <string name="messages">الرسائل</string>
+    <string name="search">ابحث</string>
+    <string name="add_aqar">أضف عقار </string>
+    <string name="request_aqar">طلب عقار</string>
+    <string name="text">نص</string>
+    <string name="no_address_found">Address Not found</string>
+
+</resources>
