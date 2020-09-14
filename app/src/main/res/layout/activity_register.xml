@@ -32,6 +32,44 @@
                 app:srcCompat="@drawable/ic_logo_move"
                 tools:ignore="VectorDrawableCompat" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/edit_text_background">
+
+                    <TextView
+                        android:id="@+id/Provider_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/Provider_type"
+                        android:textColor="@color/colorPrimary"
+
+                        android:textSize="@dimen/_13sdp" />
+
+                    <TextView
+                        android:id="@+id/user_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_login"
+                        android:gravity="center"
+                        android:text="@string/user_type"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
 
             <EditText
                 android:id="@+id/name_ed"
@@ -105,6 +143,7 @@
                     android:drawablePadding="@dimen/_8sdp"
                     android:hint="@string/password"
                     android:inputType="textPassword" />
+
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/pass_checkbox"

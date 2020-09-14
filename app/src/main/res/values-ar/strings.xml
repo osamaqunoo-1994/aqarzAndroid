@@ -43,4 +43,21 @@
     <string name="text">نص</string>
     <string name="no_address_found">Address Not found</string>
 
+
+    <string name="code_send_to_this_number">الكود ارسل لهذا الرقم</string>
+    <string name="More">المزيد</string>
+    <string name="Settings_title">الاعدادات</string>
+    <string name="General_title">الاعدادات العامه</string>
+
+
+    <string name="Language">اللغة</string>
+    <string name="Termsandcondition">الاحكام والشروط</string>
+    <string name="Privacy">سياسة الخصوصية</string>
+    <string name="Call_Us">تواصل معنا</string>
+    <string name="Email_Us">بريدنا الالكتروني</string>
+    <string name="Please_Login_or_Register">الرجاء تسجيل الدخول او جديد</string>
+    <string name="Personal_Details">المعلومات الشخصيه</string>
+    <string name="Logout">تسجيل خروج</string>
+    <string name="Favorites">المفضلة</string>
+    <string name="Done">تم</string>
 </resources>

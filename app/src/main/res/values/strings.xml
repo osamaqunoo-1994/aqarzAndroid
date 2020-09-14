@@ -52,20 +52,31 @@
     <string name="no_address_found">Address Not found</string>
 
 
-
-
-
-
-
-
-
     <string name="code_send_to_this_number">Code send to this number</string>
     <string name="More">More</string>
     <string name="Settings_title">Settings</string>
+    <string name="General_title">General</string>
 
 
+    <string name="Language">Language</string>
+    <string name="Termsandcondition">Terms and condition</string>
+    <string name="Privacy">Privacy</string>
+    <string name="Call_Us">Call Us</string>
+    <string name="Email_Us">Email Us</string>
+    <string name="Please_Login_or_Register">Please Login or Register</string>
+    <string name="Personal_Details">Personal Details</string>
+    <string name="Logout">Logout</string>
+    <string name="Favorites">Favorites</string>
+    <string name="Done">Done</string>
+    <string name="Forgot_your_password">Forgot your password?</string>
+    <string name="enter_your_password">Enter your new password?</string>
+    <string name="Enter_your_registered">Enter your registered email to send reset password link</string>
+    <string name="Didnt_Received">Didn t Received?</string>
+    <string name="SendAgain_">Send Again</string>
+    <string name="Sendbutton">Send</string>
+    <string name="Update_button">Update</string>
 
-
-
+    <string name="Provider_type">Provider</string>
+    <string name="user_type">User </string>
 
 </resources>

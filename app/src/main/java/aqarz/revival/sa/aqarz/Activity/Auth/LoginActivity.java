@@ -14,24 +14,36 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.android.volley.VolleyError;
+import com.orhanobut.hawk.Hawk;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import aqarz.revival.sa.aqarz.Activity.MainActivity;
 import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
 import aqarz.revival.sa.aqarz.R;
+import aqarz.revival.sa.aqarz.Settings.WebService;
+import aqarz.revival.sa.aqarz.api.IResult;
+import aqarz.revival.sa.aqarz.api.VolleyService;
 
 
 public class LoginActivity extends AppCompatActivity {
     EditText phone_ed;
     EditText password;
-
+    TextView forget_pass;
     AppCompatButton new_account;
     AppCompatButton Login;
 
+    IResult mResultCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        init_volley();
         init();
 
 
@@ -50,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         new_account = findViewById(R.id.new_account);
         Login = findViewById(R.id.Login);
+        forget_pass = findViewById(R.id.forget_pass);
 
         phone_ed.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -104,7 +117,40 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+                if (phone_ed.getText().toString().equals("") |
+                        password.getText().toString().equals("")) {
+
+                } else {
+                    WebService.loading(LoginActivity.this, true);
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, LoginActivity.this);
+
+
+                    JSONObject sendObj = new JSONObject();
+
+                    try {
+
+                        sendObj.put("username", phone_ed.getText().toString());
+                        sendObj.put("password", password.getText().toString());
+                        sendObj.put("device_token", "######");
+                        sendObj.put("device_type", "android");
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    mVolleyService.postDataVolley("Login", WebService.login, sendObj);
+
+                }
+
+
+            }
+        });
+        forget_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
@@ -112,6 +158,53 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response);
+                WebService.loading(LoginActivity.this, false);
+//{"status":true,"code":200,"message":"User Profile","data"
+                try {
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+                        String data = response.getString("data");
+
+                        Hawk.put("user", data);
+                        String message = response.getString("message");
+
+                        WebService.Make_Toast_color(LoginActivity.this, message, "success");
+                    } else {
+                        String message = response.getString("message");
+
+                        WebService.Make_Toast_color(LoginActivity.this, message, "success");
+                    }
+
+
+                } catch (Exception e) {
+
+                }
+
+
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.getMessage());
+                WebService.loading(LoginActivity.this, false);
+                WebService.Make_Toast_color(LoginActivity.this, error.getMessage(), "error");
+
+
+            }
+        };
+
+
     }
 
 }

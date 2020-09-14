@@ -178,6 +178,7 @@ public class RecyclerView_All_Opration_in_map extends RecyclerView.Adapter<Recyc
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                holder.radio_button.setHighlightColor(Color.parseColor("#DD6B55"));
 
 //
 
