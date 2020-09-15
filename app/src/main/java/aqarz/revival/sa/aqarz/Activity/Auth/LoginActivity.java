@@ -16,14 +16,28 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.ParseError;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
+
 import aqarz.revival.sa.aqarz.Activity.MainActivity;
 import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
+import aqarz.revival.sa.aqarz.Modules.User;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.WebService;
 import aqarz.revival.sa.aqarz.api.IResult;
@@ -109,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-
+                finish();
 
             }
         });
@@ -120,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (phone_ed.getText().toString().equals("") |
                         password.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(LoginActivity.this, getResources().getString(R.string.fillallfileds) + "", "error");
 
                 } else {
                     WebService.loading(LoginActivity.this, true);
@@ -133,16 +148,14 @@ public class LoginActivity extends AppCompatActivity {
 
                         sendObj.put("username", phone_ed.getText().toString());
                         sendObj.put("password", password.getText().toString());
-                        sendObj.put("device_token", "######");
+                        sendObj.put("device_token", "154");
                         sendObj.put("device_type", "android");
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     mVolleyService.postDataVolley("Login", WebService.login, sendObj);
-
                 }
-
 
             }
         });
@@ -176,13 +189,23 @@ public class LoginActivity extends AppCompatActivity {
                         String data = response.getString("data");
 
                         Hawk.put("user", data);
-                        String message = response.getString("message");
+                        JsonParser parser = new JsonParser();
+                        JsonElement mJson = parser.parse(data);
 
+                        Gson gson = new Gson();
+                        User userModules = gson.fromJson(mJson, User.class);
+
+                        Hawk.put("api_token", "token " + userModules.getApi_token() + "");
+
+
+                        String message = response.getString("message");
                         WebService.Make_Toast_color(LoginActivity.this, message, "success");
+                        finish();
+
                     } else {
                         String message = response.getString("message");
 
-                        WebService.Make_Toast_color(LoginActivity.this, message, "success");
+                        WebService.Make_Toast_color(LoginActivity.this, message, "error");
                     }
 
 
@@ -193,10 +216,23 @@ public class LoginActivity extends AppCompatActivity {
 
             }
 
+
             @Override
             public void notifyError(String requestType, VolleyError error) {
                 Log.d("TAG", "Volley requester " + requestType);
-                Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.getMessage());
+                Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.toString());
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String json = new String(response.data);
+
+
+                } catch (Exception e) {
+
+                }
+
+
                 WebService.loading(LoginActivity.this, false);
                 WebService.Make_Toast_color(LoginActivity.this, error.getMessage(), "error");
 

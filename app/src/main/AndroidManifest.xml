@@ -17,9 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.TermsActivity"></activity>
         <activity
             android:name=".Activity.Auth.NewPasswordActivity"
-            android:theme="@style/AppTheme.NoActionBar_login"></activity>
+            android:theme="@style/AppTheme.NoActionBar_login" />
         <activity
             android:name=".Activity.Auth.ForgotPasswordActivity"
             android:theme="@style/AppTheme.NoActionBar_login" />

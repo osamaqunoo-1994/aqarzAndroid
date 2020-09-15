@@ -7,6 +7,9 @@ import com.kaopiz.kprogresshud.KProgressHUD;
 import com.loopj.android.http.AsyncHttpClient;
 import com.orhanobut.hawk.Hawk;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import aqarz.revival.sa.aqarz.R;
 import es.dmoral.toasty.Toasty;
 
@@ -26,6 +29,9 @@ public class WebService {
     public static String login = Domain + "login";
     public static String register = Domain + "register";
     public static String mobile_verify = Domain + "mobile/verify";
+    public static String forget_password = Domain + "forget/password";
+    public static String update_password = Domain + "update/password";
+    public static String update_my_profile = Domain + "update/my/profile";
 
 
     public static void Header_Async(AsyncHttpClient client, boolean is_token) {
@@ -34,15 +40,31 @@ public class WebService {
         client.addHeader("Auth-Role", "user");
         client.addHeader("Accept-Language", Hawk.get("lang").toString());
         if (is_token) {
-            if (Hawk.contains("user")) {
-                if (!Hawk.get("user").toString().equals("")) {
-//                    client.addHeader("Authorization", "Bearer " + Settings.GetUser().getAccessToken());
+            if (Hawk.contains("api_token")) {
+                if (!Hawk.get("api_token").toString().equals("")) {
+                    client.addHeader("Authorization", Hawk.get("api_token").toString());
 //                    System.out.println("Authorization " + " Bearer " + Settings.GetUser().getAccessToken());
                 }
             }
 
         }
     }
+
+
+    public static Map<String, String> setHeaderVolley() {
+
+        Map<String, String> heder = new HashMap<String, String>();
+        heder.put("Accept", "application/json");
+        heder.put("Accept-Language", Hawk.get("lang").toString());
+        if (Hawk.contains("api_token")) {
+            if (!Hawk.get("api_token").toString().equals("")) {
+                heder.put("auth", Hawk.get("api_token").toString());
+                    System.out.println("auth " + "  " + Hawk.get("api_token").toString());
+            }
+        }
+        return heder;
+    }
+
 
     public static void loading(Activity activity, boolean stopOrstart) {
 

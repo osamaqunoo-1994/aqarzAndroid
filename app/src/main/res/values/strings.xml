@@ -79,4 +79,12 @@
     <string name="Provider_type">Provider</string>
     <string name="user_type">User </string>
 
+
+    <string name="fillallfileds">Fill all fileds ?</string>
+    <string name="changePassword">Change password</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="are_you_change_lang_post">are you change language?</string>
+
 </resources>

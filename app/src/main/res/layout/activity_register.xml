@@ -192,7 +192,7 @@
                 android:textSize="@dimen/_11sdp" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/new_account"
+                android:id="@+id/loginButton"
                 style="@style/AppTheme.PrimaryButton2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

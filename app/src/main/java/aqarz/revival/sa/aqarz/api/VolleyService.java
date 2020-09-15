@@ -3,6 +3,7 @@ package aqarz.revival.sa.aqarz.api;
 import android.content.Context;
 import android.util.Log;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -12,6 +13,11 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import aqarz.revival.sa.aqarz.Settings.WebService;
 
 public class VolleyService {
 
@@ -40,7 +46,18 @@ public class VolleyService {
                     if (mResultCallback != null)
                         mResultCallback.notifyError(requestType, error);
                 }
-            });
+            }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+
+
+                    return WebService.setHeaderVolley();
+                }
+
+            };
+
+
+            ;
 
             queue.add(jsonObj);
 
@@ -65,7 +82,15 @@ public class VolleyService {
                     if (mResultCallback != null)
                         mResultCallback.notifyError(requestType, error);
                 }
-            });
+            }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+
+
+                    return WebService.setHeaderVolley();
+                }
+
+            };
 
             queue.add(jsonObj);
 

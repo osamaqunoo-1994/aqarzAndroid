@@ -17,6 +17,8 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/with_login"
+
                 android:layout_width="match_parent"
                 android:visibility="gone"
                 android:layout_height="wrap_content"
@@ -44,13 +46,14 @@
                         app:civ_border_width="8dp" />
 
                     <TextView
+                        android:id="@+id/user_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="20dp"
 
                         android:fontFamily="@font/muli_semi_bold"
                         android:gravity="center"
-                        android:text="Mohhameeed kjhjk"
+                        android:text=""
 
                         android:textColor="@color/white"
                         android:textSize="24dp">
@@ -156,6 +159,7 @@
                             android:background="#F8F8F8" />
 
                         <LinearLayout
+                            android:id="@+id/logout"
                             android:layout_width="match_parent"
                             android:layout_height="60dp"
                             android:gravity="center"
@@ -197,6 +201,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/no_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -274,6 +279,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/langauge"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:gravity="center"
@@ -313,6 +319,43 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="20dp"
+                        android:background="#D8D8D8" />
+
+                    <LinearLayout
+                        android:id="@+id/changePassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_light"
+                            android:text="@string/changePassword"
+                            android:textColor="#4A4A4A"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:src="@drawable/ic_left_arrow" />
+                    </LinearLayout>
+    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginStart="20dp"

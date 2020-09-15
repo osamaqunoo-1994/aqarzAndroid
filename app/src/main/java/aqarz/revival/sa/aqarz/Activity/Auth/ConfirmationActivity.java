@@ -57,13 +57,13 @@ public class ConfirmationActivity extends AppCompatActivity {
 
 //                            sendObj.put("password_confirmation", password.getText().toString());
 
-                            sendObj.put("device_token", "######");
+                            sendObj.put("code", str.toString());
 
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        mVolleyService.postDataVolley("Register", WebService.mobile_verify, sendObj);
+                        mVolleyService.postDataVolley("mobile verify", WebService.mobile_verify, sendObj);
 
 
                     } else {
@@ -102,12 +102,12 @@ public class ConfirmationActivity extends AppCompatActivity {
 //                                intent.putExtra("from", "splash");
                         startActivity(intent);
                         overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-
+                        finish();
 
                     } else {
                         String message = response.getString("message");
 
-                        WebService.Make_Toast_color(ConfirmationActivity.this, message, "success");
+                        WebService.Make_Toast_color(ConfirmationActivity.this, message, "error");
                     }
 
 

@@ -15,11 +15,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import aqarz.revival.sa.aqarz.Modules.User;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.WebService;
 import aqarz.revival.sa.aqarz.api.IResult;
@@ -31,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText phone_ed;
     EditText password;
     AppCompatButton sign_up;
+    AppCompatButton loginButton;
 
 
     TextView Provider_type;
@@ -66,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
         sign_up = findViewById(R.id.sign_up);
         Provider_type = findViewById(R.id.Provider_type);
         user_type = findViewById(R.id.user_type);
+        loginButton = findViewById(R.id.loginButton);
 
         phone_ed.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -144,7 +150,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Provider_type.setTextColor(getResources().getColor(R.color.white));
                 user_type.setBackgroundDrawable(null);
                 user_type.setTextColor(getResources().getColor(R.color.colorPrimary));
-                type = "Provider";
+                type = "provider";
 
             }
         });
@@ -163,6 +169,21 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                finish();
+
+
+            }
+        });
+
 
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,7 +193,7 @@ public class RegisterActivity extends AppCompatActivity {
                         email_ed.getText().toString().equals("") |
                         phone_ed.getText().toString().equals("") |
                         password.getText().toString().equals("")) {
-
+                    WebService.Make_Toast_color(RegisterActivity.this, getResources().getString(R.string.fillallfileds) + "", "error");
                 } else {
                     WebService.loading(RegisterActivity.this, true);
 
@@ -189,15 +210,17 @@ public class RegisterActivity extends AppCompatActivity {
                         sendObj.put("password", password.getText().toString());
                         sendObj.put("password_confirmation", password.getText().toString());
 
-                        sendObj.put("device_token", "######");
+                        sendObj.put("device_token", "157");
                         sendObj.put("type", type);
-                        sendObj.put("country_code", "+970");
+                        sendObj.put("country_code", "+972");
                         sendObj.put("device_type", "android");
+
+                        System.out.println(sendObj.toString());
+                        mVolleyService.postDataVolley("Register", WebService.register, sendObj);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    mVolleyService.postDataVolley("Register", WebService.register, sendObj);
 
                 }
 
@@ -213,7 +236,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("TAG", "Volley requester " + requestType);
-                Log.d("TAG", "Volley JSON post" + response);
+                Log.d("TAG", "Volley JSON post" + response.toString());
                 WebService.loading(RegisterActivity.this, false);
 //{"status":true,"code":200,"message":"User Profile","data"
                 try {
@@ -222,6 +245,14 @@ public class RegisterActivity extends AppCompatActivity {
                         String data = response.getString("data");
 
 //                        Hawk.put("user", data);
+                        JsonParser parser = new JsonParser();
+                        JsonElement mJson = parser.parse(data);
+
+                        Gson gson = new Gson();
+                        User userModules = gson.fromJson(mJson, User.class);
+
+                        Hawk.put("api_token", "token " + userModules.getApi_token() + "");
+
                         String message = response.getString("message");
 
                         WebService.Make_Toast_color(RegisterActivity.this, message, "success");
@@ -231,12 +262,12 @@ public class RegisterActivity extends AppCompatActivity {
 //                                intent.putExtra("from", "splash");
                         startActivity(intent);
                         overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-
+                        finish();
 
                     } else {
                         String message = response.getString("message");
 
-                        WebService.Make_Toast_color(RegisterActivity.this, message, "success");
+                        WebService.Make_Toast_color(RegisterActivity.this, message, "error");
                     }
 
 
@@ -250,7 +281,18 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void notifyError(String requestType, VolleyError error) {
                 Log.d("TAG", "Volley requester " + requestType);
-                Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.getMessage());
+
+
+                try {
+                    Log.d("TAG", "Error: " + error
+                            + "\nStatus Code " + error.networkResponse.statusCode
+                            + "\nResponse Data " + error.networkResponse.data
+                            + "\nCause " + error.getCause()
+                            + "\nmessage" + error.getMessage());
+                } catch (Exception e) {
+
+                }
+
                 WebService.loading(RegisterActivity.this, false);
                 WebService.Make_Toast_color(RegisterActivity.this, error.getMessage(), "error");
 

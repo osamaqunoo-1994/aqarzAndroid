@@ -60,4 +60,27 @@
     <string name="Logout">تسجيل خروج</string>
     <string name="Favorites">المفضلة</string>
     <string name="Done">تم</string>
+
+
+    <string name="fillallfileds">املا جميع الحقول</string>
+
+
+    <string name="Forgot_your_password">نسيت كلمة المرور?</string>
+    <string name="enter_your_password">اضف كلمة مرور جديده?</string>
+    <string name="Enter_your_registered">ادخل ايميلك ليصلك رابط لتغيير كلمة المرور</string>
+    <string name="Didnt_Received">لم تصلك الكود?</string>
+    <string name="SendAgain_">ارسال مره اخرى</string>
+    <string name="Sendbutton">ارسال</string>
+    <string name="Update_button">تعديل</string>
+
+    <string name="Provider_type">صاحب خدمة</string>
+    <string name="user_type">مستخدم </string>
+
+    <string name="changePassword">تغير الباسوورد</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+
+    <string name="are_you_change_lang_post">هل تريد تغيير الباسوورد?</string>
+
+
 </resources>
