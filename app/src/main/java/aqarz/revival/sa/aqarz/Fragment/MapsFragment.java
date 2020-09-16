@@ -36,6 +36,9 @@ import com.google.android.gms.maps.model.Marker;
 import java.util.ArrayList;
 import java.util.List;
 
+import aqarz.revival.sa.aqarz.Activity.MainActivity;
+import aqarz.revival.sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
+import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Opration_in_map;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_in_map;
 import aqarz.revival.sa.aqarz.Modules.OprationModules;
@@ -50,7 +53,7 @@ public class MapsFragment extends Fragment {
     public GoogleApiClient mGoogleApiClient;
     MapView mMapView;
 
-
+    TextView RequstAqars;
     RecyclerView type;
     RecyclerView opration;
     List<TypeModules> typeModules_list = new ArrayList<>();
@@ -63,6 +66,7 @@ public class MapsFragment extends Fragment {
         mMapView = (MapView) v.findViewById(R.id.mapViewxx);
         type = v.findViewById(R.id.type);
         opration = v.findViewById(R.id.opration);
+        RequstAqars = v.findViewById(R.id.RequstAqars);
 
         mMapView.onCreate(savedInstanceState);
 
@@ -108,7 +112,6 @@ public class MapsFragment extends Fragment {
         type.setAdapter(new RecyclerView_All_Type_in_map(getContext(), typeModules_list));
 
 
-
         oprationModules_list.add(new OprationModules());
         oprationModules_list.add(new OprationModules());
         oprationModules_list.add(new OprationModules());
@@ -122,7 +125,18 @@ public class MapsFragment extends Fragment {
         opration.setAdapter(new RecyclerView_All_Opration_in_map(getContext(), oprationModules_list));
 
 
+        RequstAqars.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intent = new Intent(getContext(), RequestOrderActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+
+            }
+        });
         return v;
     }
 

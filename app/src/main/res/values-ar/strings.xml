@@ -82,5 +82,43 @@
 
     <string name="are_you_change_lang_post">هل تريد تغيير الباسوورد?</string>
 
+    <string name="Information_Aqar">معلومات العقار</string>
+    <string name="AqarType">نوع العقار</string>
+
+
+    <string name="yaer">سنة</string>
+    <string name="month_six">6 شهور</string>
+    <string name="Duration">مدة العقد </string>
+
+
+    <string name="Price">سعر الايجار </string>
+    <string name="writehear">ادخل هنا</string>
+    <string name="Information_AOwner">معلومات المالك </string>
+
+
+    <string name="Information_Tenant">معلومات المستاجر</string>
+    <string name="id_upload">الهوية</string>
+
+    <string name="Date_of_Birth">تاريخ الميلاد</string>
+    <string name="city">المدينة</string>
+    <string name="Type_work">نوع العمل</string>
+    <string name="governmental">حكومي</string>
+    <string name="Special">خاص</string>
+    <string name="Soldier">عسكري</string>
+
+
+    <string name="startworkdate">تاريخ بدء العمل</string>
+    <string name="Total_salary">اجمالي الراتب</string>
+    <string name="Salary_Transferred">الراتب محول على</string>
+    <string name="Financial_obligations">الالتزامات المالية </string>
+    <string name="National_address">العنوان الوطني</string>
+    <string name="Attachdocument">ارفاق المستند</string>
+    <string name="buldingnumber">رقم المبنى</string>
+    <string name="Neighborhoodname">اسم الحي</string>
+    <string name="city_name">اسم المدينة</string>
+    <string name="Postal_code">الرمز البريدي</string>
+    <string name="additional_number">الرقم الاضافي</string>
+    <string name="unit_number">رقم الوحده</string>
+    <string name="StreetName">اسم الشارع</string>
 
 </resources>

@@ -53,6 +53,16 @@
 
 
     </style>
+ <style name="AppTheme.NoActionBar_orders">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--        <item name="android:fontFamily">@font/light</item>-->
+
+        <item name="colorPrimaryDark">#F5F5F5</item>
+        <item name="fontFamily">@font/frutiger_lt_arabic_roman</item>
+
+
+    </style>
 
 
     <style name="AppTheme.EditText" parent="Widget.AppCompat.EditText">
@@ -93,5 +103,16 @@
         <item name="android:paddingTop">@dimen/_4sdp</item>
         <item name="android:paddingBottom">@dimen/_4sdp</item>
     </style>
+    <style name="SCBSwitch" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">#814C99</item>
 
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#f1f1f1
+        </item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#42221f1f
+        </item>
+    </style>
 </resources>

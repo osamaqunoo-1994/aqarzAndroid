@@ -6,14 +6,17 @@
 
 
     <LinearLayout
+        android:id="@+id/back_ground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:layout_marginEnd="10dp"
         android:background="@drawable/search_background"
         android:gravity="center"
-        android:paddingTop="@dimen/_3sdp"
-        android:paddingBottom="@dimen/_3sdp">
+        android:paddingLeft="1dp"
+        android:paddingTop="1dp"
+        android:paddingRight="1dp"
+        android:paddingBottom="1dp">
 
         <ImageView
             android:layout_width="20dp"
@@ -26,14 +29,15 @@
             app:tint="#424446" />
 
         <TextView
+            android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
 
             android:fontFamily="@font/frutiger_lt_arabic_roman"
-            android:text="Home"
+            android:text="تقسيط تاجير"
             android:textColor="#424446"
-            android:textSize="@dimen/_12sdp" />
+            android:textSize="@dimen/_13sdp" />
 
 
     </LinearLayout>

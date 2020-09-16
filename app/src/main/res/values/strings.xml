@@ -86,5 +86,39 @@
     <string name="no">No</string>
 
     <string name="are_you_change_lang_post">are you change language?</string>
+    <string name="Information_Aqar">Information Aqar</string>
+    <string name="AqarType">Aqar Type</string>
+
+
+    <string name="yaer">year</string>
+    <string name="month_six">6 month</string>
+    <string name="Duration">Duration </string>
+    <string name="Price">Price </string>
+    <string name="writehear">write here</string>
+    <string name="Information_AOwner">Information Owner </string>
+    <string name="Information_Tenant">Information Tenant</string>
+    <string name="id_upload">Id</string>
+    <string name="Date_of_Birth">Date of Birth</string>
+    <string name="city">City</string>
+    <string name="Type_work">Type work</string>
+    <string name="governmental">governmental</string>
+    <string name="Special">Special</string>
+    <string name="Soldier">Soldier</string>
+    <string name="startworkdate">Start work date</string>
+    <string name="Total_salary">Total salary</string>
+    <string name="Salary_Transferred">Salary Transferred</string>
+    <string name="Financial_obligations">Financial obligations</string>
+    <string name="National_address">National address</string>
+    <string name="Attachdocument">Attach document</string>
+    <string name="buldingnumber">bulding number</string>
+    <string name="Neighborhoodname">Neighborhood name</string>
+    <string name="city_name">city name</string>
+    <string name="Postal_code">Postal code</string>
+    <string name="additional_number">additional number</string>
+    <string name="unit_number">unit number</string>
+    <string name="StreetName">Street Name</string>
+    <string name="Price_aqar">Price aqar</string>
+    <string name="age">age</string>
+    <string name="Available_price">Available price</string>
 
 </resources>

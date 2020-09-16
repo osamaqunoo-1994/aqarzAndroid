@@ -3,6 +3,7 @@ package aqarz.revival.sa.aqarz.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -11,8 +12,11 @@ import android.view.animation.AnimationUtils;
 
 import com.orhanobut.hawk.Hawk;
 
+import java.util.Locale;
+
 import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.R;
+import aqarz.revival.sa.aqarz.Settings.LocaleUtils;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -24,6 +28,28 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.splash_anim);
         findViewById(R.id.snack_ly).startAnimation(myanim);
+
+        if (Hawk.contains("lang")) {
+            System.out.println("SSSSSs0" + Hawk.get("lang").toString());
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+        } else {
+
+            Hawk.put("lang", LocaleUtils.getLanguage(this));
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+        }
+
 
 
         final Handler handler = new Handler();
