@@ -136,6 +136,7 @@ public class MoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Hawk.put("user", "");
+                Hawk.put("api_token", "");
 //                Hawk.put("user", "");
 
 

@@ -220,13 +220,21 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void notifyError(String requestType, VolleyError error) {
                 Log.d("TAG", "Volley requester " + requestType);
-                Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.toString());
+                Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.getMessage());
 
                 try {
 
                     NetworkResponse response = error.networkResponse;
-                    String json = new String(response.data);
+                    String response_data = new String(response.data);
 
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color(LoginActivity.this, message, "error");
+
+                    Log.e("error response", response_data);
 
                 } catch (Exception e) {
 
@@ -234,7 +242,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 WebService.loading(LoginActivity.this, false);
-                WebService.Make_Toast_color(LoginActivity.this, error.getMessage(), "error");
 
 
             }

@@ -121,4 +121,26 @@
     <string name="unit_number">رقم الوحده</string>
     <string name="StreetName">اسم الشارع</string>
 
+
+    <string name="Price_aqar">سعر العقار</string>
+    <string name="age">العمر</string>
+    <string name="Available_price">المبلغ المتوفر</string>
+    <string name="Solidarity_salary">راتب المتضامن</string>
+    <string name="Solidarity_partner">شريك متضامن</string>
+    <string name="ada_1">مدعوم من وزارة الاسكان أو صندوق التنمية العقاري</string>
+
+    <string name="property_dd">هل العقار لمنزلكم الاول</string>
+
+
+
+
+
+
+    <string name="Purchase">شراء</string>
+    <string name="rent">ايجار</string>
+    <string name="investment">استثمار</string>
+
+
+
+
 </resources>

@@ -120,5 +120,21 @@
     <string name="Price_aqar">Price aqar</string>
     <string name="age">age</string>
     <string name="Available_price">Available price</string>
+    <string name="Solidarity_salary">Solidarity salary</string>
+    <string name="ada_1">Supported by the Ministry of Housing</string>
+    <string name="Solidarity_partner">Solidarity partner</string>
+    <string name="property_dd">Is the property for your first home</string>
+
+
+
+    <string name="Purchase">Purchase</string>
+    <string name="rent">rent</string>
+    <string name="investment">investment</string>
+    <string name="select_space">select space</string>
+    <string name="select_price">select price</string>
+    <string name="Les_space">Less space</string>
+    <string name="Les_price">Less price</string>
+    <string name="Maximum_space">Maximum space</string>
+    <string name="Maximum_price">Maximum price</string>
 
 </resources>

@@ -132,7 +132,7 @@ public class MapsFragment extends Fragment {
                 Intent intent = new Intent(getContext(), RequestOrderActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
 
             }

@@ -58,7 +58,7 @@ public class WebService {
         heder.put("Accept-Language", Hawk.get("lang").toString());
         if (Hawk.contains("api_token")) {
             if (!Hawk.get("api_token").toString().equals("")) {
-                heder.put("auth", Hawk.get("api_token").toString());
+//                heder.put("auth", Hawk.get("api_token").toString());
                     System.out.println("auth " + "  " + Hawk.get("api_token").toString());
             }
         }
