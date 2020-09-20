@@ -126,7 +126,6 @@
     <string name="property_dd">Is the property for your first home</string>
 
 
-
     <string name="Purchase">Purchase</string>
     <string name="rent">rent</string>
     <string name="investment">investment</string>
@@ -136,5 +135,19 @@
     <string name="Les_price">Less price</string>
     <string name="Maximum_space">Maximum space</string>
     <string name="Maximum_price">Maximum price</string>
+    <string name="Communication_Officer">Communication Officer</string>
+    <string name="Communication_number"># Communication</string>
+    <string name="show_number">show</string>
+    <string name="Select_the_search_area">Select the search area</string>
+
+
+    <string name="English_lang">English</string>
+    <string name="Arabic_lang">Arabic</string>
+    <string name="writedescription">write description</string>
+    <string name="show_select">Show</string>
+    <string name="hide_select">hide</string>
+    <string name="romes">romes</string>
+    <string name="message_hint">message</string>
+    <string name="send__butt">Send</string>
 
 </resources>

@@ -80,7 +80,7 @@
     <string name="yes">نعم</string>
     <string name="no">لا</string>
 
-    <string name="are_you_change_lang_post">هل تريد تغيير الباسوورد?</string>
+    <string name="are_you_change_lang_post">هل تريد تغيير اللغة?</string>
 
     <string name="Information_Aqar">معلومات العقار</string>
     <string name="AqarType">نوع العقار</string>
@@ -132,15 +132,26 @@
     <string name="property_dd">هل العقار لمنزلكم الاول</string>
 
 
-
-
-
-
     <string name="Purchase">شراء</string>
     <string name="rent">ايجار</string>
     <string name="investment">استثمار</string>
 
 
+    <string name="select_space">اختار مساحة</string>
+    <string name="select_price">اختار سعر</string>
+    <string name="Les_space">اقل مساحة</string>
+    <string name="Les_price">اقل سعر</string>
+    <string name="Maximum_space">اقصى مساحة</string>
+    <string name="Maximum_price">اقصى سعر</string>
 
+
+    <string name="English_lang">انجليزي</string>
+    <string name="Arabic_lang">عربي</string>
+
+
+    <string name="Communication_Officer">مسئول التواصل</string>
+    <string name="Communication_number">رقم التواصل</string>
+    <string name="show_number">اظهار الرقم</string>
+    <string name="Select_the_search_area">حدد منطقة البحث</string>
 
 </resources>

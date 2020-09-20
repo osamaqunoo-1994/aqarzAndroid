@@ -17,11 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.ContactUsActivity"
+            android:theme="@style/AppTheme.NoActionBar_orders"></activity>
         <activity
             android:name=".Activity.OprationAqarz.RequestOrderActivity"
-            android:theme="@style/AppTheme.NoActionBar_orders">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar_orders"></activity>
+        <activity
+            android:name=".Activity.PrivecyActivity"
+            android:theme="@style/AppTheme.NoActionBar_orders" />
         <activity
             android:name=".Activity.TermsActivity"
             android:theme="@style/AppTheme.NoActionBar_orders" />

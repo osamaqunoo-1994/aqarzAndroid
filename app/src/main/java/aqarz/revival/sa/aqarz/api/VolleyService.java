@@ -65,6 +65,41 @@ public class VolleyService {
 
         }
     }
+    public void postDataVolley_without_token(final String requestType, String url, JSONObject sendObj) {
+        try {
+            RequestQueue queue = Volley.newRequestQueue(mContext);
+
+            JsonObjectRequest jsonObj = new JsonObjectRequest(url, sendObj, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    if (mResultCallback != null)
+                        mResultCallback.notifySuccess(requestType, response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    if (mResultCallback != null)
+                        mResultCallback.notifyError(requestType, error);
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+
+
+                    return WebService.setHeaderVolley_without_token();
+                }
+
+            };
+
+
+            ;
+
+            queue.add(jsonObj);
+
+        } catch (Exception e) {
+
+        }
+    }
 
     public void getDataVolley(final String requestType, String url) {
         try {
@@ -88,6 +123,38 @@ public class VolleyService {
 
 
                     return WebService.setHeaderVolley();
+                }
+
+            };
+
+            queue.add(jsonObj);
+
+        } catch (Exception e) {
+
+        }
+    }
+    public void getDataVolleyWithoutToken(final String requestType, String url) {
+        try {
+            RequestQueue queue = Volley.newRequestQueue(mContext);
+
+            JsonObjectRequest jsonObj = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    if (mResultCallback != null)
+                        mResultCallback.notifySuccess(requestType, response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    if (mResultCallback != null)
+                        mResultCallback.notifyError(requestType, error);
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+
+
+                    return WebService.setHeaderVolley_without_token();
                 }
 
             };

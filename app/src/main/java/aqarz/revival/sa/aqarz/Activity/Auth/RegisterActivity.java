@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -284,17 +285,24 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                 try {
-                    Log.d("TAG", "Error: " + error
-                            + "\nStatus Code " + error.networkResponse.statusCode
-                            + "\nResponse Data " + error.networkResponse.data
-                            + "\nCause " + error.getCause()
-                            + "\nmessage" + error.getMessage());
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color(RegisterActivity.this, message, "error");
+
+                    Log.e("error response", response_data);
+
                 } catch (Exception e) {
 
                 }
 
                 WebService.loading(RegisterActivity.this, false);
-                WebService.Make_Toast_color(RegisterActivity.this, error.getMessage(), "error");
 
 
             }

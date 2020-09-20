@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.alimuzaffar.lib.pin.PinEntryEditText;
+import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 
 import org.json.JSONException;
@@ -122,8 +123,25 @@ public class ConfirmationActivity extends AppCompatActivity {
             public void notifyError(String requestType, VolleyError error) {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.getMessage());
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color(ConfirmationActivity.this, message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
                 WebService.loading(ConfirmationActivity.this, false);
-                WebService.Make_Toast_color(ConfirmationActivity.this, error.getMessage(), "error");
+
 
 
             }

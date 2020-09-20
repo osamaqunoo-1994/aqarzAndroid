@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -122,122 +123,41 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:paddingBottom="5dp">
+            android:layout_height="150dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edit_text_background"
+            android:gravity="start"
+            android:hint="@string/writedescription"
+            android:padding="15dp"
+            android:textSize="@dimen/_12sdp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/select_space"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/_13sdp" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="20dp"
+
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="10dp">
 
             <LinearLayout
-                android:layout_width="15dp"
-                android:layout_height="wrap_content" />
-
-            <EditText
                 android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:layout_weight="1"
-                android:background="@drawable/edit_text_background"
-                android:gravity="center_vertical"
-                android:hint="@string/Les_space"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text=""
-                android:textColorHint="@color/hint_color"
-                android:textSize="@dimen/_10sdp" />
+                android:layout_height="match_parent">
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:layout_weight="1"
-                android:background="@drawable/edit_text_background"
-                android:gravity="center_vertical"
-                android:hint="@string/Maximum_space"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text=""
-                android:textColorHint="@color/hint_color"
-                android:textSize="@dimen/_10sdp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="@string/Select_the_search_area"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp" />
+
+            </LinearLayout>
 
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:paddingBottom="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/select_price"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/_13sdp" />
-
-            <LinearLayout
-                android:layout_width="15dp"
-                android:layout_height="wrap_content" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:layout_weight="1"
-                android:background="@drawable/edit_text_background"
-                android:gravity="center_vertical"
-                android:hint="@string/Les_price"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text=""
-                android:textColorHint="@color/hint_color"
-                android:textSize="@dimen/_10sdp" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:layout_weight="1"
-                android:background="@drawable/edit_text_background"
-                android:gravity="center_vertical"
-                android:hint="@string/Maximum_price"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text=""
-                android:textColorHint="@color/hint_color"
-                android:textSize="@dimen/_10sdp" />
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:paddingBottom="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/select_price"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/_13sdp" />
-
-            <LinearLayout
-                android:layout_width="15dp"
-                android:layout_height="wrap_content" />
-
-
-
-
-
-        </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
 
     </LinearLayout>

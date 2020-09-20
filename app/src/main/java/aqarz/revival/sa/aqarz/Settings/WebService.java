@@ -32,6 +32,9 @@ public class WebService {
     public static String forget_password = Domain + "forget/password";
     public static String update_password = Domain + "update/password";
     public static String update_my_profile = Domain + "update/my/profile";
+    public static String settings = Domain + "settings";
+    public static String profile_image = Domain + "profile/image";
+    public static String operation_type = Domain + "operation/type";
 
 
     public static void Header_Async(AsyncHttpClient client, boolean is_token) {
@@ -58,8 +61,22 @@ public class WebService {
         heder.put("Accept-Language", Hawk.get("lang").toString());
         if (Hawk.contains("api_token")) {
             if (!Hawk.get("api_token").toString().equals("")) {
+                heder.put("auth", Hawk.get("api_token").toString());
+                System.out.println("auth " + "  " + Hawk.get("api_token").toString());
+            }
+        }
+        return heder;
+    }
+
+    public static Map<String, String> setHeaderVolley_without_token() {
+
+        Map<String, String> heder = new HashMap<String, String>();
+        heder.put("Accept", "application/json");
+        heder.put("Accept-Language", Hawk.get("lang").toString());
+        if (Hawk.contains("api_token")) {
+            if (!Hawk.get("api_token").toString().equals("")) {
 //                heder.put("auth", Hawk.get("api_token").toString());
-                    System.out.println("auth " + "  " + Hawk.get("api_token").toString());
+                System.out.println("auth " + "  " + Hawk.get("api_token").toString());
             }
         }
         return heder;

@@ -42,8 +42,11 @@ import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.NewPasswordActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.RegisterActivity;
+import aqarz.revival.sa.aqarz.Activity.ContactUsActivity;
 import aqarz.revival.sa.aqarz.Activity.MainActivity;
+import aqarz.revival.sa.aqarz.Activity.PrivecyActivity;
 import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
+import aqarz.revival.sa.aqarz.Activity.TermsActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Opration_in_map;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_in_map;
 import aqarz.revival.sa.aqarz.Modules.OprationModules;
@@ -67,9 +70,13 @@ public class MoreFragment extends Fragment {
     LinearLayout no_login;
     LinearLayout logout;
     LinearLayout langauge;
+    LinearLayout privecy;
+    LinearLayout terms;
 
     TextView user_name;
+    TextView language_text;
 
+    Button contact_us;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -90,6 +97,10 @@ public class MoreFragment extends Fragment {
         user_name = v.findViewById(R.id.user_name);
         logout = v.findViewById(R.id.logout);
         langauge = v.findViewById(R.id.langauge);
+        language_text = v.findViewById(R.id.language_text);
+        privecy = v.findViewById(R.id.privecy);
+        terms = v.findViewById(R.id.terms);
+        contact_us = v.findViewById(R.id.contact_us);
 
 
         info_.setOnClickListener(new View.OnClickListener() {
@@ -112,10 +123,41 @@ public class MoreFragment extends Fragment {
 
             }
         });
+        contact_us.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ContactUsActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+            }
+        });
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+            }
+        });
+
+        privecy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PrivecyActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+            }
+        });
+        terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), TermsActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
@@ -144,6 +186,17 @@ public class MoreFragment extends Fragment {
 
             }
         });
+
+
+        if (Hawk.get("lang").toString().equals("ar")) {
+
+            language_text.setText(getResources().getString(R.string.Arabic_lang));
+        } else {
+
+            language_text.setText(getResources().getString(R.string.English_lang));
+
+        }
+
 
         langauge.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -130,8 +130,6 @@ public class LoginActivity extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 if (phone_ed.getText().toString().equals("") |
                         password.getText().toString().equals("")) {
                     WebService.Make_Toast_color(LoginActivity.this, getResources().getString(R.string.fillallfileds) + "", "error");
@@ -154,7 +152,7 @@ public class LoginActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    mVolleyService.postDataVolley("Login", WebService.login, sendObj);
+                    mVolleyService.postDataVolley_without_token("Login", WebService.login, sendObj);
                 }
 
             }

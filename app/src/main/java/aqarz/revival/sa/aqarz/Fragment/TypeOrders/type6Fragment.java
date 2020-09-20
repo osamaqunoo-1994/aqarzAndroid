@@ -22,10 +22,10 @@ import aqarz.revival.sa.aqarz.Modules.OprationModules;
 import aqarz.revival.sa.aqarz.R;
 
 
-public class type5Fragment extends Fragment {
+public class type6Fragment extends Fragment {
 
     RecyclerView opration_2__RecyclerView;
-    RecyclerView number_roomRecyclerView;
+
 
 
 
@@ -36,7 +36,7 @@ public class type5Fragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.requst_order_type_5, container, false);
+        View v = inflater.inflate(R.layout.requst_order_type_6, container, false);
 
         init(v);
         return v;
@@ -68,28 +68,6 @@ public class type5Fragment extends Fragment {
 
 
 
-        number_roomRecyclerView = v.findViewById(R.id.number_roomRecyclerView);
-
-        LinearLayoutManager layoutManages
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        number_roomRecyclerView.setLayoutManager(layoutManages);
-
-
-
-
-        lost_romm.add("1");
-        lost_romm.add("2");
-        lost_romm.add("3");
-        lost_romm.add("4");
-        lost_romm.add("5");
-        lost_romm.add("6");
-        lost_romm.add("7");
-        lost_romm.add("8");
-
-        number_roomRecyclerView.setAdapter(new RecyclerView_All_number_room(getContext(),lost_romm));
-
-
-
 
 
 
@@ -97,9 +75,9 @@ public class type5Fragment extends Fragment {
     }
 
 
-    public static type5Fragment newInstance(String text) {
+    public static type6Fragment newInstance(String text) {
 
-        type5Fragment f = new type5Fragment();
+        type6Fragment f = new type6Fragment();
         Bundle b = new Bundle();
         b.putString("msg", text);
 

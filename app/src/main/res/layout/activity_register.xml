@@ -14,7 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:scrollbars="none">
+        android:scrollbarThumbVertical="@null"
+
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,17 +46,6 @@
                     android:background="@drawable/edit_text_background">
 
                     <TextView
-                        android:id="@+id/Provider_type"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/Provider_type"
-                        android:textColor="@color/colorPrimary"
-
-                        android:textSize="@dimen/_13sdp" />
-
-                    <TextView
                         android:id="@+id/user_type"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -63,6 +54,17 @@
                         android:gravity="center"
                         android:text="@string/user_type"
                         android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp" />
+
+                    <TextView
+                        android:id="@+id/Provider_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/Provider_type"
+                        android:textColor="@color/colorPrimary"
+
                         android:textSize="@dimen/_13sdp" />
 
 
@@ -171,12 +173,6 @@
                 android:text="@string/sign_up"
                 android:textColor="@android:color/white" />
 
-            <ProgressBar
-                android:id="@+id/progress_view3"
-                android:layout_width="@dimen/_32sdp"
-                android:layout_height="@dimen/_32sdp"
-                android:layout_gravity="center"
-                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/dont_have_account"

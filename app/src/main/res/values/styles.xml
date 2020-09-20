@@ -5,6 +5,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">@font/frutiger_lt_arabic_roman</item>
+
     </style>
 
     <style name="FullScreen" parent="@style/Theme.AppCompat.Light">
@@ -12,6 +14,7 @@
         <item name="windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="fontFamily">@font/frutiger_lt_arabic_roman</item>
 
 
     </style>
@@ -19,6 +22,8 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="fontFamily">@font/frutiger_lt_arabic_roman</item>
+
         <!--        <item name="android:fontFamily">@font/light</item>-->
 
 
@@ -30,6 +35,7 @@
         <!--        <item name="android:fontFamily">@font/light</item>-->
 
         <!--        <item name="colorPrimaryDark">@color/color_praymary_dark_home</item>-->
+        <item name="fontFamily">@font/frutiger_lt_arabic_roman</item>
 
 
     </style>
@@ -38,6 +44,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <!--        <item name="android:fontFamily">@font/light</item>-->
+        <item name="fontFamily">@font/frutiger_lt_arabic_roman</item>
 
         <item name="colorPrimaryDark">#8271AF</item>
 
@@ -48,6 +55,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <!--        <item name="android:fontFamily">@font/light</item>-->
+        <item name="fontFamily">@font/frutiger_lt_arabic_roman</item>
 
         <item name="colorPrimaryDark">@color/white</item>
 

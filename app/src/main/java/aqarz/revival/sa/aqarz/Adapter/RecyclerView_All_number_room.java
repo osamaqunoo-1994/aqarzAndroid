@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import aqarz.revival.sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
 
@@ -24,8 +23,8 @@ import aqarz.revival.sa.aqarz.R;
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<RecyclerView_All_Type_in_order.MyViewHolder> {
-    public static List<TypeModules> alldata = new ArrayList<TypeModules>();
+public class RecyclerView_All_number_room extends RecyclerView.Adapter<RecyclerView_All_number_room.MyViewHolder> {
+    public static List<String> alldata = new ArrayList<String>();
     static int Postion_opend = -1;
 
 
@@ -72,7 +71,7 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
         }
     }
 
-    public RecyclerView_All_Type_in_order(Context context, List<TypeModules> alldata) {
+    public RecyclerView_All_number_room(Context context, List<String> alldata) {
         this.alldata = alldata;
         this.context = context;
     }
@@ -116,9 +115,6 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
 
 
         //   wallet, dafter, receipt, payment
-
-
-        holder.text.setText(alldata.get(position).getName() + "");
 
         if (position == Postion_opend) {
             holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));
@@ -168,10 +164,6 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
 
 
                 Postion_opend = position;
-
-//                RequestOrderActivity.set_fragment(position);
-
-
                 Refr();
 //
 
@@ -197,7 +189,7 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_type_map, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_number_room, parent, false);
 
 
         // Fresco.initialize(context);

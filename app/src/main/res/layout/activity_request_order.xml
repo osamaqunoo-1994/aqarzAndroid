@@ -29,47 +29,48 @@
 
         </LinearLayout>
 
-        <ScrollView
+        <LinearLayout
+
+            android:id="@+id/layo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/type_RecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="10dp"
+
+
+                android:orientation="horizontal" />
 
             <LinearLayout
-
-                android:id="@+id/layo"
+                android:id="@+id/view_"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/type_RecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="10dp"
-
-
-                    android:orientation="horizontal" />
-
-                <LinearLayout
-                    android:id="@+id/view_"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <FrameLayout
-                        android:id="@+id/container"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_above="@+id/bottom_navigation"
-                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                        tools:background="#EFF0F2" />
-
-
-                </LinearLayout>
-
-
             </LinearLayout>
+
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:fillViewport="true"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottom_navigation"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:background="#EFF0F2" />
 
         </ScrollView>
 
