@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aqarz.revival.sa.aqarz.Modules.OprationModules;
+import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
 
 
@@ -26,7 +27,7 @@ import aqarz.revival.sa.aqarz.R;
  * Created by osama on 10/16/2017.
  */
 public class RecyclerView_All_Opration_in_order extends RecyclerView.Adapter<RecyclerView_All_Opration_in_order.MyViewHolder> {
-    public static List<OprationModules> alldata = new ArrayList<OprationModules>();
+    public static List<TypeModules> alldata = new ArrayList<TypeModules>();
     static int Postion_opend = -1;
 
 
@@ -73,7 +74,7 @@ public class RecyclerView_All_Opration_in_order extends RecyclerView.Adapter<Rec
         }
     }
 
-    public RecyclerView_All_Opration_in_order(Context context, List<OprationModules> alldata) {
+    public RecyclerView_All_Opration_in_order(Context context, List<TypeModules> alldata) {
         this.alldata = alldata;
         this.context = context;
     }

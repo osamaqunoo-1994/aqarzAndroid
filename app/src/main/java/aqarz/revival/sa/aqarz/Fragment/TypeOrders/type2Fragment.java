@@ -64,7 +64,7 @@ public class type2Fragment extends Fragment {
         LinearLayoutManager layoutManagerm
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         opration_2__RecyclerView.setLayoutManager(layoutManagerm);
-        opration_2__RecyclerView.setAdapter(new RecyclerView_All_Opration_in_order(getContext(), oprationModules_list));
+//        opration_2__RecyclerView.setAdapter(new RecyclerView_All_Opration_in_order(getContext(), oprationModules_list));
 
 
     }

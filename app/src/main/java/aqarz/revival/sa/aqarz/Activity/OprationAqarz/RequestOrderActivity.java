@@ -99,12 +99,15 @@ public class RequestOrderActivity extends AppCompatActivity {
         fragmentTransaction = fragmentManager.beginTransaction();
 
 
+        fragmentTransaction.replace(R.id.container, new type1Fragment());
+        //  fragmentTransaction.commit();
+        fragmentTransaction.commitAllowingStateLoss();
+
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, RequestOrderActivity.this);
         mVolleyService.postDataVolley_without_token("operation_type", WebService.operation_type, null);
         WebService.loading(RequestOrderActivity.this, true);
 
-        set_fragment(0);
     }
 
     public void init_volley() {
@@ -188,11 +191,6 @@ public class RequestOrderActivity extends AppCompatActivity {
         switch (id) {
 
             case 1:
-
-
-                fragmentTransaction.replace(R.id.container, new type1Fragment());
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
 
 
                 break;

@@ -31,6 +31,7 @@ import aqarz.revival.sa.aqarz.Activity.Auth.RegisterActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
 import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Opration_in_order;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import aqarz.revival.sa.aqarz.Modules.OprationModules;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
@@ -43,10 +44,10 @@ public class type1Fragment extends Fragment {
     RecyclerView opration_RecyclerView;
 
 
+    List<TypeModules> type_list = new ArrayList<>();
 
-    List<OprationModules> oprationModules_list = new ArrayList<>();
-
-
+    TextView month;
+    TextView year;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,25 +61,47 @@ public class type1Fragment extends Fragment {
     public void init(View v) {
 
 
-
-
         opration_RecyclerView = v.findViewById(R.id.opration_RecyclerView);
-        oprationModules_list.add(new OprationModules());
-        oprationModules_list.add(new OprationModules());
-        oprationModules_list.add(new OprationModules());
-        oprationModules_list.add(new OprationModules());
-        oprationModules_list.add(new OprationModules());
-        oprationModules_list.add(new OprationModules());
-        oprationModules_list.add(new OprationModules());
+        month = v.findViewById(R.id.month);
+        year = v.findViewById(R.id.year);
+
+        type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
+
+        System.out.println("type_list" + type_list.size());
 
 
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         opration_RecyclerView.setLayoutManager(layoutManager1);
-        opration_RecyclerView.setAdapter(new RecyclerView_All_Opration_in_order(getContext(), oprationModules_list));
+        opration_RecyclerView.setAdapter(new RecyclerView_All_type_in_fragment(getContext(), type_list));
 
 //
+        month.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                month.setBackground(getResources().getDrawable(R.drawable.button_login));
 
+                month.setTextColor(getResources().getColor(R.color.white));
+
+                year.setBackground(getResources().getDrawable(R.drawable.search_background));
+
+                year.setTextColor(getResources().getColor(R.color.textColor));
+
+            }
+        });
+        year.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                year.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                year.setTextColor(getResources().getColor(R.color.white));
+
+
+                month.setBackground(getResources().getDrawable(R.drawable.search_background));
+
+                month.setTextColor(getResources().getColor(R.color.textColor));
+            }
+        });
 
     }
 

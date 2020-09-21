@@ -65,7 +65,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         VolleyService mVolleyService = new VolleyService(mResultCallback, SplashScreenActivity.this);
 
-        mVolleyService.getDataVolleyWithoutToken("Settings", WebService.settings);
+        mVolleyService.getDataVolley("Settings", WebService.settings);
+
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -80,9 +81,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
             }
-        }, 3000); // After 1 seconds
-
-
+        }, 1000); // After 1 seconds
 
     }
 
@@ -102,6 +101,10 @@ public class SplashScreenActivity extends AppCompatActivity {
                         String data = response.getString("data");
 
                         System.out.println("data_spalsh" + data.toString());
+
+
+                        Hawk.put("settings", data);
+
 
 
                     } else {

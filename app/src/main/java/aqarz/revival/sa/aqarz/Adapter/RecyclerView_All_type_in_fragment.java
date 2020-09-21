@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import aqarz.revival.sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
 
@@ -26,7 +25,7 @@ import aqarz.revival.sa.aqarz.R;
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<RecyclerView_All_Type_in_order.MyViewHolder> {
+public class RecyclerView_All_type_in_fragment extends RecyclerView.Adapter<RecyclerView_All_type_in_fragment.MyViewHolder> {
     public static List<TypeModules> alldata = new ArrayList<TypeModules>();
     static int Postion_opend = -1;
 
@@ -56,6 +55,9 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
 //        LinearLayout add_to_my;
 
 
+        //        LinearLayout answer_layout;
+        //  public FrameLayout frame;
+
         LinearLayout back_ground;
         TextView text;
         ImageView image_in_type;
@@ -68,15 +70,12 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
             back_ground = view.findViewById(R.id.back_ground);
             text = view.findViewById(R.id.text);
             image_in_type = view.findViewById(R.id.image_in_type);
-
-//            image_ = view.findViewById(R.id.image_);
-//            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
     }
 
-    public RecyclerView_All_Type_in_order(Context context, List<TypeModules> alldata) {
+    public RecyclerView_All_type_in_fragment(Context context, List<TypeModules> alldata) {
         this.alldata = alldata;
         this.context = context;
     }
@@ -98,7 +97,24 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
 //            }
 //        }
 ////
-//
+        holder.text.setText(alldata.get(position).getName() + "");
+
+
+        if (position == Postion_opend) {
+            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));
+
+            holder.text.setTextColor(context.getResources().getColor(R.color.white));
+
+
+            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
+
+        } else {
+            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.search_background));
+
+            holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
+            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
+
+        }
 //
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
@@ -121,23 +137,6 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
 
         //   wallet, dafter, receipt, payment
 
-
-        holder.text.setText(alldata.get(position).getName() + "");
-
-        if (position == Postion_opend) {
-            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));
-
-            holder.text.setTextColor(context.getResources().getColor(R.color.white));
-
-
-            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
-
-        } else {
-            holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
-            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.search_background));
-            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
-
-        }
 
 //            double v=Double.valueOf(alldata.get(position).getRate());
 //
@@ -175,14 +174,11 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
             @Override
             public void onClick(View view) {
 
+//
+
 
                 Postion_opend = position;
-
-//                RequestOrderActivity.set_fragment(position);
-
-
                 Refr();
-//
 
             }
         });
