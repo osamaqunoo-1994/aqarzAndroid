@@ -35,6 +35,8 @@ public class WebService {
     public static String settings = Domain + "settings";
     public static String profile_image = Domain + "profile/image";
     public static String operation_type = Domain + "operation/type";
+    public static String cities = Domain + "cities/1/list";
+    public static String banks = Domain + "banks";
 
 
     public static void Header_Async(AsyncHttpClient client, boolean is_token) {

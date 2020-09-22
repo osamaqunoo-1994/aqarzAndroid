@@ -98,6 +98,7 @@
 
     <string name="Information_Tenant">معلومات المستاجر</string>
     <string name="id_upload">الهوية</string>
+    <string name="id_number">رقم الهوية</string>
 
     <string name="Date_of_Birth">تاريخ الميلاد</string>
     <string name="city">المدينة</string>
@@ -154,4 +155,14 @@
     <string name="show_number">اظهار الرقم</string>
     <string name="Select_the_search_area">حدد منطقة البحث</string>
 
+
+
+    <string name="writedescription">اكتب التفاصيل</string>
+    <string name="show_select">اظهر</string>
+    <string name="hide_select">اخفاء</string>
+    <string name="romes">غرف</string>
+    <string name="message_hint">رسالة</string>
+    <string name="send__butt">ارسال</string>
+
+    <string name="send_order_btn">ارسال طلب</string>
 </resources>

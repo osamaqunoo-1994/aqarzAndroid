@@ -149,5 +149,7 @@
     <string name="romes">romes</string>
     <string name="message_hint">message</string>
     <string name="send__butt">Send</string>
+    <string name="id_number">id number</string>
+    <string name="send_order_btn">Send Order</string>
 
 </resources>

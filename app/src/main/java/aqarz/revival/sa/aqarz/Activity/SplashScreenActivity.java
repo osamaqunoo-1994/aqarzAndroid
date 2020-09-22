@@ -106,7 +106,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                         Hawk.put("settings", data);
 
 
-
                     } else {
 
                     }
