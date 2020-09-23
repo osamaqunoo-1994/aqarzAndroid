@@ -153,6 +153,11 @@ public class NewPasswordActivity extends AppCompatActivity {
 
 
             }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+
+            }
         };
 
 

@@ -156,7 +156,6 @@
     <string name="Select_the_search_area">حدد منطقة البحث</string>
 
 
-
     <string name="writedescription">اكتب التفاصيل</string>
     <string name="show_select">اظهر</string>
     <string name="hide_select">اخفاء</string>
@@ -165,4 +164,7 @@
     <string name="send__butt">ارسال</string>
 
     <string name="send_order_btn">ارسال طلب</string>
+
+    <string name="contract">ارفاق العقد</string>
+
 </resources>

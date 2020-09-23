@@ -20,19 +20,16 @@
                 android:id="@+id/with_login"
 
                 android:layout_width="match_parent"
-                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
-                android:orientation="vertical">
-
-
-
+                android:orientation="vertical"
+                android:visibility="gone">
 
 
                 <LinearLayout
-                    android:layout_marginTop="30dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -208,14 +205,12 @@
                 android:visibility="visible">
 
 
-
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:fontFamily="@font/muli_bold"
                     android:gravity="center"
-                    android:layout_marginTop="30dp"
                     android:text="@string/Please_Login_or_Register"
                     android:textColor="#0D1904"
                     android:textSize="@dimen/_15sdp" />
@@ -356,7 +351,8 @@
                             android:layout_height="15dp"
                             android:src="@drawable/ic_left_arrow" />
                     </LinearLayout>
-    <LinearLayout
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginStart="20dp"
@@ -492,7 +488,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/circle_wh"
-                        android:padding="10dp"
+                        android:padding="13dp"
                         android:src="@drawable/ic_facebook" />
 
                     <LinearLayout
@@ -504,7 +500,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/circle_wh"
-                        android:padding="10dp"
+                        android:padding="13dp"
                         android:src="@drawable/ic_twitter" />
 
                     <LinearLayout
@@ -516,7 +512,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/circle_wh"
-                        android:padding="10dp"
+                        android:padding="13dp"
                         android:src="@drawable/ic_snapchat" />
 
                     <LinearLayout
@@ -528,7 +524,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/circle_wh"
-                        android:padding="10dp"
+                        android:padding="13dp"
                         android:src="@drawable/ic_linkedin" />
 
                     <LinearLayout

@@ -182,6 +182,11 @@ public class RequestOrderActivity extends AppCompatActivity {
 
 
             }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+
+            }
         };
 
 

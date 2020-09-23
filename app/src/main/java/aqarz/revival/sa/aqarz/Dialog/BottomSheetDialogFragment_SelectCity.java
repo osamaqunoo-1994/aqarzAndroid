@@ -155,6 +155,11 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
 
 
             }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+
+            }
         };
 
 

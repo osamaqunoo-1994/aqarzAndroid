@@ -31,6 +31,7 @@ public class RecyclerView_All_type_in_fragment extends RecyclerView.Adapter<Recy
 
 
     static AlertDialog alertDialog;
+    private ItemClickListener mItemClickListener;
 
 
     /**
@@ -78,6 +79,9 @@ public class RecyclerView_All_type_in_fragment extends RecyclerView.Adapter<Recy
     public RecyclerView_All_type_in_fragment(Context context, List<TypeModules> alldata) {
         this.alldata = alldata;
         this.context = context;
+    }
+    public void addItemClickListener(ItemClickListener listener) {
+        mItemClickListener = listener;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -176,7 +180,9 @@ public class RecyclerView_All_type_in_fragment extends RecyclerView.Adapter<Recy
 
 //
 
-
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(position);
+                }
                 Postion_opend = position;
                 Refr();
 
@@ -211,5 +217,8 @@ public class RecyclerView_All_type_in_fragment extends RecyclerView.Adapter<Recy
         return new MyViewHolder(v);
     }
 
-
+    //Define your Interface method here
+    public interface ItemClickListener {
+        void onItemClick(int position);
+    }
 }

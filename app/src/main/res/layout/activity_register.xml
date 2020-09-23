@@ -54,7 +54,7 @@
                         android:gravity="center"
                         android:text="@string/user_type"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_11sdp" />
 
                     <TextView
                         android:id="@+id/Provider_type"
@@ -65,7 +65,7 @@
                         android:text="@string/Provider_type"
                         android:textColor="@color/colorPrimary"
 
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_11sdp" />
 
 
                 </LinearLayout>

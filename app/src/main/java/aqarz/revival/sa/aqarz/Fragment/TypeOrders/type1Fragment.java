@@ -4,10 +4,17 @@ package aqarz.revival.sa.aqarz.Fragment.TypeOrders;
  */
 
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,18 +25,31 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.loopj.android.http.RequestParams;
 import com.orhanobut.hawk.Hawk;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import aqarz.revival.sa.aqarz.Activity.Auth.ConfirmationActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.NewPasswordActivity;
@@ -42,9 +62,14 @@ import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_SelectBanks;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
 import aqarz.revival.sa.aqarz.Modules.OprationModules;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
+import aqarz.revival.sa.aqarz.Modules.User;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.LocaleUtils;
 import aqarz.revival.sa.aqarz.Settings.Settings;
+import aqarz.revival.sa.aqarz.Settings.WebService;
+import aqarz.revival.sa.aqarz.api.IResult;
+import aqarz.revival.sa.aqarz.api.VolleyService;
+import in.mayanknagwanshi.imagepicker.ImageSelectActivity;
 
 
 public class type1Fragment extends Fragment {
@@ -54,6 +79,7 @@ public class type1Fragment extends Fragment {
     BottomSheetDialogFragment_SelectCity bottomSheetDialogFragment_selectCity;
     BottomSheetDialogFragment_SelectBanks bottomSheetDialogFragment_selectBanks;
 
+    IResult mResultCallback;
 
     List<TypeModules> type_list = new ArrayList<>();
 
@@ -62,22 +88,33 @@ public class type1Fragment extends Fragment {
     TextView governmental;
     TextView Special;
     TextView Soldier;
-
+    LinearLayout get_id_image;
+    LinearLayout owner_get_id_image;
 
     TextView date_bertih;
     TextView start_work_date;
+    TextView contract_file;
+
+    File owner_get_id_image_file = null;
+    File contract_file_file = null;
+    File get_id_image_file = null;
+    String tenant_job_type = "governmental";
+    String contract_interval = "year";
 
 
     TextView city;
     TextView banks;
     TextView National_address;
 
-
+    File National_address_file = null;
     EditText price, name_owner, phone_owner, name, phone, id_number, total_sallary, Financial_obligations, buldingnumber, StreetName;
-    EditText Neighborhoodname, name_city, Postal_code, additional_number, unit_number;
+    EditText Neighborhoodname, name_city, Postal_code, additional_number, unit_number, owner_id_number;
 
 
     Button btn_send;
+
+
+    String opration_select = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -120,6 +157,10 @@ public class type1Fragment extends Fragment {
         StreetName = v.findViewById(R.id.StreetName);
         StreetName = v.findViewById(R.id.StreetName);
         btn_send = v.findViewById(R.id.btn_send);
+        get_id_image = v.findViewById(R.id.get_id_image);
+        owner_id_number = v.findViewById(R.id.owner_id_number);
+        owner_get_id_image = v.findViewById(R.id.owner_get_id_image);
+        contract_file = v.findViewById(R.id.contract_file);
 
 
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
@@ -130,7 +171,19 @@ public class type1Fragment extends Fragment {
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         opration_RecyclerView.setLayoutManager(layoutManager1);
-        opration_RecyclerView.setAdapter(new RecyclerView_All_type_in_fragment(getContext(), type_list));
+
+        RecyclerView_All_type_in_fragment recyclerView_all_type_in_fragment = new RecyclerView_All_type_in_fragment(getContext(), type_list);
+        recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_in_fragment.ItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+
+
+                opration_select = type_list.get(position).getId().toString() + "";
+
+
+            }
+        });
+        opration_RecyclerView.setAdapter(recyclerView_all_type_in_fragment);
 
 //
         month.setOnClickListener(new View.OnClickListener() {
@@ -143,6 +196,7 @@ public class type1Fragment extends Fragment {
                 year.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 year.setTextColor(getResources().getColor(R.color.textColor));
+                contract_interval = "six_month";
 
             }
         });
@@ -159,6 +213,8 @@ public class type1Fragment extends Fragment {
                 month.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 month.setTextColor(getResources().getColor(R.color.textColor));
+                contract_interval = "year";
+
             }
         });
 
@@ -178,6 +234,7 @@ public class type1Fragment extends Fragment {
                 Special.setBackground(null);
 
                 Special.setTextColor(getResources().getColor(R.color.textColor));
+                tenant_job_type = "governmental";
             }
         });
         Soldier.setOnClickListener(new View.OnClickListener() {
@@ -194,6 +251,8 @@ public class type1Fragment extends Fragment {
                 Special.setBackground(null);
 
                 Special.setTextColor(getResources().getColor(R.color.textColor));
+                tenant_job_type = "soldier";
+
             }
         });
         Special.setOnClickListener(new View.OnClickListener() {
@@ -210,13 +269,241 @@ public class type1Fragment extends Fragment {
                 Soldier.setBackground(null);
 
                 Soldier.setTextColor(getResources().getColor(R.color.textColor));
+                tenant_job_type = "special";
+
             }
         });
+        National_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+
+                        // No explanation needed, we can request the permission.
+
+                        ActivityCompat.requestPermissions(getActivity(),
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                11);
+
+                    } else {
+
+                        Intent intent = new Intent(getContext(), ImageSelectActivity.class);
+                        intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
+                        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+                        intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
+                        startActivityForResult(intent, 1213);
+                    }
+                } else {
+                    Intent intent = new Intent(getContext(), ImageSelectActivity.class);
+                    intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
+                    intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+                    intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
+                    startActivityForResult(intent, 1213);
+
+                }
+
+
+            }
+        });
+        contract_file.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+
+                        // No explanation needed, we can request the permission.
+
+                        ActivityCompat.requestPermissions(getActivity(),
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                15);
+
+                    } else {
+
+                        Intent intent = new Intent(getContext(), ImageSelectActivity.class);
+                        intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, true);//default is true
+                        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+                        intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
+                        startActivityForResult(intent, 1215);
+                    }
+                } else {
+                    Intent intent = new Intent(getContext(), ImageSelectActivity.class);
+                    intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, true);//default is true
+                    intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+                    intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
+                    startActivityForResult(intent, 1215);
+
+                }
+
+
+            }
+        });
+        owner_get_id_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+
+                        // No explanation needed, we can request the permission.
+
+                        ActivityCompat.requestPermissions(getActivity(),
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                13);
+
+                    } else {
+
+                        Intent intent = new Intent(getContext(), ImageSelectActivity.class);
+                        intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
+                        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+                        intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
+                        startActivityForResult(intent, 1217);
+                    }
+                } else {
+                    Intent intent = new Intent(getContext(), ImageSelectActivity.class);
+                    intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
+                    intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+                    intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
+                    startActivityForResult(intent, 1217);
+
+                }
+
+
+            }
+        });
+        get_id_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+
+                        // No explanation needed, we can request the permission.
+
+                        ActivityCompat.requestPermissions(getActivity(),
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                12);
+
+                    } else {
+
+                        Intent intent = new Intent(getContext(), ImageSelectActivity.class);
+                        intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
+                        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+                        intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
+                        startActivityForResult(intent, 1214);
+                    }
+                } else {
+                    Intent intent = new Intent(getContext(), ImageSelectActivity.class);
+                    intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
+                    intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+                    intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
+                    startActivityForResult(intent, 1214);
+
+                }
+
+
+            }
+        });
 
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (name_owner.getText().toString().equals("") |
+                        date_bertih.getText().toString().equals("") |
+                        start_work_date.getText().toString().equals("") |
+                        city.getText().toString().equals("") |
+                        banks.getText().toString().equals("") |
+                        National_address.getText().toString().equals("") |
+                        price.getText().toString().equals("") |
+                        name_owner.getText().toString().equals("") |
+                        phone_owner.getText().toString().equals("") |
+                        name.getText().toString().equals("") |
+                        phone.getText().toString().equals("") |
+                        id_number.getText().toString().equals("") |
+                        total_sallary.getText().toString().equals("") |
+                        buldingnumber.getText().toString().equals("") |
+                        StreetName.getText().toString().equals("") |
+                        Neighborhoodname.getText().toString().equals("") |
+                        name_city.getText().toString().equals("") |
+                        Postal_code.getText().toString().equals("") |
+                        additional_number.getText().toString().equals("") |
+                        unit_number.getText().toString().equals("")
+
+                ) {
+
+                } else {
+
+                    WebService.loading(getActivity(), true);
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+
+
+                    RequestParams sendObj = new RequestParams();
+
+                    try {
+
+                        sendObj.put("operation_type_id", "");//form operation list api in setting
+                        sendObj.put("estate_type_id", opration_select);//form estate type list api in setting
+                        sendObj.put("contract_interval", contract_interval);//'year','six_month'
+                        if (contract_file_file != null) {
+                            sendObj.put("contract_file", contract_file_file);//
+
+                        }
+                        sendObj.put("rent_price", price.getText().toString());//
+                        sendObj.put("owner_name", name_owner.getText().toString());//
+                        sendObj.put("owner_mobile", phone_owner.getText().toString());//
+                        sendObj.put("owner_identity_number", owner_id_number.getText().toString());//
+                        if (owner_get_id_image_file != null) {
+                            sendObj.put("owner_identity_file", owner_get_id_image_file);//
+
+                        }
+                        sendObj.put("tenant_name", name.getText().toString());//
+                        sendObj.put("tenant_mobile", phone.getText().toString());//
+                        sendObj.put("tenant_identity_number", id_number.getText().toString());//
+
+
+                        if (get_id_image_file != null) {
+                            sendObj.put("tenant_identity_file", get_id_image_file);//
+
+                        }
+                        sendObj.put("tenant_birthday", date_bertih.getText().toString());//
+                        sendObj.put("tenant_city_id", "");//
+                        sendObj.put("tenant_job_type", tenant_job_type);//'governmental','special','soldier'
+                        sendObj.put("tenant_job_start_date", start_work_date.getText().toString());//
+                        sendObj.put("tenant_total_salary", total_sallary.getText().toString());//
+                        sendObj.put("tenant_salary_bank_id", "");//
+                        sendObj.put("tenant_engagements", Financial_obligations.getText().toString());//
+                        sendObj.put("national_address", "545");//National_address.getText().toString()
+                        if (National_address_file != null) {
+                            sendObj.put("national_address_file", National_address_file);//
+
+                        }
+                        sendObj.put("building_number", buldingnumber.getText().toString());//
+                        sendObj.put("street_name", StreetName.getText().toString());//
+                        sendObj.put("neighborhood_name", Neighborhoodname.getText().toString());//
+                        sendObj.put("building_city_name", buldingnumber.getText().toString());//
+                        sendObj.put("postal_code", Postal_code.getText().toString());//
+
+
+                        System.out.println(sendObj.toString());
+                        mVolleyService.postDataasync_with_file("ADDREqust", WebService.register, sendObj);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
 
             }
         });
@@ -325,5 +612,196 @@ public class type1Fragment extends Fragment {
         super.onResume();
     }
 
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response.toString());
+                WebService.loading(getActivity(), false);
+//{"status":true,"code":200,"message":"User Profile","data"
+                try {
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+                        String data = response.getString("data");
+
+//                        Hawk.put("user", data);
+
+
+                    } else {
+                        String message = response.getString("message");
+
+                        WebService.Make_Toast_color(getActivity(), message, "error");
+                    }
+
+
+                } catch (Exception e) {
+
+                }
+
+
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color(getActivity(), message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+                WebService.loading(getActivity(), false);
+
+
+            }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+
+            }
+        };
+
+
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1213 && resultCode == Activity.RESULT_OK) {
+            String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
+            Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
+            System.out.println("fdljkfldkfldkfldkfldfk");
+            National_address_file = new File(filePath);
+
+//            image_profile.setImageBitmap(selectedImage);
+//
+//            //            file_path = filePath;
+//            image_file_file = new File(filePath);
+//
+//
+//            try {
+//
+//                RequestParams requestParams = new RequestParams();
+//
+//                requestParams.put("logo", image_file_file);
+//
+//
+//                Upload_image(requestParams);
+//            } catch (Exception e) {
+//
+//            }
+
+
+        }
+        if (requestCode == 1217 && resultCode == Activity.RESULT_OK) {
+            String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
+            Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
+            System.out.println("fdljkfldkfldkfldkfldfk");
+
+            owner_get_id_image_file = new File(filePath);
+//            image_profile.setImageBitmap(selectedImage);
+//
+//            //            file_path = filePath;
+//            image_file_file = new File(filePath);
+//
+//
+//            try {
+//
+//                RequestParams requestParams = new RequestParams();
+//
+//                requestParams.put("logo", image_file_file);
+//
+//
+//                Upload_image(requestParams);
+//            } catch (Exception e) {
+//
+//            }
+
+
+        }
+        if (requestCode == 1215 && resultCode == Activity.RESULT_OK) {
+            String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
+            Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
+            System.out.println("fdljkfldkfldkfldkfldfk");
+            contract_file_file = new File(filePath);
+
+//            image_profile.setImageBitmap(selectedImage);
+//
+//            //            file_path = filePath;
+//            image_file_file = new File(filePath);
+//
+//
+//            try {
+//
+//                RequestParams requestParams = new RequestParams();
+//
+//                requestParams.put("logo", image_file_file);
+//
+//
+//                Upload_image(requestParams);
+//            } catch (Exception e) {
+//
+//            }
+
+
+        }
+        if (requestCode == 1214 && resultCode == Activity.RESULT_OK) {
+            String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
+            Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
+            System.out.println("fdljkfldkfldkfldkfldfk");
+            get_id_image_file = new File(filePath);
+
+//            image_profile.setImageBitmap(selectedImage);
+//
+//            //            file_path = filePath;
+//            image_file_file = new File(filePath);
+//
+//
+//            try {
+//
+//                RequestParams requestParams = new RequestParams();
+//
+//                requestParams.put("logo", image_file_file);
+//
+//
+//                Upload_image(requestParams);
+//            } catch (Exception e) {
+//
+//            }
+
+
+        }
+        if (requestCode == 100) {
+//            if (resultCode == RESULT_OK) {
+//                Place selectedPlace = PlacePicker.getPlace(data, this);
+//
+//                Latitude = selectedPlace.getLatLng().latitude + "";
+//                Longitude = selectedPlace.getLatLng().longitude + "";
+//
+//
+//                System.out.println("Latitude" + Latitude + "Longitude" + Longitude);
+//
+//                // Do something with the place
+//            }
+        }
+    }
 
 }

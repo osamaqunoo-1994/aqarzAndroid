@@ -156,6 +156,44 @@
 
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contract"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/_12sdp" />
+
+                <LinearLayout
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/contract_file"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_background"
+                    android:drawableStart="@drawable/ic_id_d"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/Attachdocument"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text=""
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/_10sdp" />
+
+
+
+            </LinearLayout>
+
 
 
         </LinearLayout>
@@ -260,6 +298,76 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/id_number"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/_12sdp" />
+
+                <LinearLayout
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/owner_id_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/edit_text_background"
+                    android:gravity="center_vertical"
+                    android:hint="@string/writehear"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text=""
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/_10sdp" />
+
+                <LinearLayout
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/owner_get_id_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:background="@drawable/edit_text_background"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+
+
+                    >
+
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_id_d" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:text="@string/id_upload"
+                        android:textColor="#AAABB3"
+                        android:textSize="15dp" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -400,6 +508,7 @@
                     android:layout_height="wrap_content" />
 
                 <LinearLayout
+                    android:id="@+id/get_id_image"
                     android:layout_width="wrap_content"
                     android:layout_height="38dp"
                     android:background="@drawable/edit_text_background"
@@ -488,8 +597,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2" />
 
-                <TextView
-                    android:id="@+id/city"
+                <EditText
+                    android:id="@+id/name_city"
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
                     android:layout_weight="1"
@@ -501,7 +610,6 @@
                     android:text=""
                     android:textColorHint="@color/hint_color"
                     android:textSize="@dimen/_10sdp" />
-
 
             </LinearLayout>
 
@@ -884,8 +992,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2" />
 
-                <EditText
-                    android:id="@+id/name_city"
+
+
+                <TextView
+                    android:id="@+id/city"
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
                     android:layout_weight="1"
@@ -897,8 +1007,6 @@
                     android:text=""
                     android:textColorHint="@color/hint_color"
                     android:textSize="@dimen/_10sdp" />
-
-
             </LinearLayout>
 
             <LinearLayout

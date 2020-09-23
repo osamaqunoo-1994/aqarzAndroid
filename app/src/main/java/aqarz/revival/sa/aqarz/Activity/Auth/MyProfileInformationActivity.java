@@ -243,6 +243,11 @@ public class MyProfileInformationActivity extends AppCompatActivity {
 
 
             }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+
+            }
         };
 
 
@@ -345,6 +350,8 @@ public class MyProfileInformationActivity extends AppCompatActivity {
                 WebService.loading(MyProfileInformationActivity.this, false);
 //                Addproduct_next_btn.setClickable(true);
 
+                System.out.println("dfsdfd"+responseBody.toString());
+
                 try {
 
                     String status = responseBody.getString("status");
@@ -381,6 +388,9 @@ public class MyProfileInformationActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+
+                System.out.println("responseString"+responseString);
                 WebService.loading(MyProfileInformationActivity.this, false);
 
 
@@ -393,6 +403,7 @@ public class MyProfileInformationActivity extends AppCompatActivity {
 
 
                 try {
+                    System.out.println("responseString"+errorResponse.toString());
 
                     WebService.loading(MyProfileInformationActivity.this, false);
 

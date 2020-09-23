@@ -151,6 +151,11 @@ public class BottomSheetDialogFragment_SelectBanks extends BottomSheetDialogFrag
 
 
             }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+
+            }
         };
 
 

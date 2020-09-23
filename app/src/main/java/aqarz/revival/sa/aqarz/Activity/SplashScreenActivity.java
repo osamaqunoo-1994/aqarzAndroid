@@ -144,6 +144,11 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
             }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+
+            }
         };
 
 

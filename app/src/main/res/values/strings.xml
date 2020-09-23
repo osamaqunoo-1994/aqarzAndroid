@@ -151,5 +151,6 @@
     <string name="send__butt">Send</string>
     <string name="id_number">id number</string>
     <string name="send_order_btn">Send Order</string>
+    <string name="contract">Attach the contract</string>
 
 </resources>

@@ -1,15 +1,21 @@
 package aqarz.revival.sa.aqarz.api;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,7 +23,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import aqarz.revival.sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import aqarz.revival.sa.aqarz.Settings.WebService;
+import cz.msebera.android.httpclient.Header;
 
 public class VolleyService {
 
@@ -65,6 +73,48 @@ public class VolleyService {
 
         }
     }
+
+    public void postDataasync_with_file(final String requestType, String url, RequestParams requestParams) {
+        try {
+
+            AsyncHttpClient client = new AsyncHttpClient();
+            final int DEFAULT_TIMEOUT = 20 * 1000;
+            client.setTimeout(DEFAULT_TIMEOUT);
+            WebService.Header_Async(client, true);
+            client.post(url, requestParams, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject responseBody) {
+                    if (mResultCallback != null) {
+                        mResultCallback.notifySuccess(requestType, responseBody);
+                    }
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                    if (mResultCallback != null)
+                        mResultCallback.notify_Async_Error(requestType, responseString);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+
+                }
+
+                @Override
+                public void onUserException(Throwable error) {
+
+                }
+
+                @Override
+                public void onProgress(long bytesWritten, long totalSize) {
+
+                }
+            });
+        } catch (Exception e) {
+
+        }
+    }
+
     public void postDataVolley_without_token(final String requestType, String url, JSONObject sendObj) {
         try {
             RequestQueue queue = Volley.newRequestQueue(mContext);
@@ -75,6 +125,7 @@ public class VolleyService {
                     if (mResultCallback != null)
                         mResultCallback.notifySuccess(requestType, response);
                 }
+
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
@@ -133,6 +184,7 @@ public class VolleyService {
 
         }
     }
+
     public void getDataVolleyWithoutToken(final String requestType, String url) {
         try {
             RequestQueue queue = Volley.newRequestQueue(mContext);
