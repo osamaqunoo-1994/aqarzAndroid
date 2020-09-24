@@ -99,7 +99,7 @@ public class RequestOrderActivity extends AppCompatActivity {
         fragmentTransaction = fragmentManager.beginTransaction();
 
 
-        fragmentTransaction.replace(R.id.container, new type1Fragment());
+        fragmentTransaction.replace(R.id.container, new type2Fragment());
         //  fragmentTransaction.commit();
         fragmentTransaction.commitAllowingStateLoss();
 

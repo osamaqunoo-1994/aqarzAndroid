@@ -47,6 +47,7 @@ public class BottomSheetDialogFragment_SelectBanks extends BottomSheetDialogFrag
 
     ProgressBar progress;
 
+    private ItemClickListener mItemClickListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -108,8 +109,20 @@ public class BottomSheetDialogFragment_SelectBanks extends BottomSheetDialogFrag
                             bankModules_list.add(bankModules);
                         }
 
+                        RecyclerView_bank_bootom_sheets recyclerView_bank_bootom_sheets = new RecyclerView_bank_bootom_sheets(getContext(), bankModules_list);
 
-                        list_bank.setAdapter(new RecyclerView_bank_bootom_sheets(getContext(), bankModules_list));
+                        recyclerView_bank_bootom_sheets.addItemClickListener(new RecyclerView_bank_bootom_sheets.ItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+
+                                if (mItemClickListener != null) {
+                                    mItemClickListener.onItemClick(bankModules_list.get(position).getId(),bankModules_list.get(position).getName());
+                                }
+
+                            }
+                        });
+
+                        list_bank.setAdapter(recyclerView_bank_bootom_sheets);
 
 
                     } else {
@@ -161,4 +174,12 @@ public class BottomSheetDialogFragment_SelectBanks extends BottomSheetDialogFrag
 
     }
 
+    public void addItemClickListener(ItemClickListener listener) {
+        mItemClickListener = listener;
+    }
+
+    //Define your Interface method here
+    public interface ItemClickListener {
+        void onItemClick(int id_bank,String name_bank);
+    }
 }

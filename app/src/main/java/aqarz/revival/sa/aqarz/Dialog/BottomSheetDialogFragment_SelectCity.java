@@ -51,6 +51,7 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
 
     ProgressBar progress;
 
+    private ItemClickListener mItemClickListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -112,8 +113,19 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
                             cityModules_list.add(Store_M);
                         }
 
+                        RecyclerView_city_bootom_sheets recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets(getContext(), cityModules_list);
+                        recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_bootom_sheets.ItemClickListener() {
 
-                        list_city.setAdapter(new RecyclerView_city_bootom_sheets(getContext(), cityModules_list));
+
+                            @Override
+                            public void onItemClick(int position) {
+                                if (mItemClickListener != null) {
+                                    mItemClickListener.onItemClick(cityModules_list.get(position).getId(), cityModules_list.get(position).getName());
+                                }
+                            }
+                        });
+
+                        list_city.setAdapter(recyclerView_city_bootom_sheets);
 
 
                     } else {
@@ -165,4 +177,12 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
 
     }
 
+    public void addItemClickListener(ItemClickListener listener) {
+        mItemClickListener = listener;
+    }
+
+    //Define your Interface method here
+    public interface ItemClickListener {
+        void onItemClick(int id_city, String city_naem);
+    }
 }

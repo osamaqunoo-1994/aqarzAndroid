@@ -38,14 +38,14 @@
         android:hint="@string/phone_number"
         android:inputType="phone|number"
 
-        android:layoutDirection="ltr" />
+         />
 
     <FrameLayout
         android:id="@+id/pass_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16sdp"
-        android:layoutDirection="ltr">
+        >
 
         <EditText
             android:id="@+id/password"

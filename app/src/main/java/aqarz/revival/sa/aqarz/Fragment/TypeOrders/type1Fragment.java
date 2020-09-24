@@ -103,7 +103,9 @@ public class type1Fragment extends Fragment {
 
 
     TextView city;
+    String city_id = "";
     TextView banks;
+    String banks_id = "";
     TextView National_address;
 
     File National_address_file = null;
@@ -477,11 +479,11 @@ public class type1Fragment extends Fragment {
 
                         }
                         sendObj.put("tenant_birthday", date_bertih.getText().toString());//
-                        sendObj.put("tenant_city_id", "");//
+                        sendObj.put("tenant_city_id", city_id);//
                         sendObj.put("tenant_job_type", tenant_job_type);//'governmental','special','soldier'
                         sendObj.put("tenant_job_start_date", start_work_date.getText().toString());//
                         sendObj.put("tenant_total_salary", total_sallary.getText().toString());//
-                        sendObj.put("tenant_salary_bank_id", "");//
+                        sendObj.put("tenant_salary_bank_id", banks_id);//
                         sendObj.put("tenant_engagements", Financial_obligations.getText().toString());//
                         sendObj.put("national_address", "545");//National_address.getText().toString()
                         if (National_address_file != null) {
@@ -570,7 +572,14 @@ public class type1Fragment extends Fragment {
 
 
                 bottomSheetDialogFragment_selectCity = new BottomSheetDialogFragment_SelectCity("");
+                bottomSheetDialogFragment_selectCity.addItemClickListener(new BottomSheetDialogFragment_SelectCity.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_city, String city_naem) {
 
+                        city.setText(city_naem);
+
+                    }
+                });
 
                 bottomSheetDialogFragment_selectCity.show(getFragmentManager(), "");
 
@@ -583,7 +592,12 @@ public class type1Fragment extends Fragment {
 
 
                 bottomSheetDialogFragment_selectBanks = new BottomSheetDialogFragment_SelectBanks("");
-
+                bottomSheetDialogFragment_selectBanks.addItemClickListener(new BottomSheetDialogFragment_SelectBanks.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_bank, String name_bank) {
+                        banks.setText(name_bank);
+                    }
+                });
 
                 bottomSheetDialogFragment_selectBanks.show(getFragmentManager(), "");
 

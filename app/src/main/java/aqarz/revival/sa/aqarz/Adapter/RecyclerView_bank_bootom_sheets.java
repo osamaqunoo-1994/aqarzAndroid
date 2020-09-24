@@ -27,6 +27,7 @@ public class RecyclerView_bank_bootom_sheets extends RecyclerView.Adapter<Recycl
     public static List<BankModules> alldata = new ArrayList<BankModules>();
     static int Postion_opend = -1;
 
+    private ItemClickListener mItemClickListener;
 
     static AlertDialog alertDialog;
 
@@ -70,6 +71,10 @@ public class RecyclerView_bank_bootom_sheets extends RecyclerView.Adapter<Recycl
     public RecyclerView_bank_bootom_sheets(Context context, List<BankModules> alldata) {
         this.alldata = alldata;
         this.context = context;
+    }
+
+    public void addItemClickListener(ItemClickListener listener) {
+        mItemClickListener = listener;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -172,6 +177,10 @@ public class RecyclerView_bank_bootom_sheets extends RecyclerView.Adapter<Recycl
 //                RequestOrderActivity.set_fragment(position);
 
 
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(position);
+                }
+
                 Refr();
 //
 
@@ -206,5 +215,8 @@ public class RecyclerView_bank_bootom_sheets extends RecyclerView.Adapter<Recycl
         return new MyViewHolder(v);
     }
 
-
+    //Define your Interface method here
+    public interface ItemClickListener {
+        void onItemClick(int position);
+    }
 }

@@ -33,6 +33,7 @@ public class RecyclerView_city_bootom_sheets extends RecyclerView.Adapter<Recycl
 
     static AlertDialog alertDialog;
 
+    private ItemClickListener mItemClickListener;
 
     /**
      * View holder class
@@ -73,6 +74,10 @@ public class RecyclerView_city_bootom_sheets extends RecyclerView.Adapter<Recycl
     public RecyclerView_city_bootom_sheets(Context context, List<CityModules> alldata) {
         this.alldata = alldata;
         this.context = context;
+    }
+
+    public void addItemClickListener(ItemClickListener listener) {
+        mItemClickListener = listener;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -170,6 +175,9 @@ public class RecyclerView_city_bootom_sheets extends RecyclerView.Adapter<Recycl
             public void onClick(View view) {
 
 
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(position);
+                }
                 Postion_opend = position;
 
 //                RequestOrderActivity.set_fragment(position);
@@ -210,4 +218,8 @@ public class RecyclerView_city_bootom_sheets extends RecyclerView.Adapter<Recycl
     }
 
 
+    //Define your Interface method here
+    public interface ItemClickListener {
+        void onItemClick(int position);
+    }
 }
