@@ -152,5 +152,7 @@
     <string name="id_number">id number</string>
     <string name="send_order_btn">Send Order</string>
     <string name="contract">Attach the contract</string>
+    <string name="Duration_of_funding">Duration of funding</string>
+    <string name="AllFiledsREquered">All Fileds Required</string>
 
 </resources>

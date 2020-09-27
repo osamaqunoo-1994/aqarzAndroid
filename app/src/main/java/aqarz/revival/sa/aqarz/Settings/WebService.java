@@ -38,6 +38,8 @@ public class WebService {
     public static String operation_type = Domain + "operation/type";
     public static String cities = Domain + "cities/1/list";
     public static String banks = Domain + "banks";
+    public static String deferredInstallment = Domain + "deferredInstallment/Request";
+    public static String finance = Domain + "finance/Request";
 
 
     public static void Header_Async(AsyncHttpClient client, boolean is_token) {

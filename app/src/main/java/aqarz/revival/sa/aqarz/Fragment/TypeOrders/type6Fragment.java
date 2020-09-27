@@ -27,16 +27,14 @@ public class type6Fragment extends Fragment {
     RecyclerView opration_2__RecyclerView;
 
 
-
-
     List<OprationModules> oprationModules_list = new ArrayList<>();
     List<String> lost_romm = new ArrayList<>();
 
-
-
+    String Id_eastate="";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.requst_order_type_6, container, false);
+         Id_eastate = getArguments().getString("Id_eastate");
 
         init(v);
         return v;
@@ -44,9 +42,6 @@ public class type6Fragment extends Fragment {
 
 
     public void init(View v) {
-
-
-
 
 
         opration_2__RecyclerView = v.findViewById(R.id.opration_2__RecyclerView);
@@ -63,13 +58,6 @@ public class type6Fragment extends Fragment {
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         opration_2__RecyclerView.setLayoutManager(layoutManagerm);
 //        opration_2__RecyclerView.setAdapter(new RecyclerView_All_Opration_in_order(getContext(), oprationModules_list));
-
-
-
-
-
-
-
 
 
     }

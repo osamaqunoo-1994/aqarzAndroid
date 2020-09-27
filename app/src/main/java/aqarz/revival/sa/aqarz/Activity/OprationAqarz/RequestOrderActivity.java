@@ -2,11 +2,13 @@ package aqarz.revival.sa.aqarz.Activity.OprationAqarz;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -53,8 +55,9 @@ public class RequestOrderActivity extends AppCompatActivity {
     RecyclerView type_RecyclerView;
 
     LinearLayout view_;
-
+    static Activity activity;
     IResult mResultCallback;
+    static Bundle bundle = new Bundle();
 
     List<OprationModules> oprationModules_list = new ArrayList<>();
     List<TypeModules> typeModules_list = new ArrayList<>();
@@ -67,8 +70,9 @@ public class RequestOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_order);
-        init();
+        activity = this;
 
+        init();
         LinearLayout yourView = findViewById(R.id.layo);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (yourView != null) {
@@ -92,16 +96,6 @@ public class RequestOrderActivity extends AppCompatActivity {
                 = new LinearLayoutManager(RequestOrderActivity.this, LinearLayoutManager.HORIZONTAL, false);
         type_RecyclerView.setLayoutManager(layoutManagers);
 
-
-        fragmentManager = getSupportFragmentManager();
-
-
-        fragmentTransaction = fragmentManager.beginTransaction();
-
-
-        fragmentTransaction.replace(R.id.container, new type2Fragment());
-        //  fragmentTransaction.commit();
-        fragmentTransaction.commitAllowingStateLoss();
 
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, RequestOrderActivity.this);
@@ -141,11 +135,32 @@ public class RequestOrderActivity extends AppCompatActivity {
                             TypeModules Store_M = gson.fromJson(mJson, TypeModules.class);
                             typeModules_list.add(Store_M);
                         }
+                        RecyclerView_All_Type_in_order recyclerView_all_type_in_order = new RecyclerView_All_Type_in_order(RequestOrderActivity.this, typeModules_list);
+                        recyclerView_all_type_in_order.addItemClickListener(new RecyclerView_All_Type_in_order.ItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
 
 
-                        type_RecyclerView.setAdapter(new RecyclerView_All_Type_in_order(RequestOrderActivity.this, typeModules_list));
+                                set_fragment(typeModules_list.get(position).getId());
 
 
+                            }
+                        });
+                        type_RecyclerView.setAdapter(recyclerView_all_type_in_order);
+
+                        bundle.putString("Id_eastate", typeModules_list.get(0).getId() + "");
+
+                        type1Fragment type1Fragment = new type1Fragment();
+                        type1Fragment.setArguments(bundle);
+
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+
+                        transaction.replace(R.id.container, type1Fragment);
+                        transaction.addToBackStack(null);
+
+// Commit the transaction
+                        transaction.commit();
                     } else {
                         String message = response.getString("message");
 
@@ -192,47 +207,108 @@ public class RequestOrderActivity extends AppCompatActivity {
 
     }
 
-    public static void set_fragment(int id) {
+    public void set_fragment(int id) {
         switch (id) {
 
             case 1:
 
+                bundle.putString("Id_eastate", id + "");
+
+                type1Fragment type1Fragment = new type1Fragment();
+                type1Fragment.setArguments(bundle);
+
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+
+                transaction.replace(R.id.container, type1Fragment);
+                transaction.addToBackStack(null);
+
+// Commit the transaction
+                transaction.commit();
 
                 break;
 
             case 2:
-                fragmentTransaction.replace(R.id.container, new type2Fragment());
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
 
+                bundle.putString("Id_eastate", id + "");
+
+                type3Fragment type3Fragment = new type3Fragment();
+                type3Fragment.setArguments(bundle);
+
+                FragmentTransaction transaction3 = getSupportFragmentManager().beginTransaction();
+
+
+                transaction3.replace(R.id.container, type3Fragment);
+                transaction3.addToBackStack(null);
+
+
+                transaction3.commit();
                 break;
 
             case 3:
-                fragmentTransaction.replace(R.id.container, new type3Fragment());
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
+                bundle.putString("Id_eastate", id + "");
+
+                type2Fragment type2Fragment = new type2Fragment();
+                type2Fragment.setArguments(bundle);
+
+                FragmentTransaction transaction2 = getSupportFragmentManager().beginTransaction();
+
+
+                transaction2.replace(R.id.container, type2Fragment);
+                transaction2.addToBackStack(null);
+
+// Commit the transaction
+                transaction2.commit();
 
                 break;
 
             case 4:
-                fragmentTransaction.replace(R.id.container, new type4Fragment());
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
+                bundle.putString("Id_eastate", id + "");
 
+                type4Fragment type4Fragment = new type4Fragment();
+                type4Fragment.setArguments(bundle);
+
+                FragmentTransaction transaction4 = getSupportFragmentManager().beginTransaction();
+
+
+                transaction4.replace(R.id.container, type4Fragment);
+                transaction4.addToBackStack(null);
+
+
+                transaction4.commit();
                 break;
 
             case 5:
-                fragmentTransaction.replace(R.id.container, new type5Fragment());
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
+                bundle.putString("Id_eastate", id + "");
+
+                type5Fragment type5Fragment = new type5Fragment();
+                type5Fragment.setArguments(bundle);
+
+                FragmentTransaction transaction5 = getSupportFragmentManager().beginTransaction();
+
+
+                transaction5.replace(R.id.container, type5Fragment);
+                transaction5.addToBackStack(null);
+
+
+                transaction5.commit();
 
                 break;
 
             case 6:
-                fragmentTransaction.replace(R.id.container, new type6Fragment());
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
+                bundle.putString("Id_eastate", id + "");
 
+                type6Fragment type6Fragment = new type6Fragment();
+                type6Fragment.setArguments(bundle);
+
+                FragmentTransaction transaction6 = getSupportFragmentManager().beginTransaction();
+
+
+                transaction6.replace(R.id.container, type6Fragment);
+                transaction6.addToBackStack(null);
+
+
+                transaction6.commit();
                 break;
 
 
@@ -240,5 +316,6 @@ public class RequestOrderActivity extends AppCompatActivity {
 
 
     }
+
 
 }

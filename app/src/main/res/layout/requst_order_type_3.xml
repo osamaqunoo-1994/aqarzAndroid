@@ -108,9 +108,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
-
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/opration_2__RecyclerView"
+                    android:id="@+id/opration_RecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_20sdp"
@@ -124,6 +123,7 @@
         </LinearLayout>
 
         <EditText
+            android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginTop="12dp"
@@ -133,7 +133,18 @@
             android:padding="15dp"
             android:textSize="@dimen/_12sdp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:gravity="center"
+            android:text="@string/Select_the_search_area"
+            android:textColor="#424446"
+            android:textSize="@dimen/_13sdp" />
+
+
         <androidx.cardview.widget.CardView
+
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginTop="12dp"
@@ -142,19 +153,12 @@
             app:cardBackgroundColor="@color/colorPrimary"
             app:cardCornerRadius="10dp">
 
-            <LinearLayout
+            <ImageView
+
+                android:id="@+id/map_select"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:text="@string/Select_the_search_area"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_13sdp" />
-
-            </LinearLayout>
+                android:scaleType="centerCrop"
+                android:layout_height="match_parent"/>
 
 
         </androidx.cardview.widget.CardView>

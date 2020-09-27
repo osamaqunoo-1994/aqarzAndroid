@@ -32,11 +32,12 @@ public class type5Fragment extends Fragment {
     List<OprationModules> oprationModules_list = new ArrayList<>();
     List<String> lost_romm = new ArrayList<>();
 
-
+    String Id_eastate="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.requst_order_type_5, container, false);
+         Id_eastate = getArguments().getString("Id_eastate");
 
         init(v);
         return v;

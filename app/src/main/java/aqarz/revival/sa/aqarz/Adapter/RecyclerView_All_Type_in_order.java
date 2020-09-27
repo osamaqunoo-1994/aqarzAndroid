@@ -28,10 +28,11 @@ import aqarz.revival.sa.aqarz.R;
  */
 public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<RecyclerView_All_Type_in_order.MyViewHolder> {
     public static List<TypeModules> alldata = new ArrayList<TypeModules>();
-    static int Postion_opend = -1;
+    static int Postion_opend = 0;
 
 
     static AlertDialog alertDialog;
+    private ItemClickListener mItemClickListener;
 
 
     /**
@@ -81,6 +82,9 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
         this.context = context;
     }
 
+    public void addItemClickListener(ItemClickListener listener) {
+        mItemClickListener = listener;
+    }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
@@ -177,11 +181,14 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
 
 
                 Postion_opend = position;
+                Refr();
 
 //                RequestOrderActivity.set_fragment(position);
 
 
-                Refr();
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(position);
+                }
 //
 
             }
@@ -215,5 +222,8 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
         return new MyViewHolder(v);
     }
 
-
+    //Define your Interface method here
+    public interface ItemClickListener {
+        void onItemClick(int position);
+    }
 }

@@ -118,9 +118,14 @@ public class type1Fragment extends Fragment {
 
     String opration_select = "";
 
+    String Id_eastate="";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.requst_order_type_1, container, false);
+
+         Id_eastate = getArguments().getString("Id_eastate");
+
+
 
         init(v);
         return v;
@@ -442,6 +447,7 @@ public class type1Fragment extends Fragment {
                         unit_number.getText().toString().equals("")
 
                 ) {
+                    WebService.Make_Toast(getActivity(),getResources().getString(R.string.AllFiledsREquered));
 
                 } else {
 
@@ -454,7 +460,7 @@ public class type1Fragment extends Fragment {
 
                     try {
 
-                        sendObj.put("operation_type_id", "");//form operation list api in setting
+                        sendObj.put("operation_type_id", Id_eastate);//form operation list api in setting
                         sendObj.put("estate_type_id", opration_select);//form estate type list api in setting
                         sendObj.put("contract_interval", contract_interval);//'year','six_month'
                         if (contract_file_file != null) {
@@ -498,7 +504,7 @@ public class type1Fragment extends Fragment {
 
 
                         System.out.println(sendObj.toString());
-                        mVolleyService.postDataasync_with_file("ADDREqust", WebService.register, sendObj);
+                        mVolleyService.postDataasync_with_file("ADDREqust", WebService.deferredInstallment, sendObj);
 
                     } catch (Exception e) {
                         e.printStackTrace();

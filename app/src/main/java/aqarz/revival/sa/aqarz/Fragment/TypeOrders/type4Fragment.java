@@ -29,11 +29,12 @@ public class type4Fragment extends Fragment {
 
     List<OprationModules> oprationModules_list = new ArrayList<>();
 
-
+    String Id_eastate="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.requst_order_type_4, container, false);
+         Id_eastate = getArguments().getString("Id_eastate");
 
         init(v);
         return v;
