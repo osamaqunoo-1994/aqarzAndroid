@@ -99,6 +99,12 @@
                 android:gravity="center"
                 android:paddingBottom="5dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/AqarType"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/_13sdp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -106,9 +112,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
 
-
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/opration_2__RecyclerView"
+                        android:id="@+id/opration_RecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_20sdp"
@@ -121,8 +126,8 @@
 
             </LinearLayout>
 
-
             <EditText
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:layout_margin="@dimen/_10sdp"
@@ -137,6 +142,7 @@
                 android:textSize="@dimen/_10sdp" />
 
             <EditText
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:layout_margin="@dimen/_10sdp"
@@ -151,6 +157,7 @@
                 android:textSize="@dimen/_10sdp" />
 
             <EditText
+                android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:layout_margin="@dimen/_10sdp"
@@ -165,6 +172,7 @@
                 android:textSize="@dimen/_10sdp" />
 
             <EditText
+                android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="12dp"
@@ -176,29 +184,30 @@
                 android:textSize="@dimen/_12sdp" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/map_select"
+
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginBottom="20dp"
+
                 app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="10dp">
 
-                <LinearLayout
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/mapViewxx"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="15dp"
-                        android:text="@string/Select_the_search_area"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_13sdp" />
-
-                </LinearLayout>
-
-
+                    android:layout_height="match_parent" />
             </androidx.cardview.widget.CardView>
 
+            <Button
+                android:id="@+id/btn_send"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/button_login"
+                android:text="@string/send_order_btn"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 

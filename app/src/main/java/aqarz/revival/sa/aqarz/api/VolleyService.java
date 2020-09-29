@@ -156,7 +156,10 @@ public class VolleyService {
         try {
             RequestQueue queue = Volley.newRequestQueue(mContext);
 
-            JsonObjectRequest jsonObj = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+
+
+            JsonObjectRequest jsonObj = new JsonObjectRequest(Request.Method.GET, url,null, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     if (mResultCallback != null)
@@ -189,7 +192,7 @@ public class VolleyService {
         try {
             RequestQueue queue = Volley.newRequestQueue(mContext);
 
-            JsonObjectRequest jsonObj = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            JsonObjectRequest jsonObj = new JsonObjectRequest(Request.Method.GET, url, null,new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     if (mResultCallback != null)

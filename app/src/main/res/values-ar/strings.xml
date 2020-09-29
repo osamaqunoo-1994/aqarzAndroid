@@ -170,5 +170,50 @@
 
     <string name="Duration_of_funding">مدة التمويل</string>
 
+    <string name="AddAqares">اضافة عقار</string>
+
+
+
+
+    <string name="For_sale">For sale</string>
+    <string name="rental_period">rental period</string>
+
+
+
+
+
+    <string name="Instrument_number">رقم الصك</string>
+    <string name="Instrument_file">ارفاق الصك</string>
+    <string name="piece_number">رقم القطعه</string>
+    <string name="No_planned">رقم المخطط</string>
+    <string name="Add_charts">اضافة المخططات</string>
+    <string name="Total_area">اجمالي المساحه</string>
+    <string name="age_of_the_property">عمر العقار</string>
+    <string name="Role_number">رقم الدور</string>
+    <string name="Street_view">عرض السعر</string>
+    <string name="total_price">اجمالي السعر</string>
+    <string name="price_one_meter">سعر المتر</string>
+<!--    <string name="Communication_Officer">Communication Officer</string>-->
+    <string name="contact_number">رقم التواصل</string>
+
+
+
+
+    <string name="Info_users">للتوثيق ولا تظهر المعلومات للمستخدمين</string>
+    <string name="AddTExtHeare">ادخل هنا</string>
+
+
+    <string name="specificationsِAqares">مواصفات العقار</string>
+
+
+
+
+    <string name="Lounges">الصالات</string>
+    <string name="room">الغرف</string>
+    <string name="Bathrooms">دورات المياه</string>
+    <string name="Boards">مجالس</string>
+    <string name="Kitchens">مطابخ</string>
+    <string name="Dining_rooms">غرف الطعام</string>
+
 
 </resources>

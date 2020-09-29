@@ -4,6 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -144,6 +149,7 @@
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/map_select"
 
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -153,17 +159,22 @@
             app:cardBackgroundColor="@color/colorPrimary"
             app:cardCornerRadius="10dp">
 
-            <ImageView
-
-                android:id="@+id/map_select"
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mapViewxx"
                 android:layout_width="match_parent"
-                android:scaleType="centerCrop"
-                android:layout_height="match_parent"/>
-
-
+                android:layout_height="match_parent" />
         </androidx.cardview.widget.CardView>
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/button_login"
+            android:text="@string/send_order_btn"
+            android:textColor="@color/white" />
 
 
     </LinearLayout>
 
+</ScrollView>
 </LinearLayout>
