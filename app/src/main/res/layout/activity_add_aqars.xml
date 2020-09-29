@@ -19,6 +19,7 @@
             android:gravity="center_vertical">
 
             <ImageView
+                android:id="@+id/back"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_marginLeft="10dp"
@@ -120,6 +121,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/For_sale"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -135,6 +137,7 @@
                             android:textSize="13dp" />
 
                         <TextView
+                            android:id="@+id/rent"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -151,6 +154,7 @@
                             android:textSize="13dp" />
 
                         <TextView
+                            android:id="@+id/investment"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -215,7 +219,7 @@
                     android:paddingTop="10dp"
                     android:paddingRight="15dp"
                     android:paddingBottom="10dp"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -255,6 +259,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="38dp"
                             android:layout_weight="1"
+                            android:singleLine="true"
                             android:background="@drawable/edit_text_background"
                             android:gravity="center_vertical"
                             android:hint="@string/Info_users"
@@ -749,13 +754,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-
                     android:background="@drawable/back_order_box"
                     android:orientation="vertical"
                     android:paddingLeft="5dp"
                     android:paddingTop="10dp"
                     android:paddingRight="5dp"
-                    android:paddingBottom="10dp">
+                    android:paddingBottom="10dp"
+                    android:visibility="visible">
 
 
                     <TextView
@@ -821,11 +826,12 @@
                                     android:id="@+id/Lounges_number"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:layout_marginBottom="1dp"
                                     android:layout_weight="1"
                                     android:fontFamily="@font/frutiger_lt_arabic_roman"
                                     android:gravity="center"
 
-                                    android:text="13"
+                                    android:text="0"
                                     android:textSize="13dp" />
 
                                 <LinearLayout
@@ -893,11 +899,12 @@
                                     android:id="@+id/room_text"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:layout_marginBottom="1dp"
                                     android:layout_weight="1"
                                     android:fontFamily="@font/frutiger_lt_arabic_roman"
                                     android:gravity="center"
 
-                                    android:text="13"
+                                    android:text="0"
                                     android:textSize="13dp" />
 
                                 <LinearLayout
@@ -965,11 +972,12 @@
                                     android:id="@+id/Bathrooms_text"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:layout_marginBottom="1dp"
                                     android:layout_weight="1"
                                     android:fontFamily="@font/frutiger_lt_arabic_roman"
                                     android:gravity="center"
 
-                                    android:text="13"
+                                    android:text="0"
                                     android:textSize="13dp" />
 
                                 <LinearLayout
@@ -1045,11 +1053,12 @@
                                     android:id="@+id/Boards_text"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:layout_marginBottom="1dp"
                                     android:layout_weight="1"
                                     android:fontFamily="@font/frutiger_lt_arabic_roman"
                                     android:gravity="center"
 
-                                    android:text="13"
+                                    android:text="0"
                                     android:textSize="13dp" />
 
                                 <LinearLayout
@@ -1117,11 +1126,12 @@
                                     android:id="@+id/Kitchens_text"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:layout_marginBottom="1dp"
                                     android:layout_weight="1"
                                     android:fontFamily="@font/frutiger_lt_arabic_roman"
                                     android:gravity="center"
 
-                                    android:text="13"
+                                    android:text="0"
                                     android:textSize="13dp" />
 
                                 <LinearLayout
@@ -1187,21 +1197,21 @@
 
                                 <TextView
                                     android:id="@+id/Dining_text"
-
                                     android:layout_width="match_parent"
+
                                     android:layout_height="match_parent"
+                                    android:layout_marginBottom="1dp"
                                     android:layout_weight="1"
                                     android:fontFamily="@font/frutiger_lt_arabic_roman"
                                     android:gravity="center"
 
-                                    android:text="13"
+                                    android:text="0"
                                     android:textSize="13dp" />
 
                                 <LinearLayout
                                     android:layout_width="1dp"
                                     android:layout_height="match_parent"
                                     android:background="@color/editTextBackground" />
-
 
                                 <ImageView
                                     android:id="@+id/Dining_rooms_minus"
@@ -1410,7 +1420,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/button_login"
-                                android:drawableStart="@drawable/ic_buy"
                                 android:gravity="center"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
@@ -1427,7 +1436,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/search_background"
-                                android:drawableStart="@drawable/ic_ista"
                                 android:gravity="center"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
@@ -1444,6 +1452,136 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/back_order_box"
+                    android:orientation="vertical"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="10dp"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/circle_pr"
+                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:paddingLeft="9dp"
+                        android:paddingTop="2dp"
+                        android:paddingRight="9dp"
+                        android:paddingBottom="2dp"
+                        android:text="@string/means_comfort"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_13sdp" />
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/comfort_RecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="10dp"
+
+                        />
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:paddingLeft="9dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="9dp"
+                    android:paddingBottom="2dp"
+                    android:text="@string/SelectImages"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/_14sdp" />
+
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fillViewport="true">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingStart="15dp">
+
+                        <ImageView
+                            android:id="@+id/select_image"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/button_login"
+                            android:padding="25dp"
+                            android:src="@drawable/ic_add_image">
+
+                        </ImageView>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/images_RecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+
+                            android:layout_weight="1"
+
+
+                            />
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/map_select"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="20dp"
+
+                    app:cardBackgroundColor="@color/colorPrimary"
+                    app:cardCornerRadius="10dp">
+
+                    <com.google.android.gms.maps.MapView
+                        android:id="@+id/mapViewxx"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </androidx.cardview.widget.CardView>
+
+
+                <EditText
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/edit_text_background"
+                    android:gravity="start"
+                    android:hint="@string/writedescription"
+                    android:padding="15dp"
+                    android:textSize="@dimen/_12sdp" />
+
+                <Button
+                    android:id="@+id/btn_send"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/button_login"
+                    android:text="@string/send_order_btn"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 

@@ -10,12 +10,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -34,6 +36,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.orhanobut.hawk.Hawk;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +57,7 @@ import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.LocaleUtils;
 import aqarz.revival.sa.aqarz.Settings.Settings;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -78,6 +82,12 @@ public class MoreFragment extends Fragment {
 
     Button contact_us;
 
+
+    Button email_us;
+    CircleImageView image_profile;
+
+    ImageView facebook, twiter, instagram, linked;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_more, container, false);
@@ -101,6 +111,12 @@ public class MoreFragment extends Fragment {
         privecy = v.findViewById(R.id.privecy);
         terms = v.findViewById(R.id.terms);
         contact_us = v.findViewById(R.id.contact_us);
+        email_us = v.findViewById(R.id.email_us);
+        facebook = v.findViewById(R.id.facebook);
+        twiter = v.findViewById(R.id.twiter);
+        instagram = v.findViewById(R.id.instagram);
+        linked = v.findViewById(R.id.linked);
+        image_profile = v.findViewById(R.id.image_profile);
 
 
         info_.setOnClickListener(new View.OnClickListener() {
@@ -154,6 +170,34 @@ public class MoreFragment extends Fragment {
 
             }
         });
+        facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Settings.getSettings().getFace_book()));
+                startActivity(browserIntent);
+            }
+        });
+        twiter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Settings.getSettings().getTwitter()));
+                startActivity(browserIntent);
+            }
+        });
+        instagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Settings.getSettings().getInsta()));
+                startActivity(browserIntent);
+            }
+        });
+        linked.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Settings.getSettings().getLinked()));
+                startActivity(browserIntent);
+            }
+        });
         terms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,6 +216,16 @@ public class MoreFragment extends Fragment {
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
+            }
+        });
+        email_us.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        "mailto", "abc@gmail.com", null));
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "Body");
+                startActivity(Intent.createChooser(emailIntent, "Send email..."));
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {
@@ -290,6 +344,9 @@ public class MoreFragment extends Fragment {
                     with_login.setVisibility(View.VISIBLE);
                     changePassword.setVisibility(View.VISIBLE);
                     user_name.setText(Settings.GetUser().getName() + "");
+
+                    Picasso.get().load(Settings.GetUser().getLogo()).into(image_profile);
+
 
                 }
             } else {

@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.volley.NetworkResponse;
@@ -62,7 +63,7 @@ public class RequestOrderActivity extends AppCompatActivity {
     List<OprationModules> oprationModules_list = new ArrayList<>();
     List<TypeModules> typeModules_list = new ArrayList<>();
 
-
+    ImageView back;
     private static FragmentTransaction fragmentTransaction;
     private FragmentManager fragmentManager;
 
@@ -87,6 +88,16 @@ public class RequestOrderActivity extends AppCompatActivity {
     public void init() {
         type_RecyclerView = findViewById(R.id.type_RecyclerView);
         view_ = findViewById(R.id.view_);
+        back = findViewById(R.id.back);
+
+        //---------------------------------------------------------------------------------------
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        //---------------------------------------------------------------------------------------
 
 
 //
@@ -317,5 +328,9 @@ public class RequestOrderActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
 }

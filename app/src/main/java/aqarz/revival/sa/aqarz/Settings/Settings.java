@@ -1,13 +1,20 @@
 package aqarz.revival.sa.aqarz.Settings;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.view.View;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.orhanobut.hawk.Hawk;
 
+import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.Modules.SettingsModules;
 import aqarz.revival.sa.aqarz.Modules.User;
+import aqarz.revival.sa.aqarz.R;
 
 
 public class Settings {
@@ -37,5 +44,27 @@ public class Settings {
         return userModules;
     }
 
+
+    public static boolean checkLogin() {
+
+
+
+            if (Hawk.contains("user")) {
+
+                if (Hawk.get("user").toString().equals("")) {
+
+                    return false;
+                } else {
+
+                    return true;
+                }
+            } else {
+                return false;
+            }
+
+
+
+
+    }
 
 }

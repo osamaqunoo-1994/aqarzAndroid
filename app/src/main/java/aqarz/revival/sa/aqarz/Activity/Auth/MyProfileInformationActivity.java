@@ -29,14 +29,18 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.nguyenhoanglam.imagepicker.model.Image;
+import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker;
 import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Set;
 
+import aqarz.revival.sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.Settings;
 import aqarz.revival.sa.aqarz.Settings.WebService;
@@ -126,18 +130,32 @@ public class MyProfileInformationActivity extends AppCompatActivity {
 
                     } else {
 
-                        Intent intent = new Intent(MyProfileInformationActivity.this, ImageSelectActivity.class);
-                        intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
-                        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
-                        intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
-                        startActivityForResult(intent, 1213);
+                        ImagePicker.with(MyProfileInformationActivity.this)
+                                .setFolderMode(true)
+                                .setFolderTitle("Album")
+
+                                .setDirectoryName("Image Picker")
+                                .setMultipleMode(false)
+                                .setShowNumberIndicator(true)
+                                .setMaxSize(1)
+                                .setLimitMessage("You can select up to 1 images")
+
+                                .setRequestCode(1213)
+                                .start();
                     }
                 } else {
-                    Intent intent = new Intent(MyProfileInformationActivity.this, ImageSelectActivity.class);
-                    intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
-                    intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
-                    intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
-                    startActivityForResult(intent, 1213);
+                    ImagePicker.with(MyProfileInformationActivity.this)
+                            .setFolderMode(true)
+                            .setFolderTitle("Album")
+
+                            .setDirectoryName("Image Picker")
+                            .setMultipleMode(false)
+                            .setShowNumberIndicator(true)
+                            .setMaxSize(1)
+                            .setLimitMessage("You can select up to 1 images")
+
+                            .setRequestCode(1213)
+                            .start();
 
                 }
 
@@ -257,7 +275,7 @@ public class MyProfileInformationActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1213 && resultCode == Activity.RESULT_OK) {
+        if (requestCode == 7 && resultCode == Activity.RESULT_OK) {
             String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
             Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
             image_profile.setImageBitmap(selectedImage);
@@ -277,6 +295,36 @@ public class MyProfileInformationActivity extends AppCompatActivity {
             } catch (Exception e) {
 
             }
+
+
+        }
+
+        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1213)) {
+
+
+            ArrayList<Image> images = ImagePicker.getImages(data);
+//            Uri uri = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, images.get(0).getId()+"");
+
+
+            String filePath = images.get(0).getPath().toString();
+            Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+
+            image_profile.setImageBitmap(selectedImagea);
+
+            File file_image_profile = new File(filePath);
+
+            try {
+
+                RequestParams requestParams = new RequestParams();
+
+                requestParams.put("logo", file_image_profile);
+
+
+                Upload_image(requestParams);
+            } catch (Exception e) {
+
+            }
+//            sendChatMsg_file(first_image_file);
 
 
         }
@@ -311,20 +359,32 @@ public class MyProfileInformationActivity extends AppCompatActivity {
 //                            11);
 
                 } else {
+                    ImagePicker.with(MyProfileInformationActivity.this)
+                            .setFolderMode(true)
+                            .setFolderTitle("Album")
 
-                    Intent intent = new Intent(MyProfileInformationActivity.this, ImageSelectActivity.class);
-                    intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
-                    intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
-                    intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
-                    startActivityForResult(intent, 1213);
+                            .setDirectoryName("Image Picker")
+                            .setMultipleMode(false)
+                            .setShowNumberIndicator(true)
+                            .setMaxSize(1)
+                            .setLimitMessage("You can select up to 1 images")
+
+                            .setRequestCode(1213)
+                            .start();
                 }
             } else {
-                Intent intent = new Intent(MyProfileInformationActivity.this, ImageSelectActivity.class);
-                intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
-                intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
-                intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
-                startActivityForResult(intent, 1213);
+                ImagePicker.with(MyProfileInformationActivity.this)
+                        .setFolderMode(true)
+                        .setFolderTitle("Album")
 
+                        .setDirectoryName("Image Picker")
+                        .setMultipleMode(false)
+                        .setShowNumberIndicator(true)
+                        .setMaxSize(1)
+                        .setLimitMessage("You can select up to 1 images")
+
+                        .setRequestCode(1213)
+                        .start();
             }
         }
 

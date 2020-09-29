@@ -173,13 +173,8 @@
     <string name="AddAqares">اضافة عقار</string>
 
 
-
-
     <string name="For_sale">For sale</string>
     <string name="rental_period">rental period</string>
-
-
-
 
 
     <string name="Instrument_number">رقم الصك</string>
@@ -193,19 +188,15 @@
     <string name="Street_view">عرض السعر</string>
     <string name="total_price">اجمالي السعر</string>
     <string name="price_one_meter">سعر المتر</string>
-<!--    <string name="Communication_Officer">Communication Officer</string>-->
+    <!--    <string name="Communication_Officer">Communication Officer</string>-->
     <string name="contact_number">رقم التواصل</string>
 
 
-
-
-    <string name="Info_users">للتوثيق ولا تظهر المعلومات للمستخدمين</string>
+    <string name="Info_users">للتوثيق/للمستخدمين</string>
     <string name="AddTExtHeare">ادخل هنا</string>
 
 
     <string name="specificationsِAqares">مواصفات العقار</string>
-
-
 
 
     <string name="Lounges">الصالات</string>
@@ -214,6 +205,44 @@
     <string name="Boards">مجالس</string>
     <string name="Kitchens">مطابخ</string>
     <string name="Dining_rooms">غرف الطعام</string>
+
+
+    <string name="deluxe">فاخر</string>
+    <string name="average">متوسط</string>
+    <string name="normal">عادي</string>
+
+
+    <string name="north">شمال</string>
+    <string name="south">شرق</string>
+    <string name="east">غرب</string>
+    <string name="west">جنوب</string>
+
+    <string name="unmarried">عزاب</string>
+    <string name="married">عوائل</string>
+
+    <string name="finishing_type">نوع التشطيب</string>
+    <string name="interface_">الواجهه</string>
+    <string name="social_status">عوائل/عزاب</string>
+
+    <string name="means_comfort">وسائل الراحة</string>
+    <string name="SelectImages">اضف صورة للعقار</string>
+
+
+
+
+
+
+
+
+
+    <string name="you_are_not_login_please_login">لم تسجل بالتطبيق !ّ لو سمحت قم بالتسجيل؟</string>
+    <string name="Go_to_login">تسجيل</string>
+
+
+    <string name="All">كل</string>
+    <string name="Pay">للبيع</string>
+    <string name="Rent">للاجار</string>
+    <string name="Investment">استثمار</string>
 
 
 </resources>

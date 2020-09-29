@@ -178,7 +178,7 @@
     <string name="contact_number">contact number</string>
 
 
-    <string name="Info_users">documentation and the information</string>
+    <string name="Info_users">documentation/information</string>
     <string name="AddTExtHeare">add text heare</string>
     <string name="specificationsِAqares">specifications ِAqares</string>
 
@@ -207,5 +207,25 @@
     <string name="finishing_type">finishing type</string>
     <string name="interface_">interface</string>
     <string name="social_status">social status</string>
+
+
+    <string name="means_comfort">Means of comfort</string>
+    <string name="SelectImages">Select Images</string>
+
+
+
+
+
+
+    <string name="you_are_not_login_please_login">you are not login in app !  please login.</string>
+    <string name="Go_to_login">Go To Login</string>
+
+
+    <string name="All">All</string>
+    <string name="Pay">Pay</string>
+    <string name="Rent">Rent</string>
+    <string name="Investment">Investment</string>
+
+
 
 </resources>

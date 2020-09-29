@@ -33,10 +33,9 @@
         android:background="@drawable/edit_text_background"
         android:drawableStart="@drawable/ic_phone"
 
-
         android:drawablePadding="@dimen/_8sdp"
         android:hint="@string/phone_number"
-        android:inputType="phone|number"
+        android:inputType="textEmailAddress"
 
          />
 

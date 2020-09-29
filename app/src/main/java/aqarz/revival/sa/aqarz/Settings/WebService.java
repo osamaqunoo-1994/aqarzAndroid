@@ -40,6 +40,9 @@ public class WebService {
     public static String banks = Domain + "banks";
     public static String deferredInstallment = Domain + "deferredInstallment/Request";
     public static String finance = Domain + "finance/Request";
+    public static String comfort = Domain + "comfort";
+    public static String addImg = Domain + "addImg/estate";
+    public static String Home = Domain + "home";
 
 
     public static void Header_Async(AsyncHttpClient client, boolean is_token) {
@@ -50,7 +53,7 @@ public class WebService {
         if (is_token) {
             if (Hawk.contains("api_token")) {
                 if (!Hawk.get("api_token").toString().equals("")) {
-                    client.addHeader("Authorization", Hawk.get("api_token").toString());
+                    client.addHeader("auth", Hawk.get("api_token").toString());
 //                    System.out.println("Authorization " + " Bearer " + Settings.GetUser().getAccessToken());
                 }
             }

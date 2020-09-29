@@ -3,18 +3,16 @@ package aqarz.revival.sa.aqarz.Modules;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class OprationModules {
+public class select_typeModules {
 
-    @SerializedName("id")
-    @Expose
-    private Integer id;
-    @SerializedName("name")
-    @Expose
-    private String name;
+    Integer id;
+    String name;
 
-
-
-
+    public select_typeModules(Integer id,
+                              String name) {
+        this.id = id;
+        this.name = name;
+    }
 
 
     public String getName() {

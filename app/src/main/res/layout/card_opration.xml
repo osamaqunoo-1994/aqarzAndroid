@@ -12,13 +12,14 @@
         android:layout_marginEnd="10dp"
         android:background="@drawable/search_background"
         android:gravity="center"
-        android:paddingTop="@dimen/_3sdp"
-        android:paddingBottom="@dimen/_3sdp">
+        android:paddingTop="@dimen/_1sdp"
+        android:paddingBottom="@dimen/_1sdp">
 
-        <RadioButton
+        <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/radio_button"
             android:layout_width="wrap_content"
             android:text="Home"
+
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="3dp"
 

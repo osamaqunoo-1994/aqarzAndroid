@@ -461,6 +461,7 @@
                         android:layout_height="wrap_content" />
 
                     <Button
+                        android:id="@+id/email_us"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_weight="1"
@@ -485,6 +486,7 @@
                         android:layout_weight="1" />
 
                     <ImageView
+                        android:id="@+id/facebook"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/circle_wh"
@@ -497,6 +499,7 @@
                         android:layout_weight="1" />
 
                     <ImageView
+                        android:id="@+id/twiter"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/circle_wh"
@@ -509,11 +512,12 @@
                         android:layout_weight="1" />
 
                     <ImageView
+                        android:id="@+id/instagram"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/circle_wh"
                         android:padding="13dp"
-                        android:src="@drawable/ic_snapchat" />
+                        android:src="@drawable/ic_instagram" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -521,6 +525,7 @@
                         android:layout_weight="1" />
 
                     <ImageView
+                        android:id="@+id/linked"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/circle_wh"
