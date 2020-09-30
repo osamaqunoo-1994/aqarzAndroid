@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -20,9 +21,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
@@ -64,12 +69,15 @@ import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Opration_in_map;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_in_map;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_select_oprat_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList;
+import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares;
 import aqarz.revival.sa.aqarz.Modules.BankModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
 import aqarz.revival.sa.aqarz.Modules.OprationModules;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.Modules.select_typeModules;
 import aqarz.revival.sa.aqarz.R;
+import aqarz.revival.sa.aqarz.Settings.GpsTracker;
 import aqarz.revival.sa.aqarz.Settings.Settings;
 import aqarz.revival.sa.aqarz.Settings.WebService;
 import aqarz.revival.sa.aqarz.api.IResult;
@@ -100,22 +108,44 @@ public class MapsFragment extends Fragment {
 
     List<HomeModules> homeModules = new ArrayList<>();
 
+
+    RelativeLayout layout_list;
+    LinearLayout layout_button;
+    RelativeLayout layout_button_2;
+
+    ImageView convert_map_to_list;
+    ImageView change_list_to_map;
+
+
+    RecyclerView list_aqaers;
+    ImageView chmnage_map_style;
+
+
+    String style = "";
+
+    ImageView get_location;
+    GpsTracker gpsTracker;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_map, container, false);
-
         mMapView = (MapView) v.findViewById(R.id.mapViewxx);
-        type = v.findViewById(R.id.opration);
-        selsct_type_all = v.findViewById(R.id.selsct_type_all);
 
-        addAqares = v.findViewById(R.id.addAqares);
-        RequstAqars = v.findViewById(R.id.RequstAqars);
-        image_profile = v.findViewById(R.id.image_profile);
+        init(v);
+        getProfile();
+
+
+        try {
+            if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         mMapView.onCreate(savedInstanceState);
-
         mMapView.onResume(); // needed to get the map to display immediately
-
         try {
             MapsInitializer.initialize(getActivity().getApplicationContext());
         } catch (Exception e) {
@@ -126,19 +156,55 @@ public class MapsFragment extends Fragment {
             public void onMapReady(GoogleMap mMap) {
                 googleMap = mMap;
                 googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-
+                style = "MAP_TYPE_NORMAL";
                 googleMap.getUiSettings().setRotateGesturesEnabled(true);
+
+
+                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+
+
+                        BottomSheetDialogFragment_DetailsAqares bottomSheetDialogFragment_detailsAqares = new BottomSheetDialogFragment_DetailsAqares(homeModules.get(0));
+
+
+                        bottomSheetDialogFragment_detailsAqares.show(getFragmentManager(), "");
+
+
+                        return false;
+                    }
+                });
 
 
             }
         });
-//----------------------------------------------------------------------Rec
+
+
+        init_volley();
+        VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+        mVolleyService.getDataVolley("HomeRequst", WebService.Home + "?lat=10&lan=20&estate_type=1&request_type=pay");
+
+        ActionButton();
+        return v;
+    }
+
+
+    public static MapsFragment newInstance(String text) {
+
+        MapsFragment f = new MapsFragment();
+        Bundle b = new Bundle();
+        b.putString("msg", text);
+
+        f.setArguments(b);
+
+        return f;
+    }
+
+
+    public void getProfile() {
 
         try {
-//            no_login.setVisibility(View.GONE);
-//            with_login.setVisibility(View.VISIBLE);
-//            changePassword.setVisibility(View.VISIBLE);
-//            user_name.setText(Settings.GetUser().getName() + "");
+
             if (Settings.checkLogin()) {
                 Picasso.get().load(Settings.GetUser().getLogo()).error(R.drawable.ic_user_un).into(image_profile);
                 image_profile.setOnClickListener(new View.OnClickListener() {
@@ -161,14 +227,32 @@ public class MapsFragment extends Fragment {
         } catch (Exception e) {
 
         }
+    }
+
+    public void init(View v) {
+        type = v.findViewById(R.id.opration);
+        selsct_type_all = v.findViewById(R.id.selsct_type_all);
+
+        addAqares = v.findViewById(R.id.addAqares);
+        RequstAqars = v.findViewById(R.id.RequstAqars);
+        image_profile = v.findViewById(R.id.image_profile);
+        layout_list = v.findViewById(R.id.layout_list);
+        layout_button = v.findViewById(R.id.layout_button);
+        layout_button_2 = v.findViewById(R.id.layout_button_2);
+        convert_map_to_list = v.findViewById(R.id.convert_map_to_list);
+        change_list_to_map = v.findViewById(R.id.change_list_to_map);
+        list_aqaers = v.findViewById(R.id.list_aqaers);
+        chmnage_map_style = v.findViewById(R.id.chmnage_map_style);
+        get_location = v.findViewById(R.id.get_location);
+
+        LinearLayoutManager layoutManagexx
+                = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        list_aqaers.setLayoutManager(layoutManagexx);
+
 
 //---------------------------------------------------------------------------------------------
 
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
-
-        System.out.println("type_list" + type_list.size());
-
-
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         type.setLayoutManager(layoutManager1);
@@ -176,11 +260,7 @@ public class MapsFragment extends Fragment {
         recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_in_fragment.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
-
 //                opration_select = type_list.get(position).getId().toString() + "";
-
-
             }
         });
         type.setAdapter(recyclerView_all_type_in_fragment);
@@ -198,12 +278,13 @@ public class MapsFragment extends Fragment {
         recyclerView_all_select_oprat_in_fragment.addItemClickListener(new RecyclerView_All_select_oprat_in_fragment.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
-
             }
         });
         selsct_type_all.setAdapter(recyclerView_all_select_oprat_in_fragment);
 
+    }
+
+    public void ActionButton() {
 
 //----------------------------------------------------------------------Rec
 
@@ -267,29 +348,86 @@ public class MapsFragment extends Fragment {
             }
         });
 
-
-        init_volley();
-
-        VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-
-        mVolleyService.getDataVolley("HomeRequst", WebService.Home + "?lat=10&lan=20&estate_type=1&request_type=pay");
+        //------------------------------------------------------------------------------------------------------
+        convert_map_to_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
 
-        return v;
+                layout_button.setVisibility(View.GONE);
+                layout_button_2.setVisibility(View.GONE);
+                layout_list.setVisibility(View.VISIBLE);
+
+
+                list_aqaers.setAdapter(new RecyclerView_HomeList(getContext(), homeModules));
+
+
+            }
+        });
+        change_list_to_map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                list_aqaers.setAdapter(null);
+
+                layout_button.setVisibility(View.VISIBLE);
+                layout_button_2.setVisibility(View.VISIBLE);
+                layout_list.setVisibility(View.GONE);
+
+
+            }
+        });
+
+        chmnage_map_style.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (style.equals("MAP_TYPE_NORMAL")) {
+                    googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                    style = "MAP_TYPE_SATELLITE";
+
+                } else {
+                    googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                    style = "MAP_TYPE_NORMAL";
+
+                }
+
+
+            }
+        });
+        get_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try {
+                    if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+                    } else {
+
+
+                        LatLng mylocation = getLocation();
+                        if (mylocation != null) {
+                            googleMap.addMarker(new MarkerOptions()
+                                    .position(mylocation))
+
+                            ;
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 20));
+                            // Zoom in, animating the camera.
+                            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+                            // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(17), 3000, null);
+                        }
+
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
-
-
-    public static MapsFragment newInstance(String text) {
-
-        MapsFragment f = new MapsFragment();
-        Bundle b = new Bundle();
-        b.putString("msg", text);
-
-        f.setArguments(b);
-
-        return f;
-    }
-
 
     @Override
     public void onStart() {
@@ -484,5 +622,55 @@ public class MapsFragment extends Fragment {
             drawable.draw(canvas);
         customMarkerView.draw(canvas);
         return returnedBitmap;
+    }
+
+    public LatLng getLocation() {
+        gpsTracker = new GpsTracker(getContext());
+        if (gpsTracker.canGetLocation()) {
+            double latitude = gpsTracker.getLatitude();
+            double longitude = gpsTracker.getLongitude();
+
+
+            LatLng my_location = new LatLng(latitude, longitude);
+
+            return my_location;
+
+        } else {
+            gpsTracker.showSettingsAlert();
+
+            return null;
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+
+        try {
+            if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            } else {
+
+
+                LatLng mylocation = getLocation();
+                if (mylocation != null) {
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(mylocation))
+
+                    ;
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 20));
+                    // Zoom in, animating the camera.
+                    googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+                    // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(17), 3000, null);
+                }
+
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

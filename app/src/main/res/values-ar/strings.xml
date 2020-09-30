@@ -228,13 +228,6 @@
     <string name="SelectImages">اضف صورة للعقار</string>
 
 
-
-
-
-
-
-
-
     <string name="you_are_not_login_please_login">لم تسجل بالتطبيق !ّ لو سمحت قم بالتسجيل؟</string>
     <string name="Go_to_login">تسجيل</string>
 
@@ -244,5 +237,13 @@
     <string name="Rent">للاجار</string>
     <string name="Investment">استثمار</string>
 
+    <string name="view_type_loc">الواجهه</string>
+
+
+    <string name="yearly">سنوي</string>
+    <string name="months_6">6 اشهر</string>
+    <string name="months_3">3 اشهر</string>
+    <string name="Monthly">شهري</string>
+    <string name="daily">يومي</string>
 
 </resources>

@@ -24,6 +24,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -67,6 +68,7 @@ import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_in_order;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_date_select;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_selectImage;
 import aqarz.revival.sa.aqarz.Fragment.TypeOrders.type1Fragment;
 import aqarz.revival.sa.aqarz.Modules.ComfortModules;
@@ -108,14 +110,14 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     TextView For_sale, rent, investment;
 
-
+    TextView Instrument_file_text;
+    TextView Add_charts_text;
     TextView deluxe, average, normal;
     TextView north, south, east, west;
     TextView unmarried, married;
 
     ImageView select_image;
     ImageView select_image_s;
-    String opration_select = "";
 
     RecyclerView comfort_RecyclerView;
     List<TypeModules> type_list = new ArrayList<>();
@@ -123,7 +125,7 @@ public class AddAqarsActivity extends AppCompatActivity {
     List<SelectImageModules> selectIamgeList = new ArrayList<>();
     IResult mResultCallback;
 
-
+    Button btn_send;
     RecyclerView images_RecyclerView;
 
 
@@ -131,9 +133,36 @@ public class AddAqarsActivity extends AppCompatActivity {
     public GoogleApiClient mGoogleApiClient;
     MapView mMapView;
 
-
+    EditText description;
     PlacesClient placesClient;
-ImageView back;
+    ImageView back;
+
+    LinearLayout Instrument_file;
+    LinearLayout Add_charts;
+
+    LinearLayout specificationsqares;
+    LinearLayout means_comfort;
+    LinearLayout date_eqjar;
+
+    RecyclerView type_date;
+
+    List<String> date_list = new ArrayList<>();
+
+
+    EditText Instrument_number, piece_number, No_planned, Total_area, age_of_the_property, Role_number, Street_view, total_price, price_one_meter, Communication_Officer, contact_number;
+    //---------------------------------------------
+    String opration_select = "0";
+    String Type_work_select = "1";
+
+
+    String lat = "";
+    String lng = "";
+
+
+    String finishing_type = "deluxe";
+    String interface_ = "north";
+    String social_status = "unmarried";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,7 +171,6 @@ ImageView back;
 
         mMapView.onCreate(savedInstanceState);
         mMapView.onResume(); // needed to get the map to display immediately
-
 
         init();
         select_image_s = findViewById(R.id.select_image);
@@ -171,26 +199,21 @@ ImageView back;
         Lounges_minus = findViewById(R.id.Lounges_minus);
         Lounges_number = findViewById(R.id.Lounges_number);
 
-
         room_plus = findViewById(R.id.room_plus);
         room_minus = findViewById(R.id.room_minus);
         room_text = findViewById(R.id.room_text);
-
 
         Bathrooms_plus = findViewById(R.id.Bathrooms_plus);
         Bathrooms_minus = findViewById(R.id.Bathrooms_minus);
         Bathrooms_text = findViewById(R.id.Bathrooms_text);
 
-
         Boards_plus = findViewById(R.id.Boards_plus);
         Boards_minus = findViewById(R.id.Boards_minus);
         Boards_text = findViewById(R.id.Boards_text);
 
-
         Kitchens_plus = findViewById(R.id.Kitchens_plus);
         Kitchens_minus = findViewById(R.id.Kitchens_minus);
         Kitchens_text = findViewById(R.id.Kitchens_text);
-
 
         Dining_rooms_plus = findViewById(R.id.Dining_rooms_plus);
         Dining_rooms_minus = findViewById(R.id.Dining_rooms_minus);
@@ -211,9 +234,32 @@ ImageView back;
         For_sale = findViewById(R.id.For_sale);
         rent = findViewById(R.id.rent);
         investment = findViewById(R.id.investment);
+        Instrument_file = findViewById(R.id.Instrument_file);
+        specificationsqares = findViewById(R.id.specificationsqares);
+        means_comfort = findViewById(R.id.means_comfort);
+        Add_charts = findViewById(R.id.Add_charts);
+        type_date = findViewById(R.id.type_date);
+        Instrument_file_text = findViewById(R.id.Instrument_file_text);
 
 
+        date_eqjar = findViewById(R.id.date_eqjar);
         comfort_RecyclerView = findViewById(R.id.comfort_RecyclerView);
+        btn_send = findViewById(R.id.btn_send);
+        description = findViewById(R.id.description);
+
+
+        Instrument_number = findViewById(R.id.Instrument_number);
+        piece_number = findViewById(R.id.piece_number);
+        No_planned = findViewById(R.id.No_planned);
+        Total_area = findViewById(R.id.Total_area);
+        age_of_the_property = findViewById(R.id.age_of_the_property);
+        Role_number = findViewById(R.id.Role_number);
+        Street_view = findViewById(R.id.Street_view);
+        total_price = findViewById(R.id.total_price);
+        price_one_meter = findViewById(R.id.price_one_meter);
+        Communication_Officer = findViewById(R.id.Communication_Officer);
+        contact_number = findViewById(R.id.contact_number);
+        Add_charts_text = findViewById(R.id.Add_charts_text);
 
         //---------------------------------------------------------------------------------------
         back.setOnClickListener(new View.OnClickListener() {
@@ -223,7 +269,6 @@ ImageView back;
             }
         });
         //---------------------------------------------------------------------------------------
-
 
 
         comfort_RecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
@@ -244,6 +289,27 @@ ImageView back;
                 opration_select = type_list.get(position).getId().toString() + "";
 
 
+                if (opration_select.toString().equals("1")) {//فيلا
+
+                    specificationsqares.setVisibility(View.VISIBLE);
+                    means_comfort.setVisibility(View.VISIBLE);
+
+
+                } else if (opration_select.toString().equals("2")) {//ارض
+
+
+                    specificationsqares.setVisibility(View.GONE);
+                    means_comfort.setVisibility(View.GONE);
+
+
+                } else if (opration_select.toString().equals("3")) {//شقه
+                    specificationsqares.setVisibility(View.VISIBLE);
+                    means_comfort.setVisibility(View.VISIBLE);
+
+
+                }
+
+
             }
         });
         opration_RecyclerView.setAdapter(recyclerView_all_type_in_fragment);
@@ -254,6 +320,15 @@ ImageView back;
         images_RecyclerView.setLayoutManager(layoutManagem);
 
 
+        LinearLayoutManager layoutManags
+                = new LinearLayoutManager(AddAqarsActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        type_date.setLayoutManager(layoutManags);
+        date_list.add(getResources().getString(R.string.yearly));
+        date_list.add(getResources().getString(R.string.months_6));
+        date_list.add(getResources().getString(R.string.months_3));
+        date_list.add(getResources().getString(R.string.Monthly));
+        date_list.add(getResources().getString(R.string.daily));
+        type_date.setAdapter(new RecyclerView_date_select(AddAqarsActivity.this, date_list));
 //-------------------------------------------------------------------------------------------------
 
 
@@ -449,7 +524,6 @@ ImageView back;
 
                 number_Bathrooms = Integer.valueOf(Bathrooms_text.getText().toString());
 
-
                 if (number_Bathrooms == 0) {
 
                 } else {
@@ -471,6 +545,7 @@ ImageView back;
 
 
 //-------------------------------------------------------------------------------------------------
+
 
 //-------------------------------------------------------------------------------------------------
 
@@ -642,10 +717,10 @@ ImageView back;
                 unmarried.setTextColor(getResources().getColor(R.color.white));
 
 
-                married.setBackground(null);
+                married.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 married.setTextColor(getResources().getColor(R.color.textColor));
-
+                social_status = "unmarried";
 
             }
         });
@@ -656,14 +731,15 @@ ImageView back;
 
                 married.setTextColor(getResources().getColor(R.color.white));
 
+                unmarried.setBackground(getResources().getDrawable(R.drawable.search_background));
 
-                unmarried.setBackground(null);
 
                 unmarried.setTextColor(getResources().getColor(R.color.textColor));
-
+                social_status = "married";
 
             }
         });
+
 
 //-------------------------------------------------------------------------------------------------
         deluxe.setOnClickListener(new View.OnClickListener() {
@@ -673,17 +749,17 @@ ImageView back;
 
                 deluxe.setTextColor(getResources().getColor(R.color.white));
 
+                average.setBackground(getResources().getDrawable(R.drawable.search_background));
 
-                average.setBackground(null);
 
                 average.setTextColor(getResources().getColor(R.color.textColor));
 
+                normal.setBackground(getResources().getDrawable(R.drawable.search_background));
 
-                normal.setBackground(null);
 
                 normal.setTextColor(getResources().getColor(R.color.textColor));
 
-
+                finishing_type = "deluxe";
             }
         });
         average.setOnClickListener(new View.OnClickListener() {
@@ -694,16 +770,16 @@ ImageView back;
                 average.setTextColor(getResources().getColor(R.color.white));
 
 
-                deluxe.setBackground(null);
+                deluxe.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 deluxe.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                normal.setBackground(null);
+                normal.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 normal.setTextColor(getResources().getColor(R.color.textColor));
 
-
+                finishing_type = "average";
             }
         });
         normal.setOnClickListener(new View.OnClickListener() {
@@ -714,16 +790,16 @@ ImageView back;
                 normal.setTextColor(getResources().getColor(R.color.white));
 
 
-                average.setBackground(null);
+                average.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 average.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                deluxe.setBackground(null);
+                deluxe.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 deluxe.setTextColor(getResources().getColor(R.color.textColor));
 
-
+                finishing_type = "normal";
             }
         });
 
@@ -737,21 +813,21 @@ ImageView back;
                 north.setTextColor(getResources().getColor(R.color.white));
 
 
-                west.setBackground(null);
+                west.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 west.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                south.setBackground(null);
+                south.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 south.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                east.setBackground(null);
+                east.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 east.setTextColor(getResources().getColor(R.color.textColor));
 
-
+                interface_ = "north";
             }
         });
         south.setOnClickListener(new View.OnClickListener() {
@@ -762,21 +838,21 @@ ImageView back;
                 south.setTextColor(getResources().getColor(R.color.white));
 
 
-                north.setBackground(null);
+                north.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 north.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                east.setBackground(null);
+                east.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 east.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                west.setBackground(null);
+                west.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 west.setTextColor(getResources().getColor(R.color.textColor));
 
-
+                interface_ = "south";
             }
         });
         east.setOnClickListener(new View.OnClickListener() {
@@ -787,21 +863,21 @@ ImageView back;
                 east.setTextColor(getResources().getColor(R.color.white));
 
 
-                north.setBackground(null);
+                north.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 north.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                south.setBackground(null);
+                south.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 south.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                west.setBackground(null);
+                west.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 west.setTextColor(getResources().getColor(R.color.textColor));
 
-
+                interface_ = "east";
             }
         });
         west.setOnClickListener(new View.OnClickListener() {
@@ -812,20 +888,20 @@ ImageView back;
                 west.setTextColor(getResources().getColor(R.color.white));
 
 
-                north.setBackground(null);
+                north.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 north.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                south.setBackground(null);
+                south.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 south.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                east.setBackground(null);
+                east.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 east.setTextColor(getResources().getColor(R.color.textColor));
-
+                interface_ = "west";
 
             }
         });
@@ -843,6 +919,7 @@ ImageView back;
 
 
                 rent.setBackground(getResources().getDrawable(R.drawable.search_background));
+
                 rent.setTextColor(getResources().getColor(R.color.textColor));
 
 
@@ -854,6 +931,8 @@ ImageView back;
                 rent.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
                 investment.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
                 For_sale.getCompoundDrawables()[0].setTint(Color.WHITE);
+
+                Type_work_select = "1";
             }
         });
         rent.setOnClickListener(new View.OnClickListener() {
@@ -880,6 +959,7 @@ ImageView back;
                 investment.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
                 rent.getCompoundDrawables()[0].setTint(Color.WHITE);
 
+                Type_work_select = "2";
 
             }
         });
@@ -906,6 +986,7 @@ ImageView back;
                 rent.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
                 investment.getCompoundDrawables()[0].setTint(Color.WHITE);
 
+                Type_work_select = "3";
 
             }
         });
@@ -948,7 +1029,7 @@ ImageView back;
                                 .setMultipleMode(false)
                                 .setShowNumberIndicator(true)
                                 .setMaxSize(1)
-                                .setLimitMessage("You can select up to 1 images")
+                                .setLimitMessage("You can select one image")
 
                                 .setRequestCode(1213)
                                 .start();
@@ -963,7 +1044,7 @@ ImageView back;
                             .setMultipleMode(false)
                             .setShowNumberIndicator(true)
                             .setMaxSize(1)
-                            .setLimitMessage("You can select up to 1 images")
+                            .setLimitMessage("You can select one image")
 
                             .setRequestCode(1213)
                             .start();
@@ -973,6 +1054,227 @@ ImageView back;
 
             }
         });
+
+
+        Instrument_file.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (ContextCompat.checkSelfPermission(AddAqarsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+
+                        // No explanation needed, we can request the permission.
+
+                        ActivityCompat.requestPermissions(AddAqarsActivity.this,
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                12);
+
+                    } else {
+
+
+                        ImagePicker.with(AddAqarsActivity.this)
+                                .setFolderMode(true)
+                                .setFolderTitle("Album")
+
+                                .setDirectoryName("Image Picker")
+                                .setMultipleMode(false)
+                                .setShowNumberIndicator(true)
+                                .setMaxSize(1)
+                                .setLimitMessage("You can select one image")
+
+                                .setRequestCode(1217)
+                                .start();
+                    }
+                } else {
+
+                    ImagePicker.with(AddAqarsActivity.this)
+                            .setFolderMode(true)
+                            .setFolderTitle("Album")
+
+                            .setDirectoryName("Image Picker")
+                            .setMultipleMode(false)
+                            .setShowNumberIndicator(true)
+                            .setMaxSize(1)
+                            .setLimitMessage("You can select one image")
+
+                            .setRequestCode(1217)
+                            .start();
+
+                }
+
+
+            }
+        });
+
+
+        Add_charts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (ContextCompat.checkSelfPermission(AddAqarsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+
+                        // No explanation needed, we can request the permission.
+
+                        ActivityCompat.requestPermissions(AddAqarsActivity.this,
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                13);
+
+                    } else {
+
+
+                        ImagePicker.with(AddAqarsActivity.this)
+                                .setFolderMode(true)
+                                .setFolderTitle("Album")
+
+                                .setDirectoryName("Image Picker")
+                                .setMultipleMode(false)
+                                .setShowNumberIndicator(true)
+                                .setMaxSize(1)
+                                .setLimitMessage("You can select one image")
+
+                                .setRequestCode(20)
+                                .start();
+                    }
+                } else {
+
+                    ImagePicker.with(AddAqarsActivity.this)
+                            .setFolderMode(true)
+                            .setFolderTitle("Album")
+
+                            .setDirectoryName("Image Picker")
+                            .setMultipleMode(false)
+                            .setShowNumberIndicator(true)
+                            .setMaxSize(1)
+                            .setLimitMessage("You can select one image")
+
+                            .setRequestCode(20)
+                            .start();
+
+                }
+
+
+            }
+        });
+        btn_send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (Instrument_number.getText().toString().equals("") |
+                        piece_number.getText().toString().equals("") |
+                        No_planned.getText().toString().equals("") |
+                        Total_area.getText().toString().equals("") |
+                        age_of_the_property.getText().toString().equals("") |
+                        Role_number.getText().toString().equals("") |
+                        Street_view.getText().toString().equals("") |
+                        total_price.getText().toString().equals("") |
+                        price_one_meter.getText().toString().equals("") |
+                        Communication_Officer.getText().toString().equals("") |
+                        contact_number.getText().toString().equals("")
+
+                ) {
+
+                } else {
+
+
+                    JSONObject sendObj = new JSONObject();
+
+                    try {
+
+                        sendObj.put("operation_type_id", "");
+                        sendObj.put("estate_type_id", "");
+                        sendObj.put("instrument_number", Instrument_number.getText().toString());
+                        sendObj.put("instrument_file", "");
+                        sendObj.put("pace_number", piece_number.getText().toString());
+                        sendObj.put("planned_number", No_planned.getText().toString());
+                        sendObj.put("total_area", Total_area.getText().toString());
+                        sendObj.put("estate_age", age_of_the_property.getText().toString());
+                        sendObj.put("floor_number", Role_number.getText().toString());
+                        sendObj.put("street_view", Street_view.getText().toString());
+                        sendObj.put("total_price", total_price.getText().toString());
+                        sendObj.put("meter_price", price_one_meter.getText().toString());
+                        sendObj.put("owner_name", Communication_Officer.getText().toString());
+                        sendObj.put("owner_mobile", contact_number.getText().toString());
+                        sendObj.put("lounges_number", number_Lounges + "");
+                        sendObj.put("rooms_number", number_room + "");
+                        sendObj.put("bathrooms_number", number_Bathrooms + "");
+                        sendObj.put("boards_number", number_Boards_plus + "");
+                        sendObj.put("kitchen_number", number_Kitchens_plus + "");
+                        sendObj.put("dining_rooms_number", number_Dining_rooms + "");
+                        sendObj.put("finishing_type", finishing_type);
+                        sendObj.put("interface", interface_);
+                        sendObj.put("social_status", social_status);
+                        sendObj.put("lat", lat);
+                        sendObj.put("lan", lng);
+
+
+                        String attachment_planned = "";
+                        for (int i = 0; i < selectIamgeList.size(); i++) {
+
+                            if (attachment_planned.equals("")) {
+                                attachment_planned = selectIamgeList.get(i).getId() + "";
+                            } else {
+                                attachment_planned = "," + selectIamgeList.get(i).getId() + "";
+
+                            }
+
+                        }
+                        sendObj.put("attachment_planned", attachment_planned + "");
+
+
+                        String comfort_list_ = "";
+
+                        for (int i = 0; i < comfort_list.size(); i++) {
+
+                            if (comfort_list.get(i).get_is_selected()) {
+                                if (comfort_list_.equals("")) {
+                                    comfort_list_ = comfort_list.get(i).getId() + "";
+                                } else {
+                                    comfort_list_ = "," + comfort_list.get(i).getId() + "";
+
+                                }
+
+                            }
+
+
+                        }
+
+                        sendObj.put("estate_comforts", comfort_list_ + "");
+
+
+//                        sendObj.put("attachment_estate", );
+                        sendObj.put("note", description.getText().toString());
+
+
+                        System.out.println(sendObj.toString());
+                        mVolleyService.postDataVolley("SendOrder", WebService.update_password, sendObj);
+                        WebService.loading(AddAqarsActivity.this, true);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+
+                if (opration_select.toString().equals("1")) {//فيلا
+
+
+                } else if (opration_select.toString().equals("2")) {//ارض
+
+
+                } else if (opration_select.toString().equals("3")) {//شقه
+
+
+                }
+
+            }
+        });
+
     }
 
     public void init_volley() {
@@ -982,69 +1284,76 @@ ImageView back;
             @Override
             public void notifySuccess(String requestType, JSONObject response) {
 
-                Log.d("TAG", "Volley requester " + requestType);
-                Log.d("TAG", "Volley JSON post" + response);
-                WebService.loading(AddAqarsActivity.this, false);
+
+                if (requestType.equals("SendOrder")) {
+
+
+                } else {
+
+
+                    Log.d("TAG", "Volley requester " + requestType);
+                    Log.d("TAG", "Volley JSON post" + response);
+                    WebService.loading(AddAqarsActivity.this, false);
 //{"status":true,"code":200,"message":"User Profile","data"
-                try {
-                    boolean status = response.getBoolean("status");
-                    if (status) {
-                        String data = response.getString("data");
+                    try {
+                        boolean status = response.getBoolean("status");
+                        if (status) {
+                            String data = response.getString("data");
 
-                        JSONArray jsonArray = new JSONArray(data);
+                            JSONArray jsonArray = new JSONArray(data);
 
-                        comfort_list.clear();
+                            comfort_list.clear();
 
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-
-                            JsonParser parser = new JsonParser();
-                            JsonElement mJson = parser.parse(jsonArray.getString(i));
-
-                            Gson gson = new Gson();
-
-                            ComfortModules Store_M = gson.fromJson(mJson, ComfortModules.class);
-                            comfort_list.add(Store_M);
-                        }
-
-                        RecyclerView_All_Comfort_in_fragment recyclerView_all_comfort_in_fragment = new RecyclerView_All_Comfort_in_fragment(AddAqarsActivity.this, comfort_list);
-
-                        recyclerView_all_comfort_in_fragment.addItemClickListener(new RecyclerView_All_Comfort_in_fragment.ItemClickListener() {
-                            @Override
-                            public void onItemClick(int position) {
+                            for (int i = 0; i < jsonArray.length(); i++) {
 
 
-                                if (comfort_list.get(position).get_is_selected()) {
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
 
-                                    comfort_list.get(position).setIs_selected(false);
+                                Gson gson = new Gson();
 
-                                } else {
+                                ComfortModules Store_M = gson.fromJson(mJson, ComfortModules.class);
+                                comfort_list.add(Store_M);
+                            }
 
-                                    comfort_list.get(position).setIs_selected(true);
+                            RecyclerView_All_Comfort_in_fragment recyclerView_all_comfort_in_fragment = new RecyclerView_All_Comfort_in_fragment(AddAqarsActivity.this, comfort_list);
+
+                            recyclerView_all_comfort_in_fragment.addItemClickListener(new RecyclerView_All_Comfort_in_fragment.ItemClickListener() {
+                                @Override
+                                public void onItemClick(int position) {
+
+
+                                    if (comfort_list.get(position).get_is_selected()) {
+
+                                        comfort_list.get(position).setIs_selected(false);
+
+                                    } else {
+
+                                        comfort_list.get(position).setIs_selected(true);
+
+                                    }
+
+
+                                    System.out.println("%%%%%%%%%%%%%5" + comfort_list.get(position).get_is_selected());
+
 
                                 }
+                            });
 
 
-                                System.out.println("%%%%%%%%%%%%%5" + comfort_list.get(position).get_is_selected());
+                            comfort_RecyclerView.setAdapter(recyclerView_all_comfort_in_fragment);
+                        } else {
+                            String message = response.getString("message");
+
+                            WebService.Make_Toast_color(AddAqarsActivity.this, message, "error");
+                        }
 
 
-                            }
-                        });
+                    } catch (Exception e) {
 
-
-                        comfort_RecyclerView.setAdapter(recyclerView_all_comfort_in_fragment);
-                    } else {
-                        String message = response.getString("message");
-
-                        WebService.Make_Toast_color(AddAqarsActivity.this, message, "error");
                     }
 
-
-                } catch (Exception e) {
-
                 }
-
-
             }
 
 
@@ -1093,12 +1402,16 @@ ImageView back;
                         .position(sydney)
                         .title("Marker"));
 
-
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
                 // Zoom in, animating the camera.
                 googleMap.animateCamera(CameraUpdateFactory.zoomIn());
                 // Zoom out to zoom level 10, animating with a duration of 2 seconds.
                 googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+
+
+                lat = "" + place.getLatLng().latitude;
+                lng = "" + place.getLatLng().longitude;
+
 
             }
         }
@@ -1152,6 +1465,64 @@ ImageView back;
 
 
                 Upload_image(requestParams, selectedImagea);
+            } catch (Exception e) {
+
+            }
+//            sendChatMsg_file(first_image_file);
+
+
+        }
+        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1217)) {
+
+
+            ArrayList<Image> images = ImagePicker.getImages(data);
+//            Uri uri = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, images.get(0).getId()+"");
+
+
+            String filePath = images.get(0).getPath().toString();
+            Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+
+
+            File file_image_profile = new File(filePath);
+
+            try {
+                Instrument_file_text.setText(getResources().getString(R.string.upload_file_success));
+
+//                RequestParams requestParams = new RequestParams();
+//
+//                requestParams.put("photo", file_image_profile);
+//
+//
+//                Upload_image(requestParams, selectedImagea);
+            } catch (Exception e) {
+
+            }
+//            sendChatMsg_file(first_image_file);
+
+
+        }
+        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 20)) {
+
+
+            ArrayList<Image> images = ImagePicker.getImages(data);
+//            Uri uri = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, images.get(0).getId()+"");
+
+
+            String filePath = images.get(0).getPath().toString();
+            Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+
+
+            File file_image_profile = new File(filePath);
+
+            try {
+                Add_charts_text.setText(getResources().getString(R.string.upload_file_success));
+
+//                RequestParams requestParams = new RequestParams();
+//
+//                requestParams.put("photo", file_image_profile);
+//
+//
+//                Upload_image(requestParams, selectedImagea);
             } catch (Exception e) {
 
             }

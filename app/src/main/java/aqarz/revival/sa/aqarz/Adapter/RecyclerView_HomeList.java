@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import aqarz.revival.sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
+import aqarz.revival.sa.aqarz.Modules.HomeModules;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
 
@@ -26,8 +26,8 @@ import aqarz.revival.sa.aqarz.R;
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<RecyclerView_All_Type_in_order.MyViewHolder> {
-    public static List<TypeModules> alldata = new ArrayList<TypeModules>();
+public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_HomeList.MyViewHolder> {
+    public static List<HomeModules> alldata = new ArrayList<HomeModules>();
     static int Postion_opend = 0;
 
 
@@ -56,28 +56,45 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
 //        ProgressBar progress;
 //        LinearLayout add_to_my;
 
+        ImageView image_aqars;
+        TextView type;
+        TextView type_2;
+        TextView price;
+        TextView address;
+        TextView opration;
+        TextView number_room;
+        TextView number_bathroom;
+        TextView max_space;
+        TextView viesw;
 
-        LinearLayout back_ground;
-        TextView text;
-        ImageView image_in_type;
 
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
 
 
-            back_ground = view.findViewById(R.id.back_ground);
-            text = view.findViewById(R.id.text);
-            image_in_type = view.findViewById(R.id.image_in_type);
+            image_aqars = view.findViewById(R.id.image_aqars);
+            type = view.findViewById(R.id.type);
+            type_2 = view.findViewById(R.id.type_2);
+            price = view.findViewById(R.id.price);
+            address = view.findViewById(R.id.address);
+            opration = view.findViewById(R.id.opration);
 
-//            image_ = view.findViewById(R.id.image_);
+
+            number_room = view.findViewById(R.id.number_room);
+            number_bathroom = view.findViewById(R.id.number_bathroom);
+            max_space = view.findViewById(R.id.max_space);
+            viesw = view.findViewById(R.id.viesw);
+
+
+//            ratingbar = view.findViewById(R.id.ratingbar);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
     }
 
-    public RecyclerView_All_Type_in_order(Context context, List<TypeModules> alldata) {
+    public RecyclerView_HomeList(Context context, List<HomeModules> alldata) {
         this.alldata = alldata;
         this.context = context;
     }
@@ -104,6 +121,18 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
 //        }
 ////
 //
+
+
+        holder.type.setText(alldata.get(position).getEstate_type_name());
+        holder.type_2.setText(alldata.get(position).getOperation_type_name());
+
+        holder.price.setText(alldata.get(position).getPrice_from());
+
+
+        holder.opration.setText(alldata.get(position).getRequest_type());
+        holder.number_room.setText(alldata.get(position).getRoom_numbers());
+
+
 //
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
@@ -126,23 +155,6 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
 
         //   wallet, dafter, receipt, payment
 
-
-        holder.text.setText(alldata.get(position).getName() + "");
-
-        if (position == Postion_opend) {
-            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));
-
-            holder.text.setTextColor(context.getResources().getColor(R.color.white));
-
-
-            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
-
-        } else {
-            holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
-            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.search_background));
-            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
-
-        }
 
 //            double v=Double.valueOf(alldata.get(position).getRate());
 //
@@ -176,14 +188,13 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
 //        });
 //
 
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-                Postion_opend = position;
-                Refr();
+//                Postion_opend = position;
+//                Refr();
 
 //                RequestOrderActivity.set_fragment(position);
 
@@ -215,7 +226,7 @@ public class RecyclerView_All_Type_in_order extends RecyclerView.Adapter<Recycle
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_type_map, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_aqars, parent, false);
 
 
         // Fresco.initialize(context);

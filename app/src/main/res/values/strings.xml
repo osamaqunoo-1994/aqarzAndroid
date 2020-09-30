@@ -213,10 +213,6 @@
     <string name="SelectImages">Select Images</string>
 
 
-
-
-
-
     <string name="you_are_not_login_please_login">you are not login in app !  please login.</string>
     <string name="Go_to_login">Go To Login</string>
 
@@ -227,5 +223,17 @@
     <string name="Investment">Investment</string>
 
 
+    <string name="SAR">SAr</string>
+    <string name="view_type_loc">view</string>
+
+
+    <string name="yearly">yearly</string>
+    <string name="months_6">6 months</string>
+    <string name="months_3">3 months</string>
+    <string name="Monthly">Monthly</string>
+    <string name="daily">Daily</string>
+
+
+    <string name="upload_file_success">upload file success</string>
 
 </resources>

@@ -21,13 +21,14 @@
             android:text="Home"
 
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="3dp"
+
+
 
             android:textColor="#424446"
             android:fontFamily="@font/frutiger_lt_arabic_roman"
 
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp" />
+             />
 
 
 

@@ -16,7 +16,6 @@ public class PrivecyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terms);
 
-
         LinearLayout lay_ = findViewById(R.id.lay_);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (lay_ != null) {

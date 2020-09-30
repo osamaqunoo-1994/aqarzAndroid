@@ -27,7 +27,7 @@ import aqarz.revival.sa.aqarz.R;
  */
 public class RecyclerView_All_type_in_fragment extends RecyclerView.Adapter<RecyclerView_All_type_in_fragment.MyViewHolder> {
     public static List<TypeModules> alldata = new ArrayList<TypeModules>();
-    static int Postion_opend = -1;
+    static int Postion_opend = 0;
 
 
     static AlertDialog alertDialog;

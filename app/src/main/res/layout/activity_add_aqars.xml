@@ -175,6 +175,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/date_eqjar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -209,6 +210,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -232,7 +234,7 @@
                         android:paddingBottom="2dp"
                         android:text="@string/Information_Aqar"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/_13sdp" />
 
 
                     <LinearLayout
@@ -259,12 +261,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="38dp"
                             android:layout_weight="1"
-                            android:singleLine="true"
                             android:background="@drawable/edit_text_background"
                             android:gravity="center_vertical"
                             android:hint="@string/Info_users"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
+                            android:singleLine="true"
                             android:text=""
                             android:textColorHint="@color/hint_color"
                             android:textSize="@dimen/_10sdp" />
@@ -313,14 +315,17 @@
 
 
                             <TextView
+                                android:id="@+id/Instrument_file_text"
                                 android:layout_width="match_parent"
+
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="6dp"
                                 android:layout_weight="1"
                                 android:background="@android:color/transparent"
                                 android:fontFamily="@font/frutiger_lt_arabic_roman"
-                                android:text="@string/Instrument_file"
-                                android:textColor="#AAABB3"
+                                android:hint="@string/Instrument_file"
+                                android:textColor="@color/cookie_success"
+                                android:textColorHint="#AAABB3"
                                 android:textSize="15dp" />
 
 
@@ -428,11 +433,7 @@
                             android:background="@drawable/edit_text_background"
                             android:gravity="center"
                             android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-
-
-                            >
-
+                            android:paddingRight="5dp">
 
                             <ImageView
                                 android:layout_width="30dp"
@@ -442,14 +443,17 @@
 
 
                             <TextView
+                                android:id="@+id/Add_charts_text"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="6dp"
                                 android:layout_weight="1"
                                 android:background="@android:color/transparent"
                                 android:fontFamily="@font/frutiger_lt_arabic_roman"
-                                android:text="@string/Add_charts"
-                                android:textColor="#AAABB3"
+                                android:hint="@string/Add_charts"
+                                android:textColor="@color/cookie_success"
+                                android:textColorHint="#AAABB3"
+
                                 android:textSize="15dp" />
 
 
@@ -751,6 +755,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/specificationsqares"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -1453,6 +1458,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/means_comfort"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"

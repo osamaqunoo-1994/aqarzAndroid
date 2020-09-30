@@ -38,7 +38,7 @@ public class BottomSheetDialogFragment_DetailsAqares extends BottomSheetDialogFr
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.bottom_sheets_select_city, container, false);
+        View v = inflater.inflate(R.layout.bottom_sheets_details_aqares, container, false);
 
 
         return v;

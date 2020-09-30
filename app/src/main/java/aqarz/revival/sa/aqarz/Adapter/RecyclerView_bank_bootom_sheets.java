@@ -32,6 +32,12 @@ public class RecyclerView_bank_bootom_sheets extends RecyclerView.Adapter<Recycl
     static AlertDialog alertDialog;
 
 
+
+
+
+
+
+
     /**
      * View holder class
      */
