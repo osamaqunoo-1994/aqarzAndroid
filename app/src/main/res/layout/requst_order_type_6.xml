@@ -17,6 +17,7 @@
             android:orientation="vertical"
             android:visibility="visible">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,6 +43,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/For_sale"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -50,13 +52,14 @@
                         android:gravity="center"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:text="@string/Purchase"
+                        android:text="@string/For_sale"
 
 
                         android:textColor="@color/white"
                         android:textSize="13dp" />
 
                     <TextView
+                        android:id="@+id/rent"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -73,6 +76,7 @@
                         android:textSize="13dp" />
 
                     <TextView
+                        android:id="@+id/investment"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -97,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
+                android:visibility="gone"
                 android:paddingBottom="5dp">
 
                 <TextView
@@ -125,6 +130,7 @@
 
 
             </LinearLayout>
+
 
             <EditText
                 android:id="@+id/name"

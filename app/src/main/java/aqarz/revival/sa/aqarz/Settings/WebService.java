@@ -17,11 +17,6 @@ import es.dmoral.toasty.Toasty;
 public class WebService {
 
 
-    //Hakeem_jks.jks
-    //Hakeem_jks
-    //123456
-
-
     public static KProgressHUD kProgressHUD;
 //    public static String Domain = "http://aqarz.heliohost.org/api/";
     public static String Domain = "https://aqarz.com/api/";
@@ -42,7 +37,10 @@ public class WebService {
     public static String finance = Domain + "finance/Request";
     public static String comfort = Domain + "comfort";
     public static String addImg = Domain + "addImg/estate";
+    public static String addImg_planned = Domain + "addImg/planned";
+    public static String addestate = Domain + "add/estate";
     public static String Home = Domain + "home";
+    public static String rate_Request = Domain + "rate/Request";
 
 
     public static void Header_Async(AsyncHttpClient client, boolean is_token) {

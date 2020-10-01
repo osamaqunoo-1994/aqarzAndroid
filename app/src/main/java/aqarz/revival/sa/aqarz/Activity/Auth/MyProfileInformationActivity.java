@@ -57,17 +57,13 @@ public class MyProfileInformationActivity extends AppCompatActivity {
 
     Button done;
 
-
     IResult mResultCallback;
 
     ImageView back;
     ImageView edit_image;
 
     CircleImageView image_profile;
-
-
     File image_file_file = null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

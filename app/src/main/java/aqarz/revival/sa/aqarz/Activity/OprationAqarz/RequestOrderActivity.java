@@ -98,15 +98,9 @@ public class RequestOrderActivity extends AppCompatActivity {
             }
         });
         //---------------------------------------------------------------------------------------
-
-
-//
-
-
         LinearLayoutManager layoutManagers
                 = new LinearLayoutManager(RequestOrderActivity.this, LinearLayoutManager.HORIZONTAL, false);
         type_RecyclerView.setLayoutManager(layoutManagers);
-
 
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, RequestOrderActivity.this);
@@ -150,11 +144,7 @@ public class RequestOrderActivity extends AppCompatActivity {
                         recyclerView_all_type_in_order.addItemClickListener(new RecyclerView_All_Type_in_order.ItemClickListener() {
                             @Override
                             public void onItemClick(int position) {
-
-
                                 set_fragment(typeModules_list.get(position).getId());
-
-
                             }
                         });
                         type_RecyclerView.setAdapter(recyclerView_all_type_in_order);
@@ -274,19 +264,19 @@ public class RequestOrderActivity extends AppCompatActivity {
                 break;
 
             case 4:
-                bundle.putString("Id_eastate", id + "");
-
-                type4Fragment type4Fragment = new type4Fragment();
-                type4Fragment.setArguments(bundle);
-
-                FragmentTransaction transaction4 = getSupportFragmentManager().beginTransaction();
 
 
-                transaction4.replace(R.id.container, type4Fragment);
-                transaction4.addToBackStack(null);
+                type6Fragment type6Fragment = new type6Fragment();
+                type6Fragment.setArguments(bundle);
+
+                FragmentTransaction transaction6 = getSupportFragmentManager().beginTransaction();
 
 
-                transaction4.commit();
+                transaction6.replace(R.id.container, type6Fragment);
+                transaction6.addToBackStack(null);
+
+
+                transaction6.commit();
                 break;
 
             case 5:
@@ -309,17 +299,19 @@ public class RequestOrderActivity extends AppCompatActivity {
             case 6:
                 bundle.putString("Id_eastate", id + "");
 
-                type6Fragment type6Fragment = new type6Fragment();
-                type6Fragment.setArguments(bundle);
+                bundle.putString("Id_eastate", id + "");
 
-                FragmentTransaction transaction6 = getSupportFragmentManager().beginTransaction();
+                type4Fragment type4Fragment = new type4Fragment();
+                type4Fragment.setArguments(bundle);
 
-
-                transaction6.replace(R.id.container, type6Fragment);
-                transaction6.addToBackStack(null);
+                FragmentTransaction transaction4 = getSupportFragmentManager().beginTransaction();
 
 
-                transaction6.commit();
+                transaction4.replace(R.id.container, type4Fragment);
+                transaction4.addToBackStack(null);
+
+
+                transaction4.commit();
                 break;
 
 

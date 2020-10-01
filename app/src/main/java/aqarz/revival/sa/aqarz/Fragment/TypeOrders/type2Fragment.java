@@ -22,9 +22,11 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -34,6 +36,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.loopj.android.http.RequestParams;
+import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker;
 
 import org.json.JSONObject;
 
@@ -44,6 +47,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import aqarz.revival.sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Opration_in_order;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
@@ -121,6 +125,10 @@ public class type2Fragment extends Fragment {
     EditText owner_id_number;
 
     String Id_eastate = "";
+    String seek_progress = "";
+
+
+    SeekBar seek_bar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -164,6 +172,7 @@ public class type2Fragment extends Fragment {
         btn_send = v.findViewById(R.id.btn_send);
         owner_id_number = v.findViewById(R.id.owner_id_number);
         StreetName = v.findViewById(R.id.StreetName);
+        seek_bar = v.findViewById(R.id.seek_bar);
 
 
         ada_1_yes.setOnClickListener(new View.OnClickListener() {
@@ -297,6 +306,23 @@ public class type2Fragment extends Fragment {
             }
         });
 //---------------------------------------------------------------------------------------------
+        seek_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                seek_progress = progress + "";
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+//---------------------------------------------------------------------------------------------
         final Calendar myCalendar = Calendar.getInstance();
 
         DatePickerDialog.OnDateSetListener date_start_work = new DatePickerDialog.OnDateSetListener() {
@@ -310,7 +336,7 @@ public class type2Fragment extends Fragment {
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
 
-                String myFormat = "MM/dd/yy"; //In which you need put here
+                String myFormat = "yyyy-MM-dd"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
                 start_work_date.setText(sdf.format(myCalendar.getTime()));
@@ -344,18 +370,32 @@ public class type2Fragment extends Fragment {
 
                     } else {
 
-                        Intent intent = new Intent(getContext(), ImageSelectActivity.class);
-                        intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
-                        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
-                        intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
-                        startActivityForResult(intent, 1217);
+                        ImagePicker.with(getActivity())
+                                .setFolderMode(true)
+                                .setFolderTitle("Album")
+
+                                .setDirectoryName("Image Picker")
+                                .setMultipleMode(false)
+                                .setShowNumberIndicator(true)
+                                .setMaxSize(1)
+                                .setLimitMessage("You can select up to 1 images")
+
+                                .setRequestCode(1213)
+                                .start();
                     }
                 } else {
-                    Intent intent = new Intent(getContext(), ImageSelectActivity.class);
-                    intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
-                    intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
-                    intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
-                    startActivityForResult(intent, 1217);
+                    ImagePicker.with(getActivity())
+                            .setFolderMode(true)
+                            .setFolderTitle("Album")
+
+                            .setDirectoryName("Image Picker")
+                            .setMultipleMode(false)
+                            .setShowNumberIndicator(true)
+                            .setMaxSize(1)
+                            .setLimitMessage("You can select up to 1 images")
+
+                            .setRequestCode(1213)
+                            .start();
 
                 }
 
@@ -380,18 +420,32 @@ public class type2Fragment extends Fragment {
 
                     } else {
 
-                        Intent intent = new Intent(getContext(), ImageSelectActivity.class);
-                        intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
-                        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
-                        intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
-                        startActivityForResult(intent, 1213);
+                        ImagePicker.with(getActivity())
+                                .setFolderMode(true)
+                                .setFolderTitle("Album")
+
+                                .setDirectoryName("Image Picker")
+                                .setMultipleMode(false)
+                                .setShowNumberIndicator(true)
+                                .setMaxSize(1)
+                                .setLimitMessage("You can select up to 1 images")
+
+                                .setRequestCode(1217)
+                                .start();
                     }
                 } else {
-                    Intent intent = new Intent(getContext(), ImageSelectActivity.class);
-                    intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
-                    intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
-                    intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
-                    startActivityForResult(intent, 1213);
+                    ImagePicker.with(getActivity())
+                            .setFolderMode(true)
+                            .setFolderTitle("Album")
+
+                            .setDirectoryName("Image Picker")
+                            .setMultipleMode(false)
+                            .setShowNumberIndicator(true)
+                            .setMaxSize(1)
+                            .setLimitMessage("You can select up to 1 images")
+
+                            .setRequestCode(1217)
+                            .start();
 
                 }
 
@@ -442,6 +496,7 @@ public class type2Fragment extends Fragment {
 
             }
         });
+        init_volley();
 //-------------------------------------------------------------------------------------
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -484,7 +539,7 @@ public class type2Fragment extends Fragment {
                         sendObj.put("estate_type_id", opration_select);//form estate type list api in setting
                         sendObj.put("job_type", tenant_job_type);
 
-                        sendObj.put("finance_interval", "5");//from seek bar
+                        sendObj.put("finance_interval", seek_progress);//from seek bar
                         sendObj.put("job_start_date", start_work_date.getText().toString());
                         sendObj.put("estate_price", priceAqar.getText().toString());
                         sendObj.put("engagements", Financial_obligations.getText().toString());
@@ -553,17 +608,27 @@ public class type2Fragment extends Fragment {
         super.onResume();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        System.out.println("fdljkfldkfldkfldkfldfk");
 
-        if (requestCode == 1217 && resultCode == Activity.RESULT_OK) {
+        if (requestCode == 1213 && resultCode == Activity.RESULT_OK) {
+
+
             String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
             Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
             System.out.println("fdljkfldkfldkfldkfldfk");
 
+
             owner_get_id_image_file = new File(filePath);
+
+
+            owner_get_id_image.setBackground(getActivity().getDrawable(R.drawable.edit_text_background_green));
+
+
 //            image_profile.setImageBitmap(selectedImage);
 //
 //            //            file_path = filePath;
@@ -585,11 +650,12 @@ public class type2Fragment extends Fragment {
 
         }
 
-        if (requestCode == 1213 && resultCode == Activity.RESULT_OK) {
+        if (requestCode == 1217 && resultCode == Activity.RESULT_OK) {
             String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
             Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
             System.out.println("fdljkfldkfldkfldkfldfk");
             National_address_file = new File(filePath);
+            National_address.setBackground(getActivity().getDrawable(R.drawable.edit_text_background_green));
 
 //            image_profile.setImageBitmap(selectedImage);
 //

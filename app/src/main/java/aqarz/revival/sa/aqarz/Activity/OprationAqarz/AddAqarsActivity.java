@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -19,10 +21,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,6 +67,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
@@ -128,6 +133,8 @@ public class AddAqarsActivity extends AppCompatActivity {
     Button btn_send;
     RecyclerView images_RecyclerView;
 
+    AlertDialog alertDialog;
+
 
     private static GoogleMap googleMap;
     public GoogleApiClient mGoogleApiClient;
@@ -153,6 +160,7 @@ public class AddAqarsActivity extends AppCompatActivity {
     //---------------------------------------------
     String opration_select = "0";
     String Type_work_select = "1";
+    String image_planed = "";
 
 
     String lat = "";
@@ -162,6 +170,10 @@ public class AddAqarsActivity extends AppCompatActivity {
     String finishing_type = "deluxe";
     String interface_ = "north";
     String social_status = "unmarried";
+
+
+    File instrument_file = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -786,15 +798,9 @@ public class AddAqarsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 normal.setBackground(getResources().getDrawable(R.drawable.button_login));
-
                 normal.setTextColor(getResources().getColor(R.color.white));
-
-
                 average.setBackground(getResources().getDrawable(R.drawable.search_background));
-
                 average.setTextColor(getResources().getColor(R.color.textColor));
-
-
                 deluxe.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 deluxe.setTextColor(getResources().getColor(R.color.textColor));
@@ -1173,21 +1179,34 @@ public class AddAqarsActivity extends AppCompatActivity {
                         total_price.getText().toString().equals("") |
                         price_one_meter.getText().toString().equals("") |
                         Communication_Officer.getText().toString().equals("") |
+                        lat.toString().equals("") |
+                        instrument_file == null |
+                        image_planed == null |
+                        selectIamgeList.size() == 0 |
                         contact_number.getText().toString().equals("")
 
                 ) {
 
+
+                    WebService.Make_Toast_color(AddAqarsActivity.this, getResources().getString(R.string.fillallfileds) + "", "error");
+
+
                 } else {
 
 
-                    JSONObject sendObj = new JSONObject();
+                    RequestParams sendObj = new RequestParams();
 
                     try {
 
-                        sendObj.put("operation_type_id", "");
-                        sendObj.put("estate_type_id", "");
+                        sendObj.put("operation_type_id", opration_select);
+                        sendObj.put("estate_type_id", Type_work_select);
                         sendObj.put("instrument_number", Instrument_number.getText().toString());
-                        sendObj.put("instrument_file", "");
+                        if (instrument_file != null) {
+
+                            sendObj.put("instrument_file", instrument_file);
+
+
+                        }
                         sendObj.put("pace_number", piece_number.getText().toString());
                         sendObj.put("planned_number", No_planned.getText().toString());
                         sendObj.put("total_area", Total_area.getText().toString());
@@ -1222,7 +1241,7 @@ public class AddAqarsActivity extends AppCompatActivity {
                             }
 
                         }
-                        sendObj.put("attachment_planned", attachment_planned + "");
+                        sendObj.put("attachment_estate", attachment_planned + "");
 
 
                         String comfort_list_ = "";
@@ -1233,7 +1252,7 @@ public class AddAqarsActivity extends AppCompatActivity {
                                 if (comfort_list_.equals("")) {
                                     comfort_list_ = comfort_list.get(i).getId() + "";
                                 } else {
-                                    comfort_list_ = "," + comfort_list.get(i).getId() + "";
+                                    comfort_list_ = comfort_list.get(i).getId() + "," + comfort_list.get(i).getId() + "";
 
                                 }
 
@@ -1243,17 +1262,19 @@ public class AddAqarsActivity extends AppCompatActivity {
                         }
 
                         sendObj.put("estate_comforts", comfort_list_ + "");
+                        System.out.println("comfort_list_" + comfort_list_);
 
-
-//                        sendObj.put("attachment_estate", );
+                        sendObj.put("attachment_planned", image_planed);
                         sendObj.put("note", description.getText().toString());
 
 
                         System.out.println(sendObj.toString());
-                        mVolleyService.postDataVolley("SendOrder", WebService.update_password, sendObj);
-                        WebService.loading(AddAqarsActivity.this, true);
 
-                    } catch (JSONException e) {
+
+                        AddAqersAsyncTask(sendObj);
+
+
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
 
@@ -1285,16 +1306,16 @@ public class AddAqarsActivity extends AppCompatActivity {
             public void notifySuccess(String requestType, JSONObject response) {
 
 
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response);
+                WebService.loading(AddAqarsActivity.this, false);
+//{"status":true,"code":200,"message":"User Profile","data"
                 if (requestType.equals("SendOrder")) {
 
 
                 } else {
 
 
-                    Log.d("TAG", "Volley requester " + requestType);
-                    Log.d("TAG", "Volley JSON post" + response);
-                    WebService.loading(AddAqarsActivity.this, false);
-//{"status":true,"code":200,"message":"User Profile","data"
                     try {
                         boolean status = response.getBoolean("status");
                         if (status) {
@@ -1487,6 +1508,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
             try {
                 Instrument_file_text.setText(getResources().getString(R.string.upload_file_success));
+                instrument_file = file_image_profile;
 
 //                RequestParams requestParams = new RequestParams();
 //
@@ -1523,6 +1545,17 @@ public class AddAqarsActivity extends AppCompatActivity {
 //
 //
 //                Upload_image(requestParams, selectedImagea);
+            } catch (Exception e) {
+
+            }
+            try {
+
+                RequestParams requestParams = new RequestParams();
+
+                requestParams.put("photo", file_image_profile);
+
+
+                Upload_image_planed(requestParams, selectedImagea);
             } catch (Exception e) {
 
             }
@@ -1569,7 +1602,7 @@ public class AddAqarsActivity extends AppCompatActivity {
                         String data = responseBody.getString("data");
 
 
-                        selectIamgeList.add(new SelectImageModules(1, selectedImage));
+                        selectIamgeList.add(new SelectImageModules(Integer.valueOf(data), selectedImage));
 
 
                         images_RecyclerView.setAdapter(new RecyclerView_selectImage(AddAqarsActivity.this, selectIamgeList));
@@ -1577,6 +1610,248 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                         WebService.Make_Toast_color(AddAqarsActivity.this, message, "success");
 
+                    } else {
+
+
+                        WebService.Make_Toast(AddAqarsActivity.this, message);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+//                    noorder.setVisibility(View.VISIBLE);
+//
+//                    WebService.loading(MainActivity.this, false);
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+
+                System.out.println("responseString" + responseString);
+                WebService.loading(AddAqarsActivity.this, false);
+
+
+                WebService.loading(AddAqarsActivity.this, false);
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+
+
+                try {
+                    System.out.println("responseString" + errorResponse.toString());
+
+                    WebService.loading(AddAqarsActivity.this, false);
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void onUserException(Throwable error) {
+                // super.onUserException(error);
+//                Log.d("ttt", "onFailure: jhjj" + error.getMessage());
+
+
+            }
+
+
+            @Override
+            public void onProgress(long bytesWritten, long totalSize) {
+
+
+                try {
+//                    int po = (int) (totalSize / 500);
+//
+//                    int cc = (int) bytesWritten / po;
+//                    int progressPercentage = (int) (250 * bytesWritten / totalSize);
+//
+//
+//                    System.out.println(totalSize + "###" + po + "%%" + cc);
+//                    kProgressHUDx.setProgress(progressPercentage);
+//
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
+    }
+
+    public void Upload_image_planed(RequestParams requestParams, Bitmap selectedImage) {
+
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        String BASE_URL = WebService.addImg_planned;
+        WebService.loading(AddAqarsActivity.this, true);
+
+
+        final int DEFAULT_TIMEOUT = 20 * 1000;
+
+        client.setTimeout(DEFAULT_TIMEOUT);
+        WebService.Header_Async(client, true);
+
+        client.post(BASE_URL, requestParams, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject responseBody) {
+                WebService.loading(AddAqarsActivity.this, false);
+//                Addproduct_next_btn.setClickable(true);
+
+                System.out.println("dfsdfd" + responseBody.toString());
+
+                try {
+
+                    String status = responseBody.getString("status");
+//
+//                    String message = responseBody.getString("message");
+//                    String code = responseBody.getString("code");
+                    String message = responseBody.getString("message");
+
+                    if (status.equals("true")) {
+
+                        String data = responseBody.getString("data");
+
+
+                        WebService.Make_Toast_color(AddAqarsActivity.this, message, "success");
+
+                    } else {
+
+
+                        WebService.Make_Toast(AddAqarsActivity.this, message);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+//                    noorder.setVisibility(View.VISIBLE);
+//
+//                    WebService.loading(MainActivity.this, false);
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+
+                System.out.println("responseString" + responseString);
+                WebService.loading(AddAqarsActivity.this, false);
+
+
+                WebService.loading(AddAqarsActivity.this, false);
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+
+
+                try {
+                    System.out.println("responseString" + errorResponse.toString());
+
+                    WebService.loading(AddAqarsActivity.this, false);
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void onUserException(Throwable error) {
+                // super.onUserException(error);
+//                Log.d("ttt", "onFailure: jhjj" + error.getMessage());
+
+
+            }
+
+
+            @Override
+            public void onProgress(long bytesWritten, long totalSize) {
+
+
+                try {
+//                    int po = (int) (totalSize / 500);
+//
+//                    int cc = (int) bytesWritten / po;
+//                    int progressPercentage = (int) (250 * bytesWritten / totalSize);
+//
+//
+//                    System.out.println(totalSize + "###" + po + "%%" + cc);
+//                    kProgressHUDx.setProgress(progressPercentage);
+//
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
+    }
+
+    public void AddAqersAsyncTask(RequestParams requestParams) {
+
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        String BASE_URL = WebService.addestate;
+        WebService.loading(AddAqarsActivity.this, true);
+
+
+        final int DEFAULT_TIMEOUT = 20 * 1000;
+
+        client.setTimeout(DEFAULT_TIMEOUT);
+        WebService.Header_Async(client, true);
+
+        client.post(BASE_URL, requestParams, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject responseBody) {
+                WebService.loading(AddAqarsActivity.this, false);
+//                Addproduct_next_btn.setClickable(true);
+
+                System.out.println("dfsdfd" + responseBody.toString());
+
+                try {
+                    WebService.loading(AddAqarsActivity.this, false);
+
+                    String status = responseBody.getString("status");
+//
+//                    String message = responseBody.getString("message");
+//                    String code = responseBody.getString("code");
+                    String message = responseBody.getString("message");
+
+                    if (status.equals("true")) {
+
+                        WebService.loading(AddAqarsActivity.this, false);
+
+//                        WebService.Make_Toast_color(AddAqarsActivity.this, message, "success");
+
+
+                        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        final View popupView = layoutInflater.inflate(R.layout.card_add_aqares_success, null);
+
+
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(AddAqarsActivity.this);
+
+//            alertDialog_country =
+                        builder.setView(popupView);
+
+
+                        alertDialog = builder.show();
+
+                        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                     } else {
 
 

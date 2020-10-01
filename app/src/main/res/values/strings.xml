@@ -235,5 +235,6 @@
 
 
     <string name="upload_file_success">upload file success</string>
+    <string name="success_message">add aqares successfuly</string>
 
 </resources>
