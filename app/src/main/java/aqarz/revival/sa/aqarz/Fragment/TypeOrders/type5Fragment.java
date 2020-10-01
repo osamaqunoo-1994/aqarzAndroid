@@ -9,12 +9,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
@@ -24,6 +26,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -35,7 +39,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
+import com.loopj.android.http.RequestParams;
 import com.rtchagas.pingplacepicker.PingPlacePicker;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,11 +55,14 @@ import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.Settings;
 import aqarz.revival.sa.aqarz.Settings.WebService;
+import aqarz.revival.sa.aqarz.api.IResult;
+import aqarz.revival.sa.aqarz.api.VolleyService;
 
 
 public class type5Fragment extends Fragment {
     List<TypeModules> type_list = new ArrayList<>();
     String opration_select = "";
+    IResult mResultCallback;
 
     RecyclerView opration_2__RecyclerView;
     RecyclerView number_roomRecyclerView;
@@ -63,7 +73,10 @@ public class type5Fragment extends Fragment {
 
     List<OprationModules> oprationModules_list = new ArrayList<>();
 
-
+    String tenant_job_type = "governmental";
+    TextView governmental;
+    TextView Special;
+    TextView Soldier;
     List<String> lost_romm = new ArrayList<>();
 
     String Id_eastate = "";
@@ -75,6 +88,12 @@ public class type5Fragment extends Fragment {
     EditText Les_space, Maximum_space, Les_price, Maximum_price, Communication_Officer, Communication_number, description;
     RadioButton radio_show;
     Button btn_send;
+
+
+    String lat = "";
+    String lng = "";
+    String room_number = "1";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -95,6 +114,11 @@ public class type5Fragment extends Fragment {
         description = v.findViewById(R.id.description);
         radio_show = v.findViewById(R.id.radio_show);
         btn_send = v.findViewById(R.id.btn_send);
+        opration_RecyclerView = v.findViewById(R.id.opration_RecyclerView);
+        Soldier = v.findViewById(R.id.Soldier);
+        Special = v.findViewById(R.id.Special);
+        governmental = v.findViewById(R.id.governmental);
+        Maximum_price = v.findViewById(R.id.Maximum_price);
 
 
         number_roomRecyclerView = v.findViewById(R.id.number_roomRecyclerView);
@@ -112,7 +136,15 @@ public class type5Fragment extends Fragment {
         lost_romm.add("7");
         lost_romm.add("8");
 
-        number_roomRecyclerView.setAdapter(new RecyclerView_All_number_room(getContext(), lost_romm));
+        RecyclerView_All_number_room recyclerView_all_number_room = new RecyclerView_All_number_room(getContext(), lost_romm);
+        recyclerView_all_number_room.addItemClickListener(new RecyclerView_All_type_in_fragment.ItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                room_number = lost_romm.get(position);
+            }
+        });
+
+        number_roomRecyclerView.setAdapter(recyclerView_all_number_room);
 
 
         mMapView = (MapView) v.findViewById(R.id.mapViewxx);
@@ -219,12 +251,101 @@ public class type5Fragment extends Fragment {
 
                 } else {
 
+                    WebService.loading(getActivity(), true);
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+
+
+                    JSONObject sendObj = new JSONObject();
+
+                    try {
+
+                        sendObj.put("operation_type_id", Id_eastate);//form operation list api in setting
+                        sendObj.put("request_type", "1");//form estate type list api in setting
+                        sendObj.put("estate_type_id", opration_select);
+
+                        sendObj.put("area_from", Les_space.getText().toString());
+                        sendObj.put("area_to", Maximum_space.getText().toString());
+                        sendObj.put("lat", lat);
+                        sendObj.put("lan", lng);
+                        sendObj.put("price_from", Les_price.getText().toString());
+                        sendObj.put("price_to", Maximum_price.getText().toString());
+                        sendObj.put("room_numbers", room_number);
+                        sendObj.put("owner_name", Communication_Officer.getText().toString());
+                        sendObj.put("owner_mobile", Communication_number.getText().toString());
+                        sendObj.put("display_owner_mobile", "1");
+                        sendObj.put("note", description.getText().toString());
+
+
+                        System.out.println(sendObj.toString());
+                        mVolleyService.postDataVolley("estate_Request", WebService.estate_Request, sendObj);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
                 }
 
 
             }
         });
+//---------------------------------------------------------------------------------
+        governmental.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                governmental.setBackground(getResources().getDrawable(R.drawable.button_login));
 
+                governmental.setTextColor(getResources().getColor(R.color.white));
+
+
+                Soldier.setBackground(null);
+
+                Soldier.setTextColor(getResources().getColor(R.color.textColor));
+
+                Special.setBackground(null);
+
+                Special.setTextColor(getResources().getColor(R.color.textColor));
+                tenant_job_type = "governmental";
+            }
+        });
+        Soldier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Soldier.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                Soldier.setTextColor(getResources().getColor(R.color.white));
+
+
+                governmental.setBackground(null);
+
+                governmental.setTextColor(getResources().getColor(R.color.textColor));
+                Special.setBackground(null);
+
+                Special.setTextColor(getResources().getColor(R.color.textColor));
+                tenant_job_type = "soldier";
+
+            }
+        });
+        init_volley();
+        Special.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Special.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                Special.setTextColor(getResources().getColor(R.color.white));
+
+
+                governmental.setBackground(null);
+
+                governmental.setTextColor(getResources().getColor(R.color.textColor));
+                Soldier.setBackground(null);
+
+                Soldier.setTextColor(getResources().getColor(R.color.textColor));
+                tenant_job_type = "special";
+
+            }
+        });
     }
 
 
@@ -265,8 +386,84 @@ public class type5Fragment extends Fragment {
                 // Zoom out to zoom level 10, animating with a duration of 2 seconds.
                 googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
 
+
+                lat = place.getLatLng().latitude + "";
+                lng = place.getLatLng().longitude + "";
+
+
             }
         }
+    }
+
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response.toString());
+                WebService.loading(getActivity(), false);
+//{"status":true,"code":200,"message":"User Profile","data"
+                try {
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+                        String data = response.getString("data");
+
+//                        Hawk.put("user", data);
+
+                        String message = response.getString("message");
+
+                        WebService.Make_Toast_color(getActivity(), message, "success");
+                    } else {
+                        String message = response.getString("message");
+
+                        WebService.Make_Toast_color(getActivity(), message, "error");
+                    }
+
+
+                } catch (Exception e) {
+
+                }
+
+
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color(getActivity(), message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+                WebService.loading(getActivity(), false);
+
+
+            }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+
+            }
+        };
+
+
     }
 
 }

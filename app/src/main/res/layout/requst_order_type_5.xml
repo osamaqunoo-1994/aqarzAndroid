@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Type_work"
                     android:textColor="@color/textColor"
-                    android:textSize="@dimen/_13sdp" />
+                    android:textSize="@dimen/_12sdp" />
 
                 <LinearLayout
                     android:layout_width="15dp"
@@ -38,53 +38,41 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
-
+                    android:background="@drawable/back_type_work"
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/governmental"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/button_login"
-                        android:drawableStart="@drawable/ic_buy"
                         android:gravity="center"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="@string/Purchase"
+                        android:text="@string/governmental"
 
 
                         android:textColor="@color/white"
                         android:textSize="13dp" />
 
                     <TextView
+                        android:id="@+id/Special"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/search_background"
-                        android:drawableStart="@drawable/ic_ista"
-
                         android:gravity="center"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="@string/rent"
-
-
-                        android:textColor="#424446"
+                        android:text="@string/Special"
                         android:textSize="13dp" />
 
                     <TextView
+                        android:id="@+id/Soldier"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/search_background"
-                        android:drawableStart="@drawable/ic_ista"
                         android:gravity="center"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="@string/investment"
 
-                        android:textColor="#424446"
+                        android:text="@string/Soldier"
                         android:textSize="13dp" />
+
 
                 </LinearLayout>
 

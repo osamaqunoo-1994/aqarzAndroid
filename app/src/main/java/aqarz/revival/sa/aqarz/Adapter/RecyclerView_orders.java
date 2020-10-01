@@ -6,7 +6,7 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -16,20 +16,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import aqarz.revival.sa.aqarz.Modules.TypeModules;
+import aqarz.revival.sa.aqarz.Modules.HomeModules;
+import aqarz.revival.sa.aqarz.Modules.OrdersModules;
 import aqarz.revival.sa.aqarz.R;
 
 
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_All_number_room extends RecyclerView.Adapter<RecyclerView_All_number_room.MyViewHolder> {
-    public static List<String> alldata = new ArrayList<String>();
+public class RecyclerView_orders extends RecyclerView.Adapter<RecyclerView_orders.MyViewHolder> {
+    public static List<OrdersModules> alldata = new ArrayList<OrdersModules>();
     static int Postion_opend = 0;
 
-    private RecyclerView_All_type_in_fragment.ItemClickListener mItemClickListener;
 
     static AlertDialog alertDialog;
+    private ItemClickListener mItemClickListener;
 
 
     /**
@@ -54,32 +55,30 @@ public class RecyclerView_All_number_room extends RecyclerView.Adapter<RecyclerV
 //        LinearLayout add_to_my;
 
 
-        LinearLayout back_ground;
-        TextView text;
+
 
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
 
 
-            back_ground = view.findViewById(R.id.back_ground);
-            text = view.findViewById(R.id.text);
 
-//            image_ = view.findViewById(R.id.image_);
+
+//            ratingbar = view.findViewById(R.id.ratingbar);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
     }
 
-    public RecyclerView_All_number_room(Context context, List<String> alldata) {
+    public RecyclerView_orders(Context context, List<OrdersModules> alldata) {
         this.alldata = alldata;
         this.context = context;
     }
-    public void addItemClickListener(RecyclerView_All_type_in_fragment.ItemClickListener listener) {
+
+    public void addItemClickListener(ItemClickListener listener) {
         mItemClickListener = listener;
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -97,8 +96,8 @@ public class RecyclerView_All_number_room extends RecyclerView.Adapter<RecyclerV
 //
 //            }
 //        }
-////
 //
+
 //
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
@@ -118,18 +117,9 @@ public class RecyclerView_All_number_room extends RecyclerView.Adapter<RecyclerV
 //        int random = ThreadLocalRandom.current().nextInt(1, 5);
 //       holder.ratingbar.setStar(random);
 
-        holder.text.setText(alldata.get(position));
+
         //   wallet, dafter, receipt, payment
 
-        if (position == Postion_opend) {
-            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));
-
-            holder.text.setTextColor(context.getResources().getColor(R.color.white));
-        } else {
-            holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
-            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.search_background));
-
-        }
 
 //            double v=Double.valueOf(alldata.get(position).getRate());
 //
@@ -168,11 +158,15 @@ public class RecyclerView_All_number_room extends RecyclerView.Adapter<RecyclerV
             public void onClick(View view) {
 
 
+//                Postion_opend = position;
+//                Refr();
+
+//                RequestOrderActivity.set_fragment(position);
+
+
                 if (mItemClickListener != null) {
                     mItemClickListener.onItemClick(position);
                 }
-                Postion_opend = position;
-                Refr();
 //
 
             }
@@ -197,7 +191,7 @@ public class RecyclerView_All_number_room extends RecyclerView.Adapter<RecyclerV
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_number_room, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_orders, parent, false);
 
 
         // Fresco.initialize(context);
@@ -205,9 +199,9 @@ public class RecyclerView_All_number_room extends RecyclerView.Adapter<RecyclerV
 
         return new MyViewHolder(v);
     }
+
     //Define your Interface method here
     public interface ItemClickListener {
         void onItemClick(int position);
     }
-
 }

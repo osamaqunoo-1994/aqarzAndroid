@@ -36,6 +36,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.loopj.android.http.RequestParams;
+import com.nguyenhoanglam.imagepicker.model.Image;
 import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker;
 
 import org.json.JSONObject;
@@ -59,7 +60,6 @@ import aqarz.revival.sa.aqarz.Settings.Settings;
 import aqarz.revival.sa.aqarz.Settings.WebService;
 import aqarz.revival.sa.aqarz.api.IResult;
 import aqarz.revival.sa.aqarz.api.VolleyService;
-import in.mayanknagwanshi.imagepicker.ImageSelectActivity;
 
 
 public class type2Fragment extends Fragment {
@@ -181,7 +181,6 @@ public class type2Fragment extends Fragment {
                 ada_1_yes.setBackground(getResources().getDrawable(R.drawable.button_login));
 
                 ada_1_yes.setTextColor(getResources().getColor(R.color.white));
-
 
                 ada_1_no.setBackground(null);
 
@@ -370,7 +369,7 @@ public class type2Fragment extends Fragment {
 
                     } else {
 
-                        ImagePicker.with(getActivity())
+                        ImagePicker.Builder imagePicker = ImagePicker.with(getActivity())
                                 .setFolderMode(true)
                                 .setFolderTitle("Album")
 
@@ -380,11 +379,13 @@ public class type2Fragment extends Fragment {
                                 .setMaxSize(1)
                                 .setLimitMessage("You can select up to 1 images")
 
-                                .setRequestCode(1213)
-                                .start();
+                                .setRequestCode(1213);
+                        imagePicker.start();
+
+                        startActivityForResult(imagePicker.getIntent(), 1213);
                     }
                 } else {
-                    ImagePicker.with(getActivity())
+                    ImagePicker.Builder imagePicker = ImagePicker.with(getActivity())
                             .setFolderMode(true)
                             .setFolderTitle("Album")
 
@@ -394,8 +395,10 @@ public class type2Fragment extends Fragment {
                             .setMaxSize(1)
                             .setLimitMessage("You can select up to 1 images")
 
-                            .setRequestCode(1213)
-                            .start();
+                            .setRequestCode(1213);
+                    imagePicker.start();
+
+                    startActivityForResult(imagePicker.getIntent(), 1213);
 
                 }
 
@@ -420,7 +423,7 @@ public class type2Fragment extends Fragment {
 
                     } else {
 
-                        ImagePicker.with(getActivity())
+                        ImagePicker.Builder imagePicker = ImagePicker.with(getActivity())
                                 .setFolderMode(true)
                                 .setFolderTitle("Album")
 
@@ -430,11 +433,14 @@ public class type2Fragment extends Fragment {
                                 .setMaxSize(1)
                                 .setLimitMessage("You can select up to 1 images")
 
-                                .setRequestCode(1217)
-                                .start();
+                                .setRequestCode(1217);
+                        imagePicker.start();
+
+                        startActivityForResult(imagePicker.getIntent(), 1217);
+
                     }
                 } else {
-                    ImagePicker.with(getActivity())
+                    ImagePicker.Builder imagePicker = ImagePicker.with(getActivity())
                             .setFolderMode(true)
                             .setFolderTitle("Album")
 
@@ -444,9 +450,10 @@ public class type2Fragment extends Fragment {
                             .setMaxSize(1)
                             .setLimitMessage("You can select up to 1 images")
 
-                            .setRequestCode(1217)
-                            .start();
+                            .setRequestCode(1217);
+                    imagePicker.start();
 
+                    startActivityForResult(imagePicker.getIntent(), 1217);
                 }
 
 
@@ -611,86 +618,56 @@ public class type2Fragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
         System.out.println("fdljkfldkfldkfldkfldfk");
 
-        if (requestCode == 1213 && resultCode == Activity.RESULT_OK) {
+
+        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1217)) {
 
 
-            String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
-            Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
-            System.out.println("fdljkfldkfldkfldkfldfk");
+            ArrayList<Image> images = ImagePicker.getImages(data);
+//            Uri uri = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, images.get(0).getId()+"");
 
+
+            String filePath = images.get(0).getPath().toString();
+            Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+
+
+            File file_image_profile = new File(filePath);
+
+            System.out.println("dkfmd,fm");
+
+
+            National_address_file = new File(filePath);
+            National_address.setBackground(getActivity().getDrawable(R.drawable.edit_text_background_green));
+
+
+        }
+        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1213)) {
+
+
+            ArrayList<Image> images = ImagePicker.getImages(data);
+//            Uri uri = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, images.get(0).getId()+"");
+
+
+            String filePath = images.get(0).getPath().toString();
+            Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+
+
+            File file_image_profile = new File(filePath);
+
+            System.out.println("dkfmd,fm");
 
             owner_get_id_image_file = new File(filePath);
-
 
             owner_get_id_image.setBackground(getActivity().getDrawable(R.drawable.edit_text_background_green));
 
 
-//            image_profile.setImageBitmap(selectedImage);
-//
-//            //            file_path = filePath;
-//            image_file_file = new File(filePath);
-//
-//
-//            try {
-//
-//                RequestParams requestParams = new RequestParams();
-//
-//                requestParams.put("logo", image_file_file);
-//
-//
-//                Upload_image(requestParams);
-//            } catch (Exception e) {
-//
-//            }
-
-
         }
 
-        if (requestCode == 1217 && resultCode == Activity.RESULT_OK) {
-            String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
-            Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
-            System.out.println("fdljkfldkfldkfldkfldfk");
-            National_address_file = new File(filePath);
-            National_address.setBackground(getActivity().getDrawable(R.drawable.edit_text_background_green));
 
-//            image_profile.setImageBitmap(selectedImage);
-//
-//            //            file_path = filePath;
-//            image_file_file = new File(filePath);
-//
-//
-//            try {
-//
-//                RequestParams requestParams = new RequestParams();
-//
-//                requestParams.put("logo", image_file_file);
-//
-//
-//                Upload_image(requestParams);
-//            } catch (Exception e) {
-//
-//            }
+        super.onActivityResult(requestCode, resultCode, data);
 
-
-        }
-
-        if (requestCode == 100) {
-//            if (resultCode == RESULT_OK) {
-//                Place selectedPlace = PlacePicker.getPlace(data, this);
-//
-//                Latitude = selectedPlace.getLatLng().latitude + "";
-//                Longitude = selectedPlace.getLatLng().longitude + "";
-//
-//
-//                System.out.println("Latitude" + Latitude + "Longitude" + Longitude);
-//
-//                // Do something with the place
-//            }
-        }
     }
 
     public void init_volley() {

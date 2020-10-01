@@ -246,4 +246,16 @@
     <string name="Monthly">شهري</string>
     <string name="daily">يومي</string>
 
+    <string name="AllFiledsREquered">جميع الحقول مطلوبه</string>
+
+    <string name="SAR">ريال</string>
+
+    <string name="upload_file_success">تم رفع الملف بنجاح</string>
+    <string name="success_message">تم اضافة عقارز</string>
+    <string name="Orders">الطلبات</string>
+    <string name="estate_fund">الصندوق العقاري</string>
+    <string name="company">اشتراكات في العقارات</string>
+    <string name="TermsAndCondition">الاحكام والشروط</string>
+    <string name="Accept">موافق</string>
+
 </resources>

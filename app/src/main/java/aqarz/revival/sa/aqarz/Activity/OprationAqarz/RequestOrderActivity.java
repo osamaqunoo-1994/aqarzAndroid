@@ -233,17 +233,17 @@ public class RequestOrderActivity extends AppCompatActivity {
 
                 bundle.putString("Id_eastate", id + "");
 
-                type3Fragment type3Fragment = new type3Fragment();
-                type3Fragment.setArguments(bundle);
+                type5Fragment type5Fragment = new type5Fragment();
+                type5Fragment.setArguments(bundle);
 
-                FragmentTransaction transaction3 = getSupportFragmentManager().beginTransaction();
-
-
-                transaction3.replace(R.id.container, type3Fragment);
-                transaction3.addToBackStack(null);
+                FragmentTransaction transaction5 = getSupportFragmentManager().beginTransaction();
 
 
-                transaction3.commit();
+                transaction5.replace(R.id.container, type5Fragment);
+                transaction5.addToBackStack(null);
+
+
+                transaction5.commit();
                 break;
 
             case 3:
@@ -280,21 +280,24 @@ public class RequestOrderActivity extends AppCompatActivity {
                 break;
 
             case 5:
+
+
                 bundle.putString("Id_eastate", id + "");
 
-                type5Fragment type5Fragment = new type5Fragment();
-                type5Fragment.setArguments(bundle);
+                type3Fragment type3Fragment = new type3Fragment();
+                type3Fragment.setArguments(bundle);
 
-                FragmentTransaction transaction5 = getSupportFragmentManager().beginTransaction();
-
-
-                transaction5.replace(R.id.container, type5Fragment);
-                transaction5.addToBackStack(null);
+                FragmentTransaction transaction3 = getSupportFragmentManager().beginTransaction();
 
 
-                transaction5.commit();
+                transaction3.replace(R.id.container, type3Fragment);
+                transaction3.addToBackStack(null);
+
+
+                transaction3.commit();
 
                 break;
+
 
             case 6:
                 bundle.putString("Id_eastate", id + "");

@@ -22,6 +22,8 @@ import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.RegisterActivity;
 import aqarz.revival.sa.aqarz.Fragment.MapsFragment;
 import aqarz.revival.sa.aqarz.Fragment.MoreFragment;
+import aqarz.revival.sa.aqarz.Fragment.OrdersFragment;
+import aqarz.revival.sa.aqarz.Fragment.SubscriptionsFragment;
 import aqarz.revival.sa.aqarz.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -73,8 +75,6 @@ public class MainActivity extends AppCompatActivity {
                             return false;
                         }
                     });
-
-
 
 
         }
@@ -134,15 +134,18 @@ public class MainActivity extends AppCompatActivity {
 
 
             case 1:
-
-//                fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.container, new SubscriptionsFragment());
-//                //    fragmentTransaction.commit();
-//                fragmentTransaction.commitAllowingStateLoss();
-
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, new SubscriptionsFragment());
+                //    fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
                 break;
 
             case 2:
+
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, new OrdersFragment());
+                //    fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
 
 //                fragmentTransaction = fragmentManager.beginTransaction();
 //                fragmentTransaction.replace(R.id.container, new OrdersFragment());

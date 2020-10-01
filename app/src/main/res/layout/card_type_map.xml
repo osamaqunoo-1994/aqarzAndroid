@@ -14,9 +14,9 @@
         android:background="@drawable/search_background"
         android:gravity="center"
         android:paddingLeft="3dp"
-        android:paddingTop="3dp"
+        android:paddingTop="5dp"
         android:paddingRight="3dp"
-        android:paddingBottom="3dp">
+        android:paddingBottom="5dp">
 
         <ImageView
             android:id="@+id/image_in_type"
@@ -37,7 +37,7 @@
             android:fontFamily="@font/frutiger_lt_arabic_roman"
             android:text="تقسيط تاجير"
             android:textColor="#424446"
-            android:textSize="@dimen/_13sdp" />
+            android:textSize="@dimen/_11sdp" />
 
 
     </LinearLayout>

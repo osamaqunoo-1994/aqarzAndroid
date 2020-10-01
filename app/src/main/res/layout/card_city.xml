@@ -9,6 +9,9 @@
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_margin="15dp"
+        android:fontFamily="@font/muli_semi_bold"
+        android:textColor="@color/textColor"
+
         android:gravity="start"
 
         android:layout_height="wrap_content"/>

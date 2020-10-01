@@ -236,5 +236,10 @@
 
     <string name="upload_file_success">upload file success</string>
     <string name="success_message">add aqares successfuly</string>
+    <string name="Orders">Orders</string>
+    <string name="estate_fund">estate fund</string>
+    <string name="company">Subscriptions to real estate</string>
+    <string name="TermsAndCondition">Terms And Condition</string>
+    <string name="Accept">Accept</string>
 
 </resources>

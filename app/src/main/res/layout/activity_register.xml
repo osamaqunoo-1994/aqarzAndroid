@@ -83,81 +83,88 @@
                 android:layout_marginTop="@dimen/_16sdp"
                 android:background="@drawable/edit_text_background"
                 android:drawableStart="@drawable/ic_user_name"
-
-
                 android:drawablePadding="@dimen/_8sdp"
+
                 android:hint="@string/name"
                 android:inputType="text"
+                android:textSize="13dp"
 
-              />
+                />
 
             <EditText
                 android:id="@+id/email_ed"
                 style="@style/AppTheme.EditText"
                 android:layout_width="match_parent"
 
-
                 android:layout_height="wrap_content"
+
                 android:layout_marginTop="@dimen/_16sdp"
                 android:background="@drawable/edit_text_background"
                 android:drawableStart="@drawable/ic_email"
-
-
                 android:drawablePadding="@dimen/_8sdp"
+
+
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
+                android:textSize="13dp"
 
-               />
+                />
 
             <EditText
                 android:id="@+id/phone_ed"
                 style="@style/AppTheme.EditText"
                 android:layout_width="match_parent"
 
-
                 android:layout_height="wrap_content"
+
                 android:layout_marginTop="@dimen/_16sdp"
                 android:background="@drawable/edit_text_background"
                 android:drawableStart="@drawable/ic_phone"
-
-
                 android:drawablePadding="@dimen/_8sdp"
+
+
                 android:hint="@string/phone_number"
                 android:inputType="phone|number"
+                android:textSize="13dp"
 
                 />
 
-            <FrameLayout
+            <LinearLayout
                 android:id="@+id/pass_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_16sdp"
-                >
+                android:background="@drawable/edit_text_background"
+
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/password"
                     style="@style/AppTheme.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edit_text_background"
-
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:drawableStart="@drawable/ic_look"
+
                     android:drawablePadding="@dimen/_8sdp"
                     android:hint="@string/password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textSize="13dp" />
 
-
-                <androidx.appcompat.widget.AppCompatCheckBox
+                <ImageView
                     android:id="@+id/pass_checkbox"
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_gravity="center_vertical|end"
-                    android:layout_marginEnd="@dimen/_8sdp"
-                    android:button="@drawable/show_pass_bg"
-                    android:checked="false"
-                    android:layoutDirection="ltr"
-                    android:padding="@dimen/_4sdp" />
-            </FrameLayout>
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:padding="@dimen/_3sdp"
+
+                    android:src="@drawable/show_pass_bg" />
+
+
+            </LinearLayout>
 
 
             <androidx.appcompat.widget.AppCompatButton
