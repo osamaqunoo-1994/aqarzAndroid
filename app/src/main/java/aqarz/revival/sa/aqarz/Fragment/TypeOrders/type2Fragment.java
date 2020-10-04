@@ -494,6 +494,7 @@ public class type2Fragment extends Fragment {
                     public void onItemClick(int id_city, String city_naem) {
                         city_id = id_city + "";
                         city.setText(city_naem);
+                        bottomSheetDialogFragment_selectCity.dismiss();
 
                     }
                 });

@@ -101,7 +101,6 @@ public class type1Fragment extends Fragment {
     String tenant_job_type = "governmental";
     String contract_interval = "year";
 
-
     TextView city;
     String city_id = "";
     TextView banks;
@@ -112,19 +111,17 @@ public class type1Fragment extends Fragment {
     EditText price, name_owner, phone_owner, name, phone, id_number, total_sallary, Financial_obligations, buldingnumber, StreetName;
     EditText Neighborhoodname, name_city, Postal_code, additional_number, unit_number, owner_id_number;
 
-
     Button btn_send;
-
 
     String opration_select = "";
 
-    String Id_eastate="";
+    String Id_eastate = "";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.requst_order_type_1, container, false);
 
-         Id_eastate = getArguments().getString("Id_eastate");
-
+        Id_eastate = getArguments().getString("Id_eastate");
 
 
         init(v);
@@ -184,14 +181,11 @@ public class type1Fragment extends Fragment {
             @Override
             public void onItemClick(int position) {
 
-
                 opration_select = type_list.get(position).getId().toString() + "";
-
 
             }
         });
         opration_RecyclerView.setAdapter(recyclerView_all_type_in_fragment);
-
 //
         month.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,7 +209,6 @@ public class type1Fragment extends Fragment {
                 year.setBackground(getResources().getDrawable(R.drawable.button_login));
 
                 year.setTextColor(getResources().getColor(R.color.white));
-
 
                 month.setBackground(getResources().getDrawable(R.drawable.search_background));
 
@@ -251,7 +244,6 @@ public class type1Fragment extends Fragment {
 
                 Soldier.setTextColor(getResources().getColor(R.color.white));
 
-
                 governmental.setBackground(null);
 
                 governmental.setTextColor(getResources().getColor(R.color.textColor));
@@ -284,7 +276,6 @@ public class type1Fragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
@@ -299,14 +290,14 @@ public class type1Fragment extends Fragment {
 
                         Intent intent = new Intent(getContext(), ImageSelectActivity.class);
                         intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
-                        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+                        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, false);//default is true
                         intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
                         startActivityForResult(intent, 1213);
                     }
                 } else {
                     Intent intent = new Intent(getContext(), ImageSelectActivity.class);
                     intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
-                    intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+                    intent.putExtra(ImageSelectActivity.FLAG_CAMERA, false);//default is true
                     intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
                     startActivityForResult(intent, 1213);
 
@@ -319,11 +310,8 @@ public class type1Fragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
-
                         // No explanation needed, we can request the permission.
 
                         ActivityCompat.requestPermissions(getActivity(),
@@ -331,22 +319,19 @@ public class type1Fragment extends Fragment {
                                 15);
 
                     } else {
-
                         Intent intent = new Intent(getContext(), ImageSelectActivity.class);
                         intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, true);//default is true
-                        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+                        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, false);//default is true
                         intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
                         startActivityForResult(intent, 1215);
                     }
                 } else {
                     Intent intent = new Intent(getContext(), ImageSelectActivity.class);
                     intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, true);//default is true
-                    intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+                    intent.putExtra(ImageSelectActivity.FLAG_CAMERA, false);//default is true
                     intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
                     startActivityForResult(intent, 1215);
-
                 }
-
 
             }
         });
@@ -354,34 +339,31 @@ public class type1Fragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
 
                         // No explanation needed, we can request the permission.
 
                         ActivityCompat.requestPermissions(getActivity(),
                                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                                 13);
-
                     } else {
 
                         Intent intent = new Intent(getContext(), ImageSelectActivity.class);
                         intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
-                        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+                        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, false);//default is true
                         intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
                         startActivityForResult(intent, 1217);
+
                     }
                 } else {
                     Intent intent = new Intent(getContext(), ImageSelectActivity.class);
                     intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
-                    intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+                    intent.putExtra(ImageSelectActivity.FLAG_CAMERA, false);//default is true
                     intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
                     startActivityForResult(intent, 1217);
 
                 }
-
 
             }
         });
@@ -389,10 +371,8 @@ public class type1Fragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
 
                         // No explanation needed, we can request the permission.
 
@@ -404,19 +384,18 @@ public class type1Fragment extends Fragment {
 
                         Intent intent = new Intent(getContext(), ImageSelectActivity.class);
                         intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
-                        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+                        intent.putExtra(ImageSelectActivity.FLAG_CAMERA, false);//default is true
                         intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
                         startActivityForResult(intent, 1214);
                     }
                 } else {
                     Intent intent = new Intent(getContext(), ImageSelectActivity.class);
                     intent.putExtra(ImageSelectActivity.FLAG_COMPRESS, false);//default is true
-                    intent.putExtra(ImageSelectActivity.FLAG_CAMERA, true);//default is true
+                    intent.putExtra(ImageSelectActivity.FLAG_CAMERA, false);//default is true
                     intent.putExtra(ImageSelectActivity.FLAG_GALLERY, true);//default is true
                     startActivityForResult(intent, 1214);
 
                 }
-
 
             }
         });
@@ -447,14 +426,13 @@ public class type1Fragment extends Fragment {
                         unit_number.getText().toString().equals("")
 
                 ) {
-                    WebService.Make_Toast(getActivity(),getResources().getString(R.string.AllFiledsREquered));
+                    WebService.Make_Toast(getActivity(), getResources().getString(R.string.AllFiledsREquered));
 
                 } else {
 
                     WebService.loading(getActivity(), true);
 
                     VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-
 
                     RequestParams sendObj = new RequestParams();
 
@@ -583,12 +561,12 @@ public class type1Fragment extends Fragment {
                     public void onItemClick(int id_city, String city_naem) {
 
                         city.setText(city_naem);
+                        bottomSheetDialogFragment_selectCity.dismiss();
 
                     }
                 });
 
                 bottomSheetDialogFragment_selectCity.show(getFragmentManager(), "");
-
 
             }
         });
@@ -596,17 +574,16 @@ public class type1Fragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
                 bottomSheetDialogFragment_selectBanks = new BottomSheetDialogFragment_SelectBanks("");
                 bottomSheetDialogFragment_selectBanks.addItemClickListener(new BottomSheetDialogFragment_SelectBanks.ItemClickListener() {
                     @Override
                     public void onItemClick(int id_bank, String name_bank) {
                         banks.setText(name_bank);
+                        bottomSheetDialogFragment_selectBanks.dismiss();
                     }
                 });
 
                 bottomSheetDialogFragment_selectBanks.show(getFragmentManager(), "");
-
 
             }
         });
@@ -701,7 +678,6 @@ public class type1Fragment extends Fragment {
 
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -710,7 +686,7 @@ public class type1Fragment extends Fragment {
             Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
             System.out.println("fdljkfldkfldkfldkfldfk");
             National_address_file = new File(filePath);
-
+            National_address.setBackground(getResources().getDrawable(R.drawable.edit_text_background_green));
 //            image_profile.setImageBitmap(selectedImage);
 //
 //            //            file_path = filePath;
@@ -737,6 +713,7 @@ public class type1Fragment extends Fragment {
             System.out.println("fdljkfldkfldkfldkfldfk");
 
             owner_get_id_image_file = new File(filePath);
+            owner_get_id_image.setBackground(getResources().getDrawable(R.drawable.edit_text_background_green));
 //            image_profile.setImageBitmap(selectedImage);
 //
 //            //            file_path = filePath;
@@ -754,8 +731,6 @@ public class type1Fragment extends Fragment {
 //            } catch (Exception e) {
 //
 //            }
-
-
         }
         if (requestCode == 1215 && resultCode == Activity.RESULT_OK) {
             String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
@@ -763,6 +738,7 @@ public class type1Fragment extends Fragment {
             System.out.println("fdljkfldkfldkfldkfldfk");
             contract_file_file = new File(filePath);
 
+
 //            image_profile.setImageBitmap(selectedImage);
 //
 //            //            file_path = filePath;
@@ -780,7 +756,6 @@ public class type1Fragment extends Fragment {
 //            } catch (Exception e) {
 //
 //            }
-
 
         }
         if (requestCode == 1214 && resultCode == Activity.RESULT_OK) {
@@ -788,6 +763,8 @@ public class type1Fragment extends Fragment {
             Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
             System.out.println("fdljkfldkfldkfldkfldfk");
             get_id_image_file = new File(filePath);
+            get_id_image.setBackground(getResources().getDrawable(R.drawable.edit_text_background_green));
+
 
 //            image_profile.setImageBitmap(selectedImage);
 //
@@ -806,7 +783,6 @@ public class type1Fragment extends Fragment {
 //            } catch (Exception e) {
 //
 //            }
-
 
         }
         if (requestCode == 100) {

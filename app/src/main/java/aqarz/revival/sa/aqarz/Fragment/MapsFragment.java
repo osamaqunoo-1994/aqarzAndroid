@@ -277,7 +277,11 @@ public class MapsFragment extends Fragment {
         RecyclerView_All_select_oprat_in_fragment recyclerView_all_select_oprat_in_fragment = new RecyclerView_All_select_oprat_in_fragment(getContext(), oprationModules_list);
         recyclerView_all_select_oprat_in_fragment.addItemClickListener(new RecyclerView_All_select_oprat_in_fragment.ItemClickListener() {
             @Override
-            public void onItemClick(int position) {
+            public void onItemClick(List<select_typeModules> select_typeModules) {
+
+                oprationModules_list = select_typeModules;
+
+
             }
         });
         selsct_type_all.setAdapter(recyclerView_all_select_oprat_in_fragment);

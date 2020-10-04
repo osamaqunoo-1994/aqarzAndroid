@@ -9,9 +9,11 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
@@ -38,12 +40,13 @@ public class RegisterActivity extends AppCompatActivity {
     AppCompatButton sign_up;
     AppCompatButton loginButton;
 
-
+    boolean is_show = false;
     TextView Provider_type;
     TextView user_type;
     IResult mResultCallback;
 
     String type = "user";
+    ImageView pass_checkbox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
         Provider_type = findViewById(R.id.Provider_type);
         user_type = findViewById(R.id.user_type);
         loginButton = findViewById(R.id.loginButton);
+        pass_checkbox = findViewById(R.id.pass_checkbox);
 
         phone_ed.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -227,7 +231,24 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+        pass_checkbox.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(View v) {
+                if (is_show) {
+                    password.setTransformationMethod(new PasswordTransformationMethod());
+                    pass_checkbox.setSelected(false);
+//                    pass_checkbox.setImageDrawable(getDrawable(R.drawable.show_pass_bg));
+                    is_show = false;
+                } else {
+                    password.setTransformationMethod(null);
+                    pass_checkbox.setSelected(true);
 
+//                    pass_checkbox.setImageDrawable(getDrawable(R.drawable.ic_private));
+                    is_show = true;
+                }
+            }
+        });
     }
 
     public void init_volley() {

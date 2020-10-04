@@ -22,13 +22,22 @@ public class Settings {
 
     public static SettingsModules getSettings() {
 
-        JsonParser parser = new JsonParser();
-        JsonElement mJson = parser.parse(Hawk.get("settings").toString());
 
-        Gson gson = new Gson();
-        SettingsModules userModules = gson.fromJson(mJson, SettingsModules.class);
+        if (Hawk.contains("settings")) {
+            JsonParser parser = new JsonParser();
+            JsonElement mJson = parser.parse(Hawk.get("settings").toString());
 
-        return userModules;
+            Gson gson = new Gson();
+            SettingsModules userModules = gson.fromJson(mJson, SettingsModules.class);
+
+            return userModules;
+        } else {
+            SettingsModules userModules = new SettingsModules();
+            return userModules;
+
+        }
+
+
     }
 
 //
@@ -48,21 +57,18 @@ public class Settings {
     public static boolean checkLogin() {
 
 
+        if (Hawk.contains("user")) {
 
-            if (Hawk.contains("user")) {
+            if (Hawk.get("user").toString().equals("")) {
 
-                if (Hawk.get("user").toString().equals("")) {
-
-                    return false;
-                } else {
-
-                    return true;
-                }
-            } else {
                 return false;
+            } else {
+
+                return true;
             }
-
-
+        } else {
+            return false;
+        }
 
 
     }

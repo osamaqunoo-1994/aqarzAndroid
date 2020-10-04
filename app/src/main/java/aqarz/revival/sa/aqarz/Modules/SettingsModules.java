@@ -42,14 +42,32 @@ public class SettingsModules {
     private estate_types estate_types;
 
 
+    @SerializedName("OprationType")
+    @Expose
+    private OprationType OprationType;
 
 
+    public SettingsModules.OprationType getOprationType() {
+        return OprationType;
+    }
 
     public SettingsModules.estate_types getEstate_types() {
         return estate_types;
     }
 
     public class estate_types {
+
+
+        @SerializedName("original")
+        @Expose
+        private original original;
+
+        public SettingsModules.original getOriginal() {
+            return original;
+        }
+    }
+
+    public class OprationType {
 
 
         @SerializedName("original")

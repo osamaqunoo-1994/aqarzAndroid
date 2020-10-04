@@ -27,7 +27,6 @@ public class Application extends android.app.Application {
         Hawk.init(this).build();
 
         if (Hawk.contains("lang")) {
-            System.out.println("SSSSSs0" + Hawk.get("lang").toString());
 
             Locale locale = new Locale(Hawk.get("lang").toString());
             Locale.setDefault(locale);

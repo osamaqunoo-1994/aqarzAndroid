@@ -135,7 +135,6 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     AlertDialog alertDialog;
 
-
     private static GoogleMap googleMap;
     public GoogleApiClient mGoogleApiClient;
     MapView mMapView;
@@ -893,20 +892,18 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 west.setTextColor(getResources().getColor(R.color.white));
 
-
                 north.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 north.setTextColor(getResources().getColor(R.color.textColor));
-
 
                 south.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 south.setTextColor(getResources().getColor(R.color.textColor));
 
-
                 east.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 east.setTextColor(getResources().getColor(R.color.textColor));
+
                 interface_ = "west";
 
             }
@@ -939,6 +936,9 @@ public class AddAqarsActivity extends AppCompatActivity {
                 For_sale.getCompoundDrawables()[0].setTint(Color.WHITE);
 
                 Type_work_select = "1";
+
+                date_eqjar.setVisibility(View.GONE);
+
             }
         });
         rent.setOnClickListener(new View.OnClickListener() {
@@ -967,6 +967,8 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 Type_work_select = "2";
 
+                date_eqjar.setVisibility(View.VISIBLE);
+
             }
         });
         investment.setOnClickListener(new View.OnClickListener() {
@@ -978,12 +980,12 @@ public class AddAqarsActivity extends AppCompatActivity {
                 investment.setTextColor(getResources().getColor(R.color.white));
 
 
-                For_sale.setBackground(null);
+                For_sale.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 For_sale.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                rent.setBackground(null);
+                rent.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 rent.setTextColor(getResources().getColor(R.color.textColor));
 
@@ -993,6 +995,7 @@ public class AddAqarsActivity extends AppCompatActivity {
                 investment.getCompoundDrawables()[0].setTint(Color.WHITE);
 
                 Type_work_select = "3";
+                date_eqjar.setVisibility(View.GONE);
 
             }
         });
@@ -1026,7 +1029,6 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                     } else {
 
-
                         ImagePicker.with(AddAqarsActivity.this)
                                 .setFolderMode(true)
                                 .setFolderTitle("Album")
@@ -1036,7 +1038,6 @@ public class AddAqarsActivity extends AppCompatActivity {
                                 .setShowNumberIndicator(true)
                                 .setMaxSize(1)
                                 .setLimitMessage("You can select one image")
-
                                 .setRequestCode(1213)
                                 .start();
                     }
@@ -1045,13 +1046,11 @@ public class AddAqarsActivity extends AppCompatActivity {
                     ImagePicker.with(AddAqarsActivity.this)
                             .setFolderMode(true)
                             .setFolderTitle("Album")
-
                             .setDirectoryName("Image Picker")
                             .setMultipleMode(false)
                             .setShowNumberIndicator(true)
                             .setMaxSize(1)
                             .setLimitMessage("You can select one image")
-
                             .setRequestCode(1213)
                             .start();
 
@@ -1060,7 +1059,6 @@ public class AddAqarsActivity extends AppCompatActivity {
 
             }
         });
-
 
         Instrument_file.setOnClickListener(new View.OnClickListener() {
             @Override

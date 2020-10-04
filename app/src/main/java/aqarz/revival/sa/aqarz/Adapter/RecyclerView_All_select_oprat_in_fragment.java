@@ -8,6 +8,7 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -65,13 +66,13 @@ public class RecyclerView_All_select_oprat_in_fragment extends RecyclerView.Adap
         //  public FrameLayout frame;
 
         AppCompatRadioButton radio_button;
+
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
 
 
             radio_button = view.findViewById(R.id.radio_button);
-
 
 
         }
@@ -104,41 +105,47 @@ public class RecyclerView_All_select_oprat_in_fragment extends RecyclerView.Adap
 //            }
 //        }
 ////
+        if (alldata.get(position).getSelected()) {
+            holder.radio_button.setChecked(true);
+        } else {
+            holder.radio_button.setChecked(false);
+
+        }
 
 
-        if(position==0){
+        if (position == 0) {
             ColorStateList colorStateList = new ColorStateList(
                     new int[][]{
                             new int[]{android.R.attr.state_enabled} //enabled
                     },
-                    new int[] {context.getResources().getColor(R.color.black) }
+                    new int[]{context.getResources().getColor(R.color.black)}
             );
             holder.radio_button.setSupportButtonTintList(colorStateList);
 
-        }else if(position==1){
+        } else if (position == 1) {
             ColorStateList colorStateList = new ColorStateList(
                     new int[][]{
                             new int[]{android.R.attr.state_enabled} //enabled
                     },
-                    new int[] {context.getResources().getColor(R.color.blue) }
+                    new int[]{context.getResources().getColor(R.color.blue)}
             );
             holder.radio_button.setSupportButtonTintList(colorStateList);
 
-        }else if(position==2){
+        } else if (position == 2) {
             ColorStateList colorStateList = new ColorStateList(
                     new int[][]{
                             new int[]{android.R.attr.state_enabled} //enabled
                     },
-                    new int[] {context.getResources().getColor(R.color.colorPrimary) }
+                    new int[]{context.getResources().getColor(R.color.colorPrimary)}
             );
             holder.radio_button.setSupportButtonTintList(colorStateList);
 
-        }else if(position==3){
+        } else if (position == 3) {
             ColorStateList colorStateList = new ColorStateList(
                     new int[][]{
                             new int[]{android.R.attr.state_enabled} //enabled
                     },
-                    new int[] {context.getResources().getColor(R.color.red_btn_bg_color) }
+                    new int[]{context.getResources().getColor(R.color.red_btn_bg_color)}
             );
             holder.radio_button.setSupportButtonTintList(colorStateList);
 
@@ -217,18 +224,53 @@ public class RecyclerView_All_select_oprat_in_fragment extends RecyclerView.Adap
 //        });
 //
 
+        holder.radio_button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+
+//
+
+
+//                Postion_opend = position;
+//                Refr();
+            }
+        });
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-//
+
+                if (holder.radio_button.isChecked()) {
+                    holder.radio_button.setChecked(false);
+                    alldata.get(position).setSelected(false);
+
+                } else {
+                    alldata.get(position).setSelected(true);
+                    holder.radio_button.setChecked(true);
+
+                }
+
+
+                if (position == 0) {
+
+
+                    for (int i = 0; i < alldata.size(); i++) {
+                        if (holder.radio_button.isChecked()) {
+                            alldata.get(i).setSelected(true);
+                        } else {
+                            alldata.get(i).setSelected(false);
+                        }
+                    }
+                    Refr();
+                }
+
 
                 if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(position);
+                    mItemClickListener.onItemClick(alldata);
                 }
-                Postion_opend = position;
-                Refr();
-
             }
         });
 
@@ -262,6 +304,6 @@ public class RecyclerView_All_select_oprat_in_fragment extends RecyclerView.Adap
 
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(List<select_typeModules> alldata);
     }
 }

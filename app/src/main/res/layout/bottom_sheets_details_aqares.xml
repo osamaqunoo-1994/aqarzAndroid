@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -14,6 +15,62 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:src="@color/colorPrimary" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_ejar_test_image" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_share" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_like"
+                app:tint="@color/white" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_private"
+                app:tint="@color/white" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_blocked"
+                app:tint="@color/white" />
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -91,7 +148,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -121,7 +178,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -152,7 +209,8 @@
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="15dp"
+                android:scrollbars="none">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -164,11 +222,21 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:background="@drawable/circle_w"
+                        android:gravity="center"
                         android:orientation="horizontal"
-                        android:paddingLeft="10dp"
+                        android:paddingLeft="15dp"
                         android:paddingTop="3dp"
-                        android:paddingRight="10dp"
+                        android:paddingRight="15dp"
                         android:paddingBottom="3dp">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:src="@drawable/ic_room_ic" />
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+                            android:layout_height="10dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -193,11 +261,21 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:background="@drawable/circle_w"
+                        android:gravity="center"
                         android:orientation="horizontal"
-                        android:paddingLeft="10dp"
+                        android:paddingLeft="15dp"
                         android:paddingTop="3dp"
-                        android:paddingRight="10dp"
+                        android:paddingRight="15dp"
                         android:paddingBottom="3dp">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:src="@drawable/ic_bathroom_ic" />
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+                            android:layout_height="10dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -222,11 +300,21 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:background="@drawable/circle_w"
+                        android:gravity="center"
                         android:orientation="horizontal"
-                        android:paddingLeft="10dp"
+                        android:paddingLeft="15dp"
                         android:paddingTop="3dp"
-                        android:paddingRight="10dp"
+                        android:paddingRight="15dp"
                         android:paddingBottom="3dp">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:src="@drawable/ic_space" />
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+                            android:layout_height="10dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -251,16 +339,26 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:background="@drawable/circle_w"
+                        android:gravity="center"
                         android:orientation="horizontal"
-                        android:paddingLeft="10dp"
+                        android:paddingLeft="15dp"
                         android:paddingTop="3dp"
-                        android:paddingRight="10dp"
+                        android:paddingRight="15dp"
                         android:paddingBottom="3dp">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:src="@drawable/ic_space" />
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+                            android:layout_height="10dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="view" />
+                            android:text="@string/interface_" />
 
                         <LinearLayout
                             android:layout_width="10dp"
@@ -270,7 +368,7 @@
                             android:layout_width="wrap_content"
 
                             android:layout_height="wrap_content"
-                            android:text="north" />
+                            android:text="east north" />
 
 
                     </LinearLayout>
@@ -303,7 +401,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/room"
+                        android:text="@string/chat"
                         android:textColor="@color/colorPrimary" />
 
                     <LinearLayout
@@ -311,8 +409,8 @@
                         android:layout_height="10dp" />
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
                         android:src="@drawable/ic_chat" />
 
 
@@ -333,7 +431,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/room"
+                        android:text="@string/call"
                         android:textColor="@color/colorPrimary" />
 
                     <LinearLayout
@@ -341,9 +439,11 @@
                         android:layout_height="10dp" />
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_chat" />
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:padding="4dp"
+
+                        android:src="@drawable/ic_phone_o" />
 
 
                 </LinearLayout>
@@ -363,7 +463,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/room"
+                        android:text="@string/interface_"
                         android:textColor="@color/colorPrimary" />
 
                     <LinearLayout
@@ -371,9 +471,10 @@
                         android:layout_height="10dp" />
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_chat" />
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_interface" />
 
 
                 </LinearLayout>
@@ -403,10 +504,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="@font/muli_semi_bold"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:text="dkdflgm"
+                android:text="إحياء للتطوير العقاري"
                 android:textColor="@color/textColor"
                 android:textSize="15dp" />
 

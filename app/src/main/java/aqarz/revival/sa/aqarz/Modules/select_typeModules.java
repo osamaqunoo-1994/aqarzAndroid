@@ -7,6 +7,7 @@ public class select_typeModules {
 
     Integer id;
     String name;
+    boolean selected = false;
 
     public select_typeModules(Integer id,
                               String name) {
@@ -14,9 +15,17 @@ public class select_typeModules {
         this.name = name;
     }
 
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
 
     public String getName() {
         return name;
+    }
+
+    public boolean getSelected() {
+        return selected;
     }
 
     public Integer getId() {

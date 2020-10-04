@@ -180,7 +180,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:paddingBottom="5dp">
+                    android:paddingBottom="5dp"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -264,6 +265,7 @@
                             android:background="@drawable/edit_text_background"
                             android:gravity="center_vertical"
                             android:hint="@string/Info_users"
+                            android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:singleLine="true"
@@ -359,8 +361,10 @@
                             android:layout_height="38dp"
                             android:layout_weight="1"
                             android:background="@drawable/edit_text_background"
+
                             android:gravity="center_vertical"
                             android:hint="@string/AddTExtHeare"
+                            android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
@@ -395,8 +399,10 @@
                             android:layout_height="38dp"
                             android:layout_weight="1"
                             android:background="@drawable/edit_text_background"
+
                             android:gravity="center_vertical"
                             android:hint="@string/AddTExtHeare"
+                            android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
@@ -488,8 +494,10 @@
                             android:layout_height="38dp"
                             android:layout_weight="1"
                             android:background="@drawable/edit_text_background"
+
                             android:gravity="center_vertical"
                             android:hint="@string/AddTExtHeare"
+                            android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
@@ -526,7 +534,9 @@
                             android:background="@drawable/edit_text_background"
                             android:gravity="center_vertical"
                             android:hint="@string/AddTExtHeare"
+                            android:inputType="text"
                             android:paddingLeft="10dp"
+
                             android:paddingRight="10dp"
                             android:text=""
                             android:textColorHint="@color/hint_color"
@@ -560,8 +570,10 @@
                             android:layout_height="38dp"
                             android:layout_weight="1"
                             android:background="@drawable/edit_text_background"
+
                             android:gravity="center_vertical"
                             android:hint="@string/AddTExtHeare"
+                            android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
@@ -596,8 +608,10 @@
                             android:layout_height="38dp"
                             android:layout_weight="1"
                             android:background="@drawable/edit_text_background"
+
                             android:gravity="center_vertical"
                             android:hint="@string/AddTExtHeare"
+                            android:inputType="text"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
@@ -634,8 +648,10 @@
                             android:background="@drawable/edit_text_background"
                             android:gravity="center_vertical"
                             android:hint="@string/AddTExtHeare"
+                            android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
+
                             android:text=""
                             android:textColorHint="@color/hint_color"
                             android:textSize="@dimen/_10sdp" />
@@ -670,7 +686,9 @@
                             android:background="@drawable/edit_text_background"
                             android:gravity="center_vertical"
                             android:hint="@string/AddTExtHeare"
+                            android:inputType="number"
                             android:paddingLeft="10dp"
+
                             android:paddingRight="10dp"
                             android:text=""
                             android:textColorHint="@color/hint_color"
@@ -706,9 +724,11 @@
                             android:background="@drawable/edit_text_background"
                             android:gravity="center_vertical"
                             android:hint="@string/AddTExtHeare"
+                            android:inputType="text"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
+
                             android:textColorHint="@color/hint_color"
                             android:textSize="@dimen/_10sdp" />
 
@@ -740,8 +760,10 @@
                             android:layout_height="38dp"
                             android:layout_weight="1"
                             android:background="@drawable/edit_text_background"
+
                             android:gravity="center_vertical"
                             android:hint="@string/AddTExtHeare"
+                            android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""

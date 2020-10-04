@@ -179,6 +179,7 @@
                     android:hint="@string/Les_space"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:inputType="number"
                     android:text=""
                     android:textColorHint="@color/hint_color"
                     android:textSize="@dimen/_10sdp" />
@@ -198,6 +199,8 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text=""
+                    android:inputType="number"
+
                     android:textColorHint="@color/hint_color"
                     android:textSize="@dimen/_10sdp" />
 
@@ -223,6 +226,8 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text=""
+                    android:inputType="number"
+
                     android:textColorHint="@color/hint_color"
                     android:textSize="@dimen/_10sdp" />
 
@@ -241,6 +246,8 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text=""
+                    android:inputType="number"
+
                     android:textColorHint="@color/hint_color"
                     android:textSize="@dimen/_10sdp" />
 
@@ -267,6 +274,8 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text=""
+                    android:inputType="number"
+
                     android:textColorHint="@color/hint_color"
                     android:textSize="@dimen/_10sdp" />
 

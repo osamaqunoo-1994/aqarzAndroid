@@ -184,7 +184,7 @@
 
 
     <string name="Lounges">Lounges</string>
-    <string name="room">room</string>
+    <string name="room">Room</string>
     <string name="Bathrooms">Bathrooms</string>
     <string name="Boards">Boards</string>
     <string name="Kitchens">Kitchens</string>
@@ -241,5 +241,14 @@
     <string name="company">Subscriptions to real estate</string>
     <string name="TermsAndCondition">Terms And Condition</string>
     <string name="Accept">Accept</string>
+
+
+    <string name="MyOrder">My Order</string>
+    <string name="Shoppingrequest">Shopping requests</string>
+    <string name="Real_Estate_order">Real Estate Development Fund</string>
+
+    <string name="chat">chat</string>
+    <string name="call">call</string>
+
 
 </resources>

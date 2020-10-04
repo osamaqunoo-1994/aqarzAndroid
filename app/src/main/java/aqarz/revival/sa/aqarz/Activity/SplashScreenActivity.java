@@ -42,7 +42,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         findViewById(R.id.snack_ly).startAnimation(myanim);
 
         if (Hawk.contains("lang")) {
-            System.out.println("SSSSSs0" + Hawk.get("lang").toString());
+
 
             Locale locale = new Locale(Hawk.get("lang").toString());
             Locale.setDefault(locale);
@@ -67,26 +67,10 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         mVolleyService.getDataVolley("Settings", WebService.settings);
 
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-
-                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-//                                intent.putExtra("from", "splash");
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-                finish();
-
-
-            }
-        }, 1000); // After 1 seconds
 
     }
 
     public void init_volley() {
-
 
         mResultCallback = new IResult() {
             @Override
@@ -100,11 +84,24 @@ public class SplashScreenActivity extends AppCompatActivity {
                     if (status) {
                         String data = response.getString("data");
 
-                        System.out.println("data_spalsh" + data.toString());
-
 
                         Hawk.put("settings", data);
 
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+
+                                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+//              intent.putExtra("from", "splash");
+                                startActivity(intent);
+                                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                finish();
+
+
+                            }
+                        }, 1000); // After 1 seconds
 
                     } else {
 

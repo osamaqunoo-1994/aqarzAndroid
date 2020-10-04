@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -52,6 +53,10 @@ public class LoginActivity extends AppCompatActivity {
     AppCompatButton Login;
 
     IResult mResultCallback;
+    ImageView pass_checkbox;
+
+
+    boolean is_show = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
         new_account = findViewById(R.id.new_account);
         Login = findViewById(R.id.Login);
         forget_pass = findViewById(R.id.forget_pass);
+        pass_checkbox = findViewById(R.id.pass_checkbox);
 
         phone_ed.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -167,6 +173,24 @@ public class LoginActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
 
+            }
+        });
+        pass_checkbox.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(View v) {
+                if (is_show) {
+                    password.setTransformationMethod(new PasswordTransformationMethod());
+                    pass_checkbox.setSelected(false);
+//                    pass_checkbox.setImageDrawable(getDrawable(R.drawable.show_pass_bg));
+                    is_show = false;
+                } else {
+                    password.setTransformationMethod(null);
+                    pass_checkbox.setSelected(true);
+
+//                    pass_checkbox.setImageDrawable(getDrawable(R.drawable.ic_private));
+                    is_show = true;
+                }
             }
         });
     }
