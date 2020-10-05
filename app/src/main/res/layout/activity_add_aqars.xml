@@ -534,7 +534,7 @@
                             android:background="@drawable/edit_text_background"
                             android:gravity="center_vertical"
                             android:hint="@string/AddTExtHeare"
-                            android:inputType="text"
+                            android:inputType="number"
                             android:paddingLeft="10dp"
 
                             android:paddingRight="10dp"

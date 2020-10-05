@@ -18,7 +18,7 @@ public class WebService {
 
 
     public static KProgressHUD kProgressHUD;
-//    public static String Domain = "http://aqarz.heliohost.org/api/";
+    //    public static String Domain = "http://aqarz.heliohost.org/api/";
     public static String Domain = "https://aqarz.com/api/";
 
 
@@ -31,7 +31,7 @@ public class WebService {
     public static String settings = Domain + "settings";
     public static String profile_image = Domain + "profile/image";
     public static String operation_type = Domain + "operation/type";
-    public static String cities = Domain + "cities/1/list";
+    public static String cities = Domain + "cities";
     public static String banks = Domain + "banks";
     public static String deferredInstallment = Domain + "deferredInstallment/Request";
     public static String finance = Domain + "finance/Request";

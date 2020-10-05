@@ -20,6 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.RegisterActivity;
+import aqarz.revival.sa.aqarz.Fragment.ChatFragment;
 import aqarz.revival.sa.aqarz.Fragment.MapsFragment;
 import aqarz.revival.sa.aqarz.Fragment.MoreFragment;
 import aqarz.revival.sa.aqarz.Fragment.OrdersFragment;
@@ -155,6 +156,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 3:
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, new ChatFragment());
+                //    fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
 //                fragmentTransaction = fragmentManager.beginTransaction();
 //                fragmentTransaction.replace(R.id.container, new MessagesFragment());
 //                //    fragmentTransaction.commit();

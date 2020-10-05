@@ -75,5 +75,5 @@ dependencies {
     // PING Place Picker
     implementation 'com.github.rtchagas:pingplacepicker:2.0.+'
     implementation 'com.github.nguyenhoanglam:ImagePicker:1.4.3'
-
+    implementation 'com.github.vivchar:ViewPagerIndicator:1.1.0'
 }

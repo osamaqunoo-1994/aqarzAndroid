@@ -160,6 +160,8 @@ public class AddAqarsActivity extends AppCompatActivity {
     String opration_select = "0";
     String Type_work_select = "1";
     String image_planed = "";
+    String is_rent = "0";
+    String rent_type = "yearly";
 
 
     String lat = "";
@@ -339,7 +341,43 @@ public class AddAqarsActivity extends AppCompatActivity {
         date_list.add(getResources().getString(R.string.months_3));
         date_list.add(getResources().getString(R.string.Monthly));
         date_list.add(getResources().getString(R.string.daily));
-        type_date.setAdapter(new RecyclerView_date_select(AddAqarsActivity.this, date_list));
+        RecyclerView_date_select recyclerView_date_select = new RecyclerView_date_select(AddAqarsActivity.this, date_list);
+
+        recyclerView_date_select.addItemClickListener(new RecyclerView_date_select.ItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+
+
+                switch (position) {
+                    case 0:
+                        rent_type = "yearly";
+
+                        break;
+                    case 1:
+                        rent_type = "monthly";
+
+                        break;
+                    case 2:
+                        rent_type = "monthly";
+
+                        break;
+                    case 3:
+                        rent_type = "monthly";
+
+                        break;
+                    case 4:
+                        rent_type = "daily";
+
+                        break;
+
+
+                }
+
+
+            }
+        });
+
+        type_date.setAdapter(recyclerView_date_select);
 //-------------------------------------------------------------------------------------------------
 
 
@@ -938,7 +976,7 @@ public class AddAqarsActivity extends AppCompatActivity {
                 Type_work_select = "1";
 
                 date_eqjar.setVisibility(View.GONE);
-
+                is_rent = "0";
             }
         });
         rent.setOnClickListener(new View.OnClickListener() {
@@ -968,6 +1006,7 @@ public class AddAqarsActivity extends AppCompatActivity {
                 Type_work_select = "2";
 
                 date_eqjar.setVisibility(View.VISIBLE);
+                is_rent = "1";
 
             }
         });
@@ -996,6 +1035,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 Type_work_select = "3";
                 date_eqjar.setVisibility(View.GONE);
+                is_rent = "0";
 
             }
         });
@@ -1226,6 +1266,11 @@ public class AddAqarsActivity extends AppCompatActivity {
                         sendObj.put("social_status", social_status);
                         sendObj.put("lat", lat);
                         sendObj.put("lan", lng);
+                        sendObj.put("is_rent", is_rent);//1 = yes or 0 = no
+                        if (is_rent.equals("1")) {
+                            sendObj.put("rent_type", rent_type);//'daily','monthly','yearly'
+
+                        }
 
 
                         String attachment_planned = "";
@@ -1436,8 +1481,12 @@ public class AddAqarsActivity extends AppCompatActivity {
         }
 
         if (requestCode == 00 && resultCode == Activity.RESULT_OK) {
-            String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
-            Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
+
+            if (data != null) {
+                String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
+                Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
+
+            }
 
 
 //            image_profile.setImageBitmap(selectedImage);
@@ -1466,47 +1515,51 @@ public class AddAqarsActivity extends AppCompatActivity {
         if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1213)) {
 
 
-            ArrayList<Image> images = ImagePicker.getImages(data);
+            if (data != null) {
+
+                ArrayList<Image> images = ImagePicker.getImages(data);
 //            Uri uri = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, images.get(0).getId()+"");
 
 
-            String filePath = images.get(0).getPath().toString();
-            Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+                String filePath = images.get(0).getPath().toString();
+                Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
 
 
-            File file_image_profile = new File(filePath);
+                File file_image_profile = new File(filePath);
 
-            try {
+                try {
 
-                RequestParams requestParams = new RequestParams();
+                    RequestParams requestParams = new RequestParams();
 
-                requestParams.put("photo", file_image_profile);
+                    requestParams.put("photo", file_image_profile);
 
 
-                Upload_image(requestParams, selectedImagea);
-            } catch (Exception e) {
+                    Upload_image(requestParams, selectedImagea);
+                } catch (Exception e) {
 
-            }
+                }
 //            sendChatMsg_file(first_image_file);
 
 
-        }
-        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1217)) {
+            }
+            if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1217)) {
 
 
-            ArrayList<Image> images = ImagePicker.getImages(data);
+                if (data != null) {
+
+                    ArrayList<Image> images = ImagePicker.getImages(data);
 //            Uri uri = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, images.get(0).getId()+"");
 
 
-            String filePath = images.get(0).getPath().toString();
-            Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+                    String filePath = images.get(0).getPath().toString();
+                    Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
 
 
-            File file_image_profile = new File(filePath);
+                    File file_image_profile = new File(filePath);
 
-            try {
-                Instrument_file_text.setText(getResources().getString(R.string.upload_file_success));
-                instrument_file = file_image_profile;
+                    try {
+                        Instrument_file_text.setText(getResources().getString(R.string.upload_file_success));
+                        instrument_file = file_image_profile;
 
 //                RequestParams requestParams = new RequestParams();
 //
@@ -1514,28 +1567,33 @@ public class AddAqarsActivity extends AppCompatActivity {
 //
 //
 //                Upload_image(requestParams, selectedImagea);
-            } catch (Exception e) {
+                    } catch (Exception e) {
 
-            }
+                    }
 //            sendChatMsg_file(first_image_file);
 
 
-        }
-        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 20)) {
+                }
 
 
-            ArrayList<Image> images = ImagePicker.getImages(data);
+            }
+
+            if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 20)) {
+
+
+                if (data != null) {
+                    ArrayList<Image> images = ImagePicker.getImages(data);
 //            Uri uri = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, images.get(0).getId()+"");
 
 
-            String filePath = images.get(0).getPath().toString();
-            Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+                    String filePath = images.get(0).getPath().toString();
+                    Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
 
 
-            File file_image_profile = new File(filePath);
+                    File file_image_profile = new File(filePath);
 
-            try {
-                Add_charts_text.setText(getResources().getString(R.string.upload_file_success));
+                    try {
+                        Add_charts_text.setText(getResources().getString(R.string.upload_file_success));
 
 //                RequestParams requestParams = new RequestParams();
 //
@@ -1543,23 +1601,25 @@ public class AddAqarsActivity extends AppCompatActivity {
 //
 //
 //                Upload_image(requestParams, selectedImagea);
-            } catch (Exception e) {
+                    } catch (Exception e) {
 
-            }
-            try {
+                    }
+                    try {
 
-                RequestParams requestParams = new RequestParams();
+                        RequestParams requestParams = new RequestParams();
 
-                requestParams.put("photo", file_image_profile);
+                        requestParams.put("photo", file_image_profile);
 
+                        Upload_image_planed(requestParams, selectedImagea);
+                    } catch (Exception e) {
 
-                Upload_image_planed(requestParams, selectedImagea);
-            } catch (Exception e) {
-
-            }
+                    }
 //            sendChatMsg_file(first_image_file);
 
 
+                }
+
+            }
         }
 
 

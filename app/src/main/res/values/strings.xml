@@ -249,6 +249,22 @@
 
     <string name="chat">chat</string>
     <string name="call">call</string>
+    <string name="price_metter">price metter</string>
+    <string name="Residential_purpose">Residential purpose</string>
 
+
+    <string name="Discription">Discription</string>
+    <string name="Information_Ads">Information Ads</string>
+
+
+    <string name="last_refresh">last Refresh</string>
+    <string name="views_number">views number</string>
+    <string name="number_Ads">number Ads</string>
+
+
+    <string name="Follow">Follow</string>
+    <string name="Promotion">Promotion</string>
+
+    <string name="chat_title">Chat</string>
 
 </resources>

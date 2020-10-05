@@ -61,6 +61,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
+import aqarz.revival.sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import aqarz.revival.sa.aqarz.Activity.MainActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
@@ -159,14 +160,11 @@ public class MapsFragment extends Fragment {
                 style = "MAP_TYPE_NORMAL";
                 googleMap.getUiSettings().setRotateGesturesEnabled(true);
 
-
                 mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
 
-
                         BottomSheetDialogFragment_DetailsAqares bottomSheetDialogFragment_detailsAqares = new BottomSheetDialogFragment_DetailsAqares(homeModules.get(0));
-
 
                         bottomSheetDialogFragment_detailsAqares.show(getFragmentManager(), "");
 
@@ -206,11 +204,20 @@ public class MapsFragment extends Fragment {
         try {
 
             if (Settings.checkLogin()) {
-                Picasso.get().load(Settings.GetUser().getLogo()).error(R.drawable.ic_user_un).into(image_profile);
+                if (Settings.GetUser().getLogo() == null) {
+
+                } else {
+                    Picasso.get().load(Settings.GetUser().getLogo()).error(R.drawable.ic_user_un).into(image_profile);
+
+                }
+
                 image_profile.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Intent intent = new Intent(getContext(), MyProfileInformationActivity.class);
+//                                intent.putExtra("from", "splash");
+                        startActivity(intent);
+//                        getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                     }
                 });
             } else {

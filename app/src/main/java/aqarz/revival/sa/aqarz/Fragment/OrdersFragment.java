@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -37,7 +38,9 @@ import aqarz.revival.sa.aqarz.Activity.ContactUsActivity;
 import aqarz.revival.sa.aqarz.Activity.PrivecyActivity;
 import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
 import aqarz.revival.sa.aqarz.Activity.TermsActivity;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_order_;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders;
 import aqarz.revival.sa.aqarz.Modules.OrdersModules;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
@@ -49,13 +52,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class OrdersFragment extends Fragment {
 
-
+    HorizontalScrollView section_horizantal;
     RecyclerView orders_rec;
     RecyclerView list_opration;
     RecyclerView type_of_v;
-
+    LinearLayout type_sale;
     List<OrdersModules> ordersModules = new ArrayList<>();
 
+    List<TypeModules> type_list = new ArrayList<>();
 
     LinearLayout my_order_layout;
     LinearLayout Shopping_request_layout;
@@ -94,6 +98,8 @@ public class OrdersFragment extends Fragment {
         For_sale = v.findViewById(R.id.For_sale);
         rent = v.findViewById(R.id.rent);
         type_of_v = v.findViewById(R.id.type_of_v);
+        type_sale = v.findViewById(R.id.type_sale);
+        section_horizantal = v.findViewById(R.id.section_horizantal);
 
 
         ordersModules.add(new OrdersModules());
@@ -106,8 +112,28 @@ public class OrdersFragment extends Fragment {
             LinearLayoutManager layoutManager1
                     = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
             list_opration.setLayoutManager(layoutManager1);
+            RecyclerView_All_Type_order_ recyclerView_all_type_order_ = new RecyclerView_All_Type_order_(getContext(), data);
+            recyclerView_all_type_order_.addItemClickListener(new RecyclerView_All_Comfort_in_fragment.ItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    if (position == 0) {
+                        list_opration.setVisibility(View.VISIBLE);
+                        type_sale.setVisibility(View.VISIBLE);
+                        section_horizantal.setVisibility(View.VISIBLE);
+                    } else if (position == 1) {
+                        list_opration.setVisibility(View.VISIBLE);
+                        section_horizantal.setVisibility(View.VISIBLE);
+                        type_sale.setVisibility(View.VISIBLE);
+                    } else {
+                        list_opration.setVisibility(View.VISIBLE);
 
-            list_opration.setAdapter(new RecyclerView_All_Type_order_(getContext(), data));
+                        type_sale.setVisibility(View.GONE);
+                        section_horizantal.setVisibility(View.GONE);
+
+                    }
+                }
+            });
+            list_opration.setAdapter(recyclerView_all_type_order_);
 
         } catch (Exception e) {
 
@@ -119,13 +145,23 @@ public class OrdersFragment extends Fragment {
         orders_rec.setLayoutManager(layoutManager1);
         orders_rec.setAdapter(new RecyclerView_orders(getContext(), ordersModules));
 //------------------------------------------------------------------------------------------------------------
+        type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
 
 
         LinearLayoutManager layoutManagerxmx
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         type_of_v.setLayoutManager(layoutManagerxmx);
 
+        RecyclerView_All_type_in_fragment recyclerView_all_type_in_fragment = new RecyclerView_All_type_in_fragment(getContext(), type_list);
+        recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_in_fragment.ItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
 
+//                opration_select = type_list.get(position).getId().toString() + "";
+
+            }
+        });
+        type_of_v.setAdapter(recyclerView_all_type_in_fragment);
 //------------------------------------------------------------------------------------------------------------
 
         For_sale.setOnClickListener(new View.OnClickListener() {
@@ -167,18 +203,17 @@ public class OrdersFragment extends Fragment {
 
                 my_order_text.setTextColor(getResources().getColor(R.color.white));
 
-
                 Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 Shopping_request_text.setTextColor(getResources().getColor(R.color.textColor));
-
 
                 Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.search_background));
 
                 Real_Estate_order_text.setTextColor(getResources().getColor(R.color.color_tr));
                 Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.color_tr), android.graphics.PorterDuff.Mode.MULTIPLY);
 
-
+                list_opration.setVisibility(View.VISIBLE);
+                type_sale.setVisibility(View.VISIBLE);
             }
         });
         Shopping_request_layout.setOnClickListener(new View.OnClickListener() {
@@ -198,6 +233,11 @@ public class OrdersFragment extends Fragment {
 
                 Real_Estate_order_text.setTextColor(getResources().getColor(R.color.color_tr));
                 Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.color_tr), android.graphics.PorterDuff.Mode.MULTIPLY);
+
+
+                list_opration.setVisibility(View.GONE);
+                type_sale.setVisibility(View.VISIBLE);
+
 
             }
         });
@@ -221,9 +261,15 @@ public class OrdersFragment extends Fragment {
                 Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
                 Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
 
+
+                list_opration.setVisibility(View.GONE);
+                type_sale.setVisibility(View.GONE);
+
+
             }
         });
-
+        list_opration.setVisibility(View.GONE);
+        type_sale.setVisibility(View.GONE);
 
     }
 

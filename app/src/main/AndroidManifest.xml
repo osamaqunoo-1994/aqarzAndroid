@@ -17,10 +17,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.NoInterntConnectionActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity
+            android:name=".Activity.OfficeDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Activity.DetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.NoInterntConnectionActivity"
+            android:theme="@style/AppTheme.NoActionBar_orders" />
         <activity
             android:name=".Activity.OprationAqarz.AddAqarsActivity"
-            android:theme="@style/AppTheme.NoActionBar_orders"></activity>
+            android:theme="@style/AppTheme.NoActionBar_orders" />
         <activity
             android:name=".Activity.ContactUsActivity"
             android:theme="@style/AppTheme.NoActionBar_orders" />

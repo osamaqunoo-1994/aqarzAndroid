@@ -258,4 +258,18 @@
     <string name="TermsAndCondition">الاحكام والشروط</string>
     <string name="Accept">موافق</string>
 
+
+
+    <string name="MyOrder">طلباتي</string>
+    <string name="Shoppingrequest">طلبات السوق</string>
+    <string name="Real_Estate_order">صندوق التنمية العقارية</string>
+
+    <string name="chat">مراسلة</string>
+    <string name="call">اتصال</string>
+    <string name="price_metter">سعر المتر</string>
+    <string name="Residential_purpose">الغرض سكني</string>
+
+
+    <string name="chat_title">المحادثات</string>
+
 </resources>

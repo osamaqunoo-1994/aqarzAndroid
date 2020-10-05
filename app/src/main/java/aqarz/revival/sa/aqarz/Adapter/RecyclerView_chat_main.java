@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,28 +14,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import aqarz.revival.sa.aqarz.Modules.TypeModules;
+import aqarz.revival.sa.aqarz.Modules.OrdersModules;
 import aqarz.revival.sa.aqarz.R;
 
 
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_All_Type_order_ extends RecyclerView.Adapter<RecyclerView_All_Type_order_.MyViewHolder> {
-    public static List<TypeModules> alldata = new ArrayList<TypeModules>();
+public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_chat_main.MyViewHolder> {
+    public static List<OrdersModules> alldata = new ArrayList<OrdersModules>();
     static int Postion_opend = 0;
 
 
     static AlertDialog alertDialog;
+    private ItemClickListener mItemClickListener;
 
-    private RecyclerView_All_Comfort_in_fragment.ItemClickListener mItemClickListener;
 
     /**
      * View holder class
      */
     Context context;
 
-    public void Refreash() {
+    public void Refr() {
 
 
         this.notifyDataSetChanged();
@@ -53,32 +52,30 @@ public class RecyclerView_All_Type_order_ extends RecyclerView.Adapter<RecyclerV
 //        LinearLayout add_to_my;
 
 
-        //        LinearLayout answer_layout;
-        //  public FrameLayout frame;
-        TextView text;
+
 
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
-            text = view.findViewById(R.id.text);
 
-//            image_ = view.findViewById(R.id.image_);
+
+
+
+//            ratingbar = view.findViewById(R.id.ratingbar);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
     }
 
-    public RecyclerView_All_Type_order_(Context context, List<TypeModules> alldata) {
+    public RecyclerView_chat_main(Context context, List<OrdersModules> alldata) {
         this.alldata = alldata;
         this.context = context;
     }
 
-
-    public void addItemClickListener(RecyclerView_All_Comfort_in_fragment.ItemClickListener listener) {
+    public void addItemClickListener(ItemClickListener listener) {
         mItemClickListener = listener;
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -96,8 +93,8 @@ public class RecyclerView_All_Type_order_ extends RecyclerView.Adapter<RecyclerV
 //
 //            }
 //        }
-////
 //
+
 //
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
@@ -107,8 +104,6 @@ public class RecyclerView_All_Type_order_ extends RecyclerView.Adapter<RecyclerV
 //
 //
 ////
-
-        holder.text.setText(alldata.get(position).getName());
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.image);
 //        holder.price.setText(alldata.get(position).getPrice()+" "+context.getResources().getString(R.string.SAR));
@@ -119,15 +114,6 @@ public class RecyclerView_All_Type_order_ extends RecyclerView.Adapter<RecyclerV
 //        int random = ThreadLocalRandom.current().nextInt(1, 5);
 //       holder.ratingbar.setStar(random);
 
-
-        if (Postion_opend == position) {
-            holder.text.setBackground(context.getResources().getDrawable(R.drawable.button_login));
-            holder.text.setTextColor(context.getResources().getColor(R.color.white));
-        } else {
-            holder.text.setBackground(null);
-            holder.text.setTextColor(context.getResources().getColor(R.color.black));
-
-        }
 
         //   wallet, dafter, receipt, payment
 
@@ -167,12 +153,17 @@ public class RecyclerView_All_Type_order_ extends RecyclerView.Adapter<RecyclerV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Postion_opend = position;
+
+
+//                Postion_opend = position;
+//                Refr();
+
+//                RequestOrderActivity.set_fragment(position);
+
+
                 if (mItemClickListener != null) {
                     mItemClickListener.onItemClick(position);
                 }
-
-                Refreash();
 //
 
             }
@@ -197,7 +188,7 @@ public class RecyclerView_All_Type_order_ extends RecyclerView.Adapter<RecyclerV
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_opration_order, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_main_chat, parent, false);
 
 
         // Fresco.initialize(context);
@@ -210,5 +201,4 @@ public class RecyclerView_All_Type_order_ extends RecyclerView.Adapter<RecyclerV
     public interface ItemClickListener {
         void onItemClick(int position);
     }
-
 }
