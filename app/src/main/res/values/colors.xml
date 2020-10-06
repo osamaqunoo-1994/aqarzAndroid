@@ -3,13 +3,14 @@
     <color name="colorPrimary">#814C99</color>
     <color name="colorPrimaryDark">#814C99</color>
     <color name="colorAccent">#13D6D5</color>
-    <color name="editTextBackground">#c4c4c4</color>
+    <color name="editTextBackground">#E0E0E0</color>
     <color name="red_btn_bg_color">#DD6B55</color>
     <color name="error">#fc4141</color>
     <color name="cookie_success">#00b700 </color>
     <color name="cookie_error">#e10b2b</color>
     <color name="link_color">#A937DD</color>
     <color name="textColor">#424446</color>
+    <color name="textColor2">#95959A</color>
     <color name="colorText3">#3D3D3D</color>
     <color name="color_f7f7f7">#f7f7f7</color>
     <color name="viewColor">#E3E3E3</color>
@@ -20,4 +21,5 @@
     <color name="black">#000000</color>
     <color name="hint_color">#AAABB3</color>
     <color name="color_tr">#00A09F</color>
+    <color name="color_bac">#AAABB3</color>
 </resources>

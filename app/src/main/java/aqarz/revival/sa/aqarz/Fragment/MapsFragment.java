@@ -65,6 +65,7 @@ import aqarz.revival.sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import aqarz.revival.sa.aqarz.Activity.MainActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
+import aqarz.revival.sa.aqarz.Activity.OprationNew.RequestServiceActivity;
 import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Opration_in_map;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_in_map;
@@ -319,7 +320,7 @@ public class MapsFragment extends Fragment {
                             .show();
                 } else {
 
-                    Intent intent = new Intent(getContext(), RequestOrderActivity.class);
+                    Intent intent = new Intent(getContext(), RequestServiceActivity.class);
 //                                intent.putExtra("from", "splash");
                     startActivity(intent);
                 }

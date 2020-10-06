@@ -259,7 +259,6 @@
     <string name="Accept">موافق</string>
 
 
-
     <string name="MyOrder">طلباتي</string>
     <string name="Shoppingrequest">طلبات السوق</string>
     <string name="Real_Estate_order">صندوق التنمية العقارية</string>
@@ -271,5 +270,49 @@
 
 
     <string name="chat_title">المحادثات</string>
+
+
+    <string name="Discription">Discription</string>
+    <string name="Information_Ads">Information Ads</string>
+
+
+    <string name="last_refresh">last Refresh</string>
+    <string name="views_number">views number</string>
+    <string name="number_Ads">number Ads</string>
+
+
+    <string name="Follow">متابعه</string>
+    <string name="Promotion">ترقية</string>
+
+
+    <string name="Enjoy_">تمتع بأجمل الخدمات والعروض من تطبيق عقارز</string>
+    <string name="requstService">اطلب خدمة</string>
+
+
+    <string name="RentalinstallmentService">تقسيط وتاجير</string>
+    <string name="AqarsService">عقار</string>
+    <string name="rateService">تقييم</string>
+    <string name="financeService">تمويل</string>
+
+
+    <string name="Next_btn">التالي</string>
+    <string name="Approval__request">الموافقه على الطلب</string>
+
+
+    <string name="rental_attachcontract">رجاءا اضف العقد المعتمد من ايجار</string>
+
+
+    <string name="title_1">معلومات العقار</string>
+
+
+    <string name="title_2">معلومات المالك</string>
+    <string name="title_3">معلومات العنوان</string>
+    <string name="IDImage">صورة الهوية</string>
+    <string name="National_attach_w">مرفق العنوان الوطني</string>
+    <string name="Show_nayi">اظهار بيانات العنوان الوطني</string>
+
+
+    <string name="is_requred">مطلوب</string>
+    <string name="three_years">3 سنوات</string>
 
 </resources>
