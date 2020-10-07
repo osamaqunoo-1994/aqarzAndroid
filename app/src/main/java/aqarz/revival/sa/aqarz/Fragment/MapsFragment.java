@@ -73,6 +73,7 @@ import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_select_oprat_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares;
+import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_Filtter;
 import aqarz.revival.sa.aqarz.Modules.BankModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
 import aqarz.revival.sa.aqarz.Modules.OprationModules;
@@ -93,6 +94,9 @@ public class MapsFragment extends Fragment {
     private static GoogleMap googleMap;
     public GoogleApiClient mGoogleApiClient;
     MapView mMapView;
+
+    TextView Orders_tab;
+    TextView Offers_tab;
 
     TextView RequstAqars;
     TextView addAqares;
@@ -127,11 +131,14 @@ public class MapsFragment extends Fragment {
 
     ImageView get_location;
     GpsTracker gpsTracker;
+    ImageView filtter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_map, container, false);
         mMapView = (MapView) v.findViewById(R.id.mapViewxx);
+        Orders_tab = v.findViewById(R.id.Orders_tab);
+        Offers_tab = v.findViewById(R.id.Offers_tab);
 
         init(v);
         getProfile();
@@ -187,6 +194,38 @@ public class MapsFragment extends Fragment {
         return v;
     }
 
+    public void action_btn() {
+        Orders_tab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Orders_tab.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                Orders_tab.setTextColor(getResources().getColor(R.color.white));
+
+                Offers_tab.setBackground(null);
+
+                Offers_tab.setTextColor(getResources().getColor(R.color.textColor));
+
+
+            }
+        });
+
+
+        Offers_tab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Offers_tab.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                Offers_tab.setTextColor(getResources().getColor(R.color.white));
+
+                Orders_tab.setBackground(null);
+
+                Orders_tab.setTextColor(getResources().getColor(R.color.textColor));
+
+            }
+        });
+
+    }
 
     public static MapsFragment newInstance(String text) {
 
@@ -240,6 +279,7 @@ public class MapsFragment extends Fragment {
     public void init(View v) {
         type = v.findViewById(R.id.opration);
         selsct_type_all = v.findViewById(R.id.selsct_type_all);
+        filtter = v.findViewById(R.id.filtter);
 
         addAqares = v.findViewById(R.id.addAqares);
         RequstAqars = v.findViewById(R.id.RequstAqars);
@@ -257,6 +297,7 @@ public class MapsFragment extends Fragment {
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         list_aqaers.setLayoutManager(layoutManagexx);
 
+        action_btn();
 
 //---------------------------------------------------------------------------------------------
 
@@ -436,6 +477,24 @@ public class MapsFragment extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+        filtter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                BottomSheetDialogFragment_Filtter bottomSheetDialogFragment_filtter = new BottomSheetDialogFragment_Filtter("");
+
+                bottomSheetDialogFragment_filtter.addItemClickListener(new BottomSheetDialogFragment_Filtter.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_city, String city_naem) {
+
+                    }
+                });
+                bottomSheetDialogFragment_filtter.show(getFragmentManager(), "");
+
+
             }
         });
 

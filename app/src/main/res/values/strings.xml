@@ -296,4 +296,12 @@
     <string name="is_requred">is_requred</string>
     <string name="three_years">3 years</string>
 
+
+
+
+    <string name="Orders_tab">Orders</string>
+    <string name="Offers_tab">Offers</string>
+    <string name="priceprice">price</string>
+    <string name="area_fi">Area</string>
+
 </resources>

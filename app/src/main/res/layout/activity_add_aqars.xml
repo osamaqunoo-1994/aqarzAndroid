@@ -71,9 +71,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+
                         android:text="@string/AqarType"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textColor="@color/textColor2"
+                        android:textSize="15dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -106,9 +108,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/frutiger_lt_arabic_roman"
                         android:text="@string/Type_work"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textColor="@color/textColor2"
+                        android:textSize="15dp" />
 
                     <LinearLayout
                         android:layout_width="15dp"
@@ -224,19 +227,42 @@
                     android:paddingBottom="10dp"
                     android:visibility="visible">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/circle_pr"
-                        android:fontFamily="@font/frutiger_lt_arabic_roman"
-                        android:paddingLeft="9dp"
-                        android:paddingTop="2dp"
-                        android:paddingRight="9dp"
-                        android:paddingBottom="2dp"
-                        android:text="@string/Information_Aqar"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/_13sdp" />
 
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/muli_bold"
+                                android:text="@string/Information_Aqar"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="17dp" />
+
+                            <LinearLayout
+                                android:layout_width="120dp"
+                                android:layout_height="1dp"
+                                android:background="@color/colorPrimary" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -248,9 +274,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/Instrument_number"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -279,28 +306,25 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+
                         android:gravity="center"
-                        android:paddingBottom="5dp">
+                      >
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/Instrument_file"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2" />
 
                         <LinearLayout
                             android:id="@+id/Instrument_file"
-                            android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_20sdp"
+
                             android:gravity="center"
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
@@ -308,18 +332,21 @@
 
                             >
 
-
                             <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:padding="7dp"
-                                android:src="@drawable/ic_id_d" />
+                                android:id="@+id/Instrument_file_text"
+                                android:layout_width="76dp"
+                                android:layout_height="76dp"
+
+                                android:layout_margin="10dp"
+                                android:layout_marginStart="@dimen/_20sdp"
+                                android:background="@drawable/button_service"
+                                android:padding="12dp"
+                                android:src="@drawable/ic_logo_move" />
 
 
                             <TextView
-                                android:id="@+id/Instrument_file_text"
-                                android:layout_width="match_parent"
 
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="6dp"
                                 android:layout_weight="1"
@@ -328,11 +355,16 @@
                                 android:hint="@string/Instrument_file"
                                 android:textColor="@color/cookie_success"
                                 android:textColorHint="#AAABB3"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:visibility="gone" />
 
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
 
                     </LinearLayout>
 
@@ -346,9 +378,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/piece_number"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -384,9 +417,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/No_planned"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -422,9 +456,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/Add_charts"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -479,9 +514,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/Total_area"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -517,9 +553,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/age_of_the_property"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -555,9 +592,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/Role_number"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -593,9 +631,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/Street_view"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -631,9 +670,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/total_price"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -669,9 +709,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/price_one_meter"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -707,9 +748,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/Communication_Officer"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -745,9 +787,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/contact_number"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -790,18 +833,42 @@
                     android:visibility="visible">
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+
                         android:layout_height="wrap_content"
-                        android:background="@drawable/circle_pr"
-                        android:fontFamily="@font/frutiger_lt_arabic_roman"
-                        android:paddingLeft="9dp"
-                        android:paddingTop="2dp"
-                        android:paddingRight="9dp"
-                        android:paddingBottom="2dp"
-                        android:text="@string/specificationsِAqares"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/_14sdp" />
+                        android:layout_marginBottom="5dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/muli_bold"
+                                android:text="@string/specificationsِAqares"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="17dp" />
+
+                            <LinearLayout
+                                android:layout_width="120dp"
+                                android:layout_height="1dp"
+                                android:background="@color/colorPrimary" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -1269,9 +1336,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/finishing_type"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_13sdp" />
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
 
                         <LinearLayout
                             android:layout_width="15dp"
@@ -1343,9 +1411,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/interface_"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_13sdp" />
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
 
                         <LinearLayout
                             android:layout_width="15dp"
@@ -1427,9 +1496,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/social_status"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_13sdp" />
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
 
                         <LinearLayout
                             android:layout_width="15dp"
@@ -1492,19 +1562,42 @@
                     android:paddingBottom="10dp"
                     android:visibility="visible">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/circle_pr"
-                        android:fontFamily="@font/frutiger_lt_arabic_roman"
-                        android:paddingLeft="9dp"
-                        android:paddingTop="2dp"
-                        android:paddingRight="9dp"
-                        android:paddingBottom="2dp"
-                        android:text="@string/means_comfort"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/_13sdp" />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/muli_bold"
+                                android:text="@string/means_comfort"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="17dp" />
+
+                            <LinearLayout
+                                android:layout_width="100dp"
+                                android:layout_height="1dp"
+                                android:background="@color/colorPrimary" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/comfort_RecyclerView"
@@ -1519,18 +1612,41 @@
                 </LinearLayout>
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
 
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                    android:paddingLeft="9dp"
-                    android:paddingTop="6dp"
-                    android:paddingRight="9dp"
-                    android:paddingBottom="2dp"
-                    android:text="@string/SelectImages"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/_14sdp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/muli_bold"
+                            android:text="@string/SelectImages"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="17dp" />
+
+                        <LinearLayout
+                            android:layout_width="120dp"
+                            android:layout_height="1dp"
+                            android:background="@color/colorPrimary" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
 
 
                 <HorizontalScrollView

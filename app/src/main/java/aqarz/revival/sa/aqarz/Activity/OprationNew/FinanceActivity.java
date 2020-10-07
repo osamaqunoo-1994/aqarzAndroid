@@ -1,10 +1,20 @@
 package aqarz.revival.sa.aqarz.Activity.OprationNew;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +28,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.loopj.android.http.RequestParams;
+import com.nguyenhoanglam.imagepicker.model.Image;
+import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,6 +40,7 @@ import java.util.Locale;
 
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_Type_RequstService;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_SelectBanks;
+import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.Settings;
@@ -34,10 +48,10 @@ import aqarz.revival.sa.aqarz.Settings.WebService;
 import aqarz.revival.sa.aqarz.api.VolleyService;
 
 public class FinanceActivity extends AppCompatActivity {
-    TextView circle_2, circle_3;
-    LinearLayout line;
+
+
     Button next_to_2;
-    Button next_to_3;
+
     Button finish;
     String current_page = "1";
 
@@ -76,13 +90,19 @@ public class FinanceActivity extends AppCompatActivity {
 
     TextView start_work_date;
     TextView banks;
+    TextView city;
     TextView date_bertih;
     String banks_id = "";
+    String city_id = "";
+    BottomSheetDialogFragment_SelectCity bottomSheetDialogFragment_selectCity;
 
-    ImageView image_id;
 
     Switch switch_address;
     Switch Solidarity_partner;
+    ImageView natinal_image;
+    ImageView image_id;
+    File National_address_file = null;
+    File image_id_file = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,10 +114,6 @@ public class FinanceActivity extends AppCompatActivity {
     public void init() {
 
 
-        circle_2 = findViewById(R.id.circle_2);
-        circle_3 = findViewById(R.id.circle_3);
-        line = findViewById(R.id.line);
-        next_to_3 = findViewById(R.id.next_to_3);
         next_to_2 = findViewById(R.id.next_to_2);
         layout_1 = findViewById(R.id.layout_1);
         layout_2 = findViewById(R.id.layout_2);
@@ -105,6 +121,7 @@ public class FinanceActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         finish = findViewById(R.id.finish);
         seek_bar = findViewById(R.id.seek_bar);
+        natinal_image = findViewById(R.id.natinal_image);
 
         Soldier = findViewById(R.id.Soldier);
         Special = findViewById(R.id.Special);
@@ -127,6 +144,7 @@ public class FinanceActivity extends AppCompatActivity {
         date_bertih = findViewById(R.id.date_bertih);
         id_number = findViewById(R.id.id_number);
         name_city = findViewById(R.id.name_city);
+        city = findViewById(R.id.city);
         total_sallary = findViewById(R.id.total_sallary);
         Financial_obligations = findViewById(R.id.Financial_obligations);
         banks = findViewById(R.id.banks);
@@ -381,7 +399,44 @@ public class FinanceActivity extends AppCompatActivity {
 
             }
         });
+        city.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+
+                bottomSheetDialogFragment_selectCity = new BottomSheetDialogFragment_SelectCity("");
+                bottomSheetDialogFragment_selectCity.addItemClickListener(new BottomSheetDialogFragment_SelectCity.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_city, String city_naem) {
+                        city_id = id_city + "";
+                        city.setText(city_naem);
+                        bottomSheetDialogFragment_selectCity.dismiss();
+
+                    }
+                });
+
+                bottomSheetDialogFragment_selectCity.show(getSupportFragmentManager(), "");
+
+            }
+        });
+        natinal_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                select_image_from_local(4, 4);
+
+
+            }
+        });
+        image_id.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                select_image_from_local(1, 1);
+
+
+            }
+        });
     }
 
     public void next_step() {
@@ -408,68 +463,68 @@ public class FinanceActivity extends AppCompatActivity {
 
                     layout_1.setVisibility(View.GONE);
                     layout_2.setVisibility(View.VISIBLE);
-                    layout_3.setVisibility(View.GONE);
-
-                    circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill));
-                    circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
-                    line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-
-                }
-
-
-            }
-        });
-        next_to_3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if (name.getText().toString().equals("")) {
-
-
-                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.name) + " " + getResources().getString(R.string.is_requred), "error");
-
-
-                } else if (phone.getText().toString().equals("")) {
-                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.phone_number) + " " + getResources().getString(R.string.is_requred), "error");
-
-                } else if (date_bertih.getText().toString().equals("")) {
-                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Date_of_Birth) + " " + getResources().getString(R.string.is_requred), "error");
-
-                } else if (id_number.getText().toString().equals("")) {
-                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.id_number) + " " + getResources().getString(R.string.is_requred), "error");
-
-                } else if (name_city.getText().toString().equals("")) {
-                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.city) + " " + getResources().getString(R.string.is_requred), "error");
-
-                } else if (start_work_date.getText().toString().equals("")) {
-                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.startworkdate) + " " + getResources().getString(R.string.is_requred), "error");
-
-                } else if (total_sallary.getText().toString().equals("")) {
-                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Total_salary) + " " + getResources().getString(R.string.is_requred), "error");
-
-                } else if (banks.getText().toString().equals("")) {
-                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Salary_Transferred) + " " + getResources().getString(R.string.is_requred), "error");
-
-                } else if (Financial_obligations.getText().toString().equals("")) {
-                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Financial_obligations) + " " + getResources().getString(R.string.is_requred), "error");
-
-                } else {
-
-
-                    current_page = "3";
-                    layout_1.setVisibility(View.GONE);
-                    layout_2.setVisibility(View.GONE);
                     layout_3.setVisibility(View.VISIBLE);
 
-
-                    circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill));
-                    circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill));
-                    line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                    circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill));
+//                    circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
+//                    line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
                 }
+
+
             }
         });
+//        next_to_3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//
+//                if (name.getText().toString().equals("")) {
+//
+//
+//                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.name) + " " + getResources().getString(R.string.is_requred), "error");
+//
+//
+//                } else if (phone.getText().toString().equals("")) {
+//                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.phone_number) + " " + getResources().getString(R.string.is_requred), "error");
+//
+//                } else if (date_bertih.getText().toString().equals("")) {
+//                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Date_of_Birth) + " " + getResources().getString(R.string.is_requred), "error");
+//
+//                } else if (id_number.getText().toString().equals("")) {
+//                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.id_number) + " " + getResources().getString(R.string.is_requred), "error");
+//
+//                } else if (name_city.getText().toString().equals("")) {
+//                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.city) + " " + getResources().getString(R.string.is_requred), "error");
+//
+//                } else if (start_work_date.getText().toString().equals("")) {
+//                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.startworkdate) + " " + getResources().getString(R.string.is_requred), "error");
+//
+//                } else if (total_sallary.getText().toString().equals("")) {
+//                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Total_salary) + " " + getResources().getString(R.string.is_requred), "error");
+//
+//                } else if (banks.getText().toString().equals("")) {
+//                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Salary_Transferred) + " " + getResources().getString(R.string.is_requred), "error");
+//
+//                } else if (Financial_obligations.getText().toString().equals("")) {
+//                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Financial_obligations) + " " + getResources().getString(R.string.is_requred), "error");
+//
+//                } else {
+//
+//
+//                    current_page = "3";
+//                    layout_1.setVisibility(View.GONE);
+//                    layout_2.setVisibility(View.GONE);
+//                    layout_3.setVisibility(View.VISIBLE);
+//
+//
+//                    circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill));
+//                    circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill));
+//                    line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//
+//                }
+//            }
+//        });
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -487,11 +542,11 @@ public class FinanceActivity extends AppCompatActivity {
 
                     layout_1.setVisibility(View.GONE);
                     layout_2.setVisibility(View.VISIBLE);
-                    layout_3.setVisibility(View.GONE);
+                    layout_3.setVisibility(View.VISIBLE);
 
-                    circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill));
-                    circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
-                    line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                    circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill));
+//                    circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
+//                    line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
 
                 } else if (current_page.toString().equals("2")) {
@@ -503,9 +558,9 @@ public class FinanceActivity extends AppCompatActivity {
                     layout_2.setVisibility(View.GONE);
                     layout_3.setVisibility(View.GONE);
 
-                    circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
-                    circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
-                    line.setBackgroundColor(getResources().getColor(R.color.color_bac));
+//                    circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
+//                    circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
+//                    line.setBackgroundColor(getResources().getColor(R.color.color_bac));
                 }
 
 
@@ -526,10 +581,10 @@ public class FinanceActivity extends AppCompatActivity {
             layout_1.setVisibility(View.GONE);
             layout_2.setVisibility(View.VISIBLE);
             layout_3.setVisibility(View.GONE);
-
-            circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill));
-            circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
-            line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//
+//            circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill));
+//            circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
+//            line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
 
         } else if (current_page.toString().equals("2")) {
@@ -541,11 +596,161 @@ public class FinanceActivity extends AppCompatActivity {
             layout_2.setVisibility(View.GONE);
             layout_3.setVisibility(View.GONE);
 
-            circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
-            circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
-            line.setBackgroundColor(getResources().getColor(R.color.color_bac));
+//            circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
+//            circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
+//            line.setBackgroundColor(getResources().getColor(R.color.color_bac));
         }
 
 
     }
+
+    public void select_image_from_local(int permission, int st_code) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(FinanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(FinanceActivity.this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        permission);
+
+            } else {
+
+
+                ImagePicker.with(FinanceActivity.this)
+                        .setFolderMode(true)
+                        .setFolderTitle("Album")
+
+                        .setDirectoryName("Image Picker")
+                        .setMultipleMode(false)
+                        .setShowNumberIndicator(true)
+                        .setMaxSize(1)
+                        .setLimitMessage("You can select one image")
+
+                        .setRequestCode(st_code)
+                        .start();
+            }
+        } else {
+
+            ImagePicker.with(FinanceActivity.this)
+                    .setFolderMode(true)
+                    .setFolderTitle("Album")
+
+                    .setDirectoryName("Image Picker")
+                    .setMultipleMode(false)
+                    .setShowNumberIndicator(true)
+                    .setMaxSize(1)
+                    .setLimitMessage("You can select one image")
+
+                    .setRequestCode(st_code)
+                    .start();
+
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (ContextCompat.checkSelfPermission(FinanceActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        } else {
+            ImagePicker.with(FinanceActivity.this)
+                    .setFolderMode(true)
+                    .setFolderTitle("Album")
+
+                    .setDirectoryName("Image Picker")
+                    .setMultipleMode(false)
+                    .setShowNumberIndicator(true)
+                    .setMaxSize(1)
+                    .setLimitMessage("You can select one image")
+
+                    .setRequestCode(requestCode)
+                    .start();
+        }
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+
+        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1)) {
+
+
+            if (data != null) {
+                ArrayList<Image> images = ImagePicker.getImages(data);
+                String filePath = images.get(0).getPath().toString();
+                Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+                image_id.setImageBitmap(selectedImagea);
+                image_id_file = new File(filePath);
+//                try {
+//                    RequestParams requestParams = new RequestParams();
+//                    requestParams.put("photo", file_image_profile);
+//
+//                } catch (Exception e) {
+//                }
+
+
+            }
+        }
+        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 2)) {
+
+
+            if (data != null) {
+                ArrayList<Image> images = ImagePicker.getImages(data);
+                String filePath = images.get(0).getPath().toString();
+                Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+//                image_id.setImageBitmap(selectedImagea);
+//                get_id_image_file = new File(filePath);
+//                try {
+//                    RequestParams requestParams = new RequestParams();
+//                    requestParams.put("photo", file_image_profile);
+//
+//                } catch (Exception e) {
+//                }
+            }
+        }
+        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 3)) {
+
+
+            if (data != null) {
+                ArrayList<Image> images = ImagePicker.getImages(data);
+                String filePath = images.get(0).getPath().toString();
+                Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+//                image_id_owner.setImageBitmap(selectedImagea);
+//                owner_get_id_image_file = new File(filePath);
+//                try {
+//                    RequestParams requestParams = new RequestParams();
+//                    requestParams.put("photo", file_image_profile);
+//
+//                } catch (Exception e) {
+//                }
+            }
+        }
+        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 4)) {
+
+
+            if (data != null) {
+                ArrayList<Image> images = ImagePicker.getImages(data);
+                String filePath = images.get(0).getPath().toString();
+                Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+                natinal_image.setImageBitmap(selectedImagea);
+                National_address_file = new File(filePath);
+//                try {
+//                    RequestParams requestParams = new RequestParams();
+//                    requestParams.put("photo", file_image_profile);
+//
+//                } catch (Exception e) {
+//                }
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+    }
+
+
 }

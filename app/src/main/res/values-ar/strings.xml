@@ -185,7 +185,7 @@
     <string name="Total_area">اجمالي المساحه</string>
     <string name="age_of_the_property">عمر العقار</string>
     <string name="Role_number">رقم الدور</string>
-    <string name="Street_view">عرض السعر</string>
+    <string name="Street_view">عرض الشارع</string>
     <string name="total_price">اجمالي السعر</string>
     <string name="price_one_meter">سعر المتر</string>
     <!--    <string name="Communication_Officer">Communication Officer</string>-->
@@ -308,11 +308,18 @@
     <string name="title_2">معلومات المالك</string>
     <string name="title_3">معلومات العنوان</string>
     <string name="IDImage">صورة الهوية</string>
-    <string name="National_attach_w">مرفق العنوان الوطني</string>
-    <string name="Show_nayi">اظهار بيانات العنوان الوطني</string>
+    <string name="National_attach_w">ارفاق العنوان الوطني</string>
+    <string name="Show_nayi">اضافة العنوان الوطني</string>
 
 
     <string name="is_requred">مطلوب</string>
     <string name="three_years">3 سنوات</string>
+
+
+
+    <string name="Orders_tab">الطلبات</string>
+    <string name="Offers_tab">العروض</string>
+    <string name="priceprice">السعر</string>
+    <string name="area_fi">المساحة</string>
 
 </resources>

@@ -24,6 +24,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -56,13 +57,9 @@ import aqarz.revival.sa.aqarz.api.VolleyService;
 import in.mayanknagwanshi.imagepicker.ImageSelectActivity;
 
 public class RentActivity extends AppCompatActivity {
-    TextView circle_2, circle_3;
-    LinearLayout line;
-    Button next_to_2;
-    Button next_to_3;
+
     Button finish;
 
-    LinearLayout layout_1, layout_2, layout_3;
     IResult mResultCallback;
 
     BottomSheetDialogFragment_SelectBanks bottomSheetDialogFragment_selectBanks;
@@ -75,35 +72,31 @@ public class RentActivity extends AppCompatActivity {
     List<TypeModules> type_list = new ArrayList<>();
 
 
-    TextView month;
-    TextView year;
-
+    TextView governmental;
+    TextView Special;
+    TextView Soldier;
 
     String opration_select = "";
-    String contract_interval = "year";
+    String contract_interval = "";
 
 
-    EditText price, name_owner, phone_owner, owner_id_number;
+    EditText price, name_owner, phone_owner, owner_id_number, Total_salary;
     EditText name, phone, id_number;
-    EditText name_city, total_sallary, Financial_obligations;
-    EditText National_address, buldingnumber, StreetName;
+    EditText name_city, buldingnumber, StreetName;
     EditText Neighborhoodname, Postal_code, additional_number, unit_number;
-    TextView start_work_date;
-    TextView banks;
     TextView date_bertih;
     TextView city;
 
 
-    ImageView image_of_contract;
-    ImageView image_id;
     ImageView image_id_owner;
     ImageView natinal_image;
 
-LinearLayout addres_layount;
-    TextView governmental;
-    TextView Special;
-    TextView Soldier;
+    LinearLayout addres_layount;
+
+
     String tenant_job_type = "governmental";
+
+    SeekBar seek_bar;
     String city_id = "";
 
     String banks_id = "";
@@ -127,16 +120,7 @@ LinearLayout addres_layount;
 
     public void init() {
 
-        month = findViewById(R.id.month);
-        year = findViewById(R.id.year);
-        circle_2 = findViewById(R.id.circle_2);
-        circle_3 = findViewById(R.id.circle_3);
-        line = findViewById(R.id.line);
-        next_to_3 = findViewById(R.id.next_to_3);
-        next_to_2 = findViewById(R.id.next_to_2);
-        layout_1 = findViewById(R.id.layout_1);
-        layout_2 = findViewById(R.id.layout_2);
-        layout_3 = findViewById(R.id.layout_3);
+
         back = findViewById(R.id.back);
         opration_RecyclerView = findViewById(R.id.opration_RecyclerView);
 
@@ -145,27 +129,23 @@ LinearLayout addres_layount;
         name_owner = findViewById(R.id.name_owner);
         phone_owner = findViewById(R.id.phone_owner);
         owner_id_number = findViewById(R.id.owner_id_number);
-        image_of_contract = findViewById(R.id.image_of_contract);
         image_id_owner = findViewById(R.id.image_id_owner);
+        seek_bar = findViewById(R.id.seek_bar);
+        Total_salary = findViewById(R.id.Total_salary);
 
 
         name = findViewById(R.id.name);
         phone = findViewById(R.id.phone);
         date_bertih = findViewById(R.id.date_bertih);
         id_number = findViewById(R.id.id_number);
-        name_city = findViewById(R.id.name_city);
-        total_sallary = findViewById(R.id.total_sallary);
-        Financial_obligations = findViewById(R.id.Financial_obligations);
-        banks = findViewById(R.id.banks);
-        start_work_date = findViewById(R.id.start_work_date);
-        image_id = findViewById(R.id.image_id);
-
         Soldier = findViewById(R.id.Soldier);
         Special = findViewById(R.id.Special);
         governmental = findViewById(R.id.governmental);
 
+        Soldier = findViewById(R.id.Soldier);
+        Special = findViewById(R.id.Special);
 
-        National_address = findViewById(R.id.National_address);
+
         buldingnumber = findViewById(R.id.buldingnumber);
         StreetName = findViewById(R.id.StreetName);
         Neighborhoodname = findViewById(R.id.Neighborhoodname);
@@ -177,6 +157,7 @@ LinearLayout addres_layount;
         switch_ = findViewById(R.id.switch_);
         finish = findViewById(R.id.finish);
         addres_layount = findViewById(R.id.addres_layount);
+        name_city = findViewById(R.id.name_city);
 
 
         init_volley();
@@ -207,55 +188,6 @@ LinearLayout addres_layount;
     public void action_button() {
 
 
-        month.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                month.setBackground(getResources().getDrawable(R.drawable.button_login));
-
-                month.setTextColor(getResources().getColor(R.color.white));
-
-                year.setBackground(null);
-
-                year.setTextColor(getResources().getColor(R.color.textColor));
-                contract_interval = "six_month";
-
-            }
-        });
-
-
-        year.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                year.setBackground(getResources().getDrawable(R.drawable.button_login));
-
-                year.setTextColor(getResources().getColor(R.color.white));
-
-
-                month.setBackground(null);
-
-                month.setTextColor(getResources().getColor(R.color.textColor));
-                contract_interval = "year";
-
-            }
-        });
-        image_of_contract.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                select_image_from_local(1, 1);
-
-
-            }
-        });
-        image_id.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                select_image_from_local(2, 2);
-
-
-            }
-        });
         image_id_owner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -303,30 +235,40 @@ LinearLayout addres_layount;
             }
         });
 
-        DatePickerDialog.OnDateSetListener date_start_work = new DatePickerDialog.OnDateSetListener() {
 
+        switch_.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                // TODO Auto-generated method stub
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                is_switched = isChecked;
 
 
-                String myFormat = "MM/dd/yy"; //In which you need put here
-                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                if (isChecked) {
+                    addres_layount.setVisibility(View.VISIBLE);
+                } else {
+                    addres_layount.setVisibility(View.GONE);
+                }
 
-                start_work_date.setText(sdf.format(myCalendar.getTime()));
+
             }
-
-        };
-        start_work_date.setOnClickListener(new View.OnClickListener() {
+        });
+        city.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(RentActivity.this, date_start_work, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
+
+                bottomSheetDialogFragment_selectCity = new BottomSheetDialogFragment_SelectCity("");
+                bottomSheetDialogFragment_selectCity.addItemClickListener(new BottomSheetDialogFragment_SelectCity.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_city, String city_naem) {
+                        city_id = id_city + "";
+                        city.setText(city_naem);
+                        bottomSheetDialogFragment_selectCity.dismiss();
+
+                    }
+                });
+
+                bottomSheetDialogFragment_selectCity.show(getSupportFragmentManager(), "");
+
             }
         });
 
@@ -354,6 +296,7 @@ LinearLayout addres_layount;
                 Soldier.setBackground(getResources().getDrawable(R.drawable.button_login));
 
                 Soldier.setTextColor(getResources().getColor(R.color.white));
+
 
                 governmental.setBackground(null);
 
@@ -383,185 +326,84 @@ LinearLayout addres_layount;
 
             }
         });
-        banks.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                bottomSheetDialogFragment_selectBanks = new BottomSheetDialogFragment_SelectBanks("");
-                bottomSheetDialogFragment_selectBanks.addItemClickListener(new BottomSheetDialogFragment_SelectBanks.ItemClickListener() {
-                    @Override
-                    public void onItemClick(int id_bank, String name_bank) {
-
-                        banks_id = id_bank + "";
-                        banks.setText(name_bank);
-                        bottomSheetDialogFragment_selectBanks.dismiss();
-                    }
-                });
-
-                bottomSheetDialogFragment_selectBanks.show(getSupportFragmentManager(), "");
-
+                finish();
             }
         });
-
-        switch_.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        //---------------------------------------------------------------------------------------------
+        seek_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                is_switched = isChecked;
-
-
-
-                if (isChecked) {
-                    addres_layount.setVisibility(View.VISIBLE);
-                } else {
-                    addres_layount.setVisibility(View.GONE);
-                }
-
-
-
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                contract_interval = progress + "";
             }
-        });
-        city.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View v) {
+            public void onStartTrackingTouch(SeekBar seekBar) {
 
+            }
 
-                bottomSheetDialogFragment_selectCity = new BottomSheetDialogFragment_SelectCity("");
-                bottomSheetDialogFragment_selectCity.addItemClickListener(new BottomSheetDialogFragment_SelectCity.ItemClickListener() {
-                    @Override
-                    public void onItemClick(int id_city, String city_naem) {
-                        city_id = id_city + "";
-                        city.setText(city_naem);
-                        bottomSheetDialogFragment_selectCity.dismiss();
-
-                    }
-                });
-
-                bottomSheetDialogFragment_selectCity.show(getSupportFragmentManager(), "");
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
         });
+
 
     }
 
 
     public void next_step() {
 
-        next_to_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-
-//                if (price.getText().toString().equals("")) {
-//
-//
-//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.Price) + " " + getResources().getString(R.string.is_requred), "error");
-//
-//
-//                } else if (name_owner.getText().toString().equals("")) {
-//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.name) + " " + getResources().getString(R.string.is_requred), "error");
-//
-//                } else if (phone_owner.getText().toString().equals("")) {
-//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.phone_number) + " " + getResources().getString(R.string.is_requred), "error");
-//
-//                } else if (owner_id_number.getText().toString().equals("")) {
-//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.id_number) + " " + getResources().getString(R.string.is_requred), "error");
-//
-//                } else
-                    {
-
-                    current_page = "2";
-
-                    layout_1.setVisibility(View.GONE);
-                    layout_2.setVisibility(View.VISIBLE);
-                    layout_3.setVisibility(View.GONE);
-
-                    circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill));
-                    circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
-                    line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                }
-
-            }
-        });
-        next_to_3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-//                if (name.getText().toString().equals("")) {
-//
-//
-//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.name) + " " + getResources().getString(R.string.is_requred), "error");
-//
-//
-//                } else if (phone.getText().toString().equals("")) {
-//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.phone_number) + " " + getResources().getString(R.string.is_requred), "error");
-//
-//                } else if (date_bertih.getText().toString().equals("")) {
-//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.Date_of_Birth) + " " + getResources().getString(R.string.is_requred), "error");
-//
-//                } else if (id_number.getText().toString().equals("")) {
-//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.id_number) + " " + getResources().getString(R.string.is_requred), "error");
-//
-//                } else if (name_city.getText().toString().equals("")) {
-//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.city) + " " + getResources().getString(R.string.is_requred), "error");
-//
-//                } else if (start_work_date.getText().toString().equals("")) {
-//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.startworkdate) + " " + getResources().getString(R.string.is_requred), "error");
-//
-//                } else if (total_sallary.getText().toString().equals("")) {
-//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.Total_salary) + " " + getResources().getString(R.string.is_requred), "error");
-//
-//                } else if (banks.getText().toString().equals("")) {
-//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.Salary_Transferred) + " " + getResources().getString(R.string.is_requred), "error");
-//
-//                } else if (Financial_obligations.getText().toString().equals("")) {
-//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.Financial_obligations) + " " + getResources().getString(R.string.is_requred), "error");
-//
-//                } else
-                    {
-
-
-                    current_page = "3";
-                    layout_1.setVisibility(View.GONE);
-                    layout_2.setVisibility(View.GONE);
-                    layout_3.setVisibility(View.VISIBLE);
-
-
-                    circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill));
-                    circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill));
-                    line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-
-                }
-            }
-        });
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (National_address.getText().toString().equals("")) {
+                if (price.getText().toString().equals("")) {
 
 
-                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.National_address) + " " + getResources().getString(R.string.is_requred), "error");
+                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.Price) + " " + getResources().getString(R.string.is_requred), "error");
 
 
-                } else if (buldingnumber.getText().toString().equals("")) {
+                } else if (name_owner.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.name) + " " + getResources().getString(R.string.is_requred), "error");
+
+                } else if (phone_owner.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.phone_number) + " " + getResources().getString(R.string.is_requred), "error");
+
+                } else if (owner_id_number.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.id_number) + " " + getResources().getString(R.string.is_requred), "error");
+
+                } else if (date_bertih.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.Date_of_Birth) + " " + getResources().getString(R.string.is_requred), "error");
+
+                } else if (name_city.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.city) + " " + getResources().getString(R.string.is_requred), "error");
+
+                } else if (Total_salary.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.Total_salary) + " " + getResources().getString(R.string.is_requred), "error");
+
+                } else if (buldingnumber.getText().toString().equals("") & switch_.isChecked()) {
                     WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.buldingnumber) + " " + getResources().getString(R.string.is_requred), "error");
 
-                } else if (StreetName.getText().toString().equals("")) {
+                } else if (StreetName.getText().toString().equals("") & switch_.isChecked()) {
                     WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.StreetName) + " " + getResources().getString(R.string.is_requred), "error");
 
-                } else if (Neighborhoodname.getText().toString().equals("")) {
+                } else if (Neighborhoodname.getText().toString().equals("") & switch_.isChecked()) {
                     WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.Neighborhoodname) + " " + getResources().getString(R.string.is_requred), "error");
 
-                } else if (city.getText().toString().equals("")) {
+                } else if (city.getText().toString().equals("") & switch_.isChecked()) {
                     WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.city_name) + " " + getResources().getString(R.string.is_requred), "error");
 
-                } else if (Postal_code.getText().toString().equals("")) {
+                } else if (Postal_code.getText().toString().equals("") & switch_.isChecked()) {
                     WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.Postal_code) + " " + getResources().getString(R.string.is_requred), "error");
 
-                } else if (additional_number.getText().toString().equals("")) {
+                } else if (additional_number.getText().toString().equals("") & switch_.isChecked()) {
                     WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.additional_number) + " " + getResources().getString(R.string.is_requred), "error");
 
-                } else if (unit_number.getText().toString().equals("")) {
+                } else if (unit_number.getText().toString().equals("") & switch_.isChecked()) {
                     WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.unit_number) + " " + getResources().getString(R.string.is_requred), "error");
 
                 } else {
@@ -576,35 +418,39 @@ LinearLayout addres_layount;
                         sendObj.put("operation_type_id", "1");//form operation list api in setting
                         sendObj.put("estate_type_id", opration_select);//form estate type list api in setting
                         sendObj.put("contract_interval", contract_interval);//'year','six_month'
-                        if (contract_file_file != null) {
-                            sendObj.put("contract_file", contract_file_file);//
-
-                        }
                         sendObj.put("rent_price", price.getText().toString());//
                         sendObj.put("owner_name", name_owner.getText().toString());//
                         sendObj.put("owner_mobile", phone_owner.getText().toString());//
                         sendObj.put("owner_identity_number", owner_id_number.getText().toString());//
+                        sendObj.put("tenant_birthday", date_bertih.getText().toString());//
+
+
+//
+//                        if (contract_file_file != null) {
+//                            sendObj.put("contract_file", contract_file_file);//
+//
+//                        }
+
                         if (owner_get_id_image_file != null) {
                             sendObj.put("owner_identity_file", owner_get_id_image_file);//
 
                         }
-                        sendObj.put("tenant_name", name.getText().toString());//
-                        sendObj.put("tenant_mobile", phone.getText().toString());//
-                        sendObj.put("tenant_identity_number", id_number.getText().toString());//
+//                        sendObj.put("tenant_name", name.getText().toString());//
+//                        sendObj.put("tenant_mobile", phone.getText().toString());//
+//                        sendObj.put("tenant_identity_number", id_number.getText().toString());//
 
 
-                        if (get_id_image_file != null) {
-                            sendObj.put("tenant_identity_file", get_id_image_file);//
-
-                        }
-                        sendObj.put("tenant_birthday", date_bertih.getText().toString());//
+//                        if (get_id_image_file != null) {
+//                            sendObj.put("tenant_identity_file", get_id_image_file);//
+//
+//                        }
                         sendObj.put("tenant_city_id", city_id);//
-                        sendObj.put("tenant_job_type", tenant_job_type);//'governmental','special','soldier'
-                        sendObj.put("tenant_job_start_date", start_work_date.getText().toString());//
-                        sendObj.put("tenant_total_salary", total_sallary.getText().toString());//
-                        sendObj.put("tenant_salary_bank_id", banks_id);//
-                        sendObj.put("tenant_engagements", Financial_obligations.getText().toString());//
-                        sendObj.put("national_address", "545");//National_address.getText().toString()
+//                        sendObj.put("tenant_job_type", tenant_job_type);//'governmental','special','soldier'
+//                        sendObj.put("tenant_job_start_date", start_work_date.getText().toString());//
+                        sendObj.put("tenant_total_salary", Total_salary.getText().toString());//
+//                        sendObj.put("tenant_salary_bank_id", banks_id);//
+//                        sendObj.put("tenant_engagements", Financial_obligations.getText().toString());//
+//                        sendObj.put("national_address", "545");//National_address.getText().toString()
                         if (National_address_file != null) {
                             sendObj.put("national_address_file", National_address_file);//
 
@@ -628,77 +474,10 @@ LinearLayout addres_layount;
 
             }
         });
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (current_page.toString().equals("3")) {
-
-                    current_page = "2";
-
-                    layout_1.setVisibility(View.GONE);
-                    layout_2.setVisibility(View.VISIBLE);
-                    layout_3.setVisibility(View.GONE);
-
-                    circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill));
-                    circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
-                    line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-
-
-                } else if (current_page.toString().equals("2")) {
-
-
-                    current_page = "1";
-
-                    layout_1.setVisibility(View.VISIBLE);
-                    layout_2.setVisibility(View.GONE);
-                    layout_3.setVisibility(View.GONE);
-
-                    circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
-                    circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
-                    line.setBackgroundColor(getResources().getColor(R.color.color_bac));
-                }
-
-
-            }
-        });
-
-    }
-
-
-    @Override
-    public void onBackPressed() {
-
-
-        if (current_page.toString().equals("3")) {
-
-            current_page = "2";
-
-            layout_1.setVisibility(View.GONE);
-            layout_2.setVisibility(View.VISIBLE);
-            layout_3.setVisibility(View.GONE);
-
-            circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill));
-            circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
-            line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-
-
-        } else if (current_page.toString().equals("2")) {
-
-
-            current_page = "1";
-
-            layout_1.setVisibility(View.VISIBLE);
-            layout_2.setVisibility(View.GONE);
-            layout_3.setVisibility(View.GONE);
-
-            circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
-            circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
-            line.setBackgroundColor(getResources().getColor(R.color.color_bac));
-        }
 
 
     }
+
 
     public void select_image_from_local(int permission, int st_code) {
 
@@ -780,7 +559,7 @@ LinearLayout addres_layount;
                 ArrayList<Image> images = ImagePicker.getImages(data);
                 String filePath = images.get(0).getPath().toString();
                 Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
-                image_of_contract.setImageBitmap(selectedImagea);
+//                image_of_contract.setImageBitmap(selectedImagea);
                 contract_file_file = new File(filePath);
 //                try {
 //                    RequestParams requestParams = new RequestParams();
@@ -799,7 +578,7 @@ LinearLayout addres_layount;
                 ArrayList<Image> images = ImagePicker.getImages(data);
                 String filePath = images.get(0).getPath().toString();
                 Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
-                image_id.setImageBitmap(selectedImagea);
+//                image_id.setImageBitmap(selectedImagea);
                 get_id_image_file = new File(filePath);
 //                try {
 //                    RequestParams requestParams = new RequestParams();
@@ -847,6 +626,7 @@ LinearLayout addres_layount;
 
 
     }
+
     public void init_volley() {
 
 

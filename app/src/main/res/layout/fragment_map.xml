@@ -66,12 +66,52 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+
+
+                android:background="@drawable/background_fill_map_type">
+
+                <TextView
+                    android:id="@+id/Orders_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_login"
+                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="@string/Orders_tab"
+                    android:textColor="@color/white"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/Offers_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:gravity="center"
+                    android:paddingLeft="15dp"
+
+                    android:paddingRight="15dp"
+                    android:text="@string/Offers_tab"
+                    android:textColor="@color/black"
+                    android:textSize="13dp" />
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/search_background"
@@ -106,6 +146,15 @@
                     android:layout_marginBottom="5dp"
                     android:background="#AAABB3" />
 
+                <ImageView
+                    android:id="@+id/filtter"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:background="@drawable/search_background"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_filter" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/image_profile"
@@ -114,6 +163,7 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:src="@drawable/ic_user_un"
+                    android:visibility="gone"
 
 
                     app:civ_border_color="#9777B2"
@@ -134,7 +184,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:paddingStart="20dp">
+                android:paddingStart="20dp"
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="40dp"

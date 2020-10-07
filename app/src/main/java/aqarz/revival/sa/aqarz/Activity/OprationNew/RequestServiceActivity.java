@@ -52,6 +52,17 @@ public class RequestServiceActivity extends AppCompatActivity {
 
 
             }
+        }); fini_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(RequestServiceActivity.this, FinanceActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+
+
+            }
         });
 
 //        rent_layout.setOnClickListener(new View.OnClickListener() {

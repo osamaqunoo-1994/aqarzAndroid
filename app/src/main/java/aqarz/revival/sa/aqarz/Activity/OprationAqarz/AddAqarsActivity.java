@@ -115,7 +115,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     TextView For_sale, rent, investment;
 
-    TextView Instrument_file_text;
+    ImageView Instrument_file_text;
     TextView Add_charts_text;
     TextView deluxe, average, normal;
     TextView north, south, east, west;
@@ -1553,12 +1553,12 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                     String filePath = images.get(0).getPath().toString();
                     Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
-
+                    Instrument_file_text.setImageBitmap(selectedImagea);
 
                     File file_image_profile = new File(filePath);
 
                     try {
-                        Instrument_file_text.setText(getResources().getString(R.string.upload_file_success));
+//                        Instrument_file_text.setText(getResources().getString(R.string.upload_file_success));
                         instrument_file = file_image_profile;
 
 //                RequestParams requestParams = new RequestParams();
