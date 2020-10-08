@@ -39,7 +39,12 @@ public class WebService {
     public static String addImg = Domain + "addImg/estate";
     public static String addImg_planned = Domain + "addImg/planned";
     public static String addestate = Domain + "add/estate";
-    public static String Home = Domain + "home";
+    public static String Home = Domain + "home/estate";
+    public static String Home_3 = Domain + "home";
+    public static String Home_4 = Domain + "home/estate";
+    public static String Home_2 = Domain + "home/estate/list";
+    public static String Home_1 = Domain + "home/list";
+    public static String fund_Request = Domain + "fund/Request";
     public static String rate_Request = Domain + "rate/Request";
     public static String estate_Request = Domain + "estate/Request";
 
@@ -67,8 +72,8 @@ public class WebService {
         heder.put("Accept", "application/json");
         heder.put("Accept-Language", Hawk.get("lang").toString());
         if (Hawk.contains("api_token")) {
-            if (!Hawk.get("api_token").toString().equals("")) {
-                heder.put("auth", Hawk.get("api_token").toString());
+            if (!Hawk.get("api_token").toString().equals("")) {//Hawk.get("api_token").toString()
+                heder.put("auth", "token 3a5a51601b69bd31c6d825aa4e664faad79fa6715406dbc123274736551762c684ae994f3072acf6b1b02a2bc3f72ee799576b6adf2a84b9f2af2799dff0a2b4");//
                 System.out.println("auth " + "  " + Hawk.get("api_token").toString());
             }
         }

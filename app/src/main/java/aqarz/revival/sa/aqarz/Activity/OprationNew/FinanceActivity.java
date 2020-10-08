@@ -16,6 +16,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -27,9 +28,13 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
 import com.loopj.android.http.RequestParams;
 import com.nguyenhoanglam.imagepicker.model.Image;
 import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -45,9 +50,11 @@ import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.Settings;
 import aqarz.revival.sa.aqarz.Settings.WebService;
+import aqarz.revival.sa.aqarz.api.IResult;
 import aqarz.revival.sa.aqarz.api.VolleyService;
 
 public class FinanceActivity extends AppCompatActivity {
+    IResult mResultCallback;
 
 
     Button next_to_2;
@@ -62,7 +69,7 @@ public class FinanceActivity extends AppCompatActivity {
 
     RecyclerView opration_RecyclerView;
     List<TypeModules> type_list = new ArrayList<>();
-    String opration_select = "";
+    String opration_select = "2";
 
 
     TextView governmental;
@@ -84,9 +91,11 @@ public class FinanceActivity extends AppCompatActivity {
 
     BottomSheetDialogFragment_SelectBanks bottomSheetDialogFragment_selectBanks;
     EditText priceAqar, available_price, Solidarity_salary;
+    EditText Neighborhoodname, Postal_code, additional_number, unit_number;
 
     EditText name, phone, id_number;
     EditText name_city, total_sallary, Financial_obligations;
+    EditText buldingnumber, StreetName;
 
     TextView start_work_date;
     TextView banks;
@@ -150,6 +159,15 @@ public class FinanceActivity extends AppCompatActivity {
         banks = findViewById(R.id.banks);
         start_work_date = findViewById(R.id.start_work_date);
         image_id = findViewById(R.id.image_id);
+        Neighborhoodname = findViewById(R.id.Neighborhoodname);
+        Postal_code = findViewById(R.id.Postal_code);
+        additional_number = findViewById(R.id.additional_number);
+        unit_number = findViewById(R.id.unit_number);
+
+        buldingnumber = findViewById(R.id.buldingnumber);
+        StreetName = findViewById(R.id.StreetName);
+
+
         //---------------------------------------------------------
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
 
@@ -530,6 +548,139 @@ public class FinanceActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
+                if (name.getText().toString().equals("")) {
+
+
+                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.name) + " " + getResources().getString(R.string.is_requred), "error");
+
+
+                } else if (phone.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.phone_number) + " " + getResources().getString(R.string.is_requred), "error");
+
+                } else if (date_bertih.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Date_of_Birth) + " " + getResources().getString(R.string.is_requred), "error");
+
+                } else if (id_number.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.id_number) + " " + getResources().getString(R.string.is_requred), "error");
+
+                } else if (city.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.city) + " " + getResources().getString(R.string.is_requred), "error");
+
+                } else if (start_work_date.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.startworkdate) + " " + getResources().getString(R.string.is_requred), "error");
+
+                } else if (total_sallary.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Total_salary) + " " + getResources().getString(R.string.is_requred), "error");
+
+                } else if (banks.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Salary_Transferred) + " " + getResources().getString(R.string.is_requred), "error");
+
+                } else if (Financial_obligations.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Financial_obligations) + " " + getResources().getString(R.string.is_requred), "error");
+
+                } else {
+
+
+                    WebService.loading(FinanceActivity.this, true);
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, FinanceActivity.this);
+
+                    RequestParams sendObj = new RequestParams();
+
+                    try {
+
+
+                        sendObj.put("operation_type_id", "2");//form operation list api in setting
+                        sendObj.put("estate_type_id", opration_select);//form estate type list api in setting
+                        sendObj.put("job_type", tenant_job_type);
+
+                        sendObj.put("finance_interval", seek_progress);//from seek bar
+                        sendObj.put("job_start_date", start_work_date.getText().toString());
+                        sendObj.put("estate_price", priceAqar.getText().toString());
+                        sendObj.put("engagements", Financial_obligations.getText().toString());
+                        sendObj.put("city_id", city_id);
+                        sendObj.put("name", name.getText().toString());
+
+
+                        sendObj.put("identity_number", id_number.getText().toString());
+                        if (image_id_file != null) {
+                            sendObj.put("identity_file", image_id_file);//
+                        }
+
+
+                        sendObj.put("mobile", phone.getText().toString());
+//                        sendObj.put("age", age.getText().toString());
+                        sendObj.put("total_salary", total_sallary.getText().toString());
+                        sendObj.put("available_amount", available_price.getText().toString());
+//                        sendObj.put("national_address", "6855");
+
+                        if (National_address_file != null) {
+                            sendObj.put("national_address_file", National_address_file);//
+
+                        }
+
+
+                        sendObj.put("bank_id", banks_id);
+                        sendObj.put("city_id", city_id);
+
+
+                        if (switch_address.isChecked()) {
+                            sendObj.put("national_address_display", "1");
+
+                        } else {
+                            sendObj.put("national_address_display", "0");
+
+                        }
+                        if (Solidarity_partner.isChecked()) {
+                            sendObj.put("solidarity_partner", "1");
+                            sendObj.put("solidarity_salary", Solidarity_salary.getText().toString());
+
+                        } else {
+                            sendObj.put("solidarity_partner", "0");
+
+                        }
+
+
+                        if (National_address_file != null) {
+                            sendObj.put("national_address_file", National_address_file);//
+
+                        }
+
+                        if (!StreetName.getText().toString().equals("")) {
+                            sendObj.put("street_name", StreetName.getText().toString());//
+
+                        }
+                        if (!Neighborhoodname.getText().toString().equals("")) {
+                            sendObj.put("neighborhood_name", Neighborhoodname.getText().toString());//
+
+                        }
+                        if (!buldingnumber.getText().toString().equals("")) {
+                            sendObj.put("building_city_name", buldingnumber.getText().toString());//
+
+                        }
+                        if (!Postal_code.getText().toString().equals("")) {
+                            sendObj.put("postal_code", Postal_code.getText().toString());//
+
+                        }
+                        if (!unit_number.getText().toString().equals("")) {
+                            sendObj.put("unit_name", unit_number.getText().toString());//
+
+                        }
+
+//                        sendObj.put("unit_name", unit_number.getText().toString());//
+                        init_volley();
+
+                        System.out.println(sendObj.toString());
+                        mVolleyService.postDataasync_with_file("finance", WebService.finance, sendObj);
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+//
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
@@ -561,6 +712,8 @@ public class FinanceActivity extends AppCompatActivity {
 //                    circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
 //                    circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
 //                    line.setBackgroundColor(getResources().getColor(R.color.color_bac));
+                } else {
+                    finish();
                 }
 
 
@@ -599,6 +752,8 @@ public class FinanceActivity extends AppCompatActivity {
 //            circle_2.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
 //            circle_3.setBackground(getResources().getDrawable(R.drawable.circle_fill_un));
 //            line.setBackgroundColor(getResources().getColor(R.color.color_bac));
+        } else {
+            finish();
         }
 
 
@@ -748,6 +903,82 @@ public class FinanceActivity extends AppCompatActivity {
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+
+
+    }
+
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response.toString());
+                WebService.loading(FinanceActivity.this, false);
+//{"status":true,"code":200,"message":"User Profile","data"
+                try {
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+                        String data = response.getString("data");
+
+//                        Hawk.put("user", data);
+                        String message = response.getString("message");
+
+                        WebService.Make_Toast_color(FinanceActivity.this, message, "success");
+
+                    } else {
+                        String message = response.getString("message");
+
+                        WebService.Make_Toast_color(FinanceActivity.this, message, "error");
+                    }
+
+
+                } catch (Exception e) {
+
+                }
+
+
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+
+                WebService.loading(FinanceActivity.this, false);
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color(FinanceActivity.this, message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+                WebService.loading(FinanceActivity.this, false);
+
+
+            }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+                WebService.loading(FinanceActivity.this, false);
+
+                WebService.Make_Toast_color(FinanceActivity.this, error, "error");
+
+
+            }
+        };
 
 
     }

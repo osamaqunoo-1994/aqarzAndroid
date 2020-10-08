@@ -10,8 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:background="@color/white"
+        android:gravity="center"
 
         android:orientation="vertical">
 
@@ -59,14 +59,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="end"
                 android:background="@color/white"
+                android:gravity="end"
 
 
                 android:orientation="vertical">
-
-
-
 
 
                 <LinearLayout
@@ -90,8 +87,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
                             android:layout_marginTop="20dp"
+                            android:gravity="center"
                             android:orientation="vertical">
 
 
@@ -196,14 +193,12 @@
                         android:thumb="@drawable/sb_thumb" />
 
 
-
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
-                        android:gravity="center"
                         android:layout_marginTop="10dp"
+                        android:gravity="center"
                         android:paddingBottom="5dp">
 
                         <TextView
@@ -241,8 +236,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
                             android:layout_marginTop="10dp"
+                            android:gravity="center"
                             android:orientation="vertical">
 
 
@@ -337,6 +332,7 @@
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -437,6 +433,7 @@
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -447,13 +444,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/city"
+                            android:text="@string/city_name"
                             android:textColor="@color/textColor2"
-                            android:textSize="13dp" />
+                            android:textSize="15dp" />
 
 
-                        <EditText
-                            android:id="@+id/name_city"
+                        <TextView
+                            android:id="@+id/city"
                             android:layout_width="match_parent"
                             android:layout_height="38dp"
                             android:layout_marginStart="@dimen/_20sdp"
@@ -461,13 +458,11 @@
                             android:background="@drawable/edit_text_background"
                             android:gravity="center_vertical"
                             android:hint="@string/writehear"
-                            android:inputType="text"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
                             android:textColorHint="@color/hint_color"
                             android:textSize="@dimen/_10sdp" />
-
                     </LinearLayout>
 
                     <LinearLayout
@@ -532,6 +527,7 @@
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -567,9 +563,7 @@
                     </LinearLayout>
 
 
-
                 </LinearLayout>
-
 
 
                 <LinearLayout
@@ -620,8 +614,8 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -629,10 +623,11 @@
                             android:text="@string/Show_nayi"
                             android:textColor="@color/textColor2"
                             android:textSize="13dp" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
 
                         <Switch
                             android:id="@+id/switch_"
@@ -640,19 +635,21 @@
                             android:layout_height="wrap_content"
                             android:checked="true"
                             android:theme="@style/SCBSwitch" />
+
                         <LinearLayout
                             android:layout_width="20dp"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content" />
 
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:orientation="vertical"
                         android:id="@+id/addres_layount"
-
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -672,7 +669,6 @@
                                     android:text="@string/National_attach_w"
                                     android:textColor="@color/textColor2"
                                     android:textSize="15dp" />
-
 
 
                             </LinearLayout>
@@ -798,7 +794,6 @@
 
 
                         </LinearLayout>
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -809,13 +804,13 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/city_name"
+                                android:text="@string/city"
                                 android:textColor="@color/textColor2"
-                                android:textSize="15dp" />
+                                android:textSize="13dp" />
 
 
-                            <TextView
-                                android:id="@+id/city"
+                            <EditText
+                                android:id="@+id/name_city"
                                 android:layout_width="match_parent"
                                 android:layout_height="38dp"
                                 android:layout_marginStart="@dimen/_20sdp"
@@ -823,12 +818,15 @@
                                 android:background="@drawable/edit_text_background"
                                 android:gravity="center_vertical"
                                 android:hint="@string/writehear"
+                                android:inputType="text"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
                                 android:text=""
                                 android:textColorHint="@color/hint_color"
                                 android:textSize="@dimen/_10sdp" />
+
                         </LinearLayout>
+
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -936,7 +934,6 @@
                         </LinearLayout>
 
                     </LinearLayout>
-
 
 
                     <Button

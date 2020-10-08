@@ -4,18 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Activity.OprationNew.FinanceActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:background="@color/white"
+
         android:orientation="vertical">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="55dp"
+
             android:background="@color/colorPrimary"
             android:gravity="center">
 
@@ -47,10 +51,14 @@
         </LinearLayout>
 
         <ScrollView
+            android:background="@color/white"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:background="@color/white"
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="end"
@@ -59,6 +67,8 @@
 
 
                 <LinearLayout
+                    android:background="@color/white"
+
                     android:id="@+id/layout_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -68,7 +78,7 @@
                     android:gravity="end"
 
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
 
                     <LinearLayout
@@ -454,7 +464,7 @@
                     android:layout_marginRight="15dp"
                     android:gravity="end"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -737,13 +747,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/city"
+                            android:text="@string/city_name"
                             android:textColor="@color/textColor2"
                             android:textSize="15dp" />
 
 
-                        <EditText
-                            android:id="@+id/name_city"
+                        <TextView
+                            android:id="@+id/city"
                             android:layout_width="match_parent"
                             android:layout_height="38dp"
                             android:layout_marginStart="@dimen/_20sdp"
@@ -751,13 +761,11 @@
                             android:background="@drawable/edit_text_background"
                             android:gravity="center_vertical"
                             android:hint="@string/writehear"
-                            android:inputType="text"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
                             android:textColorHint="@color/hint_color"
                             android:textSize="@dimen/_10sdp" />
-
                     </LinearLayout>
 
 
@@ -911,7 +919,7 @@
                     android:layout_marginRight="15dp"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -1135,7 +1143,6 @@
 
 
                         </LinearLayout>
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1146,13 +1153,13 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/city_name"
+                                android:text="@string/city"
                                 android:textColor="@color/textColor2"
                                 android:textSize="15dp" />
 
 
-                            <TextView
-                                android:id="@+id/city"
+                            <EditText
+                                android:id="@+id/name_city"
                                 android:layout_width="match_parent"
                                 android:layout_height="38dp"
                                 android:layout_marginStart="@dimen/_20sdp"
@@ -1160,12 +1167,15 @@
                                 android:background="@drawable/edit_text_background"
                                 android:gravity="center_vertical"
                                 android:hint="@string/writehear"
+                                android:inputType="text"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
                                 android:text=""
                                 android:textColorHint="@color/hint_color"
                                 android:textSize="@dimen/_10sdp" />
+
                         </LinearLayout>
+
 
                         <LinearLayout
                             android:layout_width="match_parent"

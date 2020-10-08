@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +24,19 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.orhanobut.hawk.Hawk;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,16 +53,24 @@ import aqarz.revival.sa.aqarz.Activity.TermsActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_order_;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders;
+import aqarz.revival.sa.aqarz.Modules.HomeModules;
+import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
 import aqarz.revival.sa.aqarz.Modules.OrdersModules;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.LocaleUtils;
 import aqarz.revival.sa.aqarz.Settings.Settings;
+import aqarz.revival.sa.aqarz.Settings.WebService;
+import aqarz.revival.sa.aqarz.api.IResult;
+import aqarz.revival.sa.aqarz.api.VolleyService;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class OrdersFragment extends Fragment {
+    IResult mResultCallback;
 
     HorizontalScrollView section_horizantal;
     RecyclerView orders_rec;
@@ -102,8 +122,6 @@ public class OrdersFragment extends Fragment {
         section_horizantal = v.findViewById(R.id.section_horizantal);
 
 
-        ordersModules.add(new OrdersModules());
-        ordersModules.add(new OrdersModules());
 
 
         try {
@@ -143,7 +161,7 @@ public class OrdersFragment extends Fragment {
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         orders_rec.setLayoutManager(layoutManager1);
-        orders_rec.setAdapter(new RecyclerView_orders(getContext(), ordersModules));
+//        orders_rec.setAdapter(new RecyclerView_orders(getContext(), ordersModules));
 //------------------------------------------------------------------------------------------------------------
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
 
@@ -238,6 +256,9 @@ public class OrdersFragment extends Fragment {
                 list_opration.setVisibility(View.GONE);
                 type_sale.setVisibility(View.VISIBLE);
 
+                WebService.loading(getActivity(), true);
+
+
 
             }
         });
@@ -265,11 +286,39 @@ public class OrdersFragment extends Fragment {
                 list_opration.setVisibility(View.GONE);
                 type_sale.setVisibility(View.GONE);
 
+                init_volley();
+                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request );
+
 
             }
         });
         list_opration.setVisibility(View.GONE);
         type_sale.setVisibility(View.GONE);
+
+
+
+
+
+
+
+
+
+
+
+
+
+        WebService.loading(getActivity(), true);
+
+        init_volley();
+        VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+        mVolleyService.getDataVolley("fund_Request", WebService.fund_Request );
+
+
+
+
+
+
 
     }
 
@@ -291,6 +340,103 @@ public class OrdersFragment extends Fragment {
 
 
         super.onResume();
+    }
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response);
+                WebService.loading(getActivity(), false);
+//{"status":true,"code":200,"message":"User Profile","data"
+
+
+                try {
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+
+
+                        System.out.println("lfkdlfkdlkf");
+                        String data = response.getString("data");
+
+                        JSONObject jsonObject_data = new JSONObject(data);
+
+                        String data_inside = jsonObject_data.getString("data");
+                        JSONArray jsonArray = new JSONArray(data_inside);
+                        orders_rec.setAdapter(null);
+                        ordersModules.clear();
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                            JsonParser parser = new JsonParser();
+                            JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                            Gson gson = new Gson();
+
+                            OrdersModules ordersModulesm = gson.fromJson(mJson, OrdersModules.class);
+                            ordersModules.add(ordersModulesm);
+
+
+                        }
+
+
+                        orders_rec.setAdapter(new RecyclerView_orders(getContext(), ordersModules));
+
+
+
+
+
+
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+
+            }
+
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.getMessage());
+                WebService.loading(getActivity(), false);
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color(getActivity(), message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+
+            }
+
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+                WebService.loading(getActivity(), false);
+
+            }
+
+
+        };
+
+
     }
 
 }

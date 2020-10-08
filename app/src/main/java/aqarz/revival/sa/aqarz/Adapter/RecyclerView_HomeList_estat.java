@@ -17,15 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
-import aqarz.revival.sa.aqarz.Modules.OrdersModules;
+import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
 import aqarz.revival.sa.aqarz.R;
 
 
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_orders extends RecyclerView.Adapter<RecyclerView_orders.MyViewHolder> {
-    public static List<OrdersModules> alldata = new ArrayList<OrdersModules>();
+public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerView_HomeList_estat.MyViewHolder> {
+    public static List<HomeModules_aqares> alldata = new ArrayList<HomeModules_aqares>();
     static int Postion_opend = 0;
 
 
@@ -54,32 +54,45 @@ public class RecyclerView_orders extends RecyclerView.Adapter<RecyclerView_order
 //        ProgressBar progress;
 //        LinearLayout add_to_my;
 
+        ImageView image_aqars;
+        TextView type;
+        TextView type_2;
+        TextView price;
+        TextView address;
+        TextView opration;
+        TextView number_room;
+        TextView number_bathroom;
+        TextView max_space;
+        TextView viesw;
 
-TextView price;
-TextView address;
-TextView view_type;
-TextView space;
-TextView name_estate;
 
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
 
 
-
-
+            image_aqars = view.findViewById(R.id.image_aqars);
+            type = view.findViewById(R.id.type);
+            type_2 = view.findViewById(R.id.type_2);
             price = view.findViewById(R.id.price);
-            name_estate = view.findViewById(R.id.name_estate);
             address = view.findViewById(R.id.address);
-            space = view.findViewById(R.id.space);
-            view_type = view.findViewById(R.id.view_type);
+            opration = view.findViewById(R.id.opration);
+
+
+            number_room = view.findViewById(R.id.number_room);
+            number_bathroom = view.findViewById(R.id.number_bathroom);
+            max_space = view.findViewById(R.id.max_space);
+            viesw = view.findViewById(R.id.viesw);
+
+
+//            ratingbar = view.findViewById(R.id.ratingbar);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
     }
 
-    public RecyclerView_orders(Context context, List<OrdersModules> alldata) {
+    public RecyclerView_HomeList_estat(Context context, List<HomeModules_aqares> alldata) {
         this.alldata = alldata;
         this.context = context;
     }
@@ -104,21 +117,20 @@ TextView name_estate;
 //
 //            }
 //        }
+////
 //
 
 
+        holder.type.setText(alldata.get(position).getEstate_type_name());
+        holder.type_2.setText(alldata.get(position).getOperationTypeName());
 
-        holder.price.setText(alldata.get(position).getEstatePriceRange());
-        holder.view_type.setText(alldata.get(position).getDirEstate());
-        holder.space.setText(alldata.get(position).getStreetViewRange());
-        holder.name_estate.setText(alldata.get(position).getEstateTypeName());
-        holder.address.setText(alldata.get(position).getCityName()+" , "+alldata.get(position).getNeighborhoodName());
+        holder.price.setText(alldata.get(position).getTotalPrice());
 
 
-
-
-
-
+        holder.opration.setText(alldata.get(position).getEstate_type_name());
+//        holder.number_room.setText(alldata.get(position).getRoomsNumber());
+//        holder.number_bathroom.setText(alldata.get(position).getBathroomsNumber());
+//        holder.max_space.setText(alldata.get(position).getStreetView());
 
 
 //
@@ -214,7 +226,7 @@ TextView name_estate;
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_orders, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_aqars, parent, false);
 
 
         // Fresco.initialize(context);

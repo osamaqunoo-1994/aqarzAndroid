@@ -63,6 +63,28 @@ public class RequestServiceActivity extends AppCompatActivity {
 
 
             }
+        }); rate_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(RequestServiceActivity.this, RateActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+
+
+            }
+        });aqar_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(RequestServiceActivity.this, AqarzOrActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+
+
+            }
         });
 
 //        rent_layout.setOnClickListener(new View.OnClickListener() {

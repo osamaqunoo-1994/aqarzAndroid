@@ -72,10 +72,12 @@ import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_in_map;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_select_oprat_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_Filtter;
 import aqarz.revival.sa.aqarz.Modules.BankModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
+import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
 import aqarz.revival.sa.aqarz.Modules.OprationModules;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.Modules.select_typeModules;
@@ -98,6 +100,9 @@ public class MapsFragment extends Fragment {
     TextView Orders_tab;
     TextView Offers_tab;
 
+
+    String typeTab = "Orders_tab";
+
     TextView RequstAqars;
     TextView addAqares;
     RecyclerView type;
@@ -113,6 +118,7 @@ public class MapsFragment extends Fragment {
 
 
     List<HomeModules> homeModules = new ArrayList<>();
+    List<HomeModules_aqares> homeModules_aqares = new ArrayList<>();
 
 
     RelativeLayout layout_list;
@@ -121,6 +127,9 @@ public class MapsFragment extends Fragment {
 
     ImageView convert_map_to_list;
     ImageView change_list_to_map;
+
+
+    String convert_type = "map";
 
 
     RecyclerView list_aqaers;
@@ -133,6 +142,10 @@ public class MapsFragment extends Fragment {
     GpsTracker gpsTracker;
     ImageView filtter;
 
+
+    ImageView nodata_vis;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_map, container, false);
@@ -144,13 +157,12 @@ public class MapsFragment extends Fragment {
         getProfile();
 
 
-        try {
-            if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
 
         mMapView.onCreate(savedInstanceState);
@@ -172,60 +184,51 @@ public class MapsFragment extends Fragment {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
 
-                        BottomSheetDialogFragment_DetailsAqares bottomSheetDialogFragment_detailsAqares = new BottomSheetDialogFragment_DetailsAqares(homeModules.get(0));
-
-                        bottomSheetDialogFragment_detailsAqares.show(getFragmentManager(), "");
-
+//                        BottomSheetDialogFragment_DetailsAqares bottomSheetDialogFragment_detailsAqares = new BottomSheetDialogFragment_DetailsAqares(homeModules.get(0));
+//
+//                        bottomSheetDialogFragment_detailsAqares.show(getFragmentManager(), "");
+//
 
                         return false;
                     }
                 });
 
+                try {
+                    if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+
+                    } else {
+
+
+                        LatLng mylocation = getLocation();
+                        if (mylocation != null) {
+                            googleMap.addMarker(new MarkerOptions()
+                                    .position(mylocation))
+
+                            ;
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 20));
+                            // Zoom in, animating the camera.
+                            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+                            // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(17), 3000, null);
+                        }
+
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
 
             }
         });
 
 
-        init_volley();
-        VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-        mVolleyService.getDataVolley("HomeRequst", WebService.Home + "?lat=10&lan=20&estate_type=1&request_type=pay");
-
-        ActionButton();
         return v;
     }
 
-    public void action_btn() {
-        Orders_tab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Orders_tab.setBackground(getResources().getDrawable(R.drawable.button_login));
-
-                Orders_tab.setTextColor(getResources().getColor(R.color.white));
-
-                Offers_tab.setBackground(null);
-
-                Offers_tab.setTextColor(getResources().getColor(R.color.textColor));
-
-
-            }
-        });
-
-
-        Offers_tab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Offers_tab.setBackground(getResources().getDrawable(R.drawable.button_login));
-
-                Offers_tab.setTextColor(getResources().getColor(R.color.white));
-
-                Orders_tab.setBackground(null);
-
-                Orders_tab.setTextColor(getResources().getColor(R.color.textColor));
-
-            }
-        });
-
-    }
 
     public static MapsFragment newInstance(String text) {
 
@@ -292,12 +295,12 @@ public class MapsFragment extends Fragment {
         list_aqaers = v.findViewById(R.id.list_aqaers);
         chmnage_map_style = v.findViewById(R.id.chmnage_map_style);
         get_location = v.findViewById(R.id.get_location);
+        nodata_vis = v.findViewById(R.id.nodata_vis);
 
         LinearLayoutManager layoutManagexx
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         list_aqaers.setLayoutManager(layoutManagexx);
 
-        action_btn();
 
 //---------------------------------------------------------------------------------------------
 
@@ -315,25 +318,32 @@ public class MapsFragment extends Fragment {
         type.setAdapter(recyclerView_all_type_in_fragment);
 
 //---------------------------------------------------------------------------------------
-        oprationModules_list.add(new select_typeModules(1, getContext().getResources().getString(R.string.All)));
-        oprationModules_list.add(new select_typeModules(1, getContext().getResources().getString(R.string.Pay)));
-        oprationModules_list.add(new select_typeModules(1, getContext().getResources().getString(R.string.Rent)));
-        oprationModules_list.add(new select_typeModules(1, getContext().getResources().getString(R.string.Investment)));
-        LinearLayoutManager layoutManagerm
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        selsct_type_all.setLayoutManager(layoutManagerm);
+//        oprationModules_list.add(new select_typeModules(1, getContext().getResources().getString(R.string.All)));
+//        oprationModules_list.add(new select_typeModules(1, getContext().getResources().getString(R.string.Pay)));
+//        oprationModules_list.add(new select_typeModules(1, getContext().getResources().getString(R.string.Rent)));
+//        oprationModules_list.add(new select_typeModules(1, getContext().getResources().getString(R.string.Investment)));
+//        LinearLayoutManager layoutManagerm
+//                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+//        selsct_type_all.setLayoutManager(layoutManagerm);
 
-        RecyclerView_All_select_oprat_in_fragment recyclerView_all_select_oprat_in_fragment = new RecyclerView_All_select_oprat_in_fragment(getContext(), oprationModules_list);
-        recyclerView_all_select_oprat_in_fragment.addItemClickListener(new RecyclerView_All_select_oprat_in_fragment.ItemClickListener() {
-            @Override
-            public void onItemClick(List<select_typeModules> select_typeModules) {
+//        RecyclerView_All_select_oprat_in_fragment recyclerView_all_select_oprat_in_fragment = new RecyclerView_All_select_oprat_in_fragment(getContext(), oprationModules_list);
+//        recyclerView_all_select_oprat_in_fragment.addItemClickListener(new RecyclerView_All_select_oprat_in_fragment.ItemClickListener() {
+//            @Override
+//            public void onItemClick(List<select_typeModules> select_typeModules) {
+//
+//                oprationModules_list = select_typeModules;
+//
+//
+//            }
+//        });
+//        selsct_type_all.setAdapter(recyclerView_all_select_oprat_in_fragment);
 
-                oprationModules_list = select_typeModules;
 
+        ActionButton();
+        action_btn();
 
-            }
-        });
-        selsct_type_all.setAdapter(recyclerView_all_select_oprat_in_fragment);
+        get_data_from_api("map_order");
+
 
     }
 
@@ -411,8 +421,14 @@ public class MapsFragment extends Fragment {
                 layout_button_2.setVisibility(View.GONE);
                 layout_list.setVisibility(View.VISIBLE);
 
+                convert_type = "list";
+                if (typeTab.equals("Orders_tab")) {
+                    get_data_from_api("list_order");
 
-                list_aqaers.setAdapter(new RecyclerView_HomeList(getContext(), homeModules));
+                } else {
+                    get_data_from_api("list_offer");
+
+                }
 
 
             }
@@ -427,6 +443,15 @@ public class MapsFragment extends Fragment {
                 layout_button_2.setVisibility(View.VISIBLE);
                 layout_list.setVisibility(View.GONE);
 
+                if (typeTab.equals("Orders_tab")) {
+                    get_data_from_api("map_order");
+
+                } else {
+                    get_data_from_api("map_offer");
+
+                }
+
+                convert_type = "map";
 
             }
         });
@@ -449,6 +474,8 @@ public class MapsFragment extends Fragment {
 
             }
         });
+
+
         get_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -493,6 +520,53 @@ public class MapsFragment extends Fragment {
                     }
                 });
                 bottomSheetDialogFragment_filtter.show(getFragmentManager(), "");
+
+
+            }
+        });
+
+    }
+
+    public void action_btn() {
+        Orders_tab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Orders_tab.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                Orders_tab.setTextColor(getResources().getColor(R.color.white));
+                Offers_tab.setBackground(null);
+                Offers_tab.setTextColor(getResources().getColor(R.color.textColor));
+
+                if (convert_type.equals("map")) {
+                    get_data_from_api("map_order");
+
+                } else {
+                    get_data_from_api("list_order");
+
+                }
+
+                typeTab = "Orders_tab";
+            }
+        });
+
+
+        Offers_tab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Offers_tab.setBackground(getResources().getDrawable(R.drawable.button_login));
+                Offers_tab.setTextColor(getResources().getColor(R.color.white));
+                Orders_tab.setBackground(null);
+                Orders_tab.setTextColor(getResources().getColor(R.color.textColor));
+
+                if (convert_type.equals("map")) {
+                    get_data_from_api("map_offer");
+
+                } else {
+                    get_data_from_api("list_offer");
+
+                }
+
+                typeTab = "Offers_tab";
 
 
             }
@@ -574,54 +648,196 @@ public class MapsFragment extends Fragment {
                 Log.d("TAG", "Volley JSON post" + response);
                 WebService.loading(getActivity(), false);
 //{"status":true,"code":200,"message":"User Profile","data"
+
+
                 try {
                     boolean status = response.getBoolean("status");
                     if (status) {
-                        String data = response.getString("data");
-
-                        JSONObject jsonObject_data = new JSONObject(data);
-
-                        String data_inside = jsonObject_data.getString("data");
 
 
-                        JSONArray jsonArray = new JSONArray(data_inside);
+                        if (requestType.equals("list_order")) {
+                            System.out.println("lfkdlfkdlkf");
+                            String data = response.getString("data");
 
-                        homeModules.clear();
-                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject_data = new JSONObject(data);
+
+                            String data_inside = jsonObject_data.getString("data");
+                            JSONArray jsonArray = new JSONArray(data_inside);
+                            list_aqaers.setAdapter(null);
+                            homeModules.clear();
+                            for (int i = 0; i < jsonArray.length(); i++) {
 
 
-                            JsonParser parser = new JsonParser();
-                            JsonElement mJson = parser.parse(jsonArray.getString(i));
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
 
-                            Gson gson = new Gson();
+                                Gson gson = new Gson();
 
-                            HomeModules bankModules = gson.fromJson(mJson, HomeModules.class);
-                            homeModules.add(bankModules);
+                                HomeModules bankModules = gson.fromJson(mJson, HomeModules.class);
+                                homeModules.add(bankModules);
+
+
+                            }
+                            if (homeModules.size() == 0) {
+
+                                nodata_vis.setVisibility(View.VISIBLE);
+                            } else {
+                                nodata_vis.setVisibility(View.GONE);
+
+                            }
+                            list_aqaers.setAdapter(new RecyclerView_HomeList(getContext(), homeModules));
+
+
+                        } else if (requestType.equals("list_offer")) {//aqarz
+                            String data = response.getString("data");
+
+                            JSONObject jsonObject_data = new JSONObject(data);
+
+                            String data_inside = jsonObject_data.getString("data");
+                            JSONArray jsonArray = new JSONArray(data_inside);
+
+                            homeModules_aqares.clear();
+                            list_aqaers.setAdapter(null);
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+                                try {
+
+                                    JsonParser parser = new JsonParser();
+                                    JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                    Gson gson = new Gson();
+
+                                    HomeModules_aqares bankModules = gson.fromJson(mJson, HomeModules_aqares.class);
+                                    homeModules_aqares.add(bankModules);
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+
+                            if (homeModules_aqares.size() == 0) {
+
+                                nodata_vis.setVisibility(View.VISIBLE);
+                            } else {
+                                nodata_vis.setVisibility(View.GONE);
+
+                            }
+                            System.out.println("homeModules_aqareshomeModules_aqares+" + homeModules_aqares.size());
+                            list_aqaers.setAdapter(new RecyclerView_HomeList_estat(getContext(), homeModules_aqares));
+
+
+                        } else if (requestType.equals("map_order")) {
+
+
+                            System.out.println("lfkdlfkdlkf");
+                            String data = response.getString("data");
+
+                            JSONObject jsonObject_data = new JSONObject(data);
+
+                            String data_inside = jsonObject_data.getString("data");
+                            JSONArray jsonArray = new JSONArray(data_inside);
+
+                            homeModules.clear();
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                Gson gson = new Gson();
+
+                                HomeModules bankModules = gson.fromJson(mJson, HomeModules.class);
+                                homeModules.add(bankModules);
 
 
 //                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(camPos));
 
+                                LatLng sydneya = new LatLng(Double.valueOf(bankModules.getLat()), Double.valueOf(bankModules.getLan()));
+                                googleMap.addMarker(new MarkerOptions()
+                                        .position(sydneya)
+                                        .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(bankModules.getPrice_from()))));
 
+
+//                                LatLng gaza = new LatLng(Double.valueOf("31.484194"), Double.valueOf("34.408283"));
+//                                googleMap.addMarker(new MarkerOptions()
+//                                        .position(gaza)
+//                                        .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_marker_location))));
+
+
+//                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydneya, 13));
+//                        // Zoom in, animating the camera.
+//                        googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+//                        // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+//                        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+//
+////
+                            }
+
+
+                        } else if (requestType.equals("map_offer")) {//aqarz
+                            try {
+
+
+                                System.out.println("lfkdlfkdlkf");
+                                String data = response.getString("data");
+
+                                JSONObject jsonObject_data = new JSONObject(data);
+
+                                String data_inside = jsonObject_data.getString("data");
+                                JSONArray jsonArray = new JSONArray(data_inside);
+
+                                homeModules_aqares.clear();
+                                for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                                    JsonParser parser = new JsonParser();
+                                    JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                    Gson gson = new Gson();
+
+                                    HomeModules_aqares bankModules = gson.fromJson(mJson, HomeModules_aqares.class);
+                                    homeModules_aqares.add(bankModules);
+
+
+//                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(camPos));
+
+                                    LatLng sydneya = new LatLng(Double.valueOf(bankModules.getLat()), Double.valueOf(bankModules.getLan()));
+                                    googleMap.addMarker(new MarkerOptions()
+                                            .position(sydneya)
+                                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(bankModules.getTotalPrice()))));
+
+
+//                                LatLng gaza = new LatLng(Double.valueOf("31.484194"), Double.valueOf("34.408283"));
+//                                googleMap.addMarker(new MarkerOptions()
+//                                        .position(gaza)
+//                                        .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_marker_location))));
+
+
+//                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydneya, 13));
+//                        // Zoom in, animating the camera.
+//                        googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+//                        // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+//                        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+//
+////
+                                }
+                            } catch (Exception e) {
+
+                            }
                         }
 
 
-                        LatLng sydneya = new LatLng(Double.valueOf("31.518519"), Double.valueOf("34.448456"));
-                        googleMap.addMarker(new MarkerOptions()
-                                .position(sydneya)
-                                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_marker_location))));
+//                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydneya, 13));
+//                        // Zoom in, animating the camera.
+//                        googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+//                        // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+//                        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+//
+//
 
 
-                        LatLng gaza = new LatLng(Double.valueOf("31.484194"), Double.valueOf("34.408283"));
-                        googleMap.addMarker(new MarkerOptions()
-                                .position(gaza)
-                                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_marker_location))));
-
-
-                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydneya, 13));
-                        // Zoom in, animating the camera.
-                        googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-                        // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
                     } else {
 
                     }
@@ -639,6 +855,7 @@ public class MapsFragment extends Fragment {
             public void notifyError(String requestType, VolleyError error) {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.getMessage());
+                WebService.loading(getActivity(), false);
 
                 try {
 
@@ -664,6 +881,7 @@ public class MapsFragment extends Fragment {
 
             @Override
             public void notify_Async_Error(String requestType, String error) {
+                WebService.loading(getActivity(), false);
 
             }
 
@@ -673,12 +891,12 @@ public class MapsFragment extends Fragment {
 
     }
 
-    private Bitmap getMarkerBitmapFromView(@DrawableRes int resId) {
+    private Bitmap getMarkerBitmapFromView(String Price) {
 
         View customMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom, null);
         TextView markerImageView = (TextView) customMarkerView.findViewById(R.id.numb);
 //        markerImageView.setImageResource(resId);
-        markerImageView.setText("1.9M");
+        markerImageView.setText(Price);
 
 
         customMarkerView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
@@ -700,7 +918,8 @@ public class MapsFragment extends Fragment {
         if (gpsTracker.canGetLocation()) {
             double latitude = gpsTracker.getLatitude();
             double longitude = gpsTracker.getLongitude();
-
+            System.out.println("latitude:" + latitude);
+            System.out.println("longitude:" + longitude);
 
             LatLng my_location = new LatLng(latitude, longitude);
 
@@ -742,6 +961,36 @@ public class MapsFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+
+    public void get_data_from_api(String type) {
+        WebService.loading(getActivity(), true);
+
+
+        if (type.equals("list_order")) {
+            init_volley();
+            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+            mVolleyService.getDataVolley("list_order", WebService.Home_1 + "?lat=10&lan=20&estate_type=1&request_type=pay");
+
+        } else if (type.equals("list_offer")) {//aqarz
+            init_volley();
+            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+            mVolleyService.getDataVolley("list_offer", WebService.Home_2 + "?lat=10&lan=20");
+
+        } else if (type.equals("map_order")) {
+            init_volley();
+            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+            mVolleyService.getDataVolley("map_order", WebService.Home_3 + "?lat=10&lan=20&estate_type=1&request_type=pay");
+
+        } else if (type.equals("map_offer")) {//aqarz
+            init_volley();
+            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+            mVolleyService.getDataVolley("map_offer", WebService.Home_4 + "?lat=110&lan=211");
+
+        }
+
 
     }
 }

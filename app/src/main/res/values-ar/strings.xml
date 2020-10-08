@@ -321,5 +321,6 @@
     <string name="Offers_tab">العروض</string>
     <string name="priceprice">السعر</string>
     <string name="area_fi">المساحة</string>
+    <string name="Offer_btn">تقديم عرض</string>
 
 </resources>

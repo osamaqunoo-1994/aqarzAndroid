@@ -97,6 +97,15 @@ public class VolleyService {
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    try{
+
+
+
+                        mResultCallback.notify_Async_Error(requestType, errorResponse.getString("message").toString());
+
+                    }catch (Exception e){
+
+                    }
 
                 }
 

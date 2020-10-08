@@ -969,9 +969,9 @@ public class AddAqarsActivity extends AppCompatActivity {
                 investment.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                rent.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
-                investment.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
-                For_sale.getCompoundDrawables()[0].setTint(Color.WHITE);
+//                rent.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
+//                investment.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
+//                For_sale.getCompoundDrawables()[0].setTint(Color.WHITE);
 
                 Type_work_select = "1";
 
@@ -999,9 +999,9 @@ public class AddAqarsActivity extends AppCompatActivity {
                 investment.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                For_sale.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
-                investment.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
-                rent.getCompoundDrawables()[0].setTint(Color.WHITE);
+//                For_sale.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
+//                investment.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
+//                rent.getCompoundDrawables()[0].setTint(Color.WHITE);
 
                 Type_work_select = "2";
 
@@ -1029,9 +1029,9 @@ public class AddAqarsActivity extends AppCompatActivity {
                 rent.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                For_sale.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
-                rent.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
-                investment.getCompoundDrawables()[0].setTint(Color.WHITE);
+//                For_sale.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
+//                rent.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
+//                investment.getCompoundDrawables()[0].setTint(Color.WHITE);
 
                 Type_work_select = "3";
                 date_eqjar.setVisibility(View.GONE);

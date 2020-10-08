@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="wrap_content">
 
 
@@ -98,7 +97,6 @@
                     android:fontFamily="@font/muli_semi_bold"
                     android:paddingLeft="15dp"
                     android:paddingTop="3dp"
-
                     android:paddingRight="15dp"
                     android:paddingBottom="3dp"
                     android:text="gfgsgd"
@@ -252,7 +250,6 @@
                             android:drawableStart="@drawable/ic_room_ic"
                             android:drawablePadding="7dp"
                             android:text="@string/room"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
 
                             android:textColor="#424446" />
 
@@ -289,8 +286,6 @@
                             android:drawableStart="@drawable/ic_room_ic"
                             android:drawablePadding="7dp"
                             android:text="@string/Bathrooms"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-
                             android:textColor="#424446" />
 
                         <LinearLayout
@@ -323,8 +318,6 @@
                             android:layout_height="wrap_content"
                             android:drawableStart="@drawable/ic_space"
                             android:drawablePadding="7dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-
                             android:text="@string/Maximum_space"
                             android:textColor="#424446" />
 
@@ -385,11 +378,6 @@
         </LinearLayout>
 
     </LinearLayout>
-    <LinearLayout
-        android:background="#30cccccc"
-        android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_height="1dp"/>
+
 
 </LinearLayout>

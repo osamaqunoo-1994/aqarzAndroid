@@ -43,8 +43,17 @@
                 android:id="@+id/list_aqaers"
                 android:layout_width="match_parent"
 
+
                 android:layout_height="match_parent"
-                android:layout_marginTop="150dp" />
+                android:layout_marginTop="160dp" />
+
+            <ImageView
+                android:id="@+id/nodata_vis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_no_data"
+                android:visibility="gone" />
 
 
             <ImageView
@@ -193,6 +202,7 @@
                     android:background="@drawable/search_background"
                     android:padding="8dp"
                     android:src="@drawable/ic_filter" />
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/selsct_type_all"

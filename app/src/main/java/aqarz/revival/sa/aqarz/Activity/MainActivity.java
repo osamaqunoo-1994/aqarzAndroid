@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
     public void init() {
         bottomNav = findViewById(R.id.bottom_navigation);
 
-
         if (bottomNav != null) {
 
             // Select first menu item by default and show Fragment accordingly.

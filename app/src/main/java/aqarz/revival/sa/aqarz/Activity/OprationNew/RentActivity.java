@@ -76,7 +76,7 @@ public class RentActivity extends AppCompatActivity {
     TextView Special;
     TextView Soldier;
 
-    String opration_select = "";
+    String opration_select = "1";
     String contract_interval = "";
 
 
@@ -379,34 +379,37 @@ public class RentActivity extends AppCompatActivity {
                 } else if (date_bertih.getText().toString().equals("")) {
                     WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.Date_of_Birth) + " " + getResources().getString(R.string.is_requred), "error");
 
-                } else if (name_city.getText().toString().equals("")) {
+                } else if (city.getText().toString().equals("")) {
                     WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.city) + " " + getResources().getString(R.string.is_requred), "error");
 
                 } else if (Total_salary.getText().toString().equals("")) {
                     WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.Total_salary) + " " + getResources().getString(R.string.is_requred), "error");
 
-                } else if (buldingnumber.getText().toString().equals("") & switch_.isChecked()) {
-                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.buldingnumber) + " " + getResources().getString(R.string.is_requred), "error");
+                }
+//                else if (buldingnumber.getText().toString().equals("") & switch_.isChecked()) {
+//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.buldingnumber) + " " + getResources().getString(R.string.is_requred), "error");
+//
+//                } else if (StreetName.getText().toString().equals("") & switch_.isChecked()) {
+//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.StreetName) + " " + getResources().getString(R.string.is_requred), "error");
+//
+//                } else if (Neighborhoodname.getText().toString().equals("") & switch_.isChecked()) {
+//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.Neighborhoodname) + " " + getResources().getString(R.string.is_requred), "error");
+//
+//                } else if (city.getText().toString().equals("") & switch_.isChecked()) {
+//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.city_name) + " " + getResources().getString(R.string.is_requred), "error");
+//
+//                } else if (Postal_code.getText().toString().equals("") & switch_.isChecked()) {
+//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.Postal_code) + " " + getResources().getString(R.string.is_requred), "error");
+//
+//                } else if (additional_number.getText().toString().equals("") & switch_.isChecked()) {
+//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.additional_number) + " " + getResources().getString(R.string.is_requred), "error");
+//
+//                } else if (unit_number.getText().toString().equals("") & switch_.isChecked()) {
+//                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.unit_number) + " " + getResources().getString(R.string.is_requred), "error");
 
-                } else if (StreetName.getText().toString().equals("") & switch_.isChecked()) {
-                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.StreetName) + " " + getResources().getString(R.string.is_requred), "error");
+//                }
 
-                } else if (Neighborhoodname.getText().toString().equals("") & switch_.isChecked()) {
-                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.Neighborhoodname) + " " + getResources().getString(R.string.is_requred), "error");
-
-                } else if (city.getText().toString().equals("") & switch_.isChecked()) {
-                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.city_name) + " " + getResources().getString(R.string.is_requred), "error");
-
-                } else if (Postal_code.getText().toString().equals("") & switch_.isChecked()) {
-                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.Postal_code) + " " + getResources().getString(R.string.is_requred), "error");
-
-                } else if (additional_number.getText().toString().equals("") & switch_.isChecked()) {
-                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.additional_number) + " " + getResources().getString(R.string.is_requred), "error");
-
-                } else if (unit_number.getText().toString().equals("") & switch_.isChecked()) {
-                    WebService.Make_Toast_color(RentActivity.this, getResources().getString(R.string.unit_number) + " " + getResources().getString(R.string.is_requred), "error");
-
-                } else {
+                else {
                     WebService.loading(RentActivity.this, true);
 
                     VolleyService mVolleyService = new VolleyService(mResultCallback, RentActivity.this);
@@ -417,35 +420,42 @@ public class RentActivity extends AppCompatActivity {
 
                         sendObj.put("operation_type_id", "1");//form operation list api in setting
                         sendObj.put("estate_type_id", opration_select);//form estate type list api in setting
+
+
                         sendObj.put("contract_interval", contract_interval);//'year','six_month'
+
+
                         sendObj.put("rent_price", price.getText().toString());//
-                        sendObj.put("owner_name", name_owner.getText().toString());//
-                        sendObj.put("owner_mobile", phone_owner.getText().toString());//
-                        sendObj.put("owner_identity_number", owner_id_number.getText().toString());//
-                        sendObj.put("tenant_birthday", date_bertih.getText().toString());//
+
+
+//                        sendObj.put("owner_name", name_owner.getText().toString());//
+//                        sendObj.put("owner_mobile", phone_owner.getText().toString());//
+//                        sendObj.put("owner_identity_number", owner_id_number.getText().toString());//
+//                        sendObj.put("tenant_birthday", date_bertih.getText().toString());//
 
 
 //
-//                        if (contract_file_file != null) {
-//                            sendObj.put("contract_file", contract_file_file);//
-//
-//                        }
+                        if (contract_file_file != null) {
+                            sendObj.put("contract_file", contract_file_file);//
 
+                        }
+
+                        if (get_id_image_file != null) {
+                            sendObj.put("tenant_identity_file", get_id_image_file);//
+
+                        }
                         if (owner_get_id_image_file != null) {
                             sendObj.put("owner_identity_file", owner_get_id_image_file);//
 
                         }
-//                        sendObj.put("tenant_name", name.getText().toString());//
-//                        sendObj.put("tenant_mobile", phone.getText().toString());//
-//                        sendObj.put("tenant_identity_number", id_number.getText().toString());//
+                        sendObj.put("tenant_name", name_owner.getText().toString());//
+                        sendObj.put("tenant_mobile", phone_owner.getText().toString());//
+                        sendObj.put("tenant_identity_number", owner_id_number.getText().toString());//
+                        sendObj.put("tenant_birthday", date_bertih.getText().toString());//
 
 
-//                        if (get_id_image_file != null) {
-//                            sendObj.put("tenant_identity_file", get_id_image_file);//
-//
-//                        }
                         sendObj.put("tenant_city_id", city_id);//
-//                        sendObj.put("tenant_job_type", tenant_job_type);//'governmental','special','soldier'
+                        sendObj.put("tenant_job_type", tenant_job_type);//'governmental','special','soldier'
 //                        sendObj.put("tenant_job_start_date", start_work_date.getText().toString());//
                         sendObj.put("tenant_total_salary", Total_salary.getText().toString());//
 //                        sendObj.put("tenant_salary_bank_id", banks_id);//
@@ -455,11 +465,29 @@ public class RentActivity extends AppCompatActivity {
                             sendObj.put("national_address_file", National_address_file);//
 
                         }
-                        sendObj.put("building_number", buldingnumber.getText().toString());//
-                        sendObj.put("street_name", StreetName.getText().toString());//
-                        sendObj.put("neighborhood_name", Neighborhoodname.getText().toString());//
-                        sendObj.put("building_city_name", buldingnumber.getText().toString());//
-                        sendObj.put("postal_code", Postal_code.getText().toString());//
+
+                        if (!StreetName.getText().toString().equals("")) {
+                            sendObj.put("street_name", StreetName.getText().toString());//
+
+                        }
+                        if (!Neighborhoodname.getText().toString().equals("")) {
+                            sendObj.put("neighborhood_name", Neighborhoodname.getText().toString());//
+
+                        }
+                        if (!buldingnumber.getText().toString().equals("")) {
+                            sendObj.put("building_city_name", buldingnumber.getText().toString());//
+
+                        }
+                        if (!Postal_code.getText().toString().equals("")) {
+                            sendObj.put("postal_code", Postal_code.getText().toString());//
+
+                        }
+                        if (!unit_number.getText().toString().equals("")) {
+                            sendObj.put("unit_name", unit_number.getText().toString());//
+
+                        }
+
+//                        sendObj.put("unit_name", unit_number.getText().toString());//
 
 
                         System.out.println(sendObj.toString());
@@ -665,6 +693,7 @@ public class RentActivity extends AppCompatActivity {
             public void notifyError(String requestType, VolleyError error) {
                 Log.d("TAG", "Volley requester " + requestType);
 
+                WebService.loading(RentActivity.this, false);
 
                 try {
 
@@ -691,6 +720,10 @@ public class RentActivity extends AppCompatActivity {
 
             @Override
             public void notify_Async_Error(String requestType, String error) {
+                WebService.loading(RentActivity.this, false);
+
+                WebService.Make_Toast_color(RentActivity.this, error, "error");
+
 
             }
         };
