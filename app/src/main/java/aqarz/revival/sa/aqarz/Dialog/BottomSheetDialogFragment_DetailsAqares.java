@@ -26,6 +26,7 @@ import java.util.List;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_city_bootom_sheets;
 import aqarz.revival.sa.aqarz.Modules.CityModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
+import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.WebService;
 import aqarz.revival.sa.aqarz.api.IResult;
@@ -34,7 +35,7 @@ import aqarz.revival.sa.aqarz.api.VolleyService;
 
 public class BottomSheetDialogFragment_DetailsAqares extends BottomSheetDialogFragment {
 
-    HomeModules Homemodules_object;
+    HomeModules_aqares Homemodules_object;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class BottomSheetDialogFragment_DetailsAqares extends BottomSheetDialogFr
 //    categories_bottomSheetDialogFragment = new Categories_BottomSheetDialogFragment("");
 //                categories_bottomSheetDialogFragment.show(getSupportFragmentManager(), "");
 
-    public BottomSheetDialogFragment_DetailsAqares(HomeModules Homemodules) {
+    public BottomSheetDialogFragment_DetailsAqares(HomeModules_aqares Homemodules) {
         Homemodules_object = Homemodules;
     }
 

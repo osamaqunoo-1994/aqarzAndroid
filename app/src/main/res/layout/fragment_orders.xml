@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical">
 
     <TextView
@@ -211,15 +212,13 @@
                     android:textColor="@color/black"
                     android:textSize="13dp" />
 
-
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/type_of_v"
-                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp" />
 
         </LinearLayout>
 
@@ -229,6 +228,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/orders_rec"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/color_back_"
+
+        android:paddingTop="5dp" />
 
 </LinearLayout>

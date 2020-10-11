@@ -42,6 +42,8 @@ public class VolleyService {
         try {
             RequestQueue queue = Volley.newRequestQueue(mContext);
 
+            System.out.println("urlurl "+url);
+
             JsonObjectRequest jsonObj = new JsonObjectRequest(url, sendObj, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
@@ -166,6 +168,7 @@ public class VolleyService {
             RequestQueue queue = Volley.newRequestQueue(mContext);
 
 
+            System.out.println("urlurl "+url);
 
 
             JsonObjectRequest jsonObj = new JsonObjectRequest(Request.Method.GET, url,null, new Response.Listener<JSONObject>() {

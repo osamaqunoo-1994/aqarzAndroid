@@ -5,13 +5,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
+import com.crystal.crystalrangeseekbar.widgets.BubbleThumbRangeSeekbar;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.gson.Gson;
@@ -49,13 +53,46 @@ public class BottomSheetDialogFragment_Filtter extends BottomSheetDialogFragment
     List<select_typeModules> oprationModules_list = new ArrayList<>();
     List<TypeModules> type_list = new ArrayList<>();
 
+
+    String type = "null";
+    String opration_select = "";
+
+
+    Button filtter_btn;
+    CrystalRangeSeekbar price_seekpar;
+    CrystalRangeSeekbar area_sseekbar;
+
+
+    TextView min_area, max_area;
+
+
+    String min_price = "0", max_price = "1000";
+    String num_room = "1";
+
+    TextView room_1;
+    TextView room_2;
+    TextView room_3;
+    TextView room_4;
+    TextView room_5;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_sheets_fillter, container, false);
-        final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) v.findViewById(R.id.rangeSeekbar5);
+//        final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) v.findViewById(R.id.rangeSeekbar5);
 
         selsct_type_all = v.findViewById(R.id.selsct_type_all);
         opration = v.findViewById(R.id.opration);
+        filtter_btn = v.findViewById(R.id.filtter_btn);
+        price_seekpar = v.findViewById(R.id.price_seekpar);
+        area_sseekbar = v.findViewById(R.id.area_sseekbar);
+        max_area = v.findViewById(R.id.max_area);
+        min_area = v.findViewById(R.id.min_area);
+
+        room_1 = v.findViewById(R.id.room_1);
+        room_2 = v.findViewById(R.id.room_2);
+        room_3 = v.findViewById(R.id.room_3);
+        room_4 = v.findViewById(R.id.room_4);
+        room_5 = v.findViewById(R.id.room_5);
 
 
         LinearLayoutManager layoutManagerm
@@ -64,22 +101,74 @@ public class BottomSheetDialogFragment_Filtter extends BottomSheetDialogFragment
 
 
         oprationModules_list.add(new select_typeModules(1, getContext().getResources().getString(R.string.All)));
-        oprationModules_list.add(new select_typeModules(1, getContext().getResources().getString(R.string.Pay)));
-        oprationModules_list.add(new select_typeModules(1, getContext().getResources().getString(R.string.Rent)));
-        oprationModules_list.add(new select_typeModules(1, getContext().getResources().getString(R.string.Investment)));
+        oprationModules_list.add(new select_typeModules(2, getContext().getResources().getString(R.string.Pay)));
+        oprationModules_list.add(new select_typeModules(3, getContext().getResources().getString(R.string.Rent)));
+//        oprationModules_list.add(new select_typeModules(1, getContext().getResources().getString(R.string.Investment)));
 
         RecyclerView_bottomSheet_type recyclerView_bottomSheet_type = new RecyclerView_bottomSheet_type(getContext(), oprationModules_list);
         recyclerView_bottomSheet_type.addItemClickListener(new RecyclerView_bottomSheet_type.ItemClickListener() {
             @Override
             public void onItemClick(List<select_typeModules> select_typeModules) {
+                type = "";
 
-//                oprationModules_list = select_typeModules;
+                for (int i = 0; i < select_typeModules.size(); i++) {
+
+                    if (i == 0) {
+
+                        if (select_typeModules.get(0).getSelected()) {
+                            type = "null";
+                            break;
+                        }
+
+
+                    } else {
+
+                        if (select_typeModules.get(1).getSelected()) {
+                            type = "is_pay";
+
+                        }
+                        if (select_typeModules.get(2).getSelected()) {
+                            type = "is_rent";
+
+                        }
+
+
+//                        if (select_typeModules.get(i).getSelected()) {
+//                            if (type.equals("")) {
+//                                type = select_typeModules.get(i).getId() + "";
+//                            } else {
+//                                type = type + "," + select_typeModules.get(i).getId() + "";
+//                            }
+//
+//
+//                        }
+
+
+                    }
+
+
+                }
+
+
+//                type = select_typeModules;
 
 
             }
         });
         selsct_type_all.setAdapter(recyclerView_bottomSheet_type);
+        filtter_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                if (mItemClickListener != null) {
+                    String te = "&estate_pay_type=" + type + "&price_from=" + min_price + "&price_to=" + max_price + "&area_from=" + min_area.getText().toString() + "&area_from=" + max_area.getText().toString();
+
+                    mItemClickListener.onItemClick(te);
+                }
+
+
+            }
+        });
 ///------------------------------------------------------------------------------------------------------
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
 
@@ -91,7 +180,7 @@ public class BottomSheetDialogFragment_Filtter extends BottomSheetDialogFragment
         recyclerView_all_opration_bottom_sheet.addItemClickListener(new RecyclerView_All_opration_bottom_sheet.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
-//                opration_select = type_list.get(position).getId().toString() + "";
+                opration_select = type_list.get(position).getId().toString() + "";
             }
         });
         opration.setAdapter(recyclerView_all_opration_bottom_sheet);
@@ -102,7 +191,127 @@ public class BottomSheetDialogFragment_Filtter extends BottomSheetDialogFragment
 //        VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 //
 //        mVolleyService.getDataVolley("city", WebService.cities);
+        price_seekpar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
+            @Override
+            public void valueChanged(Number minValue, Number maxValue) {
+                min_price = minValue + "";
+                max_price = maxValue + "";
 
+
+            }
+        });
+        area_sseekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
+            @Override
+            public void valueChanged(Number minValue, Number maxValue) {
+
+
+                max_area.setText(maxValue + "");
+                min_area.setText(minValue + "");
+
+
+            }
+        });
+
+
+        room_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                room_1.setBackground(getResources().getDrawable(R.drawable.button_login));
+                room_2.setBackground(null);
+                room_3.setBackground(null);
+                room_4.setBackground(null);
+                room_5.setBackground(null);
+
+
+                room_1.setTextColor(getResources().getColor(R.color.white));
+                room_2.setTextColor(getResources().getColor(R.color.textColor));
+                room_3.setTextColor(getResources().getColor(R.color.textColor));
+                room_4.setTextColor(getResources().getColor(R.color.textColor));
+                room_5.setTextColor(getResources().getColor(R.color.textColor));
+                num_room = "1";
+            }
+        });
+        room_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                room_2.setBackground(getResources().getDrawable(R.drawable.button_login));
+                room_1.setBackground(null);
+                room_3.setBackground(null);
+                room_4.setBackground(null);
+                room_5.setBackground(null);
+
+
+                room_2.setTextColor(getResources().getColor(R.color.white));
+                room_1.setTextColor(getResources().getColor(R.color.textColor));
+                room_3.setTextColor(getResources().getColor(R.color.textColor));
+                room_4.setTextColor(getResources().getColor(R.color.textColor));
+                room_5.setTextColor(getResources().getColor(R.color.textColor));
+                num_room = "2";
+
+            }
+        });
+        room_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                room_3.setBackground(getResources().getDrawable(R.drawable.button_login));
+                room_2.setBackground(null);
+                room_1.setBackground(null);
+                room_4.setBackground(null);
+                room_5.setBackground(null);
+
+
+                room_3.setTextColor(getResources().getColor(R.color.white));
+                room_2.setTextColor(getResources().getColor(R.color.textColor));
+                room_1.setTextColor(getResources().getColor(R.color.textColor));
+                room_4.setTextColor(getResources().getColor(R.color.textColor));
+                room_5.setTextColor(getResources().getColor(R.color.textColor));
+                num_room = "3";
+
+            }
+        });
+        room_4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                room_4.setBackground(getResources().getDrawable(R.drawable.button_login));
+                room_2.setBackground(null);
+                room_3.setBackground(null);
+                room_1.setBackground(null);
+                room_5.setBackground(null);
+
+
+                room_4.setTextColor(getResources().getColor(R.color.white));
+                room_2.setTextColor(getResources().getColor(R.color.textColor));
+                room_3.setTextColor(getResources().getColor(R.color.textColor));
+                room_1.setTextColor(getResources().getColor(R.color.textColor));
+                room_5.setTextColor(getResources().getColor(R.color.textColor));
+                num_room = "4";
+
+            }
+        });
+        room_5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                room_5.setBackground(getResources().getDrawable(R.drawable.button_login));
+                room_2.setBackground(null);
+                room_3.setBackground(null);
+                room_4.setBackground(null);
+                room_1.setBackground(null);
+
+
+                room_5.setTextColor(getResources().getColor(R.color.white));
+                room_2.setTextColor(getResources().getColor(R.color.textColor));
+                room_3.setTextColor(getResources().getColor(R.color.textColor));
+                room_4.setTextColor(getResources().getColor(R.color.textColor));
+                room_1.setTextColor(getResources().getColor(R.color.textColor));
+                num_room = "5";
+
+            }
+        });
         return v;
     }
 
@@ -215,6 +424,6 @@ public class BottomSheetDialogFragment_Filtter extends BottomSheetDialogFragment
 
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(int id_city, String city_naem);
+        void onItemClick(String filter);
     }
 }

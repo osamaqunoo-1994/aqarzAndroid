@@ -58,14 +58,10 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
 
         ImageView image_aqars;
         TextView type;
-        TextView type_2;
         TextView price;
         TextView address;
         TextView opration;
-        TextView number_room;
-        TextView number_bathroom;
-        TextView max_space;
-        TextView viesw;
+        TextView space;
 
 
         public MyViewHolder(View view) {
@@ -75,16 +71,10 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
 
             image_aqars = view.findViewById(R.id.image_aqars);
             type = view.findViewById(R.id.type);
-            type_2 = view.findViewById(R.id.type_2);
             price = view.findViewById(R.id.price);
+            space = view.findViewById(R.id.space);
             address = view.findViewById(R.id.address);
             opration = view.findViewById(R.id.opration);
-
-
-            number_room = view.findViewById(R.id.number_room);
-            number_bathroom = view.findViewById(R.id.number_bathroom);
-            max_space = view.findViewById(R.id.max_space);
-            viesw = view.findViewById(R.id.viesw);
 
 
 //            ratingbar = view.findViewById(R.id.ratingbar);
@@ -124,16 +114,14 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
 
 
         holder.type.setText(alldata.get(position).getEstate_type_name());
-        holder.type_2.setText(alldata.get(position).getOperation_type_name());
+        holder.space.setText(alldata.get(position).getArea_from() + " - " + alldata.get(position).getArea_to());
 
-        holder.price.setText(alldata.get(position).getPrice_from());
+        holder.price.setText(alldata.get(position).getPrice_from() + " - " + alldata.get(position).getPrice_to());
 
 
         holder.opration.setText(alldata.get(position).getRequest_type());
-        holder.number_room.setText(alldata.get(position).getRoom_numbers());
 
 
-//
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
 ////
@@ -226,7 +214,7 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_aqars, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_aqars_order, parent, false);
 
 
         // Fresco.initialize(context);

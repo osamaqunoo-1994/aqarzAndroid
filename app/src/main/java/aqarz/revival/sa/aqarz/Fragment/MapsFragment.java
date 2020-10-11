@@ -74,6 +74,7 @@ import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares;
+import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares_orders;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_Filtter;
 import aqarz.revival.sa.aqarz.Modules.BankModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
@@ -101,6 +102,7 @@ public class MapsFragment extends Fragment {
     TextView Offers_tab;
 
 
+    String final_type_requst_filter = "";
     String typeTab = "Orders_tab";
 
     TextView RequstAqars;
@@ -128,7 +130,7 @@ public class MapsFragment extends Fragment {
     ImageView convert_map_to_list;
     ImageView change_list_to_map;
 
-
+    String opration_select = "0";
     String convert_type = "map";
 
 
@@ -145,6 +147,8 @@ public class MapsFragment extends Fragment {
 
     ImageView nodata_vis;
 
+
+    String filtter_selected = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -183,11 +187,27 @@ public class MapsFragment extends Fragment {
                 mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
+                        if (final_type_requst_filter.equals("list_order")) {
 
-//                        BottomSheetDialogFragment_DetailsAqares bottomSheetDialogFragment_detailsAqares = new BottomSheetDialogFragment_DetailsAqares(homeModules.get(0));
-//
-//                        bottomSheetDialogFragment_detailsAqares.show(getFragmentManager(), "");
-//
+                        } else if (final_type_requst_filter.equals("list_offer")) {//aqarz
+
+                        } else if (final_type_requst_filter.equals("map_order")) {
+
+                            BottomSheetDialogFragment_DetailsAqares_orders bottomSheetDialogFragment_detailsAqares_orders = new BottomSheetDialogFragment_DetailsAqares_orders(homeModules.get(0));
+
+                            bottomSheetDialogFragment_detailsAqares_orders.show(getFragmentManager(), "");
+
+
+                        } else if (final_type_requst_filter.equals("map_offer")) {//aqarz
+
+
+                            BottomSheetDialogFragment_DetailsAqares bottomSheetDialogFragment_detailsAqares = new BottomSheetDialogFragment_DetailsAqares(homeModules_aqares.get(0));
+
+                            bottomSheetDialogFragment_detailsAqares.show(getFragmentManager(), "");
+
+
+                        }
+
 
                         return false;
                     }
@@ -312,7 +332,7 @@ public class MapsFragment extends Fragment {
         recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_in_fragment.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
-//                opration_select = type_list.get(position).getId().toString() + "";
+                opration_select = type_list.get(position).getId().toString() + "";
             }
         });
         type.setAdapter(recyclerView_all_type_in_fragment);
@@ -342,7 +362,7 @@ public class MapsFragment extends Fragment {
         ActionButton();
         action_btn();
 
-        get_data_from_api("map_order");
+        get_data_from_api("map_order", filtter_selected);
 
 
     }
@@ -423,10 +443,10 @@ public class MapsFragment extends Fragment {
 
                 convert_type = "list";
                 if (typeTab.equals("Orders_tab")) {
-                    get_data_from_api("list_order");
+                    get_data_from_api("list_order", filtter_selected);
 
                 } else {
-                    get_data_from_api("list_offer");
+                    get_data_from_api("list_offer", filtter_selected);
 
                 }
 
@@ -444,10 +464,10 @@ public class MapsFragment extends Fragment {
                 layout_list.setVisibility(View.GONE);
 
                 if (typeTab.equals("Orders_tab")) {
-                    get_data_from_api("map_order");
+                    get_data_from_api("map_order", filtter_selected);
 
                 } else {
-                    get_data_from_api("map_offer");
+                    get_data_from_api("map_offer", filtter_selected);
 
                 }
 
@@ -515,7 +535,14 @@ public class MapsFragment extends Fragment {
 
                 bottomSheetDialogFragment_filtter.addItemClickListener(new BottomSheetDialogFragment_Filtter.ItemClickListener() {
                     @Override
-                    public void onItemClick(int id_city, String city_naem) {
+                    public void onItemClick(String filtter) {
+
+
+                        filtter_selected = filtter;
+                        get_data_from_api(final_type_requst_filter, filtter_selected);
+
+                        bottomSheetDialogFragment_filtter.dismiss();
+
 
                     }
                 });
@@ -538,10 +565,10 @@ public class MapsFragment extends Fragment {
                 Offers_tab.setTextColor(getResources().getColor(R.color.textColor));
 
                 if (convert_type.equals("map")) {
-                    get_data_from_api("map_order");
+                    get_data_from_api("map_order", filtter_selected);
 
                 } else {
-                    get_data_from_api("list_order");
+                    get_data_from_api("list_order", filtter_selected);
 
                 }
 
@@ -559,10 +586,10 @@ public class MapsFragment extends Fragment {
                 Orders_tab.setTextColor(getResources().getColor(R.color.textColor));
 
                 if (convert_type.equals("map")) {
-                    get_data_from_api("map_offer");
+                    get_data_from_api("map_offer", filtter_selected);
 
                 } else {
-                    get_data_from_api("list_offer");
+                    get_data_from_api("list_offer", filtter_selected);
 
                 }
 
@@ -734,10 +761,11 @@ public class MapsFragment extends Fragment {
                             System.out.println("lfkdlfkdlkf");
                             String data = response.getString("data");
 
-                            JSONObject jsonObject_data = new JSONObject(data);
+//                            JSONObject jsonObject_data = new JSONObject(data);
 
-                            String data_inside = jsonObject_data.getString("data");
-                            JSONArray jsonArray = new JSONArray(data_inside);
+//                            String data_inside = jsonObject_data.getString("data");
+                            JSONArray jsonArray = new JSONArray(data);
+                            googleMap.clear();
 
                             homeModules.clear();
                             for (int i = 0; i < jsonArray.length(); i++) {
@@ -783,11 +811,11 @@ public class MapsFragment extends Fragment {
                                 System.out.println("lfkdlfkdlkf");
                                 String data = response.getString("data");
 
-                                JSONObject jsonObject_data = new JSONObject(data);
-
-                                String data_inside = jsonObject_data.getString("data");
-                                JSONArray jsonArray = new JSONArray(data_inside);
-
+//                                JSONObject jsonObject_data = new JSONObject(data);
+//
+//                                String data_inside = jsonObject_data.getString("data");
+                                JSONArray jsonArray = new JSONArray(data);
+                                googleMap.clear();
                                 homeModules_aqares.clear();
                                 for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -965,29 +993,33 @@ public class MapsFragment extends Fragment {
     }
 
 
-    public void get_data_from_api(String type) {
+    public void get_data_from_api(String type, String filtter) {
         WebService.loading(getActivity(), true);
-
-
+//estate_pay_type=is_rent
+// &price_from=1
+// &price_to=300
+// &area_from=1
+// &area_from=300
+        final_type_requst_filter = type;
         if (type.equals("list_order")) {
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("list_order", WebService.Home_1 + "?lat=10&lan=20&estate_type=1&request_type=pay");
+            mVolleyService.getDataVolley("list_order", WebService.Home_1 + "?lat=10&lan=20&estate_type=" + opration_select + "" + filtter);//&request_type=pay
 
         } else if (type.equals("list_offer")) {//aqarz
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("list_offer", WebService.Home_2 + "?lat=10&lan=20");
+            mVolleyService.getDataVolley("list_offer", WebService.Home_2 + "?lat=10&lan=20" + filtter);
 
         } else if (type.equals("map_order")) {
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("map_order", WebService.Home_3 + "?lat=10&lan=20&estate_type=1&request_type=pay");
+            mVolleyService.getDataVolley("map_order", WebService.Home_3 + "?lat=10&lan=20&estate_type=" + opration_select + "" + filtter);//&request_type=pay
 
         } else if (type.equals("map_offer")) {//aqarz
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("map_offer", WebService.Home_4 + "?lat=110&lan=211");
+            mVolleyService.getDataVolley("map_offer", WebService.Home_4 + "?lat=110&lan=211" + filtter);
 
         }
 

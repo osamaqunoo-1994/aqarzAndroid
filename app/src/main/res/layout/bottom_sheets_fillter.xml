@@ -63,8 +63,9 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="15dp" />
 
-            <com.crystal.crystalrangeseekbar.widgets.BubbleThumbRangeSeekbar
-                android:id="@+id/rangeSeekbar5"
+
+            <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+                android:id="@+id/price_seekpar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
@@ -72,14 +73,8 @@
                 android:layout_marginRight="30dp"
                 app:bar_color="#95959A"
                 app:bar_highlight_color="#814C99"
-                app:corner_radius="10"
-                app:data_type="_integer"
                 app:left_thumb_image="@drawable/thumb"
-                app:max_value="100"
-                app:min_value="0"
-                app:right_thumb_image="@drawable/thumb"
-
-                app:steps="0" />
+                app:right_thumb_image="@drawable/thumb" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -92,25 +87,18 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="15dp" />
 
-            <com.crystal.crystalrangeseekbar.widgets.BubbleThumbRangeSeekbar
-
+            <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+                android:id="@+id/area_sseekbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginBottom="10dp"
                 app:bar_color="#95959A"
                 app:bar_highlight_color="#814C99"
-                app:corner_radius="10"
-                app:data_type="_integer"
                 app:left_thumb_image="@drawable/thumb"
-                app:max_value="4000"
-                app:min_value="0"
-                app:right_thumb_image="@drawable/thumb"
+                app:right_thumb_image="@drawable/thumb" />
 
-                app:steps="0" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -119,10 +107,11 @@
                 android:layout_marginRight="25dp">
 
                 <TextView
+                    android:id="@+id/min_area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/frutiger_lt_arabic_roman"
-                    android:text="0 M"
+                    android:text="0"
                     android:textSize="14dp" />
 
                 <LinearLayout
@@ -131,10 +120,11 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/max_area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/frutiger_lt_arabic_roman"
-                    android:text="4000 M"
+                    android:text="1000"
                     android:textSize="14dp" />
 
 
@@ -165,40 +155,49 @@
 
 
                     <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:id="@+id/room_1"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:fontFamily="@font/frutiger_lt_arabic_roman"
                         android:gravity="center"
                         android:text="+1"
                         android:textSize="@dimen/_13sdp" />
 
                     <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:id="@+id/room_2"
+
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:fontFamily="@font/frutiger_lt_arabic_roman"
                         android:gravity="center"
                         android:text="+2"
                         android:textSize="@dimen/_13sdp" />
 
                     <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:id="@+id/room_3"
+
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:fontFamily="@font/frutiger_lt_arabic_roman"
                         android:gravity="center"
                         android:text="+3"
                         android:textSize="@dimen/_13sdp" />
 
                     <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:id="@+id/room_4"
+
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:fontFamily="@font/frutiger_lt_arabic_roman"
                         android:gravity="center"
                         android:text="+4"
                         android:textSize="@dimen/_13sdp" />
 
                     <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:id="@+id/room_5"
+
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:fontFamily="@font/frutiger_lt_arabic_roman"
                         android:gravity="center"
                         android:text="+5"
@@ -211,6 +210,7 @@
             </HorizontalScrollView>
 
             <Button
+                android:id="@+id/filtter_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="25dp"

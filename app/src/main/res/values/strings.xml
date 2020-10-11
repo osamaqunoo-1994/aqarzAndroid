@@ -302,5 +302,7 @@
     <string name="priceprice">price</string>
     <string name="area_fi">Area</string>
     <string name="Offer_btn">Offer</string>
+    <string name="NoInternt">No Internt Please check your conniction !</string>
+    <string name="Reaty">Reaty</string>
 
 </resources>

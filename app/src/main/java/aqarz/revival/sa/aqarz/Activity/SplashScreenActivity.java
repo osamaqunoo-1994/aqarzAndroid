@@ -2,16 +2,20 @@ package aqarz.revival.sa.aqarz.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -19,6 +23,7 @@ import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONObject;
 
+import java.net.InetAddress;
 import java.util.Locale;
 
 import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
@@ -36,6 +41,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        View parentLayout = findViewById(android.R.id.content);
 
 
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.splash_anim);
@@ -61,11 +67,30 @@ public class SplashScreenActivity extends AppCompatActivity {
             getBaseContext().getResources().updateConfiguration(config,
                     getBaseContext().getResources().getDisplayMetrics());
         }
+
+
         init_volley();
 
-        VolleyService mVolleyService = new VolleyService(mResultCallback, SplashScreenActivity.this);
 
-        mVolleyService.getDataVolley("Settings", WebService.settings);
+        if (!isInternetAvailable()) {
+            VolleyService mVolleyService = new VolleyService(mResultCallback, SplashScreenActivity.this);
+
+            mVolleyService.getDataVolley("Settings", WebService.settings);
+
+        } else {
+            Snackbar.make(parentLayout, getResources().getString(R.string.NoInternt), Snackbar.LENGTH_INDEFINITE)
+                    .setAction(getResources().getString(R.string.Reaty), new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            VolleyService mVolleyService = new VolleyService(mResultCallback, SplashScreenActivity.this);
+
+                            mVolleyService.getDataVolley("Settings", WebService.settings);
+
+                        }
+                    })
+                    .setActionTextColor(getResources().getColor(android.R.color.holo_red_light))
+                    .show();
+        }
 
 
     }
@@ -151,4 +176,20 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     }
 
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    public boolean isInternetAvailable() {
+        try {
+            InetAddress ipAddr = InetAddress.getByName("google.com");
+            //You can replace it with your name
+            return !ipAddr.equals("");
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

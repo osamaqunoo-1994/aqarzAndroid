@@ -55,17 +55,15 @@ public class RecyclerView_orders extends RecyclerView.Adapter<RecyclerView_order
 //        LinearLayout add_to_my;
 
 
-TextView price;
-TextView address;
-TextView view_type;
-TextView space;
-TextView name_estate;
+        TextView price;
+        TextView address;
+        TextView view_type;
+        TextView space;
+        TextView name_estate;
 
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
-
-
 
 
             price = view.findViewById(R.id.price);
@@ -107,18 +105,11 @@ TextView name_estate;
 //
 
 
-
         holder.price.setText(alldata.get(position).getEstatePriceRange());
         holder.view_type.setText(alldata.get(position).getDirEstate());
         holder.space.setText(alldata.get(position).getStreetViewRange());
         holder.name_estate.setText(alldata.get(position).getEstateTypeName());
-        holder.address.setText(alldata.get(position).getCityName()+" , "+alldata.get(position).getNeighborhoodName());
-
-
-
-
-
-
+        holder.address.setText(alldata.get(position).getCityName() + " , " + alldata.get(position).getNeighborhoodName());
 
 
 //
