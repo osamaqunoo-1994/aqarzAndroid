@@ -57,14 +57,11 @@ public class BottomSheetDialogFragment_Filtter extends BottomSheetDialogFragment
     String type = "null";
     String opration_select = "";
 
-
     Button filtter_btn;
     CrystalRangeSeekbar price_seekpar;
     CrystalRangeSeekbar area_sseekbar;
 
-
     TextView min_area, max_area;
-
 
     String min_price = "0", max_price = "1000";
     String num_room = "1";
@@ -119,7 +116,6 @@ public class BottomSheetDialogFragment_Filtter extends BottomSheetDialogFragment
                             type = "null";
                             break;
                         }
-
 
                     } else {
 
