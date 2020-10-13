@@ -1,5 +1,6 @@
 package aqarz.revival.sa.aqarz.Dialog;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,7 +54,12 @@ public class BottomSheetDialogFragment_DetailsAqares extends BottomSheetDialogFr
         Homemodules_object = Homemodules;
     }
 
-
+    @Override
+    public void setupDialog(Dialog dialog, int style) {
+        View contentView = View.inflate(getContext(), R.layout.bottom_sheets_details_aqares, null);
+        dialog.setContentView(contentView);
+        ((View) contentView.getParent()).setBackgroundColor(getResources().getColor(android.R.color.transparent));
+    }
 
 
 

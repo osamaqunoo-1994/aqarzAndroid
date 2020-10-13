@@ -83,6 +83,8 @@ import aqarz.revival.sa.aqarz.Modules.OprationModules;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.Modules.select_typeModules;
 import aqarz.revival.sa.aqarz.R;
+import aqarz.revival.sa.aqarz.Settings.CustomInfoWindowGoogleMap;
+import aqarz.revival.sa.aqarz.Settings.CustomInfoWindowGoogleMaptyp_2;
 import aqarz.revival.sa.aqarz.Settings.GpsTracker;
 import aqarz.revival.sa.aqarz.Settings.Settings;
 import aqarz.revival.sa.aqarz.Settings.WebService;
@@ -187,28 +189,34 @@ public class MapsFragment extends Fragment {
                 mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
-                        if (final_type_requst_filter.equals("list_order")) {
-
-                        } else if (final_type_requst_filter.equals("list_offer")) {//aqarz
-
-                        } else if (final_type_requst_filter.equals("map_order")) {
-
-                            BottomSheetDialogFragment_DetailsAqares_orders bottomSheetDialogFragment_detailsAqares_orders = new BottomSheetDialogFragment_DetailsAqares_orders(homeModules.get(0));
-
-                            bottomSheetDialogFragment_detailsAqares_orders.show(getFragmentManager(), "");
 
 
-                        } else if (final_type_requst_filter.equals("map_offer")) {//aqarz
+                        if (marker.getTag().toString().equals("mylocation")) {
+
+                        } else {
+                            if (final_type_requst_filter.equals("list_order")) {
+
+                            } else if (final_type_requst_filter.equals("list_offer")) {//aqarz
+
+                            } else if (final_type_requst_filter.equals("map_order")) {
+//
+//                                BottomSheetDialogFragment_DetailsAqares_orders bottomSheetDialogFragment_detailsAqares_orders = new BottomSheetDialogFragment_DetailsAqares_orders(homeModules.get(Integer.valueOf(marker.getTag().toString())));
+//                                bottomSheetDialogFragment_detailsAqares_orders.show(getFragmentManager(), "");
+                                CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(getActivity(),homeModules.get(Integer.valueOf(marker.getTag().toString())));
+                                mMap.setInfoWindowAdapter(customInfoWindow);
+
+                            } else if (final_type_requst_filter.equals("map_offer")) {//aqarz
 
 
-                            BottomSheetDialogFragment_DetailsAqares bottomSheetDialogFragment_detailsAqares = new BottomSheetDialogFragment_DetailsAqares(homeModules_aqares.get(0));
+//                                BottomSheetDialogFragment_DetailsAqares bottomSheetDialogFragment_detailsAqares = new BottomSheetDialogFragment_DetailsAqares(homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())));
+//                                bottomSheetDialogFragment_detailsAqares.show(getFragmentManager(), "");
+                                CustomInfoWindowGoogleMaptyp_2 customInfoWindow = new CustomInfoWindowGoogleMaptyp_2(getActivity(),homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())));
+                                mMap.setInfoWindowAdapter(customInfoWindow);
 
-                            bottomSheetDialogFragment_detailsAqares.show(getFragmentManager(), "");
+                            }
 
 
                         }
-
-
                         return false;
                     }
                 });
@@ -232,7 +240,7 @@ public class MapsFragment extends Fragment {
                             // Zoom in, animating the camera.
                             googleMap.animateCamera(CameraUpdateFactory.zoomIn());
                             // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(17), 3000, null);
+                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(3), 3000, null);
                         }
 
 
@@ -785,8 +793,16 @@ public class MapsFragment extends Fragment {
                                 LatLng sydneya = new LatLng(Double.valueOf(bankModules.getLat()), Double.valueOf(bankModules.getLan()));
                                 googleMap.addMarker(new MarkerOptions()
                                         .position(sydneya)
-                                        .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(bankModules.getPrice_from()))));
 
+                                        .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(bankModules.getPrice_from())))).setTag(i);
+
+                                LatLng mylocation = getLocation();
+                                if (mylocation != null) {
+                                    googleMap.addMarker(new MarkerOptions()
+                                            .position(mylocation)).setTag("mylocation");
+
+                                    ;
+                                }
 
 //                                LatLng gaza = new LatLng(Double.valueOf("31.484194"), Double.valueOf("34.408283"));
 //                                googleMap.addMarker(new MarkerOptions()
@@ -834,8 +850,16 @@ public class MapsFragment extends Fragment {
                                     LatLng sydneya = new LatLng(Double.valueOf(bankModules.getLat()), Double.valueOf(bankModules.getLan()));
                                     googleMap.addMarker(new MarkerOptions()
                                             .position(sydneya)
-                                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(bankModules.getTotalPrice()))));
+                                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2(bankModules.getTotalPrice())))).setTag(i);
 
+
+                                    LatLng mylocation = getLocation();
+                                    if (mylocation != null) {
+                                        googleMap.addMarker(new MarkerOptions()
+                                                .position(mylocation)).setTag("mylocation");
+
+                                        ;
+                                    }
 
 //                                LatLng gaza = new LatLng(Double.valueOf("31.484194"), Double.valueOf("34.408283"));
 //                                googleMap.addMarker(new MarkerOptions()
@@ -922,6 +946,28 @@ public class MapsFragment extends Fragment {
     private Bitmap getMarkerBitmapFromView(String Price) {
 
         View customMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom, null);
+        TextView markerImageView = (TextView) customMarkerView.findViewById(R.id.numb);
+//        markerImageView.setImageResource(resId);
+        markerImageView.setText(Price);
+
+
+        customMarkerView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        customMarkerView.layout(0, 0, customMarkerView.getMeasuredWidth(), customMarkerView.getMeasuredHeight());
+        customMarkerView.buildDrawingCache();
+        Bitmap returnedBitmap = Bitmap.createBitmap(customMarkerView.getMeasuredWidth(), customMarkerView.getMeasuredHeight(),
+                Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(returnedBitmap);
+        canvas.drawColor(Color.WHITE, PorterDuff.Mode.SRC_IN);
+        Drawable drawable = customMarkerView.getBackground();
+        if (drawable != null)
+            drawable.draw(canvas);
+        customMarkerView.draw(canvas);
+        return returnedBitmap;
+    }
+
+    private Bitmap getMarkerBitmapFromView2(String Price) {
+
+        View customMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom2, null);
         TextView markerImageView = (TextView) customMarkerView.findViewById(R.id.numb);
 //        markerImageView.setImageResource(resId);
         markerImageView.setText(Price);

@@ -252,7 +252,7 @@ public class AqarzOrActivity extends AppCompatActivity {
 
                     try {
 
-                        sendObj.put("operation_type_id", Id_eastate);//form operation list api in setting
+                        sendObj.put("operation_type_id", "2");//form operation list api in setting
                         sendObj.put("request_type", "1");//form estate type list api in setting
                         sendObj.put("estate_type_id", opration_select);
 

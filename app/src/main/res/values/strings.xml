@@ -308,6 +308,20 @@
 
 
     <string name="ReadMore">Read More</string>
-    <string name="ash_title">قم باختيار الباقة التي ترغب بالاشتراك بها</string>
+    <string name="ash_title">Choose the package you want to subscribe to</string>
+
+
+
+    <string name="month_package">month package</string>
+    <string name="month__package">6 month package</string>
+    <string name="year_package">year package</string>
+    <string name="Membershipupgrade">Membership upgrade</string>
+    <string name="choose_payment">choose payment</string>
+
+
+
+
+    <string name="More_details_card">More</string>
+
 
 </resources>

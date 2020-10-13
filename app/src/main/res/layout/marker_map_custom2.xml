@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="4dp"
-            android:src="@drawable/ic_marker_location" />
+            android:src="@drawable/ic_component_mappp" />
 
         <TextView
             android:id="@+id/numb"
@@ -24,7 +24,7 @@
             android:gravity="center"
             android:lines="1"
             android:text="1.9M"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
 
             android:textSize="10dp" />
 

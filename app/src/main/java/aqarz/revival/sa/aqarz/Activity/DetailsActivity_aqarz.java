@@ -1,26 +1,39 @@
 package aqarz.revival.sa.aqarz.Activity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
 import com.github.vivchar.viewpagerindicator.ViewPagerIndicator;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_in_order;
 import aqarz.revival.sa.aqarz.Adapter.home_viewPager_Adapter;
+import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.Settings;
+import aqarz.revival.sa.aqarz.Settings.WebService;
+import aqarz.revival.sa.aqarz.api.IResult;
+import aqarz.revival.sa.aqarz.api.VolleyService;
 
 public class DetailsActivity_aqarz extends AppCompatActivity {
     ViewPagerIndicator view_pager_indicator;
     ViewPager home_viewPager;
+    IResult mResultCallback;
 
     private ArrayList<String> items_ViewPager = new ArrayList<String>();
 
@@ -30,7 +43,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+        setContentView(R.layout.activity_details_aqarz);
 
         init();
     }
@@ -71,5 +84,92 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 //        // sets a margin b/w individual pages to ensure that there is a gap b/w them
 //        home_viewPager.setPageMargin(20);
 
+        init_volley();
+        WebService.loading(DetailsActivity_aqarz.this, true);
+
+        VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity_aqarz.this);
+        mVolleyService.getDataVolley("single_estat", WebService.single_estat + "1/estate");
+
+
     }
+
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response.toString());
+                WebService.loading(DetailsActivity_aqarz.this, false);
+//{"status":true,"code":200,"message":"User Profile","data"
+                try {
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+                        String data = response.getString("data");
+
+                        JsonParser parser = new JsonParser();
+                        JsonElement mJson = parser.parse(data);
+
+                        Gson gson = new Gson();
+
+                        HomeModules_aqares homeModules_aqares = gson.fromJson(mJson, HomeModules_aqares.class);
+
+
+                    } else {
+                        String message = response.getString("message");
+
+                        WebService.Make_Toast_color(DetailsActivity_aqarz.this, message, "error");
+                    }
+
+
+                } catch (Exception e) {
+
+                }
+
+
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+
+                WebService.loading(DetailsActivity_aqarz.this, false);
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color(DetailsActivity_aqarz.this, message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+                WebService.loading(DetailsActivity_aqarz.this, false);
+
+
+            }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+                WebService.loading(DetailsActivity_aqarz.this, false);
+
+                WebService.Make_Toast_color(DetailsActivity_aqarz.this, error, "error");
+
+
+            }
+        };
+
+
+    }
+
 }

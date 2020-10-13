@@ -323,4 +323,25 @@
     <string name="area_fi">المساحة</string>
     <string name="Offer_btn">تقديم عرض</string>
 
+
+    <string name="ash_title">قم باختيار الباقة التي ترغب بالاشتراك بها</string>
+
+    <string name="month_package">باقة شهر</string>
+    <string name="month__package">باقة 6 اشهر</string>
+    <string name="year_package">باقة سنة</string>
+    <string name="Membershipupgrade">ترقية عضوية</string>
+
+
+
+    <string name="NoInternt">لا يوجد إنترنت يرجى التحقق من الاتصال الخاص بك !</string>
+    <string name="Reaty">اعادة</string>
+
+
+
+    <string name="ReadMore">المزيد</string>
+    <string name="choose_payment">اختر طريقة الدفع</string>
+
+
+
+
 </resources>

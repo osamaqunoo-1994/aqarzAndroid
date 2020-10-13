@@ -1,5 +1,6 @@
 package aqarz.revival.sa.aqarz.Activity.OprationAqarz;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -69,6 +70,7 @@ import java.util.List;
 
 import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.MyProfileInformationActivity;
+import aqarz.revival.sa.aqarz.Activity.OprationNew.FinanceActivity;
 import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_in_order;
@@ -115,7 +117,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     TextView For_sale, rent, investment;
 
-    ImageView Instrument_file_text;
+    ImageView Instrument_file;
     TextView Add_charts_text;
     TextView deluxe, average, normal;
     TextView north, south, east, west;
@@ -143,8 +145,6 @@ public class AddAqarsActivity extends AppCompatActivity {
     PlacesClient placesClient;
     ImageView back;
 
-    LinearLayout Instrument_file;
-    LinearLayout Add_charts;
 
     LinearLayout specificationsqares;
     LinearLayout means_comfort;
@@ -157,15 +157,15 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     EditText Instrument_number, piece_number, No_planned, Total_area, age_of_the_property, Role_number, Street_view, total_price, price_one_meter, Communication_Officer, contact_number;
     //---------------------------------------------
-    String opration_select = "0";
+    String opration_select = "1";
     String Type_work_select = "1";
     String image_planed = "";
     String is_rent = "0";
     String rent_type = "yearly";
 
 
-    String lat = "";
-    String lng = "";
+    String lat = "0.0";
+    String lng = "0.0";
 
 
     String finishing_type = "deluxe";
@@ -173,8 +173,9 @@ public class AddAqarsActivity extends AppCompatActivity {
     String social_status = "unmarried";
 
 
-    File instrument_file = null;
+    File instrument_filexx = null;
 
+    ImageView Add_charts_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -250,9 +251,8 @@ public class AddAqarsActivity extends AppCompatActivity {
         Instrument_file = findViewById(R.id.Instrument_file);
         specificationsqares = findViewById(R.id.specificationsqares);
         means_comfort = findViewById(R.id.means_comfort);
-        Add_charts = findViewById(R.id.Add_charts);
+
         type_date = findViewById(R.id.type_date);
-        Instrument_file_text = findViewById(R.id.Instrument_file_text);
 
 
         date_eqjar = findViewById(R.id.date_eqjar);
@@ -272,7 +272,7 @@ public class AddAqarsActivity extends AppCompatActivity {
         price_one_meter = findViewById(R.id.price_one_meter);
         Communication_Officer = findViewById(R.id.Communication_Officer);
         contact_number = findViewById(R.id.contact_number);
-        Add_charts_text = findViewById(R.id.Add_charts_text);
+        Add_charts_image = findViewById(R.id.Add_charts_image);
 
         //---------------------------------------------------------------------------------------
         back.setOnClickListener(new View.OnClickListener() {
@@ -1068,31 +1068,11 @@ public class AddAqarsActivity extends AppCompatActivity {
                                 11);
 
                     } else {
+                        select_image_from_local(1213, 1213);
 
-                        ImagePicker.with(AddAqarsActivity.this)
-                                .setFolderMode(true)
-                                .setFolderTitle("Album")
-
-                                .setDirectoryName("Image Picker")
-                                .setMultipleMode(false)
-                                .setShowNumberIndicator(true)
-                                .setMaxSize(1)
-                                .setLimitMessage("You can select one image")
-                                .setRequestCode(1213)
-                                .start();
                     }
                 } else {
-
-                    ImagePicker.with(AddAqarsActivity.this)
-                            .setFolderMode(true)
-                            .setFolderTitle("Album")
-                            .setDirectoryName("Image Picker")
-                            .setMultipleMode(false)
-                            .setShowNumberIndicator(true)
-                            .setMaxSize(1)
-                            .setLimitMessage("You can select one image")
-                            .setRequestCode(1213)
-                            .start();
+                    select_image_from_local(1213, 1213);
 
                 }
 
@@ -1117,33 +1097,13 @@ public class AddAqarsActivity extends AppCompatActivity {
                     } else {
 
 
-                        ImagePicker.with(AddAqarsActivity.this)
-                                .setFolderMode(true)
-                                .setFolderTitle("Album")
+                        select_image_from_local(1217, 1217);
 
-                                .setDirectoryName("Image Picker")
-                                .setMultipleMode(false)
-                                .setShowNumberIndicator(true)
-                                .setMaxSize(1)
-                                .setLimitMessage("You can select one image")
-
-                                .setRequestCode(1217)
-                                .start();
                     }
                 } else {
 
-                    ImagePicker.with(AddAqarsActivity.this)
-                            .setFolderMode(true)
-                            .setFolderTitle("Album")
+                    select_image_from_local(1217, 1217);
 
-                            .setDirectoryName("Image Picker")
-                            .setMultipleMode(false)
-                            .setShowNumberIndicator(true)
-                            .setMaxSize(1)
-                            .setLimitMessage("You can select one image")
-
-                            .setRequestCode(1217)
-                            .start();
 
                 }
 
@@ -1152,7 +1112,7 @@ public class AddAqarsActivity extends AppCompatActivity {
         });
 
 
-        Add_charts.setOnClickListener(new View.OnClickListener() {
+        Add_charts_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -1168,34 +1128,11 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                     } else {
 
-
-                        ImagePicker.with(AddAqarsActivity.this)
-                                .setFolderMode(true)
-                                .setFolderTitle("Album")
-
-                                .setDirectoryName("Image Picker")
-                                .setMultipleMode(false)
-                                .setShowNumberIndicator(true)
-                                .setMaxSize(1)
-                                .setLimitMessage("You can select one image")
-
-                                .setRequestCode(20)
-                                .start();
+                        select_image_from_local(20, 20);
                     }
                 } else {
 
-                    ImagePicker.with(AddAqarsActivity.this)
-                            .setFolderMode(true)
-                            .setFolderTitle("Album")
-
-                            .setDirectoryName("Image Picker")
-                            .setMultipleMode(false)
-                            .setShowNumberIndicator(true)
-                            .setMaxSize(1)
-                            .setLimitMessage("You can select one image")
-
-                            .setRequestCode(20)
-                            .start();
+                    select_image_from_local(20, 20);
 
                 }
 
@@ -1218,8 +1155,6 @@ public class AddAqarsActivity extends AppCompatActivity {
                         price_one_meter.getText().toString().equals("") |
                         Communication_Officer.getText().toString().equals("") |
                         lat.toString().equals("") |
-                        instrument_file == null |
-                        image_planed == null |
                         selectIamgeList.size() == 0 |
                         contact_number.getText().toString().equals("")
 
@@ -1239,9 +1174,9 @@ public class AddAqarsActivity extends AppCompatActivity {
                         sendObj.put("operation_type_id", opration_select);
                         sendObj.put("estate_type_id", Type_work_select);
                         sendObj.put("instrument_number", Instrument_number.getText().toString());
-                        if (instrument_file != null) {
+                        if (instrument_filexx != null) {
 
-                            sendObj.put("instrument_file", instrument_file);
+                            sendObj.put("instrument_file", instrument_filexx);
 
 
                         }
@@ -1309,6 +1244,9 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                         sendObj.put("attachment_planned", image_planed);
                         sendObj.put("note", description.getText().toString());
+                        sendObj.put("is_resident", "1");
+                        sendObj.put("is_checked", "1");
+                        sendObj.put("is_insured", "1");
 
 
                         System.out.println(sendObj.toString());
@@ -1480,53 +1418,16 @@ public class AddAqarsActivity extends AppCompatActivity {
             }
         }
 
-        if (requestCode == 00 && resultCode == Activity.RESULT_OK) {
-
-            if (data != null) {
-                String filePath = data.getStringExtra(ImageSelectActivity.RESULT_FILE_PATH);
-                Bitmap selectedImage = BitmapFactory.decodeFile(filePath);
-
-            }
-
-
-//            image_profile.setImageBitmap(selectedImage);
-//
-//            //            file_path = filePath;
-//            image_file_file = new File(filePath);
-//
-//
-
-
-//            try {
-//
-//                RequestParams requestParams = new RequestParams();
-//
-//                requestParams.put("logo", image_file_file);
-//
-//
-//                Upload_image(requestParams);
-//            } catch (Exception e) {
-//
-//            }
-
-
-        }
 
         if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1213)) {
 
 
             if (data != null) {
-
                 ArrayList<Image> images = ImagePicker.getImages(data);
-//            Uri uri = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, images.get(0).getId()+"");
-
-
                 String filePath = images.get(0).getPath().toString();
                 Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
 
-
                 File file_image_profile = new File(filePath);
-
                 try {
 
                     RequestParams requestParams = new RequestParams();
@@ -1538,86 +1439,67 @@ public class AddAqarsActivity extends AppCompatActivity {
                 } catch (Exception e) {
 
                 }
-//            sendChatMsg_file(first_image_file);
-
-
+//                image_id.setImageBitmap(selectedImagea);
+//                get_id_image_file = new File(filePath);
+//                try {
+//                    RequestParams requestParams = new RequestParams();
+//                    requestParams.put("photo", file_image_profile);
+//
+//                } catch (Exception e) {
+//                }
             }
-            if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1217)) {
+        }
+
+        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1217)) {
 
 
-                if (data != null) {
+            if (data != null) {
+                ArrayList<Image> images = ImagePicker.getImages(data);
+                String filePath = images.get(0).getPath().toString();
+                Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
 
-                    ArrayList<Image> images = ImagePicker.getImages(data);
-//            Uri uri = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, images.get(0).getId()+"");
 
+                Instrument_file.setImageBitmap(selectedImagea);
 
-                    String filePath = images.get(0).getPath().toString();
-                    Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
-                    Instrument_file_text.setImageBitmap(selectedImagea);
+                instrument_filexx = new File(filePath);
 
-                    File file_image_profile = new File(filePath);
-
-                    try {
-//                        Instrument_file_text.setText(getResources().getString(R.string.upload_file_success));
-                        instrument_file = file_image_profile;
-
-//                RequestParams requestParams = new RequestParams();
+//                image_id.setImageBitmap(selectedImagea);
+//                get_id_image_file = new File(filePath);
+//                try {
+//                    RequestParams requestParams = new RequestParams();
+//                    requestParams.put("photo", file_image_profile);
 //
-//                requestParams.put("photo", file_image_profile);
-//
-//
-//                Upload_image(requestParams, selectedImagea);
-                    } catch (Exception e) {
+//                } catch (Exception e) {
+//                }
+            }
+        }
 
-                    }
-//            sendChatMsg_file(first_image_file);
 
+        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 20)) {
+
+
+            if (data != null) {
+                ArrayList<Image> images = ImagePicker.getImages(data);
+                String filePath = images.get(0).getPath().toString();
+                Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+
+
+                Add_charts_image.setImageBitmap(selectedImagea);
+
+                File file_image_profile = new File(filePath);
+
+
+                try {
+
+                    RequestParams requestParams = new RequestParams();
+
+                    requestParams.put("photo", file_image_profile);
+
+                    Upload_image_planed(requestParams, selectedImagea);
+                } catch (Exception e) {
 
                 }
 
-
-            }
-
-            if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 20)) {
-
-
-                if (data != null) {
-                    ArrayList<Image> images = ImagePicker.getImages(data);
-//            Uri uri = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, images.get(0).getId()+"");
-
-
-                    String filePath = images.get(0).getPath().toString();
-                    Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
-
-
-                    File file_image_profile = new File(filePath);
-
-                    try {
-                        Add_charts_text.setText(getResources().getString(R.string.upload_file_success));
-
-//                RequestParams requestParams = new RequestParams();
-//
-//                requestParams.put("photo", file_image_profile);
-//
-//
-//                Upload_image(requestParams, selectedImagea);
-                    } catch (Exception e) {
-
-                    }
-                    try {
-
-                        RequestParams requestParams = new RequestParams();
-
-                        requestParams.put("photo", file_image_profile);
-
-                        Upload_image_planed(requestParams, selectedImagea);
-                    } catch (Exception e) {
-
-                    }
-//            sendChatMsg_file(first_image_file);
-
-
-                }
 
             }
         }
@@ -1779,7 +1661,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                         String data = responseBody.getString("data");
 
-
+                        image_planed = data + "";
                         WebService.Make_Toast_color(AddAqarsActivity.this, message, "success");
 
                     } else {
@@ -1985,6 +1867,75 @@ public class AddAqarsActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    public void select_image_from_local(int permission, int st_code) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(AddAqarsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(AddAqarsActivity.this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        permission);
+
+            } else {
+
+
+                ImagePicker.with(AddAqarsActivity.this)
+                        .setFolderMode(true)
+                        .setFolderTitle("Album")
+
+                        .setDirectoryName("Image Picker")
+                        .setMultipleMode(false)
+                        .setShowNumberIndicator(true)
+                        .setMaxSize(1)
+                        .setLimitMessage("You can select one image")
+
+                        .setRequestCode(st_code)
+                        .start();
+            }
+        } else {
+
+            ImagePicker.with(AddAqarsActivity.this)
+                    .setFolderMode(true)
+                    .setFolderTitle("Album")
+
+                    .setDirectoryName("Image Picker")
+                    .setMultipleMode(false)
+                    .setShowNumberIndicator(true)
+                    .setMaxSize(1)
+                    .setLimitMessage("You can select one image")
+
+                    .setRequestCode(st_code)
+                    .start();
+
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (ContextCompat.checkSelfPermission(AddAqarsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        } else {
+            ImagePicker.with(AddAqarsActivity.this)
+                    .setFolderMode(true)
+                    .setFolderTitle("Album")
+
+                    .setDirectoryName("Image Picker")
+                    .setMultipleMode(false)
+                    .setShowNumberIndicator(true)
+                    .setMaxSize(1)
+                    .setLimitMessage("You can select one image")
+
+                    .setRequestCode(requestCode)
+                    .start();
+        }
+
 
     }
 

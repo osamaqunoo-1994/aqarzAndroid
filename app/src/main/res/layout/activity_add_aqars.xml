@@ -307,8 +307,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
-                        android:gravity="center"
-                      >
+                        android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -320,7 +319,7 @@
 
 
                         <LinearLayout
-                            android:id="@+id/Instrument_file"
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_20sdp"
@@ -333,7 +332,7 @@
                             >
 
                             <ImageView
-                                android:id="@+id/Instrument_file_text"
+                                android:id="@+id/Instrument_file"
                                 android:layout_width="76dp"
                                 android:layout_height="76dp"
 
@@ -462,43 +461,51 @@
                             android:textSize="15dp" />
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2" />
 
-                        <LinearLayout
-                            android:id="@+id/Add_charts"
-                            android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_20sdp"
+
                             android:gravity="center"
                             android:paddingLeft="5dp"
-                            android:paddingRight="5dp">
+                            android:paddingRight="5dp"
+
+
+                            >
 
                             <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:padding="7dp"
-                                android:src="@drawable/ic_id_d" />
+                                android:id="@+id/Add_charts_image"
+                                android:layout_width="76dp"
+                                android:layout_height="76dp"
+
+                                android:layout_margin="10dp"
+                                android:layout_marginStart="@dimen/_20sdp"
+                                android:background="@drawable/button_service"
+                                android:padding="12dp"
+                                android:src="@drawable/ic_logo_move" />
 
 
                             <TextView
-                                android:id="@+id/Add_charts_text"
+
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="6dp"
                                 android:layout_weight="1"
                                 android:background="@android:color/transparent"
                                 android:fontFamily="@font/frutiger_lt_arabic_roman"
-                                android:hint="@string/Add_charts"
+                                android:hint="@string/Instrument_file"
                                 android:textColor="@color/cookie_success"
                                 android:textColorHint="#AAABB3"
-
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:visibility="gone" />
 
 
                         </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2" />
 
 
                     </LinearLayout>
