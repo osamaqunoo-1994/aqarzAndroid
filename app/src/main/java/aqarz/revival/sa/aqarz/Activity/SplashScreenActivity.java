@@ -126,7 +126,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
                             }
-                        }, 1000); // After 1 seconds
+                        }, 500); // After 1 seconds
 
                     } else {
 

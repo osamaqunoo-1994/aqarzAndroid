@@ -62,6 +62,8 @@ import java.util.List;
 
 import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.MyProfileInformationActivity;
+import aqarz.revival.sa.aqarz.Activity.DetailsActivity;
+import aqarz.revival.sa.aqarz.Activity.DetailsActivity_aqarz;
 import aqarz.revival.sa.aqarz.Activity.MainActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
@@ -202,17 +204,38 @@ public class MapsFragment extends Fragment {
 //
 //                                BottomSheetDialogFragment_DetailsAqares_orders bottomSheetDialogFragment_detailsAqares_orders = new BottomSheetDialogFragment_DetailsAqares_orders(homeModules.get(Integer.valueOf(marker.getTag().toString())));
 //                                bottomSheetDialogFragment_detailsAqares_orders.show(getFragmentManager(), "");
-                                CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(getActivity(),homeModules.get(Integer.valueOf(marker.getTag().toString())));
+                                CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(getActivity(), homeModules.get(Integer.valueOf(marker.getTag().toString())));
                                 mMap.setInfoWindowAdapter(customInfoWindow);
+                                mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                                    @Override
+                                    public void onInfoWindowClick(Marker marker) {
 
+                                        Intent intent = new Intent(getContext(), DetailsActivity.class);
+                                        intent.putExtra("id", homeModules.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
+                                        System.out.println(homeModules.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
+                                        getActivity().startActivity(intent);
+
+
+                                    }
+                                });
                             } else if (final_type_requst_filter.equals("map_offer")) {//aqarz
 
 
 //                                BottomSheetDialogFragment_DetailsAqares bottomSheetDialogFragment_detailsAqares = new BottomSheetDialogFragment_DetailsAqares(homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())));
 //                                bottomSheetDialogFragment_detailsAqares.show(getFragmentManager(), "");
-                                CustomInfoWindowGoogleMaptyp_2 customInfoWindow = new CustomInfoWindowGoogleMaptyp_2(getActivity(),homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())));
+                                CustomInfoWindowGoogleMaptyp_2 customInfoWindow = new CustomInfoWindowGoogleMaptyp_2(getActivity(), homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())));
                                 mMap.setInfoWindowAdapter(customInfoWindow);
+                                mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                                    @Override
+                                    public void onInfoWindowClick(Marker marker) {
 
+                                        Intent intent = new Intent(getContext(), DetailsActivity_aqarz.class);
+                                        intent.putExtra("id", homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
+                                        getActivity().startActivity(intent);
+
+
+                                    }
+                                });
                             }
 
 
@@ -341,6 +364,11 @@ public class MapsFragment extends Fragment {
             @Override
             public void onItemClick(int position) {
                 opration_select = type_list.get(position).getId().toString() + "";
+
+
+                get_data_from_api(final_type_requst_filter, filtter_selected);
+
+
             }
         });
         type.setAdapter(recyclerView_all_type_in_fragment);
@@ -691,7 +719,7 @@ public class MapsFragment extends Fragment {
 
 
                         if (requestType.equals("list_order")) {
-                            System.out.println("lfkdlfkdlkf");
+
                             String data = response.getString("data");
 
                             JSONObject jsonObject_data = new JSONObject(data);
@@ -759,14 +787,13 @@ public class MapsFragment extends Fragment {
                                 nodata_vis.setVisibility(View.GONE);
 
                             }
-                            System.out.println("homeModules_aqareshomeModules_aqares+" + homeModules_aqares.size());
+
                             list_aqaers.setAdapter(new RecyclerView_HomeList_estat(getContext(), homeModules_aqares));
 
 
                         } else if (requestType.equals("map_order")) {
 
 
-                            System.out.println("lfkdlfkdlkf");
                             String data = response.getString("data");
 
 //                            JSONObject jsonObject_data = new JSONObject(data);
@@ -824,7 +851,6 @@ public class MapsFragment extends Fragment {
                             try {
 
 
-                                System.out.println("lfkdlfkdlkf");
                                 String data = response.getString("data");
 
 //                                JSONObject jsonObject_data = new JSONObject(data);
@@ -833,25 +859,31 @@ public class MapsFragment extends Fragment {
                                 JSONArray jsonArray = new JSONArray(data);
                                 googleMap.clear();
                                 homeModules_aqares.clear();
+
                                 for (int i = 0; i < jsonArray.length(); i++) {
 
+                                    try {
 
-                                    JsonParser parser = new JsonParser();
-                                    JsonElement mJson = parser.parse(jsonArray.getString(i));
+                                        JsonParser parser = new JsonParser();
+                                        JsonElement mJson = parser.parse(jsonArray.getString(i));
 
-                                    Gson gson = new Gson();
+                                        Gson gson = new Gson();
 
-                                    HomeModules_aqares bankModules = gson.fromJson(mJson, HomeModules_aqares.class);
-                                    homeModules_aqares.add(bankModules);
+                                        HomeModules_aqares bankModules = gson.fromJson(mJson, HomeModules_aqares.class);
+                                        homeModules_aqares.add(bankModules);
 
 
-//                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(camPos));
+//                                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(camPos));
 
-                                    LatLng sydneya = new LatLng(Double.valueOf(bankModules.getLat()), Double.valueOf(bankModules.getLan()));
-                                    googleMap.addMarker(new MarkerOptions()
-                                            .position(sydneya)
-                                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2(bankModules.getTotalPrice())))).setTag(i);
+                                        LatLng sydneya = new LatLng(Double.valueOf(bankModules.getLat()), Double.valueOf(bankModules.getLan()));
+                                        googleMap.addMarker(new MarkerOptions()
+                                                .position(sydneya)
+                                                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2(bankModules.getTotalPrice())))).setTag(i);
 
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
 
                                     LatLng mylocation = getLocation();
                                     if (mylocation != null) {
@@ -875,8 +907,10 @@ public class MapsFragment extends Fragment {
 //
 ////
                                 }
-                            } catch (Exception e) {
 
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
                         }
 
@@ -988,23 +1022,36 @@ public class MapsFragment extends Fragment {
     }
 
     public LatLng getLocation() {
-        gpsTracker = new GpsTracker(getContext());
-        if (gpsTracker.canGetLocation()) {
-            double latitude = gpsTracker.getLatitude();
-            double longitude = gpsTracker.getLongitude();
-            System.out.println("latitude:" + latitude);
-            System.out.println("longitude:" + longitude);
 
-            LatLng my_location = new LatLng(latitude, longitude);
+        try {
+            gpsTracker = new GpsTracker(getContext());
+            if (gpsTracker.canGetLocation()) {
+                double latitude = gpsTracker.getLatitude();
+                double longitude = gpsTracker.getLongitude();
+                System.out.println("latitude:" + latitude);
+                System.out.println("longitude:" + longitude);
+
+                LatLng my_location = new LatLng(latitude, longitude);
+
+                return my_location;
+
+            } else {
+                gpsTracker.showSettingsAlert();
+
+                LatLng my_location = new LatLng(25.600843, 42.630765);
+
+
+                return my_location;
+
+            }
+        } catch (Exception e) {
+
+            LatLng my_location = new LatLng(25.600843, 42.630765);
+
 
             return my_location;
-
-        } else {
-            gpsTracker.showSettingsAlert();
-
-            return null;
-
         }
+
     }
 
     @Override
@@ -1050,22 +1097,22 @@ public class MapsFragment extends Fragment {
         if (type.equals("list_order")) {
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("list_order", WebService.Home_1 + "?lat=10&lan=20&estate_type=" + opration_select + "" + filtter);//&request_type=pay
+            mVolleyService.getDataVolley("list_order", WebService.Home_1 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().latitude + "&estate_type=" + opration_select + "" + filtter);//&request_type=pay
 
         } else if (type.equals("list_offer")) {//aqarz
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("list_offer", WebService.Home_2 + "?lat=10&lan=20" + filtter);
+            mVolleyService.getDataVolley("list_offer", WebService.Home_2 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().latitude + "&estate_type=" + opration_select + ""+ filtter);
 
         } else if (type.equals("map_order")) {
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("map_order", WebService.Home_3 + "?lat=10&lan=20&estate_type=" + opration_select + "" + filtter);//&request_type=pay
+            mVolleyService.getDataVolley("map_order", WebService.Home_3 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().latitude + "&estate_type=" + opration_select + "" + filtter);//&request_type=pay
 
         } else if (type.equals("map_offer")) {//aqarz
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("map_offer", WebService.Home_4 + "?lat=110&lan=211" + filtter);
+            mVolleyService.getDataVolley("map_offer", WebService.Home_4 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().latitude + "&estate_type=" + opration_select + ""+ filtter);
 
         }
 

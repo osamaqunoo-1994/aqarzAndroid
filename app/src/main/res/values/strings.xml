@@ -87,6 +87,7 @@
 
     <string name="are_you_change_lang_post">are you change language?</string>
     <string name="Information_Aqar">Information Aqar</string>
+    <string name="About_Aqar">About  Aqar</string>
     <string name="AqarType">Aqar Type</string>
 
 
@@ -223,7 +224,7 @@
     <string name="Investment">Investment</string>
 
 
-    <string name="SAR">SAr</string>
+    <string name="SAR">SAR</string>
     <string name="view_type_loc">view</string>
 
 
@@ -306,10 +307,8 @@
     <string name="Reaty">Reaty</string>
 
 
-
     <string name="ReadMore">Read More</string>
     <string name="ash_title">Choose the package you want to subscribe to</string>
-
 
 
     <string name="month_package">month package</string>
@@ -319,9 +318,24 @@
     <string name="choose_payment">choose payment</string>
 
 
-
-
     <string name="More_details_card">More</string>
+
+
+    <string name="t1_details">Type</string>
+    <string name="t2_details">Area</string>
+    <string name="t3_details">Room</string>
+    <string name="t4_details">Age</string>
+    <string name="t5_details">View</string>
+    <string name="t6_details">Metter Price</string>
+    <string name="t7_details">Bathroom</string>
+    <string name="t8_details">Purpose</string>
+
+
+
+    <string name="t9_details">last update</string>
+    <string name="t10_details"># views</string>
+    <string name="t11_details"># Ads</string>
+
 
 
 </resources>

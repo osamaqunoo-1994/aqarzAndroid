@@ -3,6 +3,8 @@ package aqarz.revival.sa.aqarz.Modules;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class HomeModules_aqares {
 
 
@@ -130,10 +132,23 @@ public class HomeModules_aqares {
     @SerializedName("estate_type_name")
     @Expose
     private String estate_type_name;
+    @SerializedName("seen_count")
+    @Expose
+    private String seen_count;
     @SerializedName("estate_type")
     @Expose
     private estate_type estate_type;
+    @SerializedName("estate_file")
+    @Expose
+    private List<estate_file> estate_file;
 
+    @SerializedName("comforts")
+    @Expose
+    private List<ComfortModules> comforts;
+
+    public String getSeen_count() {
+        return seen_count;
+    }
 
     public Integer getId() {
         return id;
@@ -149,6 +164,18 @@ public class HomeModules_aqares {
 
     public void setOperationTypeId(Integer operationTypeId) {
         this.operationTypeId = operationTypeId;
+    }
+
+    public List<ComfortModules> getComforts() {
+        return comforts;
+    }
+
+    public String get_interface() {
+        return _interface;
+    }
+
+    public List<HomeModules_aqares.estate_file> getEstate_file() {
+        return estate_file;
     }
 
     public Integer getUserId() {
@@ -637,6 +664,31 @@ public class HomeModules_aqares {
 
         public void setName(String name) {
             this.name = name;
+        }
+    }
+
+
+    public class estate_file {
+        @SerializedName("id")
+        @Expose
+        private Integer id;
+        @SerializedName("estate_id")
+        @Expose
+        private String estate_id;
+        @SerializedName("file")
+        @Expose
+        private String file;
+
+        public Integer getId() {
+            return id;
+        }
+
+        public String getFile() {
+            return file;
+        }
+
+        public String getEstate_id() {
+            return estate_id;
         }
     }
 }

@@ -341,7 +341,20 @@
     <string name="ReadMore">المزيد</string>
     <string name="choose_payment">اختر طريقة الدفع</string>
 
+    <string name="More_details_card">تفاصيل</string>
+    <string name="About_Aqar">نبذه عن العقار</string>
 
 
+    <string name="t1_details">نوع العقار</string>
+    <string name="t2_details">المساحة</string>
+    <string name="t3_details">غرف نوم</string>
+    <string name="t4_details">العمر</string>
+    <string name="t5_details">الواجهه</string>
+    <string name="t6_details">سعر المتر</string>
+    <string name="t7_details">حمام</string>
+    <string name="t8_details">الغرض</string>
 
+    <string name="t9_details">آخر تحديث</string>
+    <string name="t10_details">عدد المشاهدات</string>
+    <string name="t11_details">رقم الإعلان</string>
 </resources>

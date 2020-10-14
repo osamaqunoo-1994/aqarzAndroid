@@ -43,7 +43,7 @@ public class CustomInfoWindowGoogleMaptyp_2 implements GoogleMap.InfoWindowAdapt
         location.setText("---");
 
 
-        more.setOnClickListener(new View.OnClickListener() {
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailsActivity_aqarz.class);

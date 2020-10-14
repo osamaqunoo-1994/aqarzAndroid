@@ -2,6 +2,7 @@ package aqarz.revival.sa.aqarz.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import aqarz.revival.sa.aqarz.Activity.DetailsActivity_aqarz;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
 import aqarz.revival.sa.aqarz.R;
@@ -197,6 +199,10 @@ public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerVi
 //                Refr();
 
 //                RequestOrderActivity.set_fragment(position);
+
+                Intent intent = new Intent(context, DetailsActivity_aqarz.class);
+                intent.putExtra("id", alldata.get(position).getId() + "");
+                context.startActivity(intent);
 
 
                 if (mItemClickListener != null) {

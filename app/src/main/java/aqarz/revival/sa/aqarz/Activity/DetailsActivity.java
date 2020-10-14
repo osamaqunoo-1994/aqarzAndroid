@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
@@ -34,64 +35,58 @@ import aqarz.revival.sa.aqarz.api.IResult;
 import aqarz.revival.sa.aqarz.api.VolleyService;
 
 public class DetailsActivity extends AppCompatActivity {
-    ViewPagerIndicator view_pager_indicator;
-    ViewPager home_viewPager;
+
     IResult mResultCallback;
 
-    private ArrayList<String> items_ViewPager = new ArrayList<String>();
-
-    RecyclerView type_RecyclerView;
-    List<TypeModules> typeModules_list = new ArrayList<>();
-
+    TextView operation_type_name;
+    TextView estate_type_name;
+    TextView price;
+    TextView address;
+    TextView note;
+    TextView type_;
+    TextView area;
+    TextView room;
+    TextView name_owner;
+    TextView last_update;
+    TextView ads_number;
+    TextView views_nummm;
+    TextView name;
+    String id_or_aq="1";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+        setContentView(R.layout.layout_details_requst_new);
 
         init();
     }
 
     public void init() {
+        operation_type_name = findViewById(R.id.operation_type_name);
+        estate_type_name = findViewById(R.id.estate_type_name);
+        price = findViewById(R.id.price);
+        address = findViewById(R.id.address);
+        note = findViewById(R.id.note);
+        type_ = findViewById(R.id.type_);
+        area = findViewById(R.id.area);
+        room = findViewById(R.id.room);
+        name_owner = findViewById(R.id.name_owner);
+        last_update = findViewById(R.id.last_update);
+        ads_number = findViewById(R.id.ads_number);
+        views_nummm = findViewById(R.id.views_nummm);
+        name = findViewById(R.id.name);
+        try {
+            id_or_aq = getIntent().getStringExtra("id");
 
-        home_viewPager = findViewById(R.id.home_viewPager);
-        view_pager_indicator = findViewById(R.id.view_pager_indicator);
-        type_RecyclerView = findViewById(R.id.type_RecyclerView);
+        } catch (Exception e) {
 
-
-        typeModules_list = Settings.getSettings().getOprationType().getOriginal().getData();
-        LinearLayoutManager layoutManagers
-                = new LinearLayoutManager(DetailsActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        type_RecyclerView.setLayoutManager(layoutManagers);
-
-        RecyclerView_All_Type_in_order recyclerView_all_type_in_order = new RecyclerView_All_Type_in_order(DetailsActivity.this, typeModules_list);
-        recyclerView_all_type_in_order.addItemClickListener(new RecyclerView_All_Type_in_order.ItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-//                set_fragment(typeModules_list.get(position).getId());
-            }
-        });
-//        type_RecyclerView.setAdapter(recyclerView_all_type_in_order);
-
-        items_ViewPager.add("");
-        items_ViewPager.add("");
-        items_ViewPager.add("");
+        }
 
 
-        home_viewPager.setAdapter(new home_viewPager_Adapter(DetailsActivity.this, items_ViewPager));
-        view_pager_indicator.setupWithViewPager(home_viewPager);
-
-
-//        home_viewPager.setClipToPadding(false);
-//        // set padding manually, the more you set the padding the more you see of prev & next page
-//        home_viewPager.setPadding(0, 0, 110, 0);
-//        // sets a margin b/w individual pages to ensure that there is a gap b/w them
-//        home_viewPager.setPageMargin(20);
-
-
+        init_volley();
         WebService.loading(DetailsActivity.this, true);
 
         VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity.this);
-        mVolleyService.getDataVolley("single_estat", WebService.single_estat + "1/estate");
+        mVolleyService.getDataVolley("single_request", WebService.single_estat + id_or_aq+"/request");
 
 
     }
@@ -116,8 +111,22 @@ public class DetailsActivity extends AppCompatActivity {
 
                         Gson gson = new Gson();
 
-                        HomeModules_aqares homeModules_aqares = gson.fromJson(mJson, HomeModules_aqares.class);
+                        HomeModules homeModules_aqares = gson.fromJson(mJson, HomeModules.class);
 
+
+                        operation_type_name.setText(homeModules_aqares.getOperation_type_name());
+                        estate_type_name.setText(homeModules_aqares.getEstate_type_name());
+                        price.setText(homeModules_aqares.getPrice_from() + " - " + homeModules_aqares.getPrice_to());
+                        address.setText("----");
+                        note.setText(homeModules_aqares.getNote() + "");
+                        type_.setText(homeModules_aqares.getRequest_type() + "");
+                        name.setText(homeModules_aqares.getEstate_type_name() + "");
+                        area.setText(homeModules_aqares.getArea_from() + " - " + homeModules_aqares.getArea_to());
+                        room.setText(homeModules_aqares.getRoom_numbers() + "");
+                        name_owner.setText(homeModules_aqares.getOwner_name() + "");
+                        last_update.setText(homeModules_aqares.getCreated_at() + "");
+                        ads_number.setText(homeModules_aqares.getId() + "");
+                        views_nummm.setText(homeModules_aqares.getSeen_count() + "");
 
                     } else {
                         String message = response.getString("message");

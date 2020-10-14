@@ -43,7 +43,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.DetailsActivity_aqarz"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+
+        </activity>
         <activity
             android:name=".Activity.NoInterntConnectionActivity"
             android:theme="@style/AppTheme.NoActionBar_orders" />

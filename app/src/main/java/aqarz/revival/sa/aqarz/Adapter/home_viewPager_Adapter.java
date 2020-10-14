@@ -6,9 +6,12 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.viewpager.widget.PagerAdapter;
 
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -43,7 +46,7 @@ public class home_viewPager_Adapter extends PagerAdapter {
         View imageLayout = inflater.inflate(R.layout.card_viewpager_home, view, false);
 
         assert imageLayout != null;
-//        final ImageView image = (ImageView) imageLayout.findViewById(R.id.image);
+        final ImageView image = (ImageView) imageLayout.findViewById(R.id.image);
 //        final TextView title = (TextView) imageLayout.findViewById(R.id.title);
 //        final TextView Disc = (TextView) imageLayout.findViewById(R.id.Disc);
 //        final LinearLayout click = (LinearLayout) imageLayout.findViewById(R.id.click);
@@ -67,7 +70,7 @@ public class home_viewPager_Adapter extends PagerAdapter {
 //
 //        Disc.setText(IMAGES.get(position).getDetails());
 ////
-//        Picasso.with(context).load(IMAGES.get(position).getImage() + "").into(image);
+        Picasso.get().load(IMAGES.get(position) + "").into(image);
 ////
 //        click.setOnClickListener(new View.OnClickListener() {
 //            @Override
