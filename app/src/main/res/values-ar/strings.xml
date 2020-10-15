@@ -285,7 +285,7 @@
     <string name="Promotion">ترقية</string>
 
 
-    <string name="Enjoy_">تمتع بأجمل الخدمات والعروض من تطبيق عقارز</string>
+    <string name="Enjoy_">تمتع بأجمل الخدمات والعروض</string>
     <string name="requstService">اطلب خدمة</string>
 
 
@@ -357,4 +357,8 @@
     <string name="t9_details">آخر تحديث</string>
     <string name="t10_details">عدد المشاهدات</string>
     <string name="t11_details">رقم الإعلان</string>
+
+
+    <string name="Show_MoreDetails">اظهار تفاصيل اكتر</string>
+
 </resources>

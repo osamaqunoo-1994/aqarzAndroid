@@ -124,10 +124,10 @@ public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerVi
 
 
         holder.type.setText(alldata.get(position).getEstate_type_name());
+
         holder.type_2.setText(alldata.get(position).getOperationTypeName());
 
         holder.price.setText(alldata.get(position).getTotalPrice());
-
 
         holder.opration.setText(alldata.get(position).getEstate_type_name());
 //        holder.number_room.setText(alldata.get(position).getRoomsNumber());

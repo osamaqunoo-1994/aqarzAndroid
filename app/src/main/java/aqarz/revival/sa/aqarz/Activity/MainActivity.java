@@ -90,26 +90,26 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("Mobile",mUserSession.getCurrentUser().getUser().getMobileVerifiedAt()+"empty");
                         showDialog();}*/
                 break;
-
-            case R.id.subscriptions:
-                // if(mUserSession.hasActiveSession())
-                goToFragment(1);
-//                else
-//                    showAlert(MainActivity.this, getString(R.string.should_login));
-                break;
+//
+//            case R.id.subscriptions:
+//                // if(mUserSession.hasActiveSession())
+//                goToFragment(1);
+////                else
+////                    showAlert(MainActivity.this, getString(R.string.should_login));
+//                break;
 
             case R.id.orders:
-                goToFragment(2);
+                goToFragment(1);
                 break;
             case R.id.messages:
                 //       if(mUserSession.hasActiveSession())
-                goToFragment(3);
+                goToFragment(2);
             /*    else
                     showAlert(MainActivity.this, getString(R.string.should_login));*/
                 break;
             case R.id.more:
                 //       if(mUserSession.hasActiveSession())
-                goToFragment(4);
+                goToFragment(3);
             /*    else
                     showAlert(MainActivity.this, getString(R.string.should_login));*/
                 break;
@@ -133,14 +133,14 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
 
-            case 1:
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, new SubscriptionsFragment());
-                //    fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
-                break;
+//            case 1:
+//                fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.container, new SubscriptionsFragment());
+//                //    fragmentTransaction.commit();
+//                fragmentTransaction.commitAllowingStateLoss();
+//                break;
 
-            case 2:
+            case 1:
 
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.container, new OrdersFragment());
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
 
-            case 3:
+            case 2:
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.container, new ChatFragment());
                 //    fragmentTransaction.commit();
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
 //                fragmentTransaction.commitAllowingStateLoss();
 
                 break;
-            case 4:
+            case 3:
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.container, new MoreFragment());
                 //    fragmentTransaction.commit();

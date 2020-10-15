@@ -259,11 +259,17 @@ public class MapsFragment extends Fragment {
                                     .position(mylocation))
 
                             ;
-                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 20));
-                            // Zoom in, animating the camera.
-                            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+                            CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
+                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+
+
+
+//                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 40));
+//                            // Zoom in, animating the camera.
+//                            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
                             // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(3), 3000, null);
+//                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
                         }
 
 
@@ -548,11 +554,14 @@ public class MapsFragment extends Fragment {
                                     .position(mylocation))
 
                             ;
-                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 20));
-                            // Zoom in, animating the camera.
-                            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-                            // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(17), 3000, null);
+                            CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
+                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+//                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 20));
+//                            // Zoom in, animating the camera.
+//                            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+//                            // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+//                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(17), 3000, null);
                         }
 
 
@@ -1070,11 +1079,14 @@ public class MapsFragment extends Fragment {
                             .position(mylocation))
 
                     ;
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 20));
-                    // Zoom in, animating the camera.
-                    googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-                    // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(17), 3000, null);
+                    CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
+                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+//                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 20));
+//                    // Zoom in, animating the camera.
+//                    googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+//                    // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+//                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(17), 3000, null);
                 }
 
 

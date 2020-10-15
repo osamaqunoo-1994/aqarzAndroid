@@ -269,13 +269,13 @@
     <string name="chat_title">Chat</string>
 
 
-    <string name="Enjoy_">Enjoy the best services and offers from the Aqarz app</string>
+    <string name="Enjoy_">Enjoy the best services and offers </string>
     <string name="requstService">Requst Service</string>
 
 
     <string name="RentalinstallmentService">Rent installment</string>
-    <string name="AqarsService">Aqars</string>
-    <string name="rateService">Rate</string>
+    <string name="AqarsService">Realestate</string>
+    <string name="rateService">Valuation</string>
     <string name="financeService">Finance</string>
 
 
@@ -292,6 +292,7 @@
     <string name="IDImage">ID Image</string>
     <string name="National_attach_w">National address attachment</string>
     <string name="Show_nayi">Show the national address data</string>
+    <string name="Show_MoreDetails">Show More Details</string>
 
 
     <string name="is_requred">is_requred</string>
@@ -331,11 +332,11 @@
     <string name="t8_details">Purpose</string>
 
 
-
     <string name="t9_details">last update</string>
     <string name="t10_details"># views</string>
     <string name="t11_details"># Ads</string>
-
+    <string name="title_siginuo">عقــــارز منصتــــك الأولى  لكــــل
+ما يخـص عالــم العقــــــارات</string>
 
 
 </resources>

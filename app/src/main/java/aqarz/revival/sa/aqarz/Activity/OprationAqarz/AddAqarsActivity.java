@@ -30,9 +30,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -177,6 +179,9 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     ImageView Add_charts_image;
 
+    Switch switch_more_detials;
+    LinearLayout all_more_detila;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -273,6 +278,8 @@ public class AddAqarsActivity extends AppCompatActivity {
         Communication_Officer = findViewById(R.id.Communication_Officer);
         contact_number = findViewById(R.id.contact_number);
         Add_charts_image = findViewById(R.id.Add_charts_image);
+        switch_more_detials = findViewById(R.id.switch_more_detials);
+        all_more_detila = findViewById(R.id.all_more_detila);
 
         //---------------------------------------------------------------------------------------
         back.setOnClickListener(new View.OnClickListener() {
@@ -594,7 +601,20 @@ public class AddAqarsActivity extends AppCompatActivity {
 
 
 //-------------------------------------------------------------------------------------------------
+        switch_more_detials.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
+
+                if (isChecked) {
+                    all_more_detila.setVisibility(View.VISIBLE);
+                } else {
+                    all_more_detila.setVisibility(View.GONE);
+                }
+
+
+            }
+        });
 
 //-------------------------------------------------------------------------------------------------
 
@@ -1144,19 +1164,24 @@ public class AddAqarsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (Instrument_number.getText().toString().equals("") |
-                        piece_number.getText().toString().equals("") |
-                        No_planned.getText().toString().equals("") |
+                if (total_price.getText().toString().equals("") |
+
                         Total_area.getText().toString().equals("") |
-                        age_of_the_property.getText().toString().equals("") |
-                        Role_number.getText().toString().equals("") |
-                        Street_view.getText().toString().equals("") |
-                        total_price.getText().toString().equals("") |
-                        price_one_meter.getText().toString().equals("") |
-                        Communication_Officer.getText().toString().equals("") |
-                        lat.toString().equals("") |
-                        selectIamgeList.size() == 0 |
-                        contact_number.getText().toString().equals("")
+
+                        contact_number.getText().toString().equals("") |
+                        Communication_Officer.getText().toString().equals("")
+
+
+//
+//                        Instrument_number.getText().toString().equals("") |
+//                        piece_number.getText().toString().equals("") |
+//                        No_planned.getText().toString().equals("") |
+//                        age_of_the_property.getText().toString().equals("") |
+//                        Role_number.getText().toString().equals("") |
+//                        Street_view.getText().toString().equals("") |
+//                        price_one_meter.getText().toString().equals("") |
+//                        lat.toString().equals("") |
+//                        selectIamgeList.size() == 0 |
 
                 ) {
 

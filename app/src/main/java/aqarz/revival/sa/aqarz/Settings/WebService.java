@@ -74,7 +74,9 @@ public class WebService {
         heder.put("Accept-Language", Hawk.get("lang").toString());
         if (Hawk.contains("api_token")) {
             if (!Hawk.get("api_token").toString().equals("")) {//Hawk.get("api_token").toString()
-                heder.put("auth", "token 3a5a51601b69bd31c6d825aa4e664faad79fa6715406dbc123274736551762c684ae994f3072acf6b1b02a2bc3f72ee799576b6adf2a84b9f2af2799dff0a2b4");//
+                heder.put("auth", Hawk.get("api_token").toString());
+
+//                heder.put("auth", "token 3a5a51601b69bd31c6d825aa4e664faad79fa6715406dbc123274736551762c684ae994f3072acf6b1b02a2bc3f72ee799576b6adf2a84b9f2af2799dff0a2b4");//
                 System.out.println("auth " + "  " + Hawk.get("api_token").toString());
             }
         }

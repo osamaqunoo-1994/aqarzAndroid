@@ -11,10 +11,10 @@
         android:icon="@drawable/ic_orders"
         android:title="@string/orders" />
 
-    <item
-        android:id="@+id/subscriptions"
-        android:icon="@drawable/ic_subscriptions"
-        android:title="@string/subscriptions" />
+<!--    <item-->
+<!--        android:id="@+id/subscriptions"-->
+<!--        android:icon="@drawable/ic_subscriptions"-->
+<!--        android:title="@string/subscriptions" />-->
     <item
         android:id="@+id/messages"
         android:icon="@drawable/ic_messages"
