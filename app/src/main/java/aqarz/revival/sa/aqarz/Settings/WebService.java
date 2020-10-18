@@ -101,6 +101,10 @@ public class WebService {
     public static void loading(Activity activity, boolean stopOrstart) {
 
         if (stopOrstart) {
+            if (kProgressHUD != null) {
+                kProgressHUD.dismiss();
+
+            }
             kProgressHUD = KProgressHUD.create(activity)
                     .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                     .setCancellable(true)

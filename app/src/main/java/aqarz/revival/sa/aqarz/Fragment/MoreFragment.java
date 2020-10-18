@@ -212,7 +212,7 @@ public class MoreFragment extends Fragment {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),RegisterActivity.class);
+                Intent intent = new Intent(getContext(),NewSiginUpActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
