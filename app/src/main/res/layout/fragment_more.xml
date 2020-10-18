@@ -481,9 +481,9 @@
                         android:layout_weight="1"
                         android:background="@drawable/button_login"
                         android:fontFamily="@font/muli_bold"
-
                         android:text="@string/Email_Us"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:visibility="gone" />
 
 
                 </LinearLayout>

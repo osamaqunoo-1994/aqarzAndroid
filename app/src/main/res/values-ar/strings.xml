@@ -361,4 +361,15 @@
 
     <string name="Show_MoreDetails">اظهار تفاصيل اكتر</string>
 
+
+
+
+    <string name="title_siginuo">عقــــارز منصتــــك الأولى  لكــــل
+ما يخـص عالــم العقــــــارات</string>
+
+    <string name="areyou_aqarezman">هل أنت عقاري؟</string>
+    <string name="contuie">استمرار</string>
+    <string name="sign_in">تسجيل دخول</string>
+
+    <string name="title_login">نرحب بعودتك مجدداً</string>
 </resources>

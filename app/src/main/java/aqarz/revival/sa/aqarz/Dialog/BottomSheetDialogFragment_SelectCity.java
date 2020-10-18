@@ -96,9 +96,11 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String data = response.getString("data");
+                        JSONObject jsonObjectdata = new JSONObject(data);
 
+                        String datax = jsonObjectdata.getString("data");
 
-                        JSONArray jsonArray = new JSONArray(data);
+                        JSONArray jsonArray = new JSONArray(datax);
                         progress.setVisibility(View.GONE);
                         cityModules_list.clear();
                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -134,7 +136,7 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
 
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
 
 

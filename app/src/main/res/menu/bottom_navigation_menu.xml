@@ -4,11 +4,11 @@
     <item
         android:id="@+id/home"
         android:checked="true"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_home_icon"
         android:title="@string/home" />
     <item
         android:id="@+id/orders"
-        android:icon="@drawable/ic_orders"
+        android:icon="@drawable/ic_order_icon"
         android:title="@string/orders" />
 
 <!--    <item-->
@@ -17,10 +17,10 @@
 <!--        android:title="@string/subscriptions" />-->
     <item
         android:id="@+id/messages"
-        android:icon="@drawable/ic_messages"
+        android:icon="@drawable/ic_message_icon"
         android:title="@string/messages" />
     <item
         android:id="@+id/more"
-        android:icon="@drawable/ic_more"
+        android:icon="@drawable/ic_more_icon"
         android:title="@string/More" />
 </menu>

@@ -73,16 +73,16 @@
             android:theme="@style/AppTheme.NoActionBar_login" />
         <activity
             android:name=".Activity.Auth.MyProfileInformationActivity"
-            android:theme="@style/AppTheme.NoActionBar_login" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.Auth.ConfirmationActivity"
             android:theme="@style/AppTheme.NoActionBar_login" />
         <activity
             android:name=".Activity.Auth.RegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar_login" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.Auth.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar_login" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.SplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar_splash">

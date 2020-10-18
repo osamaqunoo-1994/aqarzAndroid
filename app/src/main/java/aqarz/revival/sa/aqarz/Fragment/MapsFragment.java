@@ -202,40 +202,57 @@ public class MapsFragment extends Fragment {
 
                             } else if (final_type_requst_filter.equals("map_order")) {
 //
+
+                                if (marker.getTag().toString().equals("mylocation")) {
+
+                                } else {
+                                    CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(getActivity(), homeModules.get(Integer.valueOf(marker.getTag().toString())));
+                                    mMap.setInfoWindowAdapter(customInfoWindow);
+                                    mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                                        @Override
+                                        public void onInfoWindowClick(Marker marker) {
+
+
+                                            try {
+                                                if (!marker.getTag().toString().equals("mylocation")) {
+                                                    Intent intent = new Intent(getContext(), DetailsActivity.class);
+                                                    intent.putExtra("id", homeModules.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
+                                                    System.out.println(homeModules.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
+                                                    getActivity().startActivity(intent);
+                                                }
+                                            } catch (Exception e) {
+
+                                            }
+
+
+                                        }
+                                    });
+                                }
 //                                BottomSheetDialogFragment_DetailsAqares_orders bottomSheetDialogFragment_detailsAqares_orders = new BottomSheetDialogFragment_DetailsAqares_orders(homeModules.get(Integer.valueOf(marker.getTag().toString())));
 //                                bottomSheetDialogFragment_detailsAqares_orders.show(getFragmentManager(), "");
-                                CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(getActivity(), homeModules.get(Integer.valueOf(marker.getTag().toString())));
-                                mMap.setInfoWindowAdapter(customInfoWindow);
-                                mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-                                    @Override
-                                    public void onInfoWindowClick(Marker marker) {
 
-                                        Intent intent = new Intent(getContext(), DetailsActivity.class);
-                                        intent.putExtra("id", homeModules.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
-                                        System.out.println(homeModules.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
-                                        getActivity().startActivity(intent);
-
-
-                                    }
-                                });
                             } else if (final_type_requst_filter.equals("map_offer")) {//aqarz
 
+                                if (marker.getTag().toString().equals("mylocation")) {
 
+                                } else {
 //                                BottomSheetDialogFragment_DetailsAqares bottomSheetDialogFragment_detailsAqares = new BottomSheetDialogFragment_DetailsAqares(homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())));
 //                                bottomSheetDialogFragment_detailsAqares.show(getFragmentManager(), "");
-                                CustomInfoWindowGoogleMaptyp_2 customInfoWindow = new CustomInfoWindowGoogleMaptyp_2(getActivity(), homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())));
-                                mMap.setInfoWindowAdapter(customInfoWindow);
-                                mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-                                    @Override
-                                    public void onInfoWindowClick(Marker marker) {
+                                    CustomInfoWindowGoogleMaptyp_2 customInfoWindow = new CustomInfoWindowGoogleMaptyp_2(getActivity(), homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())));
+                                    mMap.setInfoWindowAdapter(customInfoWindow);
+                                    mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                                        @Override
+                                        public void onInfoWindowClick(Marker marker) {
+                                            if (!marker.getTag().toString().equals("mylocation")) {
 
-                                        Intent intent = new Intent(getContext(), DetailsActivity_aqarz.class);
-                                        intent.putExtra("id", homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
-                                        getActivity().startActivity(intent);
+                                                Intent intent = new Intent(getContext(), DetailsActivity_aqarz.class);
+                                                intent.putExtra("id", homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
+                                                getActivity().startActivity(intent);
 
-
-                                    }
-                                });
+                                            }
+                                        }
+                                    });
+                                }
                             }
 
 
@@ -256,13 +273,11 @@ public class MapsFragment extends Fragment {
                         LatLng mylocation = getLocation();
                         if (mylocation != null) {
                             googleMap.addMarker(new MarkerOptions()
-                                    .position(mylocation))
+                                    .position(mylocation)).setTag("mylocation");
 
                             ;
                             CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
                             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
-
 
 
 //                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 40));
@@ -551,7 +566,7 @@ public class MapsFragment extends Fragment {
                         LatLng mylocation = getLocation();
                         if (mylocation != null) {
                             googleMap.addMarker(new MarkerOptions()
-                                    .position(mylocation))
+                                    .position(mylocation)).setTag("mylocation");
 
                             ;
                             CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
@@ -832,13 +847,14 @@ public class MapsFragment extends Fragment {
 
                                         .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(bankModules.getPrice_from())))).setTag(i);
 
-                                LatLng mylocation = getLocation();
-                                if (mylocation != null) {
-                                    googleMap.addMarker(new MarkerOptions()
-                                            .position(mylocation)).setTag("mylocation");
 
-                                    ;
-                                }
+                            }
+                            LatLng mylocation = getLocation();
+                            if (mylocation != null) {
+                                googleMap.addMarker(new MarkerOptions()
+                                        .position(mylocation)).setTag("mylocation");
+
+                                ;
 
 //                                LatLng gaza = new LatLng(Double.valueOf("31.484194"), Double.valueOf("34.408283"));
 //                                googleMap.addMarker(new MarkerOptions()
@@ -894,13 +910,13 @@ public class MapsFragment extends Fragment {
                                         e.printStackTrace();
                                     }
 
-                                    LatLng mylocation = getLocation();
-                                    if (mylocation != null) {
-                                        googleMap.addMarker(new MarkerOptions()
-                                                .position(mylocation)).setTag("mylocation");
 
-                                        ;
-                                    }
+                                }
+                                LatLng mylocation = getLocation();
+                                if (mylocation != null) {
+                                    googleMap.addMarker(new MarkerOptions()
+                                            .position(mylocation)).setTag("mylocation");
+
 
 //                                LatLng gaza = new LatLng(Double.valueOf("31.484194"), Double.valueOf("34.408283"));
 //                                googleMap.addMarker(new MarkerOptions()
@@ -1041,13 +1057,16 @@ public class MapsFragment extends Fragment {
                 System.out.println("longitude:" + longitude);
 
                 LatLng my_location = new LatLng(latitude, longitude);
+//                LatLng my_location = new LatLng(24.768516, 46.691505);
 
                 return my_location;
 
             } else {
                 gpsTracker.showSettingsAlert();
 
-                LatLng my_location = new LatLng(25.600843, 42.630765);
+                //24.768516, 46.691505
+
+                LatLng my_location = new LatLng(24.768516, 46.691505);
 
 
                 return my_location;
@@ -1055,7 +1074,7 @@ public class MapsFragment extends Fragment {
             }
         } catch (Exception e) {
 
-            LatLng my_location = new LatLng(25.600843, 42.630765);
+            LatLng my_location = new LatLng(24.768516, 46.691505);
 
 
             return my_location;
@@ -1076,7 +1095,7 @@ public class MapsFragment extends Fragment {
                 LatLng mylocation = getLocation();
                 if (mylocation != null) {
                     googleMap.addMarker(new MarkerOptions()
-                            .position(mylocation))
+                            .position(mylocation)).setTag("mylocation");
 
                     ;
                     CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
@@ -1109,22 +1128,22 @@ public class MapsFragment extends Fragment {
         if (type.equals("list_order")) {
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("list_order", WebService.Home_1 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().latitude + "&estate_type=" + opration_select + "" + filtter);//&request_type=pay
+            mVolleyService.getDataVolley("list_order", WebService.Home_1 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().longitude + "&estate_type=" + opration_select + "" + filtter);//&request_type=pay
 
         } else if (type.equals("list_offer")) {//aqarz
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("list_offer", WebService.Home_2 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().latitude + "&estate_type=" + opration_select + ""+ filtter);
+            mVolleyService.getDataVolley("list_offer", WebService.Home_2 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().longitude + "&estate_type=" + opration_select + "" + filtter);
 
         } else if (type.equals("map_order")) {
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("map_order", WebService.Home_3 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().latitude + "&estate_type=" + opration_select + "" + filtter);//&request_type=pay
+            mVolleyService.getDataVolley("map_order", WebService.Home_3 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().longitude + "&estate_type=" + opration_select + "" + filtter);//&request_type=pay
 
         } else if (type.equals("map_offer")) {//aqarz
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("map_offer", WebService.Home_4 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().latitude + "&estate_type=" + opration_select + ""+ filtter);
+            mVolleyService.getDataVolley("map_offer", WebService.Home_4 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().longitude + "&estate_type=" + opration_select + "" + filtter);
 
         }
 

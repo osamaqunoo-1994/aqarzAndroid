@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     IResult mResultCallback;
     ImageView pass_checkbox;
 
-
+    ImageView back;
     boolean is_show = false;
 
     @Override
@@ -83,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         Login = findViewById(R.id.Login);
         forget_pass = findViewById(R.id.forget_pass);
         pass_checkbox = findViewById(R.id.pass_checkbox);
+        back = findViewById(R.id.back);
 
         phone_ed.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -191,6 +192,12 @@ public class LoginActivity extends AppCompatActivity {
 //                    pass_checkbox.setImageDrawable(getDrawable(R.drawable.ic_private));
                     is_show = true;
                 }
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

@@ -44,6 +44,7 @@ import java.util.List;
 import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.NewPasswordActivity;
+import aqarz.revival.sa.aqarz.Activity.Auth.NewSiginUpActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.RegisterActivity;
 import aqarz.revival.sa.aqarz.Activity.ContactUsActivity;
 import aqarz.revival.sa.aqarz.Activity.MainActivity;
@@ -211,7 +212,7 @@ public class MoreFragment extends Fragment {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), RegisterActivity.class);
+                Intent intent = new Intent(getContext(),RegisterActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
