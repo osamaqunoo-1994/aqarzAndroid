@@ -289,7 +289,12 @@ public class AddAqarsActivity extends AppCompatActivity {
             }
         });
         //---------------------------------------------------------------------------------------
+try{
+    Communication_Officer.setText(Settings.GetUser().getName()+"");
+    contact_number.setText(Settings.GetUser().getMobile()+"");
+}catch (Exception e){
 
+}
 
         comfort_RecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
