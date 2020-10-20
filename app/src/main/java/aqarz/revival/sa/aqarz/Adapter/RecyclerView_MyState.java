@@ -6,37 +6,39 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.fragment.app.FragmentActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
-import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_SelectBanks;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
-import aqarz.revival.sa.aqarz.Modules.OrdersModules;
+import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
+import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
 
 
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_orders extends RecyclerView.Adapter<RecyclerView_orders.MyViewHolder> {
-    public static List<OrdersModules> alldata = new ArrayList<OrdersModules>();
+public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MyState.MyViewHolder> {
+    public static List<HomeModules_aqares> alldata = new ArrayList<HomeModules_aqares>();
     static int Postion_opend = 0;
 
 
     static AlertDialog alertDialog;
     private ItemClickListener mItemClickListener;
 
-    BottomSheetDialogFragment_MyEstate bottomSheetDialogFragment_myEstate;
+
     /**
      * View holder class
      */
@@ -59,31 +61,32 @@ public class RecyclerView_orders extends RecyclerView.Adapter<RecyclerView_order
 //        LinearLayout add_to_my;
 
 
+        //        LinearLayout answer_layout;
+        //  public FrameLayout frame;
+
+        LinearLayout back_ground;
+        TextView opration;
         TextView price;
         TextView address;
-        TextView view_type;
-        TextView space;
-        TextView name_estate;
-        TextView new_offer;
+        ImageView image;
+
+        CheckBox chechbox;
 
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
 
-
+            image = view.findViewById(R.id.image);
+            opration = view.findViewById(R.id.opration);
             price = view.findViewById(R.id.price);
-            name_estate = view.findViewById(R.id.name_estate);
             address = view.findViewById(R.id.address);
-            space = view.findViewById(R.id.space);
-            view_type = view.findViewById(R.id.view_type);
-            new_offer = view.findViewById(R.id.new_offer);
-//            ratingbar = view.findViewById(R.id.ratingbar);
-////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
+            chechbox = view.findViewById(R.id.chechbox);
+
 
         }
     }
 
-    public RecyclerView_orders(Context context, List<OrdersModules> alldata) {
+    public RecyclerView_MyState(Context context, List<HomeModules_aqares> alldata) {
         this.alldata = alldata;
         this.context = context;
     }
@@ -99,7 +102,9 @@ public class RecyclerView_orders extends RecyclerView.Adapter<RecyclerView_order
 
 //        holder.setIsRecyclable(false);
 //        holder.title.setText(alldata.get(position).getName());
-//        holder.details.setText(alldata.get(position).getName());
+        holder.price.setText(alldata.get(position).getTotalPrice());
+        holder.opration.setText(alldata.get(position).getEstate_type_name());
+        holder.address.setText(alldata.get(position).getInterface());
 //        if (alldata.get(position).getRate() != null) {
 //            if (!alldata.get(position).getRate().equals("null")) {
 //
@@ -108,19 +113,28 @@ public class RecyclerView_orders extends RecyclerView.Adapter<RecyclerView_order
 //
 //            }
 //        }
+////
+//        holder.text.setText(alldata.get(position).getName() + "");
+
+
+//        if (position == Postion_opend) {
+//            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));
 //
-
-
-        holder.price.setText(alldata.get(position).getEstatePriceRange());
-        holder.view_type.setText(alldata.get(position).getDirEstate());
-        holder.space.setText(alldata.get(position).getStreetViewRange());
-        holder.name_estate.setText(alldata.get(position).getEstateTypeName());
-        holder.address.setText(alldata.get(position).getCityName() + " , " + alldata.get(position).getNeighborhoodName());
-
-
+//            holder.text.setTextColor(context.getResources().getColor(R.color.white));
 //
+//
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
+//
+//        } else {
+//            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.search_background));
+//
+//            holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
+//
+//        }
+////
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
+//        Picasso.with(context).load(alldata.get(position).get()).into(holder.image);
 ////
 //
 //        try {
@@ -173,31 +187,33 @@ public class RecyclerView_orders extends RecyclerView.Adapter<RecyclerView_order
 //        });
 //
 
+
+        if (alldata.get(position).getIs_selected()) {
+            holder.chechbox.setChecked(true);
+        } else {
+            holder.chechbox.setChecked(false);
+
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
-//                Postion_opend = position;
-//                Refr();
-
-//                RequestOrderActivity.set_fragment(position);
-
-
-                if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(position);
-                }
+//
 //
 
-            }
-        });
-        holder.new_offer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getId()+"");
 
-                bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
-
+                if (alldata.get(position).getIs_selected()) {
+                    holder.chechbox.setChecked(false);
+                    alldata.get(position).setIs_selected(false);
+                } else {
+                    holder.chechbox.setChecked(true);
+                    alldata.get(position).setIs_selected(true);
+                }
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(alldata);
+                }
+//                Postion_opend = position;
+                Refr();
 
             }
         });
@@ -221,7 +237,7 @@ public class RecyclerView_orders extends RecyclerView.Adapter<RecyclerView_order
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_orders, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_my_estate, parent, false);
 
 
         // Fresco.initialize(context);
@@ -232,6 +248,6 @@ public class RecyclerView_orders extends RecyclerView.Adapter<RecyclerView_order
 
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(List<HomeModules_aqares> homeModules_aqares);
     }
 }

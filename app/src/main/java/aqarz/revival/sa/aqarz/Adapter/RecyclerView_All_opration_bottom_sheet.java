@@ -114,10 +114,10 @@ public class RecyclerView_All_opration_bottom_sheet extends RecyclerView.Adapter
             holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
 
         } else {
-            holder.image_in_type.setBackground(context.getResources().getDrawable(R.drawable.circle));
+            holder.image_in_type.setBackground(context.getResources().getDrawable(R.drawable.circle_filter));
 
-            holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
-            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
+            holder.text.setTextColor(context.getResources().getColor(R.color.color_filter));
+            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.color_filter), android.graphics.PorterDuff.Mode.MULTIPLY);
 
         }
 //

@@ -344,4 +344,9 @@
     <string name="title_login">We welcome you back again</string>
     <string name="EditProfile">Edit Profile</string>
 
+
+
+    <string name="AddNEWOFFER">Add Offer</string>
+    <string name="other_btn">Other</string>
+    <string name="Confirm_btn">Confirm</string>
 </resources>

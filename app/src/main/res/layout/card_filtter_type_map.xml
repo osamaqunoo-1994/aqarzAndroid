@@ -26,11 +26,11 @@
             android:padding="15dp"
 
 
-            android:background="@drawable/circle"
+            android:background="@drawable/circle_filter"
 
 
             android:src="@drawable/ic_test_test"
-            app:tint="#424446" />
+            app:tint="#AAABB3" />
 
         <TextView
             android:id="@+id/text"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/frutiger_lt_arabic_roman"
             android:text="تقسيط تاجير"
-            android:textColor="#424446"
+            android:textColor="#AAABB3"
             android:textSize="@dimen/_11sdp" />
 
 

@@ -146,6 +146,17 @@ public class HomeModules_aqares {
     @Expose
     private List<ComfortModules> comforts;
 
+
+    boolean is_selected = false;
+
+    public void setIs_selected(boolean is_selected) {
+        this.is_selected = is_selected;
+    }
+
+    public boolean getIs_selected() {
+        return is_selected;
+    }
+
     public String getSeen_count() {
         return seen_count;
     }

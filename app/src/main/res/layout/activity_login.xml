@@ -114,7 +114,7 @@
                         android:background="@android:color/transparent"
 
                         android:hint="@string/phone_number"
-                        android:inputType="number"
+                        android:inputType="textEmailAddress"
 
 
                         android:paddingLeft="10dp"

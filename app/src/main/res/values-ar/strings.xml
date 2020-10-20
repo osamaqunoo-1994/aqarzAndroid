@@ -372,4 +372,14 @@
     <string name="sign_in">تسجيل دخول</string>
 
     <string name="title_login">نرحب بعودتك مجدداً</string>
+
+
+    <string name="EditProfile">تعديل البروفايل</string>
+
+
+
+    <string name="AddNEWOFFER">اضافة عرض</string>
+    <string name="other_btn">اخرى</string>
+    <string name="Confirm_btn">تاكيد</string>
+
 </resources>

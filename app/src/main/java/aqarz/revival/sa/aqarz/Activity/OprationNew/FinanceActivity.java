@@ -356,7 +356,7 @@ public class FinanceActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
 
-                String myFormat = "MM/dd/yy"; //In which you need put here
+                String myFormat = "yyyy/MM/dd"; //In which you need put here 2020-02-15
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
                 date_bertih.setText(sdf.format(myCalendar.getTime()));
@@ -383,7 +383,7 @@ public class FinanceActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
 
-                String myFormat = "MM/dd/yy"; //In which you need put here
+                String myFormat = "yyyy/MM/dd"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
                 start_work_date.setText(sdf.format(myCalendar.getTime()));

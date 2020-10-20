@@ -92,15 +92,15 @@ public class LoginActivity extends AppCompatActivity {
                 if (hasFocus) {
                     phone_ed.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background_color));
 
-                    Drawable img = getResources().getDrawable(R.drawable.ic_phone_color);
+//                    Drawable img = getResources().getDrawable(R.drawable.ic_phone_color);
 
-                    phone_ed.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
+//                    phone_ed.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
 
                 } else {
                     phone_ed.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background));
-                    Drawable img = getResources().getDrawable(R.drawable.ic_phone);
+//                    Drawable img = getResources().getDrawable(R.drawable.ic_phone);
 
-                    phone_ed.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
+//                    phone_ed.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
 
                 }
             }
@@ -112,11 +112,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
                     password.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background_color));
-                    password.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_look), null, null, null);
+//                    password.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_look), null, null, null);
 
                 } else {
                     password.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background));
-                    password.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_look_color), null, null, null);
+//                    password.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_look_color), null, null, null);
 
                 }
             }

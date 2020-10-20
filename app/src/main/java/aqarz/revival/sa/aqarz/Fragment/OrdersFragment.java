@@ -52,9 +52,11 @@ import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
 import aqarz.revival.sa.aqarz.Activity.TermsActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_order_;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList_estat;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_bottomSheet_type;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
@@ -122,8 +124,6 @@ public class OrdersFragment extends Fragment {
         section_horizantal = v.findViewById(R.id.section_horizantal);
 
 
-
-
         try {
             data = Settings.getSettings().getOprationType().getOriginal().getData();
 
@@ -170,17 +170,18 @@ public class OrdersFragment extends Fragment {
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         type_of_v.setLayoutManager(layoutManagerxmx);
 
-        RecyclerView_All_type_in_fragment recyclerView_all_type_in_fragment = new RecyclerView_All_type_in_fragment(getContext(), type_list);
-        recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_in_fragment.ItemClickListener() {
+
+        RecyclerView_All_opration_bottom_sheet recyclerView_all_opration_bottom_sheet = new RecyclerView_All_opration_bottom_sheet(getContext(), type_list);
+        recyclerView_all_opration_bottom_sheet.addItemClickListener(new RecyclerView_All_opration_bottom_sheet.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
 //                opration_select = type_list.get(position).getId().toString() + "";
-
             }
         });
-        type_of_v.setAdapter(recyclerView_all_type_in_fragment);
-//------------------------------------------------------------------------------------------------------------
+        type_of_v.setAdapter(recyclerView_all_opration_bottom_sheet);
+
+
+        //------------------------------------------------------------------------------------------------------------
 
         For_sale.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,11 +222,11 @@ public class OrdersFragment extends Fragment {
 
                 my_order_text.setTextColor(getResources().getColor(R.color.white));
 
-                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.search_background));
+                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 Shopping_request_text.setTextColor(getResources().getColor(R.color.textColor));
 
-                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.search_background));
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 Real_Estate_order_text.setTextColor(getResources().getColor(R.color.color_tr));
                 Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.color_tr), android.graphics.PorterDuff.Mode.MULTIPLY);
@@ -242,12 +243,12 @@ public class OrdersFragment extends Fragment {
                 Shopping_request_text.setTextColor(getResources().getColor(R.color.white));
 
 
-                my_order_layout.setBackground(getResources().getDrawable(R.drawable.search_background));
+                my_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 my_order_text.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.search_background));
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 Real_Estate_order_text.setTextColor(getResources().getColor(R.color.color_tr));
                 Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.color_tr), android.graphics.PorterDuff.Mode.MULTIPLY);
@@ -256,8 +257,7 @@ public class OrdersFragment extends Fragment {
                 list_opration.setVisibility(View.GONE);
                 type_sale.setVisibility(View.VISIBLE);
 
-                WebService.loading(getActivity(), true);
-
+//                WebService.loading(getActivity(), true);
 
 
             }
@@ -267,12 +267,12 @@ public class OrdersFragment extends Fragment {
         Real_Estate_order_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.search_background));
+                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 Shopping_request_text.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                my_order_layout.setBackground(getResources().getDrawable(R.drawable.search_background));
+                my_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 my_order_text.setTextColor(getResources().getColor(R.color.textColor));
 
@@ -288,7 +288,7 @@ public class OrdersFragment extends Fragment {
 
                 init_volley();
                 VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request );
+                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request);
 
 
             }
@@ -297,27 +297,11 @@ public class OrdersFragment extends Fragment {
         type_sale.setVisibility(View.GONE);
 
 
-
-
-
-
-
-
-
-
-
-
-
         WebService.loading(getActivity(), true);
 
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-        mVolleyService.getDataVolley("fund_Request", WebService.fund_Request );
-
-
-
-
-
+        mVolleyService.getDataVolley("fund_Request", WebService.fund_Request);
 
 
     }
@@ -341,6 +325,7 @@ public class OrdersFragment extends Fragment {
 
         super.onResume();
     }
+
     public void init_volley() {
 
 
@@ -383,10 +368,6 @@ public class OrdersFragment extends Fragment {
 
 
                         orders_rec.setAdapter(new RecyclerView_orders(getContext(), ordersModules));
-
-
-
-
 
 
                     }

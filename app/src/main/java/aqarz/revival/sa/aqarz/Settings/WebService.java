@@ -48,6 +48,8 @@ public class WebService {
     public static String rate_Request = Domain + "rate/Request";
     public static String estate_Request = Domain + "estate/Request";
     public static String single_estat = Domain + "single/";
+    public static String my_estate = Domain + "my/estate";
+    public static String send_offer_fund_Request = Domain + "send/offer/fund/Request";
 
 
     public static void Header_Async(AsyncHttpClient client, boolean is_token) {

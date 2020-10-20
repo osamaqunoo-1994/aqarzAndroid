@@ -39,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         init();
 
-        LinearLayout yourView = findViewById(R.id.alla);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (yourView != null) {
-                yourView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            }
-        }
+//        LinearLayout yourView = findViewById(R.id.alla);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            if (yourView != null) {
+//                yourView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);;
+//            }
+//        }
 
 
     }

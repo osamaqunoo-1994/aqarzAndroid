@@ -622,7 +622,7 @@ public class MapsFragment extends Fragment {
 
                 Orders_tab.setTextColor(getResources().getColor(R.color.white));
                 Offers_tab.setBackground(null);
-                Offers_tab.setTextColor(getResources().getColor(R.color.textColor));
+                Offers_tab.setTextColor(getResources().getColor(R.color.color_filter));
 
                 if (convert_type.equals("map")) {
                     get_data_from_api("map_order", filtter_selected);
@@ -643,7 +643,7 @@ public class MapsFragment extends Fragment {
                 Offers_tab.setBackground(getResources().getDrawable(R.drawable.button_login));
                 Offers_tab.setTextColor(getResources().getColor(R.color.white));
                 Orders_tab.setBackground(null);
-                Orders_tab.setTextColor(getResources().getColor(R.color.textColor));
+                Orders_tab.setTextColor(getResources().getColor(R.color.color_filter));
 
                 if (convert_type.equals("map")) {
                     get_data_from_api("map_offer", filtter_selected);

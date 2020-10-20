@@ -219,7 +219,7 @@ public class RentActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
 
-                String myFormat = "MM/dd/yy"; //In which you need put here
+                String myFormat = "yyyy/MM/dd"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
                 date_bertih.setText(sdf.format(myCalendar.getTime()));
