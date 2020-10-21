@@ -16,6 +16,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +37,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.rtchagas.pingplacepicker.PingPlacePicker;
 
 import org.json.JSONObject;
@@ -43,6 +45,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import aqarz.revival.sa.aqarz.Modules.OprationModules;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
@@ -57,8 +60,8 @@ public class RateActivity extends AppCompatActivity {
     String opration_select = "";
     TextView For_sale, rent, investment;
 
-    RecyclerView opration_2__RecyclerView;
-    RecyclerView opration_RecyclerView;
+    RecyclerView opration;
+//    RecyclerView opration_RecyclerView;
 
     List<OprationModules> oprationModules_list = new ArrayList<>();
 
@@ -69,7 +72,7 @@ public class RateActivity extends AppCompatActivity {
     private static GoogleMap googleMap;
     public GoogleApiClient mGoogleApiClient;
     MapView mMapView;
-    String Id_eastate = "";
+
 
     IResult mResultCallback;
 
@@ -158,11 +161,12 @@ public class RateActivity extends AppCompatActivity {
         phone = findViewById(R.id.phone);
         description = findViewById(R.id.description);
         btn_send = findViewById(R.id.btn_send);
-        opration_RecyclerView = findViewById(R.id.opration_RecyclerView);
+//        opration_RecyclerView = findViewById(R.id.opration_RecyclerView);
         For_sale = findViewById(R.id.For_sale);
         rent = findViewById(R.id.rent);
         back = findViewById(R.id.back);
         investment = findViewById(R.id.investment);
+        opration = findViewById(R.id.opration);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,26 +180,41 @@ public class RateActivity extends AppCompatActivity {
         //---------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------
 
+//        type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
+//
+//        System.out.println("type_list" + type_list.size());
+//
+//
+//        LinearLayoutManager layoutManager1
+//                = new LinearLayoutManager(RateActivity.this, LinearLayoutManager.HORIZONTAL, false);
+//        opration_RecyclerView.setLayoutManager(layoutManager1);
+//        RecyclerView_All_type_in_fragment recyclerView_all_type_in_fragment = new RecyclerView_All_type_in_fragment(RateActivity.this, type_list);
+//        recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_in_fragment.ItemClickListener() {
+//            @Override
+//            public void onItemClick(int position) {
+//
+//
+//                opration_select = type_list.get(position).getId().toString() + "";
+//
+//
+//            }
+//        });
+//        opration_RecyclerView.setAdapter(recyclerView_all_type_in_fragment);
+///------------------------------------------------------------------------------------------------------
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
 
-        System.out.println("type_list" + type_list.size());
-
-
-        LinearLayoutManager layoutManager1
+        LinearLayoutManager layoutManagerw
                 = new LinearLayoutManager(RateActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        opration_RecyclerView.setLayoutManager(layoutManager1);
-        RecyclerView_All_type_in_fragment recyclerView_all_type_in_fragment = new RecyclerView_All_type_in_fragment(RateActivity.this, type_list);
-        recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_in_fragment.ItemClickListener() {
+        opration.setLayoutManager(layoutManagerw);
+
+        RecyclerView_All_opration_bottom_sheet recyclerView_all_opration_bottom_sheet = new RecyclerView_All_opration_bottom_sheet(RateActivity.this, type_list);
+        recyclerView_all_opration_bottom_sheet.addItemClickListener(new RecyclerView_All_opration_bottom_sheet.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
-
                 opration_select = type_list.get(position).getId().toString() + "";
-
-
             }
         });
-        opration_RecyclerView.setAdapter(recyclerView_all_type_in_fragment);
+        opration.setAdapter(recyclerView_all_opration_bottom_sheet);
 
 //-------------------------------------------------------------------------------------------------
         For_sale.setOnClickListener(new View.OnClickListener() {
@@ -208,14 +227,14 @@ public class RateActivity extends AppCompatActivity {
                 For_sale.setTextColor(getResources().getColor(R.color.white));
 
 
-                rent.setBackground(getResources().getDrawable(R.drawable.circle));
+                rent.setBackground(getResources().getDrawable(R.drawable.mash));
 
-                rent.setTextColor(getResources().getColor(R.color.textColor));
+                rent.setTextColor(getResources().getColor(R.color.color_filter));
 
 
-                investment.setBackground(getResources().getDrawable(R.drawable.circle));
+                investment.setBackground(getResources().getDrawable(R.drawable.mash));
 
-                investment.setTextColor(getResources().getColor(R.color.textColor));
+                investment.setTextColor(getResources().getColor(R.color.color_filter));
 //
 //                rent.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
 //                investment.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
@@ -234,14 +253,14 @@ public class RateActivity extends AppCompatActivity {
                 rent.setTextColor(getResources().getColor(R.color.white));
 
 
-                For_sale.setBackground(getResources().getDrawable(R.drawable.circle));
+                For_sale.setBackground(getResources().getDrawable(R.drawable.mash));
 
-                For_sale.setTextColor(getResources().getColor(R.color.textColor));
+                For_sale.setTextColor(getResources().getColor(R.color.color_filter));
 
 
-                investment.setBackground(getResources().getDrawable(R.drawable.circle));
+                investment.setBackground(getResources().getDrawable(R.drawable.mash));
 
-                investment.setTextColor(getResources().getColor(R.color.textColor));
+                investment.setTextColor(getResources().getColor(R.color.color_filter));
 //
 //
 //                For_sale.getCompoundDrawables()[0].setTint(getResources().getColor(R.color.black));
@@ -309,8 +328,8 @@ public class RateActivity extends AppCompatActivity {
 
                     try {
 
-                        sendObj.put("operation_type_id", Id_eastate);//form operation list api in setting
-//                        sendObj.put("estate_type_id", opration_select);//form estate type list api in setting
+                        sendObj.put("operation_type_id", "4");//form operation list api in setting
+                        sendObj.put("estate_type_id", opration_select);//form estate type list api in setting
                         sendObj.put("name", name.getText().toString());//
                         sendObj.put("email", email.getText().toString());//
                         sendObj.put("mobile", phone.getText().toString());//
@@ -380,7 +399,22 @@ public class RateActivity extends AppCompatActivity {
 
 //                        Hawk.put("user", data);
 
-                        WebService.Make_Toast_color(RateActivity.this, message, "success");
+//                        WebService.Make_Toast_color(RateActivity.this, message, "success");
+
+                        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(RateActivity.this);
+                        View parentView = getLayoutInflater().inflate(R.layout.success_message,null);
+                        ImageView close=parentView.findViewById(R.id.close);
+                        close.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                finish();
+                            }
+                        });
+                        bottomSheerDialog.setContentView(parentView);
+//                        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(parentView.getParent());
+//                        bottomSheetBehavior.setPeekHeight(int);
+                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,200,getResources().getDisplayMetrics());
+                        bottomSheerDialog.show();
 
                     } else {
                         String message = response.getString("message");

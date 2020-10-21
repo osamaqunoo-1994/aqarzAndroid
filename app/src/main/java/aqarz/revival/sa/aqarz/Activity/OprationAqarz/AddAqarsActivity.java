@@ -76,6 +76,7 @@ import aqarz.revival.sa.aqarz.Activity.OprationNew.FinanceActivity;
 import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_in_order;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_date_select;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_selectImage;
@@ -182,6 +183,14 @@ public class AddAqarsActivity extends AppCompatActivity {
     Switch switch_more_detials;
     LinearLayout all_more_detila;
 
+
+    LinearLayout Lounges_lay;
+    LinearLayout room_lay;
+    LinearLayout Bathrooms_lay;
+    LinearLayout Dining_rooms_lay;
+    LinearLayout Boards_lay;
+    LinearLayout Kitchens_lay;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -281,6 +290,17 @@ public class AddAqarsActivity extends AppCompatActivity {
         switch_more_detials = findViewById(R.id.switch_more_detials);
         all_more_detila = findViewById(R.id.all_more_detila);
 
+        Lounges_lay = findViewById(R.id.Lounges_lay);
+        room_lay = findViewById(R.id.room_lay);
+        Bathrooms_lay = findViewById(R.id.Bathrooms_lay);
+        Dining_rooms_lay = findViewById(R.id.Dining_rooms_lay);
+        Boards_lay = findViewById(R.id.Boards_lay);
+        Kitchens_lay = findViewById(R.id.Kitchens_lay);
+
+
+
+
+
         //---------------------------------------------------------------------------------------
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -304,12 +324,30 @@ public class AddAqarsActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(AddAqarsActivity.this, LinearLayoutManager.HORIZONTAL, false);
         opration_RecyclerView.setLayoutManager(layoutManager1);
+//
+//        RecyclerView_All_type_in_fragment recyclerView_all_type_in_fragment = new RecyclerView_All_type_in_fragment(AddAqarsActivity.this, type_list);
+//        recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_in_fragment.ItemClickListener() {
+//            @Override
+//            public void onItemClick(int position) {
+//
+//
+//
+//
+//            }
+//        });
+//        opration_RecyclerView.setAdapter(recyclerView_all_type_in_fragment);
 
-        RecyclerView_All_type_in_fragment recyclerView_all_type_in_fragment = new RecyclerView_All_type_in_fragment(AddAqarsActivity.this, type_list);
-        recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_in_fragment.ItemClickListener() {
+        ///------------------------------------------------------------------------------------------------------
+        type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
+
+        LinearLayoutManager layoutManagerw
+                = new LinearLayoutManager(AddAqarsActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        opration_RecyclerView.setLayoutManager(layoutManagerw);
+
+        RecyclerView_All_opration_bottom_sheet recyclerView_all_opration_bottom_sheet = new RecyclerView_All_opration_bottom_sheet(AddAqarsActivity.this, type_list);
+        recyclerView_all_opration_bottom_sheet.addItemClickListener(new RecyclerView_All_opration_bottom_sheet.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
 
                 opration_select = type_list.get(position).getId().toString() + "";
 
@@ -333,13 +371,9 @@ public class AddAqarsActivity extends AppCompatActivity {
 
 
                 }
-
-
             }
         });
-        opration_RecyclerView.setAdapter(recyclerView_all_type_in_fragment);
-
-
+        opration_RecyclerView.setAdapter(recyclerView_all_opration_bottom_sheet);
         LinearLayoutManager layoutManagem
                 = new LinearLayoutManager(AddAqarsActivity.this, LinearLayoutManager.HORIZONTAL, false);
         images_RecyclerView.setLayoutManager(layoutManagem);
@@ -465,9 +499,13 @@ public class AddAqarsActivity extends AppCompatActivity {
                 Lounges_number.setText(number_Lounges + "");
 
                 if (number_Lounges > 0) {
-                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    Lounges_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Lounges_number.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
+                    Lounges_lay.setBackground(null);
+                    Lounges_number.setTextColor(getResources().getColor(R.color.black));
 
                 }
 
@@ -488,10 +526,20 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 }
 
+//                if (number_Lounges > 0) {
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                } else {
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
+//
+//                }
                 if (number_Lounges > 0) {
-                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    Lounges_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Lounges_number.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
+                    Lounges_lay.setBackground(null);
+                    Lounges_number.setTextColor(getResources().getColor(R.color.black));
 
                 }
                 Lounges_number.setText(number_Lounges + "");
@@ -515,10 +563,20 @@ public class AddAqarsActivity extends AppCompatActivity {
                 number_room++;
 
 
+//                if (number_room > 0) {
+//                    room_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                } else {
+//                    room_text.setBackgroundColor(getResources().getColor(R.color.white));
+//
+//                }
                 if (number_room > 0) {
-                    room_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    room_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    room_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    room_text.setBackgroundColor(getResources().getColor(R.color.white));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
+                    room_lay.setBackground(null);
+                    room_text.setTextColor(getResources().getColor(R.color.black));
 
                 }
                 room_text.setText(number_room + "");
@@ -540,10 +598,20 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 }
 
+//                if (number_room > 0) {
+//                    room_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                } else {
+//                    room_text.setBackgroundColor(getResources().getColor(R.color.white));
+//
+//                }
                 if (number_room > 0) {
-                    room_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    room_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    room_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    room_text.setBackgroundColor(getResources().getColor(R.color.white));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
+                    room_lay.setBackground(null);
+                    room_text.setTextColor(getResources().getColor(R.color.black));
 
                 }
                 room_text.setText(number_room + "");
@@ -567,11 +635,22 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 number_Bathrooms++;
 
+//
+//                if (number_Bathrooms > 0) {
+//                    Bathrooms_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                } else {
+//                    Bathrooms_text.setBackgroundColor(getResources().getColor(R.color.white));
+//
+//                }
 
                 if (number_Bathrooms > 0) {
-                    Bathrooms_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    Bathrooms_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Bathrooms_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    Bathrooms_text.setBackgroundColor(getResources().getColor(R.color.white));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
+                    Bathrooms_lay.setBackground(null);
+                    Bathrooms_text.setTextColor(getResources().getColor(R.color.black));
 
                 }
                 Bathrooms_text.setText(number_Bathrooms + "");
@@ -591,11 +670,22 @@ public class AddAqarsActivity extends AppCompatActivity {
                     number_Bathrooms--;
 
                 }
+//
+//                if (number_Bathrooms > 0) {
+//                    Bathrooms_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                } else {
+//                    Bathrooms_text.setBackgroundColor(getResources().getColor(R.color.white));
+//
+//                }
 
                 if (number_Bathrooms > 0) {
-                    Bathrooms_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    Bathrooms_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Bathrooms_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    Bathrooms_text.setBackgroundColor(getResources().getColor(R.color.white));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
+                    Bathrooms_lay.setBackground(null);
+                    Bathrooms_text.setTextColor(getResources().getColor(R.color.black));
 
                 }
                 Bathrooms_text.setText(number_Bathrooms + "");
@@ -633,11 +723,22 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 number_Boards_plus++;
 
+//
+//                if (number_Boards_plus > 0) {
+//                    Boards_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                } else {
+//                    Boards_text.setBackgroundColor(getResources().getColor(R.color.white));
+//
+//                }
 
                 if (number_Boards_plus > 0) {
-                    Boards_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    Boards_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Boards_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    Boards_text.setBackgroundColor(getResources().getColor(R.color.white));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
+                    Boards_lay.setBackground(null);
+                    Boards_text.setTextColor(getResources().getColor(R.color.black));
 
                 }
                 Boards_text.setText(number_Boards_plus + "");
@@ -659,10 +760,20 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 }
 
+//                if (number_Boards_plus > 0) {
+//                    Boards_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                } else {
+//                    Boards_text.setBackgroundColor(getResources().getColor(R.color.white));
+//
+//                }
                 if (number_Boards_plus > 0) {
-                    Boards_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    Boards_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Boards_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    Boards_text.setBackgroundColor(getResources().getColor(R.color.white));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
+                    Boards_lay.setBackground(null);
+                    Boards_text.setTextColor(getResources().getColor(R.color.black));
 
                 }
                 Boards_text.setText(number_Boards_plus + "");
@@ -687,10 +798,21 @@ public class AddAqarsActivity extends AppCompatActivity {
                 number_Kitchens_plus++;
 
 
+//                if (number_Kitchens_plus > 0) {
+//                    Kitchens_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                } else {
+//                    Kitchens_text.setBackgroundColor(getResources().getColor(R.color.white));
+//
+//                }
+
                 if (number_Kitchens_plus > 0) {
-                    Kitchens_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    Kitchens_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Kitchens_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    Kitchens_text.setBackgroundColor(getResources().getColor(R.color.white));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
+                    Kitchens_lay.setBackground(null);
+                    Kitchens_text.setTextColor(getResources().getColor(R.color.black));
 
                 }
                 Kitchens_text.setText(number_Kitchens_plus + "");
@@ -712,10 +834,20 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 }
 
+//                if (number_Kitchens_plus > 0) {
+//                    Kitchens_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                } else {
+//                    Kitchens_text.setBackgroundColor(getResources().getColor(R.color.white));
+//
+//                }
                 if (number_Kitchens_plus > 0) {
-                    Kitchens_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    Kitchens_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Kitchens_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    Kitchens_text.setBackgroundColor(getResources().getColor(R.color.white));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
+                    Kitchens_lay.setBackground(null);
+                    Kitchens_text.setTextColor(getResources().getColor(R.color.black));
 
                 }
                 Kitchens_text.setText(number_Kitchens_plus + "");
@@ -739,11 +871,21 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 number_Dining_rooms++;
 
-
+//
+//                if (number_Dining_rooms > 0) {
+//                    Dining_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                } else {
+//                    Dining_text.setBackgroundColor(getResources().getColor(R.color.white));
+//
+//                }
                 if (number_Dining_rooms > 0) {
-                    Dining_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    Dining_rooms_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Dining_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    Dining_text.setBackgroundColor(getResources().getColor(R.color.white));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
+                    Dining_rooms_lay.setBackground(null);
+                    Dining_text.setTextColor(getResources().getColor(R.color.black));
 
                 }
                 Dining_text.setText(number_Dining_rooms + "");
@@ -765,10 +907,20 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 }
 
+//                if (number_Dining_rooms > 0) {
+//                    Dining_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                } else {
+//                    Dining_text.setBackgroundColor(getResources().getColor(R.color.white));
+//
+//                }
                 if (number_Dining_rooms > 0) {
-                    Dining_text.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    Dining_rooms_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Dining_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
-                    Dining_text.setBackgroundColor(getResources().getColor(R.color.white));
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
+                    Dining_rooms_lay.setBackground(null);
+                    Dining_text.setTextColor(getResources().getColor(R.color.black));
 
                 }
                 Dining_text.setText(number_Dining_rooms + "");
@@ -791,7 +943,7 @@ public class AddAqarsActivity extends AppCompatActivity {
                 unmarried.setTextColor(getResources().getColor(R.color.white));
 
 
-                married.setBackground(getResources().getDrawable(R.drawable.search_background));
+                married.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 married.setTextColor(getResources().getColor(R.color.textColor));
                 social_status = "unmarried";
@@ -805,7 +957,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 married.setTextColor(getResources().getColor(R.color.white));
 
-                unmarried.setBackground(getResources().getDrawable(R.drawable.search_background));
+                unmarried.setBackground(getResources().getDrawable(R.drawable.mash));
 
 
                 unmarried.setTextColor(getResources().getColor(R.color.textColor));
@@ -823,12 +975,12 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 deluxe.setTextColor(getResources().getColor(R.color.white));
 
-                average.setBackground(getResources().getDrawable(R.drawable.search_background));
+                average.setBackground(getResources().getDrawable(R.drawable.mash));
 
 
                 average.setTextColor(getResources().getColor(R.color.textColor));
 
-                normal.setBackground(getResources().getDrawable(R.drawable.search_background));
+                normal.setBackground(getResources().getDrawable(R.drawable.mash));
 
 
                 normal.setTextColor(getResources().getColor(R.color.textColor));
@@ -844,12 +996,12 @@ public class AddAqarsActivity extends AppCompatActivity {
                 average.setTextColor(getResources().getColor(R.color.white));
 
 
-                deluxe.setBackground(getResources().getDrawable(R.drawable.search_background));
+                deluxe.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 deluxe.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                normal.setBackground(getResources().getDrawable(R.drawable.search_background));
+                normal.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 normal.setTextColor(getResources().getColor(R.color.textColor));
 
@@ -861,9 +1013,9 @@ public class AddAqarsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 normal.setBackground(getResources().getDrawable(R.drawable.button_login));
                 normal.setTextColor(getResources().getColor(R.color.white));
-                average.setBackground(getResources().getDrawable(R.drawable.search_background));
+                average.setBackground(getResources().getDrawable(R.drawable.mash));
                 average.setTextColor(getResources().getColor(R.color.textColor));
-                deluxe.setBackground(getResources().getDrawable(R.drawable.search_background));
+                deluxe.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 deluxe.setTextColor(getResources().getColor(R.color.textColor));
 
@@ -881,17 +1033,17 @@ public class AddAqarsActivity extends AppCompatActivity {
                 north.setTextColor(getResources().getColor(R.color.white));
 
 
-                west.setBackground(getResources().getDrawable(R.drawable.search_background));
+                west.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 west.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                south.setBackground(getResources().getDrawable(R.drawable.search_background));
+                south.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 south.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                east.setBackground(getResources().getDrawable(R.drawable.search_background));
+                east.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 east.setTextColor(getResources().getColor(R.color.textColor));
 
@@ -906,17 +1058,17 @@ public class AddAqarsActivity extends AppCompatActivity {
                 south.setTextColor(getResources().getColor(R.color.white));
 
 
-                north.setBackground(getResources().getDrawable(R.drawable.search_background));
+                north.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 north.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                east.setBackground(getResources().getDrawable(R.drawable.search_background));
+                east.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 east.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                west.setBackground(getResources().getDrawable(R.drawable.search_background));
+                west.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 west.setTextColor(getResources().getColor(R.color.textColor));
 
@@ -931,17 +1083,17 @@ public class AddAqarsActivity extends AppCompatActivity {
                 east.setTextColor(getResources().getColor(R.color.white));
 
 
-                north.setBackground(getResources().getDrawable(R.drawable.search_background));
+                north.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 north.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                south.setBackground(getResources().getDrawable(R.drawable.search_background));
+                south.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 south.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                west.setBackground(getResources().getDrawable(R.drawable.search_background));
+                west.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 west.setTextColor(getResources().getColor(R.color.textColor));
 
@@ -955,15 +1107,15 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 west.setTextColor(getResources().getColor(R.color.white));
 
-                north.setBackground(getResources().getDrawable(R.drawable.search_background));
+                north.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 north.setTextColor(getResources().getColor(R.color.textColor));
 
-                south.setBackground(getResources().getDrawable(R.drawable.search_background));
+                south.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 south.setTextColor(getResources().getColor(R.color.textColor));
 
-                east.setBackground(getResources().getDrawable(R.drawable.search_background));
+                east.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 east.setTextColor(getResources().getColor(R.color.textColor));
 
@@ -984,12 +1136,12 @@ public class AddAqarsActivity extends AppCompatActivity {
                 For_sale.setTextColor(getResources().getColor(R.color.white));
 
 
-                rent.setBackground(getResources().getDrawable(R.drawable.search_background));
+                rent.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 rent.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                investment.setBackground(getResources().getDrawable(R.drawable.search_background));
+                investment.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 investment.setTextColor(getResources().getColor(R.color.textColor));
 
@@ -1014,12 +1166,12 @@ public class AddAqarsActivity extends AppCompatActivity {
                 rent.setTextColor(getResources().getColor(R.color.white));
 
 
-                For_sale.setBackground(getResources().getDrawable(R.drawable.search_background));
+                For_sale.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 For_sale.setTextColor(getResources().getColor(R.color.textColor));
 
 
-                investment.setBackground(getResources().getDrawable(R.drawable.search_background));
+                investment.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 investment.setTextColor(getResources().getColor(R.color.textColor));
 

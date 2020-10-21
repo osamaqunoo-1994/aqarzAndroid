@@ -76,6 +76,7 @@ public class RecyclerView_All_number_room extends RecyclerView.Adapter<RecyclerV
         this.alldata = alldata;
         this.context = context;
     }
+
     public void addItemClickListener(RecyclerView_All_type_in_fragment.ItemClickListener listener) {
         mItemClickListener = listener;
     }
@@ -126,8 +127,8 @@ public class RecyclerView_All_number_room extends RecyclerView.Adapter<RecyclerV
 
             holder.text.setTextColor(context.getResources().getColor(R.color.white));
         } else {
-            holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
-            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.search_background));
+            holder.text.setTextColor(context.getResources().getColor(R.color.color_filter));
+            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.mash));
 
         }
 
@@ -205,6 +206,7 @@ public class RecyclerView_All_number_room extends RecyclerView.Adapter<RecyclerV
 
         return new MyViewHolder(v);
     }
+
     //Define your Interface method here
     public interface ItemClickListener {
         void onItemClick(int position);

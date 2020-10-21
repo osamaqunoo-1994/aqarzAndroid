@@ -81,6 +81,9 @@
             android:name=".Activity.Auth.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".Activity.Auth.NewConfirmationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Activity.Auth.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

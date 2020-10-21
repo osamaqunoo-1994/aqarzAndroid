@@ -34,6 +34,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.rtchagas.pingplacepicker.PingPlacePicker;
 
 import org.json.JSONObject;
@@ -42,6 +43,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_number_room;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import aqarz.revival.sa.aqarz.Modules.OprationModules;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
@@ -65,7 +67,7 @@ public class AqarzOrActivity extends AppCompatActivity {
 
     List<OprationModules> oprationModules_list = new ArrayList<>();
 
-    String tenant_job_type = "governmental";
+    String tenant_job_type = "Purchase";
     TextView governmental;
     TextView Special;
     TextView Soldier;
@@ -202,28 +204,23 @@ public class AqarzOrActivity extends AppCompatActivity {
         placesClient = Places.createClient(AqarzOrActivity.this);
 
         //---------------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------------
+//---
 
+        ///------------------------------------------------------------------------------------------------------
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
 
-        System.out.println("type_list" + type_list.size());
-
-
-        LinearLayoutManager layoutManager1
+        LinearLayoutManager layoutManagerw
                 = new LinearLayoutManager(AqarzOrActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        opration_RecyclerView.setLayoutManager(layoutManager1);
-        RecyclerView_All_type_in_fragment recyclerView_all_type_in_fragment = new RecyclerView_All_type_in_fragment(AqarzOrActivity.this, type_list);
-        recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_in_fragment.ItemClickListener() {
+        opration_RecyclerView.setLayoutManager(layoutManagerw);
+
+        RecyclerView_All_opration_bottom_sheet recyclerView_all_opration_bottom_sheet = new RecyclerView_All_opration_bottom_sheet(AqarzOrActivity.this, type_list);
+        recyclerView_all_opration_bottom_sheet.addItemClickListener(new RecyclerView_All_opration_bottom_sheet.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
-
                 opration_select = type_list.get(position).getId().toString() + "";
-
-
             }
         });
-        opration_RecyclerView.setAdapter(recyclerView_all_type_in_fragment);
+        opration_RecyclerView.setAdapter(recyclerView_all_opration_bottom_sheet);
 
 //---------------------------------------------------------------------------------------
 
@@ -293,12 +290,12 @@ public class AqarzOrActivity extends AppCompatActivity {
 
                 Soldier.setBackground(null);
 
-                Soldier.setTextColor(getResources().getColor(R.color.textColor));
+                Soldier.setTextColor(getResources().getColor(R.color.color_filter));
 
                 Special.setBackground(null);
 
-                Special.setTextColor(getResources().getColor(R.color.textColor));
-                tenant_job_type = "governmental";
+                Special.setTextColor(getResources().getColor(R.color.color_filter));
+                tenant_job_type = "Purchase";
             }
         });
         Soldier.setOnClickListener(new View.OnClickListener() {
@@ -311,11 +308,11 @@ public class AqarzOrActivity extends AppCompatActivity {
 
                 governmental.setBackground(null);
 
-                governmental.setTextColor(getResources().getColor(R.color.textColor));
+                governmental.setTextColor(getResources().getColor(R.color.color_filter));
                 Special.setBackground(null);
 
-                Special.setTextColor(getResources().getColor(R.color.textColor));
-                tenant_job_type = "soldier";
+                Special.setTextColor(getResources().getColor(R.color.color_filter));
+                tenant_job_type = "rent";
 
             }
         });
@@ -330,11 +327,11 @@ public class AqarzOrActivity extends AppCompatActivity {
 
                 governmental.setBackground(null);
 
-                governmental.setTextColor(getResources().getColor(R.color.textColor));
+                governmental.setTextColor(getResources().getColor(R.color.color_filter));
                 Soldier.setBackground(null);
 
-                Soldier.setTextColor(getResources().getColor(R.color.textColor));
-                tenant_job_type = "special";
+                Soldier.setTextColor(getResources().getColor(R.color.color_filter));
+                tenant_job_type = "investment";
 
             }
         });
@@ -394,8 +391,17 @@ public class AqarzOrActivity extends AppCompatActivity {
 //                        Hawk.put("user", data);
 
                         String message = response.getString("message");
-
-                        WebService.Make_Toast_color(AqarzOrActivity.this, message, "success");
+                        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(AqarzOrActivity.this);
+                        View parentView = getLayoutInflater().inflate(R.layout.success_message,null);
+                        ImageView close=parentView.findViewById(R.id.close);
+                        close.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                finish();
+                            }
+                        });
+                        bottomSheerDialog.setContentView(parentView);
+//                        WebService.Make_Toast_color(AqarzOrActivity.this, message, "success");
                     } else {
                         String message = response.getString("message");
 

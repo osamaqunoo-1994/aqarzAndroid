@@ -30,6 +30,7 @@ import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.loopj.android.http.RequestParams;
 import com.nguyenhoanglam.imagepicker.model.Image;
 import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker;
@@ -44,6 +45,7 @@ import java.util.List;
 import java.util.Locale;
 
 import aqarz.revival.sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_Type_RequstService;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_SelectBanks;
@@ -77,7 +79,7 @@ public class RentActivity extends AppCompatActivity {
     TextView Soldier;
 
     String opration_select = "1";
-    String contract_interval = "";
+    String contract_interval = "0";
 
 
     EditText price, name_owner, phone_owner, owner_id_number, Total_salary;
@@ -86,6 +88,7 @@ public class RentActivity extends AppCompatActivity {
     EditText Neighborhoodname, Postal_code, additional_number, unit_number;
     TextView date_bertih;
     TextView city;
+    TextView years;
 
 
     ImageView image_id_owner;
@@ -132,6 +135,7 @@ public class RentActivity extends AppCompatActivity {
         image_id_owner = findViewById(R.id.image_id_owner);
         seek_bar = findViewById(R.id.seek_bar);
         Total_salary = findViewById(R.id.Total_salary);
+        years = findViewById(R.id.years);
 
 
         name = findViewById(R.id.name);
@@ -162,25 +166,22 @@ public class RentActivity extends AppCompatActivity {
 
         init_volley();
 
-        //---------------------------------------------------------
+
+///------------------------------------------------------------------------------------------------------
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
 
-        LinearLayoutManager layoutManager1
+        LinearLayoutManager layoutManagerw
                 = new LinearLayoutManager(RentActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        opration_RecyclerView.setLayoutManager(layoutManager1);
+        opration_RecyclerView.setLayoutManager(layoutManagerw);
 
-        RecyclerView_Type_RequstService recyclerView_type_requstService = new RecyclerView_Type_RequstService(RentActivity.this, type_list);
-        recyclerView_type_requstService.addItemClickListener(new RecyclerView_Type_RequstService.ItemClickListener() {
+        RecyclerView_All_opration_bottom_sheet recyclerView_all_opration_bottom_sheet = new RecyclerView_All_opration_bottom_sheet(RentActivity.this, type_list);
+        recyclerView_all_opration_bottom_sheet.addItemClickListener(new RecyclerView_All_opration_bottom_sheet.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
                 opration_select = type_list.get(position).getId().toString() + "";
-
             }
         });
-        opration_RecyclerView.setAdapter(recyclerView_type_requstService);
-
-
+        opration_RecyclerView.setAdapter(recyclerView_all_opration_bottom_sheet);
         action_button();
         next_step();
     }
@@ -337,6 +338,7 @@ public class RentActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 contract_interval = progress + "";
+                years.setText(contract_interval);
             }
 
             @Override
@@ -672,8 +674,17 @@ public class RentActivity extends AppCompatActivity {
 
 //                        Hawk.put("user", data);
                         String message = response.getString("message");
-
-                        WebService.Make_Toast_color(RentActivity.this, message, "success");
+                        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(RentActivity.this);
+                        View parentView = getLayoutInflater().inflate(R.layout.success_message,null);
+                        ImageView close=parentView.findViewById(R.id.close);
+                        close.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                finish();
+                            }
+                        });
+                        bottomSheerDialog.setContentView(parentView);
+//                        WebService.Make_Toast_color(RentActivity.this, message, "success");
 
                     } else {
                         String message = response.getString("message");

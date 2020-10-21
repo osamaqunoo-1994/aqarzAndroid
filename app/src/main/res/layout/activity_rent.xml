@@ -95,7 +95,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/muli_bold"
+                                android:fontFamily="@font/frutiger_lt_arabic_roman"
                                 android:text="@string/title_1"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="17dp" />
@@ -117,9 +117,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:paddingBottom="5dp">
+                        android:gravity="start">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -128,24 +126,16 @@
                             android:text="@string/AqarType"
                             android:textColor="@color/textColor2"
                             android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1">
-
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/opration_RecyclerView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_20sdp"
-
-                                />
-                        </LinearLayout>
-
-
                     </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/opration_RecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+
+                        />
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -168,9 +158,19 @@
                             android:layout_weight="1" />
 
                         <TextView
+                            android:id="@+id/years"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/three_years"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="0"
+                            android:textColor="@color/textColor2"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/YearSeekbar"
                             android:textColor="@color/textColor2"
                             android:textSize="13dp" />
                     </LinearLayout>
@@ -201,24 +201,19 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/Price"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
 
                         <EditText
                             android:id="@+id/price"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+
+
+                            android:background="@drawable/mash"
                             android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/Price"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -271,24 +266,19 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/name"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
 
                         <EditText
                             android:id="@+id/name_owner"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+
                             android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:background="@drawable/mash"
                             android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/name"
                             android:inputType="text"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -306,23 +296,18 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/phone_number"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
 
                         <EditText
                             android:id="@+id/phone_owner"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:layout_height="42dp"
+
+
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/phone_number"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -339,24 +324,19 @@
                         android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:paddingBottom="5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/Date_of_Birth"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
 
 
                         <TextView
                             android:id="@+id/date_bertih"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+
                             android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/Date_of_Birth"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -374,23 +354,18 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/id_number"
-                            android:textColor="@color/textColor2"
-                            android:textSize="13dp" />
-
 
                         <EditText
                             android:id="@+id/owner_id_number"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
+                            android:layout_height="42dp"
+
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/id_number"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -411,7 +386,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/IDImage"
+                            android:text="@string/AddImageId"
                             android:textColor="@color/textColor2"
                             android:textSize="15dp" />
 
@@ -422,9 +397,8 @@
 
                             android:layout_margin="10dp"
                             android:layout_marginStart="@dimen/_20sdp"
-                            android:background="@drawable/button_service"
-                            android:padding="12dp"
-                            android:src="@drawable/ic_logo_move" />
+                            android:background="@drawable/ic_group_2564"
+                            android:padding="12dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -441,23 +415,17 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/city_name"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
 
                         <TextView
                             android:id="@+id/city"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/city_name"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
@@ -486,7 +454,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
-                            android:background="@drawable/back_type_work"
+                            android:background="@drawable/mash"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -535,23 +503,18 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/Total_salary"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
 
                         <EditText
                             android:id="@+id/Total_salary"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+
                             android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/Total_salary"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -633,7 +596,7 @@
                             android:id="@+id/switch_"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="true"
+                            android:checked="false"
                             android:theme="@style/SCBSwitch" />
 
                         <LinearLayout
@@ -646,9 +609,10 @@
                     <LinearLayout
                         android:id="@+id/addres_layount"
                         android:layout_width="match_parent"
-
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -681,9 +645,8 @@
 
                                 android:layout_margin="10dp"
                                 android:layout_marginStart="@dimen/_20sdp"
-                                android:background="@drawable/button_service"
-                                android:padding="12dp"
-                                android:src="@drawable/ic_logo_move" />
+                                android:background="@drawable/ic_group_2564"
+                                android:padding="12dp" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -700,23 +663,18 @@
                             android:gravity="center"
                             android:paddingBottom="5dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/buldingnumber"
-                                android:textColor="@color/textColor2"
-                                android:textSize="15dp" />
-
 
                             <EditText
                                 android:id="@+id/buldingnumber"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+
                                 android:layout_weight="1"
-                                android:background="@drawable/edit_text_background"
+                                android:background="@drawable/mash"
                                 android:gravity="center_vertical"
-                                android:hint="@string/writehear"
+                                android:hint="@string/buldingnumber"
                                 android:inputType="number"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
@@ -733,24 +691,19 @@
                             android:layout_marginTop="10dp"
                             android:gravity="center"
                             android:paddingBottom="5dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/StreetName"
-                                android:textColor="@color/textColor2"
-                                android:textSize="15dp" />
 
 
                             <EditText
                                 android:id="@+id/StreetName"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+
                                 android:layout_weight="1"
-                                android:background="@drawable/edit_text_background"
+                                android:background="@drawable/mash"
                                 android:gravity="center_vertical"
-                                android:hint="@string/writehear"
+                                android:hint="@string/StreetName"
                                 android:inputType="text"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
@@ -767,24 +720,19 @@
                             android:layout_marginTop="10dp"
                             android:gravity="center"
                             android:paddingBottom="5dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/Neighborhoodname"
-                                android:textColor="@color/textColor2"
-                                android:textSize="15dp" />
 
 
                             <EditText
                                 android:id="@+id/Neighborhoodname"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+
                                 android:layout_weight="1"
-                                android:background="@drawable/edit_text_background"
+                                android:background="@drawable/mash"
                                 android:gravity="center_vertical"
-                                android:hint="@string/writehear"
+                                android:hint="@string/Neighborhoodname"
                                 android:inputType="text"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
@@ -794,30 +742,27 @@
 
 
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
                             android:paddingBottom="5dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/city"
-                                android:textColor="@color/textColor2"
-                                android:textSize="13dp" />
 
 
                             <EditText
                                 android:id="@+id/name_city"
+
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+
                                 android:layout_weight="1"
-                                android:background="@drawable/edit_text_background"
+                                android:background="@drawable/mash"
                                 android:gravity="center_vertical"
-                                android:hint="@string/writehear"
+                                android:hint="@string/city"
                                 android:inputType="text"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
@@ -834,25 +779,19 @@
                             android:layout_marginTop="10dp"
                             android:gravity="center"
                             android:paddingBottom="5dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/Postal_code"
-                                android:textColor="@color/textColor2"
-                                android:textSize="15dp" />
 
 
                             <EditText
                                 android:id="@+id/Postal_code"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginStart="@dimen/_20sdp"
-                                android:layout_weight="1"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
 
-                                android:background="@drawable/edit_text_background"
+                                android:layout_weight="1"
+                                android:background="@drawable/mash"
                                 android:gravity="center_vertical"
-                                android:hint="@string/writehear"
+                                android:hint="@string/Postal_code"
                                 android:inputType="text"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
@@ -870,24 +809,19 @@
                             android:gravity="center"
                             android:paddingBottom="5dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/additional_number"
-                                android:textColor="@color/textColor2"
-                                android:textSize="15dp" />
-
 
                             <EditText
                                 android:id="@+id/additional_number"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+
                                 android:layout_weight="1"
-                                android:background="@drawable/edit_text_background"
+                                android:background="@drawable/mash"
 
                                 android:gravity="center_vertical"
-                                android:hint="@string/writehear"
+                                android:hint="@string/additional_number"
                                 android:inputType="number"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
@@ -905,23 +839,18 @@
                             android:gravity="center"
                             android:paddingBottom="5dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/unit_number"
-                                android:textColor="@color/textColor2"
-                                android:textSize="15dp" />
-
 
                             <EditText
                                 android:id="@+id/unit_number"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+
                                 android:layout_weight="1"
-                                android:background="@drawable/edit_text_background"
+                                android:background="@drawable/mash"
                                 android:gravity="center_vertical"
-                                android:hint="@string/writehear"
+                                android:hint="@string/unit_number"
                                 android:inputType="number"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
@@ -938,8 +867,8 @@
 
                     <Button
                         android:id="@+id/finish"
-                        android:layout_width="250dp"
-                        android:layout_height="40dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
                         android:layout_margin="10dp"
                         android:background="@drawable/button_login"
                         android:text="@string/Approval__request"

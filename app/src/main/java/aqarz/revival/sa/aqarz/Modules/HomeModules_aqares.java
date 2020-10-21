@@ -34,6 +34,9 @@ public class HomeModules_aqares {
     @SerializedName("total_area")
     @Expose
     private String totalArea;
+    @SerializedName("first_image")
+    @Expose
+    private String first_image;
     @SerializedName("estate_age")
     @Expose
     private Integer estateAge;
@@ -146,6 +149,9 @@ public class HomeModules_aqares {
     @Expose
     private List<ComfortModules> comforts;
 
+    public String getFirst_image() {
+        return first_image;
+    }
 
     boolean is_selected = false;
 

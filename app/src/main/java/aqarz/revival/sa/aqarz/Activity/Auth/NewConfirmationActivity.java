@@ -1,10 +1,5 @@
 package aqarz.revival.sa.aqarz.Activity.Auth;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatImageView;
-
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -15,6 +10,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
@@ -32,21 +32,24 @@ import aqarz.revival.sa.aqarz.Settings.WebService;
 import aqarz.revival.sa.aqarz.api.IResult;
 import aqarz.revival.sa.aqarz.api.VolleyService;
 
-public class RegisterActivity extends AppCompatActivity {
-    EditText name_ed;
-    EditText email_ed;
+public class NewConfirmationActivity extends AppCompatActivity {
+    EditText code_ed;
+    EditText Cpassword;
     EditText phone_ed;
     EditText password;
     AppCompatButton sign_up;
-    AppCompatButton loginButton;
+
 
     boolean is_show = false;
-    TextView Provider_type;
-    TextView user_type;
+    boolean cis_show = false;
+
+
     IResult mResultCallback;
 
     String type = "user";
     ImageView pass_checkbox;
+    ImageView cpass_checkbox;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,15 +71,30 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void init() {
-        name_ed = findViewById(R.id.name_ed);
-        email_ed = findViewById(R.id.email_ed);
+        code_ed = findViewById(R.id.code_ed);
+        Cpassword = findViewById(R.id.Cpassword);
         phone_ed = findViewById(R.id.phone_ed);
         password = findViewById(R.id.password);
         sign_up = findViewById(R.id.sign_up);
-//        Provider_type = findViewById(R.id.Provider_type);
-//        user_type = findViewById(R.id.user_type);
-//        loginButton = findViewById(R.id.loginButton);
+
         pass_checkbox = findViewById(R.id.pass_checkbox);
+        cpass_checkbox = findViewById(R.id.Cpass_checkbox);
+        back = findViewById(R.id.back);
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        try {
+            String mobile = getIntent().getStringExtra("mobile");
+            phone_ed.setText(mobile);
+        } catch (Exception e) {
+
+        }
 
         phone_ed.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -85,15 +103,15 @@ public class RegisterActivity extends AppCompatActivity {
                 if (hasFocus) {
                     phone_ed.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background_color));
 
-                    Drawable img = getResources().getDrawable(R.drawable.ic_phone_color);
-
-                    phone_ed.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
+//                    Drawable img = getResources().getDrawable(R.drawable.ic_phone_color);
+//
+//                    phone_ed.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
 
                 } else {
                     phone_ed.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background));
-                    Drawable img = getResources().getDrawable(R.drawable.ic_phone);
-
-                    phone_ed.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
+//                    Drawable img = getResources().getDrawable(R.drawable.ic_phone);
+//
+//                    phone_ed.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
 
                 }
             }
@@ -105,87 +123,45 @@ public class RegisterActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
                     password.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background_color));
-                    password.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_look), null, null, null);
+//                    password.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_look), null, null, null);
 
                 } else {
                     password.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background));
-                    password.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_look_color), null, null, null);
+//                    password.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_look_color), null, null, null);
 
                 }
             }
         });
-        name_ed.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        Cpassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    name_ed.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background_color));
-                    name_ed.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_user_name), null, null, null);
+                    Cpassword.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background_color));
+//                    password.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_look), null, null, null);
 
                 } else {
-                    name_ed.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background));
-                    name_ed.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_user_name_color), null, null, null);
+                    Cpassword.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background));
+//                    password.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_look_color), null, null, null);
 
                 }
             }
         });
-        email_ed.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+
+        code_ed.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    email_ed.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background_color));
-                    email_ed.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_user_name), null, null, null);
+                    code_ed.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background_color));
+//                    email_ed.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_user_name), null, null, null);
 
                 } else {
-                    email_ed.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background));
-                    email_ed.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_email_color), null, null, null);
+                    code_ed.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background));
+//                    email_ed.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_email_color), null, null, null);
 
                 }
-            }
-        });
-
-
-        Provider_type.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Provider_type.setBackgroundDrawable(getDrawable(R.drawable.button_login));
-                Provider_type.setTextColor(getResources().getColor(R.color.white));
-                user_type.setBackgroundDrawable(null);
-                user_type.setTextColor(getResources().getColor(R.color.colorPrimary));
-                type = "provider";
-
-            }
-        });
-
-        user_type.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                user_type.setBackgroundDrawable(getDrawable(R.drawable.button_login));
-                user_type.setTextColor(getResources().getColor(R.color.white));
-                Provider_type.setBackgroundDrawable(null);
-                Provider_type.setTextColor(getResources().getColor(R.color.colorPrimary));
-                type = "user";
-
-            }
-        });
-
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-//                                intent.putExtra("from", "splash");
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-                finish();
-
-
             }
         });
 
@@ -194,34 +170,35 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (name_ed.getText().toString().equals("") |
-                        email_ed.getText().toString().equals("") |
+                if (phone_ed.getText().toString().equals("") |
+                        code_ed.getText().toString().equals("") |
                         phone_ed.getText().toString().equals("") |
                         password.getText().toString().equals("")) {
-                    WebService.Make_Toast_color(RegisterActivity.this, getResources().getString(R.string.fillallfileds) + "", "error");
+                    WebService.Make_Toast_color(NewConfirmationActivity.this, getResources().getString(R.string.fillallfileds) + "", "error");
                 } else {
-                    WebService.loading(RegisterActivity.this, true);
+                    WebService.loading(NewConfirmationActivity.this, true);
 
-                    VolleyService mVolleyService = new VolleyService(mResultCallback, RegisterActivity.this);
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, NewConfirmationActivity.this);
 
 
                     JSONObject sendObj = new JSONObject();
 
                     try {
 
-                        sendObj.put("name", name_ed.getText().toString());
-                        sendObj.put("email", email_ed.getText().toString());
                         sendObj.put("mobile", phone_ed.getText().toString());
-                        sendObj.put("password", password.getText().toString());
-                        sendObj.put("password_confirmation", password.getText().toString());
+                        sendObj.put("code", code_ed.getText().toString());
 
-                        sendObj.put("device_token", "157");
-                        sendObj.put("type", type);
-                        sendObj.put("country_code", "+972");
-                        sendObj.put("device_type", "android");
+                        sendObj.put("password", password.getText().toString());
+                        sendObj.put("password_confirmation", Cpassword.getText().toString());
+                        sendObj.put("country_code", "+966");
+
+//                        sendObj.put("device_token", "157");
+//                        sendObj.put("type", type);
+//                        sendObj.put("country_code", "+972");
+//                        sendObj.put("device_type", "android");
 
                         System.out.println(sendObj.toString());
-                        mVolleyService.postDataVolley("Register", WebService.register, sendObj);
+                        mVolleyService.postDataVolley_without_token("verify", WebService.verify, sendObj);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -249,6 +226,26 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+        Cpassword.setTransformationMethod(new PasswordTransformationMethod());
+
+        cpass_checkbox.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(View v) {
+                if (cis_show) {
+                    Cpassword.setTransformationMethod(new PasswordTransformationMethod());
+                    cpass_checkbox.setSelected(false);
+//                    pass_checkbox.setImageDrawable(getDrawable(R.drawable.show_pass_bg));
+                    cis_show = false;
+                } else {
+                    Cpassword.setTransformationMethod(null);
+                    cpass_checkbox.setSelected(true);
+
+//                    pass_checkbox.setImageDrawable(getDrawable(R.drawable.ic_private));
+                    cis_show = true;
+                }
+            }
+        });
     }
 
     public void init_volley() {
@@ -259,14 +256,15 @@ public class RegisterActivity extends AppCompatActivity {
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + response.toString());
-                WebService.loading(RegisterActivity.this, false);
+                WebService.loading(NewConfirmationActivity.this, false);
 //{"status":true,"code":200,"message":"User Profile","data"
                 try {
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String data = response.getString("data");
 
-//                        Hawk.put("user", data);
+//
+                        Hawk.put("user", data);
                         JsonParser parser = new JsonParser();
                         JsonElement mJson = parser.parse(data);
 
@@ -275,21 +273,15 @@ public class RegisterActivity extends AppCompatActivity {
 
                         Hawk.put("api_token", "token " + userModules.getApi_token() + "");
 
+
                         String message = response.getString("message");
-
-                        WebService.Make_Toast_color(RegisterActivity.this, message, "success");
-
-
-                        Intent intent = new Intent(RegisterActivity.this, ConfirmationActivity.class);
-//                                intent.putExtra("from", "splash");
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                        WebService.Make_Toast_color(NewConfirmationActivity.this, message, "success");
                         finish();
 
                     } else {
                         String message = response.getString("message");
 
-                        WebService.Make_Toast_color(RegisterActivity.this, message, "error");
+                        WebService.Make_Toast_color(NewConfirmationActivity.this, message, "error");
                     }
 
 
@@ -315,7 +307,7 @@ public class RegisterActivity extends AppCompatActivity {
                     String message = jsonObject.getString("message");
 
 
-                    WebService.Make_Toast_color(RegisterActivity.this, message, "error");
+                    WebService.Make_Toast_color(NewConfirmationActivity.this, message, "error");
 
                     Log.e("error response", response_data);
 
@@ -323,7 +315,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 }
 
-                WebService.loading(RegisterActivity.this, false);
+                WebService.loading(NewConfirmationActivity.this, false);
 
 
             }

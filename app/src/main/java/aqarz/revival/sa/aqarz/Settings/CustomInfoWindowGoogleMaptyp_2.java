@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
+import com.squareup.picasso.Picasso;
 
 import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.Activity.DetailsActivity_aqarz;
@@ -35,6 +37,7 @@ public class CustomInfoWindowGoogleMaptyp_2 implements GoogleMap.InfoWindowAdapt
         TextView araea = view.findViewById(R.id.araea);
         TextView price = view.findViewById(R.id.price);
         TextView more = view.findViewById(R.id.more);
+        ImageView image = view.findViewById(R.id.image);
 
 
         price.setText(homeModules_aqares.getTotalPrice() + " " + context.getResources().getString(R.string.SAR));
@@ -42,7 +45,13 @@ public class CustomInfoWindowGoogleMaptyp_2 implements GoogleMap.InfoWindowAdapt
         opration.setText(homeModules_aqares.getEstate_type_name());
         location.setText("---");
 
+        try {
 
+            System.out.println("$%$%$%" + homeModules_aqares.getFirst_image());
+            Picasso.get().load(homeModules_aqares.getFirst_image() + "").into(image);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

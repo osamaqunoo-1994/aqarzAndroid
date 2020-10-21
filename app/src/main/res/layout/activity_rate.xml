@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="match_parent"
+    android:background="@color/white"
+
     tools:context=".Activity.OprationNew.RateActivity">
 
     <LinearLayout
@@ -52,14 +53,18 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+
+            android:background="@color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
+
                 android:layout_marginRight="15dp"
+                android:background="@color/white"
                 android:orientation="vertical"
                 android:visibility="visible">
 
@@ -75,12 +80,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/frutiger_lt_arabic_roman"
-                        android:text="@string/Type_work"
-                        android:textColor="@color/textColor2"
+                        android:text="@string/Type_order"
+                        android:textColor="#424446"
                         android:textSize="15dp" />
 
                     <LinearLayout
-                        android:layout_width="15dp"
+                        android:layout_width="10dp"
                         android:layout_height="wrap_content" />
 
                     <LinearLayout
@@ -90,19 +95,20 @@
                         android:orientation="horizontal">
 
 
-
                         <TextView
                             android:id="@+id/For_sale"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:background="@drawable/button_login"
+                            android:drawableStart="@drawable/ic_ista"
                             android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:gravity="center"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text="@string/For_sale"
-                            android:drawableStart="@drawable/ic_ista"
 
 
                             android:textColor="@color/white"
@@ -112,8 +118,10 @@
                             android:id="@+id/rent"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
                             android:layout_weight="1"
-                            android:background="@drawable/circle"
+                            android:background="@drawable/mash"
                             android:drawableStart="@drawable/ic_ista"
 
                             android:fontFamily="@font/frutiger_lt_arabic_roman"
@@ -130,8 +138,10 @@
                             android:id="@+id/investment"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
                             android:layout_weight="1"
-                            android:background="@drawable/circle"
+                            android:background="@drawable/mash"
                             android:drawableStart="@drawable/ic_ista"
                             android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:gravity="center"
@@ -148,49 +158,33 @@
                 </LinearLayout>
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:paddingBottom="5dp"
-                    android:visibility="gone">
+                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:text="@string/Type_aqarez"
+                    android:textColor="#424446"
+                    android:textSize="15dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/AqarType"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/_13sdp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/opration_RecyclerView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_20sdp"
-
-                            />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/opration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
 
 
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
+                    android:visibility="visible" />
 
                 <EditText
                     android:id="@+id/name"
                     android:layout_width="match_parent"
-                    android:layout_height="38dp"
-                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_height="42dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/edit_text_background"
+                    android:background="@drawable/mash"
                     android:gravity="center_vertical"
                     android:hint="@string/name"
                     android:inputType="text"
@@ -203,10 +197,11 @@
                 <EditText
                     android:id="@+id/email"
                     android:layout_width="match_parent"
-                    android:layout_height="38dp"
-                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_height="42dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/edit_text_background"
+                    android:background="@drawable/mash"
                     android:gravity="center_vertical"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress"
@@ -220,10 +215,12 @@
                 <EditText
                     android:id="@+id/phone"
                     android:layout_width="match_parent"
-                    android:layout_height="38dp"
-                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_height="42dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/edit_text_background"
+                    android:background="@drawable/mash"
                     android:gravity="center_vertical"
                     android:hint="+966 50 484 6393"
                     android:inputType="number"
@@ -237,13 +234,23 @@
                     android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="12dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@drawable/edit_text_background"
+                    android:background="@drawable/mash"
                     android:gravity="start"
                     android:hint="@string/writedescription"
-                    android:padding="15dp"
-                    android:textSize="@dimen/_12sdp" />
+                    android:padding="10dp"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:text="@string/AddArea"
+                    android:textColor="#424446"
+                    android:textSize="15dp" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/map_select"
@@ -252,6 +259,8 @@
                     android:layout_height="150dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
 
                     app:cardBackgroundColor="@color/colorPrimary"
                     app:cardCornerRadius="10dp">
@@ -266,7 +275,7 @@
                     android:id="@+id/btn_send"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:background="@drawable/button_login"
                     android:text="@string/send_order_btn"
                     android:textColor="@color/white" />

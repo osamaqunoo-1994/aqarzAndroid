@@ -88,6 +88,7 @@ public class MoreFragment extends Fragment {
     CircleImageView image_profile;
 
     ImageView facebook, twiter, instagram, linked;
+    ImageView not_compleate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -118,6 +119,7 @@ public class MoreFragment extends Fragment {
         instagram = v.findViewById(R.id.instagram);
         linked = v.findViewById(R.id.linked);
         image_profile = v.findViewById(R.id.image_profile);
+        not_compleate = v.findViewById(R.id.not_compleate);
 
 
         info_.setOnClickListener(new View.OnClickListener() {
@@ -212,7 +214,7 @@ public class MoreFragment extends Fragment {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),NewSiginUpActivity.class);
+                Intent intent = new Intent(getContext(), NewSiginUpActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
@@ -232,12 +234,26 @@ public class MoreFragment extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Hawk.put("user", "");
-                Hawk.put("api_token", "");
+                new AlertDialog.Builder(getContext())
+                        .setMessage(getResources().getString(R.string.are_you_wantlog))
+                        .setCancelable(false)
+                        .setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+
+                                Hawk.put("user", "");
+                                Hawk.put("api_token", "");
 //                Hawk.put("user", "");
 
 
-                check_user_login();
+                                check_user_login();
+
+
+                            }
+                        })
+                        .setNegativeButton(getResources().getString(R.string.no), null)
+                        .show();
+
 
             }
         });
@@ -341,12 +357,21 @@ public class MoreFragment extends Fragment {
 
                 } else {
 
+
                     no_login.setVisibility(View.GONE);
                     with_login.setVisibility(View.VISIBLE);
                     changePassword.setVisibility(View.VISIBLE);
-                    user_name.setText(Settings.GetUser().getName() + "");
 
-                    Picasso.get().load(Settings.GetUser().getLogo()).into(image_profile);
+
+                    if (Settings.CheckIsCompleate()) {
+                        user_name.setText(Settings.GetUser().getName() + "");
+                        Picasso.get().load(Settings.GetUser().getLogo()).into(image_profile);
+                        not_compleate.setVisibility(View.GONE);
+
+                    } else {
+                        user_name.setText("..........");
+                        not_compleate.setVisibility(View.VISIBLE);
+                    }
 
 
                 }

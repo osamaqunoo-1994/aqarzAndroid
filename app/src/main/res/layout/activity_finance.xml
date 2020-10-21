@@ -10,8 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:background="@color/white"
+        android:gravity="center"
 
         android:orientation="vertical">
 
@@ -51,29 +51,29 @@
         </LinearLayout>
 
         <ScrollView
-            android:background="@color/white"
-
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
             <LinearLayout
-                android:background="@color/white"
-
                 android:layout_width="match_parent"
+
                 android:layout_height="match_parent"
+                android:background="@color/white"
                 android:gravity="end"
 
                 android:orientation="vertical">
 
 
                 <LinearLayout
-                    android:background="@color/white"
-
                     android:id="@+id/layout_1"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
+                    android:background="@color/white"
 
                     android:gravity="end"
 
@@ -119,17 +119,24 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:gravity="center"
-                        android:paddingBottom="5dp">
+                        android:gravity="start">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/AqarType"
                             android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:textColor="@color/textColor2"
+                            android:text="@string/AqarType"
+                            android:textColor="#424446"
                             android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center"
+                        android:paddingBottom="5dp">
+
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -141,7 +148,7 @@
                                 android:id="@+id/opration_RecyclerView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_20sdp"
+
 
                                 />
                         </LinearLayout>
@@ -162,7 +169,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/Duration_of_funding"
-                            android:textColor="@color/textColor2"
+                            android:textColor="#424446"
                             android:textSize="15dp" />
 
                         <LinearLayout
@@ -171,9 +178,18 @@
                             android:layout_weight="1" />
 
                         <TextView
+                            android:id="@+id/year"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/three_years"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:textColor="@color/textColor2"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yaer"
                             android:textColor="@color/textColor2"
                             android:textSize="13dp" />
                     </LinearLayout>
@@ -202,23 +218,17 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/Price_aqar"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
 
                         <EditText
                             android:id="@+id/priceAqar"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/Price_aqar"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -232,27 +242,21 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:paddingBottom="5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/Available_price"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
 
 
                         <EditText
                             android:id="@+id/available_price"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/Available_price"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -274,14 +278,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/Solidarity_partner"
-                            android:textColor="@color/textColor2"
+                            android:textColor="#424446"
                             android:textSize="15dp" />
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
+                            android:layout_width="25dp"
+                            android:layout_height="wrap_content" />
 
                         <Switch
                             android:id="@+id/Solidarity_partner"
@@ -291,32 +293,31 @@
                             android:theme="@style/SCBSwitch" />
 
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:paddingBottom="5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/Solidarity_salary"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
 
 
                         <EditText
                             android:id="@+id/Solidarity_salary"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/Solidarity_salary"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -339,7 +340,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/ada_1"
-                            android:textColor="@color/textColor2"
+                            android:textColor="#424446"
                             android:textSize="14dp" />
 
                         <LinearLayout
@@ -394,7 +395,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/property_dd"
-                            android:textColor="@color/textColor2"
+                            android:textColor="#424446"
                             android:textSize="15dp" />
 
                         <LinearLayout
@@ -509,23 +510,16 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/name"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
 
                         <EditText
                             android:id="@+id/name"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/name"
                             android:inputType="text"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -543,23 +537,16 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/phone_number"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
 
                         <EditText
                             android:id="@+id/phone"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/phone_number"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -577,23 +564,16 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/Date_of_Birth"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
 
                         <TextView
                             android:id="@+id/date_bertih"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/Date_of_Birth"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
@@ -608,25 +588,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
+                        android:orientation="horizontal"
                         android:paddingBottom="5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/id_number"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
 
 
                         <EditText
                             android:id="@+id/id_number"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_weight="2"
-                            android:background="@drawable/edit_text_background"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/mash"
+
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/id_number"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -661,9 +636,8 @@
 
                             android:layout_margin="10dp"
                             android:layout_marginStart="@dimen/_20sdp"
-                            android:background="@drawable/button_service"
-                            android:padding="12dp"
-                            android:src="@drawable/ic_logo_move" />
+                            android:background="@drawable/ic_group_2564"
+                            android:padding="12dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -694,7 +668,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
-                            android:background="@drawable/back_type_work"
+                            android:background="@drawable/mash"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -744,23 +718,16 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/city_name"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
 
                         <TextView
                             android:id="@+id/city"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/city_name"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
@@ -775,24 +742,17 @@
                         android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:paddingBottom="5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/startworkdate"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
 
 
                         <TextView
                             android:id="@+id/start_work_date"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/startworkdate"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
@@ -809,23 +769,16 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/Total_salary"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
 
                         <EditText
                             android:id="@+id/total_sallary"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/Total_salary"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -845,25 +798,18 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/Salary_Transferred"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
 
                         <TextView
                             android:id="@+id/banks"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/mash"
                             android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
                             android:drawableTint="#AAABB3"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/Salary_Transferred"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
@@ -880,23 +826,16 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/Financial_obligations"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
 
                         <EditText
                             android:id="@+id/Financial_obligations"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/writehear"
+                            android:hint="@string/Financial_obligations"
                             android:inputType="text"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -984,7 +923,7 @@
                                 android:id="@+id/switch_address"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:checked="true"
+                                android:checked="false"
                                 android:theme="@style/SCBSwitch" />
 
 
@@ -997,7 +936,9 @@
                         android:id="@+id/addres_layount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -1030,9 +971,8 @@
 
                                 android:layout_margin="10dp"
                                 android:layout_marginStart="@dimen/_20sdp"
-                                android:background="@drawable/button_service"
-                                android:padding="12dp"
-                                android:src="@drawable/ic_logo_move" />
+                                android:background="@drawable/ic_group_2564"
+                                android:padding="12dp" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -1049,23 +989,18 @@
                             android:gravity="center"
                             android:paddingBottom="5dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/buldingnumber"
-                                android:textColor="@color/textColor2"
-                                android:textSize="15dp" />
-
 
                             <EditText
                                 android:id="@+id/buldingnumber"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+
                                 android:layout_weight="1"
-                                android:background="@drawable/edit_text_background"
+                                android:background="@drawable/mash"
                                 android:gravity="center_vertical"
-                                android:hint="@string/writehear"
+                                android:hint="@string/buldingnumber"
                                 android:inputType="number"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
@@ -1082,24 +1017,19 @@
                             android:layout_marginTop="10dp"
                             android:gravity="center"
                             android:paddingBottom="5dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/StreetName"
-                                android:textColor="@color/textColor2"
-                                android:textSize="15dp" />
 
 
                             <EditText
                                 android:id="@+id/StreetName"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+
                                 android:layout_weight="1"
-                                android:background="@drawable/edit_text_background"
+                                android:background="@drawable/mash"
                                 android:gravity="center_vertical"
-                                android:hint="@string/writehear"
+                                android:hint="@string/StreetName"
                                 android:inputType="text"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
@@ -1116,24 +1046,19 @@
                             android:layout_marginTop="10dp"
                             android:gravity="center"
                             android:paddingBottom="5dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/Neighborhoodname"
-                                android:textColor="@color/textColor2"
-                                android:textSize="15dp" />
 
 
                             <EditText
                                 android:id="@+id/Neighborhoodname"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+
                                 android:layout_weight="1"
-                                android:background="@drawable/edit_text_background"
+                                android:background="@drawable/mash"
                                 android:gravity="center_vertical"
-                                android:hint="@string/writehear"
+                                android:hint="@string/Neighborhoodname"
                                 android:inputType="text"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
@@ -1143,30 +1068,27 @@
 
 
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
                             android:paddingBottom="5dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/city"
-                                android:textColor="@color/textColor2"
-                                android:textSize="15dp" />
 
 
                             <EditText
                                 android:id="@+id/name_city"
+
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+
                                 android:layout_weight="1"
-                                android:background="@drawable/edit_text_background"
+                                android:background="@drawable/mash"
                                 android:gravity="center_vertical"
-                                android:hint="@string/writehear"
+                                android:hint="@string/city"
                                 android:inputType="text"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
@@ -1183,25 +1105,19 @@
                             android:layout_marginTop="10dp"
                             android:gravity="center"
                             android:paddingBottom="5dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/Postal_code"
-                                android:textColor="@color/textColor2"
-                                android:textSize="15dp" />
 
 
                             <EditText
                                 android:id="@+id/Postal_code"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginStart="@dimen/_20sdp"
-                                android:layout_weight="1"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
 
-                                android:background="@drawable/edit_text_background"
+                                android:layout_weight="1"
+                                android:background="@drawable/mash"
                                 android:gravity="center_vertical"
-                                android:hint="@string/writehear"
+                                android:hint="@string/Postal_code"
                                 android:inputType="text"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
@@ -1219,24 +1135,19 @@
                             android:gravity="center"
                             android:paddingBottom="5dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/additional_number"
-                                android:textColor="@color/textColor2"
-                                android:textSize="15dp" />
-
 
                             <EditText
                                 android:id="@+id/additional_number"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+
                                 android:layout_weight="1"
-                                android:background="@drawable/edit_text_background"
+                                android:background="@drawable/mash"
 
                                 android:gravity="center_vertical"
-                                android:hint="@string/writehear"
+                                android:hint="@string/additional_number"
                                 android:inputType="number"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
@@ -1254,23 +1165,18 @@
                             android:gravity="center"
                             android:paddingBottom="5dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/unit_number"
-                                android:textColor="@color/textColor2"
-                                android:textSize="15dp" />
-
 
                             <EditText
                                 android:id="@+id/unit_number"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_height="42dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+
                                 android:layout_weight="1"
-                                android:background="@drawable/edit_text_background"
+                                android:background="@drawable/mash"
                                 android:gravity="center_vertical"
-                                android:hint="@string/writehear"
+                                android:hint="@string/unit_number"
                                 android:inputType="number"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
@@ -1282,13 +1188,11 @@
 
                         </LinearLayout>
 
-
                     </LinearLayout>
-
 
                     <Button
                         android:id="@+id/finish"
-                        android:layout_width="250dp"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_margin="10dp"
                         android:background="@drawable/button_login"
@@ -1296,6 +1200,8 @@
                         android:textColor="@color/white"
                         android:textSize="14dp" />
                 </LinearLayout>
+
+
             </LinearLayout>
 
 

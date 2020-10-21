@@ -86,6 +86,7 @@
     <string name="no">No</string>
 
     <string name="are_you_change_lang_post">are you change language?</string>
+    <string name="are_you_wantlog">Do you want to log out?</string>
     <string name="Information_Aqar">Information Aqar</string>
     <string name="About_Aqar">About  Aqar</string>
     <string name="AqarType">Aqar Type</string>
@@ -349,4 +350,21 @@
     <string name="AddNEWOFFER">Add Offer</string>
     <string name="other_btn">Other</string>
     <string name="Confirm_btn">Confirm</string>
+
+
+
+
+    <string name="Type_aqarez">Type Aqarz</string>
+
+    <string name="Type_order">Type Order</string>
+    <string name="AddArea">Add Area</string>
+    <string name="AddImageId">Add Image Id</string>
+    <string name="Success_message">Your request has been successfully received, your references will be provided
+Your request and reply in the fastest time</string>
+    <string name="Code">Code</string>
+    <string name="Cpassword">Confirm Password</string>
+    <string name="ResendCode">ReSend Code</string>
+    <string name="CompleateRegister">Compleate Register</string>
+    <string name="YearSeekbar">Year</string>
+
 </resources>

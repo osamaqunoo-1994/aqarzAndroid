@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Activity.OprationNew.RequestServiceActivity">
 
 
@@ -91,7 +92,7 @@
                         android:id="@+id/rent_layout"
                         android:layout_width="130dp"
                         android:layout_height="130dp"
-                        android:background="@drawable/button_service"
+                        android:background="@drawable/mash"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -99,15 +100,17 @@
                         <ImageView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:src="@drawable/ic_taq_cc" />
+                            android:src="@drawable/ic_taq_cc"
+                            app:tint="#AAABB3" />
 
                         <TextView
                             android:id="@+id/text_a1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+
                             android:text="@string/RentalinstallmentService"
-                            android:textColor="@color/colorPrimary" />
+                            android:textColor="#AAABB3" />
 
 
                     </LinearLayout>
@@ -125,7 +128,7 @@
 
                         android:layout_width="130dp"
                         android:layout_height="130dp"
-                        android:background="@drawable/button_service"
+                        android:background="@drawable/mash"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -133,14 +136,16 @@
                         <ImageView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:src="@drawable/ic_aqa_cc" />
+                            android:src="@drawable/ic_aqa_cc"
+
+                            app:tint="#AAABB3" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:text="@string/AqarsService"
-                            android:textColor="@color/colorPrimary" />
+                            android:textColor="#AAABB3" />
 
 
                     </LinearLayout>
@@ -167,7 +172,7 @@
 
                         android:layout_width="130dp"
                         android:layout_height="130dp"
-                        android:background="@drawable/button_service"
+                        android:background="@drawable/mash"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -175,14 +180,16 @@
                         <ImageView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:src="@drawable/ic_rate_cc" />
+                            android:src="@drawable/ic_rate_cc"
+
+                            app:tint="#AAABB3" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:text="@string/rateService"
-                            android:textColor="@color/colorPrimary" />
+                            android:textColor="#AAABB3" />
 
 
                     </LinearLayout>
@@ -200,7 +207,7 @@
 
                         android:layout_width="130dp"
                         android:layout_height="130dp"
-                        android:background="@drawable/button_service"
+                        android:background="@drawable/mash"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -208,14 +215,16 @@
                         <ImageView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:src="@drawable/ic_tamo_cc" />
+                            android:src="@drawable/ic_tamo_cc"
+
+                            app:tint="#AAABB3" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:text="@string/financeService"
-                            android:textColor="@color/colorPrimary" />
+                            android:textColor="#AAABB3" />
 
 
                     </LinearLayout>

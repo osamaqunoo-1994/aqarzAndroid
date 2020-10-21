@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Activity.OprationAqarz.AddAqarsActivity">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
+
         android:orientation="vertical">
 
         <LinearLayout
@@ -51,6 +54,8 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/white"
+
             android:fillViewport="true">
 
             <LinearLayout
@@ -83,20 +88,21 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/opration_RecyclerView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_20sdp"
-
-                            />
-
 
                     </LinearLayout>
 
 
                 </LinearLayout>
 
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/opration_RecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+
+
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -144,7 +150,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:background="@drawable/search_background"
+                            android:background="@drawable/mash"
                             android:drawableStart="@drawable/ic_ista"
 
                             android:gravity="center"
@@ -161,7 +167,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:background="@drawable/search_background"
+                            android:background="@drawable/mash"
                             android:drawableStart="@drawable/ic_ista"
                             android:gravity="center"
                             android:paddingLeft="10dp"
@@ -218,7 +224,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/back_order_box"
+
 
                     android:orientation="vertical"
                     android:paddingLeft="15dp"
@@ -272,28 +278,16 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:text="@string/Total_area"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2" />
 
                         <EditText
                             android:id="@+id/Total_area"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="42dp"
                             android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:background="@drawable/mash"
 
                             android:gravity="center_vertical"
-                            android:hint="@string/AddTExtHeare"
+                            android:hint="@string/Total_area"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -312,27 +306,15 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:text="@string/total_price"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2" />
 
                         <EditText
                             android:id="@+id/total_price"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="42dp"
                             android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/AddTExtHeare"
+                            android:hint="@string/total_price"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -352,27 +334,15 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:text="@string/Communication_Officer"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2" />
 
                         <EditText
                             android:id="@+id/Communication_Officer"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="42dp"
                             android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/AddTExtHeare"
+                            android:hint="@string/Communication_Officer"
                             android:inputType="text"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -391,28 +361,16 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:text="@string/contact_number"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2" />
 
                         <EditText
                             android:id="@+id/contact_number"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="42dp"
                             android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:background="@drawable/mash"
 
                             android:gravity="center_vertical"
-                            android:hint="@string/AddTExtHeare"
+                            android:hint="@string/contact_number"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -422,798 +380,6 @@
 
 
                     </LinearLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/specificationsqares"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/back_order_box"
-                    android:orientation="vertical"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="5dp"
-                    android:paddingBottom="10dp"
-                    android:visibility="visible">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:fontFamily="@font/muli_bold"
-                                android:text="@string/specificationsِAqares"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="17dp" />
-
-                            <LinearLayout
-                                android:layout_width="120dp"
-                                android:layout_height="1dp"
-                                android:background="@color/colorPrimary" />
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="3dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
-                            android:orientation="vertical">
-
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:fontFamily="@font/frutiger_lt_arabic_roman"
-                                android:gravity="center"
-                                android:text="@string/Lounges"
-                                android:textSize="12dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@color/editTextBackground" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:orientation="horizontal">
-
-
-                                <ImageView
-                                    android:id="@+id/Lounges_plus"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:padding="13dp"
-                                    android:src="@drawable/ic_plus" />
-
-                                <LinearLayout
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/editTextBackground" />
-
-                                <TextView
-                                    android:id="@+id/Lounges_number"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginBottom="1dp"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                                    android:gravity="center"
-
-                                    android:text="0"
-                                    android:textSize="13dp" />
-
-                                <LinearLayout
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/editTextBackground" />
-
-
-                                <ImageView
-                                    android:id="@+id/Lounges_minus"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:padding="13dp"
-                                    android:src="@drawable/ic_minus" />
-
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="3dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
-                            android:orientation="vertical">
-
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:fontFamily="@font/frutiger_lt_arabic_roman"
-                                android:gravity="center"
-                                android:text="@string/room"
-                                android:textSize="12dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@color/editTextBackground" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:orientation="horizontal">
-
-
-                                <ImageView
-                                    android:id="@+id/room_plus"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:padding="13dp"
-                                    android:src="@drawable/ic_plus" />
-
-                                <LinearLayout
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/editTextBackground" />
-
-                                <TextView
-                                    android:id="@+id/room_text"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginBottom="1dp"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                                    android:gravity="center"
-
-                                    android:text="0"
-                                    android:textSize="13dp" />
-
-                                <LinearLayout
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/editTextBackground" />
-
-
-                                <ImageView
-                                    android:id="@+id/room_minus"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:padding="13dp"
-                                    android:src="@drawable/ic_minus" />
-
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="3dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
-                            android:orientation="vertical">
-
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:fontFamily="@font/frutiger_lt_arabic_roman"
-                                android:gravity="center"
-                                android:text="@string/Bathrooms"
-                                android:textSize="12dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@color/editTextBackground" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:orientation="horizontal">
-
-
-                                <ImageView
-                                    android:id="@+id/Bathrooms_plus"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:padding="13dp"
-                                    android:src="@drawable/ic_plus" />
-
-                                <LinearLayout
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/editTextBackground" />
-
-                                <TextView
-                                    android:id="@+id/Bathrooms_text"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginBottom="1dp"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                                    android:gravity="center"
-
-                                    android:text="0"
-                                    android:textSize="13dp" />
-
-                                <LinearLayout
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/editTextBackground" />
-
-
-                                <ImageView
-                                    android:id="@+id/Bathrooms_minus"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:padding="13dp"
-                                    android:src="@drawable/ic_minus" />
-
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="3dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
-                            android:orientation="vertical">
-
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:fontFamily="@font/frutiger_lt_arabic_roman"
-                                android:gravity="center"
-                                android:text="@string/Boards"
-                                android:textSize="12dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@color/editTextBackground" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:orientation="horizontal">
-
-
-                                <ImageView
-                                    android:id="@+id/Boards_plus"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:padding="13dp"
-                                    android:src="@drawable/ic_plus" />
-
-                                <LinearLayout
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/editTextBackground" />
-
-                                <TextView
-                                    android:id="@+id/Boards_text"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginBottom="1dp"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                                    android:gravity="center"
-
-                                    android:text="0"
-                                    android:textSize="13dp" />
-
-                                <LinearLayout
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/editTextBackground" />
-
-
-                                <ImageView
-                                    android:id="@+id/Boards_minus"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:padding="13dp"
-                                    android:src="@drawable/ic_minus" />
-
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="3dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
-                            android:orientation="vertical">
-
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:fontFamily="@font/frutiger_lt_arabic_roman"
-                                android:gravity="center"
-                                android:text="@string/Kitchens"
-                                android:textSize="12dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@color/editTextBackground" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:orientation="horizontal">
-
-
-                                <ImageView
-                                    android:id="@+id/Kitchens_plus"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:padding="13dp"
-                                    android:src="@drawable/ic_plus" />
-
-                                <LinearLayout
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/editTextBackground" />
-
-                                <TextView
-                                    android:id="@+id/Kitchens_text"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginBottom="1dp"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                                    android:gravity="center"
-
-                                    android:text="0"
-                                    android:textSize="13dp" />
-
-                                <LinearLayout
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/editTextBackground" />
-
-
-                                <ImageView
-                                    android:id="@+id/Kitchens_minus"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:padding="13dp"
-                                    android:src="@drawable/ic_minus" />
-
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="3dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
-                            android:orientation="vertical">
-
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:fontFamily="@font/frutiger_lt_arabic_roman"
-                                android:gravity="center"
-                                android:text="@string/Dining_rooms"
-                                android:textSize="12dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@color/editTextBackground" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:orientation="horizontal">
-
-
-                                <ImageView
-                                    android:id="@+id/Dining_rooms_plus"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:padding="13dp"
-                                    android:src="@drawable/ic_plus" />
-
-                                <LinearLayout
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/editTextBackground" />
-
-                                <TextView
-                                    android:id="@+id/Dining_text"
-                                    android:layout_width="match_parent"
-
-                                    android:layout_height="match_parent"
-                                    android:layout_marginBottom="1dp"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                                    android:gravity="center"
-
-                                    android:text="0"
-                                    android:textSize="13dp" />
-
-                                <LinearLayout
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/editTextBackground" />
-
-                                <ImageView
-                                    android:id="@+id/Dining_rooms_minus"
-
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:padding="13dp"
-                                    android:src="@drawable/ic_minus" />
-
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:paddingBottom="5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:text="@string/finishing_type"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="15dp"
-                            android:layout_height="wrap_content" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="38dp"
-
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/deluxe"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/button_login"
-                                android:gravity="center"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="@string/deluxe"
-
-
-                                android:textColor="@color/white"
-                                android:textSize="13dp" />
-
-                            <TextView
-                                android:id="@+id/average"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/search_background"
-
-                                android:gravity="center"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="@string/average"
-
-
-                                android:textColor="#424446"
-                                android:textSize="13dp" />
-
-                            <TextView
-                                android:id="@+id/normal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/search_background"
-                                android:gravity="center"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="@string/normal"
-
-                                android:textColor="#424446"
-                                android:textSize="13dp" />
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:paddingBottom="5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:text="@string/interface_"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="15dp"
-                            android:layout_height="wrap_content" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="38dp"
-
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/north"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/button_login"
-                                android:gravity="center"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="@string/north"
-                                android:textColor="@color/white"
-                                android:textSize="13dp" />
-
-                            <TextView
-                                android:id="@+id/south"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/search_background"
-
-                                android:gravity="center"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="@string/south"
-                                android:textColor="#424446"
-                                android:textSize="13dp" />
-
-                            <TextView
-                                android:id="@+id/east"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/search_background"
-                                android:gravity="center"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="@string/east"
-
-                                android:textColor="#424446"
-                                android:textSize="13dp" />
-
-                            <TextView
-                                android:id="@+id/west"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/search_background"
-                                android:gravity="center"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="@string/west"
-
-                                android:textColor="#424446"
-                                android:textSize="13dp" />
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:paddingBottom="5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:text="@string/social_status"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="15dp"
-                            android:layout_height="wrap_content" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="38dp"
-
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/unmarried"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/button_login"
-                                android:gravity="center"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="@string/unmarried"
-
-
-                                android:textColor="@color/white"
-                                android:textSize="13dp" />
-
-
-                            <TextView
-                                android:id="@+id/married"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/search_background"
-                                android:gravity="center"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="@string/married"
-
-                                android:textColor="#424446"
-                                android:textSize="13dp" />
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/means_comfort"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/back_order_box"
-                    android:orientation="vertical"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="5dp"
-                    android:paddingBottom="10dp"
-                    android:visibility="visible">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:fontFamily="@font/muli_bold"
-                                android:text="@string/means_comfort"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="17dp" />
-
-                            <LinearLayout
-                                android:layout_width="100dp"
-                                android:layout_height="1dp"
-                                android:background="@color/colorPrimary" />
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/comfort_RecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginTop="10dp"
-
-                        />
 
 
                 </LinearLayout>
@@ -1273,9 +439,8 @@
                             android:layout_width="80dp"
                             android:layout_height="80dp"
                             android:layout_margin="5dp"
-                            android:background="@drawable/button_login"
-                            android:padding="25dp"
-                            android:src="@drawable/ic_add_image">
+                            android:background="@drawable/ic_group_2564"
+                            android:padding="25dp">
 
                         </ImageView>
 
@@ -1317,14 +482,853 @@
                     android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@drawable/edit_text_background"
+                    android:background="@drawable/mash"
                     android:gravity="start"
                     android:hint="@string/writedescription"
                     android:padding="15dp"
                     android:textSize="@dimen/_12sdp" />
 
+                <LinearLayout
+                    android:id="@+id/specificationsqares"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+
+                    android:orientation="vertical"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="10dp"
+                    android:visibility="visible">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/muli_bold"
+                                android:text="@string/specificationsِAqares"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="17dp" />
+
+                            <LinearLayout
+                                android:layout_width="120dp"
+                                android:layout_height="1dp"
+                                android:background="@color/colorPrimary" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:gravity="start">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:layout_margin="3dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:fontFamily="@font/frutiger_lt_arabic_roman"
+                                android:gravity="center"
+                                android:text="@string/Lounges"
+                                android:textColor="@color/black"
+                                android:textSize="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="10dp"
+                                android:layout_height="10dp" />
+
+                            <LinearLayout
+                                android:id="@+id/Lounges_lay"
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:background="@drawable/mash"
+                                android:orientation="horizontal">
+
+
+                                <ImageView
+                                    android:id="@+id/Lounges_plus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:padding="9dp"
+                                    android:src="@drawable/ic_plus" />
+
+                                <LinearLayout
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/editTextBackground" />
+
+                                <TextView
+                                    android:id="@+id/Lounges_number"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                                    android:gravity="center"
+
+                                    android:text="0"
+                                    android:textSize="13dp" />
+
+                                <LinearLayout
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/editTextBackground" />
+
+
+                                <ImageView
+                                    android:id="@+id/Lounges_minus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:padding="9dp"
+                                    android:src="@drawable/ic_minus" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:layout_margin="3dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:fontFamily="@font/frutiger_lt_arabic_roman"
+                                android:gravity="center"
+                                android:text="@string/room"
+
+                                android:textColor="@color/black"
+                                android:textSize="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="10dp"
+                                android:layout_height="10dp" />
+
+                            <LinearLayout
+                                android:id="@+id/room_lay"
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:background="@drawable/mash"
+                                android:orientation="horizontal">
+
+
+                                <ImageView
+                                    android:id="@+id/room_plus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:padding="9dp"
+                                    android:src="@drawable/ic_plus" />
+
+                                <LinearLayout
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/editTextBackground" />
+
+                                <TextView
+                                    android:id="@+id/room_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                                    android:gravity="center"
+
+                                    android:text="0"
+                                    android:textSize="13dp" />
+
+                                <LinearLayout
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/editTextBackground" />
+
+
+                                <ImageView
+                                    android:id="@+id/room_minus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:padding="9dp"
+                                    android:src="@drawable/ic_minus" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="start">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:layout_margin="3dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:fontFamily="@font/frutiger_lt_arabic_roman"
+                                android:gravity="center"
+                                android:text="@string/Bathrooms"
+
+                                android:textColor="@color/black"
+                                android:textSize="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="10dp"
+                                android:layout_height="10dp" />
+
+                            <LinearLayout
+                                android:id="@+id/Bathrooms_lay"
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:background="@drawable/mash"
+                                android:orientation="horizontal">
+
+
+                                <ImageView
+                                    android:id="@+id/Bathrooms_plus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:padding="9dp"
+                                    android:src="@drawable/ic_plus" />
+
+                                <LinearLayout
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/editTextBackground" />
+
+                                <TextView
+                                    android:id="@+id/Bathrooms_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                                    android:gravity="center"
+
+                                    android:text="0"
+                                    android:textSize="13dp" />
+
+                                <LinearLayout
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/editTextBackground" />
+
+
+                                <ImageView
+                                    android:id="@+id/Bathrooms_minus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:padding="9dp"
+                                    android:src="@drawable/ic_minus" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:layout_margin="3dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:fontFamily="@font/frutiger_lt_arabic_roman"
+                                android:gravity="center"
+                                android:text="@string/Dining_rooms"
+
+                                android:textColor="@color/black"
+                                android:textSize="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="10dp"
+                                android:layout_height="10dp" />
+
+                            <LinearLayout
+                                android:id="@+id/Dining_rooms_lay"
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:background="@drawable/mash"
+                                android:orientation="horizontal">
+
+
+                                <ImageView
+                                    android:id="@+id/Dining_rooms_plus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:padding="9dp"
+                                    android:src="@drawable/ic_plus" />
+
+                                <LinearLayout
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/editTextBackground" />
+
+                                <TextView
+                                    android:id="@+id/Dining_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                                    android:gravity="center"
+
+                                    android:text="0"
+                                    android:textSize="13dp" />
+
+                                <LinearLayout
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/editTextBackground" />
+
+
+                                <ImageView
+                                    android:id="@+id/Dining_rooms_minus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:padding="9dp"
+                                    android:src="@drawable/ic_minus" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="start">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:layout_margin="3dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:fontFamily="@font/frutiger_lt_arabic_roman"
+                                android:gravity="center"
+                                android:text="@string/Boards"
+
+                                android:textColor="@color/black"
+                                android:textSize="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="10dp"
+                                android:layout_height="10dp" />
+
+                            <LinearLayout
+                                android:id="@+id/Boards_lay"
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:background="@drawable/mash"
+                                android:orientation="horizontal">
+
+
+                                <ImageView
+                                    android:id="@+id/Boards_plus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:padding="9dp"
+                                    android:src="@drawable/ic_plus" />
+
+                                <LinearLayout
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/editTextBackground" />
+
+                                <TextView
+                                    android:id="@+id/Boards_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                                    android:gravity="center"
+
+                                    android:text="0"
+                                    android:textSize="13dp" />
+
+                                <LinearLayout
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/editTextBackground" />
+
+
+                                <ImageView
+                                    android:id="@+id/Boards_minus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:padding="9dp"
+                                    android:src="@drawable/ic_minus" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:layout_margin="3dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:fontFamily="@font/frutiger_lt_arabic_roman"
+                                android:gravity="center"
+                                android:text="@string/Kitchens"
+
+                                android:textColor="@color/black"
+                                android:textSize="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="10dp"
+                                android:layout_height="10dp" />
+
+                            <LinearLayout
+                                android:id="@+id/Kitchens_lay"
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:background="@drawable/mash"
+                                android:orientation="horizontal">
+
+
+                                <ImageView
+                                    android:id="@+id/Kitchens_plus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:padding="9dp"
+                                    android:src="@drawable/ic_plus" />
+
+                                <LinearLayout
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/editTextBackground" />
+
+                                <TextView
+                                    android:id="@+id/Kitchens_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                                    android:gravity="center"
+
+                                    android:text="0"
+                                    android:textSize="13dp" />
+
+                                <LinearLayout
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/editTextBackground" />
+
+
+                                <ImageView
+                                    android:id="@+id/Kitchens_minus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:padding="9dp"
+                                    android:src="@drawable/ic_minus" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:paddingBottom="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:text="@string/finishing_type"
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
+
+                        <LinearLayout
+                            android:layout_width="15dp"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/deluxe"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_login"
+                                android:gravity="center"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="@string/deluxe"
+
+
+                                android:textColor="@color/white"
+                                android:textSize="13dp" />
+
+                            <TextView
+                                android:id="@+id/average"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/mash"
+
+                                android:gravity="center"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="@string/average"
+
+
+                                android:textColor="#424446"
+                                android:textSize="13dp" />
+
+                            <TextView
+                                android:id="@+id/normal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/mash"
+                                android:gravity="center"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="@string/normal"
+
+                                android:textColor="#424446"
+                                android:textSize="13dp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:paddingBottom="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:text="@string/interface_"
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
+
+                        <LinearLayout
+                            android:layout_width="15dp"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/north"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_login"
+                                android:gravity="center"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="@string/north"
+                                android:textColor="@color/white"
+                                android:textSize="13dp" />
+
+                            <TextView
+                                android:id="@+id/south"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/mash"
+
+                                android:gravity="center"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="@string/south"
+                                android:textColor="#424446"
+                                android:textSize="13dp" />
+
+                            <TextView
+                                android:id="@+id/east"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/mash"
+                                android:gravity="center"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="@string/east"
+
+                                android:textColor="#424446"
+                                android:textSize="13dp" />
+
+                            <TextView
+                                android:id="@+id/west"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/mash"
+                                android:gravity="center"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="@string/west"
+
+                                android:textColor="#424446"
+                                android:textSize="13dp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:paddingBottom="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:text="@string/social_status"
+                            android:textColor="@color/textColor2"
+                            android:textSize="15dp" />
+
+                        <LinearLayout
+                            android:layout_width="15dp"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/unmarried"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_login"
+                                android:gravity="center"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="@string/unmarried"
+
+
+                                android:textColor="@color/white"
+                                android:textSize="13dp" />
+
+
+                            <TextView
+                                android:id="@+id/married"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/mash"
+                                android:gravity="center"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="@string/married"
+
+                                android:textColor="#424446"
+                                android:textSize="13dp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_margin="10dp"
+                    android:background="#AAABB3" />
+
+                <LinearLayout
+                    android:id="@+id/means_comfort"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+
+                    android:orientation="vertical"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="10dp"
+                    android:visibility="visible">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/muli_bold"
+                                android:text="@string/means_comfort"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="17dp" />
+
+                            <LinearLayout
+                                android:layout_width="100dp"
+                                android:layout_height="1dp"
+                                android:background="@color/colorPrimary" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/comfort_RecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="10dp"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_margin="10dp"
+                    android:background="#AAABB3" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1363,11 +1367,11 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:visibility="gone"
                     android:id="@+id/all_more_detila"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -1376,27 +1380,15 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:text="@string/Instrument_number"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2" />
 
                         <EditText
                             android:id="@+id/Instrument_number"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="42dp"
                             android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/Info_users"
+                            android:hint="@string/Instrument_number"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -1443,9 +1435,8 @@
 
                                 android:layout_margin="10dp"
                                 android:layout_marginStart="@dimen/_20sdp"
-                                android:background="@drawable/button_service"
-                                android:padding="12dp"
-                                android:src="@drawable/ic_logo_move" />
+                                android:background="@drawable/ic_group_2564"
+                                android:padding="12dp" />
 
 
                             <TextView
@@ -1479,28 +1470,16 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:text="@string/piece_number"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2" />
 
                         <EditText
                             android:id="@+id/piece_number"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="42dp"
                             android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:background="@drawable/mash"
 
                             android:gravity="center_vertical"
-                            android:hint="@string/AddTExtHeare"
+                            android:hint="@string/piece_number"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -1518,28 +1497,16 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:text="@string/No_planned"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2" />
 
                         <EditText
                             android:id="@+id/No_planned"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="42dp"
                             android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:background="@drawable/mash"
 
                             android:gravity="center_vertical"
-                            android:hint="@string/AddTExtHeare"
+                            android:hint="@string/No_planned"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -1585,9 +1552,8 @@
 
                                 android:layout_margin="10dp"
                                 android:layout_marginStart="@dimen/_20sdp"
-                                android:background="@drawable/button_service"
-                                android:padding="12dp"
-                                android:src="@drawable/ic_logo_move" />
+                                android:background="@drawable/ic_group_2564"
+                                android:padding="12dp" />
 
 
                             <TextView
@@ -1622,27 +1588,15 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:text="@string/age_of_the_property"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2" />
 
                         <EditText
                             android:id="@+id/age_of_the_property"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="42dp"
                             android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/AddTExtHeare"
+                            android:hint="@string/age_of_the_property"
                             android:inputType="number"
                             android:paddingLeft="10dp"
 
@@ -1661,28 +1615,16 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:text="@string/Role_number"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2" />
 
                         <EditText
                             android:id="@+id/Role_number"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="42dp"
                             android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:background="@drawable/mash"
 
                             android:gravity="center_vertical"
-                            android:hint="@string/AddTExtHeare"
+                            android:hint="@string/Role_number"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -1700,28 +1642,16 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:text="@string/Street_view"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2" />
 
                         <EditText
                             android:id="@+id/Street_view"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="42dp"
                             android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:background="@drawable/mash"
 
                             android:gravity="center_vertical"
-                            android:hint="@string/AddTExtHeare"
+                            android:hint="@string/Street_view"
                             android:inputType="text"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -1739,27 +1669,15 @@
                         android:gravity="center"
                         android:paddingBottom="5dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:text="@string/price_one_meter"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2" />
 
                         <EditText
                             android:id="@+id/price_one_meter"
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="42dp"
                             android:layout_weight="1"
-                            android:background="@drawable/edit_text_background"
+                            android:background="@drawable/mash"
                             android:gravity="center_vertical"
-                            android:hint="@string/AddTExtHeare"
+                            android:hint="@string/price_one_meter"
                             android:inputType="number"
                             android:paddingLeft="10dp"
 

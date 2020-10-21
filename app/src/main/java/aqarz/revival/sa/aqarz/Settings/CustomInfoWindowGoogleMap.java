@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
+import com.squareup.picasso.Picasso;
 
 import aqarz.revival.sa.aqarz.Activity.DetailsActivity;
 import aqarz.revival.sa.aqarz.Activity.DetailsActivity_aqarz;
@@ -35,7 +36,6 @@ public class CustomInfoWindowGoogleMap implements GoogleMap.InfoWindowAdapter {
         TextView araea = view.findViewById(R.id.araea);
         TextView price = view.findViewById(R.id.price);
         TextView more = view.findViewById(R.id.more);
-
 
         price.setText(homeModules.getPrice_from() + " - " + homeModules.getPrice_to() + " " + context.getResources().getString(R.string.SAR));
         araea.setText(homeModules.getArea_from() + " - " + homeModules.getArea_to() + " M ");

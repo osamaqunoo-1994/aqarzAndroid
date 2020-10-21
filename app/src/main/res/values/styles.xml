@@ -79,6 +79,7 @@
         <item name="android:paddingStart">@dimen/_16sdp</item>
         <item name="android:paddingEnd">@dimen/_16sdp</item>
         <item name="android:paddingTop">@dimen/_9sdp</item>
+
         <item name="android:paddingBottom">@dimen/_9sdp</item>
         <item name="android:gravity">start|center_vertical</item>
         <item name="android:textAlignment">gravity</item>

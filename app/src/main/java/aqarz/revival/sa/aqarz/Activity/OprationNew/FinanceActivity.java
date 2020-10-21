@@ -17,6 +17,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -30,6 +31,8 @@ import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.loopj.android.http.RequestParams;
 import com.nguyenhoanglam.imagepicker.model.Image;
 import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker;
@@ -43,6 +46,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_Type_RequstService;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_SelectBanks;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
@@ -80,8 +84,7 @@ public class FinanceActivity extends AppCompatActivity {
 
     SeekBar seek_bar;
     String tenant_job_type = "governmental";
-
-
+    TextView year;
     TextView ada_1_yes;
     TextView ada_1_no;
     TextView property_dd_yes;
@@ -131,6 +134,7 @@ public class FinanceActivity extends AppCompatActivity {
         finish = findViewById(R.id.finish);
         seek_bar = findViewById(R.id.seek_bar);
         natinal_image = findViewById(R.id.natinal_image);
+        year = findViewById(R.id.year);
 
         Soldier = findViewById(R.id.Soldier);
         Special = findViewById(R.id.Special);
@@ -168,25 +172,21 @@ public class FinanceActivity extends AppCompatActivity {
         StreetName = findViewById(R.id.StreetName);
 
 
-        //---------------------------------------------------------
+        ///------------------------------------------------------------------------------------------------------
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
 
-        LinearLayoutManager layoutManager1
+        LinearLayoutManager layoutManagerw
                 = new LinearLayoutManager(FinanceActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        opration_RecyclerView.setLayoutManager(layoutManager1);
+        opration_RecyclerView.setLayoutManager(layoutManagerw);
 
-        RecyclerView_Type_RequstService recyclerView_type_requstService = new RecyclerView_Type_RequstService(FinanceActivity.this, type_list);
-        recyclerView_type_requstService.addItemClickListener(new RecyclerView_Type_RequstService.ItemClickListener() {
+        RecyclerView_All_opration_bottom_sheet recyclerView_all_opration_bottom_sheet = new RecyclerView_All_opration_bottom_sheet(FinanceActivity.this, type_list);
+        recyclerView_all_opration_bottom_sheet.addItemClickListener(new RecyclerView_All_opration_bottom_sheet.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
                 opration_select = type_list.get(position).getId().toString() + "";
-
             }
         });
-        opration_RecyclerView.setAdapter(recyclerView_type_requstService);
-
-
+        opration_RecyclerView.setAdapter(recyclerView_all_opration_bottom_sheet);
         next_step();
         action_click();
     }
@@ -255,6 +255,7 @@ public class FinanceActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 seek_progress = progress + "";
+                year.setText(seek_progress);
             }
 
             @Override
@@ -590,7 +591,7 @@ public class FinanceActivity extends AppCompatActivity {
                     try {
 
 
-                        sendObj.put("operation_type_id", "2");//form operation list api in setting
+                        sendObj.put("operation_type_id", "3");//form operation list api in setting
                         sendObj.put("estate_type_id", opration_select);//form estate type list api in setting
                         sendObj.put("job_type", tenant_job_type);
 
@@ -925,7 +926,18 @@ public class FinanceActivity extends AppCompatActivity {
 //                        Hawk.put("user", data);
                         String message = response.getString("message");
 
-                        WebService.Make_Toast_color(FinanceActivity.this, message, "success");
+                        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(FinanceActivity.this);
+                        View parentView = getLayoutInflater().inflate(R.layout.success_message,null);
+                        ImageView close=parentView.findViewById(R.id.close);
+                        close.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                finish();
+                            }
+                        });
+                        bottomSheerDialog.setContentView(parentView);
+
+//                        WebService.Make_Toast_color(FinanceActivity.this, message, "success");
 
                     } else {
                         String message = response.getString("message");

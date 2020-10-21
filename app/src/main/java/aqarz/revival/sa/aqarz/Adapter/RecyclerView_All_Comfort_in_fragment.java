@@ -115,7 +115,7 @@ public class RecyclerView_All_Comfort_in_fragment extends RecyclerView.Adapter<R
             holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
 
         } else {
-            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.search_background));
+            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.mash));
 
             holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
             holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
@@ -190,13 +190,13 @@ public class RecyclerView_All_Comfort_in_fragment extends RecyclerView.Adapter<R
                 if (alldata.get(position).get_is_selected()) {
                     alldata.get(position).setIs_selected(false);
                     alldata.get(position).setIs_selected(true);
-                    holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.search_background));
+                    holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.mash));
 
                     holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
                     holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
 
                 } else {
-                    System.out.println("klklkl"+alldata.get(position).get_is_selected());
+                    System.out.println("klklkl" + alldata.get(position).get_is_selected());
 
 
                     holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));

@@ -53,6 +53,19 @@ public class Settings {
         return userModules;
     }
 
+    public static boolean CheckIsCompleate() {
+
+
+        if (Settings.GetUser().getName() == null) {
+            return false;
+
+        } else {
+            return true;
+
+        }
+
+
+    }
 
     public static boolean checkLogin() {
 

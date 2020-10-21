@@ -316,7 +316,6 @@
     <string name="three_years">3 سنوات</string>
 
 
-
     <string name="Orders_tab">الطلبات</string>
     <string name="Offers_tab">العروض</string>
     <string name="priceprice">السعر</string>
@@ -332,10 +331,8 @@
     <string name="Membershipupgrade">ترقية عضوية</string>
 
 
-
     <string name="NoInternt">لا يوجد إنترنت يرجى التحقق من الاتصال الخاص بك !</string>
     <string name="Reaty">اعادة</string>
-
 
 
     <string name="ReadMore">المزيد</string>
@@ -362,8 +359,6 @@
     <string name="Show_MoreDetails">اظهار تفاصيل اكتر</string>
 
 
-
-
     <string name="title_siginuo">عقــــارز منصتــــك الأولى  لكــــل
 ما يخـص عالــم العقــــــارات</string>
 
@@ -377,9 +372,25 @@
     <string name="EditProfile">تعديل البروفايل</string>
 
 
-
     <string name="AddNEWOFFER">اضافة عرض</string>
     <string name="other_btn">اخرى</string>
     <string name="Confirm_btn">تاكيد</string>
 
+
+    <string name="Type_order">نوع الطلب</string>
+    <string name="Type_aqarez">نوع العقار</string>
+
+    <string name="AddArea">أضف المنطقة</string>
+    <string name="AddImageId">أرفق صورة الهوية</string>
+
+
+    <string name="Success_message">تم استلام طلبك بنجاح سيتم مراجعك
+طلبك والرد في اسرع وقت</string>
+
+
+    <string name="Code">كود التحقق</string>
+    <string name="Cpassword">تاكيد كلمة المرور</string>
+    <string name="ResendCode">اعادة ارسال كود التحقق</string>
+    <string name="CompleateRegister">تكملة التسجيل</string>
+    <string name="YearSeekbar">سنه</string>
 </resources>

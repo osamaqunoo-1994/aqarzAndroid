@@ -165,7 +165,7 @@ public class MyProfileInformationActivity extends AppCompatActivity {
 
 
                 if (name_ed.getText().toString().equals("") |
-                        email_ed.getText().toString().equals("") |
+
                         phone_ed.getText().toString().equals("")) {
                     WebService.Make_Toast_color(MyProfileInformationActivity.this, getResources().getString(R.string.fillallfileds) + "", "error");
                 } else {

@@ -50,6 +50,7 @@ public class WebService {
     public static String single_estat = Domain + "single/";
     public static String my_estate = Domain + "my/estate";
     public static String send_offer_fund_Request = Domain + "send/offer/fund/Request";
+    public static String verify = Domain + "verify";
 
 
     public static void Header_Async(AsyncHttpClient client, boolean is_token) {
