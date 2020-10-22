@@ -937,6 +937,8 @@ public class FinanceActivity extends AppCompatActivity {
                         });
                         bottomSheerDialog.setContentView(parentView);
 
+                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,200,getResources().getDisplayMetrics());
+                        bottomSheerDialog.show();
 //                        WebService.Make_Toast_color(FinanceActivity.this, message, "success");
 
                     } else {

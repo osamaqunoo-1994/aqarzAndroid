@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -388,6 +389,9 @@ public class AqarzOrActivity extends AppCompatActivity {
                     if (status) {
                         String data = response.getString("data");
 
+
+                        System.out.println("lfmdlfjdklfk");
+
 //                        Hawk.put("user", data);
 
                         String message = response.getString("message");
@@ -401,6 +405,8 @@ public class AqarzOrActivity extends AppCompatActivity {
                             }
                         });
                         bottomSheerDialog.setContentView(parentView);
+                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,200,getResources().getDisplayMetrics());
+                        bottomSheerDialog.show();
 //                        WebService.Make_Toast_color(AqarzOrActivity.this, message, "success");
                     } else {
                         String message = response.getString("message");
@@ -410,7 +416,7 @@ public class AqarzOrActivity extends AppCompatActivity {
 
 
                 } catch (Exception e) {
-
+e.printStackTrace();
                 }
 
 

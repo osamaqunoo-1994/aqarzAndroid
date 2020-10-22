@@ -17,6 +17,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -684,6 +685,8 @@ public class RentActivity extends AppCompatActivity {
                             }
                         });
                         bottomSheerDialog.setContentView(parentView);
+                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,200,getResources().getDisplayMetrics());
+                        bottomSheerDialog.show();
 //                        WebService.Make_Toast_color(RentActivity.this, message, "success");
 
                     } else {
