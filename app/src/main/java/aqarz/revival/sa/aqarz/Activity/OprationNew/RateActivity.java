@@ -403,7 +403,7 @@ public class RateActivity extends AppCompatActivity {
 
                         BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(RateActivity.this);
                         View parentView = getLayoutInflater().inflate(R.layout.success_message,null);
-                        ImageView close=parentView.findViewById(R.id.close);
+                        Button close=parentView.findViewById(R.id.close);
                         close.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

@@ -393,4 +393,7 @@
     <string name="ResendCode">اعادة ارسال كود التحقق</string>
     <string name="CompleateRegister">تكملة التسجيل</string>
     <string name="YearSeekbar">سنه</string>
+
+    <string name="upgrade">ترقية</string>
+
 </resources>

@@ -67,6 +67,20 @@ public class Settings {
 
     }
 
+    public static boolean CheckIsAccountAqarzMan() {
+
+
+        if (Settings.GetUser().getType().toString().equals("provider")) {
+            return true;
+
+        } else {
+            return false;
+
+        }
+
+
+    }
+
     public static boolean checkLogin() {
 
 

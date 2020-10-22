@@ -47,6 +47,7 @@ import aqarz.revival.sa.aqarz.Activity.Auth.NewPasswordActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.NewSiginUpActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.RegisterActivity;
 import aqarz.revival.sa.aqarz.Activity.ContactUsActivity;
+import aqarz.revival.sa.aqarz.Activity.DetailsAqarzManActivity;
 import aqarz.revival.sa.aqarz.Activity.MainActivity;
 import aqarz.revival.sa.aqarz.Activity.PrivecyActivity;
 import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
@@ -125,10 +126,19 @@ public class MoreFragment extends Fragment {
         info_.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), MyProfileInformationActivity.class);
+                System.out.println("***********" + Settings.GetUser().getType());
+                if (Settings.GetUser().getType().toString().equals("provider")) {
+                    Intent intent = new Intent(getContext(), DetailsAqarzManActivity.class);
 //                                intent.putExtra("from", "splash");
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                } else {
+                    Intent intent = new Intent(getContext(), MyProfileInformationActivity.class);
+//                                intent.putExtra("from", "splash");
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                }
+
 
             }
         });

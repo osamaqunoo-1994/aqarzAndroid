@@ -4,8 +4,11 @@ package aqarz.revival.sa.aqarz.Fragment;
  */
 
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +21,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,6 +49,7 @@ import aqarz.revival.sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.NewPasswordActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.RegisterActivity;
 import aqarz.revival.sa.aqarz.Activity.ContactUsActivity;
+import aqarz.revival.sa.aqarz.Activity.DetailsAqarzManActivity;
 import aqarz.revival.sa.aqarz.Activity.PrivecyActivity;
 import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
 import aqarz.revival.sa.aqarz.Activity.TermsActivity;
@@ -80,6 +83,7 @@ public class OrdersFragment extends Fragment {
     RecyclerView type_of_v;
     LinearLayout type_sale;
     List<OrdersModules> ordersModules = new ArrayList<>();
+    List<HomeModules> MyRequst = new ArrayList<>();
 
     List<TypeModules> type_list = new ArrayList<>();
 
@@ -94,6 +98,7 @@ public class OrdersFragment extends Fragment {
 
     List<TypeModules> data = new ArrayList<>();
 
+    AlertDialog alertDialog;
 
     TextView For_sale, rent;
 
@@ -233,6 +238,19 @@ public class OrdersFragment extends Fragment {
 
                 list_opration.setVisibility(View.VISIBLE);
                 type_sale.setVisibility(View.VISIBLE);
+
+
+                MyRequst.clear();
+
+                orders_rec.setAdapter(new RecyclerView_HomeList(getContext(), MyRequst));
+
+
+                WebService.loading(getActivity(), true);
+
+                init_volley();
+                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+                mVolleyService.getDataVolley("my_request", WebService.my_request);
+
             }
         });
         Shopping_request_layout.setOnClickListener(new View.OnClickListener() {
@@ -258,6 +276,10 @@ public class OrdersFragment extends Fragment {
                 type_sale.setVisibility(View.VISIBLE);
 
 //                WebService.loading(getActivity(), true);
+                MyRequst.clear();
+
+
+                orders_rec.setAdapter(new RecyclerView_HomeList(getContext(), MyRequst));
 
 
             }
@@ -286,9 +308,42 @@ public class OrdersFragment extends Fragment {
                 list_opration.setVisibility(View.GONE);
                 type_sale.setVisibility(View.GONE);
 
+                MyRequst.clear();
+
+
+                orders_rec.setAdapter(new RecyclerView_HomeList(getContext(), MyRequst));
+
+
+                WebService.loading(getActivity(), true);
+
                 init_volley();
                 VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
                 mVolleyService.getDataVolley("fund_Request", WebService.fund_Request);
+
+
+                LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                final View popupView = layoutInflater.inflate(R.layout.upgrade_message, null);
+
+                ImageView close = popupView.findViewById(R.id.close);
+
+
+                close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+
+
+                final android.app.AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+//            alertDialog_country =
+                builder.setView(popupView);
+
+
+                alertDialog = builder.show();
+
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
 
             }
@@ -342,34 +397,61 @@ public class OrdersFragment extends Fragment {
                     boolean status = response.getBoolean("status");
                     if (status) {
 
+                        if (requestType.equals("my_request")) {
+                            System.out.println("lfkdlfkdlkf");
+                            String data = response.getString("data");
 
-                        System.out.println("lfkdlfkdlkf");
-                        String data = response.getString("data");
-
-                        JSONObject jsonObject_data = new JSONObject(data);
-
-                        String data_inside = jsonObject_data.getString("data");
-                        JSONArray jsonArray = new JSONArray(data_inside);
-                        orders_rec.setAdapter(null);
-                        ordersModules.clear();
-                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONArray jsonArray = new JSONArray(data);
+                            orders_rec.setAdapter(null);
+                            MyRequst.clear();
+                            for (int i = 0; i < jsonArray.length(); i++) {
 
 
-                            JsonParser parser = new JsonParser();
-                            JsonElement mJson = parser.parse(jsonArray.getString(i));
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
 
-                            Gson gson = new Gson();
+                                Gson gson = new Gson();
 
-                            OrdersModules ordersModulesm = gson.fromJson(mJson, OrdersModules.class);
-                            ordersModules.add(ordersModulesm);
+                                HomeModules ordersModulesm = gson.fromJson(mJson, HomeModules.class);
+                                MyRequst.add(ordersModulesm);
 
+
+                            }
+
+
+                            orders_rec.setAdapter(new RecyclerView_HomeList(getContext(), MyRequst));
+
+
+                        } else {
+
+
+                            System.out.println("lfkdlfkdlkf");
+                            String data = response.getString("data");
+
+                            JSONObject jsonObject_data = new JSONObject(data);
+
+                            String data_inside = jsonObject_data.getString("data");
+                            JSONArray jsonArray = new JSONArray(data_inside);
+                            orders_rec.setAdapter(null);
+                            ordersModules.clear();
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                Gson gson = new Gson();
+
+                                OrdersModules ordersModulesm = gson.fromJson(mJson, OrdersModules.class);
+                                ordersModules.add(ordersModulesm);
+
+
+                            }
+
+
+                            orders_rec.setAdapter(new RecyclerView_orders(getContext(), ordersModules));
 
                         }
-
-
-                        orders_rec.setAdapter(new RecyclerView_orders(getContext(), ordersModules));
-
-
                     }
 
                 } catch (Exception e) {

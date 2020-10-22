@@ -928,7 +928,7 @@ public class FinanceActivity extends AppCompatActivity {
 
                         BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(FinanceActivity.this);
                         View parentView = getLayoutInflater().inflate(R.layout.success_message,null);
-                        ImageView close=parentView.findViewById(R.id.close);
+                        Button close=parentView.findViewById(R.id.close);
                         close.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

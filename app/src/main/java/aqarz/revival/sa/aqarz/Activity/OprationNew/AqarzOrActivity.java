@@ -392,8 +392,8 @@ public class AqarzOrActivity extends AppCompatActivity {
 
                         String message = response.getString("message");
                         BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(AqarzOrActivity.this);
-                        View parentView = getLayoutInflater().inflate(R.layout.success_message,null);
-                        ImageView close=parentView.findViewById(R.id.close);
+                        View parentView = getLayoutInflater().inflate(R.layout.success_message, null);
+                        Button close = parentView.findViewById(R.id.close);
                         close.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

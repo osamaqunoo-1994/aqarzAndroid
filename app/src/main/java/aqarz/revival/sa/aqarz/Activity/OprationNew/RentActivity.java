@@ -675,8 +675,8 @@ public class RentActivity extends AppCompatActivity {
 //                        Hawk.put("user", data);
                         String message = response.getString("message");
                         BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(RentActivity.this);
-                        View parentView = getLayoutInflater().inflate(R.layout.success_message,null);
-                        ImageView close=parentView.findViewById(R.id.close);
+                        View parentView = getLayoutInflater().inflate(R.layout.success_message, null);
+                        Button close = parentView.findViewById(R.id.close);
                         close.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -694,7 +694,7 @@ public class RentActivity extends AppCompatActivity {
 
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
 
 

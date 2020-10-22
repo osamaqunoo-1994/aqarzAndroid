@@ -1328,7 +1328,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_margin="10dp"
-                    android:background="#AAABB3" />
+                    android:background="#AAABB3"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

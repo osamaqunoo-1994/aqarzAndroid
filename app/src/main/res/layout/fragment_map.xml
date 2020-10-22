@@ -92,6 +92,7 @@
 
 
                 <ImageView
+                    android:id="@+id/search_btn"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="10dp"
@@ -100,6 +101,7 @@
                     android:src="@drawable/ic_search" />
 
                 <EditText
+                    android:id="@+id/search_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -143,6 +145,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/laout_of_change"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="20dp"

@@ -346,12 +346,9 @@
     <string name="EditProfile">Edit Profile</string>
 
 
-
     <string name="AddNEWOFFER">Add Offer</string>
     <string name="other_btn">Other</string>
     <string name="Confirm_btn">Confirm</string>
-
-
 
 
     <string name="Type_aqarez">Type Aqarz</string>
@@ -366,5 +363,22 @@ Your request and reply in the fastest time</string>
     <string name="ResendCode">ReSend Code</string>
     <string name="CompleateRegister">Compleate Register</string>
     <string name="YearSeekbar">Year</string>
+    <string name="upgrade">upgrade</string>
+
+
+    <string name="aw1">العروض</string>
+    <string name="aw2">الطلبات</string>
+    <string name="aw3">الخدمات</string>
+    <string name="aw4">العملاء</string>
+    <string name="aw5">المفضلة</string>
+    <string name="title_select">اختر الخدمات التي تقدمها</string>
+
+
+    <string name="m1">تطوير عقاري</string>
+    <string name="m2">إدارة أملاك</string>
+    <string name="m3">تسويق عقاري</string>
+    <string name="m4">إدارة مشاريع</string>
+    <string name="m5">أخرى</string>
+
 
 </resources>

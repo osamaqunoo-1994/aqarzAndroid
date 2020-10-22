@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -59,6 +60,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.MyProfileInformationActivity;
@@ -133,6 +135,7 @@ public class MapsFragment extends Fragment {
 
     ImageView convert_map_to_list;
     ImageView change_list_to_map;
+    ImageView search_btn;
 
     String opration_select = "0";
     String convert_type = "map";
@@ -153,6 +156,8 @@ public class MapsFragment extends Fragment {
 
 
     String filtter_selected = "";
+    LinearLayout laout_of_change;
+    EditText search_text;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -355,6 +360,8 @@ public class MapsFragment extends Fragment {
         type = v.findViewById(R.id.opration);
         selsct_type_all = v.findViewById(R.id.selsct_type_all);
         filtter = v.findViewById(R.id.filtter);
+        search_text = v.findViewById(R.id.search_text);
+        search_btn = v.findViewById(R.id.search_btn);
 
         addAqares = v.findViewById(R.id.addAqares);
         RequstAqars = v.findViewById(R.id.RequstAqars);
@@ -368,6 +375,7 @@ public class MapsFragment extends Fragment {
         chmnage_map_style = v.findViewById(R.id.chmnage_map_style);
         get_location = v.findViewById(R.id.get_location);
         nodata_vis = v.findViewById(R.id.nodata_vis);
+        laout_of_change = v.findViewById(R.id.laout_of_change);
 
         LinearLayoutManager layoutManagexx
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -419,7 +427,16 @@ public class MapsFragment extends Fragment {
         ActionButton();
         action_btn();
 
-        get_data_from_api("map_order", filtter_selected);
+
+        if (Settings.CheckIsAccountAqarzMan()) {
+            laout_of_change.setVisibility(View.VISIBLE);
+            get_data_from_api("map_order", filtter_selected);
+
+        } else {
+            laout_of_change.setVisibility(View.GONE);
+            get_data_from_api("map_offer", filtter_selected);
+
+        }
 
 
     }
@@ -658,6 +675,13 @@ public class MapsFragment extends Fragment {
 
             }
         });
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                get_data_from_api(final_type_requst_filter, filtter_selected);
+            }
+        });
+
 
     }
 
@@ -1128,22 +1152,22 @@ public class MapsFragment extends Fragment {
         if (type.equals("list_order")) {
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("list_order", WebService.Home_1 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().longitude + "&estate_type=" + opration_select + "" + filtter);//&request_type=pay
+            mVolleyService.getDataVolley("list_order", WebService.Home_1 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().longitude + "&estate_type=" + opration_select + "" + filtter + "&search=" + search_text.getText().toString());//&request_type=pay
 
         } else if (type.equals("list_offer")) {//aqarz
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("list_offer", WebService.Home_2 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().longitude + "&estate_type=" + opration_select + "" + filtter);
+            mVolleyService.getDataVolley("list_offer", WebService.Home_2 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().longitude + "&estate_type=" + opration_select + "" + filtter + "&search=" + search_text.getText().toString());
 
         } else if (type.equals("map_order")) {
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("map_order", WebService.Home_3 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().longitude + "&estate_type=" + opration_select + "" + filtter);//&request_type=pay
+            mVolleyService.getDataVolley("map_order", WebService.Home_3 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().longitude + "&estate_type=" + opration_select + "" + filtter + "&search=" + search_text.getText().toString());//&request_type=pay
 
-        } else if (type.equals("map_offer")) {//aqarz
+        } else if (type.equals("map_offer")) {//aqarz//"search="+search_text.getText().toString()+
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("map_offer", WebService.Home_4 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().longitude + "&estate_type=" + opration_select + "" + filtter);
+            mVolleyService.getDataVolley("map_offer", WebService.Home_4 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().longitude + "&estate_type=" + opration_select + "" + filtter + "&search=" + search_text.getText().toString());
 
         }
 
