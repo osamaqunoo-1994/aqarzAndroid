@@ -51,7 +51,7 @@
 
 
     <string name="Language">اللغة</string>
-    <string name="Termsandcondition">الاحكام والشروط</string>
+    <string name="Termsandcondition">الشروط والاحكام</string>
     <string name="Privacy">سياسة الخصوصية</string>
     <string name="Call_Us">تواصل معنا</string>
     <string name="Email_Us">بريدنا الالكتروني</string>
@@ -76,7 +76,7 @@
     <string name="Provider_type">صاحب خدمة</string>
     <string name="user_type">مستخدم </string>
 
-    <string name="changePassword">تغير الباسوورد</string>
+    <string name="changePassword">تغير كلمة المرور</string>
     <string name="yes">نعم</string>
     <string name="no">لا</string>
 
@@ -396,4 +396,22 @@
 
     <string name="upgrade">ترقية</string>
 
+
+
+    <string name="aw1">العروض</string>
+    <string name="aw2">الطلبات</string>
+    <string name="aw3">الخدمات</string>
+    <string name="aw4">العملاء</string>
+    <string name="aw5">المفضلة</string>
+    <string name="title_select">اختر الخدمات التي تقدمها</string>
+
+
+    <string name="m1">تطوير عقاري</string>
+    <string name="m2">إدارة أملاك</string>
+    <string name="m3">تسويق عقاري</string>
+    <string name="m4">إدارة مشاريع</string>
+    <string name="m5">أخرى</string>
+    <string name="gender">الحالة الاجتماعيه</string>
+    <string name="K">الف</string>
+    <string name="Million">مليون</string>
 </resources>

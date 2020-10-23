@@ -80,6 +80,7 @@ import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_date_select;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_selectImage;
+import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
 import aqarz.revival.sa.aqarz.Fragment.TypeOrders.type1Fragment;
 import aqarz.revival.sa.aqarz.Modules.ComfortModules;
 import aqarz.revival.sa.aqarz.Modules.SelectImageModules;
@@ -148,7 +149,7 @@ public class AddAqarsActivity extends AppCompatActivity {
     PlacesClient placesClient;
     ImageView back;
 
-
+    TextView city_l;
     LinearLayout specificationsqares;
     LinearLayout means_comfort;
     LinearLayout date_eqjar;
@@ -156,7 +157,7 @@ public class AddAqarsActivity extends AppCompatActivity {
     RecyclerView type_date;
 
     List<String> date_list = new ArrayList<>();
-
+    LinearLayout all_gender;
 
     EditText Instrument_number, piece_number, No_planned, Total_area, age_of_the_property, Role_number, Street_view, total_price, price_one_meter, Communication_Officer, contact_number;
     //---------------------------------------------
@@ -216,12 +217,14 @@ public class AddAqarsActivity extends AppCompatActivity {
     int number_Kitchens_plus = 0;
     int number_Dining_rooms = 0;
 
+    BottomSheetDialogFragment_SelectCity bottomSheetDialogFragment_selectCity;
 
     public void init() {
         back = findViewById(R.id.back);
         images_RecyclerView = findViewById(R.id.images_RecyclerView);
         opration_RecyclerView = findViewById(R.id.opration_RecyclerView);
         select_image = findViewById(R.id.select_image);
+        all_gender = findViewById(R.id.all_gender);
 
         Lounges_plus = findViewById(R.id.Lounges_plus);
         Lounges_minus = findViewById(R.id.Lounges_minus);
@@ -267,6 +270,7 @@ public class AddAqarsActivity extends AppCompatActivity {
         means_comfort = findViewById(R.id.means_comfort);
 
         type_date = findViewById(R.id.type_date);
+        city_l = findViewById(R.id.city_l);
 
 
         date_eqjar = findViewById(R.id.date_eqjar);
@@ -296,9 +300,6 @@ public class AddAqarsActivity extends AppCompatActivity {
         Dining_rooms_lay = findViewById(R.id.Dining_rooms_lay);
         Boards_lay = findViewById(R.id.Boards_lay);
         Kitchens_lay = findViewById(R.id.Kitchens_lay);
-
-
-
 
 
         //---------------------------------------------------------------------------------------
@@ -337,6 +338,26 @@ public class AddAqarsActivity extends AppCompatActivity {
 //        });
 //        opration_RecyclerView.setAdapter(recyclerView_all_type_in_fragment);
 
+        city_l.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                bottomSheetDialogFragment_selectCity = new BottomSheetDialogFragment_SelectCity("");
+                bottomSheetDialogFragment_selectCity.addItemClickListener(new BottomSheetDialogFragment_SelectCity.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_city, String city_naem) {
+//                        city_id = id_city + "";
+                        city_l.setText(city_naem);
+                        bottomSheetDialogFragment_selectCity.dismiss();
+
+                    }
+                });
+
+                bottomSheetDialogFragment_selectCity.show(getSupportFragmentManager(), "");
+
+            }
+        });
         ///------------------------------------------------------------------------------------------------------
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
 
@@ -1154,6 +1175,8 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 date_eqjar.setVisibility(View.GONE);
                 is_rent = "0";
+                all_gender.setVisibility(View.GONE);
+
             }
         });
         rent.setOnClickListener(new View.OnClickListener() {
@@ -1161,6 +1184,10 @@ public class AddAqarsActivity extends AppCompatActivity {
             @SuppressLint("ResourceType")
             @Override
             public void onClick(View v) {
+
+                all_gender.setVisibility(View.VISIBLE);
+
+
                 rent.setBackground(getResources().getDrawable(R.drawable.button_login));
 
                 rent.setTextColor(getResources().getColor(R.color.white));
@@ -1195,6 +1222,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 investment.setTextColor(getResources().getColor(R.color.white));
 
+                all_gender.setVisibility(View.GONE);
 
                 For_sale.setBackground(getResources().getDrawable(R.drawable.search_background));
 
@@ -1355,7 +1383,11 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                         sendObj.put("operation_type_id", opration_select);
                         sendObj.put("estate_type_id", Type_work_select);
-                        sendObj.put("instrument_number", Instrument_number.getText().toString());
+
+                        if (!Instrument_number.getText().toString().equals("")) {
+                            sendObj.put("instrument_number", Instrument_number.getText().toString());
+
+                        }
                         if (instrument_filexx != null) {
 
                             sendObj.put("instrument_file", instrument_filexx);
@@ -1595,6 +1627,9 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                 lat = "" + place.getLatLng().latitude;
                 lng = "" + place.getLatLng().longitude;
+
+
+                System.out.println("lat" + lat + ")))))lng" + lng);
 
 
             }

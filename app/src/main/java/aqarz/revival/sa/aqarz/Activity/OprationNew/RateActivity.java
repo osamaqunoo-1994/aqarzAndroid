@@ -402,8 +402,8 @@ public class RateActivity extends AppCompatActivity {
 //                        WebService.Make_Toast_color(RateActivity.this, message, "success");
 
                         BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(RateActivity.this);
-                        View parentView = getLayoutInflater().inflate(R.layout.success_message,null);
-                        Button close=parentView.findViewById(R.id.close);
+                        View parentView = getLayoutInflater().inflate(R.layout.success_message, null);
+                        Button close = parentView.findViewById(R.id.close);
                         close.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -413,7 +413,7 @@ public class RateActivity extends AppCompatActivity {
                         bottomSheerDialog.setContentView(parentView);
 //                        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(parentView.getParent());
 //                        bottomSheetBehavior.setPeekHeight(int);
-                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,200,getResources().getDisplayMetrics());
+                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
                         bottomSheerDialog.show();
 
                     } else {

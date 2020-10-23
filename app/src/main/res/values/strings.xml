@@ -379,6 +379,9 @@ Your request and reply in the fastest time</string>
     <string name="m3">تسويق عقاري</string>
     <string name="m4">إدارة مشاريع</string>
     <string name="m5">أخرى</string>
+    <string name="gender">Gender</string>
+    <string name="K">K</string>
+    <string name="Million">Million</string>
 
 
 </resources>

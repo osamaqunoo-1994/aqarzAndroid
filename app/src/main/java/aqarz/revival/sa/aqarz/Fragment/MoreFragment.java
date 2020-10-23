@@ -364,6 +364,7 @@ public class MoreFragment extends Fragment {
                     no_login.setVisibility(View.VISIBLE);
                     with_login.setVisibility(View.GONE);
                     changePassword.setVisibility(View.GONE);
+                    logout.setVisibility(View.GONE);
 
                 } else {
 
@@ -372,6 +373,7 @@ public class MoreFragment extends Fragment {
                     with_login.setVisibility(View.VISIBLE);
                     changePassword.setVisibility(View.VISIBLE);
 
+                    logout.setVisibility(View.VISIBLE);
 
                     if (Settings.CheckIsCompleate()) {
                         user_name.setText(Settings.GetUser().getName() + "");
@@ -390,6 +392,7 @@ public class MoreFragment extends Fragment {
                 no_login.setVisibility(View.VISIBLE);
                 with_login.setVisibility(View.GONE);
                 changePassword.setVisibility(View.GONE);
+                logout.setVisibility(View.GONE);
 
             }
 

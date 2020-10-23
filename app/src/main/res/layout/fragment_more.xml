@@ -116,9 +116,9 @@
                             <ImageView
                                 android:id="@+id/not_compleate"
                                 android:layout_width="25dp"
-                                android:visibility="gone"
                                 android:layout_height="25dp"
-                                android:src="@drawable/ic_information" />
+                                android:src="@drawable/ic_information"
+                                android:visibility="gone" />
 
                             <LinearLayout
 
@@ -174,46 +174,6 @@
                                 android:layout_width="15dp"
                                 android:layout_height="15dp"
                                 android:src="@drawable/ic_left_arrow" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="9dp"
-
-                            android:background="#F8F8F8" />
-
-                        <LinearLayout
-                            android:id="@+id/logout"
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-
-                            android:paddingLeft="15dp"
-                            android:paddingRight="15dp">
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:src="@drawable/ic_logout" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginRight="15dp"
-                                android:fontFamily="@font/frutiger_lt_arabic_light"
-                                android:text="@string/Logout"
-                                android:textColor="#4A4A4A"
-                                android:textSize="@dimen/_12sdp" />
-
-                            <LinearLayout
-
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1" />
-
-
                         </LinearLayout>
 
 
@@ -383,7 +343,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginStart="20dp"
-                        android:background="#D8D8D8" />
+                        android:background="#D8D8D8"
+                        android:visibility="gone" />
 
                     <LinearLayout
                         android:id="@+id/privecy"
@@ -391,9 +352,10 @@
                         android:layout_height="60dp"
                         android:gravity="center"
                         android:orientation="horizontal"
-
                         android:paddingLeft="15dp"
-                        android:paddingRight="15dp">
+
+                        android:paddingRight="15dp"
+                        android:visibility="gone">
 
 
                         <TextView
@@ -455,6 +417,46 @@
                             android:src="@drawable/ic_left_arrow" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="9dp"
+
+                        android:background="#F8F8F8" />
+
+                    <LinearLayout
+                        android:id="@+id/logout"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+
+                        android:paddingRight="15dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_logout" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:fontFamily="@font/frutiger_lt_arabic_light"
+                            android:text="@string/Logout"
+                            android:textColor="#4A4A4A"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

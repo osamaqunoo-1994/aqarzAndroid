@@ -865,11 +865,29 @@ public class MapsFragment extends Fragment {
 
 //                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(camPos));
 
+
+                                String price = bankModules.getPrice_from();
+                                int price_int = Integer.valueOf(price);
+
+                                int prices = (int) price_int / 100;
+
+
+                                if (price_int < 1000) {
+                                    price = prices + "";
+                                } else if (price_int > 1000 && price_int < 999999) {
+                                    price = prices + getResources().getString(R.string.K);
+
+                                } else if (price_int > 999999) {
+                                    price = prices + getResources().getString(R.string.Million);
+
+                                }
+
+
                                 LatLng sydneya = new LatLng(Double.valueOf(bankModules.getLat()), Double.valueOf(bankModules.getLan()));
                                 googleMap.addMarker(new MarkerOptions()
                                         .position(sydneya)
 
-                                        .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(bankModules.getPrice_from())))).setTag(i);
+                                        .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(price)))).setTag(i);
 
 
                             }
