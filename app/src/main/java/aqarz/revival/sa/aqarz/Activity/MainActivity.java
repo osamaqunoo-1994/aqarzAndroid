@@ -155,10 +155,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 2:
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, new ChatFragment());
-                //    fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
+//                fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.container, new ChatFragment());
+//                //    fragmentTransaction.commit();
+//                fragmentTransaction.commitAllowingStateLoss();
 //                fragmentTransaction = fragmentManager.beginTransaction();
 //                fragmentTransaction.replace(R.id.container, new MessagesFragment());
 //                //    fragmentTransaction.commit();

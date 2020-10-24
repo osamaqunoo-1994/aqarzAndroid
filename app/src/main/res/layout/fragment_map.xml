@@ -77,8 +77,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:background="@color/colorPrimary"
-                android:layout_height="50dp"/>
+                android:layout_height="50dp"
+                android:background="@color/colorPrimary" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -160,13 +161,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/button_login"
                     android:fontFamily="@font/frutiger_lt_arabic_roman"
                     android:gravity="center"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:text="@string/Orders_tab"
-                    android:textColor="@color/white"
+                    android:textColor="@color/color_filter"
+
                     android:textSize="13dp" />
 
                 <TextView
@@ -174,26 +175,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@drawable/button_login"
                     android:fontFamily="@font/frutiger_lt_arabic_roman"
                     android:gravity="center"
                     android:paddingLeft="15dp"
-
                     android:paddingRight="15dp"
+
                     android:text="@string/Offers_tab"
-                    android:textColor="@color/color_filter"
+                    android:textColor="@color/white"
                     android:textSize="13dp" />
 
 
             </LinearLayout>
 
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/opration"
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="10dp"
 
 
                 android:visibility="visible" />

@@ -256,6 +256,7 @@
                         android:layoutDirection="ltr" />
 
                     <Button
+                        android:id="@+id/send"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"

@@ -325,9 +325,17 @@ public class OrdersFragment extends Fragment {
                 final View popupView = layoutInflater.inflate(R.layout.upgrade_message, null);
 
                 ImageView close = popupView.findViewById(R.id.close);
+                Button ok = popupView.findViewById(R.id.ok);
 
 
                 close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+
+                ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         alertDialog.dismiss();

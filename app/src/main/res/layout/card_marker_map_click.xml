@@ -128,7 +128,7 @@
                     <ImageView
                         android:layout_width="10dp"
                         android:layout_height="10dp"
-                        android:src="@drawable/ic_dollars" />
+                        android:src="@drawable/ic_money" />
 
                     <TextView
                         android:id="@+id/price"

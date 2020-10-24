@@ -270,7 +270,8 @@ public class MapsFragment extends Fragment {
                     if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 //                                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
 
-                        ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+//                        ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+                        requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
 
                     } else {
 
@@ -430,7 +431,8 @@ public class MapsFragment extends Fragment {
 
         if (Settings.CheckIsAccountAqarzMan()) {
             laout_of_change.setVisibility(View.VISIBLE);
-            get_data_from_api("map_order", filtter_selected);
+//            get_data_from_api("map_order", filtter_selected);
+            get_data_from_api("map_offer", filtter_selected);
 
         } else {
             laout_of_change.setVisibility(View.GONE);
@@ -576,7 +578,7 @@ public class MapsFragment extends Fragment {
 
                 try {
                     if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+                        requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
                     } else {
 
 
@@ -866,21 +868,28 @@ public class MapsFragment extends Fragment {
 //                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(camPos));
 
 
+
                                 String price = bankModules.getPrice_from();
                                 int price_int = Integer.valueOf(price);
 
-                                int prices = (int) price_int / 100;
+                                int prices = (int) price_int ;
 
 
                                 if (price_int < 1000) {
+
                                     price = prices + "";
                                 } else if (price_int > 1000 && price_int < 999999) {
+                                    prices = (int) price_int/1000 ;
+
                                     price = prices + getResources().getString(R.string.K);
 
                                 } else if (price_int > 999999) {
+                                    prices = (int) price_int/1000000 ;
+
                                     price = prices + getResources().getString(R.string.Million);
 
                                 }
+                                System.out.println( bankModules.getPrice_from()+"--------------"+price);
 
 
                                 LatLng sydneya = new LatLng(Double.valueOf(bankModules.getLat()), Double.valueOf(bankModules.getLan()));
@@ -942,10 +951,32 @@ public class MapsFragment extends Fragment {
 
 //                                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(camPos));
 
+                                        String price = bankModules.getTotalPrice();
+                                        int price_int = Integer.valueOf(price);
+
+                                        int prices = (int) price_int ;
+
+
+                                        if (price_int < 1000) {
+
+                                            price = prices + "";
+                                        } else if (price_int > 1000 && price_int < 999999) {
+                                            prices = (int) price_int/1000 ;
+
+                                            price = prices + getResources().getString(R.string.K);
+
+                                        } else if (price_int > 999999) {
+                                            prices = (int) price_int/1000000 ;
+
+                                            price = prices + getResources().getString(R.string.Million);
+
+                                        }
+                                        System.out.println( bankModules.getTotalPrice()+"--------------"+price);
+
                                         LatLng sydneya = new LatLng(Double.valueOf(bankModules.getLat()), Double.valueOf(bankModules.getLan()));
                                         googleMap.addMarker(new MarkerOptions()
                                                 .position(sydneya)
-                                                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2(bankModules.getTotalPrice())))).setTag(i);
+                                                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2(price)))).setTag(i);
 
 
                                     } catch (Exception e) {
@@ -1126,7 +1157,7 @@ public class MapsFragment extends Fragment {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
+        System.out.println("909090090909");
 
         try {
             if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -1191,4 +1222,5 @@ public class MapsFragment extends Fragment {
 
 
     }
+
 }

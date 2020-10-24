@@ -82,7 +82,8 @@ public class MoreFragment extends Fragment {
     TextView user_name;
     TextView language_text;
 
-    Button contact_us;
+
+     ImageView contact_us;
 
 
     Button email_us;

@@ -64,6 +64,7 @@ public class BottomSheetDialogFragment_Filtter extends BottomSheetDialogFragment
     TextView min_area, max_area;
 
     String min_price = "0", max_price = "1000";
+    String min_area_ = "0", max_area_ = "1000";
     String num_room = "1";
 
     TextView room_1;
@@ -157,7 +158,7 @@ public class BottomSheetDialogFragment_Filtter extends BottomSheetDialogFragment
             public void onClick(View v) {
 
                 if (mItemClickListener != null) {
-                    String te = "&estate_pay_type=" + type + "&price_from=" + min_price + "&price_to=" + max_price + "&area_from=" + min_area.getText().toString() + "&area_from=" + max_area.getText().toString();
+                    String te = "&estate_pay_type=" + type + "&price_from=" + min_price + "&price_to=" + max_price + "&area_from=" + min_area_ + "&area_from=" + max_area_;
 
                     mItemClickListener.onItemClick(te);
                 }
@@ -199,10 +200,56 @@ public class BottomSheetDialogFragment_Filtter extends BottomSheetDialogFragment
         area_sseekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
             @Override
             public void valueChanged(Number minValue, Number maxValue) {
+                min_area_ = minValue + "";
+                max_area_ = maxValue + "";
 
 
-                max_area.setText(maxValue + "");
-                min_area.setText(minValue + "");
+                String minValue___ = minValue + "";
+                int price_int = Integer.valueOf(minValue___);
+
+                int prices = (int) price_int;
+
+
+                if (price_int < 1000) {
+
+                    minValue___ = prices + "";
+                } else if (price_int > 1000 && price_int < 999999) {
+                    prices = (int) price_int / 1000;
+
+                    minValue___ = prices + getResources().getString(R.string.K);
+
+                } else if (price_int > 999999) {
+                    prices = (int) price_int / 1000000;
+
+                    minValue___ = prices + getResources().getString(R.string.Million);
+
+                }
+
+
+                String maxValue___ = maxValue + "";
+                int price_int_ = Integer.valueOf(maxValue___);
+
+                int prices_s = (int) price_int_;
+
+
+                if (price_int_ < 1000) {
+
+                    maxValue___ = prices_s + "";
+                } else if (price_int_ > 1000 && price_int_ < 999999) {
+                    prices_s = (int) price_int_ / 1000;
+
+                    maxValue___ = prices_s + getResources().getString(R.string.K);
+
+                } else if (price_int_ > 999999) {
+                    prices_s = (int) price_int_ / 1000000;
+
+                    maxValue___ = prices_s + getResources().getString(R.string.Million);
+
+                }
+
+
+                max_area.setText(maxValue___ + "");
+                min_area.setText(minValue___ + "");
 
 
             }

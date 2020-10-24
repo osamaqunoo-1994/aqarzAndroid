@@ -83,12 +83,12 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
         init_volley();
+        VolleyService mVolleyService = new VolleyService(mResultCallback, SplashScreenActivity.this);
+
+        mVolleyService.getDataVolley("Settings", WebService.settings);
 
 
         if (!isInternetAvailable()) {
-            VolleyService mVolleyService = new VolleyService(mResultCallback, SplashScreenActivity.this);
-
-            mVolleyService.getDataVolley("Settings", WebService.settings);
 
         } else {
             Snackbar.make(parentLayout, getResources().getString(R.string.NoInternt), Snackbar.LENGTH_INDEFINITE)

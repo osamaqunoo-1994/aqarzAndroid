@@ -42,10 +42,11 @@
                 android:layout_margin="20dp"
                 android:fontFamily="@font/frutiger_lt_arabic_bold"
                 android:gravity="center"
-                android:text="تم ارسال رابط البوابة الي هاتفك والبريد الالكتروني" />
+                android:text=" يتطلب الوصول الى هذه الخاصية بعض الشروط والأحكام المتعلقة بهذا البرنامج يرجى مراجعة بريدك الالكتروني وجوالك المسجل لمزيد من المعلومات" />
 
 
             <Button
+                android:id="@+id/ok"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"

@@ -75,6 +75,7 @@
                 app:bar_highlight_color="#814C99"
                 app:left_thumb_image="@drawable/thumb"
                 app:max_value="1000000"
+                app:min_value="0"
                 app:right_thumb_image="@drawable/thumb" />
 
             <TextView
@@ -97,9 +98,9 @@
                 android:layout_marginRight="30dp"
                 app:bar_color="#95959A"
                 app:bar_highlight_color="#814C99"
-
                 app:left_thumb_image="@drawable/thumb"
                 app:max_value="1000000"
+                app:min_value="0"
                 app:right_thumb_image="@drawable/thumb" />
 
 
