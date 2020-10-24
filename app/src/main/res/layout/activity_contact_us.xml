@@ -209,7 +209,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_16sdp"
                         android:background="@drawable/edit_text_background"
-                        android:drawableStart="@drawable/ic_email"
+                        android:drawableStart="@drawable/ic_email_"
 
 
                         android:drawablePadding="@dimen/_8sdp"

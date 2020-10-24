@@ -868,28 +868,27 @@ public class MapsFragment extends Fragment {
 //                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(camPos));
 
 
-
                                 String price = bankModules.getPrice_from();
                                 int price_int = Integer.valueOf(price);
 
-                                int prices = (int) price_int ;
+                                int prices = (int) price_int;
 
 
                                 if (price_int < 1000) {
 
                                     price = prices + "";
                                 } else if (price_int > 1000 && price_int < 999999) {
-                                    prices = (int) price_int/1000 ;
+                                    prices = (int) price_int / 1000;
 
                                     price = prices + getResources().getString(R.string.K);
 
                                 } else if (price_int > 999999) {
-                                    prices = (int) price_int/1000000 ;
+                                    prices = (int) price_int / 1000000;
 
                                     price = prices + getResources().getString(R.string.Million);
 
                                 }
-                                System.out.println( bankModules.getPrice_from()+"--------------"+price);
+                                System.out.println(bankModules.getPrice_from() + "--------------" + price);
 
 
                                 LatLng sydneya = new LatLng(Double.valueOf(bankModules.getLat()), Double.valueOf(bankModules.getLan()));
@@ -954,24 +953,24 @@ public class MapsFragment extends Fragment {
                                         String price = bankModules.getTotalPrice();
                                         int price_int = Integer.valueOf(price);
 
-                                        int prices = (int) price_int ;
+                                        int prices = (int) price_int;
 
 
                                         if (price_int < 1000) {
 
                                             price = prices + "";
                                         } else if (price_int > 1000 && price_int < 999999) {
-                                            prices = (int) price_int/1000 ;
+                                            prices = (int) price_int / 1000;
 
                                             price = prices + getResources().getString(R.string.K);
 
                                         } else if (price_int > 999999) {
-                                            prices = (int) price_int/1000000 ;
+                                            prices = (int) price_int / 1000000;
 
                                             price = prices + getResources().getString(R.string.Million);
 
                                         }
-                                        System.out.println( bankModules.getTotalPrice()+"--------------"+price);
+                                        System.out.println(bankModules.getTotalPrice() + "--------------" + price);
 
                                         LatLng sydneya = new LatLng(Double.valueOf(bankModules.getLat()), Double.valueOf(bankModules.getLan()));
                                         googleMap.addMarker(new MarkerOptions()

@@ -28,6 +28,9 @@ public class User {
     @SerializedName("mobile")
     @Expose
     private String mobile;
+    @SerializedName("is_pay")
+    @Expose
+    private String is_pay;
     @SerializedName("device_token")
     @Expose
     private String device_token;
@@ -98,5 +101,9 @@ public class User {
 
     public String getDevice_type() {
         return device_type;
+    }
+
+    public String getIs_pay() {
+        return is_pay;
     }
 }
