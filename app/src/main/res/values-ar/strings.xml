@@ -370,7 +370,7 @@
     <string name="title_login">نرحب بعودتك مجدداً</string>
 
 
-    <string name="EditProfile">تعديل البروفايل</string>
+    <string name="EditProfile">تعديل الحساب</string>
 
 
     <string name="AddNEWOFFER">اضافة عرض</string>
@@ -414,4 +414,12 @@
     <string name="gender">الحالة الاجتماعيه</string>
     <string name="K">الف</string>
     <string name="Million">مليون</string>
+
+
+    <string name="you_are_not_incompleat">الحساب غير مكتمل يرجى اكمل البيانات.</string>
+    <string name="MyProfileEdit">حسابي.</string>
+
+
+
+    <string name="Privecy_text"></string>
 </resources>

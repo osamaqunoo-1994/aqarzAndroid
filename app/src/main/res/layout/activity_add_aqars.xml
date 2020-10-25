@@ -546,62 +546,64 @@
                     android:hint="@string/writedescription"
                     android:padding="15dp"
                     android:textSize="@dimen/_12sdp" />
-
                 <LinearLayout
-                    android:id="@+id/specificationsqares"
                     android:layout_width="match_parent"
+
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-
-                    android:orientation="vertical"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="5dp"
-                    android:paddingBottom="10dp"
-                    android:visibility="visible">
-
+                    android:layout_marginBottom="5dp">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp">
+                        android:gravity="center"
+                        android:layout_marginBottom="10dp"
 
-                        <LinearLayout
+                        android:orientation="vertical">
+
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:fontFamily="@font/muli_bold"
-                                android:text="@string/specificationsِAqares"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="17dp" />
-
-                            <LinearLayout
-                                android:layout_width="120dp"
-                                android:layout_height="1dp"
-                                android:background="@color/colorPrimary" />
-                        </LinearLayout>
-
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/muli_bold"
+                            android:text="@string/specificationsِAqares"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="17dp" />
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
+                            android:layout_width="120dp"
+                            android:layout_height="1dp"
+                            android:background="@color/colorPrimary" />
                     </LinearLayout>
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/specificationsqares"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+
+                    android:orientation="vertical"
+                    android:paddingLeft="5dp"
+
+                    android:paddingRight="5dp"
+                    android:paddingBottom="10dp"
+                    android:visibility="visible">
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
                         android:gravity="start">
 
                         <LinearLayout
@@ -785,7 +787,7 @@
                                 android:text="@string/Bathrooms"
 
                                 android:textColor="@color/black"
-                                android:textSize="12dp" />
+                                android:textSize="11dp" />
 
                             <LinearLayout
                                 android:layout_width="10dp"
@@ -862,7 +864,7 @@
                                 android:text="@string/Dining_rooms"
 
                                 android:textColor="@color/black"
-                                android:textSize="12dp" />
+                                android:textSize="11dp" />
 
                             <LinearLayout
                                 android:layout_width="10dp"
@@ -1165,90 +1167,6 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:paddingBottom="5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:text="@string/interface_"
-                            android:textColor="@color/textColor2"
-                            android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="15dp"
-                            android:layout_height="wrap_content" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="38dp"
-
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/north"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/button_login"
-                                android:gravity="center"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="@string/north"
-                                android:textColor="@color/white"
-                                android:textSize="13dp" />
-
-                            <TextView
-                                android:id="@+id/south"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/mash"
-
-                                android:gravity="center"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="@string/south"
-                                android:textColor="#424446"
-                                android:textSize="13dp" />
-
-                            <TextView
-                                android:id="@+id/east"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/mash"
-                                android:gravity="center"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="@string/east"
-
-                                android:textColor="#424446"
-                                android:textSize="13dp" />
-
-                            <TextView
-                                android:id="@+id/west"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/mash"
-                                android:gravity="center"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="@string/west"
-
-                                android:textColor="#424446"
-                                android:textSize="13dp" />
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/all_gender"
@@ -1308,6 +1226,92 @@
 
                         </LinearLayout>
 
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="center"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:text="@string/interface_"
+                        android:textColor="@color/textColor2"
+                        android:textSize="15dp" />
+
+                    <LinearLayout
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/north"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_login"
+                            android:gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/north"
+                            android:textColor="@color/white"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:id="@+id/south"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/mash"
+
+                            android:gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/south"
+                            android:textColor="#424446"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:id="@+id/east"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/mash"
+                            android:gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/east"
+
+                            android:textColor="#424446"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:id="@+id/west"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/mash"
+                            android:gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/west"
+
+                            android:textColor="#424446"
+                            android:textSize="13dp" />
 
                     </LinearLayout>
 
