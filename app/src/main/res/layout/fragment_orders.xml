@@ -51,6 +51,7 @@
                         android:layout_width="110dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
+
                         android:paddingLeft="@dimen/_15sdp"
                         android:paddingRight="@dimen/_15sdp"
                         android:text="@string/MyOrder"
@@ -180,6 +181,7 @@
     <HorizontalScrollView
         android:id="@+id/section_horizantal"
         android:layout_width="match_parent"
+        android:fillViewport="true"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
 

@@ -44,6 +44,7 @@ public class Settings {
 
     public static User GetUser() {
 
+
         JsonParser parser = new JsonParser();
         JsonElement mJson = parser.parse(Hawk.get("user").toString());
 
