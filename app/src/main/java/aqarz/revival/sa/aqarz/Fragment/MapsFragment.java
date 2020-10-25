@@ -17,9 +17,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -75,6 +77,7 @@ import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Opration_in_map;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_in_map;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_select_oprat_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment1;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares;
@@ -137,7 +140,7 @@ public class MapsFragment extends Fragment {
     ImageView change_list_to_map;
     ImageView search_btn;
 
-    String opration_select = "0";
+    String opration_select = "";
     String convert_type = "map";
 
 
@@ -389,11 +392,29 @@ public class MapsFragment extends Fragment {
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         type.setLayoutManager(layoutManager1);
-        RecyclerView_All_type_in_fragment recyclerView_all_type_in_fragment = new RecyclerView_All_type_in_fragment(getContext(), type_list);
-        recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_in_fragment.ItemClickListener() {
+        RecyclerView_All_type_in_fragment1 recyclerView_all_type_in_fragment = new RecyclerView_All_type_in_fragment1(getContext(), type_list);
+        recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_in_fragment1.ItemClickListener() {
             @Override
-            public void onItemClick(int position) {
-                opration_select = type_list.get(position).getId().toString() + "";
+            public void onItemClick(List<TypeModules> typeModules) {
+
+                opration_select = "";
+                for (int i = 0; i < typeModules.size(); i++) {
+                    if (typeModules.get(i).isIsselected()) {
+                        if (opration_select.equals("")) {
+                            opration_select = typeModules.get(i).getId().toString() + "";
+
+                        } else {
+                            opration_select = opration_select + "," + typeModules.get(i).getId().toString() + "";
+
+                        }
+
+                    }
+                }
+
+
+                System.out.println("opration_select"+opration_select);
+
+//                opration_select = type_list.get(position).getId().toString() + "";
 
 
                 get_data_from_api(final_type_requst_filter, filtter_selected);
@@ -684,7 +705,16 @@ public class MapsFragment extends Fragment {
             }
         });
 
-
+        search_text.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    get_data_from_api(final_type_requst_filter, filtter_selected);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override

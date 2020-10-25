@@ -167,7 +167,13 @@ public class RateActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         investment = findViewById(R.id.investment);
         opration = findViewById(R.id.opration);
+        //---------------------------------------------------------------------------------------
+        try {
+            name.setText(Settings.GetUser().getName() + "");
+            phone.setText(Settings.GetUser().getMobile() + "");
+        } catch (Exception e) {
 
+        }
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

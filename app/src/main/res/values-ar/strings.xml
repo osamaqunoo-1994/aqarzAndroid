@@ -97,6 +97,7 @@
 
 
     <string name="Information_Tenant">معلومات المستاجر</string>
+    <string name="Information_Tenant1">معلومات المستفيد</string>
     <string name="id_upload">الهوية</string>
     <string name="id_number">رقم الهوية</string>
 
@@ -289,7 +290,7 @@
     <string name="requstService">اطلب خدمة</string>
 
 
-    <string name="RentalinstallmentService">تقسيط وتاجير</string>
+    <string name="RentalinstallmentService">تقسيط التاجير</string>
     <string name="AqarsService">عقار</string>
     <string name="rateService">تقييم</string>
     <string name="financeService">تمويل</string>
@@ -384,8 +385,7 @@
     <string name="AddImageId">أرفق صورة الهوية</string>
 
 
-    <string name="Success_message">تم استلام طلبك بنجاح سيتم مراجعك
-طلبك والرد في اسرع وقت</string>
+    <string name="Success_message">تم استلام طلبك بنجاح.. سيتم مراجعة طلبك والرد في اسرع وقت</string>
 
 
     <string name="Code">كود التحقق</string>

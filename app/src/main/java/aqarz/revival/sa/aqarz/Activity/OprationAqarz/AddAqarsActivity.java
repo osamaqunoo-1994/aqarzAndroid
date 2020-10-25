@@ -81,6 +81,7 @@ import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_date_select;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_selectImage;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
+import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_SelectNeighborhoods;
 import aqarz.revival.sa.aqarz.Fragment.TypeOrders.type1Fragment;
 import aqarz.revival.sa.aqarz.Modules.ComfortModules;
 import aqarz.revival.sa.aqarz.Modules.SelectImageModules;
@@ -183,8 +184,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     Switch switch_more_detials;
     LinearLayout all_more_detila;
-
-
+    TextView nibors;
     LinearLayout Lounges_lay;
     LinearLayout room_lay;
     LinearLayout Bathrooms_lay;
@@ -217,7 +217,10 @@ public class AddAqarsActivity extends AppCompatActivity {
     int number_Kitchens_plus = 0;
     int number_Dining_rooms = 0;
 
+    String city_id="";
+
     BottomSheetDialogFragment_SelectCity bottomSheetDialogFragment_selectCity;
+    BottomSheetDialogFragment_SelectNeighborhoods bottomSheetDialogFragment_selectNeighborhoods;
 
     public void init() {
         back = findViewById(R.id.back);
@@ -225,6 +228,7 @@ public class AddAqarsActivity extends AppCompatActivity {
         opration_RecyclerView = findViewById(R.id.opration_RecyclerView);
         select_image = findViewById(R.id.select_image);
         all_gender = findViewById(R.id.all_gender);
+        nibors = findViewById(R.id.nibors);
 
         Lounges_plus = findViewById(R.id.Lounges_plus);
         Lounges_minus = findViewById(R.id.Lounges_minus);
@@ -347,7 +351,7 @@ public class AddAqarsActivity extends AppCompatActivity {
                 bottomSheetDialogFragment_selectCity.addItemClickListener(new BottomSheetDialogFragment_SelectCity.ItemClickListener() {
                     @Override
                     public void onItemClick(int id_city, String city_naem) {
-//                        city_id = id_city + "";
+                        city_id = id_city + "";
                         city_l.setText(city_naem);
                         bottomSheetDialogFragment_selectCity.dismiss();
 
@@ -355,6 +359,26 @@ public class AddAqarsActivity extends AppCompatActivity {
                 });
 
                 bottomSheetDialogFragment_selectCity.show(getSupportFragmentManager(), "");
+
+            }
+        });
+        nibors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                bottomSheetDialogFragment_selectNeighborhoods = new BottomSheetDialogFragment_SelectNeighborhoods(city_id);
+                bottomSheetDialogFragment_selectNeighborhoods.addItemClickListener(new BottomSheetDialogFragment_SelectNeighborhoods.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_city, String city_naem) {
+//                        city_id = id_city + "";
+                        nibors.setText(city_naem);
+                        bottomSheetDialogFragment_selectNeighborhoods.dismiss();
+
+                    }
+                });
+
+                bottomSheetDialogFragment_selectNeighborhoods.show(getSupportFragmentManager(), "");
 
             }
         });

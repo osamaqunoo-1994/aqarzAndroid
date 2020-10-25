@@ -154,7 +154,7 @@
 
                     android:textSize="13dp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/www"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"

@@ -167,7 +167,13 @@ public class RentActivity extends AppCompatActivity {
 
         init_volley();
 
+        //---------------------------------------------------------------------------------------
+        try {
+            name_owner.setText(Settings.GetUser().getName() + "");
+            phone_owner.setText(Settings.GetUser().getMobile() + "");
+        } catch (Exception e) {
 
+        }
 ///------------------------------------------------------------------------------------------------------
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
 
@@ -685,7 +691,7 @@ public class RentActivity extends AppCompatActivity {
                             }
                         });
                         bottomSheerDialog.setContentView(parentView);
-                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,200,getResources().getDisplayMetrics());
+                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
                         bottomSheerDialog.show();
 //                        WebService.Make_Toast_color(RentActivity.this, message, "success");
 

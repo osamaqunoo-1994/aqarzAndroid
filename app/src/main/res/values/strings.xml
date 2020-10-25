@@ -99,6 +99,8 @@
     <string name="writehear">write here</string>
     <string name="Information_AOwner">Information Owner </string>
     <string name="Information_Tenant">Information Tenant</string>
+    <string name="Information_Tenant1">Information Tenant</string>
+
     <string name="id_upload">Id</string>
     <string name="Date_of_Birth">Date of Birth</string>
     <string name="city">City</string>
@@ -383,5 +385,7 @@ Your request and reply in the fastest time</string>
     <string name="K">K</string>
     <string name="Million">Million</string>
 
+    <string name="you_are_not_incompleat">your profile incomplete, please complete.</string>
+    <string name="MyProfileEdit">My Profile.</string>
 
 </resources>

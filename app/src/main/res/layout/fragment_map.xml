@@ -106,6 +106,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
                     android:background="@android:color/transparent"
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"

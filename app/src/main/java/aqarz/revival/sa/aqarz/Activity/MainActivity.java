@@ -7,6 +7,8 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -18,7 +20,10 @@ import android.widget.LinearLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Set;
+
 import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
+import aqarz.revival.sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.RegisterActivity;
 import aqarz.revival.sa.aqarz.Fragment.ChatFragment;
 import aqarz.revival.sa.aqarz.Fragment.MapsFragment;
@@ -26,6 +31,7 @@ import aqarz.revival.sa.aqarz.Fragment.MoreFragment;
 import aqarz.revival.sa.aqarz.Fragment.OrdersFragment;
 import aqarz.revival.sa.aqarz.Fragment.SubscriptionsFragment;
 import aqarz.revival.sa.aqarz.R;
+import aqarz.revival.sa.aqarz.Settings.Settings;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNav;
@@ -142,10 +148,31 @@ public class MainActivity extends AppCompatActivity {
 
             case 1:
 
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, new OrdersFragment());
-                //    fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
+                if (Settings.checkLogin()) {
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.container, new OrdersFragment());
+                    //    fragmentTransaction.commit();
+                    fragmentTransaction.commitAllowingStateLoss();
+
+
+                } else {
+
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+                            .setCancelable(false)
+                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                                    startActivity(intent);
+
+                                }
+                            })
+                            .setNegativeButton(getResources().getString(R.string.no), null)
+                            .show();
+                }
+
 
 //                fragmentTransaction = fragmentManager.beginTransaction();
 //                fragmentTransaction.replace(R.id.container, new OrdersFragment());

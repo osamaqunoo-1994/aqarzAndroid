@@ -175,7 +175,11 @@ public class EditProfileActivity extends AppCompatActivity {
                     try {
 
                         sendObj.put("name", name_ed.getText().toString());
-//                        sendObj.put("email", email_ed.getText().toString());
+                        sendObj.put("city_id", 2);
+                        sendObj.put("neighborhood_id", 2);
+                        sendObj.put("services_name", "s_nam1,s_name2");
+                        sendObj.put("members_name", "mebmer1,mebmer_nam2");
+                        sendObj.put("email", email_ed.getText().toString());
 //                        sendObj.put("mobile", phone_ed.getText().toString());
 
 

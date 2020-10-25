@@ -52,7 +52,7 @@ import in.mayanknagwanshi.imagepicker.ImageSelectActivity;
 
 public class MyProfileInformationActivity extends AppCompatActivity {
     EditText name_ed;
-    TextView email_ed;
+    EditText email_ed;
     TextView phone_ed;
 
     Button done;

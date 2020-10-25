@@ -171,7 +171,13 @@ public class FinanceActivity extends AppCompatActivity {
         buldingnumber = findViewById(R.id.buldingnumber);
         StreetName = findViewById(R.id.StreetName);
 
+        //---------------------------------------------------------------------------------------
+        try {
+            name.setText(Settings.GetUser().getName() + "");
+            phone.setText(Settings.GetUser().getMobile() + "");
+        } catch (Exception e) {
 
+        }
         ///------------------------------------------------------------------------------------------------------
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
 
@@ -456,6 +462,20 @@ public class FinanceActivity extends AppCompatActivity {
 
             }
         });
+
+        Solidarity_partner.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    Solidarity_salary.setVisibility(View.VISIBLE);
+                }else{
+                    Solidarity_salary.setVisibility(View.GONE);
+
+                }
+
+
+            }
+        });
     }
 
     public void next_step() {
@@ -471,10 +491,12 @@ public class FinanceActivity extends AppCompatActivity {
                     WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Price_aqar) + " " + getResources().getString(R.string.is_requred), "error");
 
 
-                } else if (available_price.getText().toString().equals("")) {
-                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Available_price) + " " + getResources().getString(R.string.is_requred), "error");
-
-                } else if (Solidarity_salary.getText().toString().equals("") && Solidarity_partner.isChecked()) {
+                }
+//                else if (available_price.getText().toString().equals("")) {
+//                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Available_price) + " " + getResources().getString(R.string.is_requred), "error");
+//
+//                }
+                else if (Solidarity_salary.getText().toString().equals("") && Solidarity_partner.isChecked()) {
                     WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Solidarity_salary) + " " + getResources().getString(R.string.is_requred), "error");
 
                 } else {
@@ -612,7 +634,10 @@ public class FinanceActivity extends AppCompatActivity {
                         sendObj.put("mobile", phone.getText().toString());
 //                        sendObj.put("age", age.getText().toString());
                         sendObj.put("total_salary", total_sallary.getText().toString());
-                        sendObj.put("available_amount", available_price.getText().toString());
+                        if(!available_price.getText().toString().equals("")){
+                            sendObj.put("available_amount", available_price.getText().toString());
+
+                        }
 //                        sendObj.put("national_address", "6855");
 
                         if (National_address_file != null) {

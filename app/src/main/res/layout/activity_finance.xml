@@ -200,6 +200,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_margin="10dp"
+                        android:max="30"
                         android:maxHeight="5dip"
                         android:minHeight="5dip"
                         android:paddingLeft="30px"
@@ -289,7 +290,8 @@
                             android:id="@+id/Solidarity_partner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="true"
+                            android:checked="false"
+
                             android:theme="@style/SCBSwitch" />
 
 
@@ -323,7 +325,8 @@
                             android:paddingRight="10dp"
                             android:text=""
                             android:textColorHint="@color/hint_color"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_10sdp"
+                            android:visibility="gone" />
 
 
                     </LinearLayout>
@@ -358,12 +361,10 @@
                                 android:layout_width="40dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/button_login"
                                 android:gravity="center"
                                 android:paddingLeft="8dp"
                                 android:paddingRight="8dp"
                                 android:text="@string/yes"
-                                android:textColor="@color/white"
                                 android:textSize="11dp" />
 
 
@@ -372,10 +373,13 @@
                                 android:layout_width="40dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
+                                android:background="@drawable/button_login"
                                 android:gravity="center"
                                 android:paddingLeft="8dp"
+
                                 android:paddingRight="8dp"
                                 android:text="@string/no"
+                                android:textColor="@color/white"
                                 android:textSize="13dp" />
 
 
@@ -414,14 +418,12 @@
                                 android:layout_width="40dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/button_login"
                                 android:gravity="center"
                                 android:paddingLeft="8dp"
                                 android:paddingRight="8dp"
                                 android:text="@string/yes"
 
 
-                                android:textColor="@color/white"
                                 android:textSize="9dp" />
 
 
@@ -430,10 +432,13 @@
                                 android:layout_width="40dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
+                                android:background="@drawable/button_login"
                                 android:gravity="center"
                                 android:paddingLeft="8dp"
                                 android:paddingRight="8dp"
+
                                 android:text="@string/no"
+                                android:textColor="@color/white"
                                 android:textSize="13dp" />
 
 

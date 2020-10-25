@@ -1,6 +1,5 @@
 package aqarz.revival.sa.aqarz.Dialog;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +16,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -25,19 +23,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import aqarz.revival.sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
-import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
-import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_in_order;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_city_bootom_sheets;
 import aqarz.revival.sa.aqarz.Modules.CityModules;
-import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.WebService;
 import aqarz.revival.sa.aqarz.api.IResult;
 import aqarz.revival.sa.aqarz.api.VolleyService;
 
 
-public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragment {
+public class BottomSheetDialogFragment_SelectNeighborhoods extends BottomSheetDialogFragment {
     IResult mResultCallback;
 
     String id_city = "";
@@ -69,7 +63,7 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
 
         VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 
-        mVolleyService.getDataVolley("city", WebService.cities);
+        mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + id_city + "/list");
 
         return v;
     }
@@ -78,7 +72,7 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
 //    categories_bottomSheetDialogFragment = new Categories_BottomSheetDialogFragment("");
 //                categories_bottomSheetDialogFragment.show(getSupportFragmentManager(), "");
 
-    public BottomSheetDialogFragment_SelectCity(String id_) {
+    public BottomSheetDialogFragment_SelectNeighborhoods(String id_) {
         id_city = id_;
     }
 
@@ -96,11 +90,11 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String data = response.getString("data");
-//                        JSONObject jsonObjectdata = new JSONObject(data);
-//
-//                        String datax = jsonObjectdata.getString("data");
+                        JSONObject jsonObjectdata = new JSONObject(data);
 
-                        JSONArray jsonArray = new JSONArray(data);
+                        String datax = jsonObjectdata.getString("data");
+
+                        JSONArray jsonArray = new JSONArray(datax);
                         progress.setVisibility(View.GONE);
                         cityModules_list.clear();
                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -131,10 +125,6 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
 
 
                     } else {
-                        String message = response.getString("message");
-
-
-                        WebService.Make_Toast_color(getActivity(), message, "error");
 
                     }
 

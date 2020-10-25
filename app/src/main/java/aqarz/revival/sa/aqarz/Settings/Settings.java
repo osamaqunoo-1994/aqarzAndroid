@@ -56,7 +56,7 @@ public class Settings {
     public static boolean CheckIsCompleate() {
 
 
-        if (Settings.GetUser().getName() == null) {
+        if (Settings.GetUser().getName() == null&&Settings.GetUser().getEmail()==null) {
             return false;
 
         } else {

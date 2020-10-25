@@ -14,6 +14,17 @@ public class TypeModules {
     private String name;
 
 
+
+    boolean isselected=false;
+
+    public boolean isIsselected() {
+        return isselected;
+    }
+
+    public void setIsselected(boolean isselected) {
+        this.isselected = isselected;
+    }
+
     public String getName() {
         return name;
     }

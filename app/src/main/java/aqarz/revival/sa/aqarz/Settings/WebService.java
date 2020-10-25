@@ -54,6 +54,7 @@ public class WebService {
     public static String upgrade = Domain + "upgrade";
     public static String my_request = Domain + "my/request";
     public static String contact_us = Domain + "contact/us";
+    public static String neighborhoods = Domain + "neighborhoods";
 
 
     public static void Header_Async(AsyncHttpClient client, boolean is_token) {
