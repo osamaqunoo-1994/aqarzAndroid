@@ -58,10 +58,10 @@
             </LinearLayout>
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/ic_siginup" />
+                android:src="@drawable/ic_logo_map" />
 
             <TextView
 
@@ -207,6 +207,7 @@
 
                 <TextView
                     android:id="@+id/dont_have_account"
+                    android:visibility="gone"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

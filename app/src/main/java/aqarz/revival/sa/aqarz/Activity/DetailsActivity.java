@@ -5,8 +5,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
@@ -51,7 +55,9 @@ public class DetailsActivity extends AppCompatActivity {
     TextView ads_number;
     TextView views_nummm;
     TextView name;
-    String id_or_aq="1";
+    String id_or_aq = "1";
+    LinearLayout call;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,8 +80,9 @@ public class DetailsActivity extends AppCompatActivity {
         ads_number = findViewById(R.id.ads_number);
         views_nummm = findViewById(R.id.views_nummm);
         name = findViewById(R.id.name);
+        call = findViewById(R.id.call);
         try {
-            id_or_aq = getIntent().getStringExtra("id");
+            id_or_aq = getIntent().getStringExtra("id_aqarz");
 
         } catch (Exception e) {
 
@@ -86,7 +93,7 @@ public class DetailsActivity extends AppCompatActivity {
         WebService.loading(DetailsActivity.this, true);
 
         VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity.this);
-        mVolleyService.getDataVolley("single_request", WebService.single_estat + id_or_aq+"/request");
+        mVolleyService.getDataVolley("single_request", WebService.single_estat + id_or_aq + "/request");
 
 
     }
@@ -128,6 +135,18 @@ public class DetailsActivity extends AppCompatActivity {
                         ads_number.setText(homeModules_aqares.getId() + "");
                         views_nummm.setText(homeModules_aqares.getSeen_count() + "");
 
+                        call.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try{
+                                    String phone = ""+homeModules_aqares.getOwner_mobile();
+                                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                                    startActivity(intent);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
                     } else {
                         String message = response.getString("message");
 

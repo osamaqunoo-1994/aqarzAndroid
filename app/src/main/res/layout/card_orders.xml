@@ -2,18 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@android:color/transparent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
 
 
     <LinearLayout
-        android:background="@drawable/back_order_box"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/back_order_box"
         android:orientation="vertical"
         android:padding="@dimen/_10sdp">
 
@@ -25,24 +25,34 @@
 
             android:orientation="horizontal">
 
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:padding="8dp"
-                android:src="@drawable/ic_test_test"
-                app:tint="@color/colorPrimary" />
-
-            <TextView
-                android:id="@+id/name_estate"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:fontFamily="@font/muli_bold"
+                android:background="@drawable/button_login"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                android:textColor="@color/textColor"
-                android:textSize="15dp" />
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_test_test"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:id="@+id/name_estate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:fontFamily="@font/muli_bold"
+                    android:text="sgnkdfg"
+
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -77,7 +87,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:padding="8dp"
-                android:src="@drawable/ic_group_1956" />
+                android:src="@drawable/ic_tag" />
 
             <TextView
                 android:id="@+id/price"
@@ -121,7 +131,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:padding="8dp"
-                android:src="@drawable/ic_loc_mark" />
+                android:src="@drawable/ic_group_location_group" />
 
             <TextView
                 android:id="@+id/address"
@@ -152,10 +162,34 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:padding="8dp"
-                android:src="@drawable/ic_space" />
+                android:src="@drawable/ic_space"
+                app:tint="#00D2CB" />
 
             <TextView
                 android:id="@+id/space"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/frutiger_lt_arabic_roman"
+
+                android:textColor="@color/textColor"
+                android:textSize="14dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_north"
+                app:tint="#00D2CB" />
+
+            <TextView
+                android:id="@+id/view_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -179,27 +213,6 @@
             android:orientation="horizontal">
 
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:padding="8dp"
-                android:src="@drawable/ic_north" />
-
-            <TextView
-                android:id="@+id/view_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:fontFamily="@font/frutiger_lt_arabic_roman"
-
-                android:textColor="@color/textColor"
-                android:textSize="14dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
         </LinearLayout>
 
 
@@ -217,7 +230,7 @@
                 android:layout_weight="1" />
 
             <TextView
-android:id="@+id/new_offer"
+                android:id="@+id/new_offer"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_marginLeft="5dp"

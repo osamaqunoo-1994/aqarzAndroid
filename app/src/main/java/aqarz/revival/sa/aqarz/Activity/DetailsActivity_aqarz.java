@@ -1,7 +1,11 @@
 package aqarz.revival.sa.aqarz.Activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,6 +64,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     TextView last_update;
     TextView ads_number;
     TextView views_nummm;
+    LinearLayout call;
     RecyclerView comfort_rec;
     List<ComfortModules> comfort_list = new ArrayList<>();
     String id_or_aq = "12";
@@ -87,6 +92,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
         address = findViewById(R.id.address);
         name = findViewById(R.id.name);
         note = findViewById(R.id.note);
+        call = findViewById(R.id.call);
 
 
         type_ = findViewById(R.id.type_);
@@ -107,7 +113,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
 
         try {
-            id_or_aq = getIntent().getStringExtra("id");
+            id_or_aq = getIntent().getStringExtra("id_aqarz");
 
         } catch (Exception e) {
 
@@ -194,7 +200,20 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
                         ads_number.setText(homeModules_aqares.getId() + "");
                         views_nummm.setText(homeModules_aqares.getSeen_count() + "");
 
+                        call.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
 
+                                try{
+                                    String phone = ""+homeModules_aqares.getOwnerMobile();
+                                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                                    startActivity(intent);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        });
                         for (int i = 0; i < homeModules_aqares.getEstate_file().size(); i++) {
 
 

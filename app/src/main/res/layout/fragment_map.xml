@@ -35,7 +35,7 @@
             android:id="@+id/layout_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/color_back_"
+            android:background="#F7F7F7"
             android:orientation="vertical"
             android:visibility="gone">
 
@@ -45,7 +45,7 @@
 
 
                 android:layout_height="match_parent"
-                android:layout_marginTop="160dp" />
+                android:layout_marginTop="170dp" />
 
             <ImageView
                 android:id="@+id/nodata_vis"
@@ -62,8 +62,9 @@
                 android:layout_height="40dp"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="15dp"
-                android:background="@drawable/search_background"
+                android:background="@drawable/circle_fill"
                 android:padding="@dimen/_8sdp"
+                app:tint="@color/white"
                 android:src="@drawable/ic_marker_lo__" />
 
 
@@ -156,7 +157,7 @@
                 android:layout_marginRight="20dp"
 
 
-                android:background="@drawable/mash">
+                android:background="@drawable/circle_wh">
 
                 <TextView
                     android:id="@+id/Orders_tab"

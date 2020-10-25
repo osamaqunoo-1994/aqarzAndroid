@@ -14,6 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,37 +58,49 @@ public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerVi
 //        ProgressBar progress;
 //        LinearLayout add_to_my;
 
-        ImageView image_aqars;
-        TextView type;
-        TextView type_2;
+        //        ImageView image_aqars;
+//        TextView type;
+//        TextView type_2;
+//        TextView price;
+//        TextView address;
+//        TextView opration;
+//        TextView number_room;
+//        TextView number_bathroom;
+//        TextView max_space;
+//        TextView viesw;
+        ImageView image;
         TextView price;
-        TextView address;
+        TextView type;
+        TextView dublex;
         TextView opration;
-        TextView number_room;
-        TextView number_bathroom;
-        TextView max_space;
-        TextView viesw;
+        ImageView image_icon;
 
 
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
 
+//
+//            image_aqars = view.findViewById(R.id.image_aqars);
+//            type = view.findViewById(R.id.type);
+//            type_2 = view.findViewById(R.id.type_2);
+//            price = view.findViewById(R.id.price);
+//            address = view.findViewById(R.id.address);
+//            opration = view.findViewById(R.id.opration);
+//
+//
+//            number_room = view.findViewById(R.id.number_room);
+//            number_bathroom = view.findViewById(R.id.number_bathroom);
+//            max_space = view.findViewById(R.id.max_space);
+//            viesw = view.findViewById(R.id.viesw);
 
-            image_aqars = view.findViewById(R.id.image_aqars);
-            type = view.findViewById(R.id.type);
-            type_2 = view.findViewById(R.id.type_2);
+
+            image_icon = view.findViewById(R.id.image_icon);
+            image = view.findViewById(R.id.image);
             price = view.findViewById(R.id.price);
-            address = view.findViewById(R.id.address);
+            dublex = view.findViewById(R.id.dublex);
             opration = view.findViewById(R.id.opration);
-
-
-            number_room = view.findViewById(R.id.number_room);
-            number_bathroom = view.findViewById(R.id.number_bathroom);
-            max_space = view.findViewById(R.id.max_space);
-            viesw = view.findViewById(R.id.viesw);
-
-
+            type = view.findViewById(R.id.type);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
@@ -122,18 +136,25 @@ public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerVi
 ////
 //
 
+//
+//        holder.type.setText(alldata.get(position).getEstate_type_name());
+//
+//        holder.type_2.setText(alldata.get(position).getOperationTypeName());
+//
+//        holder.price.setText(alldata.get(position).getTotalPrice());
+//
+//        holder.opration.setText(alldata.get(position).getEstate_type_name());
 
-        holder.type.setText(alldata.get(position).getEstate_type_name());
 
-        holder.type_2.setText(alldata.get(position).getOperationTypeName());
-
+        Picasso.get().load(alldata.get(position).getFirst_image() + "").into(holder.image);
         holder.price.setText(alldata.get(position).getTotalPrice());
-
-        holder.opration.setText(alldata.get(position).getEstate_type_name());
+        holder.type.setText(alldata.get(position).getEstate_type_name());
+        holder.opration.setText(alldata.get(position).getOperationTypeName());
 //        holder.number_room.setText(alldata.get(position).getRoomsNumber());
 //        holder.number_bathroom.setText(alldata.get(position).getBathroomsNumber());
 //        holder.max_space.setText(alldata.get(position).getStreetView());
 
+        Picasso.get().load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
 
 //
 //        System.out.println(alldata.get(position).getImage() + "");
@@ -201,7 +222,7 @@ public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerVi
 //                RequestOrderActivity.set_fragment(position);
 
                 Intent intent = new Intent(context, DetailsActivity_aqarz.class);
-                intent.putExtra("id", alldata.get(position).getId() + "");
+                intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
                 context.startActivity(intent);
 
 
@@ -232,7 +253,7 @@ public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerVi
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_aqars, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_bottom_details_aqarz, parent, false);
 
 
         // Fresco.initialize(context);

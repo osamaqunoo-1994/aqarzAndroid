@@ -62,8 +62,7 @@
     <string name="Done">تم</string>
 
 
-    <string name="fillallfileds">املا جميع الحقول</string>
-
+    <string name="fillallfileds">الرجاء تعبئه كافة الحقول</string>
 
     <string name="Forgot_your_password">نسيت كلمة المرور?</string>
     <string name="enter_your_password">اضف كلمة مرور جديده?</string>
@@ -397,7 +396,6 @@
     <string name="upgrade">ترقية</string>
 
 
-
     <string name="aw1">العروض</string>
     <string name="aw2">الطلبات</string>
     <string name="aw3">الخدمات</string>
@@ -420,6 +418,8 @@
     <string name="MyProfileEdit">حسابي.</string>
 
 
-
     <string name="Privecy_text"></string>
+
+    <string name="contactus_title">تواصل معنا</string>
+
 </resources>

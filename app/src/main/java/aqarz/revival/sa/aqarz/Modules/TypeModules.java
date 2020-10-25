@@ -12,8 +12,14 @@ public class TypeModules {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("icon")
+    @Expose
+    private String icon;
 
 
+    public String getIcon() {
+        return icon;
+    }
 
     boolean isselected=false;
 

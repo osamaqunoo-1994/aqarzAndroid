@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.loopj.android.http.AsyncHttpClient;
 import com.orhanobut.hawk.Hawk;
+import com.tapadoo.alerter.Alerter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -134,10 +135,51 @@ public class WebService {
 
     public static void Make_Toast_color(Activity activity, String message, String type) {
         if (type.equals("success")) {
-            Toasty.success(activity, message, Toast.LENGTH_SHORT, true).show();
+
+            Alerter.create(activity)
+                    .setText(message)
+                    .setBackgroundColorRes(R.color.cookie_success)
+                    .enableInfiniteDuration(false)
+                    .setDuration(1000)
+
+                    .enableVibration(true)
+                    .setExitAnimation(R.anim.alerter_slide_out_to_top)
+//                    .addButton(activity.getString(R.string.ok), R.style.ExampleButton_ok, v -> {
+//                        try {
+//                            setWifiEnabled(activity,true);
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                        Alerter.hide(); })
+//
+//                    .addButton(activity.getString(R.string.no_cancel),R.style.ExampleButton_cancel, v ->
+//                            Alerter.hide())
+                    .show();
+
+//            Toasty.success(activity, message, Toast.LENGTH_SHORT, true).show();
 
         } else {
-            Toasty.error(activity, message, Toast.LENGTH_SHORT, true).show();
+            Alerter.create(activity)
+                    .setText(message)
+                    .setBackgroundColorRes(R.color.error)
+                    .enableInfiniteDuration(false)
+                    .setDuration(1000)
+
+                    .enableVibration(true)
+                    .setExitAnimation(R.anim.alerter_slide_out_to_top)
+//                    .addButton(activity.getString(R.string.ok), R.style.ExampleButton_ok, v -> {
+//                        try {
+//                            setWifiEnabled(activity,true);
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                        Alerter.hide(); })
+//
+//                    .addButton(activity.getString(R.string.no_cancel),R.style.ExampleButton_cancel, v ->
+//                            Alerter.hide())
+                    .show();
+
+//            Toasty.error(activity, message, Toast.LENGTH_SHORT, true).show();
 
         }
 

@@ -618,6 +618,13 @@ public class HomeModules_aqares {
         @SerializedName("name")
         @Expose
         private String name;
+        @SerializedName("icon")
+        @Expose
+        private String icon;
+
+        public String getIcon() {
+            return icon;
+        }
 
         public Integer getId() {
             return id;
@@ -695,6 +702,13 @@ public class HomeModules_aqares {
         @SerializedName("file")
         @Expose
         private String file;
+        @SerializedName("icon")
+        @Expose
+        private String icon;
+
+        public String getIcon() {
+            return icon;
+        }
 
         public Integer getId() {
             return id;

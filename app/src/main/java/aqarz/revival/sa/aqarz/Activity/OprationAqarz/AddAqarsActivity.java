@@ -365,20 +365,25 @@ public class AddAqarsActivity extends AppCompatActivity {
         nibors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(city_l.getText().toString().equals("")){
 
+                }else {
 
-                bottomSheetDialogFragment_selectNeighborhoods = new BottomSheetDialogFragment_SelectNeighborhoods(city_id);
-                bottomSheetDialogFragment_selectNeighborhoods.addItemClickListener(new BottomSheetDialogFragment_SelectNeighborhoods.ItemClickListener() {
-                    @Override
-                    public void onItemClick(int id_city, String city_naem) {
+                    bottomSheetDialogFragment_selectNeighborhoods = new BottomSheetDialogFragment_SelectNeighborhoods(city_id);
+                    bottomSheetDialogFragment_selectNeighborhoods.addItemClickListener(new BottomSheetDialogFragment_SelectNeighborhoods.ItemClickListener() {
+                        @Override
+                        public void onItemClick(int id_city, String city_naem) {
 //                        city_id = id_city + "";
-                        nibors.setText(city_naem);
-                        bottomSheetDialogFragment_selectNeighborhoods.dismiss();
+                            nibors.setText(city_naem);
+                            bottomSheetDialogFragment_selectNeighborhoods.dismiss();
 
-                    }
-                });
+                        }
+                    });
 
-                bottomSheetDialogFragment_selectNeighborhoods.show(getSupportFragmentManager(), "");
+                    bottomSheetDialogFragment_selectNeighborhoods.show(getSupportFragmentManager(), "");
+
+                }
+
 
             }
         });

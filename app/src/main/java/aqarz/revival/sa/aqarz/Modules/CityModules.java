@@ -12,6 +12,12 @@ public class CityModules {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("name_ar")
+    @Expose
+    private String name_ar;
+    @SerializedName("name_en")
+    @Expose
+    private String name_en;
     @SerializedName("latitude")
     @Expose
     private String latitude;
@@ -24,9 +30,17 @@ public class CityModules {
     @SerializedName("status")
     @Expose
     private String status;
+    @SerializedName("serial_city")
+    @Expose
+    private String serial_city;
     @SerializedName("country_id")
     @Expose
     private String country_id;
+
+
+    public String getSerial_city() {
+        return serial_city;
+    }
 
     public String getCountry_id() {
         return country_id;
@@ -34,6 +48,14 @@ public class CityModules {
 
     public String getLongitude() {
         return longitude;
+    }
+
+    public String getName_ar() {
+        return name_ar;
+    }
+
+    public String getName_en() {
+        return name_en;
     }
 
     public String getLatitude() {

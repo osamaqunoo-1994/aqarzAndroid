@@ -107,7 +107,7 @@ public class RecyclerView_bottomSheet_type extends RecyclerView.Adapter<Recycler
             holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));
             holder.text.setTextColor(context.getResources().getColor(R.color.white));
         } else {
-            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.circle));
+            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.mash));
             holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
 
 

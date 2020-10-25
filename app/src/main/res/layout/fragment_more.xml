@@ -200,7 +200,7 @@
                     android:gravity="center"
                     android:text="@string/Please_Login_or_Register"
                     android:textColor="#0D1904"
-                    android:textSize="@dimen/_15sdp" />
+                    android:textSize="@dimen/_14sdp" />
 
                 <Button
                     android:id="@+id/loginButton"
@@ -246,11 +246,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:layout_margin="@dimen/_10sdp"
                     android:fontFamily="@font/muli_semi_bold"
                     android:text="@string/Settings_title"
-                    android:textSize="@dimen/_14sdp" />
+                    android:textSize="@dimen/_14sdp"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -464,32 +464,50 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-android:visibility="gone"
                     android:layout_margin="@dimen/_10sdp"
                     android:fontFamily="@font/muli_semi_bold"
                     android:text="@string/General_title"
-                    android:textSize="@dimen/_14sdp" />
+                    android:textSize="@dimen/_14sdp"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:orientation="horizontal"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp">
 
-                    <Button
-
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:layout_weight="1"
-                        android:visibility="gone"
-                        android:background="@drawable/button_login"
-                        android:fontFamily="@font/muli_bold"
-                        android:text="@string/Call_Us"
-                        android:textColor="@color/white" />
 
                     <LinearLayout
-                        android:layout_width="15dp"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@drawable/button_login"
+
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:tint="@color/white"
+                            android:src="@drawable/ic_email_new"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp" />
+
+
+                        <TextView
+                            android:id="@+id/contact_us"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="45dp"
+                            android:fontFamily="@font/muli_bold"
+
+                            android:gravity="center"
+                            android:text="@string/Call_Us"
+                            android:textColor="@color/white"
+                            android:visibility="visible" />
+
+
+                    </LinearLayout>
 
                     <Button
                         android:id="@+id/email_us"
@@ -509,7 +527,9 @@ android:visibility="gone"
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp">
+
+                    android:layout_margin="20dp"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -517,8 +537,8 @@ android:visibility="gone"
                         android:layout_weight="1" />
 
                     <ImageView
-                        android:id="@+id/contact_us"
                         android:layout_width="50dp"
+
                         android:layout_height="50dp"
                         android:background="@drawable/circle_wh"
                         android:padding="13dp"

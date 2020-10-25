@@ -1,11 +1,14 @@
 package aqarz.revival.sa.aqarz.Dialog;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ProgressBar;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,6 +35,7 @@ import aqarz.revival.sa.aqarz.Adapter.RecyclerView_city_bootom_sheets;
 import aqarz.revival.sa.aqarz.Modules.CityModules;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
+import aqarz.revival.sa.aqarz.Settings.Application;
 import aqarz.revival.sa.aqarz.Settings.WebService;
 import aqarz.revival.sa.aqarz.api.IResult;
 import aqarz.revival.sa.aqarz.api.VolleyService;
@@ -65,11 +69,30 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
         list_city.setLayoutManager(layoutManager1);
 
 
-        init_volley();
+        if (Application.AllCity.size() != 0) {
+            progress.setVisibility(View.GONE);
+            RecyclerView_city_bootom_sheets recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets(getContext(), Application.AllCity);
+            recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_bootom_sheets.ItemClickListener() {
 
-        VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 
-        mVolleyService.getDataVolley("city", WebService.cities);
+                @Override
+                public void onItemClick(int position) {
+                    if (mItemClickListener != null) {
+                        mItemClickListener.onItemClick(Integer.valueOf(Application.AllCity.get(position).getSerial_city()), Application.AllCity.get(position).getName());
+                    }
+                }
+            });
+
+            list_city.setAdapter(recyclerView_city_bootom_sheets);
+
+        } else {
+            init_volley();
+
+            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+
+            mVolleyService.getDataVolley("city", WebService.cities);
+        }
+
 
         return v;
     }
@@ -96,6 +119,9 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String data = response.getString("data");
+                        Hawk.put("AllCity", data);
+
+
 //                        JSONObject jsonObjectdata = new JSONObject(data);
 //
 //                        String datax = jsonObjectdata.getString("data");
@@ -113,16 +139,17 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
 
                             CityModules Store_M = gson.fromJson(mJson, CityModules.class);
                             cityModules_list.add(Store_M);
+                            Application.AllCity.add(Store_M);
                         }
 
-                        RecyclerView_city_bootom_sheets recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets(getContext(), cityModules_list);
+                        RecyclerView_city_bootom_sheets recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets(getContext(), Application.AllCity);
                         recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_bootom_sheets.ItemClickListener() {
 
 
                             @Override
                             public void onItemClick(int position) {
                                 if (mItemClickListener != null) {
-                                    mItemClickListener.onItemClick(cityModules_list.get(position).getId(), cityModules_list.get(position).getName());
+                                    mItemClickListener.onItemClick(Integer.valueOf(Application.AllCity.get(position).getSerial_city()), Application.AllCity.get(position).getName());
                                 }
                             }
                         });
@@ -190,5 +217,22 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
     //Define your Interface method here
     public interface ItemClickListener {
         void onItemClick(int id_city, String city_naem);
+    }
+    @Override
+    public void setupDialog(Dialog dialog, int style) {
+        View contentView = View.inflate(getContext(), R.layout.bottom_sheets_details_aqares, null);
+        dialog.setContentView(contentView);
+        ((View) contentView.getParent()).setBackgroundColor(getResources().getColor(android.R.color.transparent));
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (getDialog() != null && getDialog().getWindow() != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Window window = getDialog().getWindow();
+            window.findViewById(com.google.android.material.R.id.container).setFitsSystemWindows(false);
+            // dark navigation bar icons
+            View decorView = window.getDecorView();
+            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        }
     }
 }

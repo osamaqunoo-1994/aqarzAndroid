@@ -21,7 +21,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:background="@drawable/back_toolbar"
+                android:background="@color/colorPrimary"
                 android:gravity="center_vertical">
 
                 <ImageView
@@ -31,15 +31,35 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:padding="13dp"
-                    android:src="@drawable/ic_back" />
+                    android:src="@drawable/ic_back"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/frutiger_lt_arabic_bold"
+                    android:gravity="center"
+                    android:text="@string/contactus_title"
+                    android:textColor="@color/white"
+                    android:textSize="17dp" />
 
 
+                <ImageView
+
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:padding="13dp"
+                    app:tint="@color/white" />
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
+                android:visibility="gone"
                 app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="10dp">
 
@@ -167,10 +187,18 @@
 
             </androidx.cardview.widget.CardView>
 
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="130dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/ic_logo_move" />
+
 
             <androidx.cardview.widget.CardView
 
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp">
 
@@ -179,87 +207,141 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="15dp">
+                    android:padding="10dp">
 
 
-                    <EditText
-                        android:id="@+id/name_ed"
-                        style="@style/AppTheme.EditText"
+                    <LinearLayout
                         android:layout_width="match_parent"
-
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_16sdp"
+                        android:layout_height="45dp"
                         android:background="@drawable/edit_text_background"
-                        android:drawableStart="@drawable/ic_user_name"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+
+                            android:src="@drawable/ic_user_name" />
+
+                        <EditText
+                            android:id="@+id/name_ed"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textSize="14dp"
+                            android:background="@android:color/transparent"
+                            android:paddingLeft="10dp"
+                            android:hint="@string/name"
+
+                            android:paddingRight="10dp" />
 
 
-                        android:drawablePadding="@dimen/_8sdp"
-                        android:hint="@string/name"
-                        android:inputType="text"
-
-                        android:layoutDirection="ltr" />
-
-                    <EditText
-                        android:id="@+id/email_ed"
-                        style="@style/AppTheme.EditText"
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="match_parent"
-
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_16sdp"
+                        android:layout_height="45dp"
                         android:background="@drawable/edit_text_background"
-                        android:drawableStart="@drawable/ic_email_"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+
+                            android:src="@drawable/ic_email_" />
+
+                        <EditText
+                            android:id="@+id/email_ed"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textSize="14dp"
+                            android:background="@android:color/transparent"
+                            android:paddingLeft="10dp"
+                            android:hint="@string/email"
+                            android:inputType="textEmailAddress"
+
+                            android:paddingRight="10dp" />
 
 
-                        android:drawablePadding="@dimen/_8sdp"
-                        android:hint="@string/email"
-                        android:inputType="textEmailAddress"
-
-                        android:layoutDirection="ltr" />
-
-                    <EditText
-                        android:id="@+id/phone_ed"
-                        style="@style/AppTheme.EditText"
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="match_parent"
-
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_16sdp"
+                        android:layout_height="45dp"
                         android:background="@drawable/edit_text_background"
-                        android:drawableStart="@drawable/ic_phone"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+
+                            android:src="@drawable/ic_phone" />
+
+                        <EditText
+                            android:id="@+id/phone_ed"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textSize="14dp"
+                            android:background="@android:color/transparent"
+                            android:paddingLeft="10dp"
+                            android:hint="@string/phone_number"
 
 
-                        android:drawablePadding="@dimen/_8sdp"
-                        android:hint="@string/phone_number"
-                        android:inputType="phone|number"
+                            android:paddingRight="10dp" />
 
-                        android:layoutDirection="ltr" />
 
-                    <EditText
-                        android:id="@+id/message"
-                        style="@style/AppTheme.EditText"
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="match_parent"
-
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_16sdp"
+                        android:layout_height="45dp"
                         android:background="@drawable/edit_text_background"
-                        android:drawableStart="@drawable/ic_comment"
-                        android:drawablePadding="@dimen/_8sdp"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+
+                            android:src="@drawable/ic_comment" />
+
+                        <EditText
+                            android:id="@+id/message"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textSize="14dp"
+                            android:background="@android:color/transparent"
+                            android:paddingLeft="10dp"
+                            android:hint="@string/message_hint"
 
 
-                        android:gravity="start"
-                        android:hint="@string/message_hint"
-                        android:inputType="phone|number"
+                            android:paddingRight="10dp" />
 
-                        android:layoutDirection="ltr" />
+
+                    </LinearLayout>
+
+
+
+
 
                     <Button
                         android:id="@+id/send"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:layout_margin="15dp"
                         android:background="@drawable/button_login"
                         android:text="@string/send__butt"
                         android:textColor="@color/white" />

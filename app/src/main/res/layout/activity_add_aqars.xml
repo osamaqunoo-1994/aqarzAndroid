@@ -18,7 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:background="@drawable/back_toolbar"
+            android:background="@color/colorPrimary"
             android:gravity="center_vertical">
 
             <ImageView
@@ -28,7 +28,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:padding="13dp"
-                android:src="@drawable/ic_back" />
+                android:src="@drawable/ic_back"
+                app:tint="@color/white" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -37,6 +38,7 @@
                 android:fontFamily="@font/frutiger_lt_arabic_roman"
                 android:gravity="center"
                 android:text="@string/AddAqares"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_15sdp" />
 
 
@@ -55,7 +57,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
-
             android:fillViewport="true">
 
             <LinearLayout
@@ -382,8 +383,6 @@
                     </LinearLayout>
 
 
-
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -546,6 +545,7 @@
                     android:hint="@string/writedescription"
                     android:padding="15dp"
                     android:textSize="@dimen/_12sdp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
 
@@ -555,8 +555,8 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:layout_marginBottom="10dp"
+                        android:gravity="center"
 
                         android:orientation="vertical">
 
@@ -596,8 +596,6 @@
                     android:paddingRight="5dp"
                     android:paddingBottom="10dp"
                     android:visibility="visible">
-
-
 
 
                     <LinearLayout
@@ -1231,13 +1229,14 @@
 
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:gravity="center"
-                    android:layout_marginRight="5dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center"
                     android:paddingBottom="5dp">
 
                     <TextView

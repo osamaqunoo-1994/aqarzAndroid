@@ -15,6 +15,8 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +105,7 @@ public class RecyclerView_All_type_in_fragment extends RecyclerView.Adapter<Recy
 ////
         holder.text.setText(alldata.get(position).getName() + "");
 
+        Picasso.get().load(alldata.get(position).getIcon()).into(holder.image_in_type);
 
         if (position == Postion_opend) {
             holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));
@@ -121,7 +124,6 @@ public class RecyclerView_All_type_in_fragment extends RecyclerView.Adapter<Recy
         }
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
 ////
 //
 //        try {

@@ -15,6 +15,8 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,6 +106,7 @@ public class RecyclerView_All_opration_bottom_sheet extends RecyclerView.Adapter
 ////
         holder.text.setText(alldata.get(position).getName() + "");
 
+        Picasso.get().load(alldata.get(position).getIcon()).into(holder.image_in_type);
 
         if (position == Postion_opend) {
             holder.image_in_type.setBackground(context.getResources().getDrawable(R.drawable.button_login));
@@ -111,18 +114,17 @@ public class RecyclerView_All_opration_bottom_sheet extends RecyclerView.Adapter
             holder.text.setTextColor(context.getResources().getColor(R.color.colorPrimary));
 
 
-            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
+            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
 
         } else {
             holder.image_in_type.setBackground(context.getResources().getDrawable(R.drawable.circle_filter));
 
             holder.text.setTextColor(context.getResources().getColor(R.color.color_filter));
-            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.color_filter), android.graphics.PorterDuff.Mode.MULTIPLY);
+            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.color_filter), android.graphics.PorterDuff.Mode.SRC_IN);
 
         }
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
 ////
 //
 //        try {

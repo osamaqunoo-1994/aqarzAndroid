@@ -16,6 +16,8 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,26 +61,36 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
 //        ProgressBar progress;
 //        LinearLayout add_to_my;
 
-        ImageView image_aqars;
-        TextView type;
-        TextView price;
-        TextView address;
-        TextView opration;
-        TextView space;
+//        ImageView image_aqars;
+//        TextView type;
+//        TextView price;
+//        TextView address;
+//        TextView opration;
+//        TextView space;
 
+        TextView price;
+        TextView type;
+        TextView dublex;
+        TextView opration;
+
+        ImageView image_icon;
 
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
 
-
-            image_aqars = view.findViewById(R.id.image_aqars);
-            type = view.findViewById(R.id.type);
+//
+//            image_aqars = view.findViewById(R.id.image_aqars);
+//            type = view.findViewById(R.id.type);
+//            price = view.findViewById(R.id.price);
+//            space = view.findViewById(R.id.space);
+//            address = view.findViewById(R.id.address);
+//            opration = view.findViewById(R.id.opration);
+            image_icon = view.findViewById(R.id.image_icon);
             price = view.findViewById(R.id.price);
-            space = view.findViewById(R.id.space);
-            address = view.findViewById(R.id.address);
+            dublex = view.findViewById(R.id.dublex);
             opration = view.findViewById(R.id.opration);
-
+            type = view.findViewById(R.id.type);
 
 //            ratingbar = view.findViewById(R.id.ratingbar);
 //            ratingbar = view.findViewById(R.id.ratingbar);
@@ -115,15 +127,19 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
 ////
 //
 
+//
+//        holder.type.setText(alldata.get(position).getEstate_type_name());
+//        holder.space.setText(alldata.get(position).getArea_from() + " - " + alldata.get(position).getArea_to());
+//
+//        holder.price.setText(alldata.get(position).getPrice_from() + " - " + alldata.get(position).getPrice_to());
+//
+//
+//        holder.opration.setText(alldata.get(position).getRequest_type());
 
+       holder. price.setText(alldata.get(position).getPrice_from() + " - " + alldata.get(position).getPrice_to());
         holder.type.setText(alldata.get(position).getEstate_type_name());
-        holder.space.setText(alldata.get(position).getArea_from() + " - " + alldata.get(position).getArea_to());
-
-        holder.price.setText(alldata.get(position).getPrice_from() + " - " + alldata.get(position).getPrice_to());
-
-
-        holder.opration.setText(alldata.get(position).getRequest_type());
-
+        holder.opration.setText(alldata.get(position).getOperation_type_name());
+        Picasso.get().load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
 
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
@@ -190,7 +206,7 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
 //                RequestOrderActivity.set_fragment(position);
 
                 Intent intent = new Intent(context, DetailsActivity.class);
-                intent.putExtra("id", alldata.get(position).getId() + "");
+                intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
                 context.startActivity(intent);
 
 
@@ -221,7 +237,7 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_aqars_order, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_bottom_details_aqarz_order, parent, false);
 
 
         // Fresco.initialize(context);

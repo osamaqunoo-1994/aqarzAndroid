@@ -15,6 +15,8 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +105,7 @@ public class RecyclerView_All_type_in_fragment1 extends RecyclerView.Adapter<Rec
 //        }
 ////
         holder.text.setText(alldata.get(position).getName() + "");
+        Picasso.get().load(alldata.get(position).getIcon()).into(holder.image_in_type);
 
 
         if (alldata.get(position).isIsselected()) {
@@ -110,13 +113,13 @@ public class RecyclerView_All_type_in_fragment1 extends RecyclerView.Adapter<Rec
 
             holder.text.setTextColor(context.getResources().getColor(R.color.white));
 
-            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
+            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
 
         } else {
-            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.mash));
+            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.circle_wh));
 
             holder.text.setTextColor(context.getResources().getColor(R.color.color_filter));
-            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.color_filter), android.graphics.PorterDuff.Mode.MULTIPLY);
+            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.color_filter), android.graphics.PorterDuff.Mode.SRC_IN);
 
         }
 //
@@ -229,6 +232,6 @@ public class RecyclerView_All_type_in_fragment1 extends RecyclerView.Adapter<Rec
 
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(List<TypeModules> typeModules) ;
+        void onItemClick(List<TypeModules> typeModules);
     }
 }
