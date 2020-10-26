@@ -1,6 +1,7 @@
 package aqarz.revival.sa.aqarz.Settings;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +13,8 @@ import com.google.gson.JsonParser;
 import com.orhanobut.hawk.Hawk;
 
 import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
+import aqarz.revival.sa.aqarz.Activity.Auth.MyProfileInformationActivity;
+import aqarz.revival.sa.aqarz.Activity.DetailsAqarzManActivity;
 import aqarz.revival.sa.aqarz.Modules.SettingsModules;
 import aqarz.revival.sa.aqarz.Modules.User;
 import aqarz.revival.sa.aqarz.R;
@@ -44,24 +47,39 @@ public class Settings {
 
     public static User GetUser() {
 
+        try {
 
-        JsonParser parser = new JsonParser();
-        JsonElement mJson = parser.parse(Hawk.get("user").toString());
+            JsonParser parser = new JsonParser();
+            JsonElement mJson = parser.parse(Hawk.get("user").toString());
 
-        Gson gson = new Gson();
-        User userModules = gson.fromJson(mJson, User.class);
+            Gson gson = new Gson();
+            User userModules = gson.fromJson(mJson, User.class);
 
-        return userModules;
+            return userModules;
+        } catch (Exception e) {
+            Hawk.put("user", "");
+            return null;
+
+        }
+
+
     }
 
     public static boolean CheckIsCompleate() {
+        try {
 
+            if (Settings.GetUser().getName() == null && Settings.GetUser().getEmail() == null) {
+                return false;
 
-        if (Settings.GetUser().getName() == null&&Settings.GetUser().getEmail()==null) {
+            } else {
+                return true;
+
+            }
+
+        } catch (Exception e) {
+            Hawk.put("user", "");
+
             return false;
-
-        } else {
-            return true;
 
         }
 
@@ -71,15 +89,23 @@ public class Settings {
     public static boolean CheckIsAccountAqarzMan() {
 
 
-        if (Settings.checkLogin()) {
-            if (Settings.GetUser().getType().toString().equals("provider")) {
-                return true;
+        try {
+            if (Settings.checkLogin()) {
+                if (Settings.GetUser().getType().toString().equals("provider")) {
+                    return true;
 
+                } else {
+                    return false;
+
+                }
             } else {
                 return false;
 
             }
-        } else {
+        } catch (Exception e) {
+            Hawk.put("user", "");
+
+
             return false;
 
         }
@@ -90,19 +116,53 @@ public class Settings {
     public static boolean checkLogin() {
 
 
-        if (Hawk.contains("user")) {
+        try {
+            if (Hawk.contains("user")) {
 
-            if (Hawk.get("user").toString().equals("")) {
+                if (Hawk.get("user").toString().equals("")) {
 
-                return false;
+                    return false;
+                } else {
+
+                    return true;
+                }
             } else {
-
-                return true;
+                return false;
             }
-        } else {
+        } catch (Exception e) {
+            Hawk.put("user", "");
+
             return false;
+
         }
 
+
+    }
+
+    public static void Dialog_not_compleate(Activity activity) {
+        new AlertDialog.Builder(activity)
+                .setMessage(activity.getResources().getString(R.string.you_are_not_incompleat))
+                .setCancelable(false)
+                .setPositiveButton(activity.getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        if (Settings.CheckIsAccountAqarzMan()) {
+
+                            Intent intent = new Intent(activity, DetailsAqarzManActivity.class);
+//              intent.putExtra("from", "splash");
+                            activity.startActivity(intent);
+
+                        } else {
+                            Intent intent = new Intent(activity, MyProfileInformationActivity.class);
+//              intent.putExtra("from", "splash");
+                            activity.startActivity(intent);
+                        }
+
+
+                    }
+                })
+                .setNegativeButton(activity.getResources().getString(R.string.no), null)
+                .show();
 
     }
 

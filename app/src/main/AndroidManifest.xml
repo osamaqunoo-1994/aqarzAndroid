@@ -20,8 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.Auth.EditProfileActivity"
-            android:theme="@style/AppTheme.NoActionBar" ></activity>
+        <activity
+            android:name=".Activity.Auth.EditProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Activity.DetailsAqarzManActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -58,7 +59,7 @@
             android:theme="@style/AppTheme.NoActionBar_orders" />
         <activity
             android:name=".Activity.OprationAqarz.AddAqarsActivity"
-            android:theme="@style/AppTheme.NoActionBar_orders" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.ContactUsActivity"
             android:theme="@style/AppTheme.NoActionBar" />

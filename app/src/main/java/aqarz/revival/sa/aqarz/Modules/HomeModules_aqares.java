@@ -46,6 +46,9 @@ public class HomeModules_aqares {
     @SerializedName("street_view")
     @Expose
     private String streetView;
+    @SerializedName("address")
+    @Expose
+    private String address;
     @SerializedName("total_price")
     @Expose
     private String totalPrice;
@@ -55,6 +58,12 @@ public class HomeModules_aqares {
     @SerializedName("owner_name")
     @Expose
     private String ownerName;
+    @SerializedName("city_name")
+    @Expose
+    private String city_name;
+    @SerializedName("neighborhood_name")
+    @Expose
+    private String neighborhood_name;
     @SerializedName("owner_mobile")
     @Expose
     private String ownerMobile;
@@ -148,6 +157,11 @@ public class HomeModules_aqares {
     @SerializedName("comforts")
     @Expose
     private List<ComfortModules> comforts;
+
+
+    public String getAddress() {
+        return address;
+    }
 
     public String getFirst_image() {
         return first_image;
@@ -278,6 +292,14 @@ public class HomeModules_aqares {
 
     public String getMeterPrice() {
         return meterPrice;
+    }
+
+    public String getCity_name() {
+        return city_name;
+    }
+
+    public String getNeighborhood_name() {
+        return neighborhood_name;
     }
 
     public void setMeterPrice(String meterPrice) {

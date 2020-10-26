@@ -12,9 +12,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -31,6 +33,7 @@ import com.android.volley.VolleyError;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -62,10 +65,12 @@ import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_bottomSheet_type;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders_demands;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
 import aqarz.revival.sa.aqarz.Modules.OrdersModules;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
+import aqarz.revival.sa.aqarz.Modules.demandsModules;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.LocaleUtils;
 import aqarz.revival.sa.aqarz.Settings.Settings;
@@ -87,6 +92,7 @@ public class OrdersFragment extends Fragment {
     List<HomeModules> MyRequst = new ArrayList<>();
 
     List<TypeModules> type_list = new ArrayList<>();
+    List<demandsModules> demandsModules_list = new ArrayList<>();
 
     LinearLayout my_order_layout;
     LinearLayout Shopping_request_layout;
@@ -102,6 +108,11 @@ public class OrdersFragment extends Fragment {
     AlertDialog alertDialog;
 
     TextView For_sale, rent;
+    ImageView nodata_vis;
+
+    String opration_select = "";
+    String Type_work_select = "";
+    String type_requst = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -128,6 +139,7 @@ public class OrdersFragment extends Fragment {
         type_of_v = v.findViewById(R.id.type_of_v);
         type_sale = v.findViewById(R.id.type_sale);
         section_horizantal = v.findViewById(R.id.section_horizantal);
+        nodata_vis = v.findViewById(R.id.nodata_vis);
 
 
         try {
@@ -181,13 +193,14 @@ public class OrdersFragment extends Fragment {
         recyclerView_all_opration_bottom_sheet.addItemClickListener(new RecyclerView_All_opration_bottom_sheet.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
-//                opration_select = type_list.get(position).getId().toString() + "";
+                opration_select = type_list.get(position).getId().toString() + "";
             }
         });
         type_of_v.setAdapter(recyclerView_all_opration_bottom_sheet);
 
 
         //------------------------------------------------------------------------------------------------------------
+
 
         For_sale.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,6 +213,51 @@ public class OrdersFragment extends Fragment {
                 rent.setBackground(null);
 
                 rent.setTextColor(getResources().getColor(R.color.black));
+                Type_work_select = "1";
+
+
+//
+//                if(type_requst.equals("my_request")){
+//                    WebService.loading(getActivity(), true);
+//
+//                    init_volley();
+//                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+//                    mVolleyService.getDataVolley("my_request", WebService.my_request+"?estate_type= "+opration_select+"&estate_type="+Type_work_select);
+//
+//                }else if(type_requst.equals("market_demands")){
+//                    MyRequst.clear();
+//
+//
+//                    orders_rec.setAdapter(new RecyclerView_HomeList(getContext(), MyRequst));
+//
+//                    WebService.loading(getActivity(), true);
+//
+//                    init_volley();
+//                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+//                    mVolleyService.getDataVolley("market_demands", WebService.market_demands+"?estate_type= "+opration_select+"&estate_type="+Type_work_select);
+//
+//                }else if(type_requst.equals("fund_Request")){
+//
+//                    if (Settings.CheckIsCompleate()) {
+//                        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+//                            WebService.loading(getActivity(), true);
+//
+//                            init_volley();
+//                            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+//                            mVolleyService.getDataVolley("fund_Request", WebService.fund_Request+"?estate_type= "+opration_select+"&estate_type="+Type_work_select);
+//
+//
+//                        } else {
+//                            show_dialog();
+////
+//                        }
+//                    } else {
+//                        Settings.Dialog_not_compleate(getActivity());
+//                    }
+//
+//                }
+//
+
 
             }
         });
@@ -215,12 +273,22 @@ public class OrdersFragment extends Fragment {
 
                 For_sale.setTextColor(getResources().getColor(R.color.black));
 
+                Type_work_select = "2";
 
             }
         });
 
         //------------------------------------------------------------------------------------------------------------
 
+        if (Settings.CheckIsAccountAqarzMan()) {
+            my_order_layout.setVisibility(View.VISIBLE);
+            Shopping_request_layout.setVisibility(View.VISIBLE);
+            Real_Estate_order_layout.setVisibility(View.VISIBLE);
+        } else {
+            my_order_layout.setVisibility(View.VISIBLE);
+            Shopping_request_layout.setVisibility(View.GONE);
+            Real_Estate_order_layout.setVisibility(View.GONE);
+        }
         my_order_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -234,8 +302,8 @@ public class OrdersFragment extends Fragment {
 
                 Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
-                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.color_tr));
-                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.color_tr), android.graphics.PorterDuff.Mode.MULTIPLY);
+                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.textColor));
+                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
 
                 list_opration.setVisibility(View.VISIBLE);
                 type_sale.setVisibility(View.VISIBLE);
@@ -250,7 +318,7 @@ public class OrdersFragment extends Fragment {
 
                 init_volley();
                 VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-                mVolleyService.getDataVolley("my_request", WebService.my_request);
+                mVolleyService.getDataVolley("my_request", WebService.my_request);//+"+ ?estate_type= "+opration_select+"&estate_type="+Type_work_select
 
             }
         });
@@ -269,8 +337,8 @@ public class OrdersFragment extends Fragment {
 
                 Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
-                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.color_tr));
-                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.color_tr), android.graphics.PorterDuff.Mode.MULTIPLY);
+                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.textColor));
+                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
 
 
                 list_opration.setVisibility(View.GONE);
@@ -282,6 +350,11 @@ public class OrdersFragment extends Fragment {
 
                 orders_rec.setAdapter(new RecyclerView_HomeList(getContext(), MyRequst));
 
+                WebService.loading(getActivity(), true);
+
+                init_volley();
+                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+                mVolleyService.getDataVolley("market_demands", WebService.market_demands);
 
             }
         });
@@ -315,60 +388,22 @@ public class OrdersFragment extends Fragment {
                 orders_rec.setAdapter(new RecyclerView_HomeList(getContext(), MyRequst));
 
 
+                if (Settings.CheckIsCompleate()) {
+                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+                        WebService.loading(getActivity(), true);
+
+                        init_volley();
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+                        mVolleyService.getDataVolley("fund_Request", WebService.fund_Request);
 
 
-
-                if (Settings.GetUser().getIs_pay()!=null&&Settings.GetUser().getIs_pay().toString().equals("1")) {
-                    WebService.loading(getActivity(), true);
-
-                    init_volley();
-                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-                    mVolleyService.getDataVolley("fund_Request", WebService.fund_Request);
-
-
+                    } else {
+                        show_dialog();
+//
+                    }
                 } else {
-                    LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    final View popupView = layoutInflater.inflate(R.layout.upgrade_message, null);
-
-                    ImageView close = popupView.findViewById(R.id.close);
-                    Button ok = popupView.findViewById(R.id.ok);
-
-
-                    close.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            alertDialog.dismiss();
-                        }
-                    });
-
-                    ok.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-
-                            init_volley();
-                            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-                            mVolleyService.getDataVolley("upgrade", WebService.upgrade);
-
-
-                            alertDialog.dismiss();
-                        }
-                    });
-
-
-                    final android.app.AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-
-//            alertDialog_country =
-                    builder.setView(popupView);
-
-
-                    alertDialog = builder.show();
-
-                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-
+                    Settings.Dialog_not_compleate(getActivity());
                 }
-
 
 
             }
@@ -377,58 +412,33 @@ public class OrdersFragment extends Fragment {
         type_sale.setVisibility(View.GONE);
 
 
+        my_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+        my_order_text.setTextColor(getResources().getColor(R.color.white));
+
+        Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.mash));
+
+        Shopping_request_text.setTextColor(getResources().getColor(R.color.textColor));
+
+        Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
+
+        Real_Estate_order_text.setTextColor(getResources().getColor(R.color.textColor));
+        Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
+
+        list_opration.setVisibility(View.VISIBLE);
+        type_sale.setVisibility(View.VISIBLE);
 
 
-        if (Settings.GetUser().getIs_pay()!=null&&Settings.GetUser().getIs_pay().toString().equals("1")) {
-            WebService.loading(getActivity(), true);
+        MyRequst.clear();
 
-            init_volley();
-            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("fund_Request", WebService.fund_Request);
+        orders_rec.setAdapter(new RecyclerView_HomeList(getContext(), MyRequst));
 
 
-        } else {
-            LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            final View popupView = layoutInflater.inflate(R.layout.upgrade_message, null);
+        WebService.loading(getActivity(), true);
 
-            ImageView close = popupView.findViewById(R.id.close);
-            Button ok = popupView.findViewById(R.id.ok);
-
-
-            close.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    alertDialog.dismiss();
-                }
-            });
-
-            ok.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                    init_volley();
-                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-                    mVolleyService.getDataVolley("upgrade", WebService.upgrade);
-
-
-                    alertDialog.dismiss();
-                }
-            });
-
-
-            final android.app.AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-
-//            alertDialog_country =
-            builder.setView(popupView);
-
-
-            alertDialog = builder.show();
-
-            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-
-        }
+        init_volley();
+        VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+        mVolleyService.getDataVolley("my_request", WebService.my_request);
 
 
     }
@@ -462,6 +472,10 @@ public class OrdersFragment extends Fragment {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + response);
                 WebService.loading(getActivity(), false);
+
+                type_requst = "" + requestType;
+
+
 //{"status":true,"code":200,"message":"User Profile","data"
 
 
@@ -473,7 +487,14 @@ public class OrdersFragment extends Fragment {
                             System.out.println("lfkdlfkdlkf");
                             String data = response.getString("data");
 
-                            JSONArray jsonArray = new JSONArray(data);
+
+                            JSONObject jsonObject = new JSONObject(data);
+
+
+                            String datax = jsonObject.getString("data");
+
+
+                            JSONArray jsonArray = new JSONArray(datax);
                             orders_rec.setAdapter(null);
                             MyRequst.clear();
                             for (int i = 0; i < jsonArray.length(); i++) {
@@ -493,15 +514,96 @@ public class OrdersFragment extends Fragment {
 
                             orders_rec.setAdapter(new RecyclerView_HomeList(getContext(), MyRequst));
 
+                            if (MyRequst.size() != 0) {
+                                nodata_vis.setVisibility(View.GONE);
+                            } else {
+                                nodata_vis.setVisibility(View.VISIBLE);
+
+                            }
+
 
                         } else if (requestType.equals("upgrade")) {
 
                             String message = response.getString("message");
 
 
-                            WebService.Make_Toast_color(getActivity(), message, "error");
+//                            WebService.Make_Toast_color(getActivity(), message, "success");
+                            LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                            final View popupView = layoutInflater.inflate(R.layout.upgrade_message, null);
+
+                            ImageView close = popupView.findViewById(R.id.close);
+                            Button ok = popupView.findViewById(R.id.ok);
 
 
+                            close.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    alertDialog.dismiss();
+                                }
+                            });
+
+                            ok.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    WebService.loading(getActivity(), true);
+
+                                    init_volley();
+                                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+                                    mVolleyService.getDataVolley("upgrade", WebService.upgrade);
+
+
+                                    alertDialog.dismiss();
+                                }
+                            });
+
+
+                            final android.app.AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+//            alertDialog_country =
+                            builder.setView(popupView);
+
+
+                            alertDialog = builder.show();
+
+                            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+
+                        } else if (requestType.equals("market_demands")) {
+
+                            System.out.println("lfkdlfkdlkf");
+                            String data = response.getString("data");
+
+                            JSONObject jsonObject_data = new JSONObject(data);
+
+                            String data_inside = jsonObject_data.getString("data");
+                            JSONArray jsonArray = new JSONArray(data_inside);
+                            orders_rec.setAdapter(null);
+                            demandsModules_list.clear();
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                Gson gson = new Gson();
+
+                                demandsModules ordersModulesm = gson.fromJson(mJson, demandsModules.class);
+                                demandsModules_list.add(ordersModulesm);
+
+
+                            }
+
+
+                            orders_rec.setAdapter(new RecyclerView_orders_demands(getContext(), demandsModules_list));
+
+
+                            if (demandsModules_list.size() != 0) {
+                                nodata_vis.setVisibility(View.GONE);
+                            } else {
+                                nodata_vis.setVisibility(View.VISIBLE);
+
+                            }
                         } else {
 
 
@@ -530,7 +632,12 @@ public class OrdersFragment extends Fragment {
 
 
                             orders_rec.setAdapter(new RecyclerView_orders(getContext(), ordersModules));
+                            if (ordersModules.size() != 0) {
+                                nodata_vis.setVisibility(View.GONE);
+                            } else {
+                                nodata_vis.setVisibility(View.VISIBLE);
 
+                            }
                         }
                     } else {
 
@@ -542,7 +649,7 @@ public class OrdersFragment extends Fragment {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
 
 
@@ -565,7 +672,17 @@ public class OrdersFragment extends Fragment {
                     String message = jsonObject.getString("message");
 
 
-                    WebService.Make_Toast_color(getActivity(), message, "error");
+                    if (requestType.equals("my_request")) {
+                        nodata_vis.setVisibility(View.VISIBLE);
+
+                    } else if (requestType.equals("market_demands")) {
+                        nodata_vis.setVisibility(View.VISIBLE);
+
+                    } else {
+                        WebService.Make_Toast_color(getActivity(), message, "error");
+
+                    }
+
 
                     Log.e("error response", response_data);
 
@@ -589,4 +706,61 @@ public class OrdersFragment extends Fragment {
 
     }
 
+    public void show_dialog() {
+        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(getContext());
+        LayoutInflater li = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View parentView = li.inflate(R.layout.upgrade_message2, null);
+
+
+        Button accept = parentView.findViewById(R.id.accept);
+        Button no = parentView.findViewById(R.id.no);
+        ImageView close = parentView.findViewById(R.id.close);
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheerDialog.cancel();
+
+//                                    finish();
+            }
+        });
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheerDialog.cancel();
+
+//                                    finish();
+            }
+        });
+        accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                WebService.loading(getActivity(), true);
+
+                init_volley();
+                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+                mVolleyService.getDataVolley("upgrade", WebService.upgrade);
+//
+                bottomSheerDialog.cancel();
+//
+//                                    finish();
+            }
+        });
+        bottomSheerDialog.setContentView(parentView);
+
+
+        Window window = bottomSheerDialog.getWindow();
+        window.findViewById(com.google.android.material.R.id.container).setFitsSystemWindows(false);
+        // dark navigation bar icons
+        View decorView = window.getDecorView();
+        decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getActivity().getResources().getDisplayMetrics());
+
+
+//        ((View) decorView.getParent()).setBackgroundColor(context.getResources().getColor(android.R.color.transparent));
+
+
+        bottomSheerDialog.show();
+    }
 }

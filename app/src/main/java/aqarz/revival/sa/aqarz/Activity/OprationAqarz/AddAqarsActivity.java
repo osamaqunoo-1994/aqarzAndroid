@@ -217,7 +217,9 @@ public class AddAqarsActivity extends AppCompatActivity {
     int number_Kitchens_plus = 0;
     int number_Dining_rooms = 0;
 
-    String city_id="";
+    String city_id = "";
+    String nib_id = "";
+    String Address = "";
 
     BottomSheetDialogFragment_SelectCity bottomSheetDialogFragment_selectCity;
     BottomSheetDialogFragment_SelectNeighborhoods bottomSheetDialogFragment_selectNeighborhoods;
@@ -354,7 +356,6 @@ public class AddAqarsActivity extends AppCompatActivity {
                         city_id = id_city + "";
                         city_l.setText(city_naem);
                         bottomSheetDialogFragment_selectCity.dismiss();
-
                     }
                 });
 
@@ -365,15 +366,15 @@ public class AddAqarsActivity extends AppCompatActivity {
         nibors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(city_l.getText().toString().equals("")){
+                if (city_l.getText().toString().equals("")) {
 
-                }else {
+                } else {
 
                     bottomSheetDialogFragment_selectNeighborhoods = new BottomSheetDialogFragment_SelectNeighborhoods(city_id);
                     bottomSheetDialogFragment_selectNeighborhoods.addItemClickListener(new BottomSheetDialogFragment_SelectNeighborhoods.ItemClickListener() {
                         @Override
                         public void onItemClick(int id_city, String city_naem) {
-//                        city_id = id_city + "";
+                            nib_id = id_city + "";
                             nibors.setText(city_naem);
                             bottomSheetDialogFragment_selectNeighborhoods.dismiss();
 
@@ -1442,15 +1443,15 @@ public class AddAqarsActivity extends AppCompatActivity {
                         sendObj.put("finishing_type", finishing_type);
                         sendObj.put("interface", interface_);
                         sendObj.put("social_status", social_status);
+                        sendObj.put("city_id", city_id + "");
+                        sendObj.put("neighborhood_id", nib_id + "");
+                        sendObj.put("address", "الرياض");
                         sendObj.put("lat", lat);
                         sendObj.put("lan", lng);
                         sendObj.put("is_rent", is_rent);//1 = yes or 0 = no
                         if (is_rent.equals("1")) {
                             sendObj.put("rent_type", rent_type);//'daily','monthly','yearly'
-
                         }
-
-
                         String attachment_planned = "";
                         for (int i = 0; i < selectIamgeList.size(); i++) {
 
@@ -1637,31 +1638,35 @@ public class AddAqarsActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if ((requestCode == 11)) {
-            Place place = PingPlacePicker.getPlace(data);
-            if (place != null) {
-                Toast.makeText(AddAqarsActivity.this, "You selected the place: " + place.getName(), Toast.LENGTH_SHORT).show();
+            if (data != null) {
+                Place place = PingPlacePicker.getPlace(data);
+                if (place != null) {
+                    Toast.makeText(AddAqarsActivity.this, "You selected the place: " + place.getName(), Toast.LENGTH_SHORT).show();
 
 
-                LatLng sydney = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
-                googleMap.addMarker(new MarkerOptions()
-                        .position(sydney)
-                        .title("Marker"));
+                    LatLng sydney = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(sydney)
+                            .title("Marker"));
 
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
-                // Zoom in, animating the camera.
-                googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-                // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
-
-
-                lat = "" + place.getLatLng().latitude;
-                lng = "" + place.getLatLng().longitude;
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+                    // Zoom in, animating the camera.
+                    googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+                    // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
 
 
-                System.out.println("lat" + lat + ")))))lng" + lng);
+                    lat = "" + place.getLatLng().latitude;
+                    lng = "" + place.getLatLng().longitude;
+
+                    Address = place.getAddress() + "";
+                    System.out.println("ADDDRESS::" + place.getAddress());
 
 
+                }
             }
+
+
         }
 
 

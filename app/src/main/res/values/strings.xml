@@ -70,7 +70,8 @@
     <string name="Done">Done</string>
     <string name="Forgot_your_password">Forgot your password?</string>
     <string name="enter_your_password">Enter your new password?</string>
-    <string name="Enter_your_registered">Enter your registered email to send reset password link</string>
+    <string name="Enter_your_registered">Enter the mobile number to receive
+new password</string>
     <string name="Didnt_Received">Didn t Received?</string>
     <string name="SendAgain_">Send Again</string>
     <string name="Sendbutton">Send</string>
@@ -373,7 +374,7 @@ Your request and reply in the fastest time</string>
     <string name="aw3">الخدمات</string>
     <string name="aw4">العملاء</string>
     <string name="aw5">المفضلة</string>
-    <string name="title_select">اختر الخدمات التي تقدمها</string>
+    <string name="title_select">Choose the services you offer</string>
 
 
     <string name="m1">تطوير عقاري</string>
@@ -389,11 +390,15 @@ Your request and reply in the fastest time</string>
     <string name="MyProfileEdit">My Profile.</string>
 
 
-
     <string name="Privecy_text"></string>
 
 
-
     <string name="contactus_title">Contact Us</string>
+    <string name="agree_pledge">agree and pledge</string>
+    <string name="Not_interested">Not interested</string>
+
+
+    <string name="edit_text">The account has been Edit</string>
+    <string name="click_to_back">Please click BACK again to exit</string>
 
 </resources>

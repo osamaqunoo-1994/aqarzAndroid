@@ -30,21 +30,26 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_login"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
                 <ImageView
+                    android:id="@+id/image_icon"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_test_test"
                     app:tint="@color/white" />
 
+
                 <TextView
                     android:id="@+id/name_estate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="2dp"
+
+
                     android:fontFamily="@font/muli_bold"
                     android:text="sgnkdfg"
 
@@ -98,7 +103,7 @@
                 android:fontFamily="@font/frutiger_lt_arabic_roman"
 
                 android:textColor="@color/textColor"
-                android:textSize="15dp" />
+                android:textSize="13dp" />
 
             <TextView
 
@@ -109,7 +114,7 @@
                 android:fontFamily="@font/frutiger_lt_arabic_roman"
                 android:text="@string/SAR"
                 android:textColor="@color/textColor"
-                android:textSize="14dp" />
+                android:textSize="13dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -142,7 +147,7 @@
                 android:fontFamily="@font/frutiger_lt_arabic_roman"
 
                 android:textColor="@color/textColor"
-                android:textSize="14dp" />
+                android:textSize="13dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -174,7 +179,7 @@
                 android:fontFamily="@font/frutiger_lt_arabic_roman"
 
                 android:textColor="@color/textColor"
-                android:textSize="14dp" />
+                android:textSize="13dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -184,7 +189,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:padding="8dp"
+                android:padding="5dp"
                 android:src="@drawable/ic_north"
                 app:tint="#00D2CB" />
 
@@ -197,12 +202,49 @@
                 android:fontFamily="@font/frutiger_lt_arabic_roman"
 
                 android:textColor="@color/textColor"
-                android:textSize="14dp" />
+                android:textSize="13dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_clock"
+                app:tint="#00D2CB" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLength="10"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/frutiger_lt_arabic_roman"
+
+                android:textColor="@color/textColor"
+                android:textSize="13dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+
+
+
         </LinearLayout>
 
         <LinearLayout

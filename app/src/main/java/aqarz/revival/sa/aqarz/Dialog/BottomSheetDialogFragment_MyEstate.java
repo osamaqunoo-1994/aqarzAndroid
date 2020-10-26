@@ -1,11 +1,17 @@
 package aqarz.revival.sa.aqarz.Dialog;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
@@ -14,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -26,8 +33,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import aqarz.revival.sa.aqarz.Activity.OprationNew.FinanceActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_MyState;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_city_bootom_sheets;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders;
 import aqarz.revival.sa.aqarz.Modules.CityModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
@@ -143,9 +152,31 @@ public class BottomSheetDialogFragment_MyEstate extends BottomSheetDialogFragmen
 
 
                             String message = response.getString("message");
+                            RecyclerView_orders.send_done();
+
+//                            WebService.Make_Toast_color(getActivity(), message, "success");
 
 
-                            WebService.Make_Toast_color(getActivity(), message, "success");
+//                        WebService.Make_Toast_color(FinanceActivity.this, message, "success");
+
+
+//                            AlertDialog alertDialog;
+//
+//
+//                            LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                            final View popupView = layoutInflater.inflate(R.layout.success_sandoq, null);
+//
+//
+//                            final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//
+////            alertDialog_country =
+//                            builder.setView(popupView);
+//
+//
+//                            alertDialog = builder.show();
+//
+//                            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
 
                         } else {
                             String data = response.getString("data");
@@ -263,4 +294,16 @@ public class BottomSheetDialogFragment_MyEstate extends BottomSheetDialogFragmen
 
     }
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (getDialog() != null && getDialog().getWindow() != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Window window = getDialog().getWindow();
+            window.findViewById(com.google.android.material.R.id.container).setFitsSystemWindows(false);
+            // dark navigation bar icons
+            View decorView = window.getDecorView();
+            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        }
+    }
 }

@@ -66,7 +66,8 @@
 
     <string name="Forgot_your_password">نسيت كلمة المرور?</string>
     <string name="enter_your_password">اضف كلمة مرور جديده?</string>
-    <string name="Enter_your_registered">ادخل ايميلك ليصلك رابط لتغيير كلمة المرور</string>
+    <string name="Enter_your_registered">قم بإدخال رقم الجوال لتستقبل
+كلمة المرور الجديدة</string>
     <string name="Didnt_Received">لم تصلك الكود?</string>
     <string name="SendAgain_">ارسال مره اخرى</string>
     <string name="Sendbutton">ارسال</string>
@@ -421,5 +422,9 @@
     <string name="Privecy_text"></string>
 
     <string name="contactus_title">تواصل معنا</string>
+    <string name="agree_pledge">اوافق واتعهد</string>
+    <string name="Not_interested">غير مهتم</string>
+    <string name="edit_text">تم تعديل الحساب بنجاح</string>
+    <string name="click_to_back">اضغط مره اخرى للخروج من التطبيق</string>
 
 </resources>

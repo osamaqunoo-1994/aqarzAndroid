@@ -11,7 +11,7 @@ public class OrdersModules {
     private Integer id;
     @SerializedName("uuid")
     @Expose
-    private Integer uuid;
+    private String uuid;
     @SerializedName("estate_type_id")
     @Expose
     private String estateTypeId;
@@ -51,6 +51,9 @@ public class OrdersModules {
     @SerializedName("estate_price_range")
     @Expose
     private String estatePriceRange;
+    @SerializedName("created_at")
+    @Expose
+    private String created_at;
     @SerializedName("area_estate_range")
     @Expose
     private Object areaEstateRange;
@@ -69,11 +72,15 @@ public class OrdersModules {
         this.id = id;
     }
 
-    public Integer getUuid() {
+    public String  getUuid() {
         return uuid;
     }
 
-    public void setUuid(Integer uuid) {
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 

@@ -26,8 +26,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:gravity="center"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorPrimary"
+                android:gravity="center">
 
                 <ImageView
                     android:id="@+id/back"
@@ -73,11 +73,11 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/immage"
                     android:layout_width="100dp"
-                    android:layout_height="90dp"
+                    android:layout_height="120dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/_44sdp"
                     android:layout_marginBottom="@dimen/_16sdp"
-                    app:srcCompat="@drawable/ic_logo_map"
+                    app:srcCompat="@drawable/ic_logo_move"
                     tools:ignore="VectorDrawableCompat" />
 
                 <LinearLayout
@@ -88,6 +88,7 @@
 
                 </LinearLayout>
 
+
                 <EditText
                     android:id="@+id/phone_ed"
                     style="@style/AppTheme.EditText"
@@ -96,7 +97,7 @@
                     android:layout_height="wrap_content"
 
                     android:layout_marginTop="@dimen/_16sdp"
-                    android:background="@drawable/edit_text_background"
+                    android:background="@drawable/mash"
                     android:drawableStart="@drawable/ic_phone"
                     android:drawablePadding="@dimen/_8sdp"
 
@@ -115,7 +116,7 @@
 
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_16sdp"
-                    android:background="@drawable/edit_text_background"
+                    android:background="@drawable/mash"
                     android:drawableStart="@drawable/ic_look"
                     android:drawablePadding="@dimen/_8sdp"
 
@@ -130,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_16sdp"
-                    android:background="@drawable/edit_text_background"
+                    android:background="@drawable/mash"
 
                     android:gravity="center"
                     android:orientation="horizontal">
@@ -167,7 +168,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_16sdp"
-                    android:background="@drawable/edit_text_background"
+                    android:background="@drawable/mash"
 
                     android:gravity="center"
                     android:orientation="horizontal">

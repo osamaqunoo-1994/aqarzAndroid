@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/background_b"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/close"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_close_black_24dp"
+                app:tint="@color/textColor2" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/Real_Estate_order_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="7dp"
+
+
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/Real_Estate_order_image"
+
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_group_1580"
+                app:tint="#00A5A5" />
+
+            <TextView
+                android:id="@+id/Real_Estate_order_text"
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="3dp"
+                android:gravity="center"
+
+                android:text="@string/Real_Estate_order"
+                android:textColor="#00A5A5"
+                android:textSize="14dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/frutiger_lt_arabic_bold"
+
+            android:text="تقدم هذه الخدمــــة بالتعــــاون مع صندوق التنميـــــة العقــــاري وتتيح للعقاريين الحصـــول على طلبات المستفدين من قروض الصندوق وتقديم عروضهم من خلال تطبيق عقارز،  ولضمان أفضل مستوى من الجودة نرجوا الإلتزام بالشروط التالية
+
+"
+
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+
+            android:gravity="start">
+
+            <ImageView
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:padding="12dp"
+                android:src="@drawable/circle_fill" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:text="أن يكون المتقدم سعودي الجنسية" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+
+            android:gravity="start">
+
+            <ImageView
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:padding="12dp"
+                android:src="@drawable/circle_fill" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:text="الإلتزام بدقة بيانات العروض العقارية
+" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+
+            android:gravity="start">
+
+            <ImageView
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:padding="12dp"
+                android:src="@drawable/circle_fill" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:text="إرفاق صور فعلية للعقارات
+" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+
+            android:gravity="start">
+
+            <ImageView
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:padding="12dp"
+                android:src="@drawable/circle_fill" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:text="التجاوب مع طلبات المعاينة من قبل العملاء في الوقت المحدد
+" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+
+            android:gravity="start">
+
+            <ImageView
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:padding="12dp"
+                android:src="@drawable/circle_fill" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:text="عند تقديم عرض لمستفيدي الصندوق يلتزم العقاري بفترة 5 أيام" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+
+            android:gravity="start">
+
+            <ImageView
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:padding="12dp"
+                android:src="@drawable/circle_fill" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:text="لإنهاء الاجراءات قبل ان يتم التصرف بالعقار" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/accept"
+
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/button_login"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="@string/agree_pledge"
+                android:textColor="@color/white"
+                android:textSize="13dp" />
+
+            <Button
+                android:id="@+id/no"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/mash"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+
+                android:text="@string/Not_interested"
+                android:textColor="@color/textColor2"
+                android:textSize="13dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+    </LinearLayout>
+
+
+</LinearLayout>

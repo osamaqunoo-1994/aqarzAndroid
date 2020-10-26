@@ -32,6 +32,7 @@ import aqarz.revival.sa.aqarz.api.VolleyService;
 public class NewSiginUpActivity extends AppCompatActivity {
     EditText phone_ed;
     TextView dont_have_account;
+    TextView sign_in;
     CheckBox chechbox;
     AppCompatButton register;
     ImageView back;
@@ -48,9 +49,23 @@ public class NewSiginUpActivity extends AppCompatActivity {
         register = findViewById(R.id.register);
         chechbox = findViewById(R.id.chechbox);
         dont_have_account = findViewById(R.id.dont_have_account);
+        sign_in = findViewById(R.id.sign_in);
         phone_ed = findViewById(R.id.phone_ed);
 
         init_volley();
+
+        sign_in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(NewSiginUpActivity.this, LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                finish();
+            }
+        });
 
         chechbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -85,8 +100,7 @@ public class NewSiginUpActivity extends AppCompatActivity {
                     try {
 
 
-
-                        sendObj.put("mobile", phone_ed.getText().toString()+"");
+                        sendObj.put("mobile", phone_ed.getText().toString() + "");
                         sendObj.put("device_token", "157");
                         sendObj.put("device_type", "android");
 
@@ -99,7 +113,6 @@ public class NewSiginUpActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
 
 
                 }
@@ -115,6 +128,7 @@ public class NewSiginUpActivity extends AppCompatActivity {
             }
         });
     }
+
     public void init_volley() {
 
 
@@ -145,7 +159,7 @@ public class NewSiginUpActivity extends AppCompatActivity {
 
 
                         Intent intent = new Intent(NewSiginUpActivity.this, NewConfirmationActivity.class);
-                                intent.putExtra("mobile", phone_ed.getText().toString()+"");
+                        intent.putExtra("mobile", phone_ed.getText().toString() + "");
                         startActivity(intent);
                         overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                         finish();

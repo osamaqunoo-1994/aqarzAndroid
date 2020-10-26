@@ -363,7 +363,7 @@ public class RateActivity extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if ((requestCode == 11)) {
+        if ((requestCode == 11)&data!=null) {
             Place place = PingPlacePicker.getPlace(data);
             if (place != null) {
                 Toast.makeText(RateActivity.this, "You selected the place: " + place.getName(), Toast.LENGTH_SHORT).show();

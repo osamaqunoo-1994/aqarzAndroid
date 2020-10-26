@@ -45,7 +45,29 @@ public class SettingsModules {
     @SerializedName("OprationType")
     @Expose
     private OprationType OprationType;
+    ;
 
+
+    @SerializedName("member_types")
+    @Expose
+    private List<service_types> member_types;
+    ;
+
+
+    @SerializedName("service_types")
+    @Expose
+    private List<service_types> service_types;
+
+
+
+
+    public List<SettingsModules.service_types> getMember_types() {
+        return member_types;
+    }
+
+    public List<SettingsModules.service_types> getService_types() {
+        return service_types;
+    }
 
     public SettingsModules.OprationType getOprationType() {
         return OprationType;
@@ -87,6 +109,35 @@ public class SettingsModules {
 
         public List<TypeModules> getData() {
             return data;
+        }
+    }
+
+    public class service_types {
+
+        @SerializedName("id")
+        @Expose
+        private int id;
+        @SerializedName("name")
+        @Expose
+        private String name;
+
+
+        private boolean checked=false;
+
+        public boolean isChecked() {
+            return checked;
+        }
+
+        public void setChecked(boolean checked) {
+            this.checked = checked;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getId() {
+            return id;
         }
     }
 

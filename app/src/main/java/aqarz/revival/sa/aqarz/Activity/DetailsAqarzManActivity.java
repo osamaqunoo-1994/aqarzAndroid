@@ -34,11 +34,21 @@ import com.google.gson.JsonParser;
 import com.rtchagas.pingplacepicker.PingPlacePicker;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import aqarz.revival.sa.aqarz.Activity.Auth.EditProfileActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationNew.AqarzOrActivity;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList_estat;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_MyState;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_member;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_member_profile;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
+import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.Settings;
 import aqarz.revival.sa.aqarz.Settings.WebService;
@@ -60,6 +70,8 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
     MapView mMapView;
     IResult mResultCallback;
 
+    List<HomeModules_aqares> homeModules = new ArrayList<>();
+    List<HomeModules> homeModules1 = new ArrayList<>();
 
     TextView aw1;
     TextView aw2;
@@ -68,6 +80,7 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
     TextView aw5;
 
     RecyclerView alldate;
+    RecyclerView member_list;
 
 
     @Override
@@ -85,6 +98,7 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
         profile = findViewById(R.id.profile);
         upgrade = findViewById(R.id.upgrade);
         alldate = findViewById(R.id.alldate);
+        member_list = findViewById(R.id.member_list);
         mMapView = (MapView) findViewById(R.id.mapViewxx);
 
         aw1 = findViewById(R.id.aw1);
@@ -97,6 +111,12 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(DetailsAqarzManActivity.this, LinearLayoutManager.VERTICAL, false);
         alldate.setLayoutManager(layoutManager1);
+
+        LinearLayoutManager layoutManagerf
+                = new LinearLayoutManager(DetailsAqarzManActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        member_list.setLayoutManager(layoutManagerf);
+
+
         mMapView.onCreate(savedInstanceState);
 
         mMapView.onResume(); // needed to get the map to display immediately
@@ -135,6 +155,13 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
                 aw4.setTextColor(getResources().getColor(R.color.textColor2));
                 aw5.setTextColor(getResources().getColor(R.color.textColor2));
 
+                WebService.loading(DetailsAqarzManActivity.this, true);
+
+                init_volley();
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsAqarzManActivity.this);
+
+                mVolleyService.getDataVolley("my_estate", WebService.my_estate);
 
             }
         });
@@ -167,6 +194,13 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
                 aw4.setTextColor(getResources().getColor(R.color.textColor2));
                 aw5.setTextColor(getResources().getColor(R.color.textColor2));
 
+                WebService.loading(DetailsAqarzManActivity.this, true);
+
+                init_volley();
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsAqarzManActivity.this);
+
+                mVolleyService.getDataVolley("my_request", WebService.my_request);
 
             }
         });
@@ -248,6 +282,15 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
 
             }
 
+            if (!Settings.GetUser().getCity_name().toString().equals("null")) {
+                address.setText(Settings.GetUser().getCity_name());
+
+            } else {
+                email.setText("");
+
+            }
+            member_list.setAdapter(new RecyclerView_member_profile(DetailsAqarzManActivity.this, Settings.GetUser().getMember_name()));
+
             if (!Settings.GetUser().getLogo().toString().equals("null")) {
                 Picasso.get().load(Settings.GetUser().getLogo()).into(profile);
 
@@ -309,26 +352,90 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String message = response.getString("message");
+                        if (requestType.equals("my_request")) {
+                            String data = response.getString("data");
+                            JSONObject jsonObjectdata = new JSONObject(data);
+
+                            String datax = jsonObjectdata.getString("data");
+
+                            JSONArray jsonArray = new JSONArray(datax);
 
 
-                        AlertDialog alertDialog;
+                            alldate.setAdapter(null);
+                            homeModules1.clear();
+                            for (int i = 0; i < jsonArray.length(); i++) {
 
 
-                        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        final View popupView = layoutInflater.inflate(R.layout.upgrade_message, null);
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                Gson gson = new Gson();
+
+                                HomeModules bankModules = gson.fromJson(mJson, HomeModules.class);
+                                homeModules1.add(bankModules);
 
 
-                        final AlertDialog.Builder builder = new AlertDialog.Builder(DetailsAqarzManActivity.this);
-
-//            alertDialog_country =
-                        builder.setView(popupView);
+                            }
 
 
-                        alertDialog = builder.show();
-
-                        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                            alldate.setAdapter(new RecyclerView_HomeList(DetailsAqarzManActivity.this, homeModules1));
 
 
+                        } else if (requestType.equals("my_estate")) {
+                            String data = response.getString("data");
+//                        JSONObject jsonObjectdata = new JSONObject(data);
+//
+//                        String datax = jsonObjectdata.getString("data");
+
+                            JSONArray jsonArray = new JSONArray(data);
+
+
+                            homeModules.clear();
+                            alldate.setAdapter(null);
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+                                try {
+
+                                    JsonParser parser = new JsonParser();
+                                    JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                    Gson gson = new Gson();
+
+                                    HomeModules_aqares bankModules = gson.fromJson(mJson, HomeModules_aqares.class);
+                                    homeModules.add(bankModules);
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+
+
+                            alldate.setAdapter(new RecyclerView_HomeList_estat(DetailsAqarzManActivity.this, homeModules));
+
+
+                        } else {
+
+//
+//                            AlertDialog alertDialog;
+//
+//
+//                            LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                            final View popupView = layoutInflater.inflate(R.layout.upgrade_message, null);
+//
+//
+//                            final AlertDialog.Builder builder = new AlertDialog.Builder(DetailsAqarzManActivity.this);
+//
+////            alertDialog_country =
+//                            builder.setView(popupView);
+//
+//
+//                            alertDialog = builder.show();
+//
+//                            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+                        }
                     } else {
                         String message = response.getString("message");
 
@@ -337,7 +444,7 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
 
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
 
 

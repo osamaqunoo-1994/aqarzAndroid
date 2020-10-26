@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import aqarz.revival.sa.aqarz.Settings.Settings;
+
 public class User {
 
     @SerializedName("id")
@@ -37,6 +39,9 @@ public class User {
     @SerializedName("device_type")
     @Expose
     private String device_type;
+    @SerializedName("city_name")
+    @Expose
+    private String city_name;
     @SerializedName("logo")
     @Expose
     private String logo;
@@ -49,6 +54,40 @@ public class User {
     @SerializedName("confirmation_code")
     @Expose
     private String confirmation_code;
+    @SerializedName("services_id")
+    @Expose
+    private String services_id;
+    @SerializedName("members_id")
+    @Expose
+    private String members_id;
+    @SerializedName("member_name")
+    @Expose
+    private List<SettingsModules.service_types> member_name;
+    @SerializedName("service_name")
+    @Expose
+    private List<SettingsModules.service_types> service_name;
+
+
+
+
+
+
+
+
+
+
+
+    public List<SettingsModules.service_types> getMember_name() {
+        return member_name;
+    }
+
+    public List<SettingsModules.service_types> getService_name() {
+        return service_name;
+    }
+
+    public String getMembers_id() {
+        return members_id;
+    }
 
 
     public String getEmail() {
@@ -106,4 +145,14 @@ public class User {
     public String getIs_pay() {
         return is_pay;
     }
+
+    public String getCity_name() {
+        return city_name;
+    }
+
+
+
+
+
+
 }

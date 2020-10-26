@@ -56,6 +56,7 @@ public class WebService {
     public static String my_request = Domain + "my/request";
     public static String contact_us = Domain + "contact/us";
     public static String neighborhoods = Domain + "neighborhoods";
+    public static String market_demands = Domain + "market/demands";
 
 
     public static void Header_Async(AsyncHttpClient client, boolean is_token) {
@@ -140,7 +141,7 @@ public class WebService {
                     .setText(message)
                     .setBackgroundColorRes(R.color.cookie_success)
                     .enableInfiniteDuration(false)
-                    .setDuration(1000)
+                    .setDuration(1500)
 
                     .enableVibration(true)
                     .setExitAnimation(R.anim.alerter_slide_out_to_top)

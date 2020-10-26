@@ -238,16 +238,16 @@ public class MapsFragment extends Fragment {
 //                                        }
 //                                    });
 
-                                BottomSheetDialogFragment_DetailsAqares_orders bottomSheetDialogFragment_detailsAqares_orders = new BottomSheetDialogFragment_DetailsAqares_orders(homeModules.get(Integer.valueOf(marker.getTag().toString())));
-                                bottomSheetDialogFragment_detailsAqares_orders.show(getFragmentManager(), "");
+                                    BottomSheetDialogFragment_DetailsAqares_orders bottomSheetDialogFragment_detailsAqares_orders = new BottomSheetDialogFragment_DetailsAqares_orders(homeModules.get(Integer.valueOf(marker.getTag().toString())));
+                                    bottomSheetDialogFragment_detailsAqares_orders.show(getFragmentManager(), "");
                                 }
                             } else if (final_type_requst_filter.equals("map_offer")) {//aqarz
 
                                 if (marker.getTag().toString().equals("mylocation")) {
 
                                 } else {
-                                BottomSheetDialogFragment_DetailsAqares bottomSheetDialogFragment_detailsAqares = new BottomSheetDialogFragment_DetailsAqares(homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())));
-                                bottomSheetDialogFragment_detailsAqares.show(getFragmentManager(), "");
+                                    BottomSheetDialogFragment_DetailsAqares bottomSheetDialogFragment_detailsAqares = new BottomSheetDialogFragment_DetailsAqares(homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())));
+                                    bottomSheetDialogFragment_detailsAqares.show(getFragmentManager(), "");
 //                                    CustomInfoWindowGoogleMaptyp_2 customInfoWindow = new CustomInfoWindowGoogleMaptyp_2(getActivity(), homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())));
 //                                    mMap.setInfoWindowAdapter(customInfoWindow);
 //                                    mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
@@ -414,7 +414,7 @@ public class MapsFragment extends Fragment {
                 }
 
 
-                System.out.println("opration_select"+opration_select);
+                System.out.println("opration_select" + opration_select);
 
 //                opration_select = type_list.get(position).getId().toString() + "";
 
@@ -981,6 +981,7 @@ public class MapsFragment extends Fragment {
 
 
 //                                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(camPos));
+
 
                                         String price = bankModules.getTotalPrice();
                                         int price_int = Integer.valueOf(price);

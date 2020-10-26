@@ -66,6 +66,7 @@
                     android:gravity="center"
                     android:paddingBottom="4dp"
                     android:text="+99"
+                    android:visibility="gone"
                     android:textColor="@color/white"
                     android:textSize="11dp" />
 
@@ -104,6 +105,7 @@
                     android:layout_alignParentEnd="true"
                     android:background="@drawable/circle_fill"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:paddingBottom="4dp"
                     android:text="+99"
                     android:textColor="@color/white"
@@ -242,12 +244,26 @@
     </HorizontalScrollView>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/orders_rec"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/orders_rec"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
 
-        android:paddingTop="5dp" />
+            android:paddingTop="5dp" />
+
+
+        <ImageView
+            android:id="@+id/nodata_vis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_no_data"
+            android:visibility="gone" />
+    </RelativeLayout>
+
 
 </LinearLayout>

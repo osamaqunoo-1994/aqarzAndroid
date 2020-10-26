@@ -137,6 +137,16 @@ public class AqarzOrActivity extends AppCompatActivity {
         lost_romm.add("7");
         lost_romm.add("8");
 
+
+        //---------------------------------------------------------------------------------------
+        try {
+            Communication_Officer.setText(Settings.GetUser().getName() + "");
+            Communication_number.setText(Settings.GetUser().getMobile() + "");
+        } catch (Exception e) {
+
+        }
+
+
         RecyclerView_All_number_room recyclerView_all_number_room = new RecyclerView_All_number_room(AqarzOrActivity.this, lost_romm);
         recyclerView_all_number_room.addItemClickListener(new RecyclerView_All_type_in_fragment.ItemClickListener() {
             @Override
@@ -347,7 +357,8 @@ public class AqarzOrActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if ((requestCode == 11)) {
+        if ((requestCode == 11) & data != null) {
+
             Place place = PingPlacePicker.getPlace(data);
             if (place != null) {
                 Toast.makeText(AqarzOrActivity.this, "You selected the place: " + place.getName(), Toast.LENGTH_SHORT).show();
@@ -405,7 +416,7 @@ public class AqarzOrActivity extends AppCompatActivity {
                             }
                         });
                         bottomSheerDialog.setContentView(parentView);
-                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,200,getResources().getDisplayMetrics());
+                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
                         bottomSheerDialog.show();
 //                        WebService.Make_Toast_color(AqarzOrActivity.this, message, "success");
                     } else {
@@ -416,7 +427,7 @@ public class AqarzOrActivity extends AppCompatActivity {
 
 
                 } catch (Exception e) {
-e.printStackTrace();
+                    e.printStackTrace();
                 }
 
 

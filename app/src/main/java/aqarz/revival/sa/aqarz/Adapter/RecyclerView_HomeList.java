@@ -64,7 +64,7 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
 //        ImageView image_aqars;
 //        TextView type;
 //        TextView price;
-//        TextView address;
+        TextView address;
 //        TextView opration;
 //        TextView space;
 
@@ -91,6 +91,7 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
             dublex = view.findViewById(R.id.dublex);
             opration = view.findViewById(R.id.opration);
             type = view.findViewById(R.id.type);
+            address = view.findViewById(R.id.address);
 
 //            ratingbar = view.findViewById(R.id.ratingbar);
 //            ratingbar = view.findViewById(R.id.ratingbar);
@@ -139,6 +140,7 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
        holder. price.setText(alldata.get(position).getPrice_from() + " - " + alldata.get(position).getPrice_to());
         holder.type.setText(alldata.get(position).getEstate_type_name());
         holder.opration.setText(alldata.get(position).getOperation_type_name());
+
         Picasso.get().load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
 
 //        System.out.println(alldata.get(position).getImage() + "");

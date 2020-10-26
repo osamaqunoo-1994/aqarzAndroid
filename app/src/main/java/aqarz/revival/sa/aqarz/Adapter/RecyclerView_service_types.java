@@ -7,31 +7,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import aqarz.revival.sa.aqarz.Modules.HomeModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
-import aqarz.revival.sa.aqarz.Modules.TypeModules;
+import aqarz.revival.sa.aqarz.Modules.SettingsModules;
 import aqarz.revival.sa.aqarz.R;
 
 
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MyState.MyViewHolder> {
-    public static List<HomeModules_aqares> alldata = new ArrayList<HomeModules_aqares>();
+public class RecyclerView_service_types extends RecyclerView.Adapter<RecyclerView_service_types.MyViewHolder> {
+    public static List<SettingsModules.service_types> alldata = new ArrayList<SettingsModules.service_types>();
     static int Postion_opend = 0;
 
 
@@ -65,30 +62,28 @@ public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MySt
         //  public FrameLayout frame;
 
         LinearLayout back_ground;
-        TextView opration;
-        TextView price;
-        TextView address;
-        TextView date;
-        ImageView image;
+//        TextView opration;
+//        TextView price;
+//        TextView address;
+//        ImageView image;
 
-        CheckBox chechbox;
+        CheckBox checkbox_text;
 
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
 
-            image = view.findViewById(R.id.image);
-            opration = view.findViewById(R.id.opration);
-            price = view.findViewById(R.id.price);
-            address = view.findViewById(R.id.address);
-            chechbox = view.findViewById(R.id.chechbox);
-            date = view.findViewById(R.id.date);
+//            image = view.findViewById(R.id.image);
+//            opration = view.findViewById(R.id.opration);
+//            price = view.findViewById(R.id.price);
+//            address = view.findViewById(R.id.address);
+            checkbox_text = view.findViewById(R.id.checkbox_text);
 
 
         }
     }
 
-    public RecyclerView_MyState(Context context, List<HomeModules_aqares> alldata) {
+    public RecyclerView_service_types(Context context, List<SettingsModules.service_types> alldata) {
         this.alldata = alldata;
         this.context = context;
     }
@@ -104,10 +99,9 @@ public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MySt
 
 //        holder.setIsRecyclable(false);
 //        holder.title.setText(alldata.get(position).getName());
-        holder.price.setText(alldata.get(position).getTotalPrice());
-        holder.opration.setText(alldata.get(position).getEstate_type_name());
-        holder.address.setText(alldata.get(position).getCity_name());
-        holder.date.setText(alldata.get(position).getCreatedAt());
+//        holder.price.setText(alldata.get(position).getTotalPrice());
+//        holder.opration.setText(alldata.get(position).getEstate_type_name());
+//        holder.address.setText(alldata.get(position).getInterface());
 //        if (alldata.get(position).getRate() != null) {
 //            if (!alldata.get(position).getRate().equals("null")) {
 //
@@ -117,7 +111,7 @@ public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MySt
 //            }
 //        }
 ////
-//        holder.text.setText(alldata.get(position).getName() + "");
+        holder.checkbox_text.setText(alldata.get(position).getName() + "");
 
 
 //        if (position == Postion_opend) {
@@ -137,7 +131,7 @@ public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MySt
 //        }
 ////
 //        System.out.println(alldata.get(position).getImage() + "");
-        Picasso.get().load(alldata.get(position).getFirst_image()).into(holder.image);
+//        Picasso.with(context).load(alldata.get(position).get()).into(holder.image);
 ////
 //
 //        try {
@@ -191,33 +185,28 @@ public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MySt
 //
 
 
-        if (alldata.get(position).getIs_selected()) {
-            holder.chechbox.setChecked(true);
-        } else {
-            holder.chechbox.setChecked(false);
+//        if (alldata.get(position).getIs_selected()) {
+//            holder.chechbox.setChecked(true);
+//        } else {
+//            holder.chechbox.setChecked(false);
+//
+//        }
 
-        }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.checkbox_text.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-
-//
-//
-
-
-                if (alldata.get(position).getIs_selected()) {
-                    holder.chechbox.setChecked(false);
-                    alldata.get(position).setIs_selected(false);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (alldata.get(position).isChecked()) {
+                    holder.checkbox_text.setChecked(false);
+                    alldata.get(position).setChecked(false);
                 } else {
-                    holder.chechbox.setChecked(true);
-                    alldata.get(position).setIs_selected(true);
+                    holder.checkbox_text.setChecked(true);
+                    alldata.get(position).setChecked(true);
                 }
+
+
                 if (mItemClickListener != null) {
                     mItemClickListener.onItemClick(alldata);
                 }
-//                Postion_opend = position;
-                Refr();
-
             }
         });
 
@@ -240,7 +229,7 @@ public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MySt
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_my_estate, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_members, parent, false);
 
 
         // Fresco.initialize(context);
@@ -251,6 +240,6 @@ public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MySt
 
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(List<HomeModules_aqares> homeModules_aqares);
+        void onItemClick(List<SettingsModules.service_types> service_types);
     }
 }

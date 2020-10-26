@@ -15,6 +15,7 @@
             android:layout_width="120dp"
             android:layout_height="80dp"
             android:layout_margin="10dp"
+
             app:cardCornerRadius="10dp">
             <ImageView
                 android:layout_width="match_parent"
@@ -128,6 +129,37 @@
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/frutiger_lt_arabic_bold"
                     android:text="الروابي, الخبر المنطقة الشرقية"
+
+                    android:textSize="13dp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="13dp"
+                    app:tint="#00d2cb"
+                    android:layout_height="13dp"
+
+                    android:src="@drawable/ic_clock" />
+
+
+                <TextView
+                    android:id="@+id/date"
+                    android:maxLength="10"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/frutiger_lt_arabic_bold"
+
 
                     android:textSize="13dp" />
 
