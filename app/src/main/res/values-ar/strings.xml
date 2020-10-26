@@ -427,4 +427,6 @@
     <string name="edit_text">تم تعديل الحساب بنجاح</string>
     <string name="click_to_back">اضغط مره اخرى للخروج من التطبيق</string>
 
+    <string name="select_service">اختار خدمه</string>
+    <string name="selectmember">اختار عضوية</string>
 </resources>

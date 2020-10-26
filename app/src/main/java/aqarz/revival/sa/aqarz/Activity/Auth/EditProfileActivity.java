@@ -87,6 +87,8 @@ public class EditProfileActivity extends AppCompatActivity {
     String service_types_te = "";
     String memmber_te = "";
     String city_id = "";
+    List<SettingsModules.service_types> service_types_listss = new ArrayList<>();
+    List<SettingsModules.service_types> Member_typesl = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +128,36 @@ public class EditProfileActivity extends AppCompatActivity {
         service_types_list.setLayoutManager(layoutManager1);
 
 
-        RecyclerView_service_types recyclerView_service_types = new RecyclerView_service_types(EditProfileActivity.this, Settings.getSettings().getService_types());
+        service_types_listss = Settings.getSettings().getService_types();
+
+
+        for (int i = 0; i < service_types_listss.size(); i++) {
+            for (int j = 0; j < Settings.GetUser().getService_name().size(); j++) {
+
+                if (service_types_listss.get(i).getId() == Settings.GetUser().getService_name().get(j).getId()) {
+                    System.out.println("oooooooooooooo");
+                    service_types_listss.get(i).setChecked(true);
+                }
+            }
+
+        }
+
+        service_types_te = "";
+        for (int i = 0; i < service_types_listss.size(); i++) {
+            if (service_types_listss.get(i).isChecked()) {
+                if (service_types_te.equals("")) {
+                    service_types_te = service_types_listss.get(i).getId() + "";
+
+                } else {
+                    service_types_te = service_types_te + "," + service_types_listss.get(i).getId() + "";
+
+                }
+
+            }
+        }
+
+
+        RecyclerView_service_types recyclerView_service_types = new RecyclerView_service_types(EditProfileActivity.this, service_types_listss);
         recyclerView_service_types.addItemClickListener(new RecyclerView_service_types.ItemClickListener() {
             @Override
             public void onItemClick(List<SettingsModules.service_types> service_types) {
@@ -151,9 +182,49 @@ public class EditProfileActivity extends AppCompatActivity {
         service_types_list.setAdapter(recyclerView_service_types);
 
 
+        city_id = Settings.GetUser().getCity_id() + "";
         member_list.setLayoutManager(new GridLayoutManager(this, 2));
 
-        RecyclerView_member recyclerView_member = new RecyclerView_member(EditProfileActivity.this, Settings.getSettings().getMember_types());
+        Member_typesl = Settings.getSettings().getMember_types();
+
+        try {
+
+            System.out.println("YTYTY" + Settings.GetUser().getMember_name().get(0).getName());
+            for (int i = 0; i < Member_typesl.size(); i++) {
+                for (int j = 0; j < Settings.GetUser().getMember_name().size(); j++) {
+
+
+                    try {
+                        if (Member_typesl.get(i).getId() == Settings.GetUser().getMember_name().get(j).getId()) {
+                            System.out.println("XXXXX" + Member_typesl.get(i).getName());
+                            Member_typesl.get(i).setChecked(true);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        memmber_te = "";
+        for (int i = 0; i < Member_typesl.size(); i++) {
+            if (Member_typesl.get(i).isChecked()) {
+                if (memmber_te.equals("")) {
+                    memmber_te = Member_typesl.get(i).getId() + "";
+
+                } else {
+                    memmber_te = memmber_te + "," + Member_typesl.get(i).getId() + "";
+
+                }
+
+            }
+        }
+        RecyclerView_member recyclerView_member = new RecyclerView_member(EditProfileActivity.this, Member_typesl);
         recyclerView_member.addItemClickListener(new RecyclerView_member.ItemClickListener() {
             @Override
             public void onItemClick(List<SettingsModules.service_types> service_types) {
@@ -229,9 +300,21 @@ public class EditProfileActivity extends AppCompatActivity {
         });
 
         try {
-            name_ed.setText(Settings.GetUser().getName());
+
             phone_ed.setText(Settings.GetUser().getMobile());
-            email_ed.setText(Settings.GetUser().getEmail());
+
+            if (Settings.GetUser().getName() != null) {
+                name_ed.setText(Settings.GetUser().getName());
+
+            }
+            if (Settings.GetUser().getEmail() != null) {
+                email_ed.setText(Settings.GetUser().getEmail());
+
+            }
+            if (Settings.GetUser().getCity_name() != null) {
+                address.setText(Settings.GetUser().getCity_name());
+
+            }
 
 
             Glide.with(EditProfileActivity.this).load(Settings.GetUser().getLogo() + "").error(getResources().getDrawable(R.drawable.ic_user_un)).diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -302,9 +385,16 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
                 if (name_ed.getText().toString().equals("") |
-
-                        phone_ed.getText().toString().equals("")) {
+                        phone_ed.getText().toString().equals("") | email_ed.getText().toString().equals("") | address.getText().toString().equals("")) {
                     WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.fillallfileds) + "", "error");
+
+
+                } else if (service_types_te.toString().equals("")) {
+                    WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.select_service) + "", "error");
+
+                } else if (memmber_te.toString().equals("")) {
+                    WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.selectmember) + "", "error");
+
                 } else {
                     WebService.loading(EditProfileActivity.this, true);
 
@@ -318,9 +408,10 @@ public class EditProfileActivity extends AppCompatActivity {
                         sendObj.put("name", name_ed.getText().toString());
                         sendObj.put("city_id", city_id);
                         sendObj.put("neighborhood_id", 2);
+                        sendObj.put("email", email_ed.getText().toString() + "");
 //                        sendObj.put("services_name", "s_nam1,s_name2");
 //                        sendObj.put("members_name", "mebmer1,mebmer_nam2");
-                        sendObj.put("email", email_ed.getText().toString());
+
                         sendObj.put("services_id", service_types_te);
                         sendObj.put("members_id", memmber_te);
 //                        sendObj.put("mobile", phone_ed.getText().toString());

@@ -183,7 +183,14 @@ public class RecyclerView_service_types extends RecyclerView.Adapter<RecyclerVie
 //            }
 //        });
 //
+        if (alldata.get(position).isChecked()) {
 
+            holder.checkbox_text.setChecked(true);
+
+        } else {
+            holder.checkbox_text.setChecked(false);
+
+        }
 
 //        if (alldata.get(position).getIs_selected()) {
 //            holder.chechbox.setChecked(true);

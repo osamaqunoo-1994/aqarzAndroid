@@ -60,6 +60,9 @@ public class User {
     @SerializedName("members_id")
     @Expose
     private String members_id;
+    @SerializedName("city_id")
+    @Expose
+    private String city_id;
     @SerializedName("member_name")
     @Expose
     private List<SettingsModules.service_types> member_name;
@@ -68,14 +71,13 @@ public class User {
     private List<SettingsModules.service_types> service_name;
 
 
+    public String getServices_id() {
+        return services_id;
+    }
 
-
-
-
-
-
-
-
+    public String getCity_id() {
+        return city_id;
+    }
 
     public List<SettingsModules.service_types> getMember_name() {
         return member_name;
