@@ -21,8 +21,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Activity.Auth.EditProfileActivity"
+            android:name=".Activity.SelectLocationActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Activity.Auth.EditProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.DetailsAqarzManActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -112,7 +115,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc" />
+            android:value="AIzaSyATHbtQKAHHSbClOgRAuZ9Qz3qmFdEm7IA" />
 
         <service android:name=".FCM.MyFirebaseMessagingService">
             <intent-filter>

@@ -50,7 +50,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import aqarz.revival.sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationNew.RateActivity;
+import aqarz.revival.sa.aqarz.Activity.SelectLocationActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_member;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_service_types;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
@@ -87,6 +89,9 @@ public class EditProfileActivity extends AppCompatActivity {
     String service_types_te = "";
     String memmber_te = "";
     String city_id = "";
+    String lat = "";
+    String lng = "";
+    String Address_t = "";
     List<SettingsModules.service_types> service_types_listss = new ArrayList<>();
     List<SettingsModules.service_types> Member_typesl = new ArrayList<>();
 
@@ -185,6 +190,18 @@ public class EditProfileActivity extends AppCompatActivity {
         city_id = Settings.GetUser().getCity_id() + "";
         member_list.setLayoutManager(new GridLayoutManager(this, 2));
 
+
+        try {
+            lat = Settings.GetUser().getLat() + "";
+            lng = Settings.GetUser().getLan() + "";
+            Address_t = Settings.GetUser().getAddress();
+
+            address.setText(Address_t + "");
+
+        } catch (Exception e) {
+
+        }
+
         Member_typesl = Settings.getSettings().getMember_types();
 
         try {
@@ -251,19 +268,22 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //
+                Intent intent = new Intent(EditProfileActivity.this, SelectLocationActivity.class);
+                startActivityForResult(intent, 11);
 
-                bottomSheetDialogFragment_selectCity = new BottomSheetDialogFragment_SelectCity("");
-                bottomSheetDialogFragment_selectCity.addItemClickListener(new BottomSheetDialogFragment_SelectCity.ItemClickListener() {
-                    @Override
-                    public void onItemClick(int id_city, String city_naem) {
-                        city_id = id_city + "";
-                        address.setText(city_naem);
-                        bottomSheetDialogFragment_selectCity.dismiss();
-
-                    }
-                });
-
-                bottomSheetDialogFragment_selectCity.show(getSupportFragmentManager(), "");
+//
+//                bottomSheetDialogFragment_selectCity = new BottomSheetDialogFragment_SelectCity("");
+//                bottomSheetDialogFragment_selectCity.addItemClickListener(new BottomSheetDialogFragment_SelectCity.ItemClickListener() {
+//                    @Override
+//                    public void onItemClick(int id_city, String city_naem) {
+//                        city_id = id_city + "";
+//                        address.setText(city_naem);
+//                        bottomSheetDialogFragment_selectCity.dismiss();
+//
+//                    }
+//                });
+//
+//                bottomSheetDialogFragment_selectCity.show(getSupportFragmentManager(), "");
 
 //                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 //                    if (ContextCompat.checkSelfPermission(EditProfileActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -406,7 +426,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     try {
 
                         sendObj.put("name", name_ed.getText().toString());
-                        sendObj.put("city_id", city_id);
+//                        sendObj.put("city_id", city_id);
                         sendObj.put("neighborhood_id", 2);
                         sendObj.put("email", email_ed.getText().toString() + "");
 //                        sendObj.put("services_name", "s_nam1,s_name2");
@@ -414,7 +434,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
                         sendObj.put("services_id", service_types_te);
                         sendObj.put("members_id", memmber_te);
-//                        sendObj.put("mobile", phone_ed.getText().toString());
+                        sendObj.put("lan", lng);
+                        sendObj.put("lat", lat);
+                        sendObj.put("address", Address_t);
 
 
                         System.out.println(sendObj.toString());
@@ -572,25 +594,22 @@ public class EditProfileActivity extends AppCompatActivity {
 //            }
         }
         if ((requestCode == 11) & data != null) {
-            Place place = PingPlacePicker.getPlace(data);
-            if (place != null) {
-                Toast.makeText(EditProfileActivity.this, "You selected the place: " + place.getName(), Toast.LENGTH_SHORT).show();
 
 
-//                LatLng sydney = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
-//                googleMap.addMarker(new MarkerOptions()
-//                        .position(sydney)
-//                        .title("Marker"));
-//                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
-//                // Zoom in, animating the camera.
-//                googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-//                // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-//                googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+            if (resultCode == Activity.RESULT_OK) {
+                // TODO Extract the data returned from the child Activity.
+                String lat_ = data.getStringExtra("lat");
+                String lang_ = data.getStringExtra("lang");
+                String address_ = data.getStringExtra("address");
+
+                lat = "" + lat_;
+                lng = "" + lang_;
+                Toast.makeText(EditProfileActivity.this, "You selected the place: " + address_, Toast.LENGTH_SHORT).show();
+//
 
 
-//                lat = place.getLatLng().latitude + "";
-//                lng = place.getLatLng().longitude + "";
-
+                Address_t = address_;
+                address.setText(Address_t);
             }
         }
     }

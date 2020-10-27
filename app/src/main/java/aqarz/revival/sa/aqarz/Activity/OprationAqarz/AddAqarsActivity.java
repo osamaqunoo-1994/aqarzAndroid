@@ -73,6 +73,7 @@ import java.util.List;
 import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationNew.FinanceActivity;
+import aqarz.revival.sa.aqarz.Activity.SelectLocationActivity;
 import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_in_order;
@@ -192,6 +193,13 @@ public class AddAqarsActivity extends AppCompatActivity {
     LinearLayout Boards_lay;
     LinearLayout Kitchens_lay;
 
+
+    TextView ada_1_yes;
+    TextView ada_1_no;
+    TextView property_dd_yes;
+    TextView property_dd_no;
+    TextView property_dd_yes1;
+    TextView property_dd_no1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -225,6 +233,16 @@ public class AddAqarsActivity extends AppCompatActivity {
     BottomSheetDialogFragment_SelectNeighborhoods bottomSheetDialogFragment_selectNeighborhoods;
 
     public void init() {
+
+        ada_1_yes = findViewById(R.id.ada_1_yes);
+        ada_1_no = findViewById(R.id.ada_1_no);
+        property_dd_yes = findViewById(R.id.property_dd_yes);
+        property_dd_no = findViewById(R.id.property_dd_no);
+        property_dd_yes1 = findViewById(R.id.property_dd_yes1);
+        property_dd_no1 = findViewById(R.id.property_dd_no1);
+
+
+
         back = findViewById(R.id.back);
         images_RecyclerView = findViewById(R.id.images_RecyclerView);
         opration_RecyclerView = findViewById(R.id.opration_RecyclerView);
@@ -388,6 +406,97 @@ public class AddAqarsActivity extends AppCompatActivity {
 
             }
         });
+
+
+        ada_1_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ada_1_yes.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                ada_1_yes.setTextColor(getResources().getColor(R.color.white));
+
+                ada_1_no.setBackground(null);
+
+                ada_1_no.setTextColor(getResources().getColor(R.color.textColor));
+
+            }
+        });
+        ada_1_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ada_1_no.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                ada_1_no.setTextColor(getResources().getColor(R.color.white));
+
+
+                ada_1_yes.setBackground(null);
+
+                ada_1_yes.setTextColor(getResources().getColor(R.color.textColor));
+
+
+            }
+
+        });
+        property_dd_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                property_dd_yes.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                property_dd_yes.setTextColor(getResources().getColor(R.color.white));
+
+
+                property_dd_no.setBackground(null);
+
+                property_dd_no.setTextColor(getResources().getColor(R.color.textColor));
+
+            }
+        });
+        property_dd_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                property_dd_no.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                property_dd_no.setTextColor(getResources().getColor(R.color.white));
+
+
+                property_dd_yes.setBackground(null);
+
+                property_dd_yes.setTextColor(getResources().getColor(R.color.textColor));
+
+            }
+        });
+           property_dd_yes1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                property_dd_yes.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                property_dd_yes.setTextColor(getResources().getColor(R.color.white));
+
+
+                property_dd_no.setBackground(null);
+
+                property_dd_no.setTextColor(getResources().getColor(R.color.textColor));
+
+
+            }
+        });
+        property_dd_no1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                property_dd_no.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                property_dd_no.setTextColor(getResources().getColor(R.color.white));
+
+
+                property_dd_yes.setBackground(null);
+
+                property_dd_yes.setTextColor(getResources().getColor(R.color.textColor));
+
+            }
+        });
+
+
+
         ///------------------------------------------------------------------------------------------------------
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
 
@@ -507,20 +616,26 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                             } else {
 
-                                PingPlacePicker.IntentBuilder builder = new PingPlacePicker.IntentBuilder();
-                                builder.setAndroidApiKey("AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc")
-                                        .setMapsApiKey("AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc");
+//                                PingPlacePicker.IntentBuilder builder = new PingPlacePicker.IntentBuilder();
+//                                builder.setAndroidApiKey("AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc")
+//                                        .setMapsApiKey("AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc");
+//
+//                                // If you want to set a initial location rather then the current device location.
+//                                // NOTE: enable_nearby_search MUST be true.
+//                                // builder.setLatLng(new LatLng(37.4219999, -122.0862462))
+//
+//                                try {
+//                                    Intent placeIntent = builder.build(AddAqarsActivity.this);
+//                                    startActivityForResult(placeIntent, 11);
+//                                } catch (Exception ex) {
+//                                    // Google Play services is not available...
+//                                }
 
-                                // If you want to set a initial location rather then the current device location.
-                                // NOTE: enable_nearby_search MUST be true.
-                                // builder.setLatLng(new LatLng(37.4219999, -122.0862462))
 
-                                try {
-                                    Intent placeIntent = builder.build(AddAqarsActivity.this);
-                                    startActivityForResult(placeIntent, 11);
-                                } catch (Exception ex) {
-                                    // Google Play services is not available...
-                                }
+                                Intent intent = new Intent(AddAqarsActivity.this, SelectLocationActivity.class);
+                                startActivityForResult(intent, 11);
+
+
                             }
                         } else {
 
@@ -1445,7 +1560,7 @@ public class AddAqarsActivity extends AppCompatActivity {
                         sendObj.put("social_status", social_status);
                         sendObj.put("city_id", city_id + "");
                         sendObj.put("neighborhood_id", nib_id + "");
-                        sendObj.put("address", "الرياض");
+                        sendObj.put("address", Address + "");
                         sendObj.put("lat", lat);
                         sendObj.put("lan", lng);
                         sendObj.put("is_rent", is_rent);//1 = yes or 0 = no
@@ -1638,33 +1753,45 @@ public class AddAqarsActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if ((requestCode == 11)) {
-            if (data != null) {
-                Place place = PingPlacePicker.getPlace(data);
-                if (place != null) {
-                    Toast.makeText(AddAqarsActivity.this, "You selected the place: " + place.getName(), Toast.LENGTH_SHORT).show();
+            if (resultCode == Activity.RESULT_OK) {
+                // TODO Extract the data returned from the child Activity.
+                String lat_ = data.getStringExtra("lat");
+                String lang_ = data.getStringExtra("lang");
+                String address_ = data.getStringExtra("address");
 
+                lat = "" + lat_;
+                lng = "" + lang_;
+                Toast.makeText(AddAqarsActivity.this, "You selected the place: " + address_, Toast.LENGTH_SHORT).show();
+//
+                LatLng sydney = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
+                googleMap.addMarker(new MarkerOptions()
+                        .position(sydney)
+                        .title("Marker"));
 
-                    LatLng sydney = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
-                    googleMap.addMarker(new MarkerOptions()
-                            .position(sydney)
-                            .title("Marker"));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+                // Zoom in, animating the camera.
+                googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+                // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+                googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+                Address = address_;
 
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
-                    // Zoom in, animating the camera.
-                    googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-                    // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
-
-
-                    lat = "" + place.getLatLng().latitude;
-                    lng = "" + place.getLatLng().longitude;
-
-                    Address = place.getAddress() + "";
-                    System.out.println("ADDDRESS::" + place.getAddress());
-
-
-                }
             }
+//            if (data != null) {
+//                Place place = PingPlacePicker.getPlace(data);
+//                if (place != null) {
+//                    Toast.makeText(AddAqarsActivity.this, "You selected the place: " + place.getName(), Toast.LENGTH_SHORT).show();
+//
+//
+//
+//
+//
+//
+//                    Address = place.getAddress() + "";
+//                    System.out.println("ADDDRESS::" + place.getAddress());
+//
+//
+//                }
+//            }
 
 
         }
@@ -1797,7 +1924,6 @@ public class AddAqarsActivity extends AppCompatActivity {
 
 
                         images_RecyclerView.setAdapter(new RecyclerView_selectImage(AddAqarsActivity.this, selectIamgeList));
-
 
                         WebService.Make_Toast_color(AddAqarsActivity.this, message, "success");
 

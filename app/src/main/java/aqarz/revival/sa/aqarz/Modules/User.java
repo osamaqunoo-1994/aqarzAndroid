@@ -60,6 +60,17 @@ public class User {
     @SerializedName("members_id")
     @Expose
     private String members_id;
+    @SerializedName("lat")
+    @Expose
+    private String lat;
+    @SerializedName("lan")
+    @Expose
+    private String lan;
+    @SerializedName("address")
+    @Expose
+    private String address;
+
+
     @SerializedName("city_id")
     @Expose
     private String city_id;
@@ -153,8 +164,15 @@ public class User {
     }
 
 
+    public String getAddress() {
+        return address;
+    }
 
+    public String getLat() {
+        return lat;
+    }
 
-
-
+    public String getLan() {
+        return lan;
+    }
 }

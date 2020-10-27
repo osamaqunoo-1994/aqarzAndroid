@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -43,6 +44,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import aqarz.revival.sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
+import aqarz.revival.sa.aqarz.Activity.SelectLocationActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_number_room;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
@@ -88,6 +91,7 @@ public class AqarzOrActivity extends AppCompatActivity {
     String lat = "";
     String lng = "";
     String room_number = "1";
+    String Address = "";
 
 
     @Override
@@ -187,20 +191,24 @@ public class AqarzOrActivity extends AppCompatActivity {
 
                             } else {
 
-                                PingPlacePicker.IntentBuilder builder = new PingPlacePicker.IntentBuilder();
-                                builder.setAndroidApiKey("AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc")
-                                        .setMapsApiKey("AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc");
+                                Intent intent = new Intent(AqarzOrActivity.this, SelectLocationActivity.class);
+                                startActivityForResult(intent, 11);
 
-                                // If you want to set a initial location rather then the current device location.
-                                // NOTE: enable_nearby_search MUST be true.
-                                // builder.setLatLng(new LatLng(37.4219999, -122.0862462))
-
-                                try {
-                                    Intent placeIntent = builder.build(AqarzOrActivity.this);
-                                    startActivityForResult(placeIntent, 11);
-                                } catch (Exception ex) {
-                                    // Google Play services is not available...
-                                }
+//
+//                                PingPlacePicker.IntentBuilder builder = new PingPlacePicker.IntentBuilder();
+//                                builder.setAndroidApiKey("AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc")
+//                                        .setMapsApiKey("AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc");
+//
+//                                // If you want to set a initial location rather then the current device location.
+//                                // NOTE: enable_nearby_search MUST be true.
+//                                // builder.setLatLng(new LatLng(37.4219999, -122.0862462))
+//
+//                                try {
+//                                    Intent placeIntent = builder.build(AqarzOrActivity.this);
+//                                    startActivityForResult(placeIntent, 11);
+//                                } catch (Exception ex) {
+//                                    // Google Play services is not available...
+//                                }
                             }
                         } else {
 
@@ -274,6 +282,7 @@ public class AqarzOrActivity extends AppCompatActivity {
                         sendObj.put("owner_name", Communication_Officer.getText().toString());
                         sendObj.put("owner_mobile", Communication_number.getText().toString());
                         sendObj.put("display_owner_mobile", "1");
+                        sendObj.put("Address", Address);
                         sendObj.put("note", description.getText().toString());
 
 
@@ -358,32 +367,35 @@ public class AqarzOrActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if ((requestCode == 11) & data != null) {
+            if (resultCode == Activity.RESULT_OK) {
+                // TODO Extract the data returned from the child Activity.
+                String lat_ = data.getStringExtra("lat");
+                String lang_ = data.getStringExtra("lang");
+                String address_ = data.getStringExtra("address");
 
-            Place place = PingPlacePicker.getPlace(data);
-            if (place != null) {
-                Toast.makeText(AqarzOrActivity.this, "You selected the place: " + place.getName(), Toast.LENGTH_SHORT).show();
-
-
-                LatLng sydney = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
+                lat = "" + lat_;
+                lng = "" + lang_;
+                Toast.makeText(AqarzOrActivity.this, "You selected the place: " + address_, Toast.LENGTH_SHORT).show();
+//
+                LatLng sydney = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
                 googleMap.addMarker(new MarkerOptions()
                         .position(sydney)
                         .title("Marker"));
-
 
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
                 // Zoom in, animating the camera.
                 googleMap.animateCamera(CameraUpdateFactory.zoomIn());
                 // Zoom out to zoom level 10, animating with a duration of 2 seconds.
                 googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
-
-
-                lat = place.getLatLng().latitude + "";
-                lng = place.getLatLng().longitude + "";
-
+                Address = address_;
 
             }
-        }
+
+
+
     }
+
+}
 
     public void init_volley() {
 

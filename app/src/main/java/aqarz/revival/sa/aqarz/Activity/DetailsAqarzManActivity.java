@@ -23,11 +23,13 @@ import android.widget.TextView;
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -134,6 +136,26 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
 
 //                googleMap.getUiSettings().setRotateGesturesEnabled(true);
 
+
+                try {
+
+                    if (Settings.GetUser().getLat() != null) {
+                        LatLng sydney = new LatLng(Double.valueOf(Settings.GetUser().getLat()), Double.valueOf(Settings.GetUser().getLan()));
+                        googleMap.addMarker(new MarkerOptions()
+                                .position(sydney)
+                                .title("Marker"));
+
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+                        // Zoom in, animating the camera.
+                        googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+                        // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+                        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+
+                    }
+
+                } catch (Exception e) {
+
+                }
 
             }
         });
@@ -283,7 +305,12 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
             }
 
             if (!Settings.GetUser().getCity_name().toString().equals("null")) {
-                address.setText(Settings.GetUser().getCity_name());
+                try {
+                    address.setText(Settings.GetUser().getAddress());
+
+                } catch (Exception e) {
+
+                }
 
             } else {
                 email.setText("");
@@ -295,7 +322,9 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
                 Picasso.get().load(Settings.GetUser().getLogo()).into(profile);
 
             }
-            mobile.setText(Settings.GetUser().getMobile());
+
+
+            mobile.setText(Settings.GetUser().getMobile() + "");
         } catch (Exception e) {
 
         }

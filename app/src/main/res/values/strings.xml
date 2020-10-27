@@ -406,4 +406,13 @@ Your request and reply in the fastest time</string>
     <string name="selectmember">select member</string>
 
 
+    <string name="Select_Location">Select Location</string>
+    <string name="Address">Address</string>
+    <string name="send_orderOffer_btn">Send Offer</string>
+
+
+    <string name="ss1">Is the property a resident?</string>
+    <string name="ss2">Is the property examined?</string>
+    <string name="ss3">Is the property insured or not?</string>
+
 </resources>

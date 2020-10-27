@@ -128,7 +128,7 @@
                         android:fontFamily="@font/frutiger_lt_arabic_bold"
                         android:textSize="17dp"
 
-                        android:visibility="gone" />
+                        />
 
                     <LinearLayout
                         android:layout_width="match_parent"

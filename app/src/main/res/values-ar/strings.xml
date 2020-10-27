@@ -429,4 +429,16 @@
 
     <string name="select_service">اختار خدمه</string>
     <string name="selectmember">اختار عضوية</string>
+
+
+
+    <string name="Select_Location">اختيار الموقع</string>
+    <string name="Address">العنوان</string>
+    <string name="send_orderOffer_btn">ارسال عرض</string>
+
+
+
+    <string name="ss1">هل العقار مقيم؟</string>
+    <string name="ss2">هل العقار مفحوص؟</string>
+    <string name="ss3">هل العقار مؤمن ام لا؟</string>
 </resources>

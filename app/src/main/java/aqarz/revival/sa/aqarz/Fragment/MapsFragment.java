@@ -611,7 +611,7 @@ public class MapsFragment extends Fragment {
                                     .position(mylocation)).setTag("mylocation");
 
                             ;
-                            CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
+                            CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(11).build();
                             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 //                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 20));
