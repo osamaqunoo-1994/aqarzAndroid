@@ -29,31 +29,33 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
             <RelativeLayout
-                android:layout_width="110dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp">
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp">
 
                 <LinearLayout
                     android:id="@+id/my_order_layout"
-                    android:layout_width="110dp"
-                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="7dp"
+
                     android:background="@drawable/mash">
 
                     <TextView
                         android:id="@+id/my_order_text"
 
-                        android:layout_width="110dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
 
-                        android:paddingLeft="@dimen/_15sdp"
-                        android:paddingRight="@dimen/_15sdp"
+                        android:paddingLeft="@dimen/_12sdp"
+                        android:paddingRight="@dimen/_12sdp"
                         android:text="@string/MyOrder"
                         android:textSize="12dp" />
                 </LinearLayout>
@@ -66,23 +68,23 @@
                     android:gravity="center"
                     android:paddingBottom="4dp"
                     android:text="+99"
-                    android:visibility="gone"
                     android:textColor="@color/white"
-                    android:textSize="11dp" />
+                    android:textSize="11dp"
+                    android:visibility="gone" />
 
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp">
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp">
 
                 <LinearLayout
                     android:id="@+id/Shopping_request_layout"
-                    android:layout_width="160dp"
-                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="7dp"
                     android:background="@drawable/mash">
@@ -90,11 +92,11 @@
                     <TextView
                         android:id="@+id/Shopping_request_text"
 
-                        android:layout_width="160dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:paddingLeft="@dimen/_15sdp"
-                        android:paddingRight="@dimen/_15sdp"
+                        android:paddingLeft="@dimen/_12sdp"
+                        android:paddingRight="@dimen/_12sdp"
                         android:text="@string/Shoppingrequest"
                         android:textSize="12dp" />
                 </LinearLayout>
@@ -105,27 +107,27 @@
                     android:layout_alignParentEnd="true"
                     android:background="@drawable/circle_fill"
                     android:gravity="center"
-                    android:visibility="gone"
                     android:paddingBottom="4dp"
                     android:text="+99"
                     android:textColor="@color/white"
-                    android:textSize="11dp" />
+                    android:textSize="11dp"
+                    android:visibility="gone" />
 
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="240dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp">
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp">
 
                 <LinearLayout
                     android:id="@+id/Real_Estate_order_layout"
-                    android:layout_width="240dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="7dp"
+
                     android:background="@drawable/background_order"
 
                     android:gravity="center"
@@ -143,7 +145,7 @@
                     <TextView
                         android:id="@+id/Real_Estate_order_text"
 
-                        android:layout_width="240dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -153,12 +155,22 @@
                         android:textSize="12dp" />
 
                     <ImageView
-                        android:layout_width="20dp"
+                        android:layout_width="10dp"
                         android:layout_height="20dp" />
                 </LinearLayout>
 
 
             </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/filtter_city"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/circle_fill"
+                android:padding="8dp"
+                android:src="@drawable/ic_filtter_city" />
 
 
         </LinearLayout>
@@ -183,11 +195,11 @@
     <HorizontalScrollView
         android:id="@+id/section_horizantal"
         android:layout_width="match_parent"
-        android:fillViewport="true"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/white"
 
-        android:background="@color/white">
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -247,6 +259,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/orders_rec"
             android:layout_width="match_parent"

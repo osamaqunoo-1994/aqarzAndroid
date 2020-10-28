@@ -160,14 +160,23 @@ public class WebService {
 //            Toasty.success(activity, message, Toast.LENGTH_SHORT, true).show();
 
         } else {
-            Alerter.create(activity)
-                    .setText(message)
-                    .setBackgroundColorRes(R.color.error)
-                    .enableInfiniteDuration(false)
-                    .setDuration(1000)
 
-                    .enableVibration(true)
-                    .setExitAnimation(R.anim.alerter_slide_out_to_top)
+
+            try {
+
+
+                if (message == null) {
+                    message = "هنالك خطا في الاتصال بالانترنت";
+                }
+
+                Alerter.create(activity)
+                        .setText(message)
+                        .setBackgroundColorRes(R.color.error)
+                        .enableInfiniteDuration(false)
+                        .setDuration(1000)
+
+                        .enableVibration(true)
+                        .setExitAnimation(R.anim.alerter_slide_out_to_top)
 //                    .addButton(activity.getString(R.string.ok), R.style.ExampleButton_ok, v -> {
 //                        try {
 //                            setWifiEnabled(activity,true);
@@ -178,7 +187,13 @@ public class WebService {
 //
 //                    .addButton(activity.getString(R.string.no_cancel),R.style.ExampleButton_cancel, v ->
 //                            Alerter.hide())
-                    .show();
+                        .show();
+
+
+            } catch (Exception e) {
+
+            }
+
 
 //            Toasty.error(activity, message, Toast.LENGTH_SHORT, true).show();
 

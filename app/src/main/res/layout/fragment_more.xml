@@ -20,7 +20,6 @@
                 android:id="@+id/with_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
                 android:orientation="vertical"
                 android:visibility="gone">
 
@@ -28,84 +27,101 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
                     android:gravity="center"
+
                     android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:layout_width="120dp"
-                        android:layout_height="120dp">
 
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-
-                            android:src="#fff"
-                            app:civ_border_color="#9777B2"
-                            app:civ_border_width="8dp" />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/image_profile"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-
-                            android:src="#fff"
-                            app:civ_border_color="#9777B2"
-                            app:civ_border_width="8dp" />
-                    </RelativeLayout>
-
-
-                    <TextView
-                        android:id="@+id/user_name"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-
-                        android:fontFamily="@font/muli_semi_bold"
+                        android:background="@color/colorPrimary"
                         android:gravity="center"
-                        android:text=""
+                        android:orientation="vertical"
+                        android:paddingTop="30dp">
 
-                        android:textColor="@color/white"
-                        android:textSize="24dp">
+                        <RelativeLayout
+                            android:layout_width="120dp"
+                            android:layout_height="120dp">
 
 
-                    </TextView>
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+
+                                android:src="#fff"
+                                app:civ_border_color="#9777B2"
+                                app:civ_border_width="8dp" />
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/image_profile"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+
+                                android:src="#fff"
+                                app:civ_border_color="#9777B2"
+                                app:civ_border_width="8dp" />
+                        </RelativeLayout>
+
+
+                        <TextView
+                            android:id="@+id/user_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp"
+
+                            android:fontFamily="@font/muli_semi_bold"
+                            android:gravity="center"
+                            android:text=""
+
+                            android:textColor="@color/white"
+                            android:textSize="22dp">
+
+
+                        </TextView>
+
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:background="@color/white"
+
                         android:orientation="vertical"
-                        android:paddingStart="10dp">
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp">
 
 
                         <LinearLayout
                             android:id="@+id/info_"
                             android:layout_width="match_parent"
-                            android:layout_height="60dp"
+                            android:layout_height="55dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/back_more_de"
                             android:gravity="center"
                             android:orientation="horizontal"
 
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp">
 
-
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:src="@drawable/ic_profil" />
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:src="@drawable/ic_profile_icon" />
+
+                            <LinearLayout
+                                android:layout_width="10dp"
+
+                                android:layout_height="10dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginRight="15dp"
                                 android:fontFamily="@font/frutiger_lt_arabic_light"
                                 android:text="@string/Personal_Details"
                                 android:textColor="#4A4A4A"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_10sdp" />
 
                             <LinearLayout
 
@@ -115,33 +131,20 @@
 
                             <ImageView
                                 android:id="@+id/not_compleate"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/ic_information"
-                                android:visibility="gone" />
-
-                            <LinearLayout
-
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1" />
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_uncompleat_icon"
+                                android:visibility="visible" />
 
 
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:src="@drawable/ic_left_arrow" />
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/Favorites"
                             android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginStart="20dp"
-                            android:background="#D8D8D8" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
+                            android:layout_height="55dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/back_more_de"
                             android:gravity="center"
                             android:orientation="horizontal"
 
@@ -149,19 +152,22 @@
                             android:paddingRight="15dp">
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:src="@drawable/ic_heart" />
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:src="@drawable/ic_favorites_icon" />
+
+                            <LinearLayout
+                                android:layout_width="10dp"
+
+                                android:layout_height="10dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginRight="15dp"
                                 android:fontFamily="@font/frutiger_lt_arabic_light"
                                 android:text="@string/Favorites"
                                 android:textColor="#4A4A4A"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_10sdp" />
 
                             <LinearLayout
 
@@ -170,10 +176,6 @@
                                 android:layout_weight="1" />
 
 
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:src="@drawable/ic_left_arrow" />
                         </LinearLayout>
 
 
@@ -200,7 +202,7 @@
                     android:gravity="center"
                     android:text="@string/Please_Login_or_Register"
                     android:textColor="#0D1904"
-                    android:textSize="@dimen/_14sdp" />
+                    android:textSize="@dimen/_13sdp" />
 
                 <Button
                     android:id="@+id/loginButton"
@@ -256,21 +258,33 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:background="@color/white"
+
                     android:orientation="vertical"
-                    android:paddingStart="10dp">
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp">
 
 
                     <LinearLayout
                         android:id="@+id/langauge"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/back_more_de"
                         android:gravity="center"
                         android:orientation="horizontal"
 
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp">
 
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:src="@drawable/ic_lang_icon" />
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+
+                            android:layout_height="10dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -278,7 +292,7 @@
                             android:fontFamily="@font/frutiger_lt_arabic_light"
                             android:text="@string/Language"
                             android:textColor="#4A4A4A"
-                            android:textSize="@dimen/_11sdp" />
+                            android:textSize="@dimen/_10sdp" />
 
                         <LinearLayout
 
@@ -296,36 +310,39 @@
                             android:textColor="@color/blue"
                             android:textSize="@dimen/_11sdp" />
 
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/ic_left_arrow" />
+
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="20dp"
-                        android:background="#D8D8D8" />
+                        android:id="@+id/terms"
 
-                    <LinearLayout
-                        android:id="@+id/changePassword"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/back_more_de"
                         android:gravity="center"
                         android:orientation="horizontal"
 
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp">
 
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:src="@drawable/ic_terms_icon" />
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+
+                            android:layout_height="10dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/frutiger_lt_arabic_light"
-                            android:text="@string/changePassword"
+                            android:text="@string/Termsandcondition"
                             android:textColor="#4A4A4A"
-                            android:textSize="@dimen/_11sdp" />
+                            android:textSize="@dimen/_10sdp" />
 
                         <LinearLayout
 
@@ -333,19 +350,120 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1" />
 
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text=""
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/_11sdp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/changePassword"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="55dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/back_more_de"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+
+                        android:paddingRight="15dp"
+                        android:visibility="gone">
 
                         <ImageView
                             android:layout_width="15dp"
                             android:layout_height="15dp"
-                            android:src="@drawable/ic_left_arrow" />
+                            android:src="@drawable/ic_change_password" />
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+
+                            android:layout_height="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_light"
+                            android:text="@string/changePassword"
+                            android:textColor="#4A4A4A"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text=""
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/_11sdp" />
+
+
                     </LinearLayout>
 
+
                     <LinearLayout
+                        android:id="@+id/contact_us"
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="20dp"
-                        android:background="#D8D8D8"
-                        android:visibility="gone" />
+                        android:layout_height="55dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/back_more_de"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:src="@drawable/ic_contact_us_icon" />
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+
+                            android:layout_height="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/frutiger_lt_arabic_light"
+                            android:text="@string/Call_Us"
+                            android:textColor="#4A4A4A"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text=""
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/_11sdp" />
+
+
+                    </LinearLayout>
+
 
                     <LinearLayout
                         android:id="@+id/privecy"
@@ -381,50 +499,6 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="20dp"
-                        android:background="#D8D8D8" />
-
-                    <LinearLayout
-                        android:id="@+id/terms"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp">
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_light"
-                            android:text="@string/Termsandcondition"
-                            android:textColor="#4A4A4A"
-                            android:textSize="@dimen/_11sdp" />
-
-                        <LinearLayout
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/ic_left_arrow" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="9dp"
-
-                        android:background="#F8F8F8" />
-
-                    <LinearLayout
                         android:id="@+id/logout"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
@@ -436,19 +510,19 @@
                         android:visibility="gone">
 
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_logout" />
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:src="@drawable/ic_logoutr_icon" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_light"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:text="@string/Logout"
                             android:textColor="#4A4A4A"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textSize="@dimen/_10sdp" />
 
                         <LinearLayout
 
@@ -458,6 +532,23 @@
 
 
                     </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:gravity="center"
+                        android:text="إصدار التطبيق V 2.0"
+                        android:textSize="10dp" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="9dp"
+
+                        android:background="#F8F8F8" />
+
 
                 </LinearLayout>
 
@@ -472,10 +563,11 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp">
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
 
                     <LinearLayout
@@ -488,14 +580,14 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            app:tint="@color/white"
-                            android:src="@drawable/ic_email_new"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp" />
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/ic_email_new"
+                            app:tint="@color/white" />
 
 
                         <TextView
-                            android:id="@+id/contact_us"
+
 
                             android:layout_width="wrap_content"
                             android:layout_height="45dp"

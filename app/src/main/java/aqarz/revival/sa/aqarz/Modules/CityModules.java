@@ -38,6 +38,17 @@ public class CityModules {
     private String country_id;
 
 
+
+    boolean selected=false;
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
     public String getSerial_city() {
         return serial_city;
     }

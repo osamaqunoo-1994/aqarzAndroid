@@ -136,19 +136,31 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
+                    <ImageView
+
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:padding="5dp"
+
+                        android:src="@drawable/ic_look" />
+
                     <EditText
                         android:id="@+id/password"
-                        style="@style/AppTheme.EditText"
+
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
-
-                        android:drawableStart="@drawable/ic_look"
-                        android:drawablePadding="@dimen/_8sdp"
+                        android:gravity="center_vertical"
                         android:hint="@string/password"
                         android:inputType="textPassword"
-                        android:textSize="14dp" />
+
+
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:textSize="13dp" />
 
                     <ImageView
                         android:id="@+id/pass_checkbox"
@@ -207,9 +219,8 @@
 
                 <TextView
                     android:id="@+id/dont_have_account"
-                    android:visibility="gone"
-
                     android:layout_width="wrap_content"
+
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/_15sdp"
@@ -217,7 +228,8 @@
                     android:gravity="end|center_vertical"
                     android:text="@string/don_t_have_an_account"
                     android:textColor="@color/textColor"
-                    android:textSize="@dimen/_11sdp" />
+                    android:textSize="@dimen/_11sdp"
+                    android:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/new_account"

@@ -101,14 +101,14 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="50dp"
                     android:layout_marginRight="20dp"
-                    android:hint="@string/name"
-
                     android:background="@drawable/mash"
 
-
                     android:drawableStart="@drawable/ic_profil"
+
+
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
+                    android:hint="@string/name"
                     android:inputType="text"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
@@ -148,9 +148,28 @@
                     android:drawableStart="@drawable/ic_phone_t"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
+                    android:hint="@string/phone_number"
                     android:inputType="number"
                     android:paddingLeft="20dp"
-                    android:hint="@string/phone_number"
+                    android:paddingRight="20dp"
+                    android:text=""
+
+                    android:textSize="13dp" />
+
+                <EditText
+
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/mash"
+                    android:drawableStart="@drawable/ic_www"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/Site"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:text=""
 
@@ -164,11 +183,12 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/mash"
-                    android:drawableStart="@drawable/ic_www"
+                    android:drawableStart="@drawable/ic_email_edit"
                     android:drawablePadding="10dp"
+
                     android:gravity="center_vertical"
-                    android:inputType="textEmailAddress"
                     android:hint="@string/email"
+                    android:inputType="textEmailAddress"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:text=""
@@ -186,8 +206,8 @@
                     android:drawableStart="@drawable/ic_pin_3"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
-                    android:inputType="number"
                     android:hint="@string/Address"
+                    android:inputType="number"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:text=""
@@ -205,10 +225,10 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
                     android:id="@+id/service_types_list"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" />
 
 
                 <TextView
@@ -222,9 +242,9 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
                     android:id="@+id/member_list"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
                 <Button
                     android:id="@+id/done"

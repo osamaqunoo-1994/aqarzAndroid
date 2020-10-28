@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Address;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,8 +50,10 @@ import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_MyState;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_member;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_member_profile;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders_my_requst;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
+import aqarz.revival.sa.aqarz.Modules.demandsModules;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.Settings;
 import aqarz.revival.sa.aqarz.Settings.WebService;
@@ -73,13 +76,15 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
     IResult mResultCallback;
 
     List<HomeModules_aqares> homeModules = new ArrayList<>();
-    List<HomeModules> homeModules1 = new ArrayList<>();
+    List<demandsModules> homeModules1 = new ArrayList<>();
 
     TextView aw1;
     TextView aw2;
     TextView aw3;
     TextView aw4;
     TextView aw5;
+
+    String service_types_te = "";
 
     RecyclerView alldate;
     RecyclerView member_list;
@@ -140,6 +145,8 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
                 try {
 
                     if (Settings.GetUser().getLat() != null) {
+
+                        System.out.println("______" + Settings.GetUser().getLat());
                         LatLng sydney = new LatLng(Double.valueOf(Settings.GetUser().getLat()), Double.valueOf(Settings.GetUser().getLan()));
                         googleMap.addMarker(new MarkerOptions()
                                 .position(sydney)
@@ -179,6 +186,8 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
 
                 WebService.loading(DetailsAqarzManActivity.this, true);
 
+
+                alldate.setBackgroundColor(getResources().getColor(R.color.color_back_rex));
                 init_volley();
 
                 VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsAqarzManActivity.this);
@@ -187,6 +196,14 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
 
             }
         });
+        WebService.loading(DetailsAqarzManActivity.this, true);
+
+        init_volley();
+
+        VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsAqarzManActivity.this);
+
+        mVolleyService.getDataVolley("my_estate", WebService.my_estate);
+
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -217,6 +234,7 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
                 aw5.setTextColor(getResources().getColor(R.color.textColor2));
 
                 WebService.loading(DetailsAqarzManActivity.this, true);
+                alldate.setBackgroundColor(getResources().getColor(R.color.white));
 
                 init_volley();
 
@@ -295,6 +313,7 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
                 title.setText("----------------");
 
             }
+            mobile.setText(Settings.GetUser().getMobile() + "");
 
             if (!Settings.GetUser().getEmail().toString().equals("null")) {
                 email.setText(Settings.GetUser().getEmail());
@@ -304,18 +323,36 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
 
             }
 
-            if (!Settings.GetUser().getCity_name().toString().equals("null")) {
-                try {
-                    address.setText(Settings.GetUser().getAddress());
+//            if (Settings.GetUser().getCity_name().toString().equals("null")) {
+//                try {
+//                    address.setText(Settings.GetUser().getAddress());
+//
+//                } catch (Exception e) {
+//
+//                }
+//
+//            } else {
+//                email.setText("");
+//
+//            }
 
-                } catch (Exception e) {
+
+            service_types_te = "";
+            for (int i = 0; i < Settings.GetUser().getService_name().size(); i++) {
+
+                if (service_types_te.equals("")) {
+                    service_types_te = Settings.GetUser().getService_name().get(i).getName() + "";
+
+                } else {
+                    service_types_te = service_types_te + "," + Settings.GetUser().getService_name().get(i).getName() + "";
 
                 }
 
-            } else {
-                email.setText("");
 
             }
+            address.setText(service_types_te + "");
+
+
             member_list.setAdapter(new RecyclerView_member_profile(DetailsAqarzManActivity.this, Settings.GetUser().getMember_name()));
 
             if (!Settings.GetUser().getLogo().toString().equals("null")) {
@@ -324,9 +361,8 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
             }
 
 
-            mobile.setText(Settings.GetUser().getMobile() + "");
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -400,14 +436,14 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
 
                                 Gson gson = new Gson();
 
-                                HomeModules bankModules = gson.fromJson(mJson, HomeModules.class);
+                                demandsModules bankModules = gson.fromJson(mJson, demandsModules.class);
                                 homeModules1.add(bankModules);
 
 
                             }
 
 
-                            alldate.setAdapter(new RecyclerView_HomeList(DetailsAqarzManActivity.this, homeModules1));
+                            alldate.setAdapter(new RecyclerView_orders_my_requst(DetailsAqarzManActivity.this, homeModules1));
 
 
                         } else if (requestType.equals("my_estate")) {

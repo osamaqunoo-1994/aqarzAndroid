@@ -83,7 +83,7 @@ public class MoreFragment extends Fragment {
     TextView language_text;
 
 
-     TextView contact_us;
+     LinearLayout contact_us;
 
 
     Button email_us;
@@ -128,7 +128,7 @@ public class MoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 System.out.println("***********" + Settings.GetUser().getType());
-                if (Settings.GetUser().getType().toString().equals("provider")) {
+                if (Settings.CheckIsAccountAqarzMan()) {
                     Intent intent = new Intent(getContext(), DetailsAqarzManActivity.class);
 //                                intent.putExtra("from", "splash");
                     startActivity(intent);
@@ -139,8 +139,6 @@ public class MoreFragment extends Fragment {
                     startActivity(intent);
                     getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                 }
-
-
             }
         });
         changePassword.setOnClickListener(new View.OnClickListener() {

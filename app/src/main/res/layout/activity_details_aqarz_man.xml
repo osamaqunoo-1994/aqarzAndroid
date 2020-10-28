@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F9F9F9"
     tools:context=".Activity.DetailsAqarzManActivity">
 
 
@@ -39,10 +40,10 @@
 
             <ImageView
                 android:id="@+id/edit"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:src="@drawable/ic_edit_pr" />
 
@@ -69,7 +70,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
 
-            android:layout_marginTop="-100dp">
+            android:layout_marginTop="-90dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
 
@@ -77,12 +78,22 @@
                 android:layout_height="100dp"
 
                 android:src="#fff"
-                app:civ_border_color="#9777B2"
+                app:civ_border_color="#ccc"
                 app:civ_border_width="2dp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+
+                android:layout_width="98dp"
+                android:layout_height="98dp"
+
+                android:src="#fff"
+                app:civ_border_color="#ccc"
+                app:civ_border_width="1dp" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile"
                 android:layout_width="96dp"
+
 
                 android:layout_height="96dp"
 
@@ -117,16 +128,19 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/frutiger_lt_arabic_bold"
+                        android:textColor="#424446"
 
                         android:textSize="17dp" />
 
                     <TextView
                         android:id="@+id/address"
                         android:layout_width="wrap_content"
+
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:fontFamily="@font/frutiger_lt_arabic_bold"
-                        android:textSize="17dp"
+                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:textColor="#424446"
+                        android:textSize="14dp"
 
                         />
 
@@ -136,6 +150,7 @@
                         android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:orientation="horizontal">
+
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -163,15 +178,10 @@
 
                                 android:text=""
                                 android:textSize="12dp" />
-                        </LinearLayout>
 
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="10dp"
+                                android:layout_height="wrap_content" />
 
                             <ImageView
                                 android:layout_width="25dp"
@@ -221,7 +231,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -247,12 +257,14 @@
                                 android:id="@+id/aw1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="42dp"
+                                android:background="@drawable/button_login"
                                 android:gravity="center"
+
                                 android:paddingLeft="15dp"
                                 android:paddingRight="15dp"
 
                                 android:text="@string/aw1"
-                                android:textColor="@color/textColor2" />
+                                android:textColor="@color/white" />
 
 
                             <TextView
@@ -313,8 +325,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/alldate"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_height="match_parent" />
 
 
                 </LinearLayout>

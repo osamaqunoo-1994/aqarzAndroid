@@ -324,15 +324,15 @@ public class EditProfileActivity extends AppCompatActivity {
             phone_ed.setText(Settings.GetUser().getMobile());
 
             if (Settings.GetUser().getName() != null) {
-                name_ed.setText(Settings.GetUser().getName());
+                name_ed.setText(Settings.GetUser().getName() + "");
 
             }
             if (Settings.GetUser().getEmail() != null) {
-                email_ed.setText(Settings.GetUser().getEmail());
+                email_ed.setText(Settings.GetUser().getEmail().toString() + "");
 
             }
             if (Settings.GetUser().getCity_name() != null) {
-                address.setText(Settings.GetUser().getCity_name());
+                address.setText(Settings.GetUser().getAddress() + "");
 
             }
 
@@ -604,7 +604,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 lat = "" + lat_;
                 lng = "" + lang_;
-                Toast.makeText(EditProfileActivity.this, "You selected the place: " + address_, Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditProfileActivity.this, "You selected the place: " + lat + address_, Toast.LENGTH_SHORT).show();
 //
 
 

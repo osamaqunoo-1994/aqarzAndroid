@@ -11,8 +11,8 @@
                 android:width="0dp"
                 android:color="#fff" />
 
-            <corners android:topRightRadius="15dp"
-                android:topLeftRadius="15dp"/>
+            <corners android:topRightRadius="25dp"
+                android:topLeftRadius="25dp"/>
         </shape>
     </item>
     <item>
@@ -26,8 +26,8 @@
                 android:width="0dp"
                 android:color="#28ABE3" />
 
-            <corners android:topRightRadius="15dp"
-                android:topLeftRadius="15dp"/>
+            <corners android:topRightRadius="25dp"
+                android:topLeftRadius="25dp"/>
         </shape>
     </item>
 </selector>

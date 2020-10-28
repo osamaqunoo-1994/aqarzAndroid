@@ -63,7 +63,7 @@
     <string name="Privacy">Privacy</string>
     <string name="Call_Us">Contact Us</string>
     <string name="Email_Us">Email Us</string>
-    <string name="Please_Login_or_Register">Please Login or Register</string>
+    <string name="Please_Login_or_Register">Sign in or create an account</string>
     <string name="Personal_Details">Personal Details</string>
     <string name="Logout">Logout</string>
     <string name="Favorites">Favorites</string>
@@ -414,5 +414,13 @@ Your request and reply in the fastest time</string>
     <string name="ss1">Is the property a resident?</string>
     <string name="ss2">Is the property examined?</string>
     <string name="ss3">Is the property insured or not?</string>
+
+
+
+    <string name="Status_">Status</string>
+    <string name="Edit_but_order">Edit</string>
+    <string name="seelctlosato">Select Address</string>
+    <string name="Site">Site</string>
+    <string name="SelectCity">Select City</string>
 
 </resources>

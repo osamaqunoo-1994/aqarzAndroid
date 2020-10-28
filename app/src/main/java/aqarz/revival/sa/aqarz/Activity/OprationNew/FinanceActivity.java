@@ -89,8 +89,8 @@ public class FinanceActivity extends AppCompatActivity {
     TextView ada_1_no;
     TextView property_dd_yes;
     TextView property_dd_no;
-    String ada_ = "1";
-    String property = "1";
+    String ada_ = "0";
+    String property = "0";
 
     BottomSheetDialogFragment_SelectBanks bottomSheetDialogFragment_selectBanks;
     EditText priceAqar, available_price, Solidarity_salary;
@@ -363,7 +363,7 @@ public class FinanceActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
 
-                String myFormat = "yyyy/MM/dd"; //In which you need put here 2020-02-15
+                String myFormat = "yyyy-MM-dd"; //In which you need put here 2020-02-15
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
                 date_bertih.setText(sdf.format(myCalendar.getTime()));
@@ -390,7 +390,7 @@ public class FinanceActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
 
-                String myFormat = "yyyy/MM/dd"; //In which you need put here
+                String myFormat = "yyyy-MM-dd"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
                 start_work_date.setText(sdf.format(myCalendar.getTime()));
@@ -623,6 +623,8 @@ public class FinanceActivity extends AppCompatActivity {
                         sendObj.put("engagements", Financial_obligations.getText().toString());
                         sendObj.put("city_id", city_id);
                         sendObj.put("name", name.getText().toString());
+                        sendObj.put("is_subsidized_property", ada_);
+                        sendObj.put("is_first_home",property);
 
 
                         sendObj.put("identity_number", id_number.getText().toString());

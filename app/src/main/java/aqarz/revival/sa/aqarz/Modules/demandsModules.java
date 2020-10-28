@@ -30,6 +30,9 @@ public class demandsModules {
     @SerializedName("price_from")
     @Expose
     private String priceFrom;
+    @SerializedName("address")
+    @Expose
+    private String address;
     @SerializedName("price_to")
     @Expose
     private String priceTo;
@@ -104,6 +107,10 @@ public class demandsModules {
 
     public void setOperationTypeId(Integer operationTypeId) {
         this.operationTypeId = operationTypeId;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public Integer getUserId() {

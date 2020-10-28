@@ -541,13 +541,22 @@ public class MapsFragment extends Fragment {
                 layout_list.setVisibility(View.VISIBLE);
 
                 convert_type = "list";
-                if (typeTab.equals("Orders_tab")) {
-                    get_data_from_api("list_order", filtter_selected);
 
-                } else {
+                if(Settings.CheckIsAccountAqarzMan()){
+                    if (typeTab.equals("Orders_tab")) {
+                        get_data_from_api("list_order", filtter_selected);
+
+                    } else {
+                        get_data_from_api("list_offer", filtter_selected);
+
+                    }
+                }else{
                     get_data_from_api("list_offer", filtter_selected);
 
                 }
+
+
+
 
 
             }

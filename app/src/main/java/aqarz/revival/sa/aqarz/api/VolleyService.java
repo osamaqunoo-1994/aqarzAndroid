@@ -2,6 +2,7 @@ package aqarz.revival.sa.aqarz.api;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.JsonToken;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -42,7 +43,7 @@ public class VolleyService {
         try {
             RequestQueue queue = Volley.newRequestQueue(mContext);
 
-            System.out.println("urlurl "+url);
+            System.out.println("urlurl " + url);
 
             JsonObjectRequest jsonObj = new JsonObjectRequest(url, sendObj, new Response.Listener<JSONObject>() {
                 @Override
@@ -86,6 +87,9 @@ public class VolleyService {
             client.post(url, requestParams, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject responseBody) {
+                    System.out.println("responseBody" + responseBody.toString());
+
+
                     if (mResultCallback != null) {
                         mResultCallback.notifySuccess(requestType, responseBody);
                     }
@@ -93,19 +97,22 @@ public class VolleyService {
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                    System.out.println("responseBody" + responseString.toString());
+
                     if (mResultCallback != null)
                         mResultCallback.notify_Async_Error(requestType, responseString);
                 }
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                    try{
+                    try {
 
+                        System.out.println("responseBody" + errorResponse.toString());
 
 
                         mResultCallback.notify_Async_Error(requestType, errorResponse.getString("message").toString());
 
-                    }catch (Exception e){
+                    } catch (Exception e) {
 
                     }
 
@@ -113,11 +120,13 @@ public class VolleyService {
 
                 @Override
                 public void onUserException(Throwable error) {
+                    System.out.println("responseBody" + error.toString());
 
                 }
 
                 @Override
                 public void onProgress(long bytesWritten, long totalSize) {
+
 
                 }
             });
@@ -168,10 +177,10 @@ public class VolleyService {
             RequestQueue queue = Volley.newRequestQueue(mContext);
 
 
-            System.out.println("urlurl "+url);
+            System.out.println("urlurl " + url);
 
 
-            JsonObjectRequest jsonObj = new JsonObjectRequest(Request.Method.GET, url,null, new Response.Listener<JSONObject>() {
+            JsonObjectRequest jsonObj = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     if (mResultCallback != null)
@@ -204,7 +213,7 @@ public class VolleyService {
         try {
             RequestQueue queue = Volley.newRequestQueue(mContext);
 
-            JsonObjectRequest jsonObj = new JsonObjectRequest(Request.Method.GET, url, null,new Response.Listener<JSONObject>() {
+            JsonObjectRequest jsonObj = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     if (mResultCallback != null)

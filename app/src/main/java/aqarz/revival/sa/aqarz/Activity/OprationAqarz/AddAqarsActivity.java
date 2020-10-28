@@ -27,6 +27,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -51,6 +52,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -200,6 +202,7 @@ public class AddAqarsActivity extends AppCompatActivity {
     TextView property_dd_no;
     TextView property_dd_yes1;
     TextView property_dd_no1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -240,7 +243,6 @@ public class AddAqarsActivity extends AppCompatActivity {
         property_dd_no = findViewById(R.id.property_dd_no);
         property_dd_yes1 = findViewById(R.id.property_dd_yes1);
         property_dd_no1 = findViewById(R.id.property_dd_no1);
-
 
 
         back = findViewById(R.id.back);
@@ -341,7 +343,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
         }
 
-        comfort_RecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        comfort_RecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 
 
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
@@ -465,7 +467,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
             }
         });
-           property_dd_yes1.setOnClickListener(new View.OnClickListener() {
+        property_dd_yes1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 property_dd_yes.setBackground(getResources().getDrawable(R.drawable.button_login));
@@ -494,7 +496,6 @@ public class AddAqarsActivity extends AppCompatActivity {
 
             }
         });
-
 
 
         ///------------------------------------------------------------------------------------------------------
@@ -2155,20 +2156,37 @@ public class AddAqarsActivity extends AppCompatActivity {
 
 //                        WebService.Make_Toast_color(AddAqarsActivity.this, message, "success");
 
+//
 
-                        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        final View popupView = layoutInflater.inflate(R.layout.card_add_aqares_success, null);
+                        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(AddAqarsActivity.this);
+                        View parentView = getLayoutInflater().inflate(R.layout.success_message, null);
+                        Button close = parentView.findViewById(R.id.close);
+                        close.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                finish();
+                            }
+                        });
+                        bottomSheerDialog.setContentView(parentView);
+
+                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
+                        bottomSheerDialog.show();
+//                        WebService.Make_Toast_color(FinanceActivity.this, message, "success");
 
 
-                        final AlertDialog.Builder builder = new AlertDialog.Builder(AddAqarsActivity.this);
+//                        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                        final View popupView = layoutInflater.inflate(R.layout.card_add_aqares_success, null);
+//
+//
+//                        final AlertDialog.Builder builder = new AlertDialog.Builder(AddAqarsActivity.this);
+//
+////            alertDialog_country =
+//                        builder.setView(popupView);
+//
+//
+//                        alertDialog = builder.show();
 
-//            alertDialog_country =
-                        builder.setView(popupView);
-
-
-                        alertDialog = builder.show();
-
-                        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//                        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                     } else {
 
 

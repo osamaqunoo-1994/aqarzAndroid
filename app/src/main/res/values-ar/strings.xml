@@ -55,7 +55,7 @@
     <string name="Privacy">سياسة الخصوصية</string>
     <string name="Call_Us">تواصل معنا</string>
     <string name="Email_Us">بريدنا الالكتروني</string>
-    <string name="Please_Login_or_Register">الرجاء تسجيل الدخول او جديد</string>
+    <string name="Please_Login_or_Register">قم بتسجيل الدخول أو إنشاء حساب </string>
     <string name="Personal_Details">المعلومات الشخصيه</string>
     <string name="Logout">تسجيل خروج</string>
     <string name="Favorites">المفضلة</string>
@@ -82,7 +82,7 @@
 
     <string name="are_you_change_lang_post">هل تريد تغيير اللغة?</string>
 
-    <string name="Information_Aqar">معلومات العقار</string>
+    <string name="Information_Aqar">بيانات العقار</string>
     <string name="AqarType">نوع العقار</string>
 
 
@@ -103,7 +103,7 @@
 
     <string name="Date_of_Birth">تاريخ الميلاد</string>
     <string name="city">المدينة</string>
-    <string name="Type_work">نوع العمل</string>
+    <string name="Type_work">العرض</string>
     <string name="governmental">حكومي</string>
     <string name="Special">خاص</string>
     <string name="Soldier">عسكري</string>
@@ -157,7 +157,7 @@
     <string name="Select_the_search_area">حدد منطقة البحث</string>
 
 
-    <string name="writedescription">اكتب التفاصيل</string>
+    <string name="writedescription">عن العقار</string>
     <string name="show_select">اظهر</string>
     <string name="hide_select">اخفاء</string>
     <string name="romes">غرف</string>
@@ -201,10 +201,10 @@
 
 
     <string name="Lounges">الصالات</string>
-    <string name="room">الغرف</string>
-    <string name="Bathrooms">دورات المياه</string>
-    <string name="Boards">مجالس</string>
-    <string name="Kitchens">مطابخ</string>
+    <string name="room">غرف النوم</string>
+    <string name="Bathrooms">دورة مياه</string>
+    <string name="Boards">المجالس</string>
+    <string name="Kitchens">مطبخ</string>
     <string name="Dining_rooms">غرف الطعام</string>
 
 
@@ -227,6 +227,7 @@
 
     <string name="means_comfort">وسائل الراحة</string>
     <string name="SelectImages">اضف صورة للعقار</string>
+    <string name="seelctlosato">أضف المنطقة</string>
 
 
     <string name="you_are_not_login_please_login">لم تسجل بالتطبيق !ّ لو سمحت قم بالتسجيل؟</string>
@@ -357,7 +358,7 @@
     <string name="t11_details">رقم الإعلان</string>
 
 
-    <string name="Show_MoreDetails">اظهار تفاصيل اكتر</string>
+    <string name="Show_MoreDetails">تفاصيل أخرى</string>
 
 
     <string name="title_siginuo">عقــــارز منصتــــك الأولى  لكــــل
@@ -441,4 +442,12 @@
     <string name="ss1">هل العقار مقيم؟</string>
     <string name="ss2">هل العقار مفحوص؟</string>
     <string name="ss3">هل العقار مؤمن ام لا؟</string>
+
+
+
+    <string name="Status_">الحالة</string>
+    <string name="Edit_but_order">تعديل</string>
+
+    <string name="Site">الموقع</string>
+    <string name="SelectCity">قم باختيار المدينة</string>
 </resources>
