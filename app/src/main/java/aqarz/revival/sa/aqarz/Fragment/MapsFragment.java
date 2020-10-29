@@ -490,9 +490,15 @@ public class MapsFragment extends Fragment {
                             .show();
                 } else {
 
-                    Intent intent = new Intent(getContext(), RequestServiceActivity.class);
+                    if (Settings.CheckIsCompleate()) {
+
+                        Intent intent = new Intent(getContext(), RequestServiceActivity.class);
 //                                intent.putExtra("from", "splash");
-                    startActivity(intent);
+                        startActivity(intent);
+                    } else {
+                        Settings.Dialog_not_compleate(getActivity());
+                    }
+
                 }
 
 
@@ -504,6 +510,7 @@ public class MapsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!Settings.checkLogin()) {
+
                     new AlertDialog.Builder(getContext())
                             .setMessage(getActivity().getResources().getString(R.string.you_are_not_login_please_login))
                             .setCancelable(false)
@@ -519,9 +526,16 @@ public class MapsFragment extends Fragment {
                             .setNegativeButton(getActivity().getResources().getString(R.string.no), null)
                             .show();
                 } else {
-                    Intent intent = new Intent(getContext(), AddAqarsActivity.class);
+
+                    if (Settings.CheckIsCompleate()) {
+                        Intent intent = new Intent(getContext(), AddAqarsActivity.class);
 //              intent.putExtra("from", "splash");
-                    startActivity(intent);
+                        startActivity(intent);
+                    } else {
+                        Settings.Dialog_not_compleate(getActivity());
+                    }
+
+
                 }
 
 //                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
@@ -542,7 +556,7 @@ public class MapsFragment extends Fragment {
 
                 convert_type = "list";
 
-                if(Settings.CheckIsAccountAqarzMan()){
+                if (Settings.CheckIsAccountAqarzMan()) {
                     if (typeTab.equals("Orders_tab")) {
                         get_data_from_api("list_order", filtter_selected);
 
@@ -550,13 +564,10 @@ public class MapsFragment extends Fragment {
                         get_data_from_api("list_offer", filtter_selected);
 
                     }
-                }else{
+                } else {
                     get_data_from_api("list_offer", filtter_selected);
 
                 }
-
-
-
 
 
             }

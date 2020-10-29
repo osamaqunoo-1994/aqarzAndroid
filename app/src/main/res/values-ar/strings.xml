@@ -463,4 +463,7 @@
     <string name="ChangePassword_ttitle">تغيير كلمة المرور</string>
     <string name="PasswordnadConfirmnotmatch">كلمة المرور غير متطابقه</string>
 
+
+    <string name="done_ok_done">يجب استكمال بيانات حسابك للاشتراك</string>
+    <string name="terms_title">اتفاقية الاستخدام</string>
 </resources>

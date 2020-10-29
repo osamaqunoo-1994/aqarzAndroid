@@ -164,7 +164,7 @@ new password</string>
     <string name="AddAqares">Add Aqares</string>
 
 
-    <string name="For_sale">For sale</string>
+    <string name="For_sale">Sell</string>
     <string name="rental_period">rental period</string>
 
 
@@ -433,7 +433,8 @@ Your request and reply in the fastest time</string>
     <string name="NewConfirmPassword">Confirm New Password</string>
     <string name="ChangePassword_ttitle">Change Password</string>
     <string name="PasswordnadConfirmnotmatch">Confirm Password does not match</string>
-    <string name="terms_title">اتفاقية الاستخدام</string>
+    <string name="done_ok_done">You must complete your account information to subscribe</string>
+    <string name="terms_title">Usage Agreement</string>
     <string name="tet_terms">ﺍﺗﻔﺎﻗﻴﺔ ﺍﻹﺳﺘﺨﺪﺍﻡﻋﺒﺮ ﺩﺧﻮﻟﻚ ﻭﺍﺳﺘﺨﺪﺍﻣﻚ ﻣﻮﻗﻊ ﺃﻭ ﺗﻄﺒﻴﻖ ﻋﻘﺎﺭﺯ ﻓﺈﻧﻚ ﺗﻘﺮ ﻭﺗﻮﺍﻓﻖ، ﺩﻭﻥ ﺇﺟﺮﺍﺀ ﺃﻱ ﺗﻌﺪﻳﻞ ﻭﺩﻭﻥ ﺃﻳﺔ ﻗﻴﻮﺩ ﺃﻭ ﺗﺒﺪﻳﻞ، ﻋﻠﻰ ﺍﻷﺣﻜﺎﻡ ﻭﺍﻟﺸﺮﻭﻁ ﺍﻟﻮﺍﺭﺩﺓ ﻓﻲ ﻫﺬﻩ (ﺍﻻﺗﻔﺎﻗﻴﺔ). ﺃﻧﺖ ﺗﻘﺮ ﻭﺗﻀﻤﻦ ﺣﻘﻚ ﺍﻟﻘﺎﻧﻮﻧﻲ ﻟﻠﺪﺧﻮﻝ ﻓﻲ ﻫﺬﻩ ﺍﻻﺗﻔﺎﻗﻴﺔ ﻭﺍﺳﺘﺨﺪﺍﻡ ﺍﻟﺨﺪﻣﺎﺕ ﺍﻟﺘﻲ ﻧﻘﺪﻣﻬﺎ ﻓﻲ ﻋﻘﺎﺭﺯ ﻭﻓﻘﺎً ﻟﻜﺎﻓﺔ ﺍﻟﺸﺮﻭﻁ ﻭﺍﻷﺣﻜﺎﻡ ﺍﻟﻮﺍﺭﺩﺓ ﻓﻴﻬﺎ.
         ﺗﺴﻌﻰ ﻣﺆﺳﺴﺔ ﻋﻠﻮ ﻭﺃﺳﺎﺱ ﻟﻺﺗﺼﺎﻻﺕ ﻭﺗﻘﻨﻴﺔ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﻗﺪﺭ ﺍﻹﻣﻜﺎﻥ ﺇﻟﻰ ﺗﻮﻓﻴﺮ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﻋﻠﻰ ﻣﻨﺼﺘﻬﺎ ﺑﺪﻗﺔ ﻣﺘﻨﺎﻫﻴﺔ. ﺇﻻ ﺃﻧﻪ ﻗﺪ ﺗﺮﺩ ﺑﻌﺾ ﺍﻷﺧﻄﺎﺀ ﻣﻦ ﺣﻴﻦ ﻵﺧﺮ. ﻭﻻ ﺗﺘﺤﻤﻞ ﻣﺆﺳﺴﺔ ﻋﻠﻮ ﻭﺃﺳﺎﺱ ﻟﻺﺗﺼﺎﻻﺕ ﻭﺗﻘﻨﻴﺔ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﺃﻱ ﻣﺴﺆﻭﻟﻴﺔ ﻋﻦ ﺃﻱ ﺧﻄﺄ ﻓﻲ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﺍﻟﺘﻲ ﻳﺘﻀﻤﻨﻬﺎ ﺍﻟﻤﻮﻗﻊ ﺍﻭ ﺍﻟﺘﻄﺒﻴﻖ.
         ﻣﺆﺳﺴﺔ ﻋﻠﻮ ﻭﺃﺳﺎﺱ ﻟﻺﺗﺼﺎﻻﺕ ﻭﺗﻘﻨﻴﺔ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﻟﻠﺘﺠﺎﺭﺓ ﻫﻲ ﺷﺮﻛﺔ ﺳﻌﻮﺩﻳﺔ ١٠٠ ٪ ﻭﻣﻘﺮﻫﺎ ﺍﻟﺮﺋﻴﺴﻲ ﻳﻘﻊ ﻓﻲ ﺍﻟﺨﺒﺮ. ﻭﻳﺸﺎﺭ ﺇﻟﻴﻬﺎ ﺑﻬﺬﻩ ﺍﻻﺗﻔﺎﻗﻴﺔ ﺑﺎﺳﻢ (ﻣﺆﺳﺴﺔ ﻋﻠﻮ ﻭﺃﺳﺎﺱ ﻟﻺﺗﺼﺎﻻﺕ ﻭﺗﻘﻨﻴﺔ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ) ﺃﻭ (ﻋﻘﺎﺭﺯ) ﺃﻭ (ﻧﺤﻦ) ﺃﻭ (ﻟﻨﺎ)، ﻭﺗﻤﺜﻞ ﻫﻨﺎ ﺍﻟﻄﺮﻑ ﺍﻷﻭﻝ.

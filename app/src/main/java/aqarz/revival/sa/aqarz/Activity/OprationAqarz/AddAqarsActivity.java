@@ -24,6 +24,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,6 +64,8 @@ import com.nguyenhoanglam.imagepicker.model.Image;
 import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker;
 import com.orhanobut.hawk.Hawk;
 import com.rtchagas.pingplacepicker.PingPlacePicker;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -106,7 +109,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     ImageView room_plus, room_minus;
     TextView room_text;
-
+    boolean is_place = false;
 
     ImageView Bathrooms_plus, Bathrooms_minus;
     TextView Bathrooms_text;
@@ -610,6 +613,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
 
                                 // No explanation needed, we can request the permission.
+                                requstcode = 11;
 
                                 ActivityCompat.requestPermissions(AddAqarsActivity.this,
                                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
@@ -632,7 +636,8 @@ public class AddAqarsActivity extends AppCompatActivity {
 //                                    // Google Play services is not available...
 //                                }
 
-
+                                requstcode = 11;
+                                is_place = true;
                                 Intent intent = new Intent(AddAqarsActivity.this, SelectLocationActivity.class);
                                 startActivityForResult(intent, 11);
 
@@ -1755,29 +1760,35 @@ public class AddAqarsActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if ((requestCode == 11)) {
+        if ((requstcode == 11 & is_place)) {
             if (resultCode == Activity.RESULT_OK) {
-                // TODO Extract the data returned from the child Activity.
-                String lat_ = data.getStringExtra("lat");
-                String lang_ = data.getStringExtra("lang");
-                String address_ = data.getStringExtra("address");
 
-                lat = "" + lat_;
-                lng = "" + lang_;
-                Toast.makeText(AddAqarsActivity.this, "You selected the place: " + address_, Toast.LENGTH_SHORT).show();
+                try {
+
+                    // TODO Extract the data returned from the child Activity.
+                    String lat_ = data.getStringExtra("lat");
+                    String lang_ = data.getStringExtra("lang");
+                    String address_ = data.getStringExtra("address");
+
+                    lat = "" + lat_;
+                    lng = "" + lang_;
+                    Toast.makeText(AddAqarsActivity.this, "You selected the place: " + address_, Toast.LENGTH_SHORT).show();
 //
-                LatLng sydney = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
-                googleMap.addMarker(new MarkerOptions()
-                        .position(sydney)
-                        .title("Marker"));
+                    LatLng sydney = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(sydney)
+                            .title("Marker"));
 
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
-                // Zoom in, animating the camera.
-                googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-                // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
-                Address = address_;
-
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+                    // Zoom in, animating the camera.
+                    googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+                    // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+                    Address = address_;
+                    is_place = false;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 //            if (data != null) {
 //                Place place = PingPlacePicker.getPlace(data);
@@ -1799,91 +1810,150 @@ public class AddAqarsActivity extends AppCompatActivity {
 
         }
 
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                Uri resultUri = result.getUri();
 
-        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1213)) {
+                if (requstcode == 1213) {
+                    String filePath = resultUri.getPath().toString();
+                    Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
 
+                    File file_image_profile = new File(filePath);
+                    try {
 
-            if (data != null) {
-                ArrayList<Image> images = ImagePicker.getImages(data);
-                String filePath = images.get(0).getPath().toString();
-                Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+                        RequestParams requestParams = new RequestParams();
 
-                File file_image_profile = new File(filePath);
-                try {
-
-                    RequestParams requestParams = new RequestParams();
-
-                    requestParams.put("photo", file_image_profile);
-
-
-                    Upload_image(requestParams, selectedImagea);
-                } catch (Exception e) {
-
-                }
-//                image_id.setImageBitmap(selectedImagea);
-//                get_id_image_file = new File(filePath);
-//                try {
-//                    RequestParams requestParams = new RequestParams();
-//                    requestParams.put("photo", file_image_profile);
-//
-//                } catch (Exception e) {
-//                }
-            }
-        }
-
-        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1217)) {
+                        requestParams.put("photo", file_image_profile);
 
 
-            if (data != null) {
-                ArrayList<Image> images = ImagePicker.getImages(data);
-                String filePath = images.get(0).getPath().toString();
-                Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+                        Upload_image(requestParams, selectedImagea);
+                    } catch (Exception e) {
+
+                    }
+                } else if (requstcode == 1217) {
+                    String filePath = resultUri.getPath().toString();
+
+                    Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+
+                    Instrument_file.setImageBitmap(selectedImagea);
+
+                    instrument_filexx = new File(filePath);
+                } else if (requstcode == 20) {
+                    String filePath = resultUri.getPath().toString();
+
+                    Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
 
 
-                Instrument_file.setImageBitmap(selectedImagea);
+                    Add_charts_image.setImageBitmap(selectedImagea);
 
-                instrument_filexx = new File(filePath);
-
-//                image_id.setImageBitmap(selectedImagea);
-//                get_id_image_file = new File(filePath);
-//                try {
-//                    RequestParams requestParams = new RequestParams();
-//                    requestParams.put("photo", file_image_profile);
-//
-//                } catch (Exception e) {
-//                }
-            }
-        }
+                    File file_image_profile = new File(filePath);
 
 
-        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 20)) {
+                    try {
 
+                        RequestParams requestParams = new RequestParams();
 
-            if (data != null) {
-                ArrayList<Image> images = ImagePicker.getImages(data);
-                String filePath = images.get(0).getPath().toString();
-                Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+                        requestParams.put("photo", file_image_profile);
 
+                        Upload_image_planed(requestParams, selectedImagea);
+                    } catch (Exception e) {
 
-                Add_charts_image.setImageBitmap(selectedImagea);
-
-                File file_image_profile = new File(filePath);
-
-
-                try {
-
-                    RequestParams requestParams = new RequestParams();
-
-                    requestParams.put("photo", file_image_profile);
-
-                    Upload_image_planed(requestParams, selectedImagea);
-                } catch (Exception e) {
+                    }
 
                 }
 
 
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
             }
         }
+
+//
+//        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1213)) {
+//
+//
+//            if (data != null) {
+//                ArrayList<Image> images = ImagePicker.getImages(data);
+//                String filePath = images.get(0).getPath().toString();
+//                Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+//
+//                File file_image_profile = new File(filePath);
+//                try {
+//
+//                    RequestParams requestParams = new RequestParams();
+//
+//                    requestParams.put("photo", file_image_profile);
+//
+//
+//                    Upload_image(requestParams, selectedImagea);
+//                } catch (Exception e) {
+//
+//                }
+////                image_id.setImageBitmap(selectedImagea);
+////                get_id_image_file = new File(filePath);
+////                try {
+////                    RequestParams requestParams = new RequestParams();
+////                    requestParams.put("photo", file_image_profile);
+////
+////                } catch (Exception e) {
+////                }
+//            }
+//        }
+//
+//        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1217)) {
+//
+//
+//            if (data != null) {
+//                ArrayList<Image> images = ImagePicker.getImages(data);
+//                String filePath = images.get(0).getPath().toString();
+//                Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+//
+//
+//                Instrument_file.setImageBitmap(selectedImagea);
+//
+//                instrument_filexx = new File(filePath);
+//
+////                image_id.setImageBitmap(selectedImagea);
+////                get_id_image_file = new File(filePath);
+////                try {
+////                    RequestParams requestParams = new RequestParams();
+////                    requestParams.put("photo", file_image_profile);
+////
+////                } catch (Exception e) {
+////                }
+//            }
+//        }
+//
+//
+//        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 20)) {
+//
+//
+//            if (data != null) {
+//                ArrayList<Image> images = ImagePicker.getImages(data);
+//                String filePath = images.get(0).getPath().toString();
+//                Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+//
+//
+//                Add_charts_image.setImageBitmap(selectedImagea);
+//
+//                File file_image_profile = new File(filePath);
+//
+//
+//                try {
+//
+//                    RequestParams requestParams = new RequestParams();
+//
+//                    requestParams.put("photo", file_image_profile);
+//
+//                    Upload_image_planed(requestParams, selectedImagea);
+//                } catch (Exception e) {
+//
+//                }
+//
+//
+//            }
+//        }
 
 
     }
@@ -2267,8 +2337,10 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     }
 
-    public void select_image_from_local(int permission, int st_code) {
+    int requstcode = 0;
 
+    public void select_image_from_local(int permission, int st_code) {
+        requstcode = st_code;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(AddAqarsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
@@ -2281,34 +2353,42 @@ public class AddAqarsActivity extends AppCompatActivity {
 
             } else {
 
+                CropImage.activity()
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .start(this);
 
-                ImagePicker.with(AddAqarsActivity.this)
-                        .setFolderMode(true)
-                        .setFolderTitle("Album")
 
-                        .setDirectoryName("Image Picker")
-                        .setMultipleMode(false)
-                        .setShowNumberIndicator(true)
-                        .setMaxSize(1)
-                        .setLimitMessage("You can select one image")
-
-                        .setRequestCode(st_code)
-                        .start();
+//                ImagePicker.with(AddAqarsActivity.this)
+//                        .setFolderMode(true)
+//                        .setFolderTitle("Album")
+//
+//                        .setDirectoryName("Image Picker")
+//                        .setMultipleMode(false)
+//                        .setShowNumberIndicator(true)
+//                        .setMaxSize(1)
+//                        .setLimitMessage("You can select one image")
+//
+//                        .setRequestCode(st_code)
+//                        .start();
             }
         } else {
+            CropImage.activity()
+                    .setGuidelines(CropImageView.Guidelines.ON)
+                    .start(this);
 
-            ImagePicker.with(AddAqarsActivity.this)
-                    .setFolderMode(true)
-                    .setFolderTitle("Album")
 
-                    .setDirectoryName("Image Picker")
-                    .setMultipleMode(false)
-                    .setShowNumberIndicator(true)
-                    .setMaxSize(1)
-                    .setLimitMessage("You can select one image")
-
-                    .setRequestCode(st_code)
-                    .start();
+//            ImagePicker.with(AddAqarsActivity.this)
+//                    .setFolderMode(true)
+//                    .setFolderTitle("Album")
+//
+//                    .setDirectoryName("Image Picker")
+//                    .setMultipleMode(false)
+//                    .setShowNumberIndicator(true)
+//                    .setMaxSize(1)
+//                    .setLimitMessage("You can select one image")
+//
+//                    .setRequestCode(st_code)
+//                    .start();
 
         }
 
@@ -2319,6 +2399,8 @@ public class AddAqarsActivity extends AppCompatActivity {
 
         if (ContextCompat.checkSelfPermission(AddAqarsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
         } else {
+            requstcode = requestCode;
+
             ImagePicker.with(AddAqarsActivity.this)
                     .setFolderMode(true)
                     .setFolderTitle("Album")
@@ -2331,6 +2413,8 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                     .setRequestCode(requestCode)
                     .start();
+
+
         }
 
 

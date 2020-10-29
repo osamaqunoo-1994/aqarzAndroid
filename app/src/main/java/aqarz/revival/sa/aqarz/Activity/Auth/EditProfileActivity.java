@@ -114,7 +114,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     public void init() {
         name_ed = findViewById(R.id.name_ed);
-        email_ed = findViewById(R.id.email_ed);
+        email_ed = findViewById(R.id.www);
         phone_ed = findViewById(R.id.phone_ed);
         done = findViewById(R.id.done);
         back = findViewById(R.id.back);
