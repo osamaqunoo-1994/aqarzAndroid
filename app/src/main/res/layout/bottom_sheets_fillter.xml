@@ -10,7 +10,8 @@
     <ScrollView
         android:layout_width="match_parent"
 
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,12 +73,62 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
+                android:visibility="gone"
                 app:bar_color="#95959A"
                 app:bar_highlight_color="#814C99"
                 app:left_thumb_image="@drawable/thumb"
                 app:max_value="1000000"
                 app:min_value="0"
                 app:right_thumb_image="@drawable/thumb" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:paddingBottom="5dp">
+
+
+                <EditText
+                    android:id="@+id/Les_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/mash"
+                    android:gravity="center_vertical"
+                    android:hint="@string/Les_price"
+                    android:inputType="number"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+
+                    android:text=""
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/_10sdp" />
+
+                <LinearLayout
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/Maximum_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/mash"
+                    android:gravity="center_vertical"
+                    android:hint="@string/Maximum_price"
+                    android:inputType="number"
+                    android:paddingLeft="10dp"
+
+                    android:paddingRight="10dp"
+                    android:text=""
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/_10sdp" />
+
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -90,6 +141,56 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="15dp" />
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:paddingBottom="5dp">
+
+
+                <EditText
+                    android:id="@+id/Les_space"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/mash"
+                    android:gravity="center_vertical"
+                    android:hint="@string/Les_space"
+                    android:inputType="number"
+
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text=""
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/_10sdp" />
+
+                <LinearLayout
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/Maximum_space"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/mash"
+                    android:gravity="center_vertical"
+                    android:hint="@string/Maximum_space"
+                    android:inputType="number"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+
+                    android:text=""
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/_10sdp" />
+
+
+            </LinearLayout>
+
             <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
                 android:id="@+id/area_sseekbar"
                 android:layout_width="match_parent"
@@ -97,6 +198,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
+                android:visibility="gone"
                 app:bar_color="#95959A"
                 app:bar_highlight_color="#814C99"
                 app:left_thumb_image="@drawable/thumb"
@@ -109,7 +211,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp">
+                android:layout_marginRight="25dp"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/min_area"

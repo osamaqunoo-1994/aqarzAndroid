@@ -73,6 +73,8 @@ public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerVi
         TextView type;
         TextView dublex;
         TextView opration;
+        TextView address;
+        TextView date;
         ImageView image_icon;
 
 
@@ -101,6 +103,8 @@ public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerVi
             dublex = view.findViewById(R.id.dublex);
             opration = view.findViewById(R.id.opration);
             type = view.findViewById(R.id.type);
+            address = view.findViewById(R.id.address);
+            date = view.findViewById(R.id.date);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
@@ -150,6 +154,8 @@ public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerVi
         holder.price.setText(alldata.get(position).getTotalPrice());
         holder.type.setText(alldata.get(position).getEstate_type_name());
         holder.opration.setText(alldata.get(position).getOperationTypeName());
+        holder.address.setText(alldata.get(position).getAddress()+"");
+        holder.date.setText(alldata.get(position).getCreatedAt()+"");
 //        holder.number_room.setText(alldata.get(position).getRoomsNumber());
 //        holder.number_bathroom.setText(alldata.get(position).getBathroomsNumber());
 //        holder.max_space.setText(alldata.get(position).getStreetView());

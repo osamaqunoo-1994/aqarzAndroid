@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
 
     android:orientation="vertical">
@@ -43,9 +44,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="38dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="7dp"
 
-                    android:background="@drawable/mash">
+                    android:background="@drawable/mash"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_5sdp">
+
+                    <ImageView
+                        android:id="@+id/my_requst_icon"
+
+                        app:tint="@color/textColor2"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:visibility="gone"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/ic_logo_map" />
 
                     <TextView
                         android:id="@+id/my_order_text"
@@ -54,8 +68,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
 
-                        android:paddingLeft="@dimen/_12sdp"
-                        android:paddingRight="@dimen/_12sdp"
+
                         android:text="@string/MyOrder"
                         android:textSize="12dp" />
                 </LinearLayout>
@@ -86,7 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="38dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="7dp"
+
                     android:background="@drawable/mash">
 
                     <TextView
@@ -95,8 +108,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:paddingLeft="@dimen/_12sdp"
-                        android:paddingRight="@dimen/_12sdp"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:paddingRight="@dimen/_5sdp"
                         android:text="@string/Shoppingrequest"
                         android:textSize="12dp" />
                 </LinearLayout>

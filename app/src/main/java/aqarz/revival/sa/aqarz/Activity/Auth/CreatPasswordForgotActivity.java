@@ -1,7 +1,5 @@
 package aqarz.revival.sa.aqarz.Activity.Auth;
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
@@ -10,7 +8,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,7 +30,7 @@ import aqarz.revival.sa.aqarz.Settings.WebService;
 import aqarz.revival.sa.aqarz.api.IResult;
 import aqarz.revival.sa.aqarz.api.VolleyService;
 
-public class NewConfirmationActivity extends AppCompatActivity {
+public class CreatPasswordForgotActivity extends AppCompatActivity {
     EditText code_ed;
     EditText Cpassword;
     EditText phone_ed;
@@ -59,7 +56,7 @@ public class NewConfirmationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_register_co);
 
         init_volley();
 
@@ -108,7 +105,7 @@ public class NewConfirmationActivity extends AppCompatActivity {
         });
 
         try {
-            mobile = getIntent().getStringExtra("mobile");
+//            mobile = getIntent().getStringExtra("mobile");
             code = getIntent().getStringExtra("code");
 //            phone_ed.setText(mobile);
         } catch (Exception e) {
@@ -192,23 +189,22 @@ public class NewConfirmationActivity extends AppCompatActivity {
                 if (
                         Cpassword.getText().toString().equals("") |
                                 password.getText().toString().equals("")) {
-                    WebService.Make_Toast_color(NewConfirmationActivity.this, getResources().getString(R.string.fillallfileds) + "", "error");
+                    WebService.Make_Toast_color(CreatPasswordForgotActivity.this, getResources().getString(R.string.fillallfileds) + "", "error");
                 } else {
-                    WebService.loading(NewConfirmationActivity.this, true);
+                    WebService.loading(CreatPasswordForgotActivity.this, true);
 
-                    VolleyService mVolleyService = new VolleyService(mResultCallback, NewConfirmationActivity.this);
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, CreatPasswordForgotActivity.this);
 
 
                     JSONObject sendObj = new JSONObject();
 
                     try {
 
-                        sendObj.put("mobile", mobile);
+//                        sendObj.put("mobile", mobile);
                         sendObj.put("code", code);
-
                         sendObj.put("password", password.getText().toString());
                         sendObj.put("password_confirmation", Cpassword.getText().toString());
-                        sendObj.put("country_code", "+966");
+//                        sendObj.put("country_code", "+966");
 
 //                        sendObj.put("device_token", "157");
 //                        sendObj.put("type", type);
@@ -216,7 +212,7 @@ public class NewConfirmationActivity extends AppCompatActivity {
 //                        sendObj.put("device_type", "android");
 
                         System.out.println(sendObj.toString());
-                        mVolleyService.postDataVolley_without_token("verify", WebService.verify, sendObj);
+                        mVolleyService.postDataVolley_without_token("reset_password", WebService.reset_password, sendObj);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -274,7 +270,7 @@ public class NewConfirmationActivity extends AppCompatActivity {
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + response.toString());
-                WebService.loading(NewConfirmationActivity.this, false);
+                WebService.loading(CreatPasswordForgotActivity.this, false);
 //{"status":true,"code":200,"message":"User Profile","data"
                 try {
                     boolean status = response.getBoolean("status");
@@ -293,13 +289,13 @@ public class NewConfirmationActivity extends AppCompatActivity {
 
 
                         String message = response.getString("message");
-                        WebService.Make_Toast_color(NewConfirmationActivity.this, message, "success");
+                        WebService.Make_Toast_color(CreatPasswordForgotActivity.this, message, "success");
                         finish();
 
                     } else {
                         String message = response.getString("message");
 
-                        WebService.Make_Toast_color(NewConfirmationActivity.this, message, "error");
+                        WebService.Make_Toast_color(CreatPasswordForgotActivity.this, message, "error");
                     }
 
 
@@ -325,7 +321,7 @@ public class NewConfirmationActivity extends AppCompatActivity {
                     String message = jsonObject.getString("message");
 
 
-                    WebService.Make_Toast_color(NewConfirmationActivity.this, message, "error");
+                    WebService.Make_Toast_color(CreatPasswordForgotActivity.this, message, "error");
 
                     Log.e("error response", response_data);
 
@@ -333,7 +329,7 @@ public class NewConfirmationActivity extends AppCompatActivity {
 
                 }
 
-                WebService.loading(NewConfirmationActivity.this, false);
+                WebService.loading(CreatPasswordForgotActivity.this, false);
 
 
             }

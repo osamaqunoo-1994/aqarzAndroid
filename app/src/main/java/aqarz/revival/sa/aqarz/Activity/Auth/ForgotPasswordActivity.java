@@ -84,11 +84,12 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
                     try {
 
-                        sendObj.put("email", email_ed.getText().toString());
+                        sendObj.put("mobile", email_ed.getText().toString());
+                        sendObj.put("country_code", "+966");
 
 
                         System.out.println(sendObj.toString());
-                        mVolleyService.postDataVolley("forget password", WebService.forget_password, sendObj);
+                        mVolleyService.postDataVolley_without_token("forget*********password", WebService.forget_password1,sendObj);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -117,11 +118,31 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     boolean status = response.getBoolean("status");
                     if (status) {
 
+                        String data = response.getString("data");
+
+                        JSONObject jsonObject=new JSONObject(data);
+                        String code = jsonObject.getString("code");
+
+//                        Hawk.put("user", data);
+//                        JsonParser parser = new JsonParser();
+//                        JsonElement mJson = parser.parse(data);
+//
+//                        Gson gson = new Gson();
+//                        User userModules = gson.fromJson(mJson, User.class);
+//
+//                        Hawk.put("api_token", "token " + userModules.getApi_token() + "");
 
                         String message = response.getString("message");
 
                         WebService.Make_Toast_color(ForgotPasswordActivity.this, message, "success");
 
+
+                        Intent intent = new Intent(ForgotPasswordActivity.this, ConfirmationForgotActivity.class);
+                        intent.putExtra("mobile", email_ed.getText().toString() + "");
+                        intent.putExtra("code", code + "");
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                        finish();
 
                     } else {
                         String message = response.getString("message");

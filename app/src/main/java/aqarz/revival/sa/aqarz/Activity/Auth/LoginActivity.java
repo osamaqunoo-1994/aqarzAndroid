@@ -7,11 +7,13 @@ import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -34,12 +36,14 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import aqarz.revival.sa.aqarz.Activity.MainActivity;
 import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
 import aqarz.revival.sa.aqarz.Modules.User;
 import aqarz.revival.sa.aqarz.R;
+import aqarz.revival.sa.aqarz.Settings.LocaleUtils;
 import aqarz.revival.sa.aqarz.Settings.WebService;
 import aqarz.revival.sa.aqarz.api.IResult;
 import aqarz.revival.sa.aqarz.api.VolleyService;
@@ -49,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText phone_ed;
     EditText password;
     TextView forget_pass;
-    AppCompatButton new_account;
+    TextView new_account;
     AppCompatButton Login;
 
     IResult mResultCallback;
@@ -84,43 +88,60 @@ public class LoginActivity extends AppCompatActivity {
         forget_pass = findViewById(R.id.forget_pass);
         pass_checkbox = findViewById(R.id.pass_checkbox);
         back = findViewById(R.id.back);
+//
+//        phone_ed.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (hasFocus) {
+//                    phone_ed.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background_color));
+//
+////                    Drawable img = getResources().getDrawable(R.drawable.ic_phone_color);
+//
+////                    phone_ed.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
+//
+//                } else {
+//                    phone_ed.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background));
+////                    Drawable img = getResources().getDrawable(R.drawable.ic_phone);
+//
+////                    phone_ed.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
+//
+//                }
+//            }
+//        });
 
-        phone_ed.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    phone_ed.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background_color));
+//        password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (hasFocus) {
+//                    password.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background_color));
+////                    password.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_look), null, null, null);
+//
+//                } else {
+//                    password.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background));
+////                    password.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_look_color), null, null, null);
+//
+//                }
+//            }
+//        });
 
-//                    Drawable img = getResources().getDrawable(R.drawable.ic_phone_color);
+//
+//        if (isRTL(getResources().getConfiguration().locale))
+//            password.setGravity(View.TEXT_ALIGNMENT_TEXT_START);
+//
+//
+        if (Hawk.get("lang").toString().equals("ar")) {
 
-//                    phone_ed.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
 
-                } else {
-                    phone_ed.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background));
-//                    Drawable img = getResources().getDrawable(R.drawable.ic_phone);
+            password.setGravity(Gravity.RIGHT);
 
-//                    phone_ed.setCompoundDrawablesWithIntrinsicBounds(img, null, null, null);
+        } else {
+            password.setGravity(Gravity.LEFT);
 
-                }
-            }
-        });
 
-        password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    password.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background_color));
-//                    password.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_look), null, null, null);
+        }
 
-                } else {
-                    password.setBackgroundDrawable(getDrawable(R.drawable.edit_text_background));
-//                    password.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_look_color), null, null, null);
-
-                }
-            }
-        });
 
         new_account.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,6 +194,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
+                finish();
 
             }
         });
@@ -284,4 +306,9 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    public static boolean isRTL(Locale locale) {
+        final int directionality = Character.getDirectionality(locale.getDisplayName().charAt(0));
+        return directionality == Character.DIRECTIONALITY_RIGHT_TO_LEFT ||
+                directionality == Character.DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC;
+    }
 }

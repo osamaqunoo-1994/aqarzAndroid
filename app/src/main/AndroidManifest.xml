@@ -74,19 +74,26 @@
             android:theme="@style/AppTheme.NoActionBar_orders" />
         <activity
             android:name=".Activity.TermsActivity"
-            android:theme="@style/AppTheme.NoActionBar_orders" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.Auth.NewPasswordActivity"
-            android:theme="@style/AppTheme.NoActionBar_login" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.Auth.ForgotPasswordActivity"
-            android:theme="@style/AppTheme.NoActionBar_login" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.Auth.MyProfileInformationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.Auth.ConfirmationActivity"
-            android:theme="@style/AppTheme.NoActionBar_login" />
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".Activity.Auth.CreatPasswordForgotActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.Auth.ConfirmationForgotActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.Auth.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -66,7 +66,10 @@ import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_bottomSheet_type;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders_demands;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders_demandsx;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders_my_requst;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders_my_requstx;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_ordersx;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity_fillter;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
@@ -523,7 +526,7 @@ public class OrdersFragment extends Fragment {
                             }
 
 
-                            orders_rec.setAdapter(new RecyclerView_orders_my_requst(getContext(), MyRequst));
+                            orders_rec.setAdapter(new RecyclerView_orders_my_requstx(getContext(), MyRequst));
 
                             if (MyRequst.size() != 0) {
                                 nodata_vis.setVisibility(View.GONE);
@@ -606,7 +609,7 @@ public class OrdersFragment extends Fragment {
                             }
 
 
-                            orders_rec.setAdapter(new RecyclerView_orders_demands(getContext(), demandsModules_list));
+                            orders_rec.setAdapter(new RecyclerView_orders_demandsx(getContext(), demandsModules_list));
 
 
                             if (demandsModules_list.size() != 0) {
@@ -642,7 +645,7 @@ public class OrdersFragment extends Fragment {
                             }
 
 
-                            orders_rec.setAdapter(new RecyclerView_orders(getContext(), ordersModules));
+                            orders_rec.setAdapter(new RecyclerView_ordersx(getContext(), ordersModules));
                             if (ordersModules.size() != 0) {
                                 nodata_vis.setVisibility(View.GONE);
                             } else {
@@ -784,7 +787,7 @@ public class OrdersFragment extends Fragment {
 
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("fund_Request", WebService.fund_Request+"?estate_type_id="+opration_select);
+            mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?estate_type_id=" + opration_select);
 
 
         } else if (requst_type.equals("market_demands")) {
@@ -793,14 +796,14 @@ public class OrdersFragment extends Fragment {
 
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("market_demands", WebService.market_demands+"?estate_type_id="+opration_select);
+            mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?estate_type_id=" + opration_select);
 
         } else if (requst_type.equals("my_request")) {
             WebService.loading(getActivity(), true);
 
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("my_request", WebService.my_request+"?estate_type_id="+opration_select);
+            mVolleyService.getDataVolley("my_request", WebService.my_request + "?estate_type_id=" + opration_select);
         }
     }
 }

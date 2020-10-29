@@ -26,7 +26,9 @@ public class WebService {
     public static String login = Domain + "login";
     public static String register = Domain + "register";
     public static String mobile_verify = Domain + "mobile/verify";
+    public static String mobile_verify_code = Domain + "confirm/password/code";
     public static String forget_password = Domain + "forget/password";
+    public static String forget_password1 = Domain + "forget/password";
     public static String update_password = Domain + "update/password";
     public static String update_my_profile = Domain + "update/my/profile";
     public static String settings = Domain + "settings";
@@ -52,11 +54,13 @@ public class WebService {
     public static String my_estate = Domain + "my/estate";
     public static String send_offer_fund_Request = Domain + "send/offer/fund/Request";
     public static String verify = Domain + "verify";
+    public static String reset_password = Domain + "reset/password";
     public static String upgrade = Domain + "upgrade";
     public static String my_request = Domain + "my/request";
     public static String contact_us = Domain + "contact/us";
     public static String neighborhoods = Domain + "neighborhoods";
     public static String market_demands = Domain + "market/demands";
+
 
 
     public static void Header_Async(AsyncHttpClient client, boolean is_token) {

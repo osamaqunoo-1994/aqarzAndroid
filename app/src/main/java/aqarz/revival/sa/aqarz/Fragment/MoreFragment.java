@@ -83,7 +83,7 @@ public class MoreFragment extends Fragment {
     TextView language_text;
 
 
-     LinearLayout contact_us;
+    LinearLayout contact_us;
 
 
     Button email_us;
@@ -354,8 +354,6 @@ public class MoreFragment extends Fragment {
 
     public void check_user_login() {
         try {
-
-
             if (Hawk.contains("user")) {
 
                 if (Hawk.get("user").toString().equals("")) {

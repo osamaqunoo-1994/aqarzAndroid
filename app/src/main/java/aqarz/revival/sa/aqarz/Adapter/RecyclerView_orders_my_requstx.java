@@ -2,44 +2,37 @@ package aqarz.revival.sa.aqarz.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import aqarz.revival.sa.aqarz.Activity.DetailsActivity;
-import aqarz.revival.sa.aqarz.Activity.DetailsActivity_aqarz;
-import aqarz.revival.sa.aqarz.Modules.HomeModules;
-import aqarz.revival.sa.aqarz.Modules.TypeModules;
+import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
+import aqarz.revival.sa.aqarz.Modules.demandsModules;
 import aqarz.revival.sa.aqarz.R;
 
 
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_HomeList.MyViewHolder> {
-    public static List<HomeModules> alldata = new ArrayList<HomeModules>();
+public class RecyclerView_orders_my_requstx extends RecyclerView.Adapter<RecyclerView_orders_my_requstx.MyViewHolder> {
+    public static List<demandsModules> alldata = new ArrayList<demandsModules>();
     static int Postion_opend = 0;
 
 
     static AlertDialog alertDialog;
     private ItemClickListener mItemClickListener;
 
-
+    BottomSheetDialogFragment_MyEstate bottomSheetDialogFragment_myEstate;
     /**
      * View holder class
      */
@@ -61,48 +54,34 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
 //        ProgressBar progress;
 //        LinearLayout add_to_my;
 
-//        ImageView image_aqars;
-//        TextView type;
-//        TextView price;
-        TextView address;
-//        TextView opration;
-//        TextView space;
 
         TextView price;
-        TextView type;
-        TextView dublex;
-        TextView opration;
-        TextView date;
-
+        TextView address;
+        TextView view_type;
+        TextView space;
+        TextView name_estate;
+        TextView new_offer;
         ImageView image_icon;
 
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
 
-//
-//            image_aqars = view.findViewById(R.id.image_aqars);
-//            type = view.findViewById(R.id.type);
-//            price = view.findViewById(R.id.price);
-//            space = view.findViewById(R.id.space);
-//            address = view.findViewById(R.id.address);
-//            opration = view.findViewById(R.id.opration);
-            image_icon = view.findViewById(R.id.image_icon);
-            price = view.findViewById(R.id.price);
-            dublex = view.findViewById(R.id.dublex);
-            opration = view.findViewById(R.id.opration);
-            type = view.findViewById(R.id.type);
-            address = view.findViewById(R.id.address);
-            date = view.findViewById(R.id.date);
 
-//            ratingbar = view.findViewById(R.id.ratingbar);
+            price = view.findViewById(R.id.price);
+            name_estate = view.findViewById(R.id.name_estate);
+            address = view.findViewById(R.id.address);
+            space = view.findViewById(R.id.space);
+            view_type = view.findViewById(R.id.view_type);
+            new_offer = view.findViewById(R.id.new_offer);
+            image_icon = view.findViewById(R.id.image_icon);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
     }
 
-    public RecyclerView_HomeList(Context context, List<HomeModules> alldata) {
+    public RecyclerView_orders_my_requstx(Context context, List<demandsModules> alldata) {
         this.alldata = alldata;
         this.context = context;
     }
@@ -127,27 +106,20 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
 //
 //            }
 //        }
-////
 //
 
-//
-//        holder.type.setText(alldata.get(position).getEstate_type_name());
-//        holder.space.setText(alldata.get(position).getArea_from() + " - " + alldata.get(position).getArea_to());
-//
-//        holder.price.setText(alldata.get(position).getPrice_from() + " - " + alldata.get(position).getPrice_to());
-//
-//
-//        holder.opration.setText(alldata.get(position).getRequest_type());
 
-       holder. price.setText(alldata.get(position).getPrice_from() + " - " + alldata.get(position).getPrice_to());
-        holder.type.setText(alldata.get(position).getEstate_type_name());
-        holder.opration.setText(alldata.get(position).getOperation_type_name());
-        holder.date.setText(alldata.get(position).getCreated_at());
+        holder.price.setText(alldata.get(position).getPriceFrom() + " - " + alldata.get(position).getPriceTo());
+//        holder.view_type.setText(alldata.get(position).getDirEstate());
+//        holder.space.setText(alldata.get(position).getStreetViewRange());
+        holder.name_estate.setText(alldata.get(position).getEstateTypeName());
+//        holder.address.setText(alldata.get(position).getAddress());
+//        holder.address.setText(alldata.get(position).getCityName() + " , " + alldata.get(position).getNeighborhoodName());
 
-        Picasso.get().load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
 
+//
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
+//        Picasso.get().load(alldata.get(position).getes()).into(holder.image_icon);
 ////
 //
 //        try {
@@ -210,10 +182,6 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
 
 //                RequestOrderActivity.set_fragment(position);
 
-                Intent intent = new Intent(context, DetailsActivity.class);
-                intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
-                context.startActivity(intent);
-
 
                 if (mItemClickListener != null) {
                     mItemClickListener.onItemClick(position);
@@ -222,6 +190,16 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
 
             }
         });
+//        holder.new_offer.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getId() + "");
+//
+//                bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+//
+//
+//            }
+//        });
 
 
     }
@@ -242,7 +220,7 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_bottom_details_aqarz_order, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_orders_my_orderx, parent, false);
 
 
         // Fresco.initialize(context);

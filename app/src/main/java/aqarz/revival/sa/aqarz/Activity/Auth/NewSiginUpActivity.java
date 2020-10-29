@@ -143,6 +143,10 @@ public class NewSiginUpActivity extends AppCompatActivity {
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String data = response.getString("data");
+//                        "data":{"code":"076218"}
+
+                        JSONObject jsonObject=new JSONObject(data);
+                        String code = jsonObject.getString("code");
 
 //                        Hawk.put("user", data);
 //                        JsonParser parser = new JsonParser();
@@ -158,8 +162,9 @@ public class NewSiginUpActivity extends AppCompatActivity {
                         WebService.Make_Toast_color(NewSiginUpActivity.this, message, "success");
 
 
-                        Intent intent = new Intent(NewSiginUpActivity.this, NewConfirmationActivity.class);
+                        Intent intent = new Intent(NewSiginUpActivity.this, ConfirmationActivity.class);
                         intent.putExtra("mobile", phone_ed.getText().toString() + "");
+                        intent.putExtra("code", code + "");
                         startActivity(intent);
                         overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                         finish();

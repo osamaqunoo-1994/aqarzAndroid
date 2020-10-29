@@ -21,7 +21,7 @@
     <string name="hint_email_address">أدخل البريد الإلكتروني ؟</string>
     <string name="forgot_your_password">هل نسيت كلمة المرور ؟</string>
     <string name="forgot_password_desc">أدخل بريدك الإلكتروني المسجل لإرسال رابط إعادة تعيين كلمة المرور</string>
-    <string name="send_code"> إرسال رمز التحقق</string>
+    <string name="send_code"> إعادة ارسال الكود</string>
     <string name="new_account">حساب جديد  </string>
     <string name="name">الاسم </string>
     <string name="create_account">التسجيل</string>
@@ -44,7 +44,7 @@
     <string name="no_address_found">Address Not found</string>
 
 
-    <string name="code_send_to_this_number">الكود ارسل لهذا الرقم</string>
+    <string name="code_send_to_this_number">كود التفعيل أرسل إلى الرقم</string>
     <string name="More">المزيد</string>
     <string name="Settings_title">الاعدادات</string>
     <string name="General_title">الاعدادات العامه</string>
@@ -66,8 +66,7 @@
 
     <string name="Forgot_your_password">نسيت كلمة المرور?</string>
     <string name="enter_your_password">اضف كلمة مرور جديده?</string>
-    <string name="Enter_your_registered">قم بإدخال رقم الجوال لتستقبل
-كلمة المرور الجديدة</string>
+    <string name="Enter_your_registered">قم بإدخال رقم التحقق لتتمكن من اعادة تعيين كلمة المرور</string>
     <string name="Didnt_Received">لم تصلك الكود?</string>
     <string name="SendAgain_">ارسال مره اخرى</string>
     <string name="Sendbutton">ارسال</string>
@@ -80,7 +79,7 @@
     <string name="yes">نعم</string>
     <string name="no">لا</string>
 
-    <string name="are_you_change_lang_post">هل تريد تغيير اللغة?</string>
+    <string name="are_you_change_lang_post">هل تريد تغيير اللغة؟</string>
 
     <string name="Information_Aqar">بيانات العقار</string>
     <string name="AqarType">نوع العقار</string>
@@ -432,11 +431,9 @@
     <string name="selectmember">اختار عضوية</string>
 
 
-
     <string name="Select_Location">اختيار الموقع</string>
     <string name="Address">العنوان</string>
     <string name="send_orderOffer_btn">ارسال عرض</string>
-
 
 
     <string name="ss1">هل العقار مقيم؟</string>
@@ -444,10 +441,26 @@
     <string name="ss3">هل العقار مؤمن ام لا؟</string>
 
 
-
     <string name="Status_">الحالة</string>
     <string name="Edit_but_order">تعديل</string>
 
     <string name="Site">الموقع</string>
     <string name="SelectCity">قم باختيار المدينة</string>
+
+
+    <string name="send_virficationCode">إرسال كود التفعيل</string>
+    <string name="Acceptterms">أوافق على الشروط والأحكام</string>
+    <string name="newAccountTei">حساب جديد</string>
+    <string name="The_code_is_wrong">هنالك خطا في الرمز</string>
+    <string name="donthaveaccoutn">ليس لديك حساب؟</string>
+    <string name="are_you_wantlog">هل تريد تسجيل الخروج من التطبيق؟</string>
+
+
+
+    <string name="OldPassword">كلمة المرور  الحالية</string>
+    <string name="NEw_Password">كلمة المرور  الجديدة</string>
+    <string name="NewConfirmPassword">تأكيد كلمة المرور الجديدة</string>
+    <string name="ChangePassword_ttitle">تغيير كلمة المرور</string>
+    <string name="PasswordnadConfirmnotmatch">كلمة المرور غير متطابقه</string>
+
 </resources>

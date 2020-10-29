@@ -1498,6 +1498,8 @@ public class AddAqarsActivity extends AppCompatActivity {
                 if (total_price.getText().toString().equals("") |
 
                         Total_area.getText().toString().equals("") |
+                        city_l.getText().toString().equals("") |
+                        nibors.getText().toString().equals("") |
 
                         contact_number.getText().toString().equals("") |
                         Communication_Officer.getText().toString().equals("")

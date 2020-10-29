@@ -1,24 +1,20 @@
 package aqarz.revival.sa.aqarz.Activity.Auth;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatImageView;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.alimuzaffar.lib.pin.PinEntryEditText;
 import com.android.volley.NetworkResponse;
@@ -32,12 +28,12 @@ import aqarz.revival.sa.aqarz.Settings.WebService;
 import aqarz.revival.sa.aqarz.api.IResult;
 import aqarz.revival.sa.aqarz.api.VolleyService;
 
-public class ConfirmationActivity extends AppCompatActivity {
+public class ConfirmationForgotActivity extends AppCompatActivity {
     IResult mResultCallback;
     TextView mobile;
     String mobilex = "";
     String codex = "";
-
+    String code2="";
 
     EditText a1, a2, a3, a4, a5, a6;
 
@@ -234,9 +230,9 @@ public class ConfirmationActivity extends AppCompatActivity {
                     if (str.toString().length() == 4) {
 
 
-                        WebService.loading(ConfirmationActivity.this, true);
+                        WebService.loading(ConfirmationForgotActivity.this, true);
 
-                        VolleyService mVolleyService = new VolleyService(mResultCallback, ConfirmationActivity.this);
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, ConfirmationForgotActivity.this);
 
 
                         JSONObject sendObj = new JSONObject();
@@ -246,13 +242,13 @@ public class ConfirmationActivity extends AppCompatActivity {
 
 //                            sendObj.put("password_confirmation", password.getText().toString());
 
-                            sendObj.put("code", str.toString());
+                            sendObj.put("confirmation_password_code", str.toString());
 
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        mVolleyService.postDataVolley("mobile verify", WebService.mobile_verify, sendObj);
+                        mVolleyService.postDataVolley("mobile_verify_code", WebService.mobile_verify_code, sendObj);
 
 
                     } else {
@@ -276,7 +272,9 @@ public class ConfirmationActivity extends AppCompatActivity {
                 ) {
 
                 } else {
-                    String code2 = a1.getText().toString() +
+
+
+                     code2 = a1.getText().toString() +
                             a2.getText().toString() +
                             a3.getText().toString() +
                             a4.getText().toString() +
@@ -284,19 +282,29 @@ public class ConfirmationActivity extends AppCompatActivity {
                             a6.getText().toString() + "";
 
 
-                    System.out.println(code2 + "++++++" + codex);
-                    if (code2.equals(codex)) {
 
-                        Intent intent = new Intent(ConfirmationActivity.this, NewConfirmationActivity.class);
-                        intent.putExtra("mobile", mobilex);
-                        intent.putExtra("code", codex);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-                        finish();
-                    } else {
-                        WebService.Make_Toast_color(ConfirmationActivity.this, getResources().getString(R.string.The_code_is_wrong), "error");
 
+
+                    WebService.loading(ConfirmationForgotActivity.this, true);
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, ConfirmationForgotActivity.this);
+
+                    JSONObject sendObj = new JSONObject();
+
+                    try {
+
+
+//                            sendObj.put("password_confirmation", password.getText().toString());
+
+                        sendObj.put("confirmation_password_code", code2);
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
+                    mVolleyService.postDataVolley("mobile_verify_code", WebService.mobile_verify_code, sendObj);
+
+
                 }
 
 
@@ -320,7 +328,7 @@ public class ConfirmationActivity extends AppCompatActivity {
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + response);
-                WebService.loading(ConfirmationActivity.this, false);
+                WebService.loading(ConfirmationForgotActivity.this, false);
 //{"status":true,"code":200,"message":"User Profile","data"
                 try {
                     boolean status = response.getBoolean("status");
@@ -330,11 +338,11 @@ public class ConfirmationActivity extends AppCompatActivity {
 //                        Hawk.put("user", data);
                         String message = response.getString("message");
 
-                        WebService.Make_Toast_color(ConfirmationActivity.this, message, "success");
+                        WebService.Make_Toast_color(ConfirmationForgotActivity.this, message, "success");
 
 
-                        Intent intent = new Intent(ConfirmationActivity.this, ConfirmationActivity.class);
-//                                intent.putExtra("from", "splash");
+                        Intent intent = new Intent(ConfirmationForgotActivity.this, CreatPasswordForgotActivity.class);
+                                intent.putExtra("code", code2);
                         startActivity(intent);
                         overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                         finish();
@@ -342,7 +350,7 @@ public class ConfirmationActivity extends AppCompatActivity {
                     } else {
                         String message = response.getString("message");
 
-                        WebService.Make_Toast_color(ConfirmationActivity.this, message, "error");
+                        WebService.Make_Toast_color(ConfirmationForgotActivity.this, message, "error");
                     }
 
 
@@ -367,14 +375,14 @@ public class ConfirmationActivity extends AppCompatActivity {
                     String message = jsonObject.getString("message");
 
 
-                    WebService.Make_Toast_color(ConfirmationActivity.this, message, "error");
+                    WebService.Make_Toast_color(ConfirmationForgotActivity.this, message, "error");
 
                     Log.e("error response", response_data);
 
                 } catch (Exception e) {
 
                 }
-                WebService.loading(ConfirmationActivity.this, false);
+                WebService.loading(ConfirmationForgotActivity.this, false);
 
 
             }

@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,7 +26,7 @@ public class TermsActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
 
 
-        text.setText(Settings.getSettings().getPrivacy_policy());
+        text.setText(Html.fromHtml(getResources().getString(R.string.tet_terms)));
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

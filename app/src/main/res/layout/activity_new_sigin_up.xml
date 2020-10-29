@@ -51,15 +51,16 @@
         </LinearLayout>
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="80dp"
+            android:layout_width="120dp"
+            android:layout_height="130dp"
             android:layout_marginTop="30dp"
-            android:src="@drawable/ic_logo_map" />
+            android:src="@drawable/ic_logo_move" />
 
 
         <TextView
 
             android:layout_width="250dp"
+            android:visibility="gone"
             android:layout_height="wrap_content"
 
             android:layout_marginTop="20dp"
@@ -124,12 +125,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:textSize="13dp"
                 android:layout_marginRight="20dp"
                 android:button="@drawable/checkcustomer"
                 android:fontFamily="@font/frutiger_lt_arabic_bold"
                 android:gravity="center"
-                android:text="@string/areyou_aqarezman" />
+                android:text="@string/areyou_aqarezman"
+                android:textSize="13dp" />
 
         </LinearLayout>
 
@@ -147,41 +148,42 @@
             android:text="@string/contuie"
             android:textColor="@android:color/white" />
 
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:gravity="center"
-         android:orientation="horizontal"
-         android:layout_margin="15dp"
-         android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-         <TextView
-             android:id="@+id/dont_have_account"
+            <TextView
+                android:id="@+id/dont_have_account"
 
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_gravity="center_horizontal"
-             android:layout_marginTop="@dimen/_15sdp"
-             android:background="?selectableItemBackground"
-             android:gravity="end|center_vertical"
-             android:text="@string/have_an_account"
-             android:textColor="@color/textColor"
-             android:textSize="@dimen/_11sdp" />
-         <TextView
-             android:id="@+id/sign_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="?selectableItemBackground"
+                android:gravity="end|center_vertical"
+                android:text="@string/have_an_account"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/_11sdp" />
 
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_gravity="center_horizontal"
-             android:layout_marginTop="@dimen/_15sdp"
-             android:layout_marginLeft="10dp"
-             android:layout_marginRight="10dp"
+            <TextView
+                android:id="@+id/sign_in"
 
-             android:background="?selectableItemBackground"
-             android:gravity="end|center_vertical"
-             android:text="@string/sign_in"
-             android:textColor="@color/colorPrimary"
-             android:textSize="@dimen/_11sdp" />
-     </LinearLayout>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginRight="10dp"
+
+                android:background="?selectableItemBackground"
+                android:gravity="end|center_vertical"
+                android:text="@string/sign_in"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_11sdp" />
+        </LinearLayout>
 
 
         <LinearLayout

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -76,6 +77,9 @@ public class BottomSheetDialogFragment_Filtter extends BottomSheetDialogFragment
     TextView room_4;
     TextView room_5;
 
+
+    EditText Les_price, Maximum_price, Les_space, Maximum_space;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_sheets_fillter, container, false);
@@ -88,6 +92,10 @@ public class BottomSheetDialogFragment_Filtter extends BottomSheetDialogFragment
         area_sseekbar = v.findViewById(R.id.area_sseekbar);
         max_area = v.findViewById(R.id.max_area);
         min_area = v.findViewById(R.id.min_area);
+        Les_price = v.findViewById(R.id.Les_price);
+        Maximum_price = v.findViewById(R.id.Maximum_price);
+        Les_space = v.findViewById(R.id.Les_space);
+        Maximum_space = v.findViewById(R.id.Maximum_space);
 
         room_1 = v.findViewById(R.id.room_1);
         room_2 = v.findViewById(R.id.room_2);
@@ -161,7 +169,7 @@ public class BottomSheetDialogFragment_Filtter extends BottomSheetDialogFragment
             public void onClick(View v) {
 
                 if (mItemClickListener != null) {
-                    String te = "&estate_pay_type=" + type + "&price_from=" + min_price + "&price_to=" + max_price + "&area_from=" + min_area_ + "&area_from=" + max_area_;
+                    String te = "&estate_pay_type=" + type + "&price_from=" + Les_price.getText().toString() + "&price_to=" + Maximum_price.getText().toString() + "&area_from=" + Les_space.getText().toString() + "&area_from=" + Maximum_space.getText().toString();
 
                     mItemClickListener.onItemClick(te);
                 }
@@ -472,12 +480,14 @@ public class BottomSheetDialogFragment_Filtter extends BottomSheetDialogFragment
     public interface ItemClickListener {
         void onItemClick(String filter);
     }
+
     @Override
     public void setupDialog(Dialog dialog, int style) {
         View contentView = View.inflate(getContext(), R.layout.bottom_sheets_details_aqares, null);
         dialog.setContentView(contentView);
         ((View) contentView.getParent()).setBackgroundColor(getResources().getColor(android.R.color.transparent));
     }
+
     @Override
     public void onStart() {
         super.onStart();

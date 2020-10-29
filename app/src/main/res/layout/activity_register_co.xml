@@ -44,7 +44,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/frutiger_lt_arabic_roman"
                     android:gravity="center"
-                    android:text="@string/newAccountTei"
+                    android:text="@string/changePassword"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_15sdp" />
 
@@ -233,25 +233,6 @@
                 </LinearLayout>
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
-                    <CheckBox
-                        android:id="@+id/chechbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:button="@drawable/checkcustomer"
-                        android:fontFamily="@font/frutiger_lt_arabic_bold"
-                        android:gravity="center"
-                        android:text="@string/Acceptterms"
-                        android:textSize="13dp" />
-
-                </LinearLayout>
-
                 <TextView
                     android:id="@+id/dont_have_account"
                     android:layout_width="wrap_content"
@@ -275,7 +256,7 @@
                     android:layout_marginTop="@dimen/_12sdp"
                     android:paddingLeft="@dimen/_44sdp"
                     android:paddingRight="@dimen/_44sdp"
-                    android:text="@string/sign_up"
+                    android:text="@string/changePassword"
                     android:textColor="@android:color/white" />
 
             </LinearLayout>

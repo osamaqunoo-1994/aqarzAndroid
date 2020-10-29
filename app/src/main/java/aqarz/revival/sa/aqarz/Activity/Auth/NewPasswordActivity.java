@@ -1,11 +1,14 @@
 package aqarz.revival.sa.aqarz.Activity.Auth;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,6 +16,7 @@ import android.widget.LinearLayout;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,10 +27,16 @@ import aqarz.revival.sa.aqarz.api.IResult;
 import aqarz.revival.sa.aqarz.api.VolleyService;
 
 public class NewPasswordActivity extends AppCompatActivity {
+    EditText Oldpassword;
     EditText password;
+    EditText Cpassword;
     ImageView back;
-    AppCompatButton update;
+    AppCompatButton change;
     IResult mResultCallback;
+
+    boolean is_show = false;
+    boolean cis_show = false;
+    boolean cis_show1 = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +57,11 @@ public class NewPasswordActivity extends AppCompatActivity {
 
     public void init() {
 
+        Oldpassword = findViewById(R.id.Oldpassword);
         password = findViewById(R.id.password);
-        update = findViewById(R.id.update);
+        Cpassword = findViewById(R.id.Cpassword);
+        change = findViewById(R.id.change);
+
         back = findViewById(R.id.back);
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -57,12 +70,90 @@ public class NewPasswordActivity extends AppCompatActivity {
                 finish();
             }
         });
-        update.setOnClickListener(new View.OnClickListener() {
+        if (Hawk.get("lang").toString().equals("ar")) {
+
+
+            Oldpassword.setGravity(Gravity.RIGHT);
+            password.setGravity(Gravity.RIGHT);
+            Cpassword.setGravity(Gravity.RIGHT);
+
+        } else {
+            Oldpassword.setGravity(Gravity.LEFT);
+            password.setGravity(Gravity.LEFT);
+            Cpassword.setGravity(Gravity.LEFT);
+
+
+        }
+
+        Oldpassword.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(View v) {
+                if (is_show) {
+                    Oldpassword.setTransformationMethod(new PasswordTransformationMethod());
+                    Oldpassword.setSelected(false);
+//                    pass_checkbox.setImageDrawable(getDrawable(R.drawable.show_pass_bg));
+                    is_show = false;
+                } else {
+                    Oldpassword.setTransformationMethod(null);
+                    Oldpassword.setSelected(true);
+
+//                    pass_checkbox.setImageDrawable(getDrawable(R.drawable.ic_private));
+                    is_show = true;
+                }
+            }
+        });
+
+        password.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(View v) {
+                if (cis_show) {
+                    password.setTransformationMethod(new PasswordTransformationMethod());
+                    password.setSelected(false);
+//                    pass_checkbox.setImageDrawable(getDrawable(R.drawable.show_pass_bg));
+                    cis_show = false;
+                } else {
+                    password.setTransformationMethod(null);
+                    password.setSelected(true);
+
+//                    pass_checkbox.setImageDrawable(getDrawable(R.drawable.ic_private));
+                    cis_show = true;
+                }
+            }
+        });
+        Cpassword.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(View v) {
+                if (cis_show1) {
+                    Cpassword.setTransformationMethod(new PasswordTransformationMethod());
+                    Cpassword.setSelected(false);
+//                    pass_checkbox.setImageDrawable(getDrawable(R.drawable.show_pass_bg));
+                    cis_show1 = false;
+                } else {
+                    Cpassword.setTransformationMethod(null);
+                    Cpassword.setSelected(true);
+
+//                    pass_checkbox.setImageDrawable(getDrawable(R.drawable.ic_private));
+                    cis_show1 = true;
+                }
+            }
+        });
+
+
+        change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (password.getText().toString().equals("")) {
+                if (Oldpassword.getText().toString().equals("") |
+                        password.getText().toString().equals("") | Cpassword.getText().toString().equals("")) {
 
+                    WebService.Make_Toast_color(NewPasswordActivity.this, getResources().getString(R.string.AllFiledsREquered), "error");
+
+                } else if (password.getText().toString().equals(Cpassword.getText().toString().equals(""))) {
+
+                    WebService.Make_Toast_color(NewPasswordActivity.this, getResources().getString(R.string.PasswordnadConfirmnotmatch), "error");
 
                 } else {
 
@@ -74,12 +165,14 @@ public class NewPasswordActivity extends AppCompatActivity {
                     JSONObject sendObj = new JSONObject();
 
                     try {
+                        sendObj.put("old_password", Oldpassword.getText().toString());
 
                         sendObj.put("password", password.getText().toString());
+                        sendObj.put("password_confirmation", Cpassword.getText().toString());
 
 
                         System.out.println(sendObj.toString());
-                        mVolleyService.postDataVolley("New Password", WebService.update_password, sendObj);
+                        mVolleyService.postDataVolley("update_password", WebService.update_password, sendObj);
 
                     } catch (JSONException e) {
                         e.printStackTrace();

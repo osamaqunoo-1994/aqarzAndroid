@@ -30,38 +30,51 @@
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginLeft="10dp"
-                    app:tint="@color/white"
                     android:layout_marginRight="10dp"
                     android:padding="13dp"
-                    android:src="@drawable/ic_back" />
+                    android:src="@drawable/ic_back"
+                    app:tint="@color/white" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:textColor="@color/white"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/Privacy"
-                    android:layout_height="match_parent"/>
+                    android:textColor="@color/white" />
 
                 <ImageView
 
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginLeft="10dp"
-                    android:visibility="invisible"
                     android:layout_marginRight="10dp"
                     android:padding="13dp"
-                    android:src="@drawable/ic_back" />
+                    android:src="@drawable/ic_back"
+                    android:visibility="invisible" />
 
 
             </LinearLayout>
 
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_marginTop="35dp"
+                android:src="@drawable/ic_terms_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/ic_undraw_folder" />
+                android:layout_margin="10dp"
+                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:gravity="center"
+                android:text="@string/terms_title"
+
+                android:textColor="@color/colorPrimary"
+                android:textSize="17dp">
+
+            </TextView>
 
             <TextView
                 android:id="@+id/text"
@@ -70,7 +83,8 @@
                 android:fontFamily="@font/frutiger_lt_arabic_roman"
                 android:padding="15dp"
 
-                android:text="test test test test test test test test test test test test test test test test test test test test test "
+
+
                 android:textSize="15dp" />
 
 
