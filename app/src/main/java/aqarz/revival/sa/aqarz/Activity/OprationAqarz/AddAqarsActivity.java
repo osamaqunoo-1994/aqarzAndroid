@@ -1706,57 +1706,10 @@ public class AddAqarsActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if ((requstcode == 11 & is_place)) {
-            if (resultCode == Activity.RESULT_OK) {
-
-                try {
-
-                    // TODO Extract the data returned from the child Activity.
-                    String lat_ = data.getStringExtra("lat");
-                    String lang_ = data.getStringExtra("lang");
-                    String address_ = data.getStringExtra("address");
-
-                    lat = "" + lat_;
-                    lng = "" + lang_;
-                    Toast.makeText(AddAqarsActivity.this, "You selected the place: " + address_, Toast.LENGTH_SHORT).show();
-//
-                    LatLng sydney = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
-                    googleMap.addMarker(new MarkerOptions()
-                            .position(sydney)
-                            .title("Marker"));
-
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
-                    // Zoom in, animating the camera.
-                    googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-                    // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
-                    Address = address_;
-                    is_place = false;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-//            if (data != null) {
-//                Place place = PingPlacePicker.getPlace(data);
-//                if (place != null) {
-//                    Toast.makeText(AddAqarsActivity.this, "You selected the place: " + place.getName(), Toast.LENGTH_SHORT).show();
-//
-//
-//
-//
-//
-//
-//                    Address = place.getAddress() + "";
-//                    System.out.println("ADDDRESS::" + place.getAddress());
-//
-//
-//                }
-//            }
-
-
-        }
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            WebService.Make_Toast_color(AddAqarsActivity.this, "تم ارجاع الصور", "success");
+
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 Uri resultUri = result.getUri();
@@ -1814,6 +1767,59 @@ public class AddAqarsActivity extends AppCompatActivity {
                 Exception error = result.getError();
             }
         }
+
+
+
+        if ((requstcode == 11 & is_place)) {
+            if (resultCode == Activity.RESULT_OK) {
+
+                try {
+
+                    // TODO Extract the data returned from the child Activity.
+                    String lat_ = data.getStringExtra("lat");
+                    String lang_ = data.getStringExtra("lang");
+                    String address_ = data.getStringExtra("address");
+
+                    lat = "" + lat_;
+                    lng = "" + lang_;
+                    Toast.makeText(AddAqarsActivity.this, "You selected the place: " + address_, Toast.LENGTH_SHORT).show();
+//
+                    LatLng sydney = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(sydney)
+                            .title("Marker"));
+
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+                    // Zoom in, animating the camera.
+                    googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+                    // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+                    Address = address_;
+                    is_place = false;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+//            if (data != null) {
+//                Place place = PingPlacePicker.getPlace(data);
+//                if (place != null) {
+//                    Toast.makeText(AddAqarsActivity.this, "You selected the place: " + place.getName(), Toast.LENGTH_SHORT).show();
+//
+//
+//
+//
+//
+//
+//                    Address = place.getAddress() + "";
+//                    System.out.println("ADDDRESS::" + place.getAddress());
+//
+//
+//                }
+//            }
+
+
+        }
+
 
 //
 //        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1213)) {

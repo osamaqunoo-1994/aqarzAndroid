@@ -150,11 +150,14 @@
                         android:id="@+id/Real_Estate_order_image"
 
                         android:layout_width="20dp"
+                        android:visibility="gone"
                         android:layout_height="20dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:src="@drawable/ic_group_1580" />
-
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="20dp" />
                     <TextView
                         android:id="@+id/Real_Estate_order_text"
 

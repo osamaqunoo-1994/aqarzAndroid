@@ -142,6 +142,25 @@ public class SelectLocationActivity extends AppCompatActivity {
                 googleMap.getUiSettings().setRotateGesturesEnabled(true);
 
 
+
+                LatLng mylocation = getLocation_sau();
+                if (mylocation != null) {
+//                            googleMap.addMarker(new MarkerOptions()
+//                                    .position(mylocation)).setTag("mylocation");
+//
+//                            ;
+                    CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
+                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+
+//                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 40));
+//                            // Zoom in, animating the camera.
+//                            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+                    // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+//                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+                }
+
+
                 if (ActivityCompat.checkSelfPermission(SelectLocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(SelectLocationActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
@@ -150,6 +169,7 @@ public class SelectLocationActivity extends AppCompatActivity {
                     //                                          int[] grantResults)
                     // to handle the case where the user grants the permission. See the documentation
                     // for ActivityCompat#requestPermissions for more details.
+
                     return;
                 }
                 googleMap.setMyLocationEnabled(true);
@@ -229,5 +249,9 @@ public class SelectLocationActivity extends AppCompatActivity {
     public void addItemClickListener(ItemClickListener listener) {
         mItemClickListener = listener;
     }
+    public LatLng getLocation_sau() {
+        LatLng my_location = new LatLng(24.768516, 46.691505);
+        return my_location;
 
+    }
 }

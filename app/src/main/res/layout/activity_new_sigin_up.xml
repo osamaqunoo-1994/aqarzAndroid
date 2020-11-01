@@ -60,24 +60,26 @@
         <TextView
 
             android:layout_width="250dp"
-            android:visibility="gone"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="20dp"
 
             android:fontFamily="@font/frutiger_lt_arabic_bold"
+
             android:gravity="center"
             android:text="@string/title_siginuo"
             android:textColor="#424446"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
+
             android:layout_height="40dp"
             android:layout_margin="20dp"
             android:layout_marginTop="@dimen/_16sdp"
             android:background="@drawable/edit_text_background_new_design"
             android:gravity="center"
+            android:layoutDirection="ltr"
 
             android:paddingLeft="15dp"
 
