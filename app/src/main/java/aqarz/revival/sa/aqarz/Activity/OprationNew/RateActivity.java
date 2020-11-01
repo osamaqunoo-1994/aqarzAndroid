@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -53,6 +55,7 @@ import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import aqarz.revival.sa.aqarz.Modules.OprationModules;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
+import aqarz.revival.sa.aqarz.Settings.GpsTracker;
 import aqarz.revival.sa.aqarz.Settings.Settings;
 import aqarz.revival.sa.aqarz.Settings.WebService;
 import aqarz.revival.sa.aqarz.api.IResult;
@@ -62,6 +65,7 @@ public class RateActivity extends AppCompatActivity {
     List<TypeModules> type_list = new ArrayList<>();
     String opration_select = "";
     TextView For_sale, rent, investment;
+    GpsTracker gpsTracker;
 
     RecyclerView opration;
 //    RecyclerView opration_RecyclerView;
@@ -177,6 +181,7 @@ public class RateActivity extends AppCompatActivity {
         try {
             name.setText(Settings.GetUser().getName() + "");
             phone.setText(Settings.GetUser().getMobile() + "");
+            email.setText(Settings.GetUser().getEmail() + "");
         } catch (Exception e) {
 
         }
@@ -323,12 +328,58 @@ public class RateActivity extends AppCompatActivity {
                 if (name.getText().toString().equals("") |
                         email.getText().toString().equals("") |
                         phone.getText().toString().equals("") |
-                        lat.toString().equals("") |
 
 
                         description.getText().toString().equals("")
                 ) {
                     WebService.Make_Toast(RateActivity.this, getResources().getString(R.string.AllFiledsREquered));
+
+                } else if (lat.toString().equals("")) {
+
+                    new AlertDialog.Builder(RateActivity.this)
+                            .setMessage(getResources().getString(R.string.message_location))
+                            .setCancelable(false)
+                            .setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+
+                                    lat = getLocation().latitude + "";
+                                    lng = getLocation().longitude + "";
+
+
+                                    WebService.loading(RateActivity.this, true);
+
+                                    VolleyService mVolleyService = new VolleyService(mResultCallback, RateActivity.this);
+
+
+                                    JSONObject sendObj = new JSONObject();
+
+                                    try {
+
+                                        sendObj.put("operation_type_id", Type_work_select);//form operation list api in setting
+                                        sendObj.put("estate_type_id", opration_select);//form estate type list api in setting
+                                        sendObj.put("name", name.getText().toString());//
+                                        sendObj.put("email", email.getText().toString());//
+                                        sendObj.put("mobile", phone.getText().toString());//
+                                        sendObj.put("note", description.getText().toString());//
+                                        sendObj.put("lat", lat);//
+                                        sendObj.put("lan", lng);//
+                                        sendObj.put("Address", Address);//
+                                        sendObj.put("rate_request_types", Type_work_select);//
+
+
+                                        System.out.println(sendObj.toString());
+                                        mVolleyService.postDataVolley("rateRequest", WebService.rate_Request, sendObj);
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+
+
+                                }
+                            })
+                            .setNegativeButton(getResources().getString(R.string.no), null)
+                            .show();
 
                 } else {
                     WebService.loading(RateActivity.this, true);
@@ -340,7 +391,7 @@ public class RateActivity extends AppCompatActivity {
 
                     try {
 
-                        sendObj.put("operation_type_id", "4");//form operation list api in setting
+                        sendObj.put("operation_type_id", Type_work_select);//form operation list api in setting
                         sendObj.put("estate_type_id", opration_select);//form estate type list api in setting
                         sendObj.put("name", name.getText().toString());//
                         sendObj.put("email", email.getText().toString());//
@@ -370,7 +421,7 @@ public class RateActivity extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if ((requestCode == 11)&data!=null) {
+        if ((requestCode == 11) & data != null) {
 
 
             if (resultCode == Activity.RESULT_OK) {
@@ -425,6 +476,8 @@ public class RateActivity extends AppCompatActivity {
                         close.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                RequestServiceActivity.close();
+
                                 finish();
                             }
                         });
@@ -484,4 +537,41 @@ public class RateActivity extends AppCompatActivity {
 
 
     }
+
+    public LatLng getLocation() {
+
+        try {
+            gpsTracker = new GpsTracker(RateActivity.this);
+            if (gpsTracker.canGetLocation()) {
+                double latitude = gpsTracker.getLatitude();
+                double longitude = gpsTracker.getLongitude();
+                System.out.println("latitude:" + latitude);
+                System.out.println("longitude:" + longitude);
+
+                LatLng my_location = new LatLng(latitude, longitude);
+//                LatLng my_location = new LatLng(24.768516, 46.691505);
+
+                return my_location;
+
+            } else {
+                gpsTracker.showSettingsAlert();
+
+                //24.768516, 46.691505
+
+                LatLng my_location = new LatLng(24.768516, 46.691505);
+
+
+                return my_location;
+
+            }
+        } catch (Exception e) {
+
+            LatLng my_location = new LatLng(24.768516, 46.691505);
+
+
+            return my_location;
+        }
+
+    }
+
 }

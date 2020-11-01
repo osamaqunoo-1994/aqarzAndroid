@@ -3,12 +3,17 @@ package aqarz.revival.sa.aqarz.Dialog;
 import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +34,7 @@ import java.util.List;
 
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_city_bootom_sheets;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_city_bootom_sheets_multi;
+import aqarz.revival.sa.aqarz.Fragment.OrdersFragment;
 import aqarz.revival.sa.aqarz.Modules.CityModules;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.Application;
@@ -42,22 +48,28 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
 
     String id_city = "";
 
-
+    ImageView search_btn;
     RecyclerView list_city;
 
 
     List<CityModules> cityModules_list = new ArrayList<>();
-
+    List<CityModules> cityModules_list_filtter = new ArrayList<>();
+    EditText text_search;
 
     ProgressBar progress;
-
+    ImageView close;
     private ItemClickListener mItemClickListener;
+    TextView select;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_sheets_select_city_fillter, container, false);
         list_city = v.findViewById(R.id.list_city);
         progress = v.findViewById(R.id.progress);
+        close = v.findViewById(R.id.close);
+        text_search = v.findViewById(R.id.text_search);
+        search_btn = v.findViewById(R.id.search_btn);
+        select = v.findViewById(R.id.select);
 
 
         LinearLayoutManager layoutManager1
@@ -67,7 +79,9 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
 
         if (Application.AllCity.size() != 0) {
             progress.setVisibility(View.GONE);
-            RecyclerView_city_bootom_sheets_multi recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets_multi(getContext(), Application.AllCity);
+
+            cityModules_list = Application.AllCity;
+            RecyclerView_city_bootom_sheets_multi recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets_multi(getContext(), cityModules_list);
             recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_bootom_sheets_multi.ItemClickListener() {
 
 
@@ -90,6 +104,50 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
         }
 
 
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                cityModules_list.clear();
+                for (int i = 0; i < cityModules_list.size(); i++) {
+
+                    if (cityModules_list.get(i).getName().contains(text_search.getText().toString())) {
+                        cityModules_list_filtter.add(cityModules_list.get(i));
+                    }
+
+
+                }
+                RecyclerView_city_bootom_sheets_multi recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets_multi(getContext(), cityModules_list_filtter);
+                recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_bootom_sheets_multi.ItemClickListener() {
+
+
+                    @Override
+                    public void onItemClick(int position) {
+                        if (mItemClickListener != null) {
+                            mItemClickListener.onItemClick(Integer.valueOf(Application.AllCity.get(position).getSerial_city()), Application.AllCity.get(position).getName());
+                        }
+                    }
+                });
+
+                list_city.setAdapter(recyclerView_city_bootom_sheets);
+            }
+        });
+
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OrdersFragment.close_bottom();
+            }
+        });
+        select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                OrdersFragment.close_bottom();
+
+            }
+        });
         return v;
     }
 
@@ -214,12 +272,14 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
     public interface ItemClickListener {
         void onItemClick(int id_city, String city_naem);
     }
+
     @Override
     public void setupDialog(Dialog dialog, int style) {
         View contentView = View.inflate(getContext(), R.layout.bottom_sheets_details_aqares, null);
         dialog.setContentView(contentView);
         ((View) contentView.getParent()).setBackgroundColor(getResources().getColor(android.R.color.transparent));
     }
+
     @Override
     public void onStart() {
         super.onStart();

@@ -1,8 +1,10 @@
 package aqarz.revival.sa.aqarz.Dialog;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,10 +35,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import aqarz.revival.sa.aqarz.Activity.MainActivity;
+import aqarz.revival.sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationNew.FinanceActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_MyState;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_city_bootom_sheets;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_ordersx;
 import aqarz.revival.sa.aqarz.Modules.CityModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
@@ -55,11 +60,14 @@ public class BottomSheetDialogFragment_MyEstate extends BottomSheetDialogFragmen
     RecyclerView all_my_state;
 
     Button confirm;
+    Button addAqares;
 
     String is_selected = "";
 
     List<HomeModules_aqares> homeModules = new ArrayList<>();
     private ItemClickListener mItemClickListener;
+
+    static Activity activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,6 +75,21 @@ public class BottomSheetDialogFragment_MyEstate extends BottomSheetDialogFragmen
         all_my_state = v.findViewById(R.id.all_my_state);
         progress = v.findViewById(R.id.progress);
         confirm = v.findViewById(R.id.confirm);
+        addAqares = v.findViewById(R.id.addAqares);
+
+
+        activity = getActivity();
+
+
+        addAqares.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AddAqarsActivity.class);
+//              intent.putExtra("from", "splash");
+                startActivity(intent);
+            }
+        });
+
 
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -131,7 +154,7 @@ public class BottomSheetDialogFragment_MyEstate extends BottomSheetDialogFragmen
 
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(int id_city, String city_naem);
+        void onItemClick(String status);
     }
 
     public void init_volley() {
@@ -152,7 +175,8 @@ public class BottomSheetDialogFragment_MyEstate extends BottomSheetDialogFragmen
 
 
                             String message = response.getString("message");
-                            RecyclerView_orders.send_done();
+
+                            RecyclerView_ordersx.send_done();
 
 //                            WebService.Make_Toast_color(getActivity(), message, "success");
 
@@ -306,4 +330,10 @@ public class BottomSheetDialogFragment_MyEstate extends BottomSheetDialogFragmen
             decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         }
     }
+
+    public static void cloase() {
+        activity.finish();
+    }
+
+
 }

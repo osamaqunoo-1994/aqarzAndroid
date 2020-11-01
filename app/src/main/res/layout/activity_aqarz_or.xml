@@ -263,6 +263,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/seaction_roomes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -273,7 +274,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/frutiger_lt_arabic_roman"
-                        android:text="@string/AqarType"
+                        android:text="@string/room"
                         android:textColor="@color/textColor2"
                         android:textSize="15dp" />
 

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -42,6 +43,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
      * View holder class
      */
     static Context context;
+    static BottomSheetDialog bottomSheerDialog;
 
     public void Refr() {
 
@@ -246,17 +248,18 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 
         bottomSheetDialogFragment_myEstate.dismiss();
 
-        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(context);
+        bottomSheerDialog = new BottomSheetDialog(context);
         LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View parentView = li.inflate(R.layout.success_sandoq, null);
-//        Button close = parentView.findViewById(R.id.close);
-//        close.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                                    finish();
-//            }
-//        });
+        Button ok = parentView.findViewById(R.id.ok);
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                                    finish();
+                bottomSheerDialog.dismiss();
+            }
+        });
         bottomSheerDialog.setContentView(parentView);
 
 

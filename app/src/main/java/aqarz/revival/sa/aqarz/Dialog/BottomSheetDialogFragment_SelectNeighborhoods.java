@@ -93,11 +93,11 @@ public class BottomSheetDialogFragment_SelectNeighborhoods extends BottomSheetDi
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String data = response.getString("data");
-                        JSONObject jsonObjectdata = new JSONObject(data);
+//                        JSONObject jsonObjectdata = new JSONObject(data);
 
-                        String datax = jsonObjectdata.getString("data");
+//                        String datax = jsonObjectdata.getString("data");
 
-                        JSONArray jsonArray = new JSONArray(datax);
+                        JSONArray jsonArray = new JSONArray(data);
                         progress.setVisibility(View.GONE);
                         cityModules_list.clear();
                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -184,12 +184,14 @@ public class BottomSheetDialogFragment_SelectNeighborhoods extends BottomSheetDi
     public interface ItemClickListener {
         void onItemClick(int id_city, String city_naem);
     }
+
     @Override
     public void setupDialog(Dialog dialog, int style) {
         View contentView = View.inflate(getContext(), R.layout.bottom_sheets_details_aqares, null);
         dialog.setContentView(contentView);
         ((View) contentView.getParent()).setBackgroundColor(getResources().getColor(android.R.color.transparent));
     }
+
     @Override
     public void onStart() {
         super.onStart();

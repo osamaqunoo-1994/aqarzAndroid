@@ -23,6 +23,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import aqarz.revival.sa.aqarz.Activity.MainActivity;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_SelectBanks;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
@@ -40,8 +41,6 @@ public class RecyclerView_orders extends RecyclerView.Adapter<RecyclerView_order
 
     static AlertDialog alertDialog;
     private ItemClickListener mItemClickListener;
-
-    static BottomSheetDialogFragment_MyEstate bottomSheetDialogFragment_myEstate;
     /**
      * View holder class
      */
@@ -204,11 +203,7 @@ public class RecyclerView_orders extends RecyclerView.Adapter<RecyclerView_order
         holder.new_offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getUuid() + "");
-
-                bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
-
-
+                MainActivity.open_found(alldata.get(position).getUuid() + "");
             }
         });
 
@@ -245,36 +240,4 @@ public class RecyclerView_orders extends RecyclerView.Adapter<RecyclerView_order
         void onItemClick(int position);
     }
 
-    public static void send_done() {
-
-
-        bottomSheetDialogFragment_myEstate.dismiss();
-
-        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(context);
-        LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        View parentView = li.inflate(R.layout.success_sandoq, null);
-//        Button close = parentView.findViewById(R.id.close);
-//        close.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                                    finish();
-//            }
-//        });
-        bottomSheerDialog.setContentView(parentView);
-
-
-        Window window = bottomSheerDialog.getWindow();
-        window.findViewById(com.google.android.material.R.id.container).setFitsSystemWindows(false);
-        // dark navigation bar icons
-        View decorView = window.getDecorView();
-        decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, context.getResources().getDisplayMetrics());
-
-
-//        ((View) decorView.getParent()).setBackgroundColor(context.getResources().getColor(android.R.color.transparent));
-
-
-        bottomSheerDialog.show();
-    }
 }

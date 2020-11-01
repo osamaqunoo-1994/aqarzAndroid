@@ -175,7 +175,19 @@ public class RentActivity extends AppCompatActivity {
 
         }
 ///------------------------------------------------------------------------------------------------------
-        type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
+//        type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
+
+
+        try {
+            type_list.add(Settings.getSettings().getEstate_types().getOriginal().getData().get(0));
+            type_list.add(Settings.getSettings().getEstate_types().getOriginal().getData().get(1));
+            type_list.add(Settings.getSettings().getEstate_types().getOriginal().getData().get(2));
+
+
+        } catch (Exception e) {
+
+        }
+
 
         LinearLayoutManager layoutManagerw
                 = new LinearLayoutManager(RentActivity.this, LinearLayoutManager.HORIZONTAL, false);
@@ -687,7 +699,9 @@ public class RentActivity extends AppCompatActivity {
                         close.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                RequestServiceActivity.close();
                                 finish();
+
                             }
                         });
                         bottomSheerDialog.setContentView(parentView);

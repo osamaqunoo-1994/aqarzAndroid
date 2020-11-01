@@ -133,7 +133,7 @@
     <string name="property_dd">هل العقار لمنزلكم الاول</string>
 
 
-    <string name="Purchase">شراء</string>
+    <string name="Purchase">بيع</string>
     <string name="rent">ايجار</string>
     <string name="investment">استثمار</string>
 
@@ -456,7 +456,6 @@
     <string name="are_you_wantlog">هل تريد تسجيل الخروج من التطبيق؟</string>
 
 
-
     <string name="OldPassword">كلمة المرور  الحالية</string>
     <string name="NEw_Password">كلمة المرور  الجديدة</string>
     <string name="NewConfirmPassword">تأكيد كلمة المرور الجديدة</string>
@@ -466,4 +465,15 @@
 
     <string name="done_ok_done">يجب استكمال بيانات حسابك للاشتراك</string>
     <string name="terms_title">اتفاقية الاستخدام</string>
+
+
+    <string name="hint_name__address">ادخل اسمك؟</string>
+    <string name="hint_mob__address">ادخل رقم موبايلك</string>
+    <string name="hint_address__address">ادخل عنوانك الخاص</string>
+
+
+    <string name="add_aqar_new">اضف عقار جديد</string>
+    <string name="Solidarity_salaryreq">راتب المتضامن مطلوب</string>
+    <string name="message_location">سيتم اختيار العنوان الحالي لك كعنوان للعرض هل انت متأكد من ذلك ؟</string>
+    <string name="Select_d">Select</string>
 </resources>

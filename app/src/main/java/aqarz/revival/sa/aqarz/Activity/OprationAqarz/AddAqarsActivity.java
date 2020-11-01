@@ -15,6 +15,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -93,6 +94,7 @@ import aqarz.revival.sa.aqarz.Modules.ComfortModules;
 import aqarz.revival.sa.aqarz.Modules.SelectImageModules;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
+import aqarz.revival.sa.aqarz.Settings.GpsTracker;
 import aqarz.revival.sa.aqarz.Settings.Settings;
 import aqarz.revival.sa.aqarz.Settings.WebService;
 import aqarz.revival.sa.aqarz.api.IResult;
@@ -205,6 +207,10 @@ public class AddAqarsActivity extends AppCompatActivity {
     TextView property_dd_no;
     TextView property_dd_yes1;
     TextView property_dd_no1;
+
+
+    GpsTracker gpsTracker;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -530,6 +536,23 @@ public class AddAqarsActivity extends AppCompatActivity {
 
 
                 } else if (opration_select.toString().equals("3")) {//شقه
+                    specificationsqares.setVisibility(View.VISIBLE);
+                    means_comfort.setVisibility(View.VISIBLE);
+
+
+                } else if (opration_select.toString().equals("7")) {//مزرعه
+
+
+                    specificationsqares.setVisibility(View.GONE);
+                    means_comfort.setVisibility(View.GONE);
+
+                } else if (opration_select.toString().equals("4")) {//دبلكس
+                    specificationsqares.setVisibility(View.VISIBLE);
+                    means_comfort.setVisibility(View.VISIBLE);
+
+
+                } else if (opration_select.toString().equals("6")) {//مكتب
+
                     specificationsqares.setVisibility(View.VISIBLE);
                     means_comfort.setVisibility(View.VISIBLE);
 
@@ -1527,105 +1550,28 @@ public class AddAqarsActivity extends AppCompatActivity {
                     WebService.Make_Toast_color(AddAqarsActivity.this, getResources().getString(R.string.fillallfileds) + "", "error");
 
 
-                } else {
+                } else if (lat.equals("0.0")) {
 
 
-                    RequestParams sendObj = new RequestParams();
-
-                    try {
-
-                        sendObj.put("operation_type_id", opration_select);
-                        sendObj.put("estate_type_id", Type_work_select);
-
-                        if (!Instrument_number.getText().toString().equals("")) {
-                            sendObj.put("instrument_number", Instrument_number.getText().toString());
-
-                        }
-                        if (instrument_filexx != null) {
-
-                            sendObj.put("instrument_file", instrument_filexx);
+                    new AlertDialog.Builder(AddAqarsActivity.this)
+                            .setMessage(getResources().getString(R.string.message_location))
+                            .setCancelable(false)
+                            .setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
 
 
-                        }
-                        sendObj.put("pace_number", piece_number.getText().toString());
-                        sendObj.put("planned_number", No_planned.getText().toString());
-                        sendObj.put("total_area", Total_area.getText().toString());
-                        sendObj.put("estate_age", age_of_the_property.getText().toString());
-                        sendObj.put("floor_number", Role_number.getText().toString());
-                        sendObj.put("street_view", Street_view.getText().toString());
-                        sendObj.put("total_price", total_price.getText().toString());
-                        sendObj.put("meter_price", price_one_meter.getText().toString());
-                        sendObj.put("owner_name", Communication_Officer.getText().toString());
-                        sendObj.put("owner_mobile", contact_number.getText().toString());
-                        sendObj.put("lounges_number", number_Lounges + "");
-                        sendObj.put("rooms_number", number_room + "");
-                        sendObj.put("bathrooms_number", number_Bathrooms + "");
-                        sendObj.put("boards_number", number_Boards_plus + "");
-                        sendObj.put("kitchen_number", number_Kitchens_plus + "");
-                        sendObj.put("dining_rooms_number", number_Dining_rooms + "");
-                        sendObj.put("finishing_type", finishing_type);
-                        sendObj.put("interface", interface_);
-                        sendObj.put("social_status", social_status);
-                        sendObj.put("city_id", city_id + "");
-                        sendObj.put("neighborhood_id", nib_id + "");
-                        sendObj.put("address", Address + "");
-                        sendObj.put("lat", lat);
-                        sendObj.put("lan", lng);
-                        sendObj.put("is_rent", is_rent);//1 = yes or 0 = no
-                        if (is_rent.equals("1")) {
-                            sendObj.put("rent_type", rent_type);//'daily','monthly','yearly'
-                        }
-                        String attachment_planned = "";
-                        for (int i = 0; i < selectIamgeList.size(); i++) {
-
-                            if (attachment_planned.equals("")) {
-                                attachment_planned = selectIamgeList.get(i).getId() + "";
-                            } else {
-                                attachment_planned = "," + selectIamgeList.get(i).getId() + "";
-
-                            }
-
-                        }
-                        sendObj.put("attachment_estate", attachment_planned + "");
-
-
-                        String comfort_list_ = "";
-
-                        for (int i = 0; i < comfort_list.size(); i++) {
-
-                            if (comfort_list.get(i).get_is_selected()) {
-                                if (comfort_list_.equals("")) {
-                                    comfort_list_ = comfort_list.get(i).getId() + "";
-                                } else {
-                                    comfort_list_ = comfort_list.get(i).getId() + "," + comfort_list.get(i).getId() + "";
+                                    lat = getLocation().latitude + "";
+                                    lng = getLocation().longitude + "";
+                                    add_aqares_information();
 
                                 }
-
-                            }
-
-
-                        }
-
-                        sendObj.put("estate_comforts", comfort_list_ + "");
-                        System.out.println("comfort_list_" + comfort_list_);
-
-                        sendObj.put("attachment_planned", image_planed);
-                        sendObj.put("note", description.getText().toString());
-                        sendObj.put("is_resident", "1");
-                        sendObj.put("is_checked", "1");
-                        sendObj.put("is_insured", "1");
+                            })
+                            .setNegativeButton(getResources().getString(R.string.no), null)
+                            .show();
 
 
-                        System.out.println(sendObj.toString());
-
-
-                        AddAqersAsyncTask(sendObj);
-
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
+                } else {
+                    add_aqares_information();
 
                 }
 
@@ -2417,6 +2363,143 @@ public class AddAqarsActivity extends AppCompatActivity {
 
         }
 
+
+    }
+
+
+    public void add_aqares_information() {
+
+        RequestParams sendObj = new RequestParams();
+
+        try {
+
+            sendObj.put("operation_type_id", opration_select);
+            sendObj.put("estate_type_id", Type_work_select);
+
+            if (!Instrument_number.getText().toString().equals("")) {
+                sendObj.put("instrument_number", Instrument_number.getText().toString());
+
+            }
+            if (instrument_filexx != null) {
+
+                sendObj.put("instrument_file", instrument_filexx);
+
+
+            }
+            sendObj.put("pace_number", piece_number.getText().toString());
+            sendObj.put("planned_number", No_planned.getText().toString());
+            sendObj.put("total_area", Total_area.getText().toString());
+            sendObj.put("estate_age", age_of_the_property.getText().toString());
+            sendObj.put("floor_number", Role_number.getText().toString());
+            sendObj.put("street_view", Street_view.getText().toString());
+            sendObj.put("total_price", total_price.getText().toString());
+            sendObj.put("meter_price", price_one_meter.getText().toString());
+            sendObj.put("owner_name", Communication_Officer.getText().toString());
+            sendObj.put("owner_mobile", contact_number.getText().toString());
+            sendObj.put("lounges_number", number_Lounges + "");
+            sendObj.put("rooms_number", number_room + "");
+            sendObj.put("bathrooms_number", number_Bathrooms + "");
+            sendObj.put("boards_number", number_Boards_plus + "");
+            sendObj.put("kitchen_number", number_Kitchens_plus + "");
+            sendObj.put("dining_rooms_number", number_Dining_rooms + "");
+            sendObj.put("finishing_type", finishing_type);
+            sendObj.put("interface", interface_);
+            sendObj.put("social_status", social_status);
+            sendObj.put("city_id", city_id + "");
+            sendObj.put("neighborhood_id", nib_id + "");
+            sendObj.put("address", Address + "");
+            sendObj.put("lat", lat);
+            sendObj.put("lan", lng);
+            sendObj.put("is_rent", is_rent);//1 = yes or 0 = no
+            if (is_rent.equals("1")) {
+                sendObj.put("rent_type", rent_type);//'daily','monthly','yearly'
+            }
+            String attachment_planned = "";
+            for (int i = 0; i < selectIamgeList.size(); i++) {
+
+                if (attachment_planned.equals("")) {
+                    attachment_planned = selectIamgeList.get(i).getId() + "";
+                } else {
+                    attachment_planned = "," + selectIamgeList.get(i).getId() + "";
+
+                }
+
+            }
+            sendObj.put("attachment_estate", attachment_planned + "");
+
+
+            String comfort_list_ = "";
+
+            for (int i = 0; i < comfort_list.size(); i++) {
+
+                if (comfort_list.get(i).get_is_selected()) {
+                    if (comfort_list_.equals("")) {
+                        comfort_list_ = comfort_list.get(i).getId() + "";
+                    } else {
+                        comfort_list_ = comfort_list.get(i).getId() + "," + comfort_list.get(i).getId() + "";
+
+                    }
+
+                }
+
+
+            }
+
+            sendObj.put("estate_comforts", comfort_list_ + "");
+            System.out.println("comfort_list_" + comfort_list_);
+
+            sendObj.put("attachment_planned", image_planed);
+            sendObj.put("note", description.getText().toString());
+            sendObj.put("is_resident", "1");
+            sendObj.put("is_checked", "1");
+            sendObj.put("is_insured", "1");
+
+
+            System.out.println(sendObj.toString());
+
+
+            AddAqersAsyncTask(sendObj);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public LatLng getLocation() {
+
+        try {
+            gpsTracker = new GpsTracker(AddAqarsActivity.this);
+            if (gpsTracker.canGetLocation()) {
+                double latitude = gpsTracker.getLatitude();
+                double longitude = gpsTracker.getLongitude();
+                System.out.println("latitude:" + latitude);
+                System.out.println("longitude:" + longitude);
+
+                LatLng my_location = new LatLng(latitude, longitude);
+//                LatLng my_location = new LatLng(24.768516, 46.691505);
+
+                return my_location;
+
+            } else {
+                gpsTracker.showSettingsAlert();
+
+                //24.768516, 46.691505
+
+                LatLng my_location = new LatLng(24.768516, 46.691505);
+
+
+                return my_location;
+
+            }
+        } catch (Exception e) {
+
+            LatLng my_location = new LatLng(24.768516, 46.691505);
+
+
+            return my_location;
+        }
 
     }
 

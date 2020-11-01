@@ -277,7 +277,22 @@ public class MapsFragment extends Fragment {
 
 //                        ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
                         requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+                        LatLng mylocation = getLocation_sau();
+                        if (mylocation != null) {
+//                            googleMap.addMarker(new MarkerOptions()
+//                                    .position(mylocation)).setTag("mylocation");
+//
+//                            ;
+                            CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
+                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
+
+//                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 40));
+//                            // Zoom in, animating the camera.
+//                            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+                            // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+//                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+                        }
                     } else {
 
 
@@ -1169,6 +1184,12 @@ public class MapsFragment extends Fragment {
             drawable.draw(canvas);
         customMarkerView.draw(canvas);
         return returnedBitmap;
+    }
+
+    public LatLng getLocation_sau() {
+        LatLng my_location = new LatLng(24.768516, 46.691505);
+        return my_location;
+
     }
 
     public LatLng getLocation() {

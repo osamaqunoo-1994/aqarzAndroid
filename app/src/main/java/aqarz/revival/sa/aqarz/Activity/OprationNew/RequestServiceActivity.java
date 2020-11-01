@@ -3,6 +3,7 @@ package aqarz.revival.sa.aqarz.Activity.OprationNew;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,9 @@ public class RequestServiceActivity extends AppCompatActivity {
     TextView text_a1;
     ImageView back;
 
+
+    static Activity activity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +37,7 @@ public class RequestServiceActivity extends AppCompatActivity {
         fini_layout = findViewById(R.id.fini_layout);
         back = findViewById(R.id.back);
         text_a1 = findViewById(R.id.text_a1);
-
+        activity=this;
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +56,8 @@ public class RequestServiceActivity extends AppCompatActivity {
 
 
             }
-        }); fini_layout.setOnClickListener(new View.OnClickListener() {
+        });
+        fini_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -63,7 +68,8 @@ public class RequestServiceActivity extends AppCompatActivity {
 
 
             }
-        }); rate_layout.setOnClickListener(new View.OnClickListener() {
+        });
+        rate_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -74,7 +80,8 @@ public class RequestServiceActivity extends AppCompatActivity {
 
 
             }
-        });aqar_layout.setOnClickListener(new View.OnClickListener() {
+        });
+        aqar_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -93,5 +100,9 @@ public class RequestServiceActivity extends AppCompatActivity {
 //
 //            }
 //        });
+    }
+
+    public static void close() {
+        activity.finish();
     }
 }

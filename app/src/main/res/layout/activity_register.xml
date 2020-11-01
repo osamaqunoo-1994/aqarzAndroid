@@ -236,19 +236,32 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp">
 
                     <CheckBox
                         android:id="@+id/chechbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="5dp"
                         android:button="@drawable/checkcustomer"
-                        android:fontFamily="@font/frutiger_lt_arabic_bold"
+
                         android:gravity="center"
-                        android:text="@string/Acceptterms"
                         android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/acept_terms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="@string/Acceptterms"
+                        android:textColor="#424446" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
                 </LinearLayout>
 

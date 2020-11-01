@@ -404,10 +404,16 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (name_ed.getText().toString().equals("") |
-                        phone_ed.getText().toString().equals("") | email_ed.getText().toString().equals("") | address.getText().toString().equals("")) {
-                    WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.fillallfileds) + "", "error");
+                if (name_ed.getText().toString().equals("") ) {
+                    WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.hint_name__address) + "", "error");
+                } else if (phone_ed.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.hint_mob__address) + "", "error");
 
+                } else if (email_ed.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.hint_email_address) + "", "error");
+
+                } else if (address.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.hint_address__address) + "", "error");
 
                 } else if (service_types_te.toString().equals("")) {
                     WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.select_service) + "", "error");

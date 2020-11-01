@@ -4,29 +4,38 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.Set;
 
 import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.RegisterActivity;
+import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import aqarz.revival.sa.aqarz.Fragment.ChatFragment;
 import aqarz.revival.sa.aqarz.Fragment.MapsFragment;
 import aqarz.revival.sa.aqarz.Fragment.MoreFragment;
@@ -40,11 +49,15 @@ public class MainActivity extends AppCompatActivity {
     private Menu menu;
     private FragmentTransaction fragmentTransaction;
     private FragmentManager fragmentManager;
+    public static Activity activity;
+    public static BottomSheetDialogFragment_MyEstate bottomSheetDialogFragment_myEstate;
+    static BottomSheetDialog bottomSheerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        activity = this;
         init();
 
 //        LinearLayout yourView = findViewById(R.id.alla);
@@ -223,6 +236,52 @@ public class MainActivity extends AppCompatActivity {
                 doubleBackToExitPressedOnce = false;
             }
         }, 2000);
+    }
+
+    public static void open_found(String uuid) {
+        bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(uuid + "");
+
+        bottomSheetDialogFragment_myEstate.show(((FragmentActivity) activity).getSupportFragmentManager(), "");
+
+
+    }
+    public static void send_done() {
+
+        System.out.println("09999999999999999");
+
+            bottomSheetDialogFragment_myEstate.dismiss();
+
+
+
+        bottomSheerDialog = new BottomSheetDialog(MainActivity.activity);
+        LayoutInflater li = (LayoutInflater) MainActivity.activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View parentView = li.inflate(R.layout.success_sandoq, null);
+        Button ok = parentView.findViewById(R.id.ok);
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                                    finish();
+                bottomSheerDialog.dismiss();
+
+
+            }
+        });
+        bottomSheerDialog.setContentView(parentView);
+
+
+        Window window = bottomSheerDialog.getWindow();
+        window.findViewById(com.google.android.material.R.id.container).setFitsSystemWindows(false);
+        // dark navigation bar icons
+        View decorView = window.getDecorView();
+        decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, MainActivity.activity.getResources().getDisplayMetrics());
+
+
+//        ((View) decorView.getParent()).setBackgroundColor(context.getResources().getColor(android.R.color.transparent));
+
+
+        bottomSheerDialog.show();
     }
 
 }

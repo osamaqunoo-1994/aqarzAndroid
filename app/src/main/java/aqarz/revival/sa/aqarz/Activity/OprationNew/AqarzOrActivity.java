@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -19,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +55,7 @@ import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import aqarz.revival.sa.aqarz.Modules.OprationModules;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.R;
+import aqarz.revival.sa.aqarz.Settings.GpsTracker;
 import aqarz.revival.sa.aqarz.Settings.Settings;
 import aqarz.revival.sa.aqarz.Settings.WebService;
 import aqarz.revival.sa.aqarz.api.IResult;
@@ -59,13 +63,14 @@ import aqarz.revival.sa.aqarz.api.VolleyService;
 
 public class AqarzOrActivity extends AppCompatActivity {
     List<TypeModules> type_list = new ArrayList<>();
-    String opration_select = "";
+    String opration_select = "1";
     IResult mResultCallback;
 
     RecyclerView opration_2__RecyclerView;
     RecyclerView number_roomRecyclerView;
     CardView map_select;
     PlacesClient placesClient;
+    GpsTracker gpsTracker;
 
     RecyclerView opration_RecyclerView;
 
@@ -93,6 +98,7 @@ public class AqarzOrActivity extends AppCompatActivity {
     String room_number = "1";
     String Address = "";
 
+    LinearLayout seaction_roomes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +130,7 @@ public class AqarzOrActivity extends AppCompatActivity {
         governmental = findViewById(R.id.governmental);
         Maximum_price = findViewById(R.id.Maximum_price);
         back = findViewById(R.id.back);
+        seaction_roomes = findViewById(R.id.seaction_roomes);
 
 
         number_roomRecyclerView = findViewById(R.id.number_roomRecyclerView);
@@ -237,6 +244,35 @@ public class AqarzOrActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 opration_select = type_list.get(position).getId().toString() + "";
+
+                if (opration_select.toString().equals("1")) {//فيلا
+
+                    seaction_roomes.setVisibility(View.VISIBLE);
+
+
+                } else if (opration_select.toString().equals("2")) {//ارض
+
+
+                    seaction_roomes.setVisibility(View.GONE);
+
+
+                } else if (opration_select.toString().equals("3")) {//شقه
+                    seaction_roomes.setVisibility(View.VISIBLE);
+
+                } else if (opration_select.toString().equals("7")) {//مزرعه
+                    seaction_roomes.setVisibility(View.GONE);
+
+
+                } else if (opration_select.toString().equals("4")) {//دبلكس
+                    seaction_roomes.setVisibility(View.VISIBLE);
+
+                } else if (opration_select.toString().equals("6")) {//مكتب
+
+
+                    seaction_roomes.setVisibility(View.VISIBLE);
+
+
+                }
             }
         });
         opration_RecyclerView.setAdapter(recyclerView_all_opration_bottom_sheet);
@@ -256,6 +292,62 @@ public class AqarzOrActivity extends AppCompatActivity {
                         description.getText().toString().equals("")
                 ) {
                     WebService.Make_Toast(AqarzOrActivity.this, getResources().getString(R.string.AllFiledsREquered));
+
+
+                }else if(lat.equals("")){
+
+                    new AlertDialog.Builder(AqarzOrActivity.this)
+                            .setMessage(getResources().getString(R.string.message_location))
+                            .setCancelable(false)
+                            .setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+
+                                    lat = getLocation().latitude + "";
+                                    lng = getLocation().longitude + "";
+
+                                    WebService.loading(AqarzOrActivity.this, true);
+
+                                    VolleyService mVolleyService = new VolleyService(mResultCallback, AqarzOrActivity.this);
+
+
+                                    JSONObject sendObj = new JSONObject();
+
+                                    try {
+
+
+                                        sendObj.put("operation_type_id", "2");//form operation list api in setting
+                                        sendObj.put("request_type", "1");//form estate type list api in setting
+                                        sendObj.put("estate_type_id", opration_select);
+
+
+                                        sendObj.put("area_from", Les_space.getText().toString());
+                                        sendObj.put("area_to", Maximum_space.getText().toString());
+                                        sendObj.put("lat", lat);
+                                        sendObj.put("lan", lng);
+                                        sendObj.put("price_from", Les_price.getText().toString());
+                                        sendObj.put("price_to", Maximum_price.getText().toString());
+                                        sendObj.put("room_numbers", room_number);
+                                        sendObj.put("owner_name", Communication_Officer.getText().toString());
+                                        sendObj.put("owner_mobile", Communication_number.getText().toString());
+                                        sendObj.put("display_owner_mobile", "1");
+                                        sendObj.put("Address", Address);
+                                        sendObj.put("note", description.getText().toString());
+
+
+                                        System.out.println(sendObj.toString());
+                                        mVolleyService.postDataVolley("estate_Request", WebService.estate_Request, sendObj);
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+
+
+
+                                }
+                            })
+                            .setNegativeButton(getResources().getString(R.string.no), null)
+                            .show();
 
                 } else {
 
@@ -315,6 +407,8 @@ public class AqarzOrActivity extends AppCompatActivity {
                 Special.setBackground(null);
 
                 Special.setTextColor(getResources().getColor(R.color.color_filter));
+
+
                 tenant_job_type = "Purchase";
             }
         });
@@ -392,10 +486,9 @@ public class AqarzOrActivity extends AppCompatActivity {
             }
 
 
+        }
 
     }
-
-}
 
     public void init_volley() {
 
@@ -424,6 +517,8 @@ public class AqarzOrActivity extends AppCompatActivity {
                         close.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                RequestServiceActivity.close();
+
                                 finish();
                             }
                         });
@@ -481,4 +576,40 @@ public class AqarzOrActivity extends AppCompatActivity {
 
 
     }
+    public LatLng getLocation() {
+
+        try {
+            gpsTracker = new GpsTracker(AqarzOrActivity.this);
+            if (gpsTracker.canGetLocation()) {
+                double latitude = gpsTracker.getLatitude();
+                double longitude = gpsTracker.getLongitude();
+                System.out.println("latitude:" + latitude);
+                System.out.println("longitude:" + longitude);
+
+                LatLng my_location = new LatLng(latitude, longitude);
+//                LatLng my_location = new LatLng(24.768516, 46.691505);
+
+                return my_location;
+
+            } else {
+                gpsTracker.showSettingsAlert();
+
+                //24.768516, 46.691505
+
+                LatLng my_location = new LatLng(24.768516, 46.691505);
+
+
+                return my_location;
+
+            }
+        } catch (Exception e) {
+
+            LatLng my_location = new LatLng(24.768516, 46.691505);
+
+
+            return my_location;
+        }
+
+    }
+
 }

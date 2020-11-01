@@ -466,9 +466,9 @@ public class FinanceActivity extends AppCompatActivity {
         Solidarity_partner.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     Solidarity_salary.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     Solidarity_salary.setVisibility(View.GONE);
 
                 }
@@ -601,6 +601,9 @@ public class FinanceActivity extends AppCompatActivity {
                 } else if (Financial_obligations.getText().toString().equals("")) {
                     WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Financial_obligations) + " " + getResources().getString(R.string.is_requred), "error");
 
+                }else if (Solidarity_salary.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(FinanceActivity.this, getResources().getString(R.string.Solidarity_salaryreq) + " " + getResources().getString(R.string.is_requred), "error");
+
                 } else {
 
 
@@ -613,7 +616,7 @@ public class FinanceActivity extends AppCompatActivity {
                     try {
 
 
-                        sendObj.put("operation_type_id", "3");//form operation list api in setting
+                        sendObj.put("operation_type_id", "1");//form operation list api in setting
                         sendObj.put("estate_type_id", opration_select);//form estate type list api in setting
                         sendObj.put("job_type", tenant_job_type);
 
@@ -624,7 +627,7 @@ public class FinanceActivity extends AppCompatActivity {
                         sendObj.put("city_id", city_id);
                         sendObj.put("name", name.getText().toString());
                         sendObj.put("is_subsidized_property", ada_);
-                        sendObj.put("is_first_home",property);
+                        sendObj.put("is_first_home", property);
 
 
                         sendObj.put("identity_number", id_number.getText().toString());
@@ -636,7 +639,7 @@ public class FinanceActivity extends AppCompatActivity {
                         sendObj.put("mobile", phone.getText().toString());
 //                        sendObj.put("age", age.getText().toString());
                         sendObj.put("total_salary", total_sallary.getText().toString());
-                        if(!available_price.getText().toString().equals("")){
+                        if (!available_price.getText().toString().equals("")) {
                             sendObj.put("available_amount", available_price.getText().toString());
 
                         }
@@ -954,17 +957,19 @@ public class FinanceActivity extends AppCompatActivity {
                         String message = response.getString("message");
 
                         BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(FinanceActivity.this);
-                        View parentView = getLayoutInflater().inflate(R.layout.success_message,null);
-                        Button close=parentView.findViewById(R.id.close);
+                        View parentView = getLayoutInflater().inflate(R.layout.success_message, null);
+                        Button close = parentView.findViewById(R.id.close);
                         close.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                RequestServiceActivity.close();
+
                                 finish();
                             }
                         });
                         bottomSheerDialog.setContentView(parentView);
 
-                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,200,getResources().getDisplayMetrics());
+                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
                         bottomSheerDialog.show();
 //                        WebService.Make_Toast_color(FinanceActivity.this, message, "success");
 

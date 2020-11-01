@@ -27,6 +27,7 @@ import com.orhanobut.hawk.Hawk;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import aqarz.revival.sa.aqarz.Activity.TermsActivity;
 import aqarz.revival.sa.aqarz.Modules.User;
 import aqarz.revival.sa.aqarz.R;
 import aqarz.revival.sa.aqarz.Settings.WebService;
@@ -56,6 +57,10 @@ public class NewConfirmationActivity extends AppCompatActivity {
     String code = "";
     String mobile = "";
 
+
+    TextView acept_terms;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +86,7 @@ public class NewConfirmationActivity extends AppCompatActivity {
         phone_ed = findViewById(R.id.phone_ed);
         password = findViewById(R.id.password);
         sign_up = findViewById(R.id.sign_up);
+        acept_terms = findViewById(R.id.acept_terms);
 
         pass_checkbox = findViewById(R.id.pass_checkbox);
         cpass_checkbox = findViewById(R.id.Cpass_checkbox);
@@ -184,7 +190,16 @@ public class NewConfirmationActivity extends AppCompatActivity {
 //            }
 //        });
 
+        acept_terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intent = new Intent(NewConfirmationActivity.this, TermsActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

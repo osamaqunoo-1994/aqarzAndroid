@@ -96,7 +96,7 @@ public class OrdersFragment extends Fragment {
     List<OrdersModules> ordersModules = new ArrayList<>();
     List<demandsModules> MyRequst = new ArrayList<>();
 
-    BottomSheetDialogFragment_SelectCity_fillter bottomSheetDialogFragment_selectCity_fillter;
+    static BottomSheetDialogFragment_SelectCity_fillter bottomSheetDialogFragment_selectCity_fillter;
 
 
     List<TypeModules> type_list = new ArrayList<>();
@@ -805,5 +805,9 @@ public class OrdersFragment extends Fragment {
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
             mVolleyService.getDataVolley("my_request", WebService.my_request + "?estate_type_id=" + opration_select);
         }
+    }
+
+    public static void close_bottom(){
+        bottomSheetDialogFragment_selectCity_fillter.dismiss();
     }
 }
