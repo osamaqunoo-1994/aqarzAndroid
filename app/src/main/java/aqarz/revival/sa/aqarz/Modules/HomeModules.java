@@ -19,7 +19,9 @@ public class HomeModules {
     @SerializedName("user_id")
     @Expose
     private String user_id;
-
+    @SerializedName("address")
+    @Expose
+    private String address;
 
     @SerializedName("request_type")
     @Expose
@@ -72,6 +74,12 @@ public class HomeModules {
     @SerializedName("created_at")
     @Expose
     private String created_at;
+    @SerializedName("city_name")
+    @Expose
+    private String city_name;
+    @SerializedName("neighborhood_name")
+    @Expose
+    private String neighborhood_name;
     @SerializedName("updated_at")
     @Expose
     private String updated_at;
@@ -153,6 +161,14 @@ public class HomeModules {
         return estate_type_name;
     }
 
+    public String getCity_name() {
+        return city_name;
+    }
+
+    public String getNeighborhood_name() {
+        return neighborhood_name;
+    }
+
     public String getLan() {
         return lan;
     }
@@ -183,6 +199,10 @@ public class HomeModules {
 
     public String getRequest_type() {
         return request_type;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public String getRoom_numbers() {

@@ -30,12 +30,14 @@ ImageView image_icon;
     TextView type;
     TextView dublex;
     TextView opration;
+    TextView address;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_details_aqarz_order, container, false);
         price = v.findViewById(R.id.price);
         dublex = v.findViewById(R.id.dublex);
+        address = v.findViewById(R.id.address);
         opration = v.findViewById(R.id.opration);
         image_icon = v.findViewById(R.id.image_icon);
         type = v.findViewById(R.id.type);
@@ -43,6 +45,19 @@ ImageView image_icon;
 
         price.setText(Homemodules_object.getPrice_from() + " - " + Homemodules_object.getPrice_to());
         type.setText(Homemodules_object.getEstate_type_name());
+
+
+
+        if(Homemodules_object.getAddress()==null){
+            if(Homemodules_object.getCity_name()!=null){
+                address.setText(Homemodules_object.getCity_name()+" - "+Homemodules_object.getNeighborhood_name());
+
+            }
+
+        }else{
+            address.setText(Homemodules_object.getAddress());
+
+        }
         opration.setText(Homemodules_object.getOperation_type_name());
 
 

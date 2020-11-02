@@ -69,10 +69,12 @@ import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders_demands;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders_demandsx;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders_my_requst;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders_my_requstx;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders_offer_di;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_ordersx;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity_fillter;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
+import aqarz.revival.sa.aqarz.Modules.OfferRealStateModules;
 import aqarz.revival.sa.aqarz.Modules.OrdersModules;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
 import aqarz.revival.sa.aqarz.Modules.demandsModules;
@@ -101,6 +103,7 @@ public class OrdersFragment extends Fragment {
 
     List<TypeModules> type_list = new ArrayList<>();
     List<demandsModules> demandsModules_list = new ArrayList<>();
+    List<OfferRealStateModules> offerRealStateModulesLis = new ArrayList<>();
 
     LinearLayout my_order_layout;
     LinearLayout Shopping_request_layout;
@@ -125,6 +128,10 @@ public class OrdersFragment extends Fragment {
 
     ImageView filtter_city;
 
+    LinearLayout type_requst_xml;
+    TextView order;
+    TextView offer;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_orders, container, false);
@@ -137,6 +144,9 @@ public class OrdersFragment extends Fragment {
     public void init(View v) {
         orders_rec = v.findViewById(R.id.orders_rec);
 
+        type_requst_xml = v.findViewById(R.id.type_requst_xml);
+        order = v.findViewById(R.id.order);
+        offer = v.findViewById(R.id.offer);
         my_order_layout = v.findViewById(R.id.my_order_layout);
         Shopping_request_layout = v.findViewById(R.id.Shopping_request_layout);
         Real_Estate_order_layout = v.findViewById(R.id.Real_Estate_order_layout);
@@ -155,7 +165,14 @@ public class OrdersFragment extends Fragment {
 
 
         try {
-            data = Settings.getSettings().getOprationType().getOriginal().getData();
+//            data = Settings.getSettings().getOprationType().getOriginal().getData();
+
+
+            data.add(Settings.getSettings().getOprationType().getOriginal().getData().get(0));
+            data.add(Settings.getSettings().getOprationType().getOriginal().getData().get(1));
+            data.add(Settings.getSettings().getOprationType().getOriginal().getData().get(2));
+            data.add(Settings.getSettings().getOprationType().getOriginal().getData().get(3));
+
 
             LinearLayoutManager layoutManager1
                     = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -233,49 +250,6 @@ public class OrdersFragment extends Fragment {
                 Type_work_select = "1";
 
 
-//
-//                if(type_requst.equals("my_request")){
-//                    WebService.loading(getActivity(), true);
-//
-//                    init_volley();
-//                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-//                    mVolleyService.getDataVolley("my_request", WebService.my_request+"?estate_type= "+opration_select+"&estate_type="+Type_work_select);
-//
-//                }else if(type_requst.equals("market_demands")){
-//                    MyRequst.clear();
-//
-//
-//                    orders_rec.setAdapter(new RecyclerView_HomeList(getContext(), MyRequst));
-//
-//                    WebService.loading(getActivity(), true);
-//
-//                    init_volley();
-//                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-//                    mVolleyService.getDataVolley("market_demands", WebService.market_demands+"?estate_type= "+opration_select+"&estate_type="+Type_work_select);
-//
-//                }else if(type_requst.equals("fund_Request")){
-//
-//                    if (Settings.CheckIsCompleate()) {
-//                        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
-//                            WebService.loading(getActivity(), true);
-//
-//                            init_volley();
-//                            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-//                            mVolleyService.getDataVolley("fund_Request", WebService.fund_Request+"?estate_type= "+opration_select+"&estate_type="+Type_work_select);
-//
-//
-//                        } else {
-//                            show_dialog();
-////
-//                        }
-//                    } else {
-//                        Settings.Dialog_not_compleate(getActivity());
-//                    }
-//
-//                }
-//
-
-
             }
         });
         rent.setOnClickListener(new View.OnClickListener() {
@@ -291,6 +265,58 @@ public class OrdersFragment extends Fragment {
                 For_sale.setTextColor(getResources().getColor(R.color.black));
 
                 Type_work_select = "2";
+
+            }
+        });
+        //------------------------------------------------------------------------------------------------------------
+
+
+        order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                order.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                order.setTextColor(getResources().getColor(R.color.white));
+
+
+                offer.setBackground(null);
+
+                offer.setTextColor(getResources().getColor(R.color.black));
+                if (Settings.CheckIsCompleate()) {
+                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+                        send_requst_by_type("fund_Request");
+
+
+                    } else {
+                        show_dialog();
+//
+
+
+                    }
+                } else {
+                    Settings.Dialog_not_compleate(getActivity());
+
+
+                }
+
+
+            }
+        });
+        offer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                offer.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                offer.setTextColor(getResources().getColor(R.color.white));
+
+
+                order.setBackground(null);
+
+                order.setTextColor(getResources().getColor(R.color.black));
+
+
+                send_requst_by_type("request_offer");
+
 
             }
         });
@@ -339,6 +365,7 @@ public class OrdersFragment extends Fragment {
 
                 list_opration.setVisibility(View.VISIBLE);
                 type_sale.setVisibility(View.VISIBLE);
+                type_requst_xml.setVisibility(View.GONE);
 
 
                 MyRequst.clear();
@@ -371,6 +398,7 @@ public class OrdersFragment extends Fragment {
 
                 list_opration.setVisibility(View.GONE);
                 type_sale.setVisibility(View.VISIBLE);
+                type_requst_xml.setVisibility(View.GONE);
 
 //                WebService.loading(getActivity(), true);
                 MyRequst.clear();
@@ -414,13 +442,18 @@ public class OrdersFragment extends Fragment {
                 if (Settings.CheckIsCompleate()) {
                     if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
                         send_requst_by_type("fund_Request");
+                        type_requst_xml.setVisibility(View.VISIBLE);
 
                     } else {
                         show_dialog();
 //
+                        type_requst_xml.setVisibility(View.GONE);
+
                     }
                 } else {
                     Settings.Dialog_not_compleate(getActivity());
+                    type_requst_xml.setVisibility(View.GONE);
+
                 }
 
 
@@ -618,6 +651,42 @@ public class OrdersFragment extends Fragment {
                                 nodata_vis.setVisibility(View.VISIBLE);
 
                             }
+                        } else if (requestType.equals("request_offer")) {
+
+
+                            System.out.println("lfkdlfkdlkf");
+                            String data = response.getString("data");
+
+//                            JSONObject jsonObject_data = new JSONObject(data);
+
+//                            String data_inside = jsonObject_data.getString("data");
+                            JSONArray jsonArray = new JSONArray(data);
+                            orders_rec.setAdapter(null);
+                            offerRealStateModulesLis.clear();
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                Gson gson = new Gson();
+
+                                OfferRealStateModules offerRealStateModuless = gson.fromJson(mJson, OfferRealStateModules.class);
+                                offerRealStateModulesLis.add(offerRealStateModuless);
+
+
+                            }
+
+                            orders_rec.setAdapter(new RecyclerView_orders_offer_di(getContext(), offerRealStateModulesLis));
+
+                            if (offerRealStateModulesLis.size() != 0) {
+                                nodata_vis.setVisibility(View.GONE);
+                            } else {
+                                nodata_vis.setVisibility(View.VISIBLE);
+
+                            }
+
+
                         } else {
 
 
@@ -804,10 +873,16 @@ public class OrdersFragment extends Fragment {
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
             mVolleyService.getDataVolley("my_request", WebService.my_request + "?estate_type_id=" + opration_select);
+        } else if (requst_type.equals("request_offer")) {
+            WebService.loading(getActivity(), true);
+
+            init_volley();
+            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+            mVolleyService.getDataVolley("request_offer", WebService.my_fund_request_offer);
         }
     }
 
-    public static void close_bottom(){
+    public static void close_bottom() {
         bottomSheetDialogFragment_selectCity_fillter.dismiss();
     }
 }

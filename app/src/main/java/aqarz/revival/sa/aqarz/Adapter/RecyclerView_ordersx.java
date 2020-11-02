@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,6 +126,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
         holder.date.setText(alldata.get(position).getCreated_at());
         holder.address.setText(alldata.get(position).getCityName() + " , " + alldata.get(position).getNeighborhoodName());
 
+        Picasso.get().load(alldata.get(position).getEstateTypeIcon()).into(holder.image_icon);
 
 //
 //        System.out.println(alldata.get(position).getImage() + "");
@@ -136,7 +138,6 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 //
 ////
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.image);
 //        holder.price.setText(alldata.get(position).getPrice()+" "+context.getResources().getString(R.string.SAR));
 //        holder.title.setText(alldata.get(position).getTitle()+"");
 //        holder.description.setText(alldata.get(position).getDetails()+"");

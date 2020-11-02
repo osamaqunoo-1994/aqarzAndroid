@@ -250,7 +250,7 @@ new password</string>
 
     <string name="MyOrder">My Order</string>
     <string name="Shoppingrequest">Shopping requests</string>
-    <string name="Real_Estate_order">Real Estate Development Fund</string>
+    <string name="Real_Estate_order">Real Estate requests</string>
 
     <string name="chat">chat</string>
     <string name="call">call</string>
@@ -493,5 +493,10 @@ Your request and reply in the fastest time</string>
     <string name="Solidarity_salaryreq">Solidarity salary Required</string>
     <string name="message_location">سيتم اختيار العنوان الحالي لك كعنوان للعرض هل انت متأكد من ذلك ؟</string>
     <string name="Select_d">Select</string>
+
+
+
+    <string name="Order_es">Orders</string>
+    <string name="MyOffer">My Offer</string>
 
 </resources>

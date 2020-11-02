@@ -26,8 +26,7 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                     />
+                    android:layout_height="wrap_content" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -36,6 +35,7 @@
 
 
                 <ImageView
+                    android:id="@+id/favorit"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="7dp"
@@ -433,16 +433,10 @@
                     </LinearLayout>
 
 
-
                 </LinearLayout>
 
 
-
-
-
             </LinearLayout>
-
-
 
 
             <LinearLayout
@@ -527,6 +521,52 @@
 
                         android:layout_height="wrap_content"
 
+
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:padding="3dp"
+                            android:src="@drawable/ic_group_1956"
+                            app:tint="@color/colorPrimary" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+
+                            android:layout_marginRight="5dp"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:text="@string/t11_details"
+                            android:textColor="@color/textColor"
+                            android:textSize="14dp" />
+
+                        <TextView
+
+                            android:id="@+id/ads_number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:textColor="@color/textColor"
+                            android:textSize="14dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+
                         android:layout_marginTop="3dp"
                         android:gravity="center"
                         android:orientation="horizontal">
@@ -562,52 +602,6 @@
                             android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:maxLength="10"
 
-                            android:textColor="@color/textColor"
-                            android:textSize="14dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content"
-
-
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:padding="3dp"
-                            android:src="@drawable/ic_group_1956"
-                            app:tint="@color/colorPrimary" />
-
-                        <TextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-
-                            android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
-                            android:text="@string/t11_details"
-                            android:textColor="@color/textColor"
-                            android:textSize="14dp" />
-
-                        <TextView
-
-                            android:id="@+id/ads_number"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
                             android:textColor="@color/textColor"
                             android:textSize="14dp" />
 

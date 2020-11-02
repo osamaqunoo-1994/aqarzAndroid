@@ -7,12 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,10 +62,10 @@ public class RecyclerView_member extends RecyclerView.Adapter<RecyclerView_membe
         //  public FrameLayout frame;
 
         LinearLayout select;
-//        TextView opration;
+        //        TextView opration;
 //        TextView price;
 //        TextView address;
-//        ImageView image;
+        ImageView icon;
 
         TextView text;
 
@@ -76,6 +79,7 @@ public class RecyclerView_member extends RecyclerView.Adapter<RecyclerView_membe
 //            address = view.findViewById(R.id.address);
             text = view.findViewById(R.id.text);
             select = view.findViewById(R.id.select);
+            icon = view.findViewById(R.id.icon);
 
 
         }
@@ -111,6 +115,7 @@ public class RecyclerView_member extends RecyclerView.Adapter<RecyclerView_membe
 ////
         holder.text.setText(alldata.get(position).getName() + "");
 
+        Picasso.get().load(alldata.get(position).getIcon()).into(holder.icon);
 
         if (alldata.get(position).isChecked()) {
             holder.select.setBackground(context.getResources().getDrawable(R.drawable.circle_pr));
@@ -139,7 +144,6 @@ public class RecyclerView_member extends RecyclerView.Adapter<RecyclerView_membe
 //        }
 ////
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.with(context).load(alldata.get(position).get()).into(holder.image);
 ////
 //
 //        try {

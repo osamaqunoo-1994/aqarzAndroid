@@ -60,6 +60,9 @@ public class WebService {
     public static String contact_us = Domain + "contact/us";
     public static String neighborhoods = Domain + "neighborhoods";
     public static String market_demands = Domain + "market/demands";
+    public static String favorite = Domain + "add/delete/favorite";
+    public static String my_favorite = Domain + "my/favorite";
+    public static String my_fund_request_offer = Domain + "my/fund/request/offer";
 
 
 

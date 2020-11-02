@@ -12,8 +12,14 @@ public class ComfortModules {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("icon")
+    @Expose
+    private String icon;
     boolean is_selected = false;
 
+    public String getIcon() {
+        return icon;
+    }
 
     public String getName() {
         return name;

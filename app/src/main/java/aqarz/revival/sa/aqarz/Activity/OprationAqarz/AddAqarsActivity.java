@@ -105,6 +105,7 @@ import in.mayanknagwanshi.imagepicker.ImageSelectActivity;
 public class AddAqarsActivity extends AppCompatActivity {
 
     RecyclerView opration_RecyclerView;
+    String attachment_planned = "";
 
     ImageView Lounges_plus, Lounges_minus;
     TextView Lounges_number;
@@ -1769,7 +1770,6 @@ public class AddAqarsActivity extends AppCompatActivity {
         }
 
 
-
         if ((requstcode == 11 & is_place)) {
             if (resultCode == Activity.RESULT_OK) {
 
@@ -1943,11 +1943,7 @@ public class AddAqarsActivity extends AppCompatActivity {
                     if (status.equals("true")) {
 
                         String data = responseBody.getString("data");
-
-
-                        selectIamgeList.add(new SelectImageModules(Integer.valueOf(data), selectedImage));
-
-
+                        selectIamgeList.add(new SelectImageModules(data, selectedImage));
                         images_RecyclerView.setAdapter(new RecyclerView_selectImage(AddAqarsActivity.this, selectIamgeList));
 
                         WebService.Make_Toast_color(AddAqarsActivity.this, message, "success");
@@ -2181,20 +2177,26 @@ public class AddAqarsActivity extends AppCompatActivity {
 //                        WebService.Make_Toast_color(AddAqarsActivity.this, message, "success");
 
 //
+                        try {
 
-                        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(AddAqarsActivity.this);
-                        View parentView = getLayoutInflater().inflate(R.layout.success_message, null);
-                        Button close = parentView.findViewById(R.id.close);
-                        close.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                finish();
-                            }
-                        });
-                        bottomSheerDialog.setContentView(parentView);
+                            BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(AddAqarsActivity.this);
+                            View parentView = getLayoutInflater().inflate(R.layout.success_message, null);
+                            Button close = parentView.findViewById(R.id.close);
+                            close.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    bottomSheerDialog.dismiss();
+                                    finish();
+                                }
+                            });
+                            bottomSheerDialog.setContentView(parentView);
 
-                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
-                        bottomSheerDialog.show();
+                            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
+                            bottomSheerDialog.show();
+                        } catch (Exception e) {
+
+                        }
+
 //                        WebService.Make_Toast_color(FinanceActivity.this, message, "success");
 
 
@@ -2379,8 +2381,11 @@ public class AddAqarsActivity extends AppCompatActivity {
 
         try {
 
-            sendObj.put("operation_type_id", opration_select);
-            sendObj.put("estate_type_id", Type_work_select);
+
+            System.out.println("TESTADDAQAREZ-operation_type_id-" + opration_select + "-Type_work_select-" + Type_work_select);
+
+            sendObj.put("operation_type_id", Type_work_select);
+            sendObj.put("estate_type_id", opration_select);
 
             if (!Instrument_number.getText().toString().equals("")) {
                 sendObj.put("instrument_number", Instrument_number.getText().toString());
@@ -2420,13 +2425,14 @@ public class AddAqarsActivity extends AppCompatActivity {
             if (is_rent.equals("1")) {
                 sendObj.put("rent_type", rent_type);//'daily','monthly','yearly'
             }
-            String attachment_planned = "";
+
+            attachment_planned = "";
             for (int i = 0; i < selectIamgeList.size(); i++) {
 
                 if (attachment_planned.equals("")) {
                     attachment_planned = selectIamgeList.get(i).getId() + "";
                 } else {
-                    attachment_planned = "," + selectIamgeList.get(i).getId() + "";
+                    attachment_planned = attachment_planned + "," + selectIamgeList.get(i).getId() + "";
 
                 }
 

@@ -42,6 +42,9 @@ public class OrdersModules {
     @SerializedName("estate_type_name")
     @Expose
     private String estateTypeName;
+    @SerializedName("estate_type_icon")
+    @Expose
+    private String estateTypeIcon;
     @SerializedName("dir_estate")
     @Expose
     private String dirEstate;
@@ -130,6 +133,10 @@ public class OrdersModules {
 
     public void setStreetViewId(Integer streetViewId) {
         this.streetViewId = streetViewId;
+    }
+
+    public String getEstateTypeIcon() {
+        return estateTypeIcon;
     }
 
     public Integer getCityId() {

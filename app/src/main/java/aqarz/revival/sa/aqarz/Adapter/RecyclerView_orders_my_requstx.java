@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,7 +113,7 @@ public class RecyclerView_orders_my_requstx extends RecyclerView.Adapter<Recycle
 
         holder.price.setText(alldata.get(position).getPriceFrom() + " - " + alldata.get(position).getPriceTo());
 //        holder.view_type.setText(alldata.get(position).getDirEstate());
-//        holder.space.setText(alldata.get(position).getStreetViewRange());
+        holder.space.setText(alldata.get(position).getAreaFrom()+" - "+alldata.get(position).getAreaTo());
         holder.name_estate.setText(alldata.get(position).getEstateTypeName());
 //        holder.address.setText(alldata.get(position).getAddress());
 //        holder.address.setText(alldata.get(position).getCityName() + " , " + alldata.get(position).getNeighborhoodName());
@@ -119,7 +121,7 @@ public class RecyclerView_orders_my_requstx extends RecyclerView.Adapter<Recycle
 
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.get().load(alldata.get(position).getes()).into(holder.image_icon);
+        Picasso.get().load(alldata.get(position).getEstate_type().getIcon()).into(holder.image_icon);
 ////
 //
 //        try {

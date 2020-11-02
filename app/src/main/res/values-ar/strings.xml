@@ -262,7 +262,7 @@
 
     <string name="MyOrder">طلباتي</string>
     <string name="Shoppingrequest">طلبات السوق</string>
-    <string name="Real_Estate_order">صندوق التنمية العقارية</string>
+    <string name="Real_Estate_order">طلبات الصندوق</string>
 
     <string name="chat">مراسلة</string>
     <string name="call">اتصال</string>
@@ -475,5 +475,11 @@
     <string name="add_aqar_new">اضف عقار جديد</string>
     <string name="Solidarity_salaryreq">راتب المتضامن مطلوب</string>
     <string name="message_location">سيتم اختيار العنوان الحالي لك كعنوان للعرض هل انت متأكد من ذلك ؟</string>
-    <string name="Select_d">Select</string>
+    <string name="Select_d">اختار</string>
+
+
+
+    <string name="Order_es">الطلبات</string>
+    <string name="MyOffer">عروضي</string>
+
 </resources>

@@ -61,7 +61,7 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
 //        ProgressBar progress;
 //        LinearLayout add_to_my;
 
-//        ImageView image_aqars;
+        //        ImageView image_aqars;
 //        TextView type;
 //        TextView price;
         TextView address;
@@ -139,10 +139,21 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
 //
 //        holder.opration.setText(alldata.get(position).getRequest_type());
 
-       holder. price.setText(alldata.get(position).getPrice_from() + " - " + alldata.get(position).getPrice_to());
+        holder.price.setText(alldata.get(position).getPrice_from() + " - " + alldata.get(position).getPrice_to());
         holder.type.setText(alldata.get(position).getEstate_type_name());
         holder.opration.setText(alldata.get(position).getOperation_type_name());
         holder.date.setText(alldata.get(position).getCreated_at());
+
+        if (alldata.get(position).getAddress() == null) {
+            if (alldata.get(position).getCity_name() != null) {
+                holder.address.setText(alldata.get(position).getCity_name() + " - " + alldata.get(position).getNeighborhood_name());
+
+            }
+
+        } else {
+            holder.address.setText(alldata.get(position).getAddress());
+
+        }
 
         Picasso.get().load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
 

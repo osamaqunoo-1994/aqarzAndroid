@@ -59,8 +59,6 @@ public class SettingsModules {
     private List<service_types> service_types;
 
 
-
-
     public List<SettingsModules.service_types> getMember_types() {
         return member_types;
     }
@@ -120,9 +118,15 @@ public class SettingsModules {
         @SerializedName("name")
         @Expose
         private String name;
+        @SerializedName("icon")
+        @Expose
+        private String icon;
 
+        public String getIcon() {
+            return icon;
+        }
 
-        private boolean checked=false;
+        private boolean checked = false;
 
         public boolean isChecked() {
             return checked;

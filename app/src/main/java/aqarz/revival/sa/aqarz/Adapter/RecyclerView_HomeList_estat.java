@@ -154,13 +154,34 @@ public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerVi
         holder.price.setText(alldata.get(position).getTotalPrice());
         holder.type.setText(alldata.get(position).getEstate_type_name());
         holder.opration.setText(alldata.get(position).getOperationTypeName());
-        holder.address.setText(alldata.get(position).getAddress()+"");
+
         holder.date.setText(alldata.get(position).getCreatedAt()+"");
+
+
+
+
+        if (alldata.get(position).getAddress() == null) {
+            if (alldata.get(position).getCity_name() != null) {
+                holder.address.setText(alldata.get(position).getCity_name() + " - " + alldata.get(position).getNeighborhood_name());
+
+            }
+
+        } else {
+            holder.address.setText(alldata.get(position).getAddress());
+
+        }
+
+
 //        holder.number_room.setText(alldata.get(position).getRoomsNumber());
 //        holder.number_bathroom.setText(alldata.get(position).getBathroomsNumber());
 //        holder.max_space.setText(alldata.get(position).getStreetView());
 
-        Picasso.get().load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
+
+
+        if(alldata.get(position).getEstate_type()!=null){
+            Picasso.get().load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
+
+        }
 
 //
 //        System.out.println(alldata.get(position).getImage() + "");

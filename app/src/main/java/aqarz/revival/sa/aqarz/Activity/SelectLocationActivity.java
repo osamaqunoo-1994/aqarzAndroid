@@ -116,7 +116,7 @@ public class SelectLocationActivity extends AppCompatActivity {
 ////                    }
                     Intent resultIntent = new Intent();
 // TODO Add extras or a data URI to this intent as appropriate.
-                    resultIntent.putExtra("lat", lang);
+                    resultIntent.putExtra("lat", lat);
                     resultIntent.putExtra("lang", lang);
                     resultIntent.putExtra("address", text_search.getText().toString());
                     setResult(Activity.RESULT_OK, resultIntent);

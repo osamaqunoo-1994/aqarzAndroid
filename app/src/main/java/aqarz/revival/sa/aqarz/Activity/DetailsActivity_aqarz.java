@@ -1,10 +1,14 @@
 package aqarz.revival.sa.aqarz.Activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -27,11 +31,13 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Comfort_in_details;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_in_order;
 import aqarz.revival.sa.aqarz.Adapter.home_viewPager_Adapter;
+import aqarz.revival.sa.aqarz.Fragment.OrdersFragment;
 import aqarz.revival.sa.aqarz.Modules.ComfortModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
 import aqarz.revival.sa.aqarz.Modules.TypeModules;
@@ -45,6 +51,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     ViewPagerIndicator view_pager_indicator;
     ViewPager home_viewPager;
     IResult mResultCallback;
+    int oi = 0;
 
     TextView operation_type_name;
     TextView estate_type_name;
@@ -74,6 +81,10 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 //    RecyclerView type_RecyclerView;
 //    List<TypeModules> typeModules_list = new ArrayList<>();
 
+
+    ImageView favorit;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +104,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
         name = findViewById(R.id.name);
         note = findViewById(R.id.note);
         call = findViewById(R.id.call);
+        favorit = findViewById(R.id.favorit);
 
 
         type_ = findViewById(R.id.type_);
@@ -148,6 +160,48 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 //        home_viewPager.setPadding(0, 0, 110, 0);
 //        // sets a margin b/w individual pages to ensure that there is a gap b/w them
 //        home_viewPager.setPageMargin(20);
+        favorit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (Settings.checkLogin()) {
+                    init_volley();
+                    WebService.loading(DetailsActivity_aqarz.this, true);
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity_aqarz.this);
+                    try {
+
+                        JSONObject jsonObject = new JSONObject();
+                        jsonObject.put("estate_id", "" + id_or_aq);
+                        mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
+
+
+                    } catch (Exception e) {
+
+                    }
+
+
+                } else {
+
+                    new AlertDialog.Builder(DetailsActivity_aqarz.this)
+                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+                            .setCancelable(false)
+                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                    Intent intent = new Intent(DetailsActivity_aqarz.this, LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                                    startActivity(intent);
+
+                                }
+                            })
+                            .setNegativeButton(getResources().getString(R.string.no), null)
+                            .show();
+                }
+
+
+            }
+        });
 
         init_volley();
         WebService.loading(DetailsActivity_aqarz.this, true);
@@ -172,60 +226,111 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String data = response.getString("data");
-
-                        JsonParser parser = new JsonParser();
-                        JsonElement mJson = parser.parse(data);
-
-                        Gson gson = new Gson();
-
-                        HomeModules_aqares homeModules_aqares = gson.fromJson(mJson, HomeModules_aqares.class);
+//                        String message = response.getString("message");
 
 
-                        operation_type_name.setText(homeModules_aqares.getOperationTypeName());
-                        estate_type_name.setText(homeModules_aqares.getEstate_type_name());
-                        price.setText(homeModules_aqares.getTotalPrice());
-                        address.setText("----");
-                        name.setText(homeModules_aqares.getEstate_type_name() + "");
-                        note.setText(homeModules_aqares.getNote() + "");
-                        type_.setText(homeModules_aqares.getEstate_type_name() + "");
-                        area.setText(homeModules_aqares.getTotalArea() + "");
-                        room.setText(homeModules_aqares.getRoomsNumber() + "");
-                        age.setText(homeModules_aqares.getEstateAge() + "");
-                        view_.setText(homeModules_aqares.getInterface() + "");
-                        metter_price.setText(homeModules_aqares.getMeterPrice() + "");
-                        bathroom.setText(homeModules_aqares.getBathroomsNumber() + "");
-                        purpose.setText(homeModules_aqares.getBathroomsNumber() + "");
-                        name_owner.setText(homeModules_aqares.getOwnerName() + "");
-                        last_update.setText(homeModules_aqares.getCreatedAt() + "");
-                        ads_number.setText(homeModules_aqares.getId() + "");
-                        views_nummm.setText(homeModules_aqares.getSeen_count() + "");
+                        if (requestType.equals("favorite")) {
 
-                        call.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
+//                            WebService.Make_Toast_color(DetailsActivity_aqarz.this, message, "error");
 
-                                try{
-                                    String phone = ""+homeModules_aqares.getOwnerMobile();
-                                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
-                                    startActivity(intent);
-                                }catch (Exception e){
-                                    e.printStackTrace();
+                            favorit.setImageDrawable(getDrawable(R.drawable.ic_heart));
+
+
+                        } else {
+                            JsonParser parser = new JsonParser();
+                            JsonElement mJson = parser.parse(data);
+
+                            Gson gson = new Gson();
+
+                            HomeModules_aqares homeModules_aqares = gson.fromJson(mJson, HomeModules_aqares.class);
+
+
+                            operation_type_name.setText(homeModules_aqares.getOperationTypeName());
+                            estate_type_name.setText(homeModules_aqares.getEstate_type_name());
+                            price.setText(homeModules_aqares.getTotalPrice());
+
+
+                            if (homeModules_aqares.getAddress() == null) {
+                                if (homeModules_aqares.getCity_name() != null) {
+                                    address.setText(homeModules_aqares.getCity_name() + " - " + homeModules_aqares.getNeighborhood_name());
+
                                 }
 
+                            } else {
+                                address.setText(homeModules_aqares.getAddress());
+
                             }
-                        });
-                        for (int i = 0; i < homeModules_aqares.getEstate_file().size(); i++) {
 
 
-                            items_ViewPager.add(homeModules_aqares.getEstate_file().get(i).getFile());
+                            name.setText(homeModules_aqares.getEstate_type_name() + "");
+                            note.setText(homeModules_aqares.getNote() + "");
+                            type_.setText(homeModules_aqares.getEstate_type_name() + "");
+                            area.setText(homeModules_aqares.getTotalArea() + "");
+                            room.setText(homeModules_aqares.getRoomsNumber() + "");
+                            age.setText(homeModules_aqares.getEstateAge() + "");
+                            view_.setText(homeModules_aqares.getInterface() + "");
+                            metter_price.setText(homeModules_aqares.getMeterPrice() + "");
+                            bathroom.setText(homeModules_aqares.getBathroomsNumber() + "");
+                            purpose.setText(homeModules_aqares.getBathroomsNumber() + "");
+                            name_owner.setText(homeModules_aqares.getOwnerName() + "");
+                            last_update.setText(homeModules_aqares.getCreatedAt() + "");
+                            ads_number.setText(homeModules_aqares.getId() + "");
+                            views_nummm.setText(homeModules_aqares.getSeen_count() + "");
+
+                            call.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    try {
+                                        String phone = "0" + homeModules_aqares.getOwnerMobile();
+                                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                                        startActivity(intent);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            });
+                            for (int i = 0; i < homeModules_aqares.getEstate_file().size(); i++) {
+
+
+                                items_ViewPager.add(homeModules_aqares.getEstate_file().get(i).getFile());
+                            }
+
+                            home_viewPager.setAdapter(new home_viewPager_Adapter(DetailsActivity_aqarz.this, items_ViewPager));
+                            view_pager_indicator.setupWithViewPager(home_viewPager);
+
+                            try {
+                                if (items_ViewPager.size() > 1) {
+                                    oi = 0;
+
+                                    Handler handler = new Handler();
+
+                                    Runnable runnable = new Runnable() {
+                                        public void run() {
+
+                                            if (oi == items_ViewPager.size()) {
+                                                oi = 0;
+                                            }
+
+                                            home_viewPager.setCurrentItem(oi);
+                                            oi++;
+                                            handler.postDelayed(this, 1000);
+                                        }
+                                    };
+                                    handler.postDelayed(runnable, 1000);
+
+                                }
+
+                            } catch (Exception e) {
+
+                            }
+
+
+                            RecyclerView_All_Comfort_in_details recyclerView_all_comfort_in_fragment = new RecyclerView_All_Comfort_in_details(DetailsActivity_aqarz.this, homeModules_aqares.getComforts());//
+                            comfort_rec.setAdapter(recyclerView_all_comfort_in_fragment);
+
                         }
-
-                        home_viewPager.setAdapter(new home_viewPager_Adapter(DetailsActivity_aqarz.this, items_ViewPager));
-                        view_pager_indicator.setupWithViewPager(home_viewPager);
-
-
-                        RecyclerView_All_Comfort_in_details recyclerView_all_comfort_in_fragment = new RecyclerView_All_Comfort_in_details(DetailsActivity_aqarz.this, homeModules_aqares.getComforts());//
-                        comfort_rec.setAdapter(recyclerView_all_comfort_in_fragment);
 
 
                     } else {

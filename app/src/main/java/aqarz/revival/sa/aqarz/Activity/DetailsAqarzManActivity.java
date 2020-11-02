@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
@@ -47,10 +48,12 @@ import aqarz.revival.sa.aqarz.Activity.Auth.EditProfileActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationNew.AqarzOrActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList_estat;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList_estat_favorit;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_MyState;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_member;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_member_profile;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders_my_requst;
+import aqarz.revival.sa.aqarz.Modules.FavoritModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules_aqares;
 import aqarz.revival.sa.aqarz.Modules.demandsModules;
@@ -76,6 +79,7 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
     IResult mResultCallback;
 
     List<HomeModules_aqares> homeModules = new ArrayList<>();
+    List<FavoritModules> favoritModules_l = new ArrayList<>();
     List<demandsModules> homeModules1 = new ArrayList<>();
 
     TextView aw1;
@@ -88,7 +92,7 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
 
     RecyclerView alldate;
     RecyclerView member_list;
-
+    LinearLayout layout_ffavorit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +110,7 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
         upgrade = findViewById(R.id.upgrade);
         alldate = findViewById(R.id.alldate);
         member_list = findViewById(R.id.member_list);
+        layout_ffavorit = findViewById(R.id.layout_ffavorit);
         mMapView = (MapView) findViewById(R.id.mapViewxx);
 
         aw1 = findViewById(R.id.aw1);
@@ -184,6 +189,9 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
                 aw4.setTextColor(getResources().getColor(R.color.textColor2));
                 aw5.setTextColor(getResources().getColor(R.color.textColor2));
 
+                layout_ffavorit.setVisibility(View.GONE);
+
+
                 WebService.loading(DetailsAqarzManActivity.this, true);
 
 
@@ -232,6 +240,7 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
                 aw3.setTextColor(getResources().getColor(R.color.textColor2));
                 aw4.setTextColor(getResources().getColor(R.color.textColor2));
                 aw5.setTextColor(getResources().getColor(R.color.textColor2));
+                layout_ffavorit.setVisibility(View.GONE);
 
                 WebService.loading(DetailsAqarzManActivity.this, true);
                 alldate.setBackgroundColor(getResources().getColor(R.color.white));
@@ -260,6 +269,7 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
                 aw4.setTextColor(getResources().getColor(R.color.textColor2));
                 aw5.setTextColor(getResources().getColor(R.color.textColor2));
 
+                layout_ffavorit.setVisibility(View.GONE);
 
             }
         });
@@ -279,6 +289,7 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
                 aw1.setTextColor(getResources().getColor(R.color.textColor2));
                 aw5.setTextColor(getResources().getColor(R.color.textColor2));
 
+                layout_ffavorit.setVisibility(View.GONE);
 
             }
         });
@@ -298,6 +309,20 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
                 aw4.setTextColor(getResources().getColor(R.color.textColor2));
                 aw1.setTextColor(getResources().getColor(R.color.textColor2));
 
+                alldate.setBackgroundColor(getResources().getColor(R.color.white));
+
+                layout_ffavorit.setVisibility(View.VISIBLE);
+
+
+                WebService.loading(DetailsAqarzManActivity.this, true);
+
+
+                alldate.setBackgroundColor(getResources().getColor(R.color.color_back_rex));
+                init_volley();
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsAqarzManActivity.this);
+
+                mVolleyService.getDataVolley("my_favorite", WebService.my_favorite);
 
             }
         });
@@ -478,6 +503,41 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
 
 
                             alldate.setAdapter(new RecyclerView_HomeList_estat(DetailsAqarzManActivity.this, homeModules));
+
+
+                        } else if (requestType.equals("my_favorite")) {
+
+                            String data = response.getString("data");
+//                        JSONObject jsonObjectdata = new JSONObject(data);
+//
+//                        String datax = jsonObjectdata.getString("data");
+
+                            JSONArray jsonArray = new JSONArray(data);
+
+
+                            favoritModules_l.clear();
+                            alldate.setAdapter(null);
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+                                try {
+
+                                    JsonParser parser = new JsonParser();
+                                    JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                    Gson gson = new Gson();
+
+                                    FavoritModules bankModules = gson.fromJson(mJson, FavoritModules.class);
+                                    favoritModules_l.add(bankModules);
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+
+
+                            alldate.setAdapter(new RecyclerView_HomeList_estat_favorit(DetailsAqarzManActivity.this, favoritModules_l));
 
 
                         } else {

@@ -51,15 +51,14 @@ public class BottomSheetDialogFragment_DetailsAqares extends BottomSheetDialogFr
     TextView type;
     TextView dublex;
     TextView opration;
+    TextView address;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_details_aqarz, container, false);
 
 
-
-
-
+        address = v.findViewById(R.id.address);
         image = v.findViewById(R.id.image);
         image_icon = v.findViewById(R.id.image_icon);
         price = v.findViewById(R.id.price);
@@ -71,6 +70,19 @@ public class BottomSheetDialogFragment_DetailsAqares extends BottomSheetDialogFr
         price.setText(Homemodules_object.getTotalPrice());
         type.setText(Homemodules_object.getEstate_type_name());
         opration.setText(Homemodules_object.getOperationTypeName());
+
+        if (Homemodules_object.getAddress() == null) {
+            if (Homemodules_object.getCity_name() != null) {
+                address.setText(Homemodules_object.getCity_name() + " - " + Homemodules_object.getNeighborhood_name());
+
+            }
+
+        } else {
+            address.setText(Homemodules_object.getAddress());
+
+        }
+
+
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +116,7 @@ public class BottomSheetDialogFragment_DetailsAqares extends BottomSheetDialogFr
     public interface ItemClickListener {
         void onItemClick(int id_city, String city_naem);
     }
+
     @Override
     public void onStart() {
         super.onStart();

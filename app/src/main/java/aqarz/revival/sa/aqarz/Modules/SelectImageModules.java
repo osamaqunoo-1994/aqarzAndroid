@@ -8,19 +8,19 @@ import com.google.gson.annotations.SerializedName;
 public class SelectImageModules {
 
 
-    int id;
+    String id;
 
     Bitmap selectedImage;
 
 
-    public SelectImageModules(int id,
+    public SelectImageModules(String id,
                               Bitmap selectedImage) {
         this.id = id;
         this.selectedImage = selectedImage;
 
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

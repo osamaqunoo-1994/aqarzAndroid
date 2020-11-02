@@ -5,11 +5,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,6 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationNew.RentActivity;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_All_Type_in_order;
@@ -57,6 +61,7 @@ public class DetailsActivity extends AppCompatActivity {
     TextView name;
     String id_or_aq = "1";
     LinearLayout call;
+    ImageView favorit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +86,7 @@ public class DetailsActivity extends AppCompatActivity {
         views_nummm = findViewById(R.id.views_nummm);
         name = findViewById(R.id.name);
         call = findViewById(R.id.call);
+        favorit = findViewById(R.id.favorit);
         try {
             id_or_aq = getIntent().getStringExtra("id_aqarz");
 
@@ -94,7 +100,48 @@ public class DetailsActivity extends AppCompatActivity {
 
         VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity.this);
         mVolleyService.getDataVolley("single_request", WebService.single_estat + id_or_aq + "/request");
+        favorit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                if (Settings.checkLogin()) {
+                    init_volley();
+                    WebService.loading(DetailsActivity.this, true);
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity.this);
+                    try {
+
+                        JSONObject jsonObject = new JSONObject();
+                        jsonObject.put("estate_id", "" + id_or_aq);
+                        mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
+
+
+                    } catch (Exception e) {
+
+                    }
+
+
+                } else {
+
+                    new AlertDialog.Builder(DetailsActivity.this)
+                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+                            .setCancelable(false)
+                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                    Intent intent = new Intent(DetailsActivity.this, LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                                    startActivity(intent);
+
+                                }
+                            })
+                            .setNegativeButton(getResources().getString(R.string.no), null)
+                            .show();
+                }
+
+
+            }
+        });
 
     }
 
@@ -112,41 +159,60 @@ public class DetailsActivity extends AppCompatActivity {
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String data = response.getString("data");
+                        if (requestType.equals("favorite")) {
 
-                        JsonParser parser = new JsonParser();
-                        JsonElement mJson = parser.parse(data);
+//                            WebService.Make_Toast_color(DetailsActivity_aqarz.this, message, "error");
 
-                        Gson gson = new Gson();
-
-                        HomeModules homeModules_aqares = gson.fromJson(mJson, HomeModules.class);
+                            favorit.setImageDrawable(getDrawable(R.drawable.ic_heart));
 
 
-                        operation_type_name.setText(homeModules_aqares.getOperation_type_name());
-                        estate_type_name.setText(homeModules_aqares.getEstate_type_name());
-                        price.setText(homeModules_aqares.getPrice_from() + " - " + homeModules_aqares.getPrice_to());
-                        address.setText("----");
-                        note.setText(homeModules_aqares.getNote() + "");
-                        type_.setText(homeModules_aqares.getRequest_type() + "");
-                        name.setText(homeModules_aqares.getEstate_type_name() + "");
-                        area.setText(homeModules_aqares.getArea_from() + " - " + homeModules_aqares.getArea_to());
-                        room.setText(homeModules_aqares.getRoom_numbers() + "");
-                        name_owner.setText(homeModules_aqares.getOwner_name() + "");
-                        last_update.setText(homeModules_aqares.getCreated_at() + "");
-                        ads_number.setText(homeModules_aqares.getId() + "");
-                        views_nummm.setText(homeModules_aqares.getSeen_count() + "");
+                        } else {
+                            JsonParser parser = new JsonParser();
+                            JsonElement mJson = parser.parse(data);
 
-                        call.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                try{
-                                    String phone = ""+homeModules_aqares.getOwner_mobile();
-                                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
-                                    startActivity(intent);
-                                }catch (Exception e){
-                                    e.printStackTrace();
+                            Gson gson = new Gson();
+
+                            HomeModules homeModules_aqares = gson.fromJson(mJson, HomeModules.class);
+
+
+                            operation_type_name.setText(homeModules_aqares.getOperation_type_name());
+                            estate_type_name.setText(homeModules_aqares.getEstate_type_name());
+                            price.setText(homeModules_aqares.getPrice_from() + " - " + homeModules_aqares.getPrice_to());
+
+
+                            if (homeModules_aqares.getAddress() == null) {
+                                if (homeModules_aqares.getCity_name() != null) {
+                                    address.setText(homeModules_aqares.getCity_name() + " - " + homeModules_aqares.getNeighborhood_name());
+
                                 }
+
+                            } else {
+                                address.setText(homeModules_aqares.getAddress());
+
                             }
-                        });
+                            note.setText(homeModules_aqares.getNote() + "");
+                            type_.setText(homeModules_aqares.getRequest_type() + "");
+                            name.setText(homeModules_aqares.getEstate_type_name() + "");
+                            area.setText(homeModules_aqares.getArea_from() + " - " + homeModules_aqares.getArea_to());
+                            room.setText(homeModules_aqares.getRoom_numbers() + "");
+                            name_owner.setText(homeModules_aqares.getOwner_name() + "");
+                            last_update.setText(homeModules_aqares.getCreated_at() + "");
+                            ads_number.setText(homeModules_aqares.getId() + "");
+                            views_nummm.setText(homeModules_aqares.getSeen_count() + "");
+
+                            call.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    try {
+                                        String phone = "0" + homeModules_aqares.getOwner_mobile();
+                                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                                        startActivity(intent);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                        }
                     } else {
                         String message = response.getString("message");
 
