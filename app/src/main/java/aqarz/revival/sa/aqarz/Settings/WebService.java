@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import aqarz.revival.sa.aqarz.R;
-import es.dmoral.toasty.Toasty;
 
 
 public class WebService {
@@ -63,7 +62,6 @@ public class WebService {
     public static String favorite = Domain + "add/delete/favorite";
     public static String my_favorite = Domain + "my/favorite";
     public static String my_fund_request_offer = Domain + "my/fund/request/offer";
-
 
 
     public static void Header_Async(AsyncHttpClient client, boolean is_token) {

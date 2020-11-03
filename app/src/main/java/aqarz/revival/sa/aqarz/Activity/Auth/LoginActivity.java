@@ -133,7 +133,6 @@ public class LoginActivity extends AppCompatActivity {
 //
         if (Hawk.get("lang").toString().equals("ar")) {
 
-
             password.setGravity(Gravity.RIGHT);
 
         } else {

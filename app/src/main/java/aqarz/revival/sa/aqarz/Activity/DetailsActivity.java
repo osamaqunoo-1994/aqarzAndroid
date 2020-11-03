@@ -25,8 +25,12 @@ import com.google.gson.JsonParser;
 
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import aqarz.revival.sa.aqarz.Activity.Auth.LoginActivity;
 import aqarz.revival.sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
@@ -196,7 +200,25 @@ public class DetailsActivity extends AppCompatActivity {
                             area.setText(homeModules_aqares.getArea_from() + " - " + homeModules_aqares.getArea_to());
                             room.setText(homeModules_aqares.getRoom_numbers() + "");
                             name_owner.setText(homeModules_aqares.getOwner_name() + "");
-                            last_update.setText(homeModules_aqares.getCreated_at() + "");
+
+
+
+                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                            try {
+                                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
+
+                                Date date = format.parse(homeModules_aqares.getCreated_at().substring(0,19) + "");
+
+                                String dateTime = dateFormat.format(date);
+                                last_update.setText(dateTime+ "");
+
+                                System.out.println(date);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+
+//                            last_update.setText(homeModules_aqares.getCreated_at() + "");
                             ads_number.setText(homeModules_aqares.getId() + "");
                             views_nummm.setText(homeModules_aqares.getSeen_count() + "");
 
