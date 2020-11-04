@@ -878,7 +878,7 @@ public class OrdersFragment extends Fragment {
 
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("request_offer", WebService.my_fund_request_offer);
+            mVolleyService.getDataVolley("request_offer", WebService.my_fund_request_offer + "?estate_type_id=" + opration_select);
         }
     }
 

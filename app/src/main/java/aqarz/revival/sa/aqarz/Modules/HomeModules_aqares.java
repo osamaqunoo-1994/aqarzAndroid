@@ -23,6 +23,9 @@ public class HomeModules_aqares {
     @SerializedName("instrument_number")
     @Expose
     private String instrumentNumber;
+    @SerializedName("in_fav")
+    @Expose
+    private String in_fav;
 
 
     @SerializedName("pace_number")
@@ -195,6 +198,14 @@ public class HomeModules_aqares {
 
     public void setOperationTypeId(Integer operationTypeId) {
         this.operationTypeId = operationTypeId;
+    }
+
+    public String getIn_fav() {
+        return in_fav;
+    }
+
+    public void setIn_fav(String in_fav) {
+        this.in_fav = in_fav;
     }
 
     public List<ComfortModules> getComforts() {

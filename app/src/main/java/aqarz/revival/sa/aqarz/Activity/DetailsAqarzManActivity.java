@@ -52,6 +52,7 @@ import aqarz.revival.sa.aqarz.Adapter.RecyclerView_HomeList_estat_favorit;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_MyState;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_member;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_member_profile;
+import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders_demandsx;
 import aqarz.revival.sa.aqarz.Adapter.RecyclerView_orders_my_requst;
 import aqarz.revival.sa.aqarz.Modules.FavoritModules;
 import aqarz.revival.sa.aqarz.Modules.HomeModules;
@@ -87,6 +88,7 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
     TextView aw3;
     TextView aw4;
     TextView aw5;
+    List<demandsModules> demandsModules_list = new ArrayList<>();
 
     String service_types_te = "";
 
@@ -94,10 +96,30 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
     RecyclerView member_list;
     LinearLayout layout_ffavorit;
 
+
+    LinearLayout my_order_layout;
+    LinearLayout Shopping_request_layout;
+    LinearLayout Real_Estate_order_layout;
+
+    TextView my_order_text;
+    TextView Shopping_request_text;
+    TextView Real_Estate_order_text;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_aqarz_man);
+
+
+        Real_Estate_order_layout = findViewById(R.id.Real_Estate_order_layout);
+        Shopping_request_layout = findViewById(R.id.Shopping_request_layout);
+        my_order_layout = findViewById(R.id.my_order_layout);
+
+
+        my_order_text = findViewById(R.id.my_order_text);
+        Shopping_request_text = findViewById(R.id.Shopping_request_text);
+        Real_Estate_order_text = findViewById(R.id.Real_Estate_order_text);
 
 
         back = findViewById(R.id.back);
@@ -322,11 +344,96 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
 
                 VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsAqarzManActivity.this);
 
-                mVolleyService.getDataVolley("my_favorite", WebService.my_favorite);
+                mVolleyService.getDataVolley("my_favorite", WebService.my_favorite + "?type=request");
 
             }
         });
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        my_order_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                my_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.mash));
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
+
+
+                my_order_text.setTextColor(getResources().getColor(R.color.white));
+                Shopping_request_text.setTextColor(getResources().getColor(R.color.black));
+                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.black));
+
+                WebService.loading(DetailsAqarzManActivity.this, true);
+
+                alldate.setBackgroundColor(getResources().getColor(R.color.color_back_rex));
+                init_volley();
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsAqarzManActivity.this);
+
+                mVolleyService.getDataVolley("my_favorite_request", WebService.my_favorite + "?type=request");
+
+
+            }
+        });
+
+
+        Shopping_request_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                my_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
+                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
+
+
+                my_order_text.setTextColor(getResources().getColor(R.color.black));
+                Shopping_request_text.setTextColor(getResources().getColor(R.color.white));
+                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.black));
+
+
+                WebService.loading(DetailsAqarzManActivity.this, true);
+
+
+                alldate.setBackgroundColor(getResources().getColor(R.color.color_back_rex));
+                init_volley();
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsAqarzManActivity.this);
+
+                mVolleyService.getDataVolley("my_favorite_offer", WebService.my_favorite + "?type=offer");
+
+            }
+        });
+
+
+        Real_Estate_order_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                my_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
+                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.mash));
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+
+                my_order_text.setTextColor(getResources().getColor(R.color.black));
+                Shopping_request_text.setTextColor(getResources().getColor(R.color.black));
+                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
+
+
+                WebService.loading(DetailsAqarzManActivity.this, true);
+
+
+                alldate.setBackgroundColor(getResources().getColor(R.color.color_back_rex));
+                init_volley();
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsAqarzManActivity.this);
+
+                mVolleyService.getDataVolley("my_favorite_fund", WebService.my_favorite + "?type=fund");
+
+
+            }
+        });
 
         try {
 
@@ -504,6 +611,41 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
 
                             alldate.setAdapter(new RecyclerView_HomeList_estat(DetailsAqarzManActivity.this, homeModules));
 
+
+                        } else if (requestType.equals("my_favorite_fund")) {
+
+                            String data = response.getString("data");
+                            JSONArray jsonArray = new JSONArray(data);
+                            String first = jsonArray.get(0).toString();
+                            JSONObject jsonObjectdata = new JSONObject(first);
+
+                            String fund = jsonObjectdata.getString("fund");
+
+                            JSONArray jsonArray_fund = new JSONArray(fund);
+                            demandsModules_list.clear();
+                            for (int i = 0; i < jsonArray_fund.length(); i++) {
+
+                                try {
+
+                                    JsonParser parser = new JsonParser();
+                                    JsonElement mJson = parser.parse(jsonArray_fund.getString(i));
+
+                                    Gson gson = new Gson();
+
+                                    demandsModules ordersModulesm = gson.fromJson(mJson, demandsModules.class);
+                                    demandsModules_list.add(ordersModulesm);
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                alldate.setAdapter(new RecyclerView_orders_demandsx(DetailsAqarzManActivity.this, demandsModules_list));
+
+                            }
+
+
+                        } else if (requestType.equals("my_favorite_offer")) {
+
+                        } else if (requestType.equals("my_favorite_request")) {
 
                         } else if (requestType.equals("my_favorite")) {
 

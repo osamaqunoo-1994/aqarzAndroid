@@ -1,8 +1,10 @@
 package aqarz.revival.sa.aqarz.Adapter;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +17,11 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +30,9 @@ import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import aqarz.revival.sa.aqarz.Modules.OfferRealStateModules;
 import aqarz.revival.sa.aqarz.Modules.demandsModules;
 import aqarz.revival.sa.aqarz.R;
+import aqarz.revival.sa.aqarz.Settings.WebService;
+import aqarz.revival.sa.aqarz.api.IResult;
+import aqarz.revival.sa.aqarz.api.VolleyService;
 
 
 /**
@@ -33,6 +42,7 @@ public class RecyclerView_orders_offer_di extends RecyclerView.Adapter<RecyclerV
     public static List<OfferRealStateModules> alldata = new ArrayList<OfferRealStateModules>();
     static int Postion_opend = 0;
 
+    IResult mResultCallback;
 
     static AlertDialog alertDialog;
     private ItemClickListener mItemClickListener;
@@ -65,10 +75,11 @@ public class RecyclerView_orders_offer_di extends RecyclerView.Adapter<RecyclerV
         TextView view_type;
         TextView space;
         TextView name_estate;
-        TextView new_offer;
+        TextView statust;
         ImageView image_icon;
         ImageView image;
         LinearLayout date_la;
+        ImageView add_favorite;
 
         public MyViewHolder(View view) {
             super(view);
@@ -80,10 +91,12 @@ public class RecyclerView_orders_offer_di extends RecyclerView.Adapter<RecyclerV
             address = view.findViewById(R.id.address);
             space = view.findViewById(R.id.space);
             view_type = view.findViewById(R.id.view_type);
-            new_offer = view.findViewById(R.id.new_offer);
+            statust = view.findViewById(R.id.statust);
             image_icon = view.findViewById(R.id.image_icon);
             image = view.findViewById(R.id.image);
             date_la = view.findViewById(R.id.date_la);
+            add_favorite = view.findViewById(R.id.add_favorite);
+
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
@@ -125,13 +138,14 @@ public class RecyclerView_orders_offer_di extends RecyclerView.Adapter<RecyclerV
 
         if (alldata.get(position).getEstateCity() != null) {
             holder.address.setText(alldata.get(position).getEstateCity() + "-" + alldata.get(position).getEstateNeighborhood());
-
         }
 
         holder.space.setText(alldata.get(position).getEstateTotalArea() + "");
 
         if (alldata.get(position).getEstate_attachment().size() != 0) {
+
             Picasso.get().load(alldata.get(position).getEstate_attachment().get(0).getFile()).into(holder.image);
+
         }
 //        holder.name_estate.setText(a lldata.get(position).getEstateTypeName());
 //        holder.address.setText(alldata.get(position).getCityName() + " , " + alldata.get(position).getNeighborhoodName());
@@ -210,13 +224,41 @@ public class RecyclerView_orders_offer_di extends RecyclerView.Adapter<RecyclerV
 
             }
         });
-        holder.new_offer.setOnClickListener(new View.OnClickListener() {
+        holder.statust.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getId() + "");
+//                bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getId() + "");
+//
+//                bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+//
 
-                bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+            }
+        });
 
+        holder.add_favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getId() + "");
+//
+//                bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+                holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
+
+                init_volley();
+                WebService.loading((Activity) context, true);
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+                try {
+
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("type_id", "" + alldata.get(position).getId());
+                    jsonObject.put("type", "" + "offer");
+                    mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
+
+
+                } catch (Exception e) {
+
+                }
 
             }
         });
@@ -253,4 +295,76 @@ public class RecyclerView_orders_offer_di extends RecyclerView.Adapter<RecyclerV
     public interface ItemClickListener {
         void onItemClick(int position);
     }
+
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response.toString());
+                WebService.loading((Activity) context, false);
+//{"status":true,"code":200,"message":"User Profile","data"
+                try {
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+                        String data = response.getString("data");
+//                        String message = response.getString("message");
+                        String message = response.getString("message");
+
+
+                        WebService.Make_Toast_color((Activity) context, message, "success");
+
+
+                    }
+                } catch (Exception e) {
+
+                }
+
+
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+
+                WebService.loading((Activity) context, false);
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color((Activity) context, message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+                WebService.loading((Activity) context, false);
+
+
+            }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+                WebService.loading((Activity) context, false);
+
+                WebService.Make_Toast_color((Activity) context, error, "error");
+
+
+            }
+        };
+
+
+    }
+
 }

@@ -482,4 +482,14 @@
     <string name="Order_es">الطلبات</string>
     <string name="MyOffer">عروضي</string>
 
+
+
+
+    <string name="fav_1">العروض</string>
+    <string name="fav_2">الطلبات</string>
+    <string name="fav_3">الصندوق العقاري</string>
+
+
+    <string name="metterSeqour">متر مربع</string>
+
 </resources>

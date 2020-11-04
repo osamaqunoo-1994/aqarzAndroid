@@ -326,10 +326,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:visibility="gone"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:visibility="visible">
 
                         <RelativeLayout
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="3dp"
@@ -363,8 +364,9 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:gravity="center"
-                                    android:text="@string/MyOrder"
-
+                                    android:paddingLeft="15dp"
+                                    android:paddingRight="15dp"
+                                    android:text="@string/fav_1"
 
                                     android:textColor="@color/white"
                                     android:textSize="12dp" />
@@ -401,13 +403,14 @@
 
                                 <TextView
                                     android:id="@+id/Shopping_request_text"
-
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:gravity="center"
-                                    android:paddingLeft="@dimen/_5sdp"
-                                    android:paddingRight="@dimen/_5sdp"
-                                    android:text="@string/Shoppingrequest"
+                                    android:paddingLeft="15dp"
+                                    android:paddingRight="15dp"
+
+
+                                    android:text="@string/fav_2"
                                     android:textSize="12dp" />
                             </LinearLayout>
 
@@ -464,8 +467,9 @@
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
                                     android:gravity="center"
-
-                                    android:text="@string/Real_Estate_order"
+                                    android:paddingLeft="15dp"
+                                    android:paddingRight="15dp"
+                                    android:text="@string/fav_3"
                                     android:textSize="12dp" />
 
                                 <ImageView

@@ -98,6 +98,7 @@
                     android:src="@drawable/ic_send_" />
 
                 <ImageView
+                    android:id="@+id/add_favorite"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:padding="11dp"
@@ -128,20 +129,22 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:lines="1"
 
                     android:textColor="@color/textColor"
-                    android:textSize="13dp" />
+                    android:textSize="12dp" />
 
                 <TextView
-
                     android:layout_width="wrap_content"
+
                     android:layout_height="wrap_content"
-
-
                     android:fontFamily="@font/frutiger_lt_arabic_roman"
+
+
+                    android:lines="1"
                     android:text="@string/SAR"
                     android:textColor="@color/textColor"
-                    android:textSize="13dp" />
+                    android:textSize="12dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -174,7 +177,7 @@
                     android:fontFamily="@font/frutiger_lt_arabic_roman"
 
                     android:textColor="@color/textColor"
-                    android:textSize="13dp" />
+                    android:textSize="12dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -206,7 +209,17 @@
                     android:fontFamily="@font/frutiger_lt_arabic_roman"
 
                     android:textColor="@color/textColor"
-                    android:textSize="13dp" />
+                    android:textSize="12dp" />
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:text="@string/metterSeqour"
+                    android:textColor="@color/textColor"
+                    android:textSize="12dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -218,6 +231,7 @@
                     android:layout_height="30dp"
                     android:padding="5dp"
                     android:src="@drawable/ic_north"
+                    android:visibility="gone"
                     app:tint="#00D2CB" />
 
                 <TextView
@@ -227,9 +241,10 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:fontFamily="@font/frutiger_lt_arabic_roman"
-
                     android:textColor="@color/textColor"
-                    android:textSize="13dp" />
+
+                    android:textSize="13dp"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -240,9 +255,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
 
                 <ImageView
@@ -252,17 +267,6 @@
                     android:src="@drawable/ic_clock"
                     app:tint="#00D2CB" />
 
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                    android:maxLength="10"
-
-                    android:textColor="@color/textColor"
-                    android:textSize="13dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -289,6 +293,18 @@
 
 
                 android:gravity="center">
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:maxLength="10"
+
+                    android:textColor="@color/textColor2"
+                    android:textSize="11dp" />
 
 
                 <LinearLayout

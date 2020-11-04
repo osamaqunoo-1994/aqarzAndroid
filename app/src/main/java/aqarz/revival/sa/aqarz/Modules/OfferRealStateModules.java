@@ -37,6 +37,9 @@ public class OfferRealStateModules {
     @SerializedName("estate_total_area")
     @Expose
     private String estateTotalArea;
+    @SerializedName("in_fav")
+    @Expose
+    private String in_fav;
     @SerializedName("estate_estate_age")
     @Expose
     private Object estateEstateAge;

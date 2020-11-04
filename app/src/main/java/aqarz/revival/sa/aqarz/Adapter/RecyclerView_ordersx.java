@@ -1,8 +1,10 @@
 package aqarz.revival.sa.aqarz.Adapter;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +19,12 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +32,9 @@ import java.util.List;
 import aqarz.revival.sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import aqarz.revival.sa.aqarz.Modules.OrdersModules;
 import aqarz.revival.sa.aqarz.R;
+import aqarz.revival.sa.aqarz.Settings.WebService;
+import aqarz.revival.sa.aqarz.api.IResult;
+import aqarz.revival.sa.aqarz.api.VolleyService;
 
 
 /**
@@ -35,6 +44,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
     public static List<OrdersModules> alldata = new ArrayList<OrdersModules>();
     static int Postion_opend = 0;
 
+    IResult mResultCallback;
 
     static AlertDialog alertDialog;
     private ItemClickListener mItemClickListener;
@@ -71,6 +81,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
         TextView new_offer;
         TextView date;
         ImageView image_icon;
+        ImageView add_favorite;
 
         public MyViewHolder(View view) {
             super(view);
@@ -85,6 +96,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
             new_offer = view.findViewById(R.id.new_offer);
             image_icon = view.findViewById(R.id.image_icon);
             date = view.findViewById(R.id.date);
+            add_favorite = view.findViewById(R.id.add_favorite);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
@@ -211,6 +223,49 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
             }
         });
 
+        if(alldata.get(position).getIn_fav().equals("1")){
+            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
+
+        }else{
+            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
+
+        }
+        holder.add_favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (alldata.get(position).getIn_fav().equals("1")) {
+                    holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
+                    alldata.get(position).setIn_fav("0");
+                } else {
+                    holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
+                    alldata.get(position).setIn_fav("1");
+
+
+                }
+//                bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getId() + "");
+//
+//                bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+                init_volley();
+                WebService.loading((Activity) context, true);
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+                try {
+
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("type_id", "" + alldata.get(position).getId());
+                    jsonObject.put("type", "" + "fund");
+                    mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
+
+
+                } catch (Exception e) {
+
+                }
+
+            }
+        });
+
 
     }
 
@@ -277,4 +332,75 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 
         bottomSheerDialog.show();
     }
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response.toString());
+                WebService.loading((Activity) context, false);
+//{"status":true,"code":200,"message":"User Profile","data"
+                try {
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+                        String data = response.getString("data");
+//                        String message = response.getString("message");
+                        String message = response.getString("message");
+
+
+                        WebService.Make_Toast_color((Activity) context, message, "success");
+
+
+                    }
+                } catch (Exception e) {
+
+                }
+
+
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+
+                WebService.loading((Activity) context, false);
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color((Activity) context, message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+                WebService.loading((Activity) context, false);
+
+
+            }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+                WebService.loading((Activity) context, false);
+
+                WebService.Make_Toast_color((Activity) context, error, "error");
+
+
+            }
+        };
+
+
+    }
+
 }

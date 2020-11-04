@@ -63,6 +63,9 @@ public class OrdersModules {
     @SerializedName("city_name")
     @Expose
     private String cityName;
+    @SerializedName("in_fav")
+    @Expose
+    private String in_fav;
     @SerializedName("neighborhood_name")
     @Expose
     private String neighborhoodName;
@@ -75,7 +78,7 @@ public class OrdersModules {
         this.id = id;
     }
 
-    public String  getUuid() {
+    public String getUuid() {
         return uuid;
     }
 
@@ -95,9 +98,18 @@ public class OrdersModules {
         this.estateTypeId = estateTypeId;
     }
 
+    public String getIn_fav() {
+        return in_fav;
+    }
+
+    public void setIn_fav(String in_fav) {
+        this.in_fav = in_fav;
+    }
+
     public String getEstateStatus() {
         return estateStatus;
     }
+
 
     public void setEstateStatus(String estateStatus) {
         this.estateStatus = estateStatus;

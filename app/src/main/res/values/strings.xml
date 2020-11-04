@@ -499,4 +499,17 @@ Your request and reply in the fastest time</string>
     <string name="Order_es">Orders</string>
     <string name="MyOffer">My Offer</string>
 
+
+
+
+
+    <string name="fav_1">Offers</string>
+    <string name="fav_2">Orders</string>
+    <string name="fav_3">Real State</string>
+
+
+
+    <string name="metterSeqour">Square meters</string>
+
+
 </resources>

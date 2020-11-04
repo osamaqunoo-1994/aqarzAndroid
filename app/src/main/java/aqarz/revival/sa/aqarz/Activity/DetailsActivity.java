@@ -66,6 +66,7 @@ public class DetailsActivity extends AppCompatActivity {
     String id_or_aq = "1";
     LinearLayout call;
     ImageView favorit;
+    HomeModules homeModules_aqares;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,12 +112,21 @@ public class DetailsActivity extends AppCompatActivity {
                 if (Settings.checkLogin()) {
                     init_volley();
                     WebService.loading(DetailsActivity.this, true);
+                    if (homeModules_aqares.getIn_fav().equals("1")) {
+                        favorit.setImageDrawable(getDrawable(R.drawable.ic_like));
+                        homeModules_aqares.setIn_fav("0");
+                    } else {
+                        favorit.setImageDrawable(getDrawable(R.drawable.ic_heart));
 
+                        homeModules_aqares.setIn_fav("1");
+
+                    }
                     VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity.this);
                     try {
 
                         JSONObject jsonObject = new JSONObject();
-                        jsonObject.put("estate_id", "" + id_or_aq);
+                        jsonObject.put("type_id", "" + id_or_aq);
+                        jsonObject.put("type", "" + "offer");
                         mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
 
 
@@ -167,7 +177,7 @@ public class DetailsActivity extends AppCompatActivity {
 
 //                            WebService.Make_Toast_color(DetailsActivity_aqarz.this, message, "error");
 
-                            favorit.setImageDrawable(getDrawable(R.drawable.ic_heart));
+//                            favorit.setImageDrawable(getDrawable(R.drawable.ic_heart));
 
 
                         } else {
@@ -176,7 +186,7 @@ public class DetailsActivity extends AppCompatActivity {
 
                             Gson gson = new Gson();
 
-                            HomeModules homeModules_aqares = gson.fromJson(mJson, HomeModules.class);
+                            homeModules_aqares = gson.fromJson(mJson, HomeModules.class);
 
 
                             operation_type_name.setText(homeModules_aqares.getOperation_type_name());
@@ -201,16 +211,22 @@ public class DetailsActivity extends AppCompatActivity {
                             room.setText(homeModules_aqares.getRoom_numbers() + "");
                             name_owner.setText(homeModules_aqares.getOwner_name() + "");
 
+                            if (homeModules_aqares.getIn_fav().equals("1")) {
+                                favorit.setImageDrawable(getDrawable(R.drawable.ic_heart));
 
+                            } else {
+                                favorit.setImageDrawable(getDrawable(R.drawable.ic_like));
+
+                            }
 
                             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                             try {
                                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
 
-                                Date date = format.parse(homeModules_aqares.getCreated_at().substring(0,19) + "");
+                                Date date = format.parse(homeModules_aqares.getCreated_at().substring(0, 19) + "");
 
                                 String dateTime = dateFormat.format(date);
-                                last_update.setText(dateTime+ "");
+                                last_update.setText(dateTime + "");
 
                                 System.out.println(date);
                             } catch (ParseException e) {

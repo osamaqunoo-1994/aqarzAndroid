@@ -88,6 +88,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
     ImageView favorit;
 
+    HomeModules_aqares homeModules_aqares;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,9 +175,19 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
                     VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity_aqarz.this);
                     try {
+                        if (homeModules_aqares.getIn_fav().equals("1")) {
+                            favorit.setImageDrawable(getDrawable(R.drawable.ic_like));
+                            homeModules_aqares.setIn_fav("0");
+                        } else {
+                            favorit.setImageDrawable(getDrawable(R.drawable.ic_heart));
 
+                            homeModules_aqares.setIn_fav("1");
+
+                        }
                         JSONObject jsonObject = new JSONObject();
-                        jsonObject.put("estate_id", "" + id_or_aq);
+                        jsonObject.put("type_id", "" + id_or_aq);
+
+                        jsonObject.put("type", "" + "offer");
                         mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
 
 
@@ -237,8 +248,6 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
 //                            WebService.Make_Toast_color(DetailsActivity_aqarz.this, message, "error");
 
-                            favorit.setImageDrawable(getDrawable(R.drawable.ic_heart));
-
 
                         } else {
                             JsonParser parser = new JsonParser();
@@ -246,7 +255,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
                             Gson gson = new Gson();
 
-                            HomeModules_aqares homeModules_aqares = gson.fromJson(mJson, HomeModules_aqares.class);
+                            homeModules_aqares = gson.fromJson(mJson, HomeModules_aqares.class);
 
 
                             operation_type_name.setText(homeModules_aqares.getOperationTypeName());
@@ -283,16 +292,22 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
                             try {
                                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
 
-                                Date date = format.parse(homeModules_aqares.getCreatedAt().substring(0,19) + "");
+                                Date date = format.parse(homeModules_aqares.getCreatedAt().substring(0, 19) + "");
 
                                 String dateTime = dateFormat.format(date);
-                                last_update.setText(dateTime+ "");
+                                last_update.setText(dateTime + "");
 
                                 System.out.println(date);
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
+                            if (homeModules_aqares.getIn_fav().equals("1")) {
+                                favorit.setImageDrawable(getDrawable(R.drawable.ic_heart));
 
+                            } else {
+                                favorit.setImageDrawable(getDrawable(R.drawable.ic_like));
+
+                            }
 
 
 //                            last_update.setText(homeModules_aqares.getCreatedAt() + "");

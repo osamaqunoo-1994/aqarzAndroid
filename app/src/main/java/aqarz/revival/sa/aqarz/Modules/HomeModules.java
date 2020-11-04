@@ -19,6 +19,9 @@ public class HomeModules {
     @SerializedName("user_id")
     @Expose
     private String user_id;
+    @SerializedName("in_fav")
+    @Expose
+    private String in_fav;
     @SerializedName("address")
     @Expose
     private String address;
@@ -181,6 +184,10 @@ public class HomeModules {
         return operation_type_id;
     }
 
+    public void setIn_fav(String in_fav) {
+        this.in_fav = in_fav;
+    }
+
     public String getOperation_type_name() {
         return operation_type_name;
     }
@@ -203,6 +210,10 @@ public class HomeModules {
 
     public String getAddress() {
         return address;
+    }
+
+    public String getIn_fav() {
+        return in_fav;
     }
 
     public String getRoom_numbers() {

@@ -27,6 +27,9 @@ public class demandsModules {
     @SerializedName("area_to")
     @Expose
     private String areaTo;
+    @SerializedName("in_fav")
+    @Expose
+    private String in_fav;
     @SerializedName("price_from")
     @Expose
     private String priceFrom;
@@ -78,6 +81,12 @@ public class demandsModules {
     @SerializedName("estate_type_name")
     @Expose
     private String estateTypeName;
+    @SerializedName("city_name")
+    @Expose
+    private String city_name;
+    @SerializedName("neighborhood_name")
+    @Expose
+    private String neighborhood_name;
     @SerializedName("operation_type")
     @Expose
     private TypeModules operation_type;
@@ -107,6 +116,22 @@ public class demandsModules {
 
     public void setOperationTypeId(Integer operationTypeId) {
         this.operationTypeId = operationTypeId;
+    }
+
+    public String getIn_fav() {
+        return in_fav;
+    }
+
+    public void setIn_fav(String in_fav) {
+        this.in_fav = in_fav;
+    }
+
+    public String getNeighborhood_name() {
+        return neighborhood_name;
+    }
+
+    public String getCity_name() {
+        return city_name;
     }
 
     public String getAddress() {

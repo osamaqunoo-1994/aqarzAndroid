@@ -331,7 +331,7 @@ public class AqarzOrActivity extends AppCompatActivity {
                                         sendObj.put("owner_name", Communication_Officer.getText().toString());
                                         sendObj.put("owner_mobile", Communication_number.getText().toString());
                                         sendObj.put("display_owner_mobile", "1");
-                                        sendObj.put("Address", Address);
+                                        sendObj.put("address", Address);
                                         sendObj.put("note", description.getText().toString());
 
 
@@ -374,7 +374,7 @@ public class AqarzOrActivity extends AppCompatActivity {
                         sendObj.put("owner_name", Communication_Officer.getText().toString());
                         sendObj.put("owner_mobile", Communication_number.getText().toString());
                         sendObj.put("display_owner_mobile", "1");
-                        sendObj.put("Address", Address);
+                        sendObj.put("address", Address);
                         sendObj.put("note", description.getText().toString());
 
 
