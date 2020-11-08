@@ -23,14 +23,17 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Activity.SelectLocationActivity"
+            android:name=".Activity.FavoriteActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".Activity.Auth.EditProfileActivity"
+            android:name=".Activity.SelectLocationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".Activity.Auth.EditProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar_login" />
+        <activity
             android:name=".Activity.DetailsAqarzManActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar_login" />
         <activity
             android:name=".Activity.Auth.NewSiginUpActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -89,7 +92,6 @@
         <activity
             android:name=".Activity.Auth.ConfirmationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".Activity.Auth.CreatPasswordForgotActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -105,8 +107,6 @@
         <activity
             android:name=".Activity.Auth.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
-
         <activity
             android:name=".Activity.SplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar_splash">

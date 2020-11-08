@@ -61,6 +61,8 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
     private ItemClickListener mItemClickListener;
     TextView select;
 
+    String ids_of_city = "";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_sheets_select_city_fillter, container, false);
@@ -86,10 +88,9 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
 
 
                 @Override
-                public void onItemClick(int position) {
-                    if (mItemClickListener != null) {
-                        mItemClickListener.onItemClick(Integer.valueOf(Application.AllCity.get(position).getSerial_city()), Application.AllCity.get(position).getName());
-                    }
+                public void onItemClick(List<CityModules> alldata) {
+
+                    cityModules_list = alldata;
                 }
             });
 
@@ -122,10 +123,9 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
 
 
                     @Override
-                    public void onItemClick(int position) {
-                        if (mItemClickListener != null) {
-                            mItemClickListener.onItemClick(Integer.valueOf(Application.AllCity.get(position).getSerial_city()), Application.AllCity.get(position).getName());
-                        }
+                    public void onItemClick(List<CityModules> alldata) {
+                        cityModules_list = alldata;
+
                     }
                 });
 
@@ -145,6 +145,29 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
             public void onClick(View v) {
 
                 OrdersFragment.close_bottom();
+
+                ids_of_city = "";
+                for (int i = 0; i < cityModules_list.size(); i++) {
+
+                    if (cityModules_list.get(i).isSelected()) {
+                        if (ids_of_city.equals("")) {
+                            ids_of_city = cityModules_list.get(i).getSerial_city() + "";
+
+                        } else {
+                            ids_of_city = ids_of_city + "," + cityModules_list.get(i).getSerial_city() + "";
+                        }
+                    }
+
+
+                }
+
+                if(!ids_of_city.equals("")){
+
+                    if (mItemClickListener != null) {
+                        mItemClickListener.onItemClick(ids_of_city, ids_of_city);
+                    }
+                }
+
 
             }
         });
@@ -196,15 +219,14 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
                             Application.AllCity.add(Store_M);
                         }
 
-                        RecyclerView_city_bootom_sheets recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets(getContext(), Application.AllCity);
-                        recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_bootom_sheets.ItemClickListener() {
+                        RecyclerView_city_bootom_sheets_multi recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets_multi(getContext(), cityModules_list_filtter);
+                        recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_bootom_sheets_multi.ItemClickListener() {
 
 
                             @Override
-                            public void onItemClick(int position) {
-                                if (mItemClickListener != null) {
-                                    mItemClickListener.onItemClick(Integer.valueOf(Application.AllCity.get(position).getSerial_city()), Application.AllCity.get(position).getName());
-                                }
+                            public void onItemClick(List<CityModules> alldata) {
+                                cityModules_list = alldata;
+
                             }
                         });
 
@@ -270,7 +292,7 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
 
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(int id_city, String city_naem);
+        void onItemClick(String id_city, String city_naem);
     }
 
     @Override

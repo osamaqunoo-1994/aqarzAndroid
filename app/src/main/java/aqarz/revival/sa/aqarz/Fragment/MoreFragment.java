@@ -48,6 +48,7 @@ import aqarz.revival.sa.aqarz.Activity.Auth.NewSiginUpActivity;
 import aqarz.revival.sa.aqarz.Activity.Auth.RegisterActivity;
 import aqarz.revival.sa.aqarz.Activity.ContactUsActivity;
 import aqarz.revival.sa.aqarz.Activity.DetailsAqarzManActivity;
+import aqarz.revival.sa.aqarz.Activity.FavoriteActivity;
 import aqarz.revival.sa.aqarz.Activity.MainActivity;
 import aqarz.revival.sa.aqarz.Activity.PrivecyActivity;
 import aqarz.revival.sa.aqarz.Activity.SplashScreenActivity;
@@ -85,7 +86,7 @@ public class MoreFragment extends Fragment {
 
     LinearLayout contact_us;
 
-
+    LinearLayout Favorites;
     Button email_us;
     CircleImageView image_profile;
 
@@ -122,6 +123,7 @@ public class MoreFragment extends Fragment {
         linked = v.findViewById(R.id.linked);
         image_profile = v.findViewById(R.id.image_profile);
         not_compleate = v.findViewById(R.id.not_compleate);
+        Favorites = v.findViewById(R.id.Favorites);
 
 
         info_.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +167,16 @@ public class MoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+            }
+        });
+        Favorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), FavoriteActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);

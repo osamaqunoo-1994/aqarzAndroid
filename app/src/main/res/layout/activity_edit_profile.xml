@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
 
-
+            android:background="@color/colorPrimary"
             android:gravity="center">
 
             <ImageView
@@ -29,7 +29,8 @@
                 android:layout_marginRight="10dp"
 
                 android:padding="17dp"
-                android:src="@drawable/ic_back" />
+                android:src="@drawable/ic_back"
+                android:tint="@color/white" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -78,7 +79,8 @@
                     android:gravity="center"
                     android:text="@string/done_ok_done"
                     android:textColor="@color/cookie_error"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:visibility="gone" />
 
                 <RelativeLayout
                     android:layout_width="100dp"
@@ -168,24 +170,48 @@
 
                     android:textSize="13dp" />
 
-                <EditText
-
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/mash"
-                    android:drawableStart="@drawable/ic_www"
-                    android:drawablePadding="10dp"
-                    android:gravity="center_vertical"
-                    android:hint="@string/Site"
-                    android:inputType="textEmailAddress"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:text=""
+                    android:layout_marginRight="20dp">
 
-                    android:textSize="13dp" />
+                    <EditText
+
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+
+                        android:layout_weight="1"
+                        android:background="@drawable/mash"
+                        android:drawableStart="@drawable/ic_www"
+                        android:drawablePadding="10dp"
+                        android:gravity="center_vertical"
+                        android:hint="@string/site_hint"
+                        android:inputType="textEmailAddress"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text=""
+                        android:textSize="9dp" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="aqarz.sa/" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/circle_requst"
+                        android:padding="15dp"
+                        android:src="@drawable/ic_copy_icon" />
+
+                </LinearLayout>
+
 
                 <EditText
                     android:id="@+id/www"

@@ -61,7 +61,8 @@
 
 
     </style>
- <style name="AppTheme.NoActionBar_orders">
+
+    <style name="AppTheme.NoActionBar_orders">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <!--        <item name="android:fontFamily">@font/light</item>-->
@@ -112,6 +113,7 @@
         <item name="android:paddingTop">@dimen/_4sdp</item>
         <item name="android:paddingBottom">@dimen/_4sdp</item>
     </style>
+
     <style name="SCBSwitch" parent="Theme.AppCompat.Light">
         <!-- active thumb & track color (30% transparency) -->
         <item name="colorControlActivated">#814C99</item>

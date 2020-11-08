@@ -18,6 +18,12 @@ public class demandsModules {
     @SerializedName("request_type")
     @Expose
     private String requestType;
+    @SerializedName("street_view_range")
+    @Expose
+    private String street_view_range;
+    @SerializedName("estate_price_range")
+    @Expose
+    private String estate_price_range;
     @SerializedName("estate_type_id")
     @Expose
     private Integer estateTypeId;
@@ -176,6 +182,14 @@ public class demandsModules {
 
     public void setAreaTo(String areaTo) {
         this.areaTo = areaTo;
+    }
+
+    public String getEstate_price_range() {
+        return estate_price_range;
+    }
+
+    public String getStreet_view_range() {
+        return street_view_range;
     }
 
     public String getPriceFrom() {

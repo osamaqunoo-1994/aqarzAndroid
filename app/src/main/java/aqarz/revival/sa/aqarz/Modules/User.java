@@ -30,6 +30,9 @@ public class User {
     @SerializedName("mobile")
     @Expose
     private String mobile;
+    @SerializedName("link")
+    @Expose
+    private String link;
     @SerializedName("is_pay")
     @Expose
     private String is_pay;
@@ -163,6 +166,9 @@ public class User {
         return city_name;
     }
 
+    public String getLink() {
+        return link;
+    }
 
     public String getAddress() {
         return address;

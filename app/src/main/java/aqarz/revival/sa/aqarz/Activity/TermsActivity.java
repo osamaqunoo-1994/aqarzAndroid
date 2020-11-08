@@ -26,7 +26,7 @@ public class TermsActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
 
 
-        text.setText(Html.fromHtml(getResources().getString(R.string.tet_terms)));
+        text.setText(getResources().getString(R.string.xsaa));
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

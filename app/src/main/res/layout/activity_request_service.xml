@@ -59,14 +59,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="15dp"
-            android:visibility="gone"
             android:layout_marginRight="40dp"
-
             android:fontFamily="@font/frutiger_lt_arabic_roman"
+
             android:gravity="center"
             android:text="@string/Enjoy_"
             android:textColor="@color/textColor"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:visibility="gone" />
 
 
         <LinearLayout
@@ -83,17 +83,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:id="@+id/rent_layout"
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        android:background="@drawable/mash"
+                        android:id="@+id/aqar_layout"
+
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+
+                        android:background="@drawable/circle_requst"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -101,21 +105,20 @@
                         <ImageView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:src="@drawable/ic_taq_cc"
+                            android:src="@drawable/ic_a2"
+
                             app:tint="#AAABB3" />
-
-                        <TextView
-                            android:id="@+id/text_a1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:textSize="13dp"
-
-                            android:text="@string/RentalinstallmentService"
-                            android:textColor="#AAABB3" />
 
 
                     </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/AqarsService"
+                        android:textColor="#AAABB3"
+                        android:textSize="13dp" />
 
                 </LinearLayout>
 
@@ -123,14 +126,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:id="@+id/aqar_layout"
-
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        android:background="@drawable/mash"
+                        android:id="@+id/rent_layout"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/circle_requst"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -138,22 +141,21 @@
                         <ImageView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:src="@drawable/ic_aqa_cc"
-
+                            android:src="@drawable/ic_a1"
                             app:tint="#AAABB3" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/AqarsService"
-                            android:textSize="13dp"
-
-
-                            android:textColor="#AAABB3" />
 
 
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/text_a1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/RentalinstallmentService"
+
+                        android:textColor="#AAABB3"
+                        android:textSize="13dp" />
 
                 </LinearLayout>
 
@@ -170,55 +172,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:gravity="center"
 
-                    <LinearLayout
-                        android:id="@+id/rate_layout"
-
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        android:background="@drawable/mash"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-
-                        <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:src="@drawable/ic_rate_cc"
-
-                            app:tint="#AAABB3" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/rateService"
-                            android:textSize="13dp"
-
-
-
-                            android:textColor="#AAABB3" />
-
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:textSize="13dp"
-
-                    android:layout_weight="1"
-                    android:gravity="center">
+                    android:orientation="vertical"
+                    android:textSize="13dp">
 
                     <LinearLayout
                         android:id="@+id/fini_layout"
 
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        android:background="@drawable/mash"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/circle_requst"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -226,22 +190,60 @@
                         <ImageView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:src="@drawable/ic_tamo_cc"
+                            android:src="@drawable/ic_a3"
 
                             app:tint="#AAABB3" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/financeService"
-                            android:textSize="13dp"
-
-                            android:textColor="#AAABB3" />
 
 
                     </LinearLayout>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/financeService"
+                        android:textColor="#AAABB3"
+
+                        android:textSize="13dp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/rate_layout"
+
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/circle_requst"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:src="@drawable/ic_a4"
+
+                            app:tint="#AAABB3" />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/rateService"
+                        android:textColor="#AAABB3"
+
+
+                        android:textSize="13dp" />
                 </LinearLayout>
 
 

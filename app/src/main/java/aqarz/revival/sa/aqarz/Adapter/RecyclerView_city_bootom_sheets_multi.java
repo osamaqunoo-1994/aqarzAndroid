@@ -193,7 +193,7 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
 
 
                 if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(position);
+                    mItemClickListener.onItemClick(alldata);
                 }
 
 
@@ -244,6 +244,6 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
 
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(List<CityModules> alldata);
     }
 }

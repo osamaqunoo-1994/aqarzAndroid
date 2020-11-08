@@ -1,6 +1,7 @@
 package aqarz.revival.sa.aqarz.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -71,12 +73,13 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
     TextView title;
     TextView address;
     TextView mobile;
-    TextView email;
+    TextView site;
+    TextView location;
     TextView upgrade;
     CircleImageView profile;
     private static GoogleMap googleMap;
     public GoogleApiClient mGoogleApiClient;
-    MapView mMapView;
+    //    MapView mMapView;
     IResult mResultCallback;
 
     List<HomeModules_aqares> homeModules = new ArrayList<>();
@@ -88,6 +91,9 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
     TextView aw3;
     TextView aw4;
     TextView aw5;
+
+    LinearLayout select_offer;
+    LinearLayout select_clints;
     List<demandsModules> demandsModules_list = new ArrayList<>();
 
     String service_types_te = "";
@@ -100,6 +106,8 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
     LinearLayout my_order_layout;
     LinearLayout Shopping_request_layout;
     LinearLayout Real_Estate_order_layout;
+    LinearLayout share_linl;
+    LinearLayout open_map;
 
     TextView my_order_text;
     TextView Shopping_request_text;
@@ -120,6 +128,10 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
         my_order_text = findViewById(R.id.my_order_text);
         Shopping_request_text = findViewById(R.id.Shopping_request_text);
         Real_Estate_order_text = findViewById(R.id.Real_Estate_order_text);
+        select_offer = findViewById(R.id.select_offer);
+        select_clints = findViewById(R.id.select_clints);
+        open_map = findViewById(R.id.open_map);
+        share_linl = findViewById(R.id.share_linl);
 
 
         back = findViewById(R.id.back);
@@ -127,13 +139,23 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
         title = findViewById(R.id.title);
         address = findViewById(R.id.address);
         mobile = findViewById(R.id.mobile);
-        email = findViewById(R.id.email);
+        site = findViewById(R.id.site);
+//        email = findViewById(R.id.email);
         profile = findViewById(R.id.profile);
         upgrade = findViewById(R.id.upgrade);
         alldate = findViewById(R.id.alldate);
         member_list = findViewById(R.id.member_list);
         layout_ffavorit = findViewById(R.id.layout_ffavorit);
-        mMapView = (MapView) findViewById(R.id.mapViewxx);
+        location = findViewById(R.id.location);
+//        mMapView = (MapView) findViewById(R.id.mapViewxx);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (back != null) {
+                back.setSystemUiVisibility(View.ACCESSIBILITY_LIVE_REGION_NONE);
+            }
+        }
+
 
         aw1 = findViewById(R.id.aw1);
         aw2 = findViewById(R.id.aw2);
@@ -151,65 +173,69 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
         member_list.setLayoutManager(layoutManagerf);
 
 
-        mMapView.onCreate(savedInstanceState);
-
-        mMapView.onResume(); // needed to get the map to display immediately
-
-        try {
-            MapsInitializer.initialize(DetailsAqarzManActivity.this.getApplicationContext());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        mMapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap mMap) {
-                googleMap = mMap;
-                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-
-//                googleMap.getUiSettings().setRotateGesturesEnabled(true);
-
-
-                try {
-
-                    if (Settings.GetUser().getLat() != null) {
-
-                        System.out.println("______" + Settings.GetUser().getLat());
-                        LatLng sydney = new LatLng(Double.valueOf(Settings.GetUser().getLat()), Double.valueOf(Settings.GetUser().getLan()));
-                        googleMap.addMarker(new MarkerOptions()
-                                .position(sydney)
-                                .title("Marker"));
-
-                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
-                        // Zoom in, animating the camera.
-                        googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-                        // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
-
-                    }
-
-                } catch (Exception e) {
-
-                }
-
-            }
-        });
-
+//        mMapView.onCreate(savedInstanceState);
+//
+//        mMapView.onResume(); // needed to get the map to display immediately
+//
+//        try {
+//            MapsInitializer.initialize(DetailsAqarzManActivity.this.getApplicationContext());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        mMapView.getMapAsync(new OnMapReadyCallback() {
+//            @Override
+//            public void onMapReady(GoogleMap mMap) {
+//                googleMap = mMap;
+//                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//
+////                googleMap.getUiSettings().setRotateGesturesEnabled(true);
+//
+//
+//                try {
+//
+//                    if (Settings.GetUser().getLat() != null) {
+//
+//                        System.out.println("______" + Settings.GetUser().getLat());
+//                        LatLng sydney = new LatLng(Double.valueOf(Settings.GetUser().getLat()), Double.valueOf(Settings.GetUser().getLan()));
+//                        googleMap.addMarker(new MarkerOptions()
+//                                .position(sydney)
+//                                .title("Marker"));
+//
+//                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+//                        // Zoom in, animating the camera.
+//                        googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+//                        // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+//                        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+//
+//                    }
+//
+//                } catch (Exception e) {
+//
+//                }
+//
+//            }
+//        });
+//
 
         aw1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                aw1.setBackground(getResources().getDrawable(R.drawable.button_login));
-                aw2.setBackground(null);
-                aw3.setBackground(null);
-                aw4.setBackground(null);
-                aw5.setBackground(null);
+//                aw1.setBackground(getResources().getDrawable(R.drawable.button_login));
+//                aw2.setBackground(null);
+//                aw3.setBackground(null);
+//                aw4.setBackground(null);
+//                aw5.setBackground(null);
+//
+//                aw1.setTextColor(getResources().getColor(R.color.white));
+//                aw2.setTextColor(getResources().getColor(R.color.textColor2));
+//                aw3.setTextColor(getResources().getColor(R.color.textColor2));
+//                aw4.setTextColor(getResources().getColor(R.color.textColor2));
+//                aw5.setTextColor(getResources().getColor(R.color.textColor2));
 
-                aw1.setTextColor(getResources().getColor(R.color.white));
-                aw2.setTextColor(getResources().getColor(R.color.textColor2));
-                aw3.setTextColor(getResources().getColor(R.color.textColor2));
-                aw4.setTextColor(getResources().getColor(R.color.textColor2));
-                aw5.setTextColor(getResources().getColor(R.color.textColor2));
+                select_clints.setVisibility(View.INVISIBLE);
+                select_offer.setVisibility(View.VISIBLE);
+
 
                 layout_ffavorit.setVisibility(View.GONE);
 
@@ -299,17 +325,21 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                aw4.setBackground(getResources().getDrawable(R.drawable.button_login));
-                aw2.setBackground(null);
-                aw3.setBackground(null);
-                aw1.setBackground(null);
-                aw5.setBackground(null);
+//                aw4.setBackground(getResources().getDrawable(R.drawable.button_login));
+//                aw2.setBackground(null);
+//                aw3.setBackground(null);
+//                aw1.setBackground(null);
+//                aw5.setBackground(null);
+//
+//                aw4.setTextColor(getResources().getColor(R.color.white));
+//                aw2.setTextColor(getResources().getColor(R.color.textColor2));
+//                aw3.setTextColor(getResources().getColor(R.color.textColor2));
+//                aw1.setTextColor(getResources().getColor(R.color.textColor2));
+//                aw5.setTextColor(getResources().getColor(R.color.textColor2));
 
-                aw4.setTextColor(getResources().getColor(R.color.white));
-                aw2.setTextColor(getResources().getColor(R.color.textColor2));
-                aw3.setTextColor(getResources().getColor(R.color.textColor2));
-                aw1.setTextColor(getResources().getColor(R.color.textColor2));
-                aw5.setTextColor(getResources().getColor(R.color.textColor2));
+                select_clints.setVisibility(View.VISIBLE);
+                select_offer.setVisibility(View.INVISIBLE);
+
 
                 layout_ffavorit.setVisibility(View.GONE);
 
@@ -434,6 +464,35 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
 
             }
         });
+        share_linl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!Settings.GetUser().getLink().toString().equals("null")) {
+//                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Settings.GetUser().getLink().toString()));
+//                    startActivity(browserIntent);
+
+
+                    Intent txtIntent = new Intent(android.content.Intent.ACTION_SEND);
+                    txtIntent.setType("text/plain");
+                    txtIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Aqarez");
+                    txtIntent.putExtra(android.content.Intent.EXTRA_TEXT, Settings.GetUser().getLink().toString());
+                    startActivity(Intent.createChooser(txtIntent, "Share"));
+
+
+                }
+            }
+        });
+        open_map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?saddr=" + Settings.GetUser().getLat() + "," + Settings.GetUser().getLan() + "&daddr=" + Settings.GetUser().getLat() + "," + Settings.GetUser().getLan()));
+                startActivity(intent);
+            }
+        });
+
 
         try {
 
@@ -445,13 +504,30 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
                 title.setText("----------------");
 
             }
-            mobile.setText(Settings.GetUser().getMobile() + "");
-
-            if (!Settings.GetUser().getEmail().toString().equals("null")) {
-                email.setText(Settings.GetUser().getEmail());
+            if (!Settings.GetUser().getLink().toString().equals("null")) {
+                site.setText(Settings.GetUser().getLink());
 
             } else {
-                email.setText("---------");
+                site.setText("----------------");
+
+            }
+
+            if (!Settings.GetUser().getEmail().toString().equals("null")) {
+//                email.setText(Settings.GetUser().getEmail());
+
+            } else {
+//                email.setText("---------");
+
+            }
+            if (!Settings.GetUser().getAddress().toString().equals("null")) {
+                location.setText(Settings.GetUser().getAddress());
+
+            } else {
+                location.setText("---------");
+
+            }
+            if (Settings.GetUser().getMobile() != null) {
+                mobile.setText(Settings.GetUser().getMobile() + "");
 
             }
 
@@ -485,7 +561,7 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
             address.setText(service_types_te + "");
 
 
-            member_list.setAdapter(new RecyclerView_member_profile(DetailsAqarzManActivity.this, Settings.GetUser().getMember_name()));
+//            member_list.setAdapter(new RecyclerView_member_profile(DetailsAqarzManActivity.this, Settings.GetUser().getMember_name()));
 
             if (!Settings.GetUser().getLogo().toString().equals("null")) {
                 Picasso.get().load(Settings.GetUser().getLogo()).into(profile);
