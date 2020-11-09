@@ -19,93 +19,6 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-
-
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:id="@+id/back"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:padding="@dimen/_7sdp"
-                    android:src="@drawable/ic_back" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/edit"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/ic_edit_pr" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/upgrade"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginRight="10dp"
-                    android:text="@string/upgrade"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:visibility="gone" />
-
-
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-
-                android:layout_marginTop="-90dp">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-
-                    android:src="#fff"
-                    app:civ_border_color="#ccc"
-                    app:civ_border_width="2dp" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-
-                    android:layout_width="98dp"
-                    android:layout_height="98dp"
-
-                    android:src="#fff"
-                    app:civ_border_color="#ccc"
-                    app:civ_border_width="1dp" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profile"
-                    android:layout_width="96dp"
-
-
-                    android:layout_height="96dp"
-
-                    android:layout_centerInParent="true"
-                    android:src="#fff"
-                    app:civ_border_color="#9777B2"
-                    app:civ_border_width="0dp" />
-            </RelativeLayout>
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
@@ -116,8 +29,96 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
                     android:orientation="vertical">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+
+
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/back"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:padding="11dp"
+                            android:src="@drawable/ic_back" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/edit"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/ic_edit_pr" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/upgrade"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="10dp"
+                            android:text="@string/upgrade"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:visibility="gone" />
+
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+
+                        android:layout_marginTop="-90dp">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+
+                            android:src="#fff"
+                            app:civ_border_color="#ccc"
+                            app:civ_border_width="2dp" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+
+                            android:layout_width="98dp"
+                            android:layout_height="98dp"
+
+                            android:src="#fff"
+                            app:civ_border_color="#ccc"
+                            app:civ_border_width="1dp" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/profile"
+                            android:layout_width="96dp"
+
+
+                            android:layout_height="96dp"
+
+                            android:layout_centerInParent="true"
+                            android:src="#fff"
+                            app:civ_border_color="#9777B2"
+                            app:civ_border_width="0dp" />
+                    </RelativeLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -213,7 +214,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="15dp"
                             android:layout_marginRight="20dp"
                             android:gravity="start"
                             android:orientation="horizontal">

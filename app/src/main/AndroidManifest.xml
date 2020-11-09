@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="aqarz.revival.sa.aqarz">
+    package="sa.aqarz">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -30,7 +30,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.Auth.EditProfileActivity"
-            android:theme="@style/AppTheme.NoActionBar_login" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.DetailsAqarzManActivity"
             android:theme="@style/AppTheme.NoActionBar_login" />

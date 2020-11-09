@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:696250824577:android:184c22ab0ae5976f",
         "android_client_info": {
-          "package_name": "aqarz.revival.sa.aqarz"
+          "package_name": "sa.aqarz"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "696250824577-gantf8h6ovp6e5tdmps7cniq6dh02o72.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "aqarz.revival.sa.aqarz",
+            "package_name": "sa.aqarz",
             "certificate_hash": "6c23c0aba058bb64f17820a5d00c2e7f750a2247"
           }
         },
@@ -26,7 +26,7 @@
           "client_id": "696250824577-m4ucsae5qn2cdlba5br0upmlt7ppik4p.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "aqarz.revival.sa.aqarz",
+            "package_name": "sa.aqarz",
             "certificate_hash": "067f6005f5fc52e44a1a5914b76fc3f0df1b63e8"
           }
         },

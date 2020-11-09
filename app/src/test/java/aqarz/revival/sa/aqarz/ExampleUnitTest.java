@@ -1,4 +1,4 @@
-package aqarz.revival.sa.aqarz;
+package sa.aqarz;
 
 import org.junit.Test;
 
