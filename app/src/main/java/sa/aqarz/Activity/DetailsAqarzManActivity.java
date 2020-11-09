@@ -34,6 +34,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -113,13 +114,14 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
     TextView Shopping_request_text;
     TextView Real_Estate_order_text;
 
-
+FloatingActionButton add_clint;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_aqarz_man);
 
 
+        add_clint = findViewById(R.id.add_clint);
         Real_Estate_order_layout = findViewById(R.id.Real_Estate_order_layout);
         Shopping_request_layout = findViewById(R.id.Shopping_request_layout);
         my_order_layout = findViewById(R.id.my_order_layout);
@@ -266,6 +268,18 @@ public class DetailsAqarzManActivity extends AppCompatActivity {
 
 
                 Intent intent = new Intent(DetailsAqarzManActivity.this, EditProfileActivity.class);
+//              intent.putExtra("from", "splash");
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+
+            }
+        });   add_clint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(DetailsAqarzManActivity.this, AddClintesActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);

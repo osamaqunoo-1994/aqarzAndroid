@@ -466,6 +466,7 @@
     <string name="site_hint">عنوان الصفحة الشخصي (باللغة الإنجليزية)</string>
     <string name="ChangePassword_ttitle">تغيير كلمة المرور</string>
     <string name="PasswordnadConfirmnotmatch">كلمة المرور غير متطابقه</string>
+    <string name="linkShare">رابط الملف الشخصي</string>
 
 
     <string name="done_ok_done">يجب استكمال بيانات حسابك للاشتراك</string>
@@ -493,6 +494,23 @@
 
 
     <string name="metterSeqour">متر مربع</string>
+    <string name="from_from">المصدر</string>
+
+    <string name="Ads_number">رقم الاعلان</string>
+    <string name="mobile_number_">رقم الموبايل</string>
+    <string name="Name_ne">الاسم</string>
+    <string name="Firstily">الأولوية</string>
+
+
+
+    <string name="Remmember">تذكير</string>
+    <string name="TimeRemmember">وقت التذكير</string>
+
+
+    <string name="SSQ1">قليلة</string>
+    <string name="SSQ2">عادية</string>
+    <string name="SSQ3">عالية</string>
+
 
     <string name="xsaa">
  \n عبر دخولك واستخدامك موقع أو تطبيق عقارز فإنك تقر وتوافق، دون إجراء أي تعديل ودون أية قيود أو تبديل، على الأحكام والشروط الواردة في هذه (الاتفاقية). أنت تقر وتضمن حقك القانوني للدخول في هذه الاتفاقية واستخدام الخدمات التي نقدمها في عقارز وفقاً لكافة الشروط والأحكام الواردة فيها.

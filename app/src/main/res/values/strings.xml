@@ -436,6 +436,51 @@ Your request and reply in the fastest time</string>
     <string name="PasswordnadConfirmnotmatch">Confirm Password does not match</string>
     <string name="done_ok_done">You must complete your account information to subscribe</string>
     <string name="terms_title">Usage Agreement</string>
+    <string name="linkShare">Link Share</string>
+    <string name="from_from">From</string>
+
+
+
+
+
+
+    <string name="Ads_number">Ads Number</string>
+    <string name="mobile_number_">Mobile</string>
+    <string name="Name_ne">Name</string>
+    <string name="Firstily">Firstily</string>
+
+
+
+
+
+    <string name="SSQ1">Low</string>
+    <string name="SSQ2">Normal</string>
+    <string name="SSQ3">Hight</string>
+    <string name="Remmember">Remember</string>
+    <string name="WriteHere">Write Here</string>
+
+
+
+    <string name="TimeRemmember">Time Remmember</string>
+
+
+
+
+    <string name="add_clints">Add Clintes</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <string name="tet_terms">ﺍﺗﻔﺎﻗﻴﺔ ﺍﻹﺳﺘﺨﺪﺍﻡﻋﺒﺮ ﺩﺧﻮﻟﻚ ﻭﺍﺳﺘﺨﺪﺍﻣﻚ ﻣﻮﻗﻊ ﺃﻭ ﺗﻄﺒﻴﻖ ﻋﻘﺎﺭﺯ ﻓﺈﻧﻚ ﺗﻘﺮ ﻭﺗﻮﺍﻓﻖ، ﺩﻭﻥ ﺇﺟﺮﺍﺀ ﺃﻱ ﺗﻌﺪﻳﻞ ﻭﺩﻭﻥ ﺃﻳﺔ ﻗﻴﻮﺩ ﺃﻭ ﺗﺒﺪﻳﻞ، ﻋﻠﻰ ﺍﻷﺣﻜﺎﻡ ﻭﺍﻟﺸﺮﻭﻁ ﺍﻟﻮﺍﺭﺩﺓ ﻓﻲ ﻫﺬﻩ (ﺍﻻﺗﻔﺎﻗﻴﺔ). ﺃﻧﺖ ﺗﻘﺮ ﻭﺗﻀﻤﻦ ﺣﻘﻚ ﺍﻟﻘﺎﻧﻮﻧﻲ ﻟﻠﺪﺧﻮﻝ ﻓﻲ ﻫﺬﻩ ﺍﻻﺗﻔﺎﻗﻴﺔ ﻭﺍﺳﺘﺨﺪﺍﻡ ﺍﻟﺨﺪﻣﺎﺕ ﺍﻟﺘﻲ ﻧﻘﺪﻣﻬﺎ ﻓﻲ ﻋﻘﺎﺭﺯ ﻭﻓﻘﺎً ﻟﻜﺎﻓﺔ ﺍﻟﺸﺮﻭﻁ ﻭﺍﻷﺣﻜﺎﻡ ﺍﻟﻮﺍﺭﺩﺓ ﻓﻴﻬﺎ.
         ﺗﺴﻌﻰ ﻣﺆﺳﺴﺔ ﻋﻠﻮ ﻭﺃﺳﺎﺱ ﻟﻺﺗﺼﺎﻻﺕ ﻭﺗﻘﻨﻴﺔ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﻗﺪﺭ ﺍﻹﻣﻜﺎﻥ ﺇﻟﻰ ﺗﻮﻓﻴﺮ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﻋﻠﻰ ﻣﻨﺼﺘﻬﺎ ﺑﺪﻗﺔ ﻣﺘﻨﺎﻫﻴﺔ. ﺇﻻ ﺃﻧﻪ ﻗﺪ ﺗﺮﺩ ﺑﻌﺾ ﺍﻷﺧﻄﺎﺀ ﻣﻦ ﺣﻴﻦ ﻵﺧﺮ. ﻭﻻ ﺗﺘﺤﻤﻞ ﻣﺆﺳﺴﺔ ﻋﻠﻮ ﻭﺃﺳﺎﺱ ﻟﻺﺗﺼﺎﻻﺕ ﻭﺗﻘﻨﻴﺔ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﺃﻱ ﻣﺴﺆﻭﻟﻴﺔ ﻋﻦ ﺃﻱ ﺧﻄﺄ ﻓﻲ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﺍﻟﺘﻲ ﻳﺘﻀﻤﻨﻬﺎ ﺍﻟﻤﻮﻗﻊ ﺍﻭ ﺍﻟﺘﻄﺒﻴﻖ.
         ﻣﺆﺳﺴﺔ ﻋﻠﻮ ﻭﺃﺳﺎﺱ ﻟﻺﺗﺼﺎﻻﺕ ﻭﺗﻘﻨﻴﺔ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﻟﻠﺘﺠﺎﺭﺓ ﻫﻲ ﺷﺮﻛﺔ ﺳﻌﻮﺩﻳﺔ ١٠٠ ٪ ﻭﻣﻘﺮﻫﺎ ﺍﻟﺮﺋﻴﺴﻲ ﻳﻘﻊ ﻓﻲ ﺍﻟﺨﺒﺮ. ﻭﻳﺸﺎﺭ ﺇﻟﻴﻬﺎ ﺑﻬﺬﻩ ﺍﻻﺗﻔﺎﻗﻴﺔ ﺑﺎﺳﻢ (ﻣﺆﺳﺴﺔ ﻋﻠﻮ ﻭﺃﺳﺎﺱ ﻟﻺﺗﺼﺎﻻﺕ ﻭﺗﻘﻨﻴﺔ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ) ﺃﻭ (ﻋﻘﺎﺭﺯ) ﺃﻭ (ﻧﺤﻦ) ﺃﻭ (ﻟﻨﺎ)، ﻭﺗﻤﺜﻞ ﻫﻨﺎ ﺍﻟﻄﺮﻑ ﺍﻷﻭﻝ.

@@ -731,6 +731,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
+            android:id="@+id/add_clint"
             android:layout_margin="10dp"
             android:src="@drawable/ic_group_2603r"
             app:backgroundTint="@color/colorPrimary" />
