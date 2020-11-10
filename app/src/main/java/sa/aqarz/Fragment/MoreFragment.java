@@ -91,7 +91,7 @@ public class MoreFragment extends Fragment {
     CircleImageView image_profile;
 
     ImageView facebook, twiter, instagram, linked;
-    ImageView not_compleate;
+    TextView not_compleate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

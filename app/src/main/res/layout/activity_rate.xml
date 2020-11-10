@@ -178,6 +178,17 @@
 
                     android:visibility="visible" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_margin="10dp"
+                    android:text="@string/fdf"
+                    android:textSize="13dp">
+
+
+                </TextView>
+
                 <EditText
                     android:id="@+id/name"
                     android:layout_width="match_parent"
@@ -257,10 +268,10 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="20dp"
 
                     app:cardBackgroundColor="@color/colorPrimary"
                     app:cardCornerRadius="10dp">

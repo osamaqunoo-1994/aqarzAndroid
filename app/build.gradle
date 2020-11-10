@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "sa.aqarz"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -92,6 +92,7 @@ dependencies {
 
     implementation 'com.tapadoo.android:alerter:4.0.0'
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.5.1'//image picker
+    implementation 'com.github.simonebortolin:FlowLayoutManager:1.8.0'
 
 }
 apply plugin: 'com.google.gms.google-services'

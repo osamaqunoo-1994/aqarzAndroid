@@ -180,7 +180,7 @@ public class RateActivity extends AppCompatActivity {
         //---------------------------------------------------------------------------------------
         try {
             name.setText(Settings.GetUser().getName() + "");
-            phone.setText(Settings.GetUser().getMobile() + "");
+            phone.setText("0"+Settings.GetUser().getMobile() + "");
             email.setText(Settings.GetUser().getEmail() + "");
         } catch (Exception e) {
 

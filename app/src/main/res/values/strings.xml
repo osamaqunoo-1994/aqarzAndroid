@@ -440,17 +440,10 @@ Your request and reply in the fastest time</string>
     <string name="from_from">From</string>
 
 
-
-
-
-
     <string name="Ads_number">Ads Number</string>
     <string name="mobile_number_">Mobile</string>
     <string name="Name_ne">Name</string>
     <string name="Firstily">Firstily</string>
-
-
-
 
 
     <string name="SSQ1">Low</string>
@@ -460,25 +453,14 @@ Your request and reply in the fastest time</string>
     <string name="WriteHere">Write Here</string>
 
 
-
     <string name="TimeRemmember">Time Remmember</string>
-
-
 
 
     <string name="add_clints">Add Clintes</string>
 
 
-
-
-
-
-
-
-
-
-
-
+    <string name="more">More</string>
+    <string name="uncomplata">Un Compleat</string>
 
 
     <string name="tet_terms">ﺍﺗﻔﺎﻗﻴﺔ ﺍﻹﺳﺘﺨﺪﺍﻡﻋﺒﺮ ﺩﺧﻮﻟﻚ ﻭﺍﺳﺘﺨﺪﺍﻣﻚ ﻣﻮﻗﻊ ﺃﻭ ﺗﻄﺒﻴﻖ ﻋﻘﺎﺭﺯ ﻓﺈﻧﻚ ﺗﻘﺮ ﻭﺗﻮﺍﻓﻖ، ﺩﻭﻥ ﺇﺟﺮﺍﺀ ﺃﻱ ﺗﻌﺪﻳﻞ ﻭﺩﻭﻥ ﺃﻳﺔ ﻗﻴﻮﺩ ﺃﻭ ﺗﺒﺪﻳﻞ، ﻋﻠﻰ ﺍﻷﺣﻜﺎﻡ ﻭﺍﻟﺸﺮﻭﻁ ﺍﻟﻮﺍﺭﺩﺓ ﻓﻲ ﻫﺬﻩ (ﺍﻻﺗﻔﺎﻗﻴﺔ). ﺃﻧﺖ ﺗﻘﺮ ﻭﺗﻀﻤﻦ ﺣﻘﻚ ﺍﻟﻘﺎﻧﻮﻧﻲ ﻟﻠﺪﺧﻮﻝ ﻓﻲ ﻫﺬﻩ ﺍﻻﺗﻔﺎﻗﻴﺔ ﻭﺍﺳﺘﺨﺪﺍﻡ ﺍﻟﺨﺪﻣﺎﺕ ﺍﻟﺘﻲ ﻧﻘﺪﻣﻬﺎ ﻓﻲ ﻋﻘﺎﺭﺯ ﻭﻓﻘﺎً ﻟﻜﺎﻓﺔ ﺍﻟﺸﺮﻭﻁ ﻭﺍﻷﺣﻜﺎﻡ ﺍﻟﻮﺍﺭﺩﺓ ﻓﻴﻬﺎ.
@@ -544,6 +526,7 @@ Your request and reply in the fastest time</string>
     <string name="fav_3">Real State</string>
     <string name="copy_url">مشاركة الرابط</string>
     <string name="my_location_on_map">الموقع على الخريطة</string>
+    <string name="fdf">Evaluation ... by qualified evaluators from the Saudi Authority for Accredited Valuers</string>
 
 
     <string name="metterSeqour">Square meters</string>

@@ -67,6 +67,8 @@ import com.orhanobut.hawk.Hawk;
 import com.rtchagas.pingplacepicker.PingPlacePicker;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+import com.xiaofeng.flowlayoutmanager.FlowLayoutManager;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -112,6 +114,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     ImageView room_plus, room_minus;
     TextView room_text;
+    TextView more_comfort;
     boolean is_place = false;
 
     ImageView Bathrooms_plus, Bathrooms_minus;
@@ -253,6 +256,7 @@ public class AddAqarsActivity extends AppCompatActivity {
         property_dd_no = findViewById(R.id.property_dd_no);
         property_dd_yes1 = findViewById(R.id.property_dd_yes1);
         property_dd_no1 = findViewById(R.id.property_dd_no1);
+        more_comfort = findViewById(R.id.more_comfort);
 
 
         back = findViewById(R.id.back);
@@ -348,12 +352,12 @@ public class AddAqarsActivity extends AppCompatActivity {
         //---------------------------------------------------------------------------------------
         try {
             Communication_Officer.setText(Settings.GetUser().getName() + "");
-            contact_number.setText(Settings.GetUser().getMobile() + "");
+            contact_number.setText("0" + Settings.GetUser().getMobile() + "");
         } catch (Exception e) {
 
         }
 
-        comfort_RecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+//        comfort_RecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 
 
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
@@ -1632,7 +1636,36 @@ public class AddAqarsActivity extends AppCompatActivity {
                                 comfort_list.add(Store_M);
                             }
 
-                            RecyclerView_All_Comfort_in_fragment recyclerView_all_comfort_in_fragment = new RecyclerView_All_Comfort_in_fragment(AddAqarsActivity.this, comfort_list);
+
+                            List<ComfortModules> comfort_listxx = new ArrayList<>();
+
+
+                            if (comfort_list.size() > 4) {
+                                more_comfort.setVisibility(View.VISIBLE);
+
+
+                                for (int i = 0; i < 4; i++) {
+
+                                    comfort_listxx.add(comfort_list.get(i));
+
+                                }
+
+
+                            } else {
+                                more_comfort.setVisibility(View.GONE);
+                                comfort_listxx = comfort_list;
+                            }
+
+                            FlowLayoutManager flowLayoutManager = new FlowLayoutManager();
+                            flowLayoutManager.setAutoMeasureEnabled(true);
+//                            flowLayoutManager.maxItemsPerLine(1);
+                            comfort_RecyclerView.setLayoutManager(flowLayoutManager);
+
+//                            comfort_RecyclerView.setLayoutManager();
+//                            comfort_RecyclerView.setLayoutManager(new FlowLayoutManager().singleItemPerLine());
+//                            comfort_RecyclerView.setLayoutManager(new FlowLayoutManager().maxItemsPerLine(3));
+
+                            RecyclerView_All_Comfort_in_fragment recyclerView_all_comfort_in_fragment = new RecyclerView_All_Comfort_in_fragment(AddAqarsActivity.this, comfort_listxx);
 
                             recyclerView_all_comfort_in_fragment.addItemClickListener(new RecyclerView_All_Comfort_in_fragment.ItemClickListener() {
                                 @Override
@@ -1658,6 +1691,15 @@ public class AddAqarsActivity extends AppCompatActivity {
 
 
                             comfort_RecyclerView.setAdapter(recyclerView_all_comfort_in_fragment);
+
+
+                            more_comfort.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    more_comfort.setVisibility(View.GONE);
+                                    recyclerView_all_comfort_in_fragment.add_more_date(comfort_list);
+                                }
+                            });
                         } else {
                             String message = response.getString("message");
 

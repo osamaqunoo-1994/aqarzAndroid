@@ -152,7 +152,7 @@ public class AqarzOrActivity extends AppCompatActivity {
         //---------------------------------------------------------------------------------------
         try {
             Communication_Officer.setText(Settings.GetUser().getName() + "");
-            Communication_number.setText(Settings.GetUser().getMobile() + "");
+            Communication_number.setText("0"+Settings.GetUser().getMobile() + "");
         } catch (Exception e) {
 
         }

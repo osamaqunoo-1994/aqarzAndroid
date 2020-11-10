@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
 
                 <LinearLayout
@@ -35,51 +35,137 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorPrimary"
+
+                        android:layout_marginLeft="20dp"
+                        android:paddingBottom="30dp"
+                        android:layout_marginRight="20dp"
+
                         android:gravity="center"
-                        android:orientation="vertical"
-                        android:paddingTop="30dp">
+                        android:orientation="horizontal"
+                        android:paddingTop="50dp">
 
                         <RelativeLayout
-                            android:layout_width="120dp"
-                            android:layout_height="120dp">
+                            android:layout_width="70dp"
+                            android:layout_height="70dp">
 
 
                             <de.hdodenhof.circleimageview.CircleImageView
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
 
                                 android:src="#fff"
                                 app:civ_border_color="#9777B2"
-                                app:civ_border_width="8dp" />
+                                app:civ_border_width="2dp" />
 
                             <de.hdodenhof.circleimageview.CircleImageView
                                 android:id="@+id/image_profile"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
+                                android:layout_width="70dp"
+
+                                android:layout_height="70dp"
 
                                 android:src="#fff"
                                 app:civ_border_color="#9777B2"
-                                app:civ_border_width="8dp" />
+                                app:civ_border_width="2dp" />
                         </RelativeLayout>
 
 
-                        <TextView
-                            android:id="@+id/user_name"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="20dp"
-
-                            android:fontFamily="@font/muli_semi_bold"
-                            android:gravity="center"
-                            android:text=""
-
-                            android:textColor="@color/white"
-                            android:textSize="22dp">
+                            android:orientation="vertical">
 
 
-                        </TextView>
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
 
+                                <TextView
+                                    android:id="@+id/user_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                                    android:gravity="start"
+
+                                    android:paddingLeft="15dp"
+                                    android:paddingRight="15dp"
+
+                                    android:textSize="18dp">
+
+
+                                </TextView>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/info_"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:gravity="center"
+                                android:orientation="horizontal"
+
+                                android:paddingLeft="15dp"
+                                android:paddingRight="15dp">
+
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:src="@drawable/ic_profile_icon"
+                                    android:visibility="gone" />
+
+                                <LinearLayout
+                                    android:layout_width="1dp"
+
+                                    android:layout_height="1dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/frutiger_lt_arabic_light"
+                                    android:text="@string/Personal_Details"
+                                    android:textColor="#4A4A4A"
+                                    android:textSize="@dimen/_10sdp" />
+
+                                <LinearLayout
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1" />
+
+                                <ImageView
+                                    android:layout_width="20dp"
+
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/ic_uncompleat_icon"
+                                    android:visibility="gone" />
+
+                                <TextView
+                                    android:id="@+id/not_compleate"
+                                    android:layout_width="wrap_content"
+
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:text="@string/uncomplata"
+                                    android:textColor="#EC2F2F"
+                                    android:textSize="11dp" />
+
+                                <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:padding="6dp"
+                                    android:src="@drawable/ic_left_arrow" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -92,52 +178,6 @@
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp">
 
-
-                        <LinearLayout
-                            android:id="@+id/info_"
-                            android:layout_width="match_parent"
-                            android:layout_height="55dp"
-                            android:layout_marginTop="10dp"
-                            android:background="@drawable/back_more_de"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-
-                            android:paddingLeft="15dp"
-                            android:paddingRight="15dp">
-
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:src="@drawable/ic_profile_icon" />
-
-                            <LinearLayout
-                                android:layout_width="10dp"
-
-                                android:layout_height="10dp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/frutiger_lt_arabic_light"
-                                android:text="@string/Personal_Details"
-                                android:textColor="#4A4A4A"
-                                android:textSize="@dimen/_10sdp" />
-
-                            <LinearLayout
-
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1" />
-
-                            <ImageView
-                                android:id="@+id/not_compleate"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:src="@drawable/ic_uncompleat_icon"
-                                android:visibility="visible" />
-
-
-                        </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/Favorites"
@@ -175,6 +215,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1" />
 
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:padding="6dp"
+                                android:src="@drawable/ic_left_arrow" />
+
+
 
                         </LinearLayout>
 
@@ -191,7 +238,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
 
                 <TextView
@@ -311,6 +358,13 @@
                             android:textSize="@dimen/_11sdp" />
 
 
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_left_arrow" />
+
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -359,6 +413,13 @@
                             android:text=""
                             android:textColor="@color/blue"
                             android:textSize="@dimen/_11sdp" />
+
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_left_arrow" />
 
 
                     </LinearLayout>
@@ -460,6 +521,13 @@
                             android:text=""
                             android:textColor="@color/blue"
                             android:textSize="@dimen/_11sdp" />
+
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_left_arrow" />
 
 
                     </LinearLayout>

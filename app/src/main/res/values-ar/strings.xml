@@ -60,7 +60,7 @@
     <string name="Call_Us">تواصل معنا</string>
     <string name="Email_Us">بريدنا الالكتروني</string>
     <string name="Please_Login_or_Register">قم بتسجيل الدخول أو إنشاء حساب </string>
-    <string name="Personal_Details">المعلومات الشخصيه</string>
+    <string name="Personal_Details">عرض ملفك الشخصي</string>
     <string name="Logout">تسجيل خروج</string>
     <string name="Favorites">المفضلة</string>
     <string name="Done">تم</string>
@@ -228,7 +228,7 @@
     <string name="interface_">الواجهه</string>
     <string name="social_status">عوائل/عزاب</string>
 
-    <string name="means_comfort">وسائل الراحة</string>
+    <string name="means_comfort">الخدمات</string>
     <string name="SelectImages">اضف صورة للعقار</string>
     <string name="seelctlosato">أضف المنطقة</string>
 
@@ -436,9 +436,10 @@
 
 
     <string name="Select_Location">اختيار الموقع</string>
-    <string name="Address">العنوان</string>
+    <string name="Address">عنوان المكتب</string>
     <string name="send_orderOffer_btn">ارسال عرض</string>
 
+    <string name="fdf">التقييم ... من خلال مقيمين مؤهلين من الهيئة السعودية للمقيمين المعتمدين</string>
 
     <string name="ss1">هل العقار مقيم؟</string>
     <string name="ss2">هل العقار مفحوص؟</string>
@@ -502,7 +503,6 @@
     <string name="Firstily">الأولوية</string>
 
 
-
     <string name="Remmember">تذكير</string>
     <string name="TimeRemmember">وقت التذكير</string>
 
@@ -510,6 +510,16 @@
     <string name="SSQ1">قليلة</string>
     <string name="SSQ2">عادية</string>
     <string name="SSQ3">عالية</string>
+
+
+    <string name="add_clints">اضافة عملاء</string>
+
+
+    <string name="WriteHere">اكتب هنا</string>
+
+
+    <string name="more">المزيد</string>
+    <string name="uncomplata">غير مكتمل</string>
 
 
     <string name="xsaa">

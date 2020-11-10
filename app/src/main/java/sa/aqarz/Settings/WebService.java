@@ -87,6 +87,7 @@ public class WebService {
         Map<String, String> heder = new HashMap<String, String>();
         heder.put("Accept", "application/json");
         heder.put("Accept-Language", Hawk.get("lang").toString());
+        heder.put("v", "v2");
         if (Hawk.contains("api_token")) {
             if (!Hawk.get("api_token").toString().equals("")) {//Hawk.get("api_token").toString()
                 heder.put("auth", Hawk.get("api_token").toString());

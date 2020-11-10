@@ -541,7 +541,7 @@ FloatingActionButton add_clint;
 
             }
             if (Settings.GetUser().getMobile() != null) {
-                mobile.setText(Settings.GetUser().getMobile() + "");
+                mobile.setText("0"+Settings.GetUser().getMobile() + "");
 
             }
 

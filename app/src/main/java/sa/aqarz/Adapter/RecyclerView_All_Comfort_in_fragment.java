@@ -48,7 +48,15 @@ public class RecyclerView_All_Comfort_in_fragment extends RecyclerView.Adapter<R
         this.notifyDataSetChanged();
     }
 
+
     public void RefreshData() {
+        this.notifyDataSetChanged();
+    }
+
+    public void add_more_date(List<ComfortModules> alldata) {
+
+        this.alldata = alldata;
+
         this.notifyDataSetChanged();
     }
 

@@ -86,12 +86,12 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layoutDirection="ltr"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:background="@drawable/edit_text_background_new_design"
                     android:gravity="center"
+                    android:layoutDirection="ltr"
 
                     android:paddingLeft="15dp"
 
@@ -115,7 +115,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
-
                         android:hint="@string/phone_number"
                         android:inputType="textEmailAddress"
 
@@ -155,11 +154,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="start|center"
-
-
-
                         android:background="@android:color/transparent"
+
+
+                        android:gravity="start|center"
 
                         android:hint="@string/password"
                         android:inputType="textPassword"

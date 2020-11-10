@@ -170,7 +170,7 @@ public class RentActivity extends AppCompatActivity {
         //---------------------------------------------------------------------------------------
         try {
             name_owner.setText(Settings.GetUser().getName() + "");
-            phone_owner.setText(Settings.GetUser().getMobile() + "");
+            phone_owner.setText("0"+Settings.GetUser().getMobile() + "");
         } catch (Exception e) {
 
         }

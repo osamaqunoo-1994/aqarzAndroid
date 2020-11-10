@@ -154,7 +154,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:src="@drawable/ic_group_1580"
-                        android:visibility="gone" />
+                         />
 
                     <ImageView
                         android:layout_width="10dp"
