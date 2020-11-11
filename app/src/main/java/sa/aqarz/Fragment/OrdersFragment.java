@@ -211,7 +211,13 @@ public class OrdersFragment extends Fragment {
         orders_rec.setLayoutManager(layoutManager1);
 //        orders_rec.setAdapter(new RecyclerView_orders(getContext(), ordersModules));
 //------------------------------------------------------------------------------------------------------------
-        type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
+//        type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
+
+
+        type_list.add(Settings.getSettings().getEstate_types().getOriginal().getData().get(0));
+        type_list.add(Settings.getSettings().getEstate_types().getOriginal().getData().get(1));
+        type_list.add(Settings.getSettings().getEstate_types().getOriginal().getData().get(2));
+        type_list.add(Settings.getSettings().getEstate_types().getOriginal().getData().get(3));
 
 
         LinearLayoutManager layoutManagerxmx

@@ -70,6 +70,8 @@ public class WebService {
         client.addHeader("Accept", "application/json");
         client.addHeader("Auth-Role", "user");
         client.addHeader("Accept-Language", Hawk.get("lang").toString());
+        client.addHeader("v", "v2");
+
         if (is_token) {
             if (Hawk.contains("api_token")) {
                 if (!Hawk.get("api_token").toString().equals("")) {
@@ -104,6 +106,8 @@ public class WebService {
         Map<String, String> heder = new HashMap<String, String>();
         heder.put("Accept", "application/json");
         heder.put("Accept-Language", Hawk.get("lang").toString());
+        heder.put("v", "v2");
+
         if (Hawk.contains("api_token")) {
             if (!Hawk.get("api_token").toString().equals("")) {
 //                heder.put("auth", Hawk.get("api_token").toString());
