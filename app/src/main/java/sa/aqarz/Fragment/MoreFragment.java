@@ -41,6 +41,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Activity.AqarzProfileActivity;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.Auth.NewPasswordActivity;
@@ -131,7 +132,8 @@ public class MoreFragment extends Fragment {
             public void onClick(View v) {
                 System.out.println("***********" + Settings.GetUser().getType());
                 if (Settings.CheckIsAccountAqarzMan()) {
-                    Intent intent = new Intent(getContext(), DetailsAqarzManActivity.class);
+//                    Intent intent = new Intent(getContext(), DetailsAqarzManActivity.class);
+                    Intent intent = new Intent(getContext(), AqarzProfileActivity.class);
 //                                intent.putExtra("from", "splash");
                     startActivity(intent);
                     getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);

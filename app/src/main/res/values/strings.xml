@@ -370,10 +370,11 @@ Your request and reply in the fastest time</string>
 
 
     <string name="aw1">Offer</string>
-    <string name="aw2">الطلبات</string>
-    <string name="aw3">الخدمات</string>
+    <string name="aw2">order</string>
+    <string name="aw3">Service</string>
+    <string name="aw3x">Memberships</string>
     <string name="aw4">Clintes</string>
-    <string name="aw5">المفضلة</string>
+    <string name="aw5">favorite</string>
     <string name="title_select">Choose the services you offer</string>
 
 
@@ -524,12 +525,43 @@ Your request and reply in the fastest time</string>
     <string name="fav_1">Offers</string>
     <string name="fav_2">Orders</string>
     <string name="fav_3">Real State</string>
-    <string name="copy_url">مشاركة الرابط</string>
-    <string name="my_location_on_map">الموقع على الخريطة</string>
+    <string name="copy_url">Share Url</string>
+    <string name="my_location_on_map">MY Location on map</string>
     <string name="fdf">Evaluation ... by qualified evaluators from the Saudi Authority for Accredited Valuers</string>
 
 
     <string name="metterSeqour">Square meters</string>
+
+
+
+
+
+
+
+
+
+
+    <string name="MYProfileDetails">MY Profile</string>
+
+    <string name="Certified">Certified</string>
+    <string name="MyLocation_on_map">My Location in Map</string>
+    <string name="EditProfiless">Edit Profile</string>
+    <string name="MyQrCode">My Qr Code</string>
+    <string name="text_qr">Your clients can access your account by photographing this code
+</string>
+    <string name="Sgagh">Share Profile</string>
+
+
+
+
+
+
+
+
+
+
+
+
 
     <string name="xsaa">اتفاقية الإستخدام
  \n عبر دخولك واستخدامك موقع أو تطبيق عقارز فإنك تقر وتوافق، دون إجراء أي تعديل ودون أية قيود أو تبديل، على الأحكام والشروط الواردة في هذه (الاتفاقية). أنت تقر وتضمن حقك القانوني للدخول في هذه الاتفاقية واستخدام الخدمات التي نقدمها في عقارز وفقاً لكافة الشروط والأحكام الواردة فيها.

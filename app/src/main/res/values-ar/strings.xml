@@ -45,7 +45,7 @@
     <string name="add_aqar">أضف عقار </string>
     <string name="request_aqar">طلب خدمة</string>
     <string name="text">نص</string>
-    <string name="no_address_found">Address Not found</string>
+    <string name="no_address_found">لا يوجد عنوان</string>
 
 
     <string name="code_send_to_this_number">كود التفعيل أرسل إلى الرقم</string>
@@ -405,6 +405,8 @@
     <string name="aw2">الطلبات</string>
     <string name="aw3">الخدمات</string>
     <string name="aw4">العملاء</string>
+    <string name="aw3x">العضويات</string>
+
     <string name="aw5">المفضلة</string>
     <string name="title_select">اختر الخدمات التي تقدمها</string>
 
@@ -646,5 +648,19 @@
  \n نحتفظ بالحق في تعديل بنود وشروط سياسة سرية وخصوصية المعلومات إن لزم الأمر ومتى كان ذلك ملائماً.
 </string>
 
+
+    <string name="MYProfileDetails">حسابي الشخصي</string>
+
+    <string name="Certified">معتمد من</string>
+    <string name="MyLocation_on_map">عنواني على الخريطه</string>
+    <string name="EditProfiless">تعديل الملف الشخصي</string>
+    <string name="Sgagh">مشاركة الملف الشخصي</string>
+    <string name="copy_url">مشاركة الرابط</string>
+    <string name="my_location_on_map">الموقع على الخريطة</string>
+
+    <string name="MyQrCode">الرمز الخاص بي</string>
+
+    <string name="text_qr">عملائك يمكنهم الوصول الى حسابك عبر تصوير هذا الرمز
+ والذي يمكنهم من الوصول الى عروضك بكل سهولة</string>
 
 </resources>

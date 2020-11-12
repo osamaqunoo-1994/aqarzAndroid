@@ -42,6 +42,7 @@ import com.nguyenhoanglam.imagepicker.model.Image;
 import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker;
 import com.orhanobut.hawk.Hawk;
 import com.rtchagas.pingplacepicker.PingPlacePicker;
+import com.xiaofeng.flowlayoutmanager.FlowLayoutManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -241,6 +242,14 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
         }
+
+
+        FlowLayoutManager flowLayoutManager = new FlowLayoutManager();
+        flowLayoutManager.setAutoMeasureEnabled(true);
+//                            flowLayoutManager.maxItemsPerLine(1);
+        member_list.setLayoutManager(flowLayoutManager);
+
+
         RecyclerView_member recyclerView_member = new RecyclerView_member(EditProfileActivity.this, Member_typesl);
         recyclerView_member.addItemClickListener(new RecyclerView_member.ItemClickListener() {
             @Override
@@ -404,7 +413,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (name_ed.getText().toString().equals("") ) {
+                if (name_ed.getText().toString().equals("")) {
                     WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.hint_name__address) + "", "error");
                 } else if (phone_ed.getText().toString().equals("")) {
                     WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.hint_mob__address) + "", "error");

@@ -22,8 +22,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.AddClintesActivity"
-            android:theme="@style/AppTheme.NoActionBar" ></activity>
+        <activity android:name=".Activity.AqarzProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar_login"></activity>
+        <activity
+            android:name=".Activity.AddClintesActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.FavoriteActivity"
             android:theme="@style/AppTheme.NoActionBar" />

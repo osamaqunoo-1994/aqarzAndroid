@@ -52,6 +52,7 @@ import sa.aqarz.Activity.SelectLocationActivity;
 import sa.aqarz.Adapter.RecyclerView_All_number_room;
 import sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
 import sa.aqarz.Modules.OprationModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
@@ -75,6 +76,7 @@ public class AqarzOrActivity extends AppCompatActivity {
     RecyclerView opration_RecyclerView;
 
     List<OprationModules> oprationModules_list = new ArrayList<>();
+    BottomSheetDialogFragment_SelectCity bottomSheetDialogFragment_selectCity;
 
     String tenant_job_type = "Purchase";
     TextView governmental;
@@ -92,6 +94,7 @@ public class AqarzOrActivity extends AppCompatActivity {
     RadioButton radio_show;
     Button btn_send;
 
+    String city_id = "";
 
     String lat = "";
     String lng = "";
@@ -99,6 +102,7 @@ public class AqarzOrActivity extends AppCompatActivity {
     String Address = "";
 
     LinearLayout seaction_roomes;
+    TextView city_l;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +120,8 @@ public class AqarzOrActivity extends AppCompatActivity {
     }
 
     public void init() {
+        city_l = findViewById(R.id.city_l);
+
         Les_space = findViewById(R.id.Les_space);
         Maximum_space = findViewById(R.id.Maximum_space);
         Les_price = findViewById(R.id.Les_price);
@@ -148,11 +154,29 @@ public class AqarzOrActivity extends AppCompatActivity {
         lost_romm.add("7");
         lost_romm.add("8");
 
+        city_l.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+
+                bottomSheetDialogFragment_selectCity = new BottomSheetDialogFragment_SelectCity("");
+                bottomSheetDialogFragment_selectCity.addItemClickListener(new BottomSheetDialogFragment_SelectCity.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_city, String city_naem) {
+                        city_id = id_city + "";
+                        city_l.setText(city_naem);
+                        bottomSheetDialogFragment_selectCity.dismiss();
+                    }
+                });
+
+                bottomSheetDialogFragment_selectCity.show(getSupportFragmentManager(), "");
+
+            }
+        });
         //---------------------------------------------------------------------------------------
         try {
             Communication_Officer.setText(Settings.GetUser().getName() + "");
-            Communication_number.setText("0"+Settings.GetUser().getMobile() + "");
+            Communication_number.setText("0" + Settings.GetUser().getMobile() + "");
         } catch (Exception e) {
 
         }
@@ -287,6 +311,8 @@ public class AqarzOrActivity extends AppCompatActivity {
                         Maximum_space.getText().toString().equals("") |
                         Les_price.getText().toString().equals("") |
                         Maximum_price.getText().toString().equals("") |
+                        city_l.getText().toString().equals("") |
+
                         Communication_Officer.getText().toString().equals("") |
                         Communication_number.getText().toString().equals("") |
                         description.getText().toString().equals("")
@@ -294,7 +320,7 @@ public class AqarzOrActivity extends AppCompatActivity {
                     WebService.Make_Toast(AqarzOrActivity.this, getResources().getString(R.string.AllFiledsREquered));
 
 
-                }else if(lat.equals("")){
+                } else if (lat.equals("")) {
 
                     new AlertDialog.Builder(AqarzOrActivity.this)
                             .setMessage(getResources().getString(R.string.message_location))
@@ -332,6 +358,8 @@ public class AqarzOrActivity extends AppCompatActivity {
                                         sendObj.put("owner_mobile", Communication_number.getText().toString());
                                         sendObj.put("display_owner_mobile", "1");
                                         sendObj.put("address", Address);
+                                        sendObj.put("city_id", city_id + "");
+//                                        sendObj.put("neighborhood_id", nib_id + "");
                                         sendObj.put("note", description.getText().toString());
 
 
@@ -341,7 +369,6 @@ public class AqarzOrActivity extends AppCompatActivity {
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
-
 
 
                                 }
@@ -368,6 +395,8 @@ public class AqarzOrActivity extends AppCompatActivity {
                         sendObj.put("area_to", Maximum_space.getText().toString());
                         sendObj.put("lat", lat);
                         sendObj.put("lan", lng);
+                        sendObj.put("city_id", city_id + "");
+//                        sendObj.put("neighborhood_id", nib_id + "");
                         sendObj.put("price_from", Les_price.getText().toString());
                         sendObj.put("price_to", Maximum_price.getText().toString());
                         sendObj.put("room_numbers", room_number);
@@ -576,6 +605,7 @@ public class AqarzOrActivity extends AppCompatActivity {
 
 
     }
+
     public LatLng getLocation() {
 
         try {
