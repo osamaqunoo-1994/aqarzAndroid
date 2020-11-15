@@ -49,7 +49,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="@string/MYProfileDetails"
+                            android:text="@string/MYProfileDetailsd"
                             android:textColor="@color/black"
                             android:textSize="17dp" />
 
@@ -106,7 +106,7 @@
                         </RelativeLayout>
 
                         <LinearLayout
-                            android:layout_width="10dp"
+                            android:layout_width="20dp"
                             android:layout_height="wrap_content">
 
 
@@ -188,10 +188,11 @@
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-
                                 android:layout_height="wrap_content"
+
                                 android:layout_marginTop="3dp"
-                                android:gravity="center">
+                                android:gravity="center"
+                                android:visibility="gone">
 
 
                                 <ImageView
@@ -208,7 +209,9 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/frutiger_lt_arabic_bold"
                                     android:lines="1"
-                                    android:textSize="13dp" />
+
+
+                                    android:textSize="14dp" />
 
 
                                 <LinearLayout
@@ -222,8 +225,10 @@
                                 android:layout_width="match_parent"
 
                                 android:layout_height="wrap_content"
+
                                 android:layout_marginTop="3dp"
-                                android:gravity="center">
+                                android:gravity="center"
+                                android:visibility="gone">
 
 
                                 <ImageView
@@ -255,8 +260,10 @@
                                 android:layout_width="match_parent"
 
                                 android:layout_height="wrap_content"
+
                                 android:layout_marginTop="3dp"
-                                android:gravity="center">
+                                android:gravity="center"
+                                android:visibility="gone">
 
 
                                 <TextView
@@ -277,6 +284,49 @@
 
                             </LinearLayout>
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="7dp"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/loc_button"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginLeft="7dp"
+                                    android:layout_marginRight="7dp"
+                                    android:background="@drawable/circle_fill"
+                                    android:padding="7dp"
+                                    android:src="@drawable/ic_loc_pro" />
+
+
+                                <ImageView
+                                    android:id="@+id/chat_message"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginLeft="7dp"
+                                    android:layout_marginRight="7dp"
+                                    android:background="@drawable/circle_fill"
+                                    android:padding="7dp"
+                                    android:src="@drawable/ic_message_chat" />
+
+
+                                <ImageView
+                                    android:id="@+id/call_num"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginLeft="7dp"
+                                    android:layout_marginRight="7dp"
+                                    android:background="@drawable/circle_fill"
+                                    android:padding="7dp"
+
+                                    android:src="@drawable/ic_phone_e"
+                                    app:tint="@color/white" />
+
+
+                            </LinearLayout>
+
 
                         </LinearLayout>
 
@@ -292,7 +342,7 @@
 
 
                     <TextView
-                        android:id="@+id/editProfile"
+                        android:id="@+id/RequstService"
                         android:layout_width="match_parent"
 
                         android:layout_height="42dp"
@@ -301,7 +351,7 @@
                         android:layout_marginRight="20dp"
                         android:background="@drawable/mash"
                         android:gravity="center"
-                        android:text="@string/EditProfile"
+                        android:text="@string/RequstService"
                         android:textColor="#AAABB3" />
 
                     <LinearLayout
@@ -367,13 +417,16 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1" />
+
+                                android:layout_weight="1"
+                                android:visibility="gone" />
 
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                android:visibility="gone">
 
 
                                 <LinearLayout
@@ -541,6 +594,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
+            android:visibility="gone"
+
             android:layout_margin="10dp"
             android:src="@drawable/ic_group_2603r"
             app:backgroundTint="@color/colorPrimary" />

@@ -449,23 +449,27 @@ public class OrdersFragment extends Fragment {
 
                 orders_rec.setAdapter(new RecyclerView_orders_my_requst(getContext(), MyRequst));
 
+                send_requst_by_type("fund_Request");
+                type_requst_xml.setVisibility(View.VISIBLE);
 
-                if (Settings.CheckIsCompleate()) {
-                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
-                        send_requst_by_type("fund_Request");
-                        type_requst_xml.setVisibility(View.VISIBLE);
-
-                    } else {
-                        show_dialog();
+//                if (Settings.CheckIsCompleate()) {
 //
-                        type_requst_xml.setVisibility(View.GONE);
-
-                    }
-                } else {
-                    Settings.Dialog_not_compleate(getActivity());
-                    type_requst_xml.setVisibility(View.GONE);
-
-                }
+//
+////                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+////                        send_requst_by_type("fund_Request");
+////                        type_requst_xml.setVisibility(View.VISIBLE);
+////
+////                    } else {
+////                        show_dialog();
+//////
+////                        type_requst_xml.setVisibility(View.GONE);
+////
+////                    }
+//                } else {
+//                    Settings.Dialog_not_compleate(getActivity());
+//                    type_requst_xml.setVisibility(View.GONE);
+//
+//                }
 
 
             }

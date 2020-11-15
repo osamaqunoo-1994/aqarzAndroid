@@ -1,36 +1,19 @@
-package sa.aqarz.Fragment;
-/**
- * Created by osama on 10/8/2017.
- */
+package sa.aqarz.Activity;
 
-
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.orhanobut.hawk.Hawk;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,87 +21,49 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import sa.aqarz.Activity.Auth.LoginActivity;
-import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
-import sa.aqarz.Activity.Auth.NewPasswordActivity;
-import sa.aqarz.Activity.Auth.RegisterActivity;
-import sa.aqarz.Activity.ContactUsActivity;
-import sa.aqarz.Activity.PrivecyActivity;
-import sa.aqarz.Activity.SplashScreenActivity;
-import sa.aqarz.Activity.TermsActivity;
 import sa.aqarz.Adapter.RecyclerView_chat_main;
-import sa.aqarz.Adapter.RecyclerView_orders_demandsx;
-import sa.aqarz.Adapter.RecyclerView_orders_my_requstx;
-import sa.aqarz.Adapter.RecyclerView_orders_offer_di;
-import sa.aqarz.Adapter.RecyclerView_ordersx;
 import sa.aqarz.Modules.MsgModules;
-import sa.aqarz.Modules.OfferRealStateModules;
-import sa.aqarz.Modules.OrdersModules;
-import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.R;
-import sa.aqarz.Settings.LocaleUtils;
-import sa.aqarz.Settings.Settings;
-import de.hdodenhof.circleimageview.CircleImageView;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
 
-
-public class ChatFragment extends Fragment {
-    RecyclerView chate;
-
+public class ChatRoomActivity extends AppCompatActivity {
+    RecyclerView message;
+    ImageView back;
     List<MsgModules> ordersModules = new ArrayList<>();
-
     IResult mResultCallback;
-    LinearLayout nodata;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_chat, container, false);
-        chate = v.findViewById(R.id.chate);
-        nodata = v.findViewById(R.id.nodata);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_chat_room);
+        message = findViewById(R.id.message);
+        back = findViewById(R.id.back);
 
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         LinearLayoutManager layoutManager1
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        chate.setLayoutManager(layoutManager1);
+                = new LinearLayoutManager(ChatRoomActivity.this, LinearLayoutManager.VERTICAL, false);
+        message.setLayoutManager(layoutManager1);
 
-
-        init(v);
-        return v;
-    }
-
-
-    public void init(View v) {
-
-        WebService.loading(getActivity(), true);
+        WebService.loading(ChatRoomActivity.this, true);
 
         init_volley();
-        VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+        VolleyService mVolleyService = new VolleyService(mResultCallback, ChatRoomActivity.this);
 
 
         mVolleyService.getDataVolley("my_msg", WebService.my_msg);
 
-    }
+//        msg/2/det
 
 
-    public static ChatFragment newInstance(String text) {
-
-        ChatFragment f = new ChatFragment();
-        Bundle b = new Bundle();
-        b.putString("msg", text);
-
-        f.setArguments(b);
-
-        return f;
-    }
-
-
-    @Override
-    public void onResume() {
-
-
-        super.onResume();
     }
 
     public void init_volley() {
@@ -129,7 +74,7 @@ public class ChatFragment extends Fragment {
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + response);
-                WebService.loading(getActivity(), false);
+                WebService.loading(ChatRoomActivity.this, false);
 
 
 //{"status":true,"code":200,"message":"User Profile","data"
@@ -151,7 +96,7 @@ public class ChatFragment extends Fragment {
 
 
                             JSONArray jsonArray = new JSONArray(data);
-                            chate.setAdapter(null);
+                            message.setAdapter(null);
                             ordersModules.clear();
                             for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -168,15 +113,15 @@ public class ChatFragment extends Fragment {
 
                             }
 
-                            chate.setAdapter(new RecyclerView_chat_main(getContext(), ordersModules));
+                            message.setAdapter(new RecyclerView_chat_main(ChatRoomActivity.this, ordersModules));
 
-
-                            if (ordersModules.size() != 0) {
-                                nodata.setVisibility(View.GONE);
-                            } else {
-                                nodata.setVisibility(View.VISIBLE);
-
-                            }
+//
+//                            if (ordersModules.size() != 0) {
+//                                nodata.setVisibility(View.GONE);
+//                            } else {
+//                                nodata.setVisibility(View.VISIBLE);
+//
+//                            }
 
 
                         }
@@ -186,7 +131,7 @@ public class ChatFragment extends Fragment {
                         String message = response.getString("message");
 
 
-                        WebService.Make_Toast_color(getActivity(), message, "error");
+                        WebService.Make_Toast_color(ChatRoomActivity.this, message, "error");
 
                     }
 
@@ -202,7 +147,7 @@ public class ChatFragment extends Fragment {
             public void notifyError(String requestType, VolleyError error) {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.getMessage());
-                WebService.loading(getActivity(), false);
+                WebService.loading(ChatRoomActivity.this, false);
 
                 try {
 
@@ -214,7 +159,7 @@ public class ChatFragment extends Fragment {
                     String message = jsonObject.getString("message");
 
 
-                    WebService.Make_Toast_color(getActivity(), message, "error");
+                    WebService.Make_Toast_color(ChatRoomActivity.this, message, "error");
 
 
                     Log.e("error response", response_data);
@@ -229,7 +174,7 @@ public class ChatFragment extends Fragment {
 
             @Override
             public void notify_Async_Error(String requestType, String error) {
-                WebService.loading(getActivity(), false);
+                WebService.loading(ChatRoomActivity.this, false);
 
             }
 

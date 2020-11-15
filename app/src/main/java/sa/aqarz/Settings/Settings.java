@@ -12,6 +12,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.orhanobut.hawk.Hawk;
 
+import sa.aqarz.Activity.AqarzProfileActivity;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.DetailsAqarzManActivity;
@@ -148,7 +149,7 @@ public class Settings {
 
                         if (Settings.CheckIsAccountAqarzMan()) {
 
-                            Intent intent = new Intent(activity, DetailsAqarzManActivity.class);
+                            Intent intent = new Intent(activity, AqarzProfileActivity.class);
 //              intent.putExtra("from", "splash");
                             activity.startActivity(intent);
 

@@ -68,6 +68,9 @@ public class FavoriteActivity extends AppCompatActivity {
     List<mod_favorite> mod_favorites_ = new ArrayList<>();
     List<of_favorite> of_favorites = new ArrayList<>();
 
+    ImageView back;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +79,8 @@ public class FavoriteActivity extends AppCompatActivity {
         Real_Estate_order_layout = findViewById(R.id.Real_Estate_order_layout);
         Shopping_request_layout = findViewById(R.id.Shopping_request_layout);
         my_order_layout = findViewById(R.id.my_order_layout);
+
+        back = findViewById(R.id.back);
 
 
         my_order_text = findViewById(R.id.my_order_text);
@@ -87,6 +92,13 @@ public class FavoriteActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(FavoriteActivity.this, LinearLayoutManager.HORIZONTAL, false);
         alldate.setLayoutManager(layoutManager1);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

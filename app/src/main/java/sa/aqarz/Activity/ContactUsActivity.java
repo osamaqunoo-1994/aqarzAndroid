@@ -52,10 +52,18 @@ public class ContactUsActivity extends AppCompatActivity {
         message = findViewById(R.id.message);
         send = findViewById(R.id.send);
 
+//
+//        email_info.setText(Settings.getSettings().getEmail());
+//        phone.setText(Settings.getSettings().getMobile());
+        //---------------------------------------------------------------------------------------
+        try {
+            phone_ed.setText("0" + Settings.GetUser().getMobile() + "");
 
-        email_info.setText(Settings.getSettings().getEmail());
-        phone.setText(Settings.getSettings().getMobile());
+            name_ed.setText(Settings.GetUser().getName() + "");
+            email_ed.setText(Settings.GetUser().getEmail() + "");
+        } catch (Exception e) {
 
+        }
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +78,7 @@ public class ContactUsActivity extends AppCompatActivity {
                 WebService.loading(ContactUsActivity.this, true);
 
                 VolleyService mVolleyService = new VolleyService(mResultCallback, ContactUsActivity.this);
-
+                init_volley();
 
                 JSONObject sendObj = new JSONObject();
 

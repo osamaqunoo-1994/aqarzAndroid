@@ -533,15 +533,8 @@ Your request and reply in the fastest time</string>
     <string name="metterSeqour">Square meters</string>
 
 
-
-
-
-
-
-
-
-
     <string name="MYProfileDetails">MY Profile</string>
+    <string name="MYProfileDetailsd">Profile</string>
 
     <string name="Certified">Certified</string>
     <string name="MyLocation_on_map">My Location in Map</string>
@@ -552,15 +545,10 @@ Your request and reply in the fastest time</string>
     <string name="Sgagh">Share Profile</string>
 
 
+    <string name="nodata">No Data Found</string>
 
 
-
-
-
-
-
-
-
+    <string name="RequstService">Requst Service</string>
 
 
     <string name="xsaa">اتفاقية الإستخدام
@@ -618,15 +606,8 @@ Your request and reply in the fastest time</string>
  \n القائمة التالية تحتوي على أغلب الرسائل الخاصة الممنوعة:
  \n •		الإعلان في الرسائل الخاصة.
  \n •		السب و الشتم سواء كان هناك مبرر أم لم يكن هناك مبرر.
- \n <b><i>سياسة الاسترجاع:</i></b>
-تنص عقارز ان سياسة الاسترجاع تتضمن: \n
- \n العمولات والاشتراك السنوي: يحق للمستخدم طلب استرجاع العمولة المدفوعة خلال (10) أيام من تاريخ الدفع، ويستثنى من ذلك استرجاع مبلغ الاشتراك السنوي.
-نقل الاشتراك: المدة المسموحة لنقل الاشتراك لعضو آخر مدة أقصاها (5) أيام من تاريخ الدفع. \n
- \n الإعلان المميز:لا يتم استرجاع قيمة الإعلان المميز في الويب والتطبيق.
- \n المبالغ الزائدة:يتم استرجاع المبالغ الزائدة عن الاشتراك والعمولة خلال مدة أقصاها (5) أيام من تاريخ الدفع.
-لطلب الاسترجاع يجب على المستخدم التواصل مع الدعم الفني من خلال ايقونة " اتصل بنا" وتزويدهم بـ : \n
-تاريخ الحوالة، البنك المحول عليه، رقم الحساب و تستغرق مدة استرجاع المبلغ الى حسابك مدة أقصاها (5) أيام عمل، وفي حال أي تأخير في إعادة المبلغ يتوجب على المستخدم المتابعة مع البنك مباشرة. \n
-في حال التحويل من بنك لبنك آخر يتم خصم رسوم البنك. \n
+
+
 
          \n <b><i>مسؤولية عقارز</i></b>
 

@@ -32,6 +32,7 @@ import java.util.List;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.R;
+import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
@@ -215,18 +216,33 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
         holder.new_offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getUuid() + "");
 
-                bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+                if (Settings.CheckIsCompleate()) {
+
+
+                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+
+                        bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getUuid() + "");
+                        bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+                    } else {
+                        show_dialog();
+//
+
+                    }
+                } else {
+                    Settings.Dialog_not_compleate((Activity) context);
+
+                }
 
 
             }
         });
 
-        if(alldata.get(position).getIn_fav().equals("1")){
+        if (alldata.get(position).getIn_fav().equals("1")) {
             holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
 
-        }else{
+        } else {
             holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
 
         }
@@ -332,6 +348,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 
         bottomSheerDialog.show();
     }
+
     public void init_volley() {
 
 
@@ -401,6 +418,64 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
         };
 
 
+    }
+
+    public void show_dialog() {
+        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(context);
+        LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View parentView = li.inflate(R.layout.upgrade_message2, null);
+
+
+        Button accept = parentView.findViewById(R.id.accept);
+        Button no = parentView.findViewById(R.id.no);
+        ImageView close = parentView.findViewById(R.id.close);
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheerDialog.cancel();
+
+//                                    finish();
+            }
+        });
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheerDialog.cancel();
+
+//                                    finish();
+            }
+        });
+        accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                WebService.loading((Activity) context, true);
+
+                init_volley();
+                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+                mVolleyService.getDataVolley("upgrade", WebService.upgrade);
+//
+                bottomSheerDialog.cancel();
+//
+//                                    finish();
+            }
+        });
+        bottomSheerDialog.setContentView(parentView);
+
+
+        Window window = bottomSheerDialog.getWindow();
+        window.findViewById(com.google.android.material.R.id.container).setFitsSystemWindows(false);
+        // dark navigation bar icons
+        View decorView = window.getDecorView();
+        decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, context.getResources().getDisplayMetrics());
+
+
+//        ((View) decorView.getParent()).setBackgroundColor(context.getResources().getColor(android.R.color.transparent));
+
+
+        bottomSheerDialog.show();
     }
 
 }

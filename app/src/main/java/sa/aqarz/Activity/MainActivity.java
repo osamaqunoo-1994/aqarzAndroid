@@ -197,14 +197,34 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 2:
-//                fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.container, new ChatFragment());
-//                //    fragmentTransaction.commit();
-//                fragmentTransaction.commitAllowingStateLoss();
-//                fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.container, new MessagesFragment());
-//                //    fragmentTransaction.commit();
-//                fragmentTransaction.commitAllowingStateLoss();
+                if (Settings.checkLogin()) {
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.container, new ChatFragment());
+                    //    fragmentTransaction.commit();
+                    fragmentTransaction.commitAllowingStateLoss();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.container, new ChatFragment());
+                    //    fragmentTransaction.commit();
+                    fragmentTransaction.commitAllowingStateLoss();
+
+
+                } else {
+
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+                            .setCancelable(false)
+                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                                    startActivity(intent);
+
+                                }
+                            })
+                            .setNegativeButton(getResources().getString(R.string.no), null)
+                            .show();
+                }
 
                 break;
             case 3:
@@ -245,12 +265,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     public static void send_done() {
 
         System.out.println("09999999999999999");
 
-            bottomSheetDialogFragment_myEstate.dismiss();
-
+        bottomSheetDialogFragment_myEstate.dismiss();
 
 
         bottomSheerDialog = new BottomSheetDialog(MainActivity.activity);

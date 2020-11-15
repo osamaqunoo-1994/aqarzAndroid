@@ -94,7 +94,6 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_details_new);
-
         init();
     }
 

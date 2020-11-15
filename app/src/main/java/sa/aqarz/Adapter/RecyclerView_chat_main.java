@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Modules.MsgModules;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.R;
 
@@ -22,7 +23,7 @@ import sa.aqarz.R;
  * Created by osama on 10/16/2017.
  */
 public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_chat_main.MyViewHolder> {
-    public static List<OrdersModules> alldata = new ArrayList<OrdersModules>();
+    public static List<MsgModules> alldata = new ArrayList<MsgModules>();
     static int Postion_opend = 0;
 
 
@@ -68,7 +69,7 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
         }
     }
 
-    public RecyclerView_chat_main(Context context, List<OrdersModules> alldata) {
+    public RecyclerView_chat_main(Context context, List<MsgModules> alldata) {
         this.alldata = alldata;
         this.context = context;
     }
