@@ -157,7 +157,16 @@
                     android:padding="2dp"
                     android:src="@drawable/ic_group_1956"
                     app:tint="@color/colorPrimary" />
+                <TextView
 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:text="@string/n2"
+                    android:textColor="@color/textColor"
+                    android:textSize="15dp" />
                 <TextView
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
@@ -204,7 +213,16 @@
                     android:padding="2dp"
                     android:src="@drawable/ic_loc_mark"
                     app:tint="@color/colorPrimary" />
+                <TextView
 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:text="@string/n4"
+                    android:textColor="@color/textColor"
+                    android:textSize="15dp" />
                 <TextView
                     android:id="@+id/address"
                     android:layout_width="wrap_content"
@@ -239,7 +257,16 @@
                     android:layout_height="20dp"
                     android:padding="2dp"
                     android:src="@drawable/ic_home11" />
+                <TextView
 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:text="@string/n1"
+                    android:textColor="@color/textColor"
+                    android:textSize="15dp" />
                 <TextView
                     android:id="@+id/estate_type_name"
 
@@ -789,6 +816,7 @@
 
 
             <LinearLayout
+                android:id="@+id/profile"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_centerHorizontal="true"
@@ -1008,6 +1036,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/chat"
                     android:layout_width="120dp"
                     android:layout_height="40dp"
                     android:layout_marginEnd="10dp"

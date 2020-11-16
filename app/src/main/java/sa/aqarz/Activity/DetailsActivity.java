@@ -67,6 +67,8 @@ public class DetailsActivity extends AppCompatActivity {
     LinearLayout call;
     ImageView favorit;
     HomeModules homeModules_aqares;
+    LinearLayout profile;
+    LinearLayout chat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +94,8 @@ public class DetailsActivity extends AppCompatActivity {
         name = findViewById(R.id.name);
         call = findViewById(R.id.call);
         favorit = findViewById(R.id.favorit);
+        profile = findViewById(R.id.profile);
+        chat = findViewById(R.id.chat);
         try {
             id_or_aq = getIntent().getStringExtra("id_aqarz");
 
@@ -210,6 +214,30 @@ public class DetailsActivity extends AppCompatActivity {
                             area.setText(homeModules_aqares.getArea_from() + " - " + homeModules_aqares.getArea_to());
                             room.setText(homeModules_aqares.getRoom_numbers() + "");
                             name_owner.setText(homeModules_aqares.getOwner_name() + "");
+
+
+                            profile.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+
+                                    Intent intent = new Intent(DetailsActivity.this, AqarzProfileActivity_other.class);
+                                    intent.putExtra("id", homeModules_aqares.getUser_id() + "");
+                                    startActivity(intent);
+                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                }
+                            });
+                            chat.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(DetailsActivity.this, ChatRoomActivity.class);
+                                    intent.putExtra("user_id", homeModules_aqares.getUser_id() + "");
+                                    intent.putExtra("parent_id", "-1");
+                                    intent.putExtra("nameUser", homeModules_aqares.getOwner_name() + "");
+                                    intent.putExtra("imageUser", "");
+                                    startActivity(intent);
+                                }
+                            });
 
                             if (homeModules_aqares.getIn_fav().equals("1")) {
                                 favorit.setImageDrawable(getDrawable(R.drawable.ic_heart));

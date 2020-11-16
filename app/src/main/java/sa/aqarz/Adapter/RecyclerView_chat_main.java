@@ -2,18 +2,25 @@ package sa.aqarz.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+import sa.aqarz.Activity.ChatRoomActivity;
+import sa.aqarz.Activity.DetailsActivity;
 import sa.aqarz.Modules.MsgModules;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.R;
@@ -53,16 +60,22 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
 //        LinearLayout add_to_my;
 
 
+        TextView last_message;
+        TextView name;
+        TextView time;
 
+
+        CircleImageView image_profile;
 
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
 
 
-
-
-//            ratingbar = view.findViewById(R.id.ratingbar);
+            last_message = view.findViewById(R.id.last_message);
+            name = view.findViewById(R.id.name);
+            time = view.findViewById(R.id.time);
+            image_profile = view.findViewById(R.id.image_profile);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
@@ -107,14 +120,26 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
 ////
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.image);
-//        holder.price.setText(alldata.get(position).getPrice()+" "+context.getResources().getString(R.string.SAR));
-//        holder.title.setText(alldata.get(position).getTitle()+"");
+        holder.name.setText(alldata.get(position).getReceiverName());
+        holder.last_message.setText(alldata.get(position).getBody() + "");
 //        holder.description.setText(alldata.get(position).getDetails()+"");
 //////
 //
 //        int random = ThreadLocalRandom.current().nextInt(1, 5);
 //       holder.ratingbar.setStar(random);
+        if (alldata.get(position).getReceiverPhoto() != null) {
+            if (!alldata.get(position).getReceiverPhoto().toString().equals("")) {
+                Picasso.get().load(alldata.get(position).getReceiverPhoto()).error(R.drawable.ic_user_un).into(holder.image_profile);
 
+            } else {
+                Picasso.get().load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(holder.image_profile);
+
+            }
+
+        } else {
+            Picasso.get().load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(holder.image_profile);
+
+        }
 
         //   wallet, dafter, receipt, payment
 
@@ -161,6 +186,12 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
 
 //                RequestOrderActivity.set_fragment(position);
 
+                Intent intent = new Intent(context, ChatRoomActivity.class);
+                intent.putExtra("user_id", alldata.get(position).getReceiverId() + "");
+                intent.putExtra("parent_id", alldata.get(position).getParentId() + "");
+                intent.putExtra("nameUser", alldata.get(position).getReceiverName() + "");
+                intent.putExtra("imageUser", alldata.get(position).getReceiverPhoto() + "");
+                context.startActivity(intent);
 
                 if (mItemClickListener != null) {
                     mItemClickListener.onItemClick(position);

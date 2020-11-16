@@ -7,20 +7,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+import sa.aqarz.Adapter.RecyclerView_ChatRoom;
 import sa.aqarz.Adapter.RecyclerView_chat_main;
 import sa.aqarz.Modules.MsgModules;
 import sa.aqarz.R;
@@ -33,6 +39,13 @@ public class ChatRoomActivity extends AppCompatActivity {
     ImageView back;
     List<MsgModules> ordersModules = new ArrayList<>();
     IResult mResultCallback;
+    EditText text_mesage;
+    ImageView send;
+    String user_id = "";
+    TextView name;
+    CircleImageView profile;
+
+    String lastMessage = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +53,10 @@ public class ChatRoomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_room);
         message = findViewById(R.id.message);
         back = findViewById(R.id.back);
+        text_mesage = findViewById(R.id.text_mesage);
+        send = findViewById(R.id.send);
+        name = findViewById(R.id.name);
+        profile = findViewById(R.id.profile);
 
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +68,10 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(ChatRoomActivity.this, LinearLayoutManager.VERTICAL, false);
+        layoutManager1.setStackFromEnd(true);
+
         message.setLayoutManager(layoutManager1);
+
 
         WebService.loading(ChatRoomActivity.this, true);
 
@@ -59,7 +79,76 @@ public class ChatRoomActivity extends AppCompatActivity {
         VolleyService mVolleyService = new VolleyService(mResultCallback, ChatRoomActivity.this);
 
 
-        mVolleyService.getDataVolley("my_msg", WebService.my_msg);
+        try {
+
+
+            user_id = getIntent().getStringExtra("user_id");
+            String parent_id = getIntent().getStringExtra("parent_id");
+
+
+            if (parent_id.equals("-1")) {
+                WebService.loading(ChatRoomActivity.this, true);
+
+                mVolleyService.getDataVolley("my_msg", WebService.my_msg + "/" + user_id);
+
+            } else {
+
+
+                mVolleyService.getDataVolley("my_msg", WebService.my_msg + "/" + user_id);
+
+
+            }
+
+            String nameUser = getIntent().getStringExtra("nameUser");
+            String imageUser = getIntent().getStringExtra("imageUser");
+            name.setText(nameUser);
+            if (!imageUser.toString().equals("null")) {
+                if (!imageUser.toString().equals("")) {
+                    Picasso.get().load(imageUser).error(R.drawable.ic_user_un).into(profile);
+
+                } else {
+                    Picasso.get().load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(profile);
+
+                }
+
+            } else {
+                Picasso.get().load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(profile);
+
+            }
+
+
+        } catch (Exception e) {
+
+        }
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!text_mesage.getText().toString().equals("")) {
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, ChatRoomActivity.this);
+
+
+                    JSONObject jsonObject = new JSONObject();
+
+                    try {
+                        jsonObject.put("user_id", user_id);
+                        jsonObject.put("title", "##");
+                        jsonObject.put("body", text_mesage.getText().toString());
+                        lastMessage = text_mesage.getText().toString();
+//                        jsonObject.put("parent_id", "");
+                    } catch (Exception e) {
+
+                    }
+
+                    WebService.loading(ChatRoomActivity.this, true);
+
+                    mVolleyService.postDataVolley("send_msg", WebService.send_msg, jsonObject);
+
+
+                }
+
+
+            }
+        });
 
 //        msg/2/det
 
@@ -113,7 +202,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                             }
 
-                            message.setAdapter(new RecyclerView_chat_main(ChatRoomActivity.this, ordersModules));
+                            message.setAdapter(new RecyclerView_ChatRoom(ChatRoomActivity.this, ordersModules));
 
 //
 //                            if (ordersModules.size() != 0) {
@@ -123,6 +212,17 @@ public class ChatRoomActivity extends AppCompatActivity {
 //
 //                            }
 
+
+                        } else if (requestType.equals("send_msg")) {
+
+                            String messagecc = response.getString("message");
+
+
+                            ordersModules.add(new MsgModules(lastMessage, 1));
+
+                            message.setAdapter(new RecyclerView_ChatRoom(ChatRoomActivity.this, ordersModules));
+                            text_mesage.setText("");
+                            WebService.Make_Toast_color(ChatRoomActivity.this, messagecc, "success");
 
                         }
 

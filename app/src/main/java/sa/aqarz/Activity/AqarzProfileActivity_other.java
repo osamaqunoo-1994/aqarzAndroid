@@ -1,11 +1,16 @@
 package sa.aqarz.Activity;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +26,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.orhanobut.hawk.Hawk;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -34,11 +40,19 @@ import sa.aqarz.Activity.Auth.EditProfileActivity;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import sa.aqarz.Adapter.RecyclerView_clints_new;
 import sa.aqarz.Adapter.RecyclerView_member_new;
+import sa.aqarz.Adapter.RecyclerView_orders_demandsx;
+import sa.aqarz.Adapter.RecyclerView_orders_my_requstx;
+import sa.aqarz.Adapter.RecyclerView_orders_offer_di;
+import sa.aqarz.Adapter.RecyclerView_ordersx;
 import sa.aqarz.Adapter.RecyclerView_service_new;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_QR;
 import sa.aqarz.Modules.Clints;
 import sa.aqarz.Modules.HomeModules_aqares;
+import sa.aqarz.Modules.OfferRealStateModules;
+import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.Modules.SettingsModules;
+import sa.aqarz.Modules.User;
+import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
@@ -153,111 +167,21 @@ public class AqarzProfileActivity_other extends AppCompatActivity {
         alldate.setLayoutManager(layoutManager1);
 
 
-        try {
-
-
-            loc_button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("http://maps.google.com/maps?saddr=" + Settings.GetUser().getLat() + "," + Settings.GetUser().getLan() + "&daddr=" + Settings.GetUser().getLat() + "," + Settings.GetUser().getLan()));
-                    startActivity(intent);
-                }
-            });
-
-
-            call_num.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:0123456789"));
-                    startActivity(intent);
-                }
-            });
-
-
-            chat_message.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-
-
-            if (!Settings.GetUser().getName().toString().equals("null")) {
-                name.setText(Settings.GetUser().getName());
-
-            } else {
-                name.setText("----------");
-
-            }
-            if (!Settings.GetUser().getLink().toString().equals("null")) {
-                link.setText(Settings.GetUser().getLink());
-
-            } else {
-                link.setText("----------------");
-
-            }
-
-
-//                if (!Settings.GetUser().getEmail().toString().equals("null")) {
-////                email.setText(Settings.GetUser().getEmail());
-//
-//                } else {
-////                email.setText("---------");
-//
-//                }
-            if (!Settings.GetUser().getLan().toString().equals("null")) {
-                go_to_map.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(Intent.ACTION_VIEW,
-                                Uri.parse("http://maps.google.com/maps?saddr=" + Settings.GetUser().getLat() + "," + Settings.GetUser().getLan() + "&daddr=" + Settings.GetUser().getLat() + "," + Settings.GetUser().getLan()));
-                        startActivity(intent);
-                    }
-                });
-            } else {
-                go_to_map.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(AqarzProfileActivity_other.this, getResources().getString(R.string.no_address_found), Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-            if (Settings.GetUser().getMobile() != null) {
-                mobile.setText("0" + Settings.GetUser().getMobile() + "");
-
-            }
-
-
-            if (!Settings.GetUser().getLogo().toString().equals("null")) {
-                Picasso.get().load(Settings.GetUser().getLogo()).into(profile);
-
-            }
-
-        } catch (Exception e) {
-
-        }
-
-
-        try {
-            service_list = Settings.getSettings().getService_types();
-            member_list = Settings.getSettings().getMember_types();
-
-        } catch (Exception e) {
-
-        }
-
         WebService.loading(AqarzProfileActivity_other.this, true);
 
 
         alldate.setBackgroundColor(getResources().getColor(R.color.color_back_rex));
         init_volley();
 
-        VolleyService mVolleyService = new VolleyService(mResultCallback, AqarzProfileActivity_other.this);
+        try {
+            String id = getIntent().getStringExtra("id");
+            VolleyService mVolleyService = new VolleyService(mResultCallback, AqarzProfileActivity_other.this);
 
-        mVolleyService.getDataVolley("my_estate", WebService.my_estate);
+            mVolleyService.getDataVolley("user", WebService.user + id + "");
 
+        } catch (Exception e) {
+
+        }
 
         offer_text.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -405,6 +329,127 @@ public class AqarzProfileActivity_other extends AppCompatActivity {
                             alldate.setAdapter(new RecyclerView_HomeList_estat(AqarzProfileActivity_other.this, homeModules));
 
 
+                        } else if (requestType.equals("user")) {
+
+                            try {
+                                String data = response.getString("data");
+
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(data);
+
+                                Gson gson = new Gson();
+                                User userModules = gson.fromJson(mJson, User.class);
+
+
+                                try {
+
+
+                                    loc_button.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(Intent.ACTION_VIEW,
+                                                    Uri.parse("http://maps.google.com/maps?saddr=" + userModules.getLat() + "," + userModules.getLan() + "&daddr=" + userModules.getLat() + "," + userModules.getLan()));
+                                            startActivity(intent);
+                                        }
+                                    });
+
+
+                                    call_num.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(Intent.ACTION_DIAL);
+                                            intent.setData(Uri.parse("tel:0" + userModules.getMobile()));
+                                            startActivity(intent);
+                                        }
+                                    });
+
+
+                                    chat_message.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(AqarzProfileActivity_other.this, ChatRoomActivity.class);
+                                            intent.putExtra("user_id", userModules.getId() + "");
+                                            intent.putExtra("parent_id", "-1");
+                                            intent.putExtra("nameUser", userModules.getName()+"");
+                                            intent.putExtra("imageUser", userModules.getLogo()+"");
+                                            startActivity(intent);
+                                        }
+                                    });
+
+
+                                    if (!userModules.getName().toString().equals("null")) {
+                                        name.setText(userModules.getName());
+
+                                    } else {
+                                        name.setText("----------");
+
+                                    }
+                                    if (!userModules.getLink().toString().equals("null")) {
+                                        link.setText(userModules.getLink());
+
+                                    } else {
+                                        link.setText("----------------");
+
+                                    }
+
+
+//                if (!Settings.GetUser().getEmail().toString().equals("null")) {
+////                email.setText(Settings.GetUser().getEmail());
+//
+//                } else {
+////                email.setText("---------");
+//
+//                }
+                                    if (!userModules.getLan().toString().equals("null")) {
+                                        go_to_map.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Intent intent = new Intent(Intent.ACTION_VIEW,
+                                                        Uri.parse("http://maps.google.com/maps?saddr=" + userModules.getLat() + "," + userModules.getLan() + "&daddr=" + userModules.getLat() + "," + userModules.getLan()));
+                                                startActivity(intent);
+                                            }
+                                        });
+                                    } else {
+                                        go_to_map.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Toast.makeText(AqarzProfileActivity_other.this, getResources().getString(R.string.no_address_found), Toast.LENGTH_LONG).show();
+                                            }
+                                        });
+                                    }
+                                    if (userModules.getMobile() != null) {
+                                        mobile.setText("0" + userModules.getMobile() + "");
+
+                                    }
+
+
+                                    if (!userModules.getLogo().toString().equals("null")) {
+                                        Picasso.get().load(userModules.getLogo()).into(profile);
+
+                                    }
+
+                                } catch (Exception e) {
+
+                                }
+
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+//                            try {
+//                                service_list = Settings.getSettings().getService_types();
+//                                member_list = Settings.getSettings().getMember_types();
+//
+//                            } catch (Exception e) {
+
+//                            }
+
+
+                            VolleyService mVolleyService = new VolleyService(mResultCallback, AqarzProfileActivity_other.this);
+                            mVolleyService.getDataVolley("my_estate", WebService.my_estate);
+
+
                         } else {
                             String data = response.getString("data");
                             JSONArray jsonArray = new JSONArray(data);
@@ -504,5 +549,6 @@ public class AqarzProfileActivity_other extends AppCompatActivity {
 
 
     }
+
 
 }

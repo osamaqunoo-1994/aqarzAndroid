@@ -52,17 +52,12 @@ public class RecyclerView_ChatRoom extends RecyclerView.Adapter<RecyclerView_Cha
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView details;
-        TextView category;
-        TextView date;
-        TextView viewx;
-        ImageView image;
-        ImageView share;
-        ProgressBar progressImage;
+        TextView text;
+
 
         public MyViewHolder(View view) {
             super(view);
-//            details = view.findViewById(R.id.details);
+            text = view.findViewById(R.id.text);
 //            category = view.findViewById(R.id.category);
 //            image = view.findViewById(R.id.image);
 //            date = view.findViewById(R.id.date);
@@ -85,6 +80,9 @@ public class RecyclerView_ChatRoom extends RecyclerView.Adapter<RecyclerView_Cha
         if (position == alldata.size()) {
 
         } else {
+
+
+            holder.text.setText(alldata.get(position).getBody() + "");
 
 
 //            holder.share.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +118,7 @@ public class RecyclerView_ChatRoom extends RecyclerView.Adapter<RecyclerView_Cha
 
     @Override
     public int getItemCount() {
-        return alldata.size() + 1;
+        return alldata.size();
     }
 
 

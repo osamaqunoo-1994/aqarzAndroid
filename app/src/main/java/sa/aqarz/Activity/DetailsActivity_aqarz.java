@@ -79,6 +79,8 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     RecyclerView comfort_rec;
     List<ComfortModules> comfort_list = new ArrayList<>();
     String id_or_aq = "12";
+    LinearLayout profile;
+    LinearLayout chat;
     //
     private ArrayList<String> items_ViewPager = new ArrayList<String>();
 //
@@ -109,6 +111,8 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
         note = findViewById(R.id.note);
         call = findViewById(R.id.call);
         favorit = findViewById(R.id.favorit);
+        profile = findViewById(R.id.profile);
+        chat = findViewById(R.id.chat);
 
 
         type_ = findViewById(R.id.type_);
@@ -286,7 +290,28 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
                             purpose.setText(homeModules_aqares.getBathroomsNumber() + "");
                             name_owner.setText(homeModules_aqares.getOwnerName() + "");
 
+                            profile.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
 
+
+                                    Intent intent = new Intent(DetailsActivity_aqarz.this, AqarzProfileActivity_other.class);
+                                    intent.putExtra("id", homeModules_aqares.getUserId() + "");
+                                    startActivity(intent);
+                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                }
+                            });
+                            chat.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(DetailsActivity_aqarz.this, ChatRoomActivity.class);
+                                    intent.putExtra("user_id", homeModules_aqares.getUserId() + "");
+                                    intent.putExtra("parent_id", "-1");
+                                    intent.putExtra("nameUser", homeModules_aqares.getOwnerName() + "");
+                                    intent.putExtra("imageUser", "");
+                                    startActivity(intent);
+                                }
+                            });
                             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                             try {
                                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);

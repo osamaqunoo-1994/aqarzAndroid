@@ -32,10 +32,10 @@ public class MsgModules {
     private Object senderPhoto;
     @SerializedName("receiver_name")
     @Expose
-    private Object receiverName;
+    private String receiverName;
     @SerializedName("receiver_photo")
     @Expose
-    private Object receiverPhoto;
+    private String receiverPhoto;
     @SerializedName("parent_body")
     @Expose
     private Object parentBody;
@@ -52,6 +52,13 @@ public class MsgModules {
     @Expose
     private Integer formMe;
 
+
+    public MsgModules(String body, int formMe) {
+        this.body = body;
+        this.formMe = formMe;
+    }
+
+
     public Integer getId() {
         return id;
     }
@@ -59,6 +66,7 @@ public class MsgModules {
     public void setId(Integer id) {
         this.id = id;
     }
+
 
     public String getTitle() {
         return title;
@@ -116,19 +124,19 @@ public class MsgModules {
         this.senderPhoto = senderPhoto;
     }
 
-    public Object getReceiverName() {
+    public String getReceiverName() {
         return receiverName;
     }
 
-    public void setReceiverName(Object receiverName) {
+    public void setReceiverName(String receiverName) {
         this.receiverName = receiverName;
     }
 
-    public Object getReceiverPhoto() {
+    public String getReceiverPhoto() {
         return receiverPhoto;
     }
 
-    public void setReceiverPhoto(Object receiverPhoto) {
+    public void setReceiverPhoto(String receiverPhoto) {
         this.receiverPhoto = receiverPhoto;
     }
 

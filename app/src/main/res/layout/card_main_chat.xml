@@ -14,8 +14,9 @@
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:id="@+id/image_profile"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
 
             android:src="#fff"
             app:civ_border_color="#9777B2"
@@ -34,11 +35,11 @@
                 android:layout_marginRight="10dp">
 
                 <TextView
-
+                    android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/muli_semi_bold"
-                    android:text="Osama A mo"
+
                     android:textColor="@color/colorPrimary"
                     android:textSize="14dp" />
 
@@ -53,16 +54,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="-6dp"
+
 
                 android:layout_marginRight="10dp">
 
                 <TextView
+                    android:id="@+id/last_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/frutiger_lt_arabic_light"
-                    android:text="last message"
-                    android:textColor="@color/textColor2"
+
+                    android:textColor="@color/textColor"
                     android:textSize="12dp" />
 
                 <LinearLayout
@@ -77,9 +79,10 @@
 
 
         <TextView
+            android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="31 min"
+
             android:textSize="13dp" />
 
 
@@ -89,9 +92,9 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/colorPrimary" />
 
 

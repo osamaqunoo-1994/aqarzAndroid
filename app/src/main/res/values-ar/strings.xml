@@ -266,7 +266,7 @@
 
     <string name="MyOrder">طلباتي</string>
     <string name="Shoppingrequest">طلبات السوق</string>
-    <string name="Real_Estate_order">طلبات الصندوق</string>
+    <string name="Real_Estate_order">طلبات الصندوق العقاري</string>
 
     <string name="chat">مراسلة</string>
     <string name="call">اتصال</string>
@@ -656,5 +656,18 @@
     <string name="text_qr">عملائك يمكنهم الوصول الى حسابك عبر تصوير هذا الرمز
  والذي يمكنهم من الوصول الى عروضك بكل سهولة</string>
     <string name="RequstService">اطلب خدمة</string>
+
+
+    <string name="nodata">لا يوجد نتائج متاحه</string>
+
+
+    <string name="MYProfileDetailsd">الملف الشخصي</string>
+
+
+    <string name="n1">نوع العقار</string>
+    <string name="n2">السعر</string>
+    <string name="n3">المساحه</string>
+    <string name="n4">العنوان</string>
+
 
 </resources>

@@ -90,7 +90,7 @@ public class FavoriteActivity extends AppCompatActivity {
 
 
         LinearLayoutManager layoutManager1
-                = new LinearLayoutManager(FavoriteActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                = new LinearLayoutManager(FavoriteActivity.this, LinearLayoutManager.VERTICAL, false);
         alldate.setLayoutManager(layoutManager1);
 
         back.setOnClickListener(new View.OnClickListener() {

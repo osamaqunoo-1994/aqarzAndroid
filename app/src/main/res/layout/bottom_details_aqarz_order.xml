@@ -80,7 +80,16 @@
 
                         android:src="@drawable/ic_test_test"
                         app:tint="#00D2CB" />
+                    <TextView
 
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:text="@string/n1"
+                        android:textColor="@color/textColor"
+                        android:textSize="12dp" />
                     <TextView
                         android:id="@+id/type"
 
@@ -139,7 +148,16 @@
                         android:layout_height="30dp"
                         android:padding="8dp"
                         android:src="@drawable/ic_tag" />
+                    <TextView
 
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:text="@string/n2"
+                        android:textColor="@color/textColor"
+                        android:textSize="12dp" />
                     <TextView
                         android:id="@+id/price"
                         android:layout_width="wrap_content"
@@ -183,7 +201,16 @@
                         android:layout_height="30dp"
                         android:padding="8dp"
                         android:src="@drawable/ic_group_location_group" />
+                    <TextView
 
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:text="@string/n4"
+                        android:textColor="@color/textColor"
+                        android:textSize="12dp" />
                     <TextView
                         android:id="@+id/address"
                         android:layout_width="wrap_content"
