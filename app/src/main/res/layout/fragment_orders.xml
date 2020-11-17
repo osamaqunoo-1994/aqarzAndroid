@@ -7,17 +7,52 @@
 
     android:orientation="vertical">
 
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@color/colorPrimary"
-
-        android:fontFamily="@font/muli_bold"
         android:gravity="center"
-        android:text="@string/orders"
+        android:orientation="horizontal">
 
-        android:textColor="@color/white"
-        android:textSize="@dimen/_15sdp" />
+
+        <ImageView
+
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/circle_fill"
+            android:padding="8dp"
+            android:src="@drawable/ic_filtter_city"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+
+            android:layout_weight="1"
+            android:fontFamily="@font/muli_bold"
+            android:gravity="center"
+            android:text="@string/orders"
+
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp" />
+
+        <ImageView
+            android:id="@+id/filtter_city"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/circle_wh"
+            android:padding="8dp"
+            android:src="@drawable/ic_filtter_city"
+            app:tint="@color/colorPrimary" />
+
+
+    </LinearLayout>
 
 
     <HorizontalScrollView
@@ -153,8 +188,7 @@
                         android:layout_height="20dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:src="@drawable/ic_group_1580"
-                         />
+                        android:src="@drawable/ic_group_1580" />
 
                     <ImageView
                         android:layout_width="10dp"
@@ -180,21 +214,12 @@
 
             </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/filtter_city"
-                android:layout_width="37dp"
-                android:layout_height="37dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/circle_fill"
-                android:padding="8dp"
-                android:src="@drawable/ic_filtter_city" />
-
 
         </LinearLayout>
 
 
     </HorizontalScrollView>
+
     <LinearLayout
         android:id="@+id/type_requst_xml"
         android:layout_width="match_parent"
@@ -202,8 +227,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:visibility="gone"
-        android:background="@drawable/background_fill_ccc">
+        android:background="@drawable/background_fill_ccc"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/order"
@@ -235,107 +260,138 @@
 
     </LinearLayout>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_opration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="@dimen/_10sdp"
-
-        android:layout_marginBottom="10dp"
-        android:background="#F7F7F7">
-
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-
-    <HorizontalScrollView
-        android:id="@+id/section_horizantal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:background="@color/white"
-
-        android:fillViewport="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-
-
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/type_sale"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/background_fill_ccc">
-
-                <TextView
-                    android:id="@+id/For_sale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/button_login"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                    android:gravity="center"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:text="@string/For_sale"
-                    android:textColor="@color/white"
-                    android:textSize="13dp" />
-
-                <TextView
-                    android:id="@+id/rent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                    android:gravity="center"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:text="@string/rent"
-                    android:textColor="@color/black"
-                    android:textSize="13dp" />
-
-            </LinearLayout>
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/type_of_v"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp" />
-
-        </LinearLayout>
-
-    </HorizontalScrollView>
-
-
-    <RelativeLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/orders_rec"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
-
-            android:paddingTop="5dp" />
+            android:orientation="vertical">
 
 
-        <ImageView
-            android:id="@+id/nodata_vis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ic_no_data"
-            android:visibility="gone" />
-    </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_opration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="@dimen/_10sdp"
 
+                android:layout_marginBottom="10dp"
+                android:background="#F7F7F7">
+
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+            <HorizontalScrollView
+                android:id="@+id/section_horizantal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/white"
+
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+
+
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/type_sale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/background_fill_ccc">
+
+                        <TextView
+                            android:id="@+id/For_sale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/button_login"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:gravity="center"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:text="@string/For_sale"
+                            android:textColor="@color/white"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:id="@+id/rent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:gravity="center"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:text="@string/rent"
+                            android:textColor="@color/black"
+                            android:textSize="13dp" />
+
+                    </LinearLayout>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/type_of_v"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/orders_rec"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+
+                    android:paddingTop="5dp" />
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/nodata_vis"
+                    android:visibility="gone"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:alpha=".3"
+                        android:src="@drawable/ic_no_data" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:textColor="@color/textColor2"
+                        android:text="@string/nodata" />
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

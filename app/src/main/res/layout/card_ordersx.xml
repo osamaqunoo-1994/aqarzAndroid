@@ -22,6 +22,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="30dp"
+            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="10dp"
 
 
@@ -30,9 +31,9 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#00A5A5"
-                android:padding="20dp"
-                android:src="@drawable/ic_group_1580" />
+
+
+                android:src="@drawable/es_logo" />
 
 
         </androidx.cardview.widget.CardView>
@@ -49,8 +50,9 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
-android:gravity="center"
+                android:gravity="center"
                 android:orientation="horizontal">
+
                 <TextView
 
                     android:layout_width="wrap_content"
@@ -61,6 +63,7 @@ android:gravity="center"
                     android:text="@string/n1"
                     android:textColor="@color/textColor"
                     android:textSize="12dp" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,9 +75,9 @@ android:gravity="center"
 
                     <ImageView
                         android:id="@+id/image_icon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:padding="8dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:padding="6dp"
                         android:src="@drawable/ic_test_test"
                         app:tint="@color/white" />
 
@@ -90,7 +93,7 @@ android:gravity="center"
                         android:text="sgnkdfg"
 
                         android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:textSize="14dp" />
 
                 </LinearLayout>
 
@@ -130,6 +133,7 @@ android:gravity="center"
                     android:layout_height="30dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_tag" />
+
                 <TextView
 
                     android:layout_width="wrap_content"
@@ -140,6 +144,7 @@ android:gravity="center"
                     android:text="@string/n2"
                     android:textColor="@color/textColor"
                     android:textSize="12dp" />
+
                 <TextView
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
@@ -185,6 +190,7 @@ android:gravity="center"
                     android:layout_height="30dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_group_location_group" />
+
                 <TextView
 
                     android:layout_width="wrap_content"
@@ -195,6 +201,7 @@ android:gravity="center"
                     android:text="@string/n4"
                     android:textColor="@color/textColor"
                     android:textSize="12dp" />
+
                 <TextView
                     android:id="@+id/address"
                     android:layout_width="wrap_content"
@@ -226,6 +233,7 @@ android:gravity="center"
                     android:padding="8dp"
                     android:src="@drawable/ic_space"
                     app:tint="#00D2CB" />
+
                 <TextView
 
                     android:layout_width="wrap_content"
@@ -236,6 +244,7 @@ android:gravity="center"
                     android:text="@string/n3"
                     android:textColor="@color/textColor"
                     android:textSize="12dp" />
+
                 <TextView
                     android:id="@+id/space"
                     android:layout_width="wrap_content"
@@ -246,6 +255,7 @@ android:gravity="center"
 
                     android:textColor="@color/textColor"
                     android:textSize="12dp" />
+
                 <TextView
 
                     android:layout_width="wrap_content"

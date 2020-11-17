@@ -70,6 +70,7 @@ public class ContactUsActivity extends AppCompatActivity {
                 finish();
             }
         });
+        init_volley();
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,16 +79,15 @@ public class ContactUsActivity extends AppCompatActivity {
                 WebService.loading(ContactUsActivity.this, true);
 
                 VolleyService mVolleyService = new VolleyService(mResultCallback, ContactUsActivity.this);
-                init_volley();
 
                 JSONObject sendObj = new JSONObject();
 
                 try {
 
-                    sendObj.put("name", name_ed.getText().toString());
-                    sendObj.put("email", email_ed.getText().toString());
-                    sendObj.put("mobile", phone_ed.getText().toString());
-                    sendObj.put("msg", message.getText().toString());
+                    sendObj.put("name", name_ed.getText().toString()+"");
+                    sendObj.put("email", email_ed.getText().toString()+"");
+                    sendObj.put("mobile", phone_ed.getText().toString()+"");
+                    sendObj.put("msg", message.getText().toString()+"");
 
                 } catch (JSONException e) {
                     e.printStackTrace();

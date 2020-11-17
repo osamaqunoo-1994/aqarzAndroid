@@ -36,6 +36,12 @@ public class User {
     @SerializedName("is_pay")
     @Expose
     private String is_pay;
+    @SerializedName("is_certified")
+    @Expose
+    private String is_certified;
+    @SerializedName("is_fund_certified")
+    @Expose
+    private String is_fund_certified;
     @SerializedName("device_token")
     @Expose
     private String device_token;
@@ -124,6 +130,14 @@ public class User {
 
     public String getCreated_at() {
         return created_at;
+    }
+
+    public String getIs_certified() {
+        return is_certified;
+    }
+
+    public String getIs_fund_certified() {
+        return is_fund_certified;
     }
 
     public String getLogo() {

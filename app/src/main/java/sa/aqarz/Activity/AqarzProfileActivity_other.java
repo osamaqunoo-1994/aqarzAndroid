@@ -93,6 +93,7 @@ public class AqarzProfileActivity_other extends AppCompatActivity {
     ImageView loc_button;
     ImageView chat_message;
     ImageView call_num;
+    ImageView cirtificad;
 
 
     @Override
@@ -102,6 +103,7 @@ public class AqarzProfileActivity_other extends AppCompatActivity {
 
 
         loc_button = findViewById(R.id.loc_button);
+        cirtificad = findViewById(R.id.cirtificad);
         chat_message = findViewById(R.id.chat_message);
         call_num = findViewById(R.id.call_num);
         qr_code = findViewById(R.id.qr_code);
@@ -363,15 +365,39 @@ public class AqarzProfileActivity_other extends AppCompatActivity {
                                         }
                                     });
 
+                                    if (userModules.getIs_certified() != null) {
+                                        if (userModules.getIs_certified().equals("1")) {
 
+                                            cirtificad.setVisibility(View.VISIBLE);
+
+                                        } else {
+                                            cirtificad.setVisibility(View.GONE);
+                                        }
+                                    } else {
+                                        cirtificad.setVisibility(View.GONE);
+
+                                    }
+
+                                    if (userModules.getIs_pay() != null) {
+                                        if (userModules.getIs_pay().equals("1")) {
+
+                                            is_real_state.setVisibility(View.VISIBLE);
+
+                                        } else {
+                                            is_real_state.setVisibility(View.GONE);
+                                        }
+                                    } else {
+                                        is_real_state.setVisibility(View.GONE);
+
+                                    }
                                     chat_message.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
                                             Intent intent = new Intent(AqarzProfileActivity_other.this, ChatRoomActivity.class);
                                             intent.putExtra("user_id", userModules.getId() + "");
                                             intent.putExtra("parent_id", "-1");
-                                            intent.putExtra("nameUser", userModules.getName()+"");
-                                            intent.putExtra("imageUser", userModules.getLogo()+"");
+                                            intent.putExtra("nameUser", userModules.getName() + "");
+                                            intent.putExtra("imageUser", userModules.getLogo() + "");
                                             startActivity(intent);
                                         }
                                     });

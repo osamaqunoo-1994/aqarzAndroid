@@ -119,7 +119,7 @@ public class OrdersFragment extends Fragment {
     AlertDialog alertDialog;
 
     TextView For_sale, rent;
-    ImageView nodata_vis;
+    LinearLayout nodata_vis;
 
     String opration_select = "";
     String Type_work_select = "";

@@ -101,12 +101,24 @@
                 android:layout_height="@dimen/_20sdp"
                 android:layout_centerInParent="true"
                 android:layout_margin="30dp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_city"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
 
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/selected_list_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_city"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
 
         </RelativeLayout>
     </LinearLayout>

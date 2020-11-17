@@ -28,6 +28,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import sa.aqarz.Activity.Auth.EditProfileActivity;
@@ -85,7 +86,7 @@ public class AqarzProfileActivity extends AppCompatActivity {
 
 
     ImageView qr_code;
-
+    ImageView cirtificad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +94,7 @@ public class AqarzProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_aqarz_profile);
 
 
-
+        cirtificad = findViewById(R.id.cirtificad);
         qr_code = findViewById(R.id.qr_code);
         add_clint = findViewById(R.id.add_clint);
         profile = findViewById(R.id.profile);
@@ -172,6 +173,32 @@ public class AqarzProfileActivity extends AppCompatActivity {
 
             } else {
                 link.setText("----------------");
+
+            }
+
+            if (Settings.GetUser().getIs_certified() != null) {
+                if (Settings.GetUser().getIs_certified().equals("1")) {
+
+                    cirtificad.setVisibility(View.VISIBLE);
+
+                } else {
+                    cirtificad.setVisibility(View.GONE);
+                }
+            } else {
+                cirtificad.setVisibility(View.GONE);
+
+            }
+
+            if (Settings.GetUser().getIs_pay() != null) {
+                if (Settings.GetUser().getIs_pay().equals("1")) {
+
+                    is_real_state.setVisibility(View.VISIBLE);
+
+                } else {
+                    is_real_state.setVisibility(View.GONE);
+                }
+            } else {
+                is_real_state.setVisibility(View.GONE);
 
             }
 

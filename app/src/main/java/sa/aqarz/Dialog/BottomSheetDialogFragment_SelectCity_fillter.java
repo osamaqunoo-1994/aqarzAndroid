@@ -34,6 +34,7 @@ import java.util.List;
 
 import sa.aqarz.Adapter.RecyclerView_city_bootom_sheets;
 import sa.aqarz.Adapter.RecyclerView_city_bootom_sheets_multi;
+import sa.aqarz.Adapter.RecyclerView_select_city;
 import sa.aqarz.Fragment.OrdersFragment;
 import sa.aqarz.Modules.CityModules;
 import sa.aqarz.R;
@@ -50,9 +51,11 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
 
     ImageView search_btn;
     RecyclerView list_city;
+    RecyclerView selected_list_city;
 
 
     List<CityModules> cityModules_list = new ArrayList<>();
+    List<CityModules> cityModules_list_selected = new ArrayList<>();
     List<CityModules> cityModules_list_filtter = new ArrayList<>();
     EditText text_search;
 
@@ -67,6 +70,7 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_sheets_select_city_fillter, container, false);
         list_city = v.findViewById(R.id.list_city);
+        selected_list_city = v.findViewById(R.id.selected_list_city);
         progress = v.findViewById(R.id.progress);
         close = v.findViewById(R.id.close);
         text_search = v.findViewById(R.id.text_search);
@@ -79,10 +83,29 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
         list_city.setLayoutManager(layoutManager1);
 
 
+        LinearLayoutManager layoutManager1c
+                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        selected_list_city.setLayoutManager(layoutManager1c);
+
+
         if (Application.AllCity.size() != 0) {
             progress.setVisibility(View.GONE);
 
             cityModules_list = Application.AllCity;
+
+            cityModules_list_selected.clear();
+            for (int i = 0; i < cityModules_list.size(); i++) {
+
+                if (cityModules_list.get(i).isSelected()) {
+                    cityModules_list_selected.add(cityModules_list.get(i));
+                }
+
+
+            }
+
+            selected_list_city.setAdapter(new RecyclerView_select_city(getContext(), cityModules_list_selected));
+
+
             RecyclerView_city_bootom_sheets_multi recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets_multi(getContext(), cityModules_list);
             recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_bootom_sheets_multi.ItemClickListener() {
 
@@ -91,6 +114,18 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
                 public void onItemClick(List<CityModules> alldata) {
 
                     cityModules_list = alldata;
+
+                    cityModules_list_selected.clear();
+                    for (int i = 0; i < cityModules_list.size(); i++) {
+
+                        if (cityModules_list.get(i).isSelected()) {
+                            cityModules_list_selected.add(cityModules_list.get(i));
+                        }
+
+
+                    }
+
+                    selected_list_city.setAdapter(new RecyclerView_select_city(getContext(), cityModules_list_selected));
                 }
             });
 
@@ -161,12 +196,12 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
 
                 }
 
-                if(!ids_of_city.equals("")){
+//                if (!ids_of_city.equals("")) {
 
-                    if (mItemClickListener != null) {
-                        mItemClickListener.onItemClick(ids_of_city, ids_of_city);
-                    }
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(ids_of_city, ids_of_city);
                 }
+//                }
 
 
             }
