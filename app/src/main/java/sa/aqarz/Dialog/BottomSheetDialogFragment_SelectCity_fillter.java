@@ -133,10 +133,9 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
 
         } else {
             init_volley();
-
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-
             mVolleyService.getDataVolley("city", WebService.cities);
+
         }
 
 

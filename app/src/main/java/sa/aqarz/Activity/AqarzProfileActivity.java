@@ -32,6 +32,7 @@ import java.util.Set;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import sa.aqarz.Activity.Auth.EditProfileActivity;
+import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat_favorit;
 import sa.aqarz.Adapter.RecyclerView_clints_new;
@@ -88,12 +89,16 @@ public class AqarzProfileActivity extends AppCompatActivity {
     ImageView qr_code;
     ImageView cirtificad;
 
+
+    LinearLayout link_url;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aqarz_profile);
 
 
+        link_url = findViewById(R.id.link_url);
         cirtificad = findViewById(R.id.cirtificad);
         qr_code = findViewById(R.id.qr_code);
         add_clint = findViewById(R.id.add_clint);
@@ -133,10 +138,19 @@ public class AqarzProfileActivity extends AppCompatActivity {
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AqarzProfileActivity.this, EditProfileActivity.class);
+
+                if(Settings.CheckIsAccountAqarzMan()){
+                    Intent intent = new Intent(AqarzProfileActivity.this, EditProfileActivity.class);
 //              intent.putExtra("from", "splash");
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                }else{
+                    Intent intent = new Intent(AqarzProfileActivity.this, MyProfileInformationActivity.class);
+//              intent.putExtra("from", "splash");
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                }
+
             }
         });
 
@@ -159,6 +173,25 @@ public class AqarzProfileActivity extends AppCompatActivity {
 
 
         try {
+
+
+            if (Settings.CheckIsAccountAqarzMan()) {
+                link_url.setVisibility(View.VISIBLE);
+                clints_line.setVisibility(View.VISIBLE);
+                clints_text.setVisibility(View.VISIBLE);
+                memberships_line.setVisibility(View.VISIBLE);
+                memberships_text.setVisibility(View.VISIBLE);
+                service_line.setVisibility(View.VISIBLE);
+                service_text.setVisibility(View.VISIBLE);
+            } else {
+                link_url.setVisibility(View.GONE);
+                clints_line.setVisibility(View.GONE);
+                clints_text.setVisibility(View.GONE);
+                memberships_line.setVisibility(View.GONE);
+                memberships_text.setVisibility(View.GONE);
+                service_line.setVisibility(View.GONE);
+                service_text.setVisibility(View.GONE);
+            }
 
 
             if (!Settings.GetUser().getName().toString().equals("null")) {
