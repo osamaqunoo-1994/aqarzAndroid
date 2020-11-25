@@ -60,7 +60,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="15dp"
-                android:fontFamily="@font/frutiger_lt_arabic_roman"
+                android:fontFamily="@font/frutiger_lt_arabic_light"
                 android:text="@string/priceprice"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15dp" />
@@ -97,12 +97,12 @@
                     android:layout_height="42dp"
                     android:layout_weight="1"
                     android:background="@drawable/mash"
+                    android:fontFamily="@font/frutiger_lt_arabic_light"
                     android:gravity="center_vertical"
                     android:hint="@string/Les_price"
                     android:inputType="number"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-
                     android:text=""
                     android:textColorHint="@color/hint_color"
                     android:textSize="@dimen/_10sdp" />
@@ -117,6 +117,7 @@
                     android:layout_height="42dp"
                     android:layout_weight="1"
                     android:background="@drawable/mash"
+                    android:fontFamily="@font/frutiger_lt_arabic_light"
                     android:gravity="center_vertical"
                     android:hint="@string/Maximum_price"
                     android:inputType="number"
@@ -136,7 +137,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="15dp"
-                android:fontFamily="@font/frutiger_lt_arabic_roman"
+                android:fontFamily="@font/frutiger_lt_arabic_light"
                 android:text="@string/area_fi"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15dp" />
@@ -158,6 +159,7 @@
                     android:layout_height="42dp"
                     android:layout_weight="1"
                     android:background="@drawable/mash"
+                    android:fontFamily="@font/frutiger_lt_arabic_light"
                     android:gravity="center_vertical"
                     android:hint="@string/Les_space"
                     android:inputType="number"
@@ -178,6 +180,7 @@
                     android:layout_height="42dp"
                     android:layout_weight="1"
                     android:background="@drawable/mash"
+                    android:fontFamily="@font/frutiger_lt_arabic_light"
                     android:gravity="center_vertical"
                     android:hint="@string/Maximum_space"
                     android:inputType="number"
@@ -244,7 +247,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="15dp"
-                android:fontFamily="@font/frutiger_lt_arabic_roman"
+                android:fontFamily="@font/frutiger_lt_arabic_light"
                 android:text="@string/room"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15dp" />
@@ -323,8 +326,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="25dp"
                 android:background="@drawable/button_login"
-                android:fontFamily="@font/muli_bold"
+
+                android:fontFamily="@font/frutiger_lt_arabic_light"
                 android:text="@string/search"
+
                 android:textColor="@color/white" />
 
 

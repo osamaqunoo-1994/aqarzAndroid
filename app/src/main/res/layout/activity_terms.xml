@@ -40,6 +40,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:textSize="17dp"
                     android:text="@string/Privacy"
                     android:textColor="@color/white" />
 
@@ -58,10 +59,10 @@
 
 
             <ImageView
-                android:layout_width="85dp"
-                android:layout_height="85dp"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
                 android:layout_marginTop="35dp"
-                android:src="@drawable/ic_terms_icon" />
+                android:src="@drawable/ic_logo_move" />
 
             <TextView
                 android:layout_width="match_parent"

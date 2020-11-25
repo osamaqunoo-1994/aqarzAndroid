@@ -192,10 +192,14 @@
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp">
 
+
                             <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:src="@drawable/ic_favorites_icon" />
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/circle_fill"
+                                android:padding="5dp"
+                                android:src="@drawable/ic_favorites_icon"
+                                app:tint="@color/white" />
 
                             <LinearLayout
                                 android:layout_width="10dp"
@@ -245,13 +249,15 @@
                     android:layout_width="130dp"
                     android:layout_height="130dp"
                     android:layout_marginTop="30dp"
+                    android:src="@drawable/ic_logo_move"
 
-                    android:src="@drawable/ic_logo_move" />
+                    android:visibility="gone" />
 
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
                     android:fontFamily="@font/muli_bold"
                     android:gravity="center"
                     android:text="@string/Please_Login_or_Register"
@@ -331,9 +337,12 @@
                         android:paddingRight="15dp">
 
                         <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/ic_lang_icon" />
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/circle_fill"
+                            android:padding="3dp"
+                            android:src="@drawable/ic_lang_icon"
+                            android:tint="@color/white" />
 
                         <LinearLayout
                             android:layout_width="10dp"
@@ -388,9 +397,12 @@
                         android:paddingRight="15dp">
 
                         <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/ic_terms_icon" />
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/circle_fill"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_terms___"
+                            app:tint="@color/white" />
 
                         <LinearLayout
                             android:layout_width="10dp"
@@ -445,10 +457,14 @@
                         android:paddingRight="15dp"
                         android:visibility="gone">
 
+
                         <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/ic_change_password" />
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/circle_fill"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_change_password"
+                            app:tint="@color/white" />
 
                         <LinearLayout
                             android:layout_width="10dp"
@@ -495,10 +511,14 @@
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp">
 
+
                         <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/ic_contact_us_icon" />
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/circle_fill"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_contact_us_icon"
+                            app:tint="@color/white" />
 
                         <LinearLayout
                             android:layout_width="10dp"
@@ -584,10 +604,14 @@
                         android:paddingRight="15dp"
                         android:visibility="gone">
 
+
                         <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/ic_logoutr_icon" />
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/circle_fill"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_logoutr_icon"
+                            app:tint="@color/white" />
 
                         <TextView
                             android:layout_width="wrap_content"
