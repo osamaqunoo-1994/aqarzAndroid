@@ -54,8 +54,10 @@ import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.PrivecyActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Activity.TermsActivity;
+import sa.aqarz.Activity.profile.MyProfileActivity;
 import sa.aqarz.Adapter.RecyclerView_All_Opration_in_map;
 import sa.aqarz.Adapter.RecyclerView_All_Type_in_map;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_QR;
 import sa.aqarz.Modules.OprationModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
@@ -93,6 +95,7 @@ public class MoreFragment extends Fragment {
 
     ImageView facebook, twiter, instagram, linked;
     TextView not_compleate;
+    ImageView qr_code;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -125,6 +128,7 @@ public class MoreFragment extends Fragment {
         image_profile = v.findViewById(R.id.image_profile);
         not_compleate = v.findViewById(R.id.not_compleate);
         Favorites = v.findViewById(R.id.Favorites);
+        qr_code = v.findViewById(R.id.qr_code);
 
 
         info_.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +137,8 @@ public class MoreFragment extends Fragment {
                 System.out.println("***********" + Settings.GetUser().getType());
                 if (Settings.CheckIsAccountAqarzMan()) {
 //                    Intent intent = new Intent(getContext(), DetailsAqarzManActivity.class);
-                    Intent intent = new Intent(getContext(), AqarzProfileActivity.class);
+//                    Intent intent = new Intent(getContext(), AqarzProfileActivity.class);
+                    Intent intent = new Intent(getContext(), MyProfileActivity.class);
 //                                intent.putExtra("from", "splash");
                     startActivity(intent);
                     getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
@@ -280,7 +285,15 @@ public class MoreFragment extends Fragment {
 
             }
         });
+        qr_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                BottomSheetDialogFragment_QR bottomSheetDialogFragment_qr = new BottomSheetDialogFragment_QR();
+                bottomSheetDialogFragment_qr.show(getActivity().getSupportFragmentManager(), "");
+
+            }
+        });
 
         if (Hawk.get("lang").toString().equals("ar")) {
 

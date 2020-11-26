@@ -135,8 +135,56 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/ic_baseline_more_vert_241" />
+                    android:src="@drawable/ic_baseline_more_vert_241"
+                    android:visibility="gone" />
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_home_id_id" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:text="@string/n1"
+                    android:textColor="@color/textColor"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/estate_type_name"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+
+                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:text=""
+                    android:textColor="@color/textColor"
+                    android:textSize="15dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
@@ -157,6 +205,7 @@
                     android:padding="2dp"
                     android:src="@drawable/ic_group_1956"
                     app:tint="@color/colorPrimary" />
+
                 <TextView
 
                     android:layout_width="wrap_content"
@@ -167,6 +216,7 @@
                     android:text="@string/n2"
                     android:textColor="@color/textColor"
                     android:textSize="15dp" />
+
                 <TextView
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
@@ -213,6 +263,7 @@
                     android:padding="2dp"
                     android:src="@drawable/ic_loc_mark"
                     app:tint="@color/colorPrimary" />
+
                 <TextView
 
                     android:layout_width="wrap_content"
@@ -223,6 +274,7 @@
                     android:text="@string/n4"
                     android:textColor="@color/textColor"
                     android:textSize="15dp" />
+
                 <TextView
                     android:id="@+id/address"
                     android:layout_width="wrap_content"
@@ -241,50 +293,6 @@
                     android:layout_weight="1" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginRight="15dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:padding="2dp"
-                    android:src="@drawable/ic_home11" />
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                    android:text="@string/n1"
-                    android:textColor="@color/textColor"
-                    android:textSize="15dp" />
-                <TextView
-                    android:id="@+id/estate_type_name"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                    android:text=""
-                    android:textColor="@color/textColor"
-                    android:textSize="15dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -868,6 +876,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
 
@@ -913,8 +922,6 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1" />
                     </LinearLayout>
-
-
 
 
                 </LinearLayout>
@@ -976,13 +983,14 @@
 
 
             </LinearLayout>
+
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
-                android:layout_width="match_parent"
 
-                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
 
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -1024,7 +1032,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
             </LinearLayout>
-
 
 
             <LinearLayout

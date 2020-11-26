@@ -25,6 +25,7 @@ import com.squareup.picasso.Picasso;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
+import de.hdodenhof.circleimageview.CircleImageView;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.R;
@@ -35,12 +36,14 @@ public class BottomSheetDialogFragment_QR extends BottomSheetDialogFragment {
 
     ImageView image_qr;
     Button share_qr;
+    CircleImageView profile;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_sheets_qr, container, false);
         image_qr = v.findViewById(R.id.image_qr);
         share_qr = v.findViewById(R.id.share_qr);
+        profile = v.findViewById(R.id.profile);
 
 
         // Initializing the QR Encoder with your value to be encoded, type you required and Dimension
@@ -75,6 +78,12 @@ public class BottomSheetDialogFragment_QR extends BottomSheetDialogFragment {
                 getActivity().startActivity(Intent.createChooser(share, "Share Your qr!"));
             }
         });
+
+        if (!Settings.GetUser().getLogo().toString().equals("null")) {
+            Picasso.get().load(Settings.GetUser().getLogo()).into(profile);
+
+        }
+
 
         return v;
     }

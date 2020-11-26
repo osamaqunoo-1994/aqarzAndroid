@@ -642,7 +642,7 @@
 </string>
 
 
-    <string name="MYProfileDetails">حسابي الشخصي</string>
+    <string name="MYProfileDetails">الملف الشخصي</string>
 
     <string name="Certified">معتمد من</string>
     <string name="MyLocation_on_map">عنواني على الخريطه</string>
@@ -669,5 +669,8 @@
     <string name="n3">المساحه</string>
     <string name="n4">العنوان</string>
 
+    <string name="Clints">عميل</string>
+    <string name="Requst">طلب</string>
+    <string name="Visit">زياره</string>
 
 </resources>

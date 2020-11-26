@@ -156,6 +156,7 @@
                                     android:textSize="11dp" />
 
                                 <ImageView
+                                    android:id="@+id/qr_code"
                                     android:layout_width="25dp"
                                     android:layout_height="25dp"
                                     android:padding="3dp"

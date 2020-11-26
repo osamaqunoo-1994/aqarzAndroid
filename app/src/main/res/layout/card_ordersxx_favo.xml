@@ -165,7 +165,6 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:fontFamily="@font/frutiger_lt_arabic_roman"
-
                     android:textColor="@color/colorPrimary"
                     android:textSize="13dp" />
 

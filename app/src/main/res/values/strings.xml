@@ -548,16 +548,13 @@ Your request and reply in the fastest time</string>
     <string name="nodata">No Data Found</string>
 
 
-
-
     <string name="n1">Type Aqarz</string>
     <string name="n2">Price</string>
     <string name="n3">area</string>
     <string name="n4">address</string>
-
-
-
-
+    <string name="Clints">Clints</string>
+    <string name="Requst">Requst</string>
+    <string name="Visit">Visit</string>
 
 
     <string name="RequstService">Requst Service</string>

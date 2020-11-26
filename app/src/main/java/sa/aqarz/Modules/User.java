@@ -78,6 +78,21 @@ public class User {
     @SerializedName("address")
     @Expose
     private String address;
+    @SerializedName("count_visit")
+    @Expose
+    private String count_visit;
+    @SerializedName("count_offer")
+    @Expose
+    private String count_offer;
+    @SerializedName("count_request")
+    @Expose
+    private String count_request;
+    @SerializedName("count_agent")
+    @Expose
+    private String count_agent;
+
+
+
 
 
     @SerializedName("city_id")
@@ -111,6 +126,22 @@ public class User {
         return members_id;
     }
 
+
+    public String getCount_agent() {
+        return count_agent;
+    }
+
+    public String getCount_offer() {
+        return count_offer;
+    }
+
+    public String getCount_request() {
+        return count_request;
+    }
+
+    public String getCount_visit() {
+        return count_visit;
+    }
 
     public String getEmail() {
         return email;
