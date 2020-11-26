@@ -64,8 +64,8 @@
                 android:layout_margin="15dp"
                 android:background="@drawable/circle_fill"
                 android:padding="@dimen/_8sdp"
-                app:tint="@color/white"
-                android:src="@drawable/ic_marker_lo__" />
+                android:src="@drawable/ic_marker_lo__"
+                app:tint="@color/white" />
 
 
         </RelativeLayout>
@@ -79,12 +79,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:visibility="gone"
-                android:background="@color/colorPrimary" />
+                android:background="@color/colorPrimary"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginRight="20dp"
@@ -108,9 +108,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@android:color/transparent"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
-                    android:background="@android:color/transparent"
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
                     android:text=""
@@ -152,7 +152,7 @@
             <LinearLayout
                 android:id="@+id/laout_of_change"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="35dp"
                 android:layout_marginLeft="20dp"
 
                 android:layout_marginRight="20dp"
@@ -279,15 +279,15 @@
         <RelativeLayout
             android:id="@+id/layout_button_2"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/_20sdp">
 
             <LinearLayout
-                android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/back_map">
 
                 <TextView
@@ -299,7 +299,7 @@
                     android:gravity="center"
                     android:text="@string/request_aqar"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/_11sdp" />
 
                 <LinearLayout
                     android:layout_width="1dp"
@@ -315,13 +315,13 @@
                     android:gravity="center"
                     android:text="@string/add_aqar"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/_11sdp" />
             </LinearLayout>
 
 
             <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_centerHorizontal="true"
 
                 android:background="@drawable/circle_w_new"

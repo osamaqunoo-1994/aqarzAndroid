@@ -9,13 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/back_order_box"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="5dp"
-        android:orientation="horizontal">
+        android:background="@drawable/background_new"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
 
         <androidx.cardview.widget.CardView
@@ -27,13 +27,30 @@
 
             >
 
-            <ImageView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
-                android:padding="20dp"
-                android:src="@drawable/ic_logo_map"
-                app:tint="@color/white" />
+                android:layout_height="match_parent">
+
+
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:padding="20dp"
+                    android:src="@drawable/ic_logo_map"
+                    app:tint="@color/white" />
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+
+
+                    />
+            </RelativeLayout>
 
 
         </androidx.cardview.widget.CardView>
@@ -49,52 +66,10 @@
             <LinearLayout
 
                 android:layout_width="match_parent"
-                android:layout_height="38dp"
+                android:layout_height="32dp"
 
                 android:gravity="center"
                 android:orientation="horizontal">
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                    android:text="@string/n1"
-                    android:textColor="@color/textColor"
-                    android:textSize="12dp" />
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_login"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp">
-
-                    <ImageView
-                        android:id="@+id/image_icon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:padding="8dp"
-                        android:src="@drawable/ic_test_test"
-                        app:tint="@color/white" />
-
-
-                    <TextView
-                        android:id="@+id/name_estate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
-
-
-                        android:fontFamily="@font/muli_bold"
-                        android:text="sgnkdfg"
-
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-
-                </LinearLayout>
 
 
                 <LinearLayout
@@ -103,18 +78,30 @@
                     android:layout_weight="1" />
 
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:padding="11dp"
-                    android:src="@drawable/ic_send_" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/circle_filter"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_un_hide" />
 
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/circle_filter"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_send_" />
 
                 <ImageView
                     android:id="@+id/add_favorite"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:padding="11dp"
-                    android:src="@drawable/ic_like_l" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/circle_fill"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_like_l"
+                    app:tint="@color/white" />
+
 
             </LinearLayout>
 
@@ -131,7 +118,43 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:padding="8dp"
+                    android:src="@drawable/ic_home_id_id" />
+
+
+                <TextView
+                    android:id="@+id/name_estate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="8dp"
                     android:src="@drawable/ic_tag" />
+
                 <TextView
 
                     android:layout_width="wrap_content"
@@ -142,6 +165,7 @@
                     android:text="@string/n2"
                     android:textColor="@color/textColor"
                     android:textSize="12dp" />
+
                 <TextView
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
@@ -175,7 +199,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -185,16 +208,8 @@
                     android:layout_height="30dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_group_location_group" />
-                <TextView
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                    android:text="@string/n4"
-                    android:textColor="@color/textColor"
-                    android:textSize="12dp" />
+
                 <TextView
                     android:id="@+id/address"
                     android:layout_width="wrap_content"
@@ -213,11 +228,13 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/area_"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:gravity="center"
-                android:orientation="horizontal">
+
+                android:orientation="horizontal"
+                android:visibility="gone">
 
 
                 <ImageView
@@ -225,7 +242,8 @@
                     android:layout_height="30dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_space"
-                    app:tint="#00D2CB" />
+                    app:tint="@color/colorPrimary" />
+
                 <TextView
 
                     android:layout_width="wrap_content"
@@ -235,7 +253,9 @@
                     android:fontFamily="@font/frutiger_lt_arabic_roman"
                     android:text="@string/n3"
                     android:textColor="@color/textColor"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/space"
                     android:layout_width="wrap_content"
@@ -255,9 +275,9 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:visibility="gone"
                     android:padding="5dp"
                     android:src="@drawable/ic_north"
+                    android:visibility="gone"
                     app:tint="#00D2CB" />
 
                 <TextView
@@ -317,7 +337,7 @@
                 <TextView
                     android:id="@+id/new_offer"
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp"
+                    android:layout_height="30dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/button_login"
@@ -326,7 +346,7 @@
                     android:paddingRight="20dp"
                     android:text="@string/Status_"
                     android:textColor="@color/white"
-                    android:textSize="12dp" />
+                    android:textSize="11dp" />
 
                 <TextView
 
@@ -340,7 +360,8 @@
                     android:paddingRight="20dp"
                     android:text="@string/Edit_but_order"
                     android:textColor="@color/white"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    android:visibility="gone" />
 
 
             </LinearLayout>

@@ -70,6 +70,7 @@ public class FavoriteActivity extends AppCompatActivity {
 
     ImageView back;
 
+    LinearLayout nodata_vis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +82,7 @@ public class FavoriteActivity extends AppCompatActivity {
         my_order_layout = findViewById(R.id.my_order_layout);
 
         back = findViewById(R.id.back);
+        nodata_vis = findViewById(R.id.nodata_vis);
 
 
         my_order_text = findViewById(R.id.my_order_text);
@@ -100,6 +102,16 @@ public class FavoriteActivity extends AppCompatActivity {
             }
         });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        WebService.loading(FavoriteActivity.this, true);
+
+        alldate.setBackgroundColor(getResources().getColor(R.color.color_back_rex));
+        init_volley();
+
+        VolleyService mVolleyService = new VolleyService(mResultCallback, FavoriteActivity.this);
+
+
+        mVolleyService.getDataVolley("my_favorite_offer", WebService.my_favorite + "?type=offer");
 
 
         my_order_layout.setOnClickListener(new View.OnClickListener() {
@@ -239,6 +251,14 @@ public class FavoriteActivity extends AppCompatActivity {
                             alldate.setAdapter(new RecyclerView_orders_demandsx_favorit(FavoriteActivity.this, demandsModules_list));
 
 
+                            if (demandsModules_list.size() == 0) {
+                                nodata_vis.setVisibility(View.VISIBLE);
+                            } else {
+                                nodata_vis.setVisibility(View.GONE);
+
+                            }
+
+
                         } else if (requestType.equals("my_favorite_offer")) {
                             String data = response.getString("data");
                             JSONArray jsonArray = new JSONArray(data);
@@ -248,7 +268,7 @@ public class FavoriteActivity extends AppCompatActivity {
 //                            String fund = jsonObjectdata.getString("fund");
 
 //                            JSONArray jsonArray_fund = new JSONArray(fund);
-                            demandsModules_list.clear();
+                            of_favorites.clear();
                             for (int i = 0; i < jsonArray.length(); i++) {
 
                                 try {
@@ -267,7 +287,12 @@ public class FavoriteActivity extends AppCompatActivity {
 //                                alldate.setAdapter(new RecyclerView_orders_demandsx(FavoriteActivity.this, demandsModules_list));
                             }
                             alldate.setAdapter(new RecyclerView_orders_my_requstx_favorit_offet(FavoriteActivity.this, of_favorites));
+                            if (of_favorites.size() == 0) {
+                                nodata_vis.setVisibility(View.VISIBLE);
+                            } else {
+                                nodata_vis.setVisibility(View.GONE);
 
+                            }
                         } else if (requestType.equals("my_favorite_request")) {
                             String data = response.getString("data");
                             JSONArray jsonArray = new JSONArray(data);
@@ -277,7 +302,7 @@ public class FavoriteActivity extends AppCompatActivity {
 //                            String fund = jsonObjectdata.getString("fund");
 
 //                            JSONArray jsonArray_fund = new JSONArray(fund);
-                            demandsModules_list.clear();
+                            mod_favorites_.clear();
                             for (int i = 0; i < jsonArray.length(); i++) {
 
                                 try {
@@ -297,7 +322,12 @@ public class FavoriteActivity extends AppCompatActivity {
 
                             }
                             alldate.setAdapter(new RecyclerView_orders_my_requstx_favorit(FavoriteActivity.this, mod_favorites_));
+                            if (mod_favorites_.size() == 0) {
+                                nodata_vis.setVisibility(View.VISIBLE);
+                            } else {
+                                nodata_vis.setVisibility(View.GONE);
 
+                            }
                         } else if (requestType.equals("my_favorite")) {
 
                             String data = response.getString("data");
@@ -332,7 +362,12 @@ public class FavoriteActivity extends AppCompatActivity {
 
                             alldate.setAdapter(new RecyclerView_HomeList_estat_favorit(FavoriteActivity.this, favoritModules_l));
 
+                            if (favoritModules_l.size() == 0) {
+                                nodata_vis.setVisibility(View.VISIBLE);
+                            } else {
+                                nodata_vis.setVisibility(View.GONE);
 
+                            }
                         } else {
 
 //

@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:background="@android:color/transparent">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,22 +19,38 @@
 
 
         <androidx.cardview.widget.CardView
-            android:layout_width="100dp"
-            android:layout_height="120dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginTop="30dp"
             app:cardCornerRadius="10dp"
 
 
             >
 
-            <ImageView
-                android:id="@+id/image"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#F7F7F7"
-                android:padding="20dp"
+                android:layout_height="match_parent">
 
-                android:src="@drawable/asa" />
+
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:padding="20dp"
+                    android:src="@drawable/ic_logo_map"
+                    app:tint="@color/white" />
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+
+
+                    />
+            </RelativeLayout>
 
 
         </androidx.cardview.widget.CardView>
@@ -43,7 +58,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
 
             android:orientation="vertical"
             android:padding="@dimen/_10sdp">
@@ -53,63 +67,15 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
+
                 android:gravity="center"
-
-
                 android:orientation="horizontal">
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:visibility="gone"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                    android:text="@string/n1"
-                    android:textColor="@color/textColor"
-                    android:textSize="12dp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="31dp"
-                    android:background="@drawable/button_login"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="gone"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp">
-
-                    <ImageView
-                        android:id="@+id/image_icon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:padding="8dp"
-                        android:src="@drawable/ic_test_test"
-                        app:tint="@color/white" />
-
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
-
-
-                        android:fontFamily="@font/muli_bold"
-                        android:text=""
-
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-
-                </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
-
 
                 <ImageView
                     android:layout_width="30dp"
@@ -137,7 +103,6 @@
                     app:tint="@color/white" />
 
 
-
             </LinearLayout>
 
 
@@ -156,8 +121,6 @@
                     android:src="@drawable/ic_home_id_id" />
 
 
-
-
                 <TextView
                     android:id="@+id/name_estate"
                     android:layout_width="wrap_content"
@@ -165,11 +128,9 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:fontFamily="@font/frutiger_lt_arabic_roman"
-
                     android:textColor="@color/colorPrimary"
-                    android:textSize="13dp" />
-
-
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
 
 
                 <LinearLayout
@@ -179,6 +140,7 @@
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -237,7 +199,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -248,16 +209,6 @@
                     android:padding="8dp"
                     android:src="@drawable/ic_group_location_group" />
 
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                    android:text="@string/n4"
-                    android:textColor="@color/textColor"
-                    android:textSize="12dp" />
 
                 <TextView
                     android:id="@+id/address"
@@ -277,11 +228,13 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/area_"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:gravity="center"
-                android:orientation="horizontal">
+
+                android:orientation="horizontal"
+                android:visibility="visible">
 
 
                 <ImageView
@@ -300,7 +253,8 @@
                     android:fontFamily="@font/frutiger_lt_arabic_roman"
                     android:text="@string/n3"
                     android:textColor="@color/textColor"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/space"
@@ -312,17 +266,6 @@
 
                     android:textColor="@color/textColor"
                     android:textSize="13dp" />
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                    android:text="@string/metterSeqour"
-                    android:textColor="@color/textColor"
-                    android:textSize="12dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -344,42 +287,6 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:fontFamily="@font/frutiger_lt_arabic_roman"
-                    android:textColor="@color/textColor"
-
-                    android:textSize="13dp"
-                    android:visibility="gone" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/date_la"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_clock"
-                    app:tint="#00D2CB" />
-
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
-                    android:maxLength="10"
 
                     android:textColor="@color/textColor"
                     android:textSize="13dp" />
@@ -388,9 +295,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
-
-
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -410,6 +316,18 @@
 
                 android:gravity="center">
 
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:maxLength="10"
+
+                    android:textColor="#AAABB3"
+                    android:textSize="11dp" />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -419,9 +337,8 @@
                 <TextView
                     android:id="@+id/new_offer"
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp"
+                    android:layout_height="30dp"
                     android:layout_marginLeft="5dp"
-
                     android:layout_marginRight="5dp"
                     android:background="@drawable/button_login"
                     android:gravity="center"
@@ -429,7 +346,22 @@
                     android:paddingRight="20dp"
                     android:text="@string/Offer_btn"
                     android:textColor="@color/white"
-                    android:textSize="12dp" />
+                    android:textSize="11dp" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/button_login"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="@string/Edit_but_order"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
+                    android:visibility="gone" />
 
 
             </LinearLayout>

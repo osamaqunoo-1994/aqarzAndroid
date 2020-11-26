@@ -74,8 +74,9 @@ public class RecyclerView_orders_my_requstx_favorit_offet extends RecyclerView.A
         TextView space;
         TextView name_estate;
         TextView new_offer;
-        ImageView image_icon;
+//        ImageView image_icon;
         ImageView add_favorite;
+        ImageView image;
 
         public MyViewHolder(View view) {
             super(view);
@@ -88,8 +89,9 @@ public class RecyclerView_orders_my_requstx_favorit_offet extends RecyclerView.A
             space = view.findViewById(R.id.space);
             view_type = view.findViewById(R.id.view_type);
             new_offer = view.findViewById(R.id.new_offer);
-            image_icon = view.findViewById(R.id.image_icon);
+//            image_icon = view.findViewById(R.id.image_icon);
             add_favorite = view.findViewById(R.id.add_favorite);
+            image = view.findViewById(R.id.image);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
@@ -147,7 +149,7 @@ public class RecyclerView_orders_my_requstx_favorit_offet extends RecyclerView.A
 
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-        Picasso.get().load(alldata.get(position).getEstate().get(0).getEstate_type().getIcon()).into(holder.image_icon);
+        Picasso.get().load(alldata.get(position).getEstate().get(0).getFirst_image()).into(holder.image);
 ////
 //
 //        try {

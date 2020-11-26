@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -74,8 +75,9 @@ public class RecyclerView_orders_my_requstx_favorit extends RecyclerView.Adapter
         TextView space;
         TextView name_estate;
         TextView new_offer;
-        ImageView image_icon;
+        //        ImageView image_icon;
         ImageView add_favorite;
+        LinearLayout area_;
 
         public MyViewHolder(View view) {
             super(view);
@@ -88,8 +90,9 @@ public class RecyclerView_orders_my_requstx_favorit extends RecyclerView.Adapter
             space = view.findViewById(R.id.space);
             view_type = view.findViewById(R.id.view_type);
             new_offer = view.findViewById(R.id.new_offer);
-            image_icon = view.findViewById(R.id.image_icon);
+//            image_icon = view.findViewById(R.id.image_icon);
             add_favorite = view.findViewById(R.id.add_favorite);
+            area_ = view.findViewById(R.id.area_);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
@@ -147,7 +150,7 @@ public class RecyclerView_orders_my_requstx_favorit extends RecyclerView.Adapter
 
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-        Picasso.get().load(alldata.get(position).getRequest().get(0).getEstate_type().getIcon()).into(holder.image_icon);
+//        Picasso.get().load(alldata.get(position).getRequest().get(0).getEstate_type().getIcon()).into(holder.image_icon);
 ////
 //
 //        try {
@@ -218,10 +221,10 @@ public class RecyclerView_orders_my_requstx_favorit extends RecyclerView.Adapter
 
             }
         });
-        if(alldata.get(position).getRequest().get(0).getIn_fav().equals("1")){
+        if (alldata.get(position).getRequest().get(0).getIn_fav().equals("1")) {
             holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
 
-        }else{
+        } else {
             holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
 
         }
@@ -276,7 +279,7 @@ public class RecyclerView_orders_my_requstx_favorit extends RecyclerView.Adapter
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_orders_my_orderx, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_orders_my_orderx_request, parent, false);
 
 
         // Fresco.initialize(context);
