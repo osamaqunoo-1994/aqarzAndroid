@@ -178,8 +178,8 @@
                 android:id="@+id/send"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:padding="8dp"
-                android:src="@drawable/ic_plus" />
+                android:padding="6dp"
+                android:src="@drawable/ic_send_button" />
         </LinearLayout>
 
 

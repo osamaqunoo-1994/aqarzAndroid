@@ -63,6 +63,11 @@ public class MyMemberActivity extends AppCompatActivity {
             nodata_vis.setVisibility(View.GONE);
 
         }
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

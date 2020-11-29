@@ -51,7 +51,13 @@ public class MsgModules {
     @SerializedName("created_at")
     @Expose
     private String createdAt;
-    @SerializedName("form_me")
+    @SerializedName("display_name")
+    @Expose
+    private String display_name;
+    @SerializedName("count_not_read")
+    @Expose
+    private String count_not_read;
+    @SerializedName("from_me")
     @Expose
     private Integer formMe;
 
@@ -61,6 +67,15 @@ public class MsgModules {
         this.formMe = formMe;
     }
 
+    public String getDisplay_name() {
+        return display_name;
+
+
+    }
+
+    public String getCount_not_read() {
+        return count_not_read;
+    }
 
     public Integer getId() {
         return id;

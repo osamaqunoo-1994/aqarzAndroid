@@ -275,8 +275,8 @@ public class AqarzProfileActivity_other extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                BottomSheetDialogFragment_QR bottomSheetDialogFragment_qr = new BottomSheetDialogFragment_QR();
-                bottomSheetDialogFragment_qr.show(getSupportFragmentManager(), "");
+//                BottomSheetDialogFragment_QR bottomSheetDialogFragment_qr = new BottomSheetDialogFragment_QR();
+//                bottomSheetDialogFragment_qr.show(getSupportFragmentManager(), "");
 
             }
         });

@@ -27,7 +27,7 @@ public class MyServiceActivity extends AppCompatActivity {
     List<HomeModules_aqares> homeModules = new ArrayList<>();
     ImageView back;
     LinearLayout nodata_vis;
-//    List<SettingsModules.service_types> member_list = new ArrayList<>();
+    //    List<SettingsModules.service_types> member_list = new ArrayList<>();
     List<SettingsModules.service_types> service_list = new ArrayList<>();
 
     @Override
@@ -66,6 +66,11 @@ public class MyServiceActivity extends AppCompatActivity {
             nodata_vis.setVisibility(View.GONE);
 
         }
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

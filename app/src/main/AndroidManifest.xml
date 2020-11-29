@@ -22,8 +22,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.profile.MyClintsActivity"
+        <activity
+            android:name=".Activity.profile.AddServiceActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Activity.profile.MyClintsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.profile.MyServiceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -32,6 +36,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.profile.MyOffersActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.profile.OtherProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.profile.MyProfileActivity"

@@ -35,6 +35,7 @@ import java.util.Locale;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
 import sa.aqarz.Activity.OprationNew.RentActivity;
+import sa.aqarz.Activity.profile.OtherProfileActivity;
 import sa.aqarz.Adapter.RecyclerView_All_Type_in_order;
 import sa.aqarz.Adapter.home_viewPager_Adapter;
 import sa.aqarz.Modules.HomeModules;
@@ -221,7 +222,7 @@ public class DetailsActivity extends AppCompatActivity {
                                 public void onClick(View v) {
 
 
-                                    Intent intent = new Intent(DetailsActivity.this, AqarzProfileActivity_other.class);
+                                    Intent intent = new Intent(DetailsActivity.this, OtherProfileActivity.class);
                                     intent.putExtra("id", homeModules_aqares.getUser_id() + "");
                                     startActivity(intent);
                                     overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -22,6 +24,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Activity.AddClintesActivity;
 import sa.aqarz.Activity.AqarzProfileActivity;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import sa.aqarz.Adapter.RecyclerView_clints_new;
@@ -43,6 +46,7 @@ public class MyClintsActivity extends AppCompatActivity {
     LinearLayout nodata_vis;
 
     List<Clints> Clintss = new ArrayList<>();
+    FloatingActionButton add_clint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,7 @@ public class MyClintsActivity extends AppCompatActivity {
         myclints = findViewById(R.id.myclints);
         back = findViewById(R.id.back);
         nodata_vis = findViewById(R.id.nodata_vis);
+        add_clint = findViewById(R.id.add_clint);
 
 
 //        WebService.loading(MyMemberActivity.this, true);
@@ -60,13 +65,30 @@ public class MyClintsActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(MyClintsActivity.this, LinearLayoutManager.VERTICAL, false);
         myclints.setLayoutManager(layoutManager1);
-
+        init_volley();
         WebService.loading(MyClintsActivity.this, true);
 
 
         VolleyService mVolleyService = new VolleyService(mResultCallback, MyClintsActivity.this);
         mVolleyService.getDataVolley("my_client", WebService.my_client);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        add_clint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(MyClintsActivity.this, AddClintesActivity.class);
+//              intent.putExtra("from", "splash");
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
 
     }
 
@@ -84,44 +106,40 @@ public class MyClintsActivity extends AppCompatActivity {
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String message = response.getString("message");
-                        if (requestType.equals("my_estate")) {
-                            String data = response.getString("data");
+
+
+                        String data = response.getString("data");
+                        JSONArray jsonArray = new JSONArray(data);
+                        Clintss.clear();
+                        myclints.setAdapter(null);
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+                            try {
+
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                Gson gson = new Gson();
+
+                                Clints bankModules = gson.fromJson(mJson, Clints.class);
+                                Clintss.add(bankModules);
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
 //
 
+                        myclints.setAdapter(new RecyclerView_clints_new(MyClintsActivity.this, Clintss));
 
+
+                        if (Clintss.size() == 0) {
+                            nodata_vis.setVisibility(View.VISIBLE);
                         } else {
-                            String data = response.getString("data");
-                            JSONArray jsonArray = new JSONArray(data);
-                            Clintss.clear();
-                            myclints.setAdapter(null);
+                            nodata_vis.setVisibility(View.GONE);
 
-                            for (int i = 0; i < jsonArray.length(); i++) {
-
-                                try {
-
-                                    JsonParser parser = new JsonParser();
-                                    JsonElement mJson = parser.parse(jsonArray.getString(i));
-
-                                    Gson gson = new Gson();
-
-                                    Clints bankModules = gson.fromJson(mJson, Clints.class);
-                                    Clintss.add(bankModules);
-
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
-//
-
-                            myclints.setAdapter(new RecyclerView_clints_new(MyClintsActivity.this, Clintss));
-
-
-                            if (Clintss.size() == 0) {
-                                nodata_vis.setVisibility(View.VISIBLE);
-                            } else {
-                                nodata_vis.setVisibility(View.GONE);
-
-                            }
+                        }
 //                            AlertDialog alertDialog;
 //
 //
@@ -139,7 +157,7 @@ public class MyClintsActivity extends AppCompatActivity {
 //
 //                            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-                        }
+
                     } else {
                         String message = response.getString("message");
 

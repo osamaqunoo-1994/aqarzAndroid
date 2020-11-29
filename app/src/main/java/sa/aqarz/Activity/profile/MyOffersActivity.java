@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -24,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sa.aqarz.Activity.AqarzProfileActivity;
+import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import sa.aqarz.Adapter.RecyclerView_List_estat_profile;
 import sa.aqarz.Adapter.RecyclerView_clints_new;
@@ -40,6 +43,7 @@ public class MyOffersActivity extends AppCompatActivity {
     List<HomeModules_aqares> homeModules = new ArrayList<>();
     ImageView back;
     LinearLayout nodata_vis;
+    FloatingActionButton add_offer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,7 @@ public class MyOffersActivity extends AppCompatActivity {
         myoffer = findViewById(R.id.myoffer);
         back = findViewById(R.id.back);
         nodata_vis = findViewById(R.id.nodata_vis);
+        add_offer = findViewById(R.id.add_offer);
 
 
         WebService.loading(MyOffersActivity.this, true);
@@ -59,10 +64,35 @@ public class MyOffersActivity extends AppCompatActivity {
 
         init_volley();
 
-        VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
+        try {
+            String id_user = getIntent().getStringExtra("id_user");
 
-        mVolleyService.getDataVolley("my_estate", WebService.my_estate);
+            if (id_user.equals("--")) {
 
+                VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
+
+                mVolleyService.getDataVolley("my_estate", WebService.my_estate);
+                add_offer.setVisibility(View.VISIBLE);
+
+            } else {
+                add_offer.setVisibility(View.GONE);
+
+            }
+
+
+        } catch (Exception e) {
+
+        }
+
+        add_offer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyOffersActivity.this, AddAqarsActivity.class);
+//              intent.putExtra("from", "splash");
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

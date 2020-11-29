@@ -289,7 +289,7 @@ public class MoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                BottomSheetDialogFragment_QR bottomSheetDialogFragment_qr = new BottomSheetDialogFragment_QR();
+                BottomSheetDialogFragment_QR bottomSheetDialogFragment_qr = new BottomSheetDialogFragment_QR(Settings.GetUser().getLink()+"",Settings.GetUser().getLogo()+"");
                 bottomSheetDialogFragment_qr.show(getActivity().getSupportFragmentManager(), "");
 
             }

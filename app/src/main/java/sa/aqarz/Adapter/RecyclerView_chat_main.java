@@ -24,6 +24,7 @@ import sa.aqarz.Activity.DetailsActivity;
 import sa.aqarz.Modules.MsgModules;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.R;
+import sa.aqarz.Settings.Settings;
 
 
 /**
@@ -63,6 +64,7 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
         TextView last_message;
         TextView name;
         TextView time;
+        TextView count;
 
 
         CircleImageView image_profile;
@@ -76,6 +78,7 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
             name = view.findViewById(R.id.name);
             time = view.findViewById(R.id.time);
             image_profile = view.findViewById(R.id.image_profile);
+            count = view.findViewById(R.id.count);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
@@ -120,8 +123,15 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
 ////
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.image);
-        holder.name.setText(alldata.get(position).getReceiverName());
+        holder.name.setText(alldata.get(position).getDisplay_name());
         holder.last_message.setText(alldata.get(position).getBody() + "");
+        if (alldata.get(position).getCount_not_read().equals("0")) {
+            holder.count.setVisibility(View.GONE);
+        } else {
+            holder.count.setVisibility(View.VISIBLE);
+
+        }
+        holder.count.setText(alldata.get(position).getCount_not_read() + "");
 //        holder.description.setText(alldata.get(position).getDetails()+"");
 //////
 //
@@ -187,9 +197,17 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
 //                RequestOrderActivity.set_fragment(position);
 
                 Intent intent = new Intent(context, ChatRoomActivity.class);
-                intent.putExtra("user_id", alldata.get(position).getReceiverId() + "");
-                intent.putExtra("parent_id", alldata.get(position).getParentId() + "");
-                intent.putExtra("nameUser", alldata.get(position).getReceiverName() + "");
+
+                if (alldata.get(position).getReceiverId().toString().equals(Settings.GetUser().getId() + "")) {
+                    intent.putExtra("user_id", alldata.get(position).getSenderId() + "");
+
+                } else {
+                    intent.putExtra("user_id", alldata.get(position).getReceiverId() + "");
+
+                }
+
+                intent.putExtra("parent_id", alldata.get(position).getId() + "");
+                intent.putExtra("nameUser", alldata.get(position).getDisplay_name() + "");
                 intent.putExtra("imageUser", alldata.get(position).getReceiverPhoto() + "");
                 context.startActivity(intent);
 

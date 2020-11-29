@@ -149,7 +149,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                     }
 
                     WebService.loading(ChatRoomActivity.this, true);
-
+                    System.out.println("jsonObjectjsonObjectjsonObject"+jsonObject.toString());
                     mVolleyService.postDataVolley("send_msg", WebService.send_msg, jsonObject);
 
 

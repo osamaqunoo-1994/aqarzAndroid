@@ -37,6 +37,8 @@ public class BottomSheetDialogFragment_QR extends BottomSheetDialogFragment {
     ImageView image_qr;
     Button share_qr;
     CircleImageView profile;
+    String link = "";
+    String image_link = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,10 +46,10 @@ public class BottomSheetDialogFragment_QR extends BottomSheetDialogFragment {
         image_qr = v.findViewById(R.id.image_qr);
         share_qr = v.findViewById(R.id.share_qr);
         profile = v.findViewById(R.id.profile);
-
+//Settings.GetUser().getLink()
 
         // Initializing the QR Encoder with your value to be encoded, type you required and Dimension
-        QRGEncoder qrgEncoder = new QRGEncoder(Settings.GetUser().getLink() + "", null, QRGContents.Type.TEXT, 250);
+        QRGEncoder qrgEncoder = new QRGEncoder(link + "", null, QRGContents.Type.TEXT, 250);
         qrgEncoder.setColorBlack(Color.BLACK);
         qrgEncoder.setColorWhite(Color.WHITE);
         try {
@@ -79,8 +81,8 @@ public class BottomSheetDialogFragment_QR extends BottomSheetDialogFragment {
             }
         });
 
-        if (!Settings.GetUser().getLogo().toString().equals("null")) {
-            Picasso.get().load(Settings.GetUser().getLogo()).into(profile);
+        if (!image_link.toString().equals("null")) {
+            Picasso.get().load(image_link).into(profile);
 
         }
 
@@ -92,8 +94,9 @@ public class BottomSheetDialogFragment_QR extends BottomSheetDialogFragment {
 //    categories_bottomSheetDialogFragment = new Categories_BottomSheetDialogFragment("");
 //                categories_bottomSheetDialogFragment.show(getSupportFragmentManager(), "");
 
-    public BottomSheetDialogFragment_QR() {
-
+    public BottomSheetDialogFragment_QR(String link, String image_link) {
+        this.link = link;
+        this.image_link = image_link;
     }
 
     @Override

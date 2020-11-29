@@ -79,7 +79,15 @@
 
             </LinearLayout>
 
-
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_offer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_group_2603r"
+                app:backgroundTint="@color/colorPrimary" />
         </RelativeLayout>
 
     </LinearLayout>

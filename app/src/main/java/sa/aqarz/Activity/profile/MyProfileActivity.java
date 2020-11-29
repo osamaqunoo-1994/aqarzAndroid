@@ -27,6 +27,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.orhanobut.hawk.Hawk;
 import com.squareup.picasso.Picasso;
 
+import java.util.Set;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import sa.aqarz.Activity.AqarzProfileActivity;
 import sa.aqarz.Activity.Auth.EditProfileActivity;
@@ -171,7 +173,7 @@ public class MyProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MyProfileActivity.this, MyOffersActivity.class);
-//              intent.putExtra("from", "splash");
+              intent.putExtra("id_user", "--");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
@@ -259,13 +261,13 @@ public class MyProfileActivity extends AppCompatActivity {
             if (!Settings.GetUser().getLogo().toString().equals("null")) {
                 Picasso.get().load(Settings.GetUser().getLogo()).into(profile);
 
-            }
+            }//591694624
 
             qr_code.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    BottomSheetDialogFragment_QR bottomSheetDialogFragment_qr = new BottomSheetDialogFragment_QR();
+                    BottomSheetDialogFragment_QR bottomSheetDialogFragment_qr = new BottomSheetDialogFragment_QR(Settings.GetUser().getLink() + "", Settings.GetUser().getLogo() + "");
                     bottomSheetDialogFragment_qr.show(getSupportFragmentManager(), "");
 
                 }
