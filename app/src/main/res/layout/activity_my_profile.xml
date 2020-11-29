@@ -203,6 +203,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="5dp"
+                    android:layout_marginBottom="3dp"
                     android:background="@drawable/circle_fill"
                     android:padding="6dp"
                     android:src="@drawable/ic_www_x"
@@ -225,8 +226,10 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginLeft="5dp"
+
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="5dp"
+                    android:layout_marginBottom="3dp"
                     android:background="@drawable/circle_fill"
                     android:padding="6dp"
                     android:src="@drawable/ic_phone_e"
@@ -427,6 +430,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/myoffer_layout"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/circle_w"
@@ -452,8 +456,7 @@
                         android:text="@string/aw1"
 
                         android:textColor="@color/black"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
+                        android:textSize="15dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -471,6 +474,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/my_clints"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
@@ -497,8 +501,7 @@
                         android:text="@string/aw4"
 
                         android:textColor="@color/black"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
+                        android:textSize="15dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -516,6 +519,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/member"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
@@ -543,7 +547,8 @@
 
                         android:textColor="@color/black"
                         android:textSize="15dp"
-                        android:textStyle="bold" />
+
+                        />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -561,6 +566,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/my_service"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
@@ -588,7 +594,8 @@
 
                         android:textColor="@color/black"
                         android:textSize="15dp"
-                        android:textStyle="bold" />
+
+                        />
 
                     <LinearLayout
                         android:layout_width="match_parent"

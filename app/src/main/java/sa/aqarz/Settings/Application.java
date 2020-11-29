@@ -47,7 +47,8 @@ public class Application extends android.app.Application {
                     getBaseContext().getResources().getDisplayMetrics());
         } else {
 
-            Hawk.put("lang", LocaleUtils.getLanguage(this));
+//            Hawk.put("lang", LocaleUtils.getLanguage(this));
+            Hawk.put("lang", "ar");
 
             Locale locale = new Locale(Hawk.get("lang").toString());
             Locale.setDefault(locale);

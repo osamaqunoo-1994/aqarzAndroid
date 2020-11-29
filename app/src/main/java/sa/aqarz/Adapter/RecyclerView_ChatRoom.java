@@ -144,15 +144,28 @@ public class RecyclerView_ChatRoom extends RecyclerView.Adapter<RecyclerView_Cha
 
     @Override
     public int getItemViewType(int position) {
-        if (alldata.get(position).getFormMe() == 1) {
-            return 0;
 
-        } else if (position == 0) {
-            return 1;
+        try {
+            if (alldata.get(position).getFormMe() != null) {
+                if (alldata.get(position).getFormMe() == 1) {
+                    return 0;
 
-        } else {
+                } else if (position == 0) {
+                    return 1;
+
+                } else {
+                    return 1;
+
+                }
+            } else {
+                return 1;
+
+            }
+
+        } catch (Exception e) {
             return 1;
 
         }
+
     }
 }

@@ -33,6 +33,9 @@ public class MsgModules {
     @SerializedName("receiver_name")
     @Expose
     private String receiverName;
+    @SerializedName("msg_id")
+    @Expose
+    private String msg_id;
     @SerializedName("receiver_photo")
     @Expose
     private String receiverPhoto;
@@ -86,6 +89,10 @@ public class MsgModules {
 
     public Object getParentId() {
         return parentId;
+    }
+
+    public String getMsg_id() {
+        return msg_id;
     }
 
     public void setParentId(Object parentId) {

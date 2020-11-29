@@ -31,8 +31,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import sa.aqarz.Activity.AqarzProfileActivity;
 import sa.aqarz.Activity.Auth.EditProfileActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
+import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Activity.SelectLocationActivity;
+import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_QR;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
@@ -72,6 +74,10 @@ public class MyProfileActivity extends AppCompatActivity {
     TextView request_nu;
     TextView offer_nu;
     TextView visit_nu;
+    LinearLayout myoffer_layout;
+    LinearLayout member;
+    LinearLayout my_service;
+    LinearLayout my_clints;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +99,10 @@ public class MyProfileActivity extends AppCompatActivity {
         offer_nu = findViewById(R.id.offer_nu);
         request_nu = findViewById(R.id.request_nu);
         clints_nu = findViewById(R.id.clints_nu);
+        myoffer_layout = findViewById(R.id.myoffer_layout);
+        member = findViewById(R.id.member);
+        my_service = findViewById(R.id.my_service);
+        my_clints = findViewById(R.id.my_clints);
 
 
         offer_text = findViewById(R.id.offer_text);
@@ -157,7 +167,43 @@ public class MyProfileActivity extends AppCompatActivity {
 
             }
         });
+        myoffer_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyProfileActivity.this, MyOffersActivity.class);
+//              intent.putExtra("from", "splash");
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
+        member.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyProfileActivity.this, MyMemberActivity.class);
+//              intent.putExtra("from", "splash");
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
 
+        my_service.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyProfileActivity.this, MyServiceActivity.class);
+//              intent.putExtra("from", "splash");
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
+        my_clints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyProfileActivity.this, MyClintsActivity.class);
+//              intent.putExtra("from", "splash");
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
 
         try {
             if (!Settings.GetUser().getName().toString().equals("null")) {

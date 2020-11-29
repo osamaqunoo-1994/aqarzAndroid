@@ -46,6 +46,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     CircleImageView profile;
 
     String lastMessage = "";
+    String msg_id = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +134,14 @@ public class ChatRoomActivity extends AppCompatActivity {
                         jsonObject.put("user_id", user_id);
                         jsonObject.put("title", "##");
                         jsonObject.put("body", text_mesage.getText().toString());
+
+                        if (msg_id != null) {
+                            if (!msg_id.equals("")) {
+                                jsonObject.put("msg_id", msg_id);
+
+                            }
+
+                        }
                         lastMessage = text_mesage.getText().toString();
 //                        jsonObject.put("parent_id", "");
                     } catch (Exception e) {
@@ -193,9 +202,10 @@ public class ChatRoomActivity extends AppCompatActivity {
                                 JsonParser parser = new JsonParser();
                                 JsonElement mJson = parser.parse(jsonArray.getString(i));
 
+
                                 Gson gson = new Gson();
                                 MsgModules msgModules = gson.fromJson(mJson, MsgModules.class);
-
+                                msg_id = msgModules.getMsg_id() + "";
 //                                HomeModules ordersModulesm = gson.fromJson(mJson, HomeModules.class);
                                 ordersModules.add(msgModules);
 
