@@ -134,7 +134,7 @@ public class OrdersFragment extends Fragment {
     String id_city_selected = "";
 
 
-    String type_order = "";
+    String type_order = "1";
     LinearLayout order_type;
 
     TextView rate_aq1, rent_aq1, finince_aq1, aqaerz_aq1;
@@ -295,6 +295,7 @@ public class OrdersFragment extends Fragment {
                 rate_aq1.setTextColor(getResources().getColor(R.color.black));
                 type_order = "2";
 
+                send_requst_by_type("my_request");
 
             }
         });
@@ -317,6 +318,7 @@ public class OrdersFragment extends Fragment {
 
                 type_order = "3";
 
+                send_requst_by_type("my_request");
 
             }
         });
@@ -340,6 +342,7 @@ public class OrdersFragment extends Fragment {
 
                 type_order = "4";
 
+                send_requst_by_type("my_request");
 
             }
         });
@@ -358,6 +361,7 @@ public class OrdersFragment extends Fragment {
 
                 rent.setTextColor(getResources().getColor(R.color.black));
                 Type_work_select = "1";
+                send_requst_by_type(type_requst);
 
 
             }
@@ -375,6 +379,9 @@ public class OrdersFragment extends Fragment {
                 For_sale.setTextColor(getResources().getColor(R.color.black));
 
                 Type_work_select = "2";
+
+
+                send_requst_by_type(type_requst);
 
             }
         });
@@ -574,7 +581,7 @@ public class OrdersFragment extends Fragment {
                 orders_rec.setAdapter(new RecyclerView_orders_my_requst(getContext(), MyRequst));
 
                 send_requst_by_type("fund_Request");
-                type_requst_xml.setVisibility(View.VISIBLE);
+                type_requst_xml.setVisibility(View.GONE);
 
 //                if (Settings.CheckIsCompleate()) {
 //
@@ -987,7 +994,7 @@ public class OrdersFragment extends Fragment {
     }
 
 
-    public void send_requst_by_type(String requst_type) {
+    public void send_requst_by_type1(String requst_type) {
         type_requst = requst_type;
 
 
@@ -1032,6 +1039,63 @@ public class OrdersFragment extends Fragment {
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
             mVolleyService.getDataVolley("request_offer", WebService.my_fund_request_offer + "?estate_type_id=" + opration_select + id_city_);
         }
+    }
+
+    public void send_requst_by_type(String requst_type) {
+        type_requst = requst_type;
+        WebService.loading(getActivity(), true);
+        init_volley();
+        VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+
+        String id_city_ = "";
+
+        if (!id_city_selected.equals("")) {
+            id_city_ = "&city_id=" + id_city_selected;
+        } else {
+            id_city_ = "";
+        }
+
+
+        if (requst_type.equals("fund_Request")) {
+
+
+            mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?estate_type_id=" + opration_select + id_city_);
+
+
+        } else if (requst_type.equals("request_offer")) {
+
+
+            mVolleyService.getDataVolley("request_offer", WebService.my_fund_request_offer + "?estate_type_id=" + opration_select + id_city_);
+
+
+        } else if (requst_type.equals("my_request")) {
+
+
+            if (type_order.equals("1")) {//aqarez
+                if (Type_work_select.equals("1")) {//sell
+                    mVolleyService.getDataVolley("my_request", WebService.my_request + "?estate_type_id=" + opration_select + id_city_);
+
+                } else if (Type_work_select.equals("2")) {//rent
+                    mVolleyService.getDataVolley("my_request", WebService.my_request + "?estate_type_id=" + opration_select + id_city_);
+
+                }
+
+            } else if (type_order.equals("2")) {//finincac
+                mVolleyService.getDataVolley("my_finance", WebService.my_finance + "?estate_type=" + opration_select + id_city_);
+
+            } else if (type_order.equals("3")) {//rent
+                mVolleyService.getDataVolley("my_deferredInstallment", WebService.my_deferredInstallment + "?estate_type=" + opration_select + id_city_);
+
+            } else if (type_order.equals("4")) {//rate
+                mVolleyService.getDataVolley("my_rate", WebService.my_rate + "?estate_type=" + opration_select + id_city_);
+
+            }
+
+        }else if(requst_type.equals("4")){
+
+        }
+
+
     }
 
     public static void close_bottom() {

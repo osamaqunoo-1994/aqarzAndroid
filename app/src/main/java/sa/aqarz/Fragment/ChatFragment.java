@@ -238,5 +238,122 @@ public class ChatFragment extends Fragment {
 
 
     }
+    public void gatemm_face() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response);
+                WebService.loading(getActivity(), false);
+
+
+//{"status":true,"code":200,"message":"User Profile","data"
+
+
+                try {
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+
+                        if (requestType.equals("my_msg")) {
+                            System.out.println("lfkdlfkdlkf");
+                            String data = response.getString("data");
+
+
+//                            JSONObject jsonObject = new JSONObject(data);
+
+
+//                            String datax = jsonObject.getString("data");
+
+
+                            JSONArray jsonArray = new JSONArray(data);
+                            chate.setAdapter(null);
+                            ordersModules.clear();
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                Gson gson = new Gson();
+                                MsgModules msgModules = gson.fromJson(mJson, MsgModules.class);
+
+//                                HomeModules ordersModulesm = gson.fromJson(mJson, HomeModules.class);
+                                ordersModules.add(msgModules);
+
+
+                            }
+
+                            chate.setAdapter(new RecyclerView_chat_main(getContext(), ordersModules));
+
+
+                            if (ordersModules.size() != 0) {
+                                nodata.setVisibility(View.GONE);
+                            } else {
+                                nodata.setVisibility(View.VISIBLE);
+
+                            }
+
+
+                        }
+
+                    } else {
+
+                        String message = response.getString("message");
+
+
+                        WebService.Make_Toast_color(getActivity(), message, "error");
+
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.getMessage());
+                WebService.loading(getActivity(), false);
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color(getActivity(), message, "error");
+
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+
+            }
+
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+                WebService.loading(getActivity(), false);
+
+            }
+
+
+        };
+
+
+    }
 
 }

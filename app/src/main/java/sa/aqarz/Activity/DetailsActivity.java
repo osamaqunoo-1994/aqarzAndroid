@@ -239,6 +239,17 @@ public class DetailsActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }
                             });
+                            chat.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(DetailsActivity.this, ChatRoomActivity.class);
+                                    intent.putExtra("user_id", homeModules_aqares.getUser_id() + "");
+                                    intent.putExtra("parent_id", "-1");
+                                    intent.putExtra("nameUser", homeModules_aqares.getOwner_name() + "");
+                                    intent.putExtra("imageUser", "");
+                                    startActivity(intent);
+                                }
+                            });
 
                             if (homeModules_aqares.getIn_fav().equals("1")) {
                                 favorit.setImageDrawable(getDrawable(R.drawable.ic_heart));

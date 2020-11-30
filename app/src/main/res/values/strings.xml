@@ -415,6 +415,7 @@ Your request and reply in the fastest time</string>
     <string name="ss1">Is the property a resident?</string>
     <string name="ss2">Is the property examined?</string>
     <string name="ss3">Is the property insured or not?</string>
+    <string name="ss4">Allowing the property to be offered ?</string>
 
 
     <string name="Status_">Status</string>

@@ -211,6 +211,8 @@ public class AddAqarsActivity extends AppCompatActivity {
     TextView property_dd_no;
     TextView property_dd_yes1;
     TextView property_dd_no1;
+    TextView real_yes;
+    TextView real_no;
 
 
     GpsTracker gpsTracker;
@@ -257,6 +259,8 @@ public class AddAqarsActivity extends AppCompatActivity {
         property_dd_yes1 = findViewById(R.id.property_dd_yes1);
         property_dd_no1 = findViewById(R.id.property_dd_no1);
         more_comfort = findViewById(R.id.more_comfort);
+        real_yes = findViewById(R.id.real_yes);
+        real_no = findViewById(R.id.real_no);
 
 
         back = findViewById(R.id.back);
@@ -423,7 +427,36 @@ public class AddAqarsActivity extends AppCompatActivity {
             }
         });
 
+        real_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                real_yes.setBackground(getResources().getDrawable(R.drawable.button_login));
 
+                real_yes.setTextColor(getResources().getColor(R.color.white));
+
+                real_no.setBackground(null);
+
+                real_no.setTextColor(getResources().getColor(R.color.textColor));
+
+            }
+        });
+        real_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                real_no.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                real_no.setTextColor(getResources().getColor(R.color.white));
+
+
+                real_yes.setBackground(null);
+
+                real_yes.setTextColor(getResources().getColor(R.color.textColor));
+
+
+            }
+
+        });
+//------------------------------------------------------------------------------------
         ada_1_yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
