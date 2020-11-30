@@ -673,4 +673,24 @@
     <string name="Requst">طلب</string>
     <string name="Visit">زياره</string>
 
+
+
+
+
+    <string name="MyMember">عضويات</string>
+    <string name="MyService">خدماتي</string>
+    <string name="MyClints">عملائي</string>
+    <string name="AddService">اضافة خدمه</string>
+
+
+    <string name="aqarez_aq1">العقارات</string>
+    <string name="finince_aq1">التمويل</string>
+    <string name="rent_aq1">تقسيط تأجير</string>
+    <string name="rat_aq1">التقييم</string>
+
+
+
+
+
+
 </resources>

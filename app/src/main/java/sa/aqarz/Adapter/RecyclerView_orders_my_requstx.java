@@ -158,7 +158,12 @@ public class RecyclerView_orders_my_requstx extends RecyclerView.Adapter<Recycle
 
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-        Picasso.get().load(alldata.get(position).getEstate_type().getIcon()).into(holder.image_icon);
+        try {
+            Picasso.get().load(alldata.get(position).getEstate_type().getIcon()).into(holder.image_icon);
+
+        } catch (Exception e) {
+
+        }
 ////
 //
 //        try {
@@ -229,10 +234,10 @@ public class RecyclerView_orders_my_requstx extends RecyclerView.Adapter<Recycle
 
             }
         });
-        if(alldata.get(position).getIn_fav().equals("1")){
+        if (alldata.get(position).getIn_fav().equals("1")) {
             holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
 
-        }else{
+        } else {
             holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
 
         }

@@ -376,6 +376,42 @@ public class MapsFragment extends Fragment {
 
         }
     }
+    public void getProfiles() {
+
+        try {
+
+            if (Settings.checkLogin()) {
+                if (Settings.GetUser().getLogo() == null) {
+
+                } else {
+                    Picasso.get().load(Settings.GetUser().getLogo()).error(R.drawable.ic_user_un).into(image_profile);
+
+                }
+
+                image_profile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getContext(), MyProfileInformationActivity.class);
+//                                intent.putExtra("from", "splash");
+                        startActivity(intent);
+//                        getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                    }
+                });
+            } else {
+                image_profile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getContext(), LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                        startActivity(intent);
+                    }
+                });
+            }
+
+        } catch (Exception e) {
+
+        }
+    }
 
     public void init(View v) {
         type = v.findViewById(R.id.opration);

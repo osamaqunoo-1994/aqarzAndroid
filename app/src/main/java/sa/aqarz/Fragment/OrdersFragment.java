@@ -133,6 +133,12 @@ public class OrdersFragment extends Fragment {
     TextView offer;
     String id_city_selected = "";
 
+
+    String type_order = "";
+    LinearLayout order_type;
+
+    TextView rate_aq1, rent_aq1, finince_aq1, aqaerz_aq1;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_orders, container, false);
@@ -163,6 +169,11 @@ public class OrdersFragment extends Fragment {
         section_horizantal = v.findViewById(R.id.section_horizantal);
         nodata_vis = v.findViewById(R.id.nodata_vis);
         filtter_city = v.findViewById(R.id.filtter_city);
+        rate_aq1 = v.findViewById(R.id.rate_aq1);
+        rent_aq1 = v.findViewById(R.id.rent_aq1);
+        finince_aq1 = v.findViewById(R.id.finince_aq1);
+        aqaerz_aq1 = v.findViewById(R.id.aqaerz_aq1);
+        order_type = v.findViewById(R.id.order_type);
 
 
         try {
@@ -240,6 +251,98 @@ public class OrdersFragment extends Fragment {
         type_of_v.setAdapter(recyclerView_all_opration_bottom_sheet);
 
 
+        //------------------------------------------------------------------------------------------------------------
+
+
+        aqaerz_aq1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                aqaerz_aq1.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                aqaerz_aq1.setTextColor(getResources().getColor(R.color.white));
+
+
+                finince_aq1.setBackground(null);
+                finince_aq1.setTextColor(getResources().getColor(R.color.black));
+                rent_aq1.setBackground(null);
+                rent_aq1.setTextColor(getResources().getColor(R.color.black));
+                rate_aq1.setBackground(null);
+                rate_aq1.setTextColor(getResources().getColor(R.color.black));
+
+
+                type_order = "1";
+                type_sale.setVisibility(View.VISIBLE);
+                type_of_v.setVisibility(View.VISIBLE);
+
+                send_requst_by_type("my_request");
+            }
+        });
+        finince_aq1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finince_aq1.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                finince_aq1.setTextColor(getResources().getColor(R.color.white));
+
+                type_sale.setVisibility(View.GONE);
+                type_of_v.setVisibility(View.GONE);
+
+                aqaerz_aq1.setBackground(null);
+                aqaerz_aq1.setTextColor(getResources().getColor(R.color.black));
+                rent_aq1.setBackground(null);
+                rent_aq1.setTextColor(getResources().getColor(R.color.black));
+                rate_aq1.setBackground(null);
+                rate_aq1.setTextColor(getResources().getColor(R.color.black));
+                type_order = "2";
+
+
+            }
+        });
+        rent_aq1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rent_aq1.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                rent_aq1.setTextColor(getResources().getColor(R.color.white));
+
+                type_sale.setVisibility(View.GONE);
+                type_of_v.setVisibility(View.GONE);
+
+                finince_aq1.setBackground(null);
+                finince_aq1.setTextColor(getResources().getColor(R.color.black));
+                aqaerz_aq1.setBackground(null);
+                aqaerz_aq1.setTextColor(getResources().getColor(R.color.black));
+                rate_aq1.setBackground(null);
+                rate_aq1.setTextColor(getResources().getColor(R.color.black));
+
+                type_order = "3";
+
+
+            }
+        });
+        rate_aq1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rate_aq1.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                rate_aq1.setTextColor(getResources().getColor(R.color.white));
+
+                type_sale.setVisibility(View.GONE);
+                type_of_v.setVisibility(View.GONE);
+
+                finince_aq1.setBackground(null);
+                finince_aq1.setTextColor(getResources().getColor(R.color.black));
+                rent_aq1.setBackground(null);
+                rent_aq1.setTextColor(getResources().getColor(R.color.black));
+                aqaerz_aq1.setBackground(null);
+                aqaerz_aq1.setTextColor(getResources().getColor(R.color.black));
+
+
+                type_order = "4";
+
+
+            }
+        });
         //------------------------------------------------------------------------------------------------------------
 
 
@@ -373,10 +476,28 @@ public class OrdersFragment extends Fragment {
 
                 Real_Estate_order_text.setTextColor(getResources().getColor(R.color.textColor));
                 Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
+                type_sale.setVisibility(View.VISIBLE);
 
                 list_opration.setVisibility(View.VISIBLE);
                 type_sale.setVisibility(View.VISIBLE);
+                order_type.setVisibility(View.VISIBLE);
+                type_of_v.setVisibility(View.VISIBLE);
                 type_requst_xml.setVisibility(View.GONE);
+
+                aqaerz_aq1.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                aqaerz_aq1.setTextColor(getResources().getColor(R.color.white));
+
+
+                finince_aq1.setBackground(null);
+                finince_aq1.setTextColor(getResources().getColor(R.color.black));
+                rent_aq1.setBackground(null);
+                rent_aq1.setTextColor(getResources().getColor(R.color.black));
+                rate_aq1.setBackground(null);
+                rate_aq1.setTextColor(getResources().getColor(R.color.black));
+
+
+                type_order = "1";
 
 
                 MyRequst.clear();
@@ -410,6 +531,8 @@ public class OrdersFragment extends Fragment {
                 list_opration.setVisibility(View.GONE);
                 type_sale.setVisibility(View.VISIBLE);
                 type_requst_xml.setVisibility(View.GONE);
+                type_requst_xml.setVisibility(View.GONE);
+                order_type.setVisibility(View.GONE);
 
 //                WebService.loading(getActivity(), true);
                 MyRequst.clear();
@@ -443,6 +566,7 @@ public class OrdersFragment extends Fragment {
 
                 list_opration.setVisibility(View.GONE);
                 type_sale.setVisibility(View.GONE);
+                order_type.setVisibility(View.GONE);
 
                 MyRequst.clear();
 
