@@ -122,7 +122,7 @@ public class OrdersFragment extends Fragment {
     LinearLayout nodata_vis;
 
     String opration_select = "";
-    String Type_work_select = "";
+    String Type_work_select = "1";
     String type_requst = "";
 
 
@@ -626,13 +626,15 @@ public class OrdersFragment extends Fragment {
         type_sale.setVisibility(View.VISIBLE);
 
 
+        type_order = "1";
+
+
         MyRequst.clear();
 
         orders_rec.setAdapter(new RecyclerView_orders_my_requst(getContext(), MyRequst));
 
+
         send_requst_by_type("my_request");
-
-
     }
 
 
@@ -1091,8 +1093,14 @@ public class OrdersFragment extends Fragment {
 
             }
 
-        }else if(requst_type.equals("4")){
+        } else if (requst_type.equals("market_demands")) {
+            if (Type_work_select.equals("1")) {//sell
+                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?estate_type_id=" + opration_select + id_city_);
 
+            } else if (Type_work_select.equals("2")) {//rent
+                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?estate_type_id=" + opration_select + id_city_);
+
+            }
         }
 
 

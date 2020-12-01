@@ -24,7 +24,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -53,12 +55,176 @@ public class MainActivity extends AppCompatActivity {
     public static BottomSheetDialogFragment_MyEstate bottomSheetDialogFragment_myEstate;
     static BottomSheetDialog bottomSheerDialog;
 
+
+    static ImageView image_1;
+    static ImageView image_2;
+    static ImageView image_3;
+    static ImageView image_4;
+    static TextView text_1;
+    static TextView text_2;
+    static TextView text_3;
+    static TextView text_4;
+
+    LinearLayout lay_1, lay_2, lay_3, lay_4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity_layout);
         activity = this;
-        init();
+//        init();
+
+        image_1 = findViewById(R.id.image_1);
+        image_2 = findViewById(R.id.image_2);
+        image_3 = findViewById(R.id.image_3);
+        image_4 = findViewById(R.id.image_4);
+
+        text_1 = findViewById(R.id.text_1);
+        text_2 = findViewById(R.id.text_2);
+        text_3 = findViewById(R.id.text_3);
+        text_4 = findViewById(R.id.text_4);
+
+        lay_1 = findViewById(R.id.lay_1);
+        lay_2 = findViewById(R.id.lay_2);
+        lay_3 = findViewById(R.id.lay_3);
+        lay_4 = findViewById(R.id.lay_4);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary, this.getTheme()));
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+        }
+
+        fragmentManager = getSupportFragmentManager();
+
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container, new MapsFragment());
+        //  fragmentTransaction.commit();
+        fragmentTransaction.commitAllowingStateLoss();
+
+
+        lay_1.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(View v) {
+
+
+                text_1.setTextColor(getResources().getColor(R.color.colorPrimary));
+                text_2.setTextColor(getResources().getColor(R.color.color_un_active));
+                text_3.setTextColor(getResources().getColor(R.color.color_un_active));
+                text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+
+
+                image_1.setSelected(true);
+                image_2.setSelected(false);
+                image_3.setSelected(false);
+                image_4.setSelected(false);
+//                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+
+
+                fragmentManager = getSupportFragmentManager();
+
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, new MapsFragment());
+                //  fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
+
+            }
+        });
+        lay_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                text_1.setTextColor(getResources().getColor(R.color.color_un_active));
+                text_2.setTextColor(getResources().getColor(R.color.colorPrimary));
+                text_3.setTextColor(getResources().getColor(R.color.color_un_active));
+                text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+
+
+                image_1.setSelected(false);
+                image_2.setSelected(true);
+                image_3.setSelected(false);
+                image_4.setSelected(false);
+//
+//                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+
+                fragmentManager = getSupportFragmentManager();
+
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, new OrdersFragment());
+                //  fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
+
+            }
+        });
+        lay_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                text_1.setTextColor(getResources().getColor(R.color.color_un_active));
+                text_2.setTextColor(getResources().getColor(R.color.color_un_active));
+                text_3.setTextColor(getResources().getColor(R.color.colorPrimary));
+                text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+
+
+                image_1.setSelected(false);
+                image_2.setSelected(false);
+                image_3.setSelected(true);
+                image_4.setSelected(false);
+//
+//                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+
+
+                fragmentManager = getSupportFragmentManager();
+
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, new ChatFragment());
+                //  fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
+
+            }
+        });
+        lay_4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                text_1.setTextColor(getResources().getColor(R.color.color_un_active));
+                text_2.setTextColor(getResources().getColor(R.color.color_un_active));
+                text_3.setTextColor(getResources().getColor(R.color.color_un_active));
+                text_4.setTextColor(getResources().getColor(R.color.colorPrimary));
+
+
+                image_1.setSelected(false);
+                image_2.setSelected(false);
+                image_3.setSelected(false);
+                image_4.setSelected(true);
+//                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                fragmentManager = getSupportFragmentManager();
+
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, new MoreFragment());
+                //  fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
+
+            }
+        });
+
+
 
 //        LinearLayout yourView = findViewById(R.id.alla);
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -70,73 +236,73 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void init() {
-        bottomNav = findViewById(R.id.bottom_navigation);
-
-        if (bottomNav != null) {
-
-            // Select first menu item by default and show Fragment accordingly.
-            menu = bottomNav.getMenu();
-            //    bottomNavigationView.getMenu().getItem(0).setChecked(true);
-
-//            selectFragment(menu.getItem(0));
-// here to know any fragment
-            selectFragment(menu.getItem(0));
-
-
-            // Set action to perform when any menu-item is selected.
-            bottomNav.setOnNavigationItemSelectedListener(
-                    new BottomNavigationView.OnNavigationItemSelectedListener() {
-                        @Override
-                        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                            item.setChecked(true);
-                            selectFragment(item);
-//                            selectFragment(item);
-                            return false;
-                        }
-                    });
-
-
-        }
-    }
-
-    protected void selectFragment(MenuItem item) {
-        item.setChecked(true);
-        switch (item.getItemId()) {
-            case R.id.home:
-                goToFragment(0);
-          /*      if (mUserSession.hasActiveSession())
-                    if (mUserSession.getCurrentUser().getUser().getMobileVerifiedAt()== null){
-                        Log.d("Mobile",mUserSession.getCurrentUser().getUser().getMobileVerifiedAt()+"empty");
-                        showDialog();}*/
-                break;
+//    public void init() {
+//        bottomNav = findViewById(R.id.bottom_navigation);
 //
-//            case R.id.subscriptions:
-//                // if(mUserSession.hasActiveSession())
-//                goToFragment(1);
-////                else
-////                    showAlert(MainActivity.this, getString(R.string.should_login));
+//        if (bottomNav != null) {
+//
+//            // Select first menu item by default and show Fragment accordingly.
+//            menu = bottomNav.getMenu();
+//            //    bottomNavigationView.getMenu().getItem(0).setChecked(true);
+//
+////            selectFragment(menu.getItem(0));
+//// here to know any fragment
+//            selectFragment(menu.getItem(0));
+//
+//
+//            // Set action to perform when any menu-item is selected.
+//            bottomNav.setOnNavigationItemSelectedListener(
+//                    new BottomNavigationView.OnNavigationItemSelectedListener() {
+//                        @Override
+//                        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//
+//                            item.setChecked(true);
+//                            selectFragment(item);
+////                            selectFragment(item);
+//                            return false;
+//                        }
+//                    });
+//
+//
+//        }
+//    }
+
+//    protected void selectFragment(MenuItem item) {
+//        item.setChecked(true);
+//        switch (item.getItemId()) {
+//            case R.id.home:
+//                goToFragment(0);
+//          /*      if (mUserSession.hasActiveSession())
+//                    if (mUserSession.getCurrentUser().getUser().getMobileVerifiedAt()== null){
+//                        Log.d("Mobile",mUserSession.getCurrentUser().getUser().getMobileVerifiedAt()+"empty");
+//                        showDialog();}*/
 //                break;
-
-            case R.id.orders:
-                goToFragment(1);
-                break;
-            case R.id.messages:
-                //       if(mUserSession.hasActiveSession())
-                goToFragment(2);
-            /*    else
-                    showAlert(MainActivity.this, getString(R.string.should_login));*/
-                break;
-            case R.id.more:
-                //       if(mUserSession.hasActiveSession())
-                goToFragment(3);
-            /*    else
-                    showAlert(MainActivity.this, getString(R.string.should_login));*/
-                break;
-
-        }
-    }
+////
+////            case R.id.subscriptions:
+////                // if(mUserSession.hasActiveSession())
+////                goToFragment(1);
+//////                else
+//////                    showAlert(MainActivity.this, getString(R.string.should_login));
+////                break;
+//
+//            case R.id.orders:
+//                goToFragment(1);
+//                break;
+//            case R.id.messages:
+//                //       if(mUserSession.hasActiveSession())
+//                goToFragment(2);
+//            /*    else
+//                    showAlert(MainActivity.this, getString(R.string.should_login));*/
+//                break;
+//            case R.id.more:
+//                //       if(mUserSession.hasActiveSession())
+//                goToFragment(3);
+//            /*    else
+//                    showAlert(MainActivity.this, getString(R.string.should_login));*/
+//                break;
+//
+//        }
+//    }
 
     public void goToFragment(int fragmentIndex) {
         fragmentManager = getSupportFragmentManager();

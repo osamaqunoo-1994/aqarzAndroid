@@ -29,12 +29,22 @@
 
     </style>
 
+    <style name="AppThemes" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="fontFamily">@font/frutiger_lt_arabic_roman</item>
+
+        <!--        <item name="android:fontFamily">@font/light</item>-->
+
+    </style>
+
     <style name="AppTheme.NoActionBar_home">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <!--        <item name="android:fontFamily">@font/light</item>-->
 
-        <!--        <item name="colorPrimaryDark">@color/color_praymary_dark_home</item>-->
+        <item name="android:colorPrimary">@color/colorPrimary</item>
         <item name="fontFamily">@font/frutiger_lt_arabic_roman</item>
 
 

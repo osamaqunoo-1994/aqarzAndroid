@@ -151,7 +151,8 @@
         </activity>
         <activity
             android:name=".Activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppThemes"
+            android:windowSoftInputMode="adjustPan"/>
 
         <uses-library
             android:name="org.apache.http.legacy"
