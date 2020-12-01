@@ -13,6 +13,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,12 +32,14 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Set;
 
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.Auth.RegisterActivity;
+import sa.aqarz.Activity.OprationNew.RequestServiceActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import sa.aqarz.Fragment.ChatFragment;
 import sa.aqarz.Fragment.MapsFragment;
@@ -66,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
     static TextView text_4;
 
     LinearLayout lay_1, lay_2, lay_3, lay_4;
+
+    FloatingActionButton myFab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +95,11 @@ public class MainActivity extends AppCompatActivity {
         lay_4 = findViewById(R.id.lay_4);
 
 
+        myFab = (FloatingActionButton) findViewById(R.id.fab);
+
+        myFab.setColorFilter(Color.WHITE);
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary, this.getTheme()));
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -102,6 +113,43 @@ public class MainActivity extends AppCompatActivity {
         //  fragmentTransaction.commit();
         fragmentTransaction.commitAllowingStateLoss();
 
+
+        myFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (!Settings.checkLogin()) {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+                            .setCancelable(false)
+                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                                    startActivity(intent);
+
+                                }
+                            })
+                            .setNegativeButton(getResources().getString(R.string.no), null)
+                            .show();
+                } else {
+
+                    if (Settings.CheckIsCompleate()) {
+
+                        Intent intent = new Intent(MainActivity.this, RequestServiceActivity.class);
+//                                intent.putExtra("from", "splash");
+                        startActivity(intent);
+                    } else {
+                        Settings.Dialog_not_compleate(MainActivity.this);
+                    }
+
+                }
+
+
+            }
+        });
 
         lay_1.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -223,7 +271,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
 
 //        LinearLayout yourView = findViewById(R.id.alla);

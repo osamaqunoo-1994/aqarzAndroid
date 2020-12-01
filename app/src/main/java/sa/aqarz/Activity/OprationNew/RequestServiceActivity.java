@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.R;
 
 public class RequestServiceActivity extends AppCompatActivity {
@@ -20,6 +21,7 @@ public class RequestServiceActivity extends AppCompatActivity {
     LinearLayout aqar_layout;
     LinearLayout rate_layout;
     LinearLayout fini_layout;
+    LinearLayout AddAqareaz;
 
     TextView text_a1;
     ImageView back;
@@ -35,9 +37,10 @@ public class RequestServiceActivity extends AppCompatActivity {
         aqar_layout = findViewById(R.id.aqar_layout);
         rate_layout = findViewById(R.id.rate_layout);
         fini_layout = findViewById(R.id.fini_layout);
+        AddAqareaz = findViewById(R.id.AddAqareaz);
         back = findViewById(R.id.back);
         text_a1 = findViewById(R.id.text_a1);
-        activity=this;
+        activity = this;
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +66,18 @@ public class RequestServiceActivity extends AppCompatActivity {
 
 
                 Intent intent = new Intent(RequestServiceActivity.this, FinanceActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+
+
+            }
+        });
+        AddAqareaz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(RequestServiceActivity.this, AddAqarsActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
 

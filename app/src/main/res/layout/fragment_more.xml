@@ -14,7 +14,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+
+            android:paddingBottom="40dp">
 
             <LinearLayout
                 android:id="@+id/with_login"
@@ -343,7 +345,7 @@
                             android:background="@drawable/circle_fill"
                             android:padding="3dp"
                             android:src="@drawable/ic_lang_icon"
-                            android:tint="@color/white" />
+                            app:tint="@color/white" />
 
                         <LinearLayout
                             android:layout_width="10dp"
@@ -653,7 +655,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="9dp"
+                        android:layout_height="50dp"
 
                         android:background="#F8F8F8" />
 

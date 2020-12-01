@@ -273,12 +273,13 @@ new password</string>
     <string name="chat_title">Chat</string>
 
 
-    <string name="Enjoy_">Enjoy the best services and offers </string>
+    <string name="Enjoy_">Select one services or offers </string>
     <string name="requstService">Requst Service</string>
 
 
     <string name="RentalinstallmentService">Rent installment</string>
     <string name="AqarsService">Realestate</string>
+    <string name="AqarsAddService">Add Aqarez</string>
     <string name="rateService">Valuation</string>
     <string name="financeService">Finance</string>
 
