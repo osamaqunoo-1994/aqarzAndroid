@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_OfferEstate;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
@@ -51,6 +52,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
     private ItemClickListener mItemClickListener;
 
     static BottomSheetDialogFragment_MyEstate bottomSheetDialogFragment_myEstate;
+    BottomSheetDialogFragment_OfferEstate bottomSheetDialogFragment_offerEstate;
     /**
      * View holder class
      */
@@ -80,6 +82,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
         TextView space;
         TextView name_estate;
         TextView new_offer;
+        TextView Watting;
         TextView date;
         ImageView image_icon;
         ImageView add_favorite;
@@ -94,6 +97,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
             address = view.findViewById(R.id.address);
             space = view.findViewById(R.id.space);
             view_type = view.findViewById(R.id.view_type);
+            Watting = view.findViewById(R.id.Watting);
             new_offer = view.findViewById(R.id.new_offer);
             image_icon = view.findViewById(R.id.image_icon);
             date = view.findViewById(R.id.date);
@@ -140,6 +144,16 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
         holder.address.setText(alldata.get(position).getCityName() + " , " + alldata.get(position).getNeighborhoodName());
 
         Picasso.get().load(alldata.get(position).getEstateTypeIcon()).into(holder.image_icon);
+
+
+        if (alldata.get(position).getHas_my_offer().toString().equals("0")) {
+            holder.new_offer.setVisibility(View.VISIBLE);
+            holder.Watting.setVisibility(View.GONE);
+        } else {
+            holder.new_offer.setVisibility(View.GONE);
+            holder.Watting.setVisibility(View.VISIBLE);
+        }
+
 
 //
 //        System.out.println(alldata.get(position).getImage() + "");
@@ -224,6 +238,31 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 
                         bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getUuid() + "");
                         bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+                    } else {
+                        show_dialog();
+//
+
+                    }
+                } else {
+                    Settings.Dialog_not_compleate((Activity) context);
+
+                }
+
+
+            }
+        });
+        holder.Watting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (Settings.CheckIsCompleate()) {
+
+
+                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+
+                        bottomSheetDialogFragment_offerEstate = new BottomSheetDialogFragment_OfferEstate(alldata.get(position).getUuid() + "");
+                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
 
                     } else {
                         show_dialog();

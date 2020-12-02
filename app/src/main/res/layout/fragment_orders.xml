@@ -39,18 +39,6 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_15sdp" />
 
-        <ImageView
-            android:id="@+id/filtter_city"
-            android:layout_width="37dp"
-            android:layout_height="37dp"
-
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/circle_wh"
-            android:padding="8dp"
-            android:src="@drawable/ic_filtter_city"
-            app:tint="@color/colorPrimary" />
-
 
     </LinearLayout>
 
@@ -214,6 +202,17 @@
 
             </RelativeLayout>
 
+            <ImageView
+                android:id="@+id/filtter_city"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+
+
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/circle_fill"
+                android:padding="8dp"
+                android:src="@drawable/ic_filtter_city" />
 
         </LinearLayout>
 

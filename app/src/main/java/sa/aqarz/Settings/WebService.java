@@ -71,6 +71,7 @@ public class WebService {
     public static String my_profile = Domain + "my/profile";
     public static String user = Domain + "user/";
     public static String send_msg = Domain + "send/msg";
+    public static String MYOfferOrder = Domain + "my/fund/request/offer";
 
 
     public static void Header_Async(AsyncHttpClient client, boolean is_token) {

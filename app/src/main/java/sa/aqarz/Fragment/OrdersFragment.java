@@ -64,6 +64,8 @@ import sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import sa.aqarz.Adapter.RecyclerView_HomeList;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import sa.aqarz.Adapter.RecyclerView_bottomSheet_type;
+import sa.aqarz.Adapter.RecyclerView_order_finince;
+import sa.aqarz.Adapter.RecyclerView_order_rate;
 import sa.aqarz.Adapter.RecyclerView_orders;
 import sa.aqarz.Adapter.RecyclerView_orders_demands;
 import sa.aqarz.Adapter.RecyclerView_orders_demandsx;
@@ -76,8 +78,10 @@ import sa.aqarz.Modules.HomeModules;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.OfferRealStateModules;
 import sa.aqarz.Modules.OrdersModules;
+import sa.aqarz.Modules.RateModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.Modules.demandsModules;
+import sa.aqarz.Modules.financeModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
@@ -104,6 +108,8 @@ public class OrdersFragment extends Fragment {
     List<TypeModules> type_list = new ArrayList<>();
     List<demandsModules> demandsModules_list = new ArrayList<>();
     List<OfferRealStateModules> offerRealStateModulesLis = new ArrayList<>();
+    List<RateModules> rate_list = new ArrayList<>();
+    List<financeModules> finance_list = new ArrayList<>();
 
     LinearLayout my_order_layout;
     LinearLayout Shopping_request_layout;
@@ -710,6 +716,86 @@ public class OrdersFragment extends Fragment {
                             orders_rec.setAdapter(new RecyclerView_orders_my_requstx(getContext(), MyRequst));
 
                             if (MyRequst.size() != 0) {
+                                nodata_vis.setVisibility(View.GONE);
+                            } else {
+                                nodata_vis.setVisibility(View.VISIBLE);
+
+                            }
+
+
+                        } else if (requestType.equals("my_rate")) {
+                            System.out.println("lfkdlfkdlkf");
+                            String data = response.getString("data");
+
+
+                            JSONObject jsonObject = new JSONObject(data);
+
+
+                            String datax = jsonObject.getString("data");
+
+
+                            JSONArray jsonArray = new JSONArray(datax);
+                            orders_rec.setAdapter(null);
+                            rate_list.clear();
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                Gson gson = new Gson();
+                                RateModules ordersModulesm = gson.fromJson(mJson, RateModules.class);
+
+//                                HomeModules ordersModulesm = gson.fromJson(mJson, HomeModules.class);
+                                rate_list.add(ordersModulesm);
+
+
+                            }
+
+
+                            orders_rec.setAdapter(new RecyclerView_order_rate(getContext(), rate_list));
+
+                            if (rate_list.size() != 0) {
+                                nodata_vis.setVisibility(View.GONE);
+                            } else {
+                                nodata_vis.setVisibility(View.VISIBLE);
+
+                            }
+
+
+                        } else if (requestType.equals("my_finance")) {
+                            System.out.println("lfkdlfkdlkf");
+                            String data = response.getString("data");
+
+
+                            JSONObject jsonObject = new JSONObject(data);
+
+
+                            String datax = jsonObject.getString("data");
+
+
+                            JSONArray jsonArray = new JSONArray(datax);
+                            orders_rec.setAdapter(null);
+                            finance_list.clear();
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                Gson gson = new Gson();
+                                financeModules ordersModulesm = gson.fromJson(mJson, financeModules.class);
+
+//                                HomeModules ordersModulesm = gson.fromJson(mJson, HomeModules.class);
+                                finance_list.add(ordersModulesm);
+
+
+                            }
+
+
+                            orders_rec.setAdapter(new RecyclerView_order_finince(getContext(), finance_list));
+
+                            if (finance_list.size() != 0) {
                                 nodata_vis.setVisibility(View.GONE);
                             } else {
                                 nodata_vis.setVisibility(View.VISIBLE);

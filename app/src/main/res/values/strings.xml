@@ -457,9 +457,11 @@ Your request and reply in the fastest time</string>
 
 
     <string name="TimeRemmember">Time Remmember</string>
+    <string name="MyOFFERFOR">عروضي على الطلب رقم </string>
 
 
     <string name="add_clints">Add Clintes</string>
+    <string name="Watting">Watting</string>
 
 
     <string name="more">More</string>
@@ -570,6 +572,7 @@ Your request and reply in the fastest time</string>
     <string name="rent_aq1">Rent</string>
     <string name="rat_aq1">Rate</string>
     <string name="NotTitle">Notfication</string>
+    <string name="searchAqarz">Search Aqarez</string>
 
 
     <string name="RequstService">Requst Service</string>

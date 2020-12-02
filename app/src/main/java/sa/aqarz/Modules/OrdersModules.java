@@ -42,6 +42,9 @@ public class OrdersModules {
     @SerializedName("estate_type_name")
     @Expose
     private String estateTypeName;
+    @SerializedName("has_my_offer")
+    @Expose
+    private String has_my_offer;
     @SerializedName("estate_type_icon")
     @Expose
     private String estateTypeIcon;
@@ -133,6 +136,10 @@ public class OrdersModules {
 
     public Integer getEstatePriceId() {
         return estatePriceId;
+    }
+
+    public String getHas_my_offer() {
+        return has_my_offer;
     }
 
     public void setEstatePriceId(Integer estatePriceId) {

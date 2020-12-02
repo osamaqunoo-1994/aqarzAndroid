@@ -606,7 +606,7 @@ public class FinanceActivity extends AppCompatActivity {
 
                 } else {
 
-
+init_volley();
                     WebService.loading(FinanceActivity.this, true);
 
                     VolleyService mVolleyService = new VolleyService(mResultCallback, FinanceActivity.this);

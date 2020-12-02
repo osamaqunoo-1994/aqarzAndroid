@@ -694,5 +694,9 @@
     <string name="ss4">السماح بعرض العقار لمستفيدي صندوق التنمية العقارية؟</string>
 
 
+    <string name="NotTitle">التنبيهات</string>
+    <string name="searchAqarz">ابحث عن عقارك</string>
+
+    <string name="Watting">قيد الانتظار</string>
 
 </resources>
