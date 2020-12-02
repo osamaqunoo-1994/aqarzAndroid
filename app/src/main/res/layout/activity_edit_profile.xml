@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/frutiger_lt_arabic_roman"
+                android:fontFamily="@font/din_light"
                 android:gravity="center"
                 android:text="@string/EditProfile"
                 android:textColor="@color/white"
@@ -346,7 +346,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:background="@drawable/button_login"
-                    android:fontFamily="@font/muli_bold"
+                    android:fontFamily="@font/din_bold"
                     android:text="@string/Done"
                     android:textColor="@color/white" />
 

@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:fontFamily="@font/frutiger_lt_arabic_bold"
+            android:fontFamily="@font/din_bold"
             android:text="تقدم هذه الخدمــــة بالتعــــاون مع صندوق التنميـــــة العقــــاري وتتيح للعقاريين الحصـــول على طلبات المستفدين من قروض الصندوق وتقديم عروضهم من خلال تطبيق عقارز،  ولضمان أفضل مستوى من الجودة نرجوا الإلتزام بالشروط التالية
 
 "
@@ -104,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:fontFamily="@font/din_bold"
                 android:text="أن يكون المتقدم سعودي الجنسية" />
 
             <LinearLayout
@@ -136,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:fontFamily="@font/din_bold"
                 android:text="الإلتزام بدقة بيانات العروض العقارية
 " />
 
@@ -169,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:fontFamily="@font/din_bold"
                 android:text="إرفاق صور فعلية للعقارات
 " />
 
@@ -201,7 +201,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:fontFamily="@font/din_bold"
                 android:text="التجاوب مع طلبات المعاينة من قبل العملاء في الوقت المحدد
 " />
 
@@ -234,7 +234,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:fontFamily="@font/din_bold"
                 android:text="عند تقديم عرض لمستفيدي الصندوق يلتزم العقاري بفترة 5 أيام" />
 
             <LinearLayout
@@ -266,7 +266,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:fontFamily="@font/din_bold"
                 android:text="لإنهاء الاجراءات قبل ان يتم التصرف بالعقار" />
 
             <LinearLayout

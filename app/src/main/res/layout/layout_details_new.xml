@@ -106,7 +106,7 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:maxLength="35"
 
                     android:textColor="@color/colorPrimary"
@@ -124,7 +124,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/button_ads"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
                     android:paddingBottom="3dp"
@@ -163,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="@string/n1"
                     android:textColor="@color/textColor"
                     android:textSize="15dp" />
@@ -176,7 +176,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
 
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text=""
                     android:textColor="@color/textColor"
                     android:textSize="15dp" />
@@ -212,7 +212,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="@string/n2"
                     android:textColor="@color/textColor"
                     android:textSize="15dp" />
@@ -224,7 +224,7 @@
                     android:layout_marginLeft="5dp"
 
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text=" "
                     android:textColor="@color/textColor"
                     android:textSize="15dp" />
@@ -235,7 +235,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="@string/SAR"
                     android:textColor="@color/textColor"
                     android:textSize="15dp" />
@@ -270,7 +270,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="@string/n4"
                     android:textColor="@color/textColor"
                     android:textSize="15dp" />
@@ -282,7 +282,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
 
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
 
                     android:textColor="@color/textColor"
                     android:textSize="15dp" />
@@ -308,7 +308,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/button_login"
-                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:fontFamily="@font/din_bold"
                 android:paddingLeft="15dp"
                 android:paddingTop="4dp"
                 android:paddingRight="15dp"
@@ -326,7 +326,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
 
-                android:fontFamily="@font/frutiger_lt_arabic_roman"
+                android:fontFamily="@font/din_light"
                 android:gravity="center"
 
 
@@ -347,7 +347,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/button_login"
-                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:fontFamily="@font/din_bold"
                 android:paddingLeft="15dp"
                 android:paddingTop="4dp"
                 android:paddingRight="15dp"
@@ -396,7 +396,7 @@
                             android:layout_marginLeft="5dp"
 
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/t1_details"
                             android:textColor="@color/textColor"
                             android:textSize="15dp" />
@@ -408,7 +408,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
 
                             android:textColor="@color/textColor"
                             android:textSize="14dp" />
@@ -444,7 +444,7 @@
                             android:layout_marginLeft="5dp"
 
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/t2_details"
                             android:textColor="@color/textColor"
                             android:textSize="15dp" />
@@ -456,7 +456,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:textColor="@color/textColor"
                             android:textSize="14dp" />
 
@@ -491,7 +491,7 @@
                             android:layout_marginLeft="5dp"
 
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/t3_details"
                             android:textColor="@color/textColor"
                             android:textSize="15dp" />
@@ -503,7 +503,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:textColor="@color/textColor"
                             android:textSize="14dp" />
 
@@ -538,7 +538,7 @@
                             android:layout_marginLeft="5dp"
 
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/t4_details"
                             android:textColor="@color/textColor"
                             android:textSize="15dp" />
@@ -550,7 +550,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:textColor="@color/textColor"
                             android:textSize="14dp" />
 
@@ -592,7 +592,7 @@
                             android:layout_marginLeft="5dp"
 
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/t5_details"
                             android:textColor="@color/textColor"
                             android:textSize="15dp" />
@@ -604,7 +604,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:textColor="@color/textColor"
                             android:textSize="14dp" />
 
@@ -639,7 +639,7 @@
                             android:layout_marginLeft="5dp"
 
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/t6_details"
                             android:textColor="@color/textColor"
                             android:textSize="15dp" />
@@ -651,7 +651,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:textColor="@color/textColor"
                             android:textSize="14dp" />
 
@@ -685,7 +685,7 @@
                             android:layout_marginLeft="5dp"
 
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/t7_details"
                             android:textColor="@color/textColor"
                             android:textSize="15dp" />
@@ -696,7 +696,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:textColor="@color/textColor"
                             android:textSize="14dp" />
 
@@ -731,7 +731,7 @@
                             android:layout_marginLeft="5dp"
 
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/t8_details"
                             android:textColor="@color/textColor"
                             android:textSize="15dp" />
@@ -743,7 +743,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:textColor="@color/textColor"
                             android:textSize="14dp" />
 
@@ -772,7 +772,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/button_login"
-                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:fontFamily="@font/din_bold"
                 android:paddingLeft="15dp"
                 android:paddingTop="4dp"
                 android:paddingRight="15dp"
@@ -813,7 +813,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/button_login"
-                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:fontFamily="@font/din_bold"
                 android:paddingLeft="15dp"
                 android:paddingTop="4dp"
                 android:paddingRight="15dp"
@@ -901,7 +901,7 @@
                             android:layout_marginLeft="5dp"
 
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/t11_details"
                             android:textColor="@color/textColor"
                             android:textSize="14dp" />
@@ -913,7 +913,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:textColor="@color/textColor"
                             android:textSize="14dp" />
 
@@ -956,7 +956,7 @@
                             android:layout_marginLeft="5dp"
 
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/t10_details"
                             android:textColor="@color/textColor"
                             android:textSize="14dp" />
@@ -968,7 +968,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:textColor="@color/textColor"
                             android:textSize="14dp" />
 
@@ -1009,7 +1009,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="@string/t9_details"
                     android:textColor="@color/textColor"
                     android:textSize="14dp" />
@@ -1022,7 +1022,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
 
                     android:textColor="@color/textColor"
                     android:textSize="14dp" />

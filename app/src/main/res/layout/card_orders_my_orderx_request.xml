@@ -127,7 +127,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:textColor="@color/colorPrimary"
                     android:textSize="13dp"
                     android:textStyle="bold" />
@@ -161,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="@string/n2"
                     android:textColor="@color/textColor"
                     android:textSize="12dp" />
@@ -172,7 +172,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
 
                     android:textColor="@color/textColor"
                     android:textSize="13dp" />
@@ -183,7 +183,7 @@
                     android:layout_height="wrap_content"
 
 
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="@string/SAR"
                     android:textColor="@color/textColor"
                     android:textSize="13dp" />
@@ -216,7 +216,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
 
                     android:textColor="@color/textColor"
                     android:textSize="13dp" />
@@ -250,7 +250,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="@string/n3"
                     android:textColor="@color/textColor"
                     android:textSize="12dp"
@@ -262,7 +262,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
 
                     android:textColor="@color/textColor"
                     android:textSize="13dp" />
@@ -286,7 +286,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
 
                     android:textColor="@color/textColor"
                     android:textSize="13dp" />
@@ -322,7 +322,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:maxLength="10"
 
                     android:textColor="#AAABB3"

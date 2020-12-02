@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="tdgh"
                     android:textColor="@color/textColor"
                     android:textSize="13dp" />
@@ -112,7 +112,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
 
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="الروابي, الخبر.المنطقة الشرقية"
                     android:textColor="@color/textColor"
                     android:textSize="14dp" />
@@ -160,7 +160,7 @@
                         android:layout_marginLeft="5dp"
 
                         android:layout_marginRight="5dp"
-                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:fontFamily="@font/din_light"
                         android:text="@string/area_fi"
                         android:textColor="@color/textColor"
                         android:textSize="14dp" />
@@ -173,7 +173,7 @@
                         android:layout_marginLeft="5dp"
 
                         android:layout_marginRight="5dp"
-                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:fontFamily="@font/din_light"
                         android:text="5000000000 "
                         android:textColor="@color/textColor"
                         android:textSize="14dp" />
@@ -186,7 +186,7 @@
                         android:layout_marginLeft="5dp"
 
                         android:layout_marginRight="5dp"
-                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:fontFamily="@font/din_light"
                         android:text="M"
                         android:textColor="@color/textColor"
                         android:textSize="14dp" />
@@ -239,7 +239,7 @@
                         android:layout_marginLeft="5dp"
 
                         android:layout_marginRight="5dp"
-                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:fontFamily="@font/din_light"
                         android:text="@string/priceprice"
                         android:textColor="@color/textColor"
                         android:textSize="14dp" />
@@ -252,7 +252,7 @@
                         android:layout_marginLeft="5dp"
 
                         android:layout_marginRight="5dp"
-                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:fontFamily="@font/din_light"
                         android:text="5000000000 "
                         android:textColor="@color/textColor"
                         android:textSize="14dp" />
@@ -265,7 +265,7 @@
                         android:layout_marginLeft="5dp"
 
                         android:layout_marginRight="5dp"
-                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:fontFamily="@font/din_light"
                         android:text="@string/SAR"
                         android:textColor="@color/textColor"
                         android:textSize="14dp" />

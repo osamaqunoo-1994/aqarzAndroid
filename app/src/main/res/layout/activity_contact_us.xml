@@ -38,7 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/frutiger_lt_arabic_bold"
+                    android:fontFamily="@font/din_bold"
                     android:gravity="center"
                     android:text="@string/contactus_title"
                     android:textColor="@color/white"
@@ -154,7 +154,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
-                                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                                android:fontFamily="@font/din_bold"
                                 android:text="Hala kf"
                                 android:textColor="@color/white"
                                 android:textSize="15dp" />
@@ -164,7 +164,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
-                                android:fontFamily="@font/frutiger_lt_arabic_roman"
+                                android:fontFamily="@font/din_light"
                                 android:text="fl, fkg,  ed"
                                 android:textColor="@color/white"
                                 android:textSize="14dp" />

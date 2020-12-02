@@ -411,7 +411,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="6dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/id_upload"
                             android:textColor="#AAABB3"
                             android:textSize="15dp" />

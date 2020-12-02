@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:fontFamily="@font/din_bold"
                 android:gravity="center"
                 android:text=" يتطلب الوصول الى هذه الخاصية بعض الشروط والأحكام المتعلقة بهذا البرنامج يرجى مراجعة بريدك الالكتروني وجوالك المسجل لمزيد من المعلومات" />
 

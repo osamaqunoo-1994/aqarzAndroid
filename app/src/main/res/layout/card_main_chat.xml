@@ -67,7 +67,7 @@
                     android:id="@+id/last_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/frutiger_lt_arabic_light"
+                    android:fontFamily="@font/din_light"
 
                     android:textColor="@color/textColor"
                     android:textSize="12dp" />
@@ -99,7 +99,7 @@
                     android:layout_height="30dp"
 
                     android:background="@drawable/circle_fill"
-                    android:fontFamily="@font/frutiger_lt_arabic_light"
+                    android:fontFamily="@font/din_light"
                     android:gravity="center"
 
                     android:textColor="@color/white"

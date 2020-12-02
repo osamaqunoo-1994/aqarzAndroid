@@ -52,7 +52,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_bold"
+                            android:fontFamily="@font/din_bold"
                             android:text="Vila "
                             android:textColor="@color/white"
                             android:textSize="14dp" />
@@ -83,7 +83,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:fontFamily="@font/din_light"
                         android:text="gaza -fsdf"
                         android:textColor="@color/textColor"
                         android:textSize="13dp" />
@@ -109,7 +109,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:fontFamily="@font/din_light"
                         android:text="100 M"
                         android:textColor="@color/textColor"
                         android:textSize="13dp" />
@@ -135,7 +135,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:fontFamily="@font/din_light"
                         android:text="545 $"
                         android:textColor="@color/textColor"
                         android:textSize="13dp" />
@@ -186,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_bold"
+                    android:fontFamily="@font/din_bold"
                     android:text="@string/More_details_card"
                     android:textColor="@color/colorPrimary"
                     android:textSize="14dp"></TextView>

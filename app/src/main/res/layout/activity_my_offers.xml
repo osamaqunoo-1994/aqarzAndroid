@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:fontFamily="@font/din_bold"
                 android:gravity="center"
                 android:text="@string/MyOffer"
                 android:textColor="@color/white"

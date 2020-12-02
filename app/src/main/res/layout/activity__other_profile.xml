@@ -38,7 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/frutiger_lt_arabic_bold"
+                    android:fontFamily="@font/din_bold"
                     android:gravity="center"
                     android:text="@string/MYProfileDetails"
                     android:textColor="@color/white"
@@ -139,7 +139,7 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/frutiger_lt_arabic_bold"
+                    android:fontFamily="@font/din_bold"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="17dp" />
@@ -166,7 +166,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/frutiger_lt_arabic_bold"
+                    android:fontFamily="@font/din_bold"
                     android:text="@string/Certified"
 
                     android:textSize="14dp" />
@@ -182,7 +182,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/frutiger_lt_arabic_bold"
+                    android:fontFamily="@font/din_bold"
                     android:text="@string/fav_3"
                     android:textColor="@color/color_tr"
                     android:textSize="15dp" />
@@ -213,7 +213,7 @@
                     android:id="@+id/link"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/frutiger_lt_arabic_bold"
+                    android:fontFamily="@font/din_bold"
                     android:lines="1"
                     android:maxLines="30"
                     android:textSize="13dp" />
@@ -240,7 +240,7 @@
                     android:id="@+id/mobile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/frutiger_lt_arabic_bold"
+                    android:fontFamily="@font/din_bold"
                     android:text=""
 
                     android:textSize="14dp" />

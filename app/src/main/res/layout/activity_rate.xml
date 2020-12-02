@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/frutiger_lt_arabic_roman"
+                android:fontFamily="@font/din_light"
                 android:gravity="center"
                 android:text="@string/rateService"
                 android:textColor="@color/white"
@@ -79,7 +79,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:fontFamily="@font/din_light"
                         android:text="@string/Type_order"
                         android:textColor="#424446"
                         android:textSize="15dp" />
@@ -104,7 +104,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/button_login"
                             android:drawableStart="@drawable/ic_ista"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:gravity="center"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -124,7 +124,7 @@
                             android:background="@drawable/mash"
                             android:drawableStart="@drawable/ic_ista"
 
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:gravity="center"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -143,7 +143,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/mash"
                             android:drawableStart="@drawable/ic_ista"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:gravity="center"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -162,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="@string/Type_aqarez"
                     android:textColor="#424446"
                     android:textSize="15dp" />
@@ -258,7 +258,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="@string/AddArea"
                     android:textColor="#424446"
                     android:textSize="15dp" />

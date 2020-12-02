@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="tdgh"
                     android:textColor="@color/textColor"
                     android:textSize="13dp" />
@@ -126,7 +126,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/circle"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
 
@@ -167,7 +167,7 @@
                     android:layout_marginLeft="5dp"
 
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="5000000000 "
                     android:textColor="@color/textColor"
                     android:textSize="14dp" />
@@ -178,7 +178,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="@string/SAR"
                     android:textColor="@color/textColor"
                     android:textSize="14dp" />
@@ -213,7 +213,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
 
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="الروابي, الخبر.المنطقة الشرقية"
                     android:textColor="@color/textColor"
                     android:textSize="14dp" />
@@ -254,7 +254,7 @@
                             android:drawableStart="@drawable/ic_room_ic"
                             android:drawablePadding="7dp"
                             android:text="@string/room"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
 
                             android:textColor="#424446" />
 
@@ -291,7 +291,7 @@
                             android:drawableStart="@drawable/ic_room_ic"
                             android:drawablePadding="7dp"
                             android:text="@string/Bathrooms"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
 
                             android:textColor="#424446" />
 
@@ -325,7 +325,7 @@
                             android:layout_height="wrap_content"
                             android:drawableStart="@drawable/ic_space"
                             android:drawablePadding="7dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
 
                             android:text="@string/Maximum_space"
                             android:textColor="#424446" />

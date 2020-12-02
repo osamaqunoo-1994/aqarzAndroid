@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/frutiger_lt_arabic_roman"
+                android:fontFamily="@font/din_light"
                 android:gravity="center"
 
                 android:text="@string/sign_up"
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
 
-            android:fontFamily="@font/frutiger_lt_arabic_bold"
+            android:fontFamily="@font/din_bold"
 
             android:gravity="center"
             android:text="@string/title_siginuo"
@@ -129,7 +129,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:button="@drawable/checkcustomer"
-                android:fontFamily="@font/frutiger_lt_arabic_bold"
+                android:fontFamily="@font/din_bold"
                 android:gravity="center"
                 android:text="@string/areyou_aqarezman"
                 android:textSize="13dp" />

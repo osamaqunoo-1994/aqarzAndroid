@@ -29,7 +29,7 @@
             android:scaleY="0.8"
 
             android:textColor="#424446"
-            android:fontFamily="@font/frutiger_lt_arabic_roman"
+            android:fontFamily="@font/din_light"
 
             android:layout_height="wrap_content"
              />

@@ -36,7 +36,7 @@
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/frutiger_lt_arabic_roman"
+            android:fontFamily="@font/din_light"
             android:text="تقسيط تاجير"
             android:textColor="#AAABB3"
             android:textSize="@dimen/_11sdp" />

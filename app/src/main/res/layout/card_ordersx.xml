@@ -13,16 +13,16 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/back_order_box"
+        android:background="@drawable/background_new"
         android:orientation="horizontal"
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="30dp"
-            app:cardBackgroundColor="@color/white"
+            android:layout_height="120dp"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="#F7F7F7"
             app:cardCornerRadius="10dp"
 
 
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="@string/n1"
                     android:textColor="@color/textColor"
                     android:textSize="12dp" />
@@ -89,7 +89,7 @@
                         android:layout_marginBottom="2dp"
 
 
-                        android:fontFamily="@font/muli_bold"
+                        android:fontFamily="@font/din_bold"
                         android:text="sgnkdfg"
 
                         android:textColor="@color/white"
@@ -140,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="@string/n2"
                     android:textColor="@color/textColor"
                     android:textSize="12dp" />
@@ -151,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:lines="1"
 
                     android:textColor="@color/textColor"
@@ -161,7 +161,7 @@
                     android:layout_width="wrap_content"
 
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
 
 
                     android:lines="1"
@@ -197,7 +197,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="@string/n4"
                     android:textColor="@color/textColor"
                     android:textSize="12dp" />
@@ -208,7 +208,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
 
                     android:textColor="@color/textColor"
                     android:textSize="12dp" />
@@ -232,7 +232,7 @@
                     android:layout_height="30dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_space"
-                    app:tint="#00D2CB" />
+                    app:tint="@color/colorPrimary" />
 
                 <TextView
 
@@ -240,7 +240,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="@string/n3"
                     android:textColor="@color/textColor"
                     android:textSize="12dp" />
@@ -251,7 +251,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
 
                     android:textColor="@color/textColor"
                     android:textSize="12dp" />
@@ -262,7 +262,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:text="@string/metterSeqour"
                     android:textColor="@color/textColor"
                     android:textSize="12dp" />
@@ -286,7 +286,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:textColor="@color/textColor"
 
                     android:textSize="13dp"
@@ -346,7 +346,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                    android:fontFamily="@font/din_light"
                     android:maxLength="10"
 
                     android:textColor="@color/textColor2"

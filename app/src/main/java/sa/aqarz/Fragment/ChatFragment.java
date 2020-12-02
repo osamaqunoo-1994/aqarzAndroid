@@ -72,11 +72,16 @@ public class ChatFragment extends Fragment {
     IResult mResultCallback;
     LinearLayout nodata;
 
+    TextView message;
+    TextView notfication;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_chat, container, false);
         chate = v.findViewById(R.id.chate);
         nodata = v.findViewById(R.id.nodata);
+        message = v.findViewById(R.id.message);
+        notfication = v.findViewById(R.id.notfication);
 
 
         LinearLayoutManager layoutManager1
@@ -90,11 +95,36 @@ public class ChatFragment extends Fragment {
 
 
     public void init(View v) {
-
         WebService.loading(getActivity(), true);
 
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                message.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                message.setTextColor(getResources().getColor(R.color.white));
+
+
+                notfication.setBackground(getResources().getDrawable(R.drawable.mash));
+
+                notfication.setTextColor(getResources().getColor(R.color.black));
+
+
+                mVolleyService.getDataVolley("my_msg", WebService.my_msg);
+            }
+        });
+        notfication.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                notfication.setBackground(getResources().getDrawable(R.drawable.button_login));
+                notfication.setTextColor(getResources().getColor(R.color.white));
+                message.setBackground(getResources().getDrawable(R.drawable.mash));
+                message.setTextColor(getResources().getColor(R.color.black));
+            }
+        });
 
 
         mVolleyService.getDataVolley("my_msg", WebService.my_msg);
@@ -238,6 +268,7 @@ public class ChatFragment extends Fragment {
 
 
     }
+
     public void gatemm_face() {
 
 

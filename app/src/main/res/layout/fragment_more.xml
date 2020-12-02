@@ -86,7 +86,7 @@
                                     android:id="@+id/user_name"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/frutiger_lt_arabic_roman"
+                                    android:fontFamily="@font/din_light"
                                     android:gravity="start"
 
                                     android:paddingLeft="15dp"
@@ -128,7 +128,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/frutiger_lt_arabic_light"
+                                    android:fontFamily="@font/din_light"
                                     android:text="@string/Personal_Details"
                                     android:textColor="#4A4A4A"
                                     android:textSize="@dimen/_10sdp" />
@@ -212,7 +212,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/frutiger_lt_arabic_light"
+                                android:fontFamily="@font/din_light"
                                 android:text="@string/Favorites"
                                 android:textColor="#4A4A4A"
                                 android:textSize="@dimen/_10sdp" />
@@ -261,7 +261,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:fontFamily="@font/muli_bold"
+                    android:fontFamily="@font/din_bold"
                     android:gravity="center"
                     android:text="@string/Please_Login_or_Register"
                     android:textColor="#0D1904"
@@ -276,7 +276,7 @@
                     android:layout_marginRight="15dp"
                     android:background="@drawable/button_login"
 
-                    android:fontFamily="@font/muli_bold"
+                    android:fontFamily="@font/din_bold"
                     android:text="@string/login"
                     android:textColor="@color/white"
                     android:textSize="15dp">
@@ -292,7 +292,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/button_login"
-                    android:fontFamily="@font/muli_bold"
+                    android:fontFamily="@font/din_bold"
                     android:text="@string/sign_up"
                     android:textColor="@color/white"
                     android:textSize="15dp">
@@ -355,7 +355,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_light"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/Language"
                             android:textColor="#4A4A4A"
                             android:textSize="@dimen/_10sdp" />
@@ -415,7 +415,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_light"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/Termsandcondition"
                             android:textColor="#4A4A4A"
                             android:textSize="@dimen/_10sdp" />
@@ -477,7 +477,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_light"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/changePassword"
                             android:textColor="#4A4A4A"
                             android:textSize="@dimen/_10sdp" />
@@ -537,7 +537,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_light"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/Call_Us"
                             android:textColor="#4A4A4A"
                             android:textSize="@dimen/_10sdp" />
@@ -584,7 +584,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/frutiger_lt_arabic_light"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/Privacy"
                             android:textColor="#4A4A4A"
                             android:textSize="@dimen/_11sdp" />
@@ -629,7 +629,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                            android:fontFamily="@font/frutiger_lt_arabic_roman"
+                            android:fontFamily="@font/din_light"
                             android:text="@string/Logout"
                             android:textColor="#4A4A4A"
                             android:textSize="@dimen/_10sdp" />
@@ -647,7 +647,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:fontFamily="@font/frutiger_lt_arabic_roman"
+                        android:fontFamily="@font/din_light"
                         android:gravity="center"
                         android:text="إصدار التطبيق V 2.0"
                         android:textSize="10dp" />
@@ -701,7 +701,7 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="45dp"
-                            android:fontFamily="@font/muli_bold"
+                            android:fontFamily="@font/din_bold"
 
                             android:gravity="center"
                             android:text="@string/Call_Us"
@@ -717,7 +717,7 @@
                         android:layout_height="45dp"
                         android:layout_weight="1"
                         android:background="@drawable/button_login"
-                        android:fontFamily="@font/muli_bold"
+                        android:fontFamily="@font/din_bold"
                         android:text="@string/Email_Us"
                         android:textColor="@color/white"
                         android:visibility="gone" />
