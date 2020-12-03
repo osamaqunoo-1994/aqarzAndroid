@@ -188,7 +188,7 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
                             a4.getText().toString() + "";
 
 
-                    RequestParams sendObj = new RequestParams();
+                    JSONObject sendObj = new JSONObject();
 
                     try {
 
@@ -203,7 +203,7 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
                     VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 
                     System.out.println(sendObj.toString());
-                    mVolleyService.postDataasync_with_file("send_offer_fund_Request", WebService.send_offer_fund_Request, sendObj);
+                    mVolleyService.postDataVolley("send_offer_fund_Request", WebService.send_offer_fund_Request, sendObj);
 
 
                 }
