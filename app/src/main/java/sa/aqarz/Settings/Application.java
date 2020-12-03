@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Locale;
 
 import sa.aqarz.Modules.CityModules;
+import sa.aqarz.Modules.MyOfferModule;
 
 
 public class Application extends android.app.Application {
@@ -25,6 +26,8 @@ public class Application extends android.app.Application {
     public static List<CityModules> AllCity = new ArrayList<CityModules>();
 
     static String statis_id = "";
+
+    public  static MyOfferModule myOfferModule;
 
     @Override
     public void onCreate() {

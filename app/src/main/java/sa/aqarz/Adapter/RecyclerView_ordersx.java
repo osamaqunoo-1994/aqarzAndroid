@@ -3,6 +3,7 @@ package sa.aqarz.Adapter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 import android.util.TypedValue;
@@ -29,6 +30,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Activity.MainActivity;
+import sa.aqarz.Activity.RealState.AllOfferOrderActivity;
+import sa.aqarz.Activity.RealState.MyOfferOrderActivity;
+import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_OfferEstate;
 import sa.aqarz.Modules.OrdersModules;
@@ -84,6 +89,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
         TextView new_offer;
         TextView Watting;
         TextView date;
+        TextView number_id;
         ImageView image_icon;
         ImageView add_favorite;
 
@@ -96,6 +102,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
             name_estate = view.findViewById(R.id.name_estate);
             address = view.findViewById(R.id.address);
             space = view.findViewById(R.id.space);
+            number_id = view.findViewById(R.id.number_id);
             view_type = view.findViewById(R.id.view_type);
             Watting = view.findViewById(R.id.Watting);
             new_offer = view.findViewById(R.id.new_offer);
@@ -136,11 +143,12 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 //
 
 
-        holder.price.setText(alldata.get(position).getEstatePriceRange());
-        holder.view_type.setText(alldata.get(position).getDirEstate());
-        holder.space.setText(alldata.get(position).getStreetViewRange());
-        holder.name_estate.setText(alldata.get(position).getEstateTypeName());
-        holder.date.setText(alldata.get(position).getCreated_at());
+        holder.number_id.setText("#"+alldata.get(position).getId()+"");
+        holder.price.setText(alldata.get(position).getEstatePriceRange()+"");
+        holder.view_type.setText(alldata.get(position).getDirEstate()+"");
+        holder.space.setText(alldata.get(position).getStreetViewRange()+"");
+        holder.name_estate.setText(alldata.get(position).getEstateTypeName()+"");
+        holder.date.setText(alldata.get(position).getCreated_at()+"");
         holder.address.setText(alldata.get(position).getCityName() + " , " + alldata.get(position).getNeighborhoodName());
 
         Picasso.get().load(alldata.get(position).getEstateTypeIcon()).into(holder.image_icon);
@@ -236,8 +244,14 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 
                     if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
 
-                        bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getUuid() + "");
-                        bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+//                        bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getUuid() + "");
+//                        bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+                        Intent intent = new Intent(context, AllOfferOrderActivity.class);
+                        intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
+                        context.startActivity(intent);
+//                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
 
                     } else {
                         show_dialog();
@@ -261,8 +275,13 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 
                     if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
 
-                        bottomSheetDialogFragment_offerEstate = new BottomSheetDialogFragment_OfferEstate(alldata.get(position).getUuid() + "");
-                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+//                        bottomSheetDialogFragment_offerEstate = new BottomSheetDialogFragment_OfferEstate(alldata.get(position).getUuid() + "");
+//                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+                        Intent intent = new Intent(context, MyOfferOrderActivity.class);
+                        intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
+                        context.startActivity(intent);
+//                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
                     } else {
                         show_dialog();
@@ -357,7 +376,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
     public static void send_done() {
 
 
-        bottomSheetDialogFragment_myEstate.dismiss();
+//        bottomSheetDialogFragment_myEstate.dismiss();
 
         bottomSheerDialog = new BottomSheetDialog(context);
         LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

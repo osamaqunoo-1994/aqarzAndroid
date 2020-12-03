@@ -86,7 +86,7 @@
                                     android:id="@+id/user_name"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/din_light"
+                                    android:fontFamily="@font/din_regular"
                                     android:gravity="start"
 
                                     android:paddingLeft="15dp"
@@ -128,9 +128,9 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/din_light"
+                                    android:fontFamily="@font/din_regular"
                                     android:text="@string/Personal_Details"
-                                    android:textColor="#4A4A4A"
+                                    android:textColor="@color/black"
                                     android:textSize="@dimen/_10sdp" />
 
                                 <LinearLayout
@@ -212,9 +212,9 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/din_light"
+                                android:fontFamily="@font/din_regular"
                                 android:text="@string/Favorites"
-                                android:textColor="#4A4A4A"
+                                android:textColor="@color/black"
                                 android:textSize="@dimen/_10sdp" />
 
                             <LinearLayout
@@ -267,7 +267,7 @@
                     android:textColor="#0D1904"
                     android:textSize="@dimen/_13sdp" />
 
-                <Button
+                <TextView
                     android:id="@+id/loginButton"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
@@ -275,15 +275,17 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="15dp"
                     android:background="@drawable/button_login"
-
                     android:fontFamily="@font/din_bold"
+                    android:gravity="center"
+
+                    android:paddingBottom="6dp"
                     android:text="@string/login"
                     android:textColor="@color/white"
                     android:textSize="15dp">
 
-                </Button>
+                </TextView>
 
-                <Button
+                <TextView
                     android:id="@+id/signup"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
@@ -293,11 +295,13 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/button_login"
                     android:fontFamily="@font/din_bold"
+                    android:gravity="center"
+                    android:paddingBottom="6dp"
                     android:text="@string/sign_up"
                     android:textColor="@color/white"
                     android:textSize="15dp">
 
-                </Button>
+                </TextView>
 
 
             </LinearLayout>
@@ -355,9 +359,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/din_light"
+                            android:fontFamily="@font/din_regular"
                             android:text="@string/Language"
-                            android:textColor="#4A4A4A"
+
+                            android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp" />
 
                         <LinearLayout
@@ -373,6 +378,8 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:text=""
+                            android:layout_marginBottom="6dp"
+
                             android:textColor="@color/blue"
                             android:textSize="@dimen/_11sdp" />
 
@@ -415,9 +422,68 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/din_light"
+                            android:fontFamily="@font/din_regular"
                             android:text="@string/Termsandcondition"
-                            android:textColor="#4A4A4A"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text=""
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/_11sdp" />
+
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_left_arrow" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/all_aqarez_man"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/back_more_de"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/circle_fill"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_path_8829"
+                            app:tint="@color/white" />
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+
+                            android:layout_height="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/din_regular"
+                            android:text="@string/MOreAqarezMan"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp" />
 
                         <LinearLayout
@@ -477,9 +543,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/din_light"
+                            android:fontFamily="@font/din_regular"
                             android:text="@string/changePassword"
-                            android:textColor="#4A4A4A"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp" />
 
                         <LinearLayout
@@ -537,9 +603,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/din_light"
+                            android:fontFamily="@font/din_regular"
                             android:text="@string/Call_Us"
-                            android:textColor="#4A4A4A"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp" />
 
                         <LinearLayout
@@ -584,9 +650,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/din_light"
+                            android:fontFamily="@font/din_regular"
                             android:text="@string/Privacy"
-                            android:textColor="#4A4A4A"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/_11sdp" />
 
                         <LinearLayout
@@ -629,9 +695,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                            android:fontFamily="@font/din_light"
+                            android:fontFamily="@font/din_regular"
                             android:text="@string/Logout"
-                            android:textColor="#4A4A4A"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp" />
 
                         <LinearLayout
@@ -647,8 +713,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:fontFamily="@font/din_light"
+                        android:fontFamily="@font/din_regular"
                         android:gravity="center"
+                        android:textColor="@color/black"
+
                         android:text="إصدار التطبيق V 2.0"
                         android:textSize="10dp" />
 

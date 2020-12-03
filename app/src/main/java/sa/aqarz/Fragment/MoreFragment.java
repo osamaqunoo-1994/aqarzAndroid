@@ -54,6 +54,7 @@ import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.PrivecyActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Activity.TermsActivity;
+import sa.aqarz.Activity.profile.AllclintActivity;
 import sa.aqarz.Activity.profile.MyProfileActivity;
 import sa.aqarz.Adapter.RecyclerView_All_Opration_in_map;
 import sa.aqarz.Adapter.RecyclerView_All_Type_in_map;
@@ -72,8 +73,8 @@ public class MoreFragment extends Fragment {
 
     LinearLayout info_;
     LinearLayout changePassword;
-    Button loginButton;
-    Button signup;
+    TextView loginButton;
+    TextView signup;
 
 
     LinearLayout with_login;
@@ -82,6 +83,7 @@ public class MoreFragment extends Fragment {
     LinearLayout langauge;
     LinearLayout privecy;
     LinearLayout terms;
+    LinearLayout all_aqarez_man;
 
     TextView user_name;
     TextView language_text;
@@ -129,6 +131,7 @@ public class MoreFragment extends Fragment {
         not_compleate = v.findViewById(R.id.not_compleate);
         Favorites = v.findViewById(R.id.Favorites);
         qr_code = v.findViewById(R.id.qr_code);
+        all_aqarez_man = v.findViewById(R.id.all_aqarez_man);
 
 
         info_.setOnClickListener(new View.OnClickListener() {
@@ -195,6 +198,16 @@ public class MoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), PrivecyActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+            }
+        });
+        all_aqarez_man.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AllclintActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);

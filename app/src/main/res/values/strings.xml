@@ -458,6 +458,24 @@ Your request and reply in the fastest time</string>
 
     <string name="TimeRemmember">Time Remmember</string>
     <string name="MyOFFERFOR">عروضي على الطلب رقم </string>
+    <string name="MOreAqarezMan">العقاريين الأكثر نشاطاً </string>
+    <string name="contune">متابعة </string>
+    <string name="OrderDetialss">بيانات الطلب </string>
+    <string name="OrderstatusDetialss">حالة الطلب </string>
+    <string name="OrderNumber">رقم الطلب</string>
+    <string name="UserNameOrder">اسم المستفيد</string>
+    <string name="cancleorder">الغاء الطلب</string>
+    <string name="ord_r">طلب معاينة العقار</string>
+    <string name="ord_rm">الطلب بإنتظار موافقة العميل</string>
+    <string name="ord_rms">تم  إغلاق الطلب</string>
+    <string name="addCodeConfirm">أدخل كود التحقق</string>
+    <string name="allclintsshate">العقاريين الأكثر نشاطاً</string>
+    <string name="OfferMoqadam">عرض مقدم</string>
+    <string name="orderMoqadam">طلب منفذ</string>
+    <string name="rejecxted">ملغي</string>
+    <string name="anmdrj">اعتماد</string>
+    <string name="tit">لقد قمنا بإرسال كود التحقق للمستفيد أحمد
+قم بالتواصل معه ، ثم أدخل كود التحقق</string>
 
 
     <string name="add_clints">Add Clintes</string>
