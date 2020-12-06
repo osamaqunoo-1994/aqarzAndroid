@@ -321,6 +321,37 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 
             }
         });
+        holder.accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (Settings.CheckIsCompleate()) {
+
+
+                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+
+//                        bottomSheetDialogFragment_offerEstate = new BottomSheetDialogFragment_OfferEstate(alldata.get(position).getUuid() + "");
+//                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+                        Intent intent = new Intent(context, MyOfferOrderActivity.class);
+                        intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
+                        intent.putExtra("id", alldata.get(position).getId() + "");
+                        context.startActivity(intent);
+//                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+                    } else {
+                        show_dialog();
+//
+
+                    }
+                } else {
+                    Settings.Dialog_not_compleate((Activity) context);
+
+                }
+
+
+            }
+        });
 
         if (alldata.get(position).getIn_fav().equals("1")) {
             holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));

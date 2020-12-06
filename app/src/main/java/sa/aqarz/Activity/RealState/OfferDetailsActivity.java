@@ -135,14 +135,14 @@ public class OfferDetailsActivity extends AppCompatActivity {
             status_2.setVisibility(View.GONE);
             status_3.setVisibility(View.GONE);
             status_4.setVisibility(View.GONE);
-//            cancleorder.setBackground(getDrawable(R.drawable.mash));
-//            cancleorder.setTextColor(getColor(R.color.textColor2));
-//            cancleorder.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                }
-//            });
+            call.setBackground(getDrawable(R.drawable.mash));
+            call.setTextColor(getColor(R.color.textColor2));
+            call.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         } else if (myOfferModule.getStatus().toString().equals("active")) {
             status_1.setVisibility(View.GONE);
             status_2.setVisibility(View.VISIBLE);
@@ -167,18 +167,18 @@ public class OfferDetailsActivity extends AppCompatActivity {
             status_4.setVisibility(View.GONE);
         } else if (myOfferModule.getStatus().toString().equals("accepted_customer")) {
             status_1.setVisibility(View.GONE);
-            status_2.setVisibility(View.VISIBLE);
-            status_3.setVisibility(View.GONE);
-//            cancleorder.setTextColor(getColor(R.color.textColor2));
-//
-//            cancleorder.setBackground(getDrawable(R.drawable.mash));
-//            cancleorder.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                }
-//            });
-            status_4.setVisibility(View.VISIBLE);
+            status_2.setVisibility(View.GONE);
+            status_3.setVisibility(View.VISIBLE);
+            cancleorder.setTextColor(getColor(R.color.textColor2));
+
+            cancleorder.setBackground(getDrawable(R.drawable.mash));
+            cancleorder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            status_4.setVisibility(View.GONE);
         }
 
     }

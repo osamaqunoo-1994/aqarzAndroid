@@ -166,7 +166,7 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
             holder.contnue.setVisibility(View.GONE);
             System.out.println("dkflfjlkfdlfkldfkldfkdlfk");
         } else if (alldata.get(position).getStatus().toString().equals("accepted_customer")) {
-            holder.contnue.setVisibility(View.GONE);
+            holder.contnue.setVisibility(View.VISIBLE);
             holder.rejecteds.setVisibility(View.GONE);
 
         }

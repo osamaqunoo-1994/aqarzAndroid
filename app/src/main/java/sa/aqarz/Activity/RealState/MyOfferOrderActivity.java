@@ -219,6 +219,9 @@ public class MyOfferOrderActivity extends AppCompatActivity {
                                     if (homeModule.getStatus().equals("active")) {
                                         addAqares.setVisibility(View.GONE);
                                     }
+                                    if (homeModule.getStatus().equals("accepted_customer")) {
+                                        addAqares.setVisibility(View.GONE);
+                                    }
                                 }
                                 homeModules.add(homeModule);
                             }
