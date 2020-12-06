@@ -53,6 +53,7 @@ public class AllOfferOrderActivity extends AppCompatActivity {
 
     static Activity activity;
     ImageView back;
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,8 @@ public class AllOfferOrderActivity extends AppCompatActivity {
 
             String getUuid = getIntent().getStringExtra("getUuid");
             id_offer = getUuid;
+            id = getIntent().getStringExtra("id");
+
         } catch (Exception e) {
 
         }
@@ -166,6 +169,7 @@ public class AllOfferOrderActivity extends AppCompatActivity {
 
                             Intent intent = new Intent(AllOfferOrderActivity.this, MyOfferOrderActivity.class);
                             intent.putExtra("getUuid", id_offer + "");
+                            intent.putExtra("id", id + "");
                             startActivity(intent);
                             finish();
 

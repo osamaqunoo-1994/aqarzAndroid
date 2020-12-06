@@ -90,7 +90,7 @@
 
 
                         android:fontFamily="@font/din_bold"
-                        android:text="sgnkdfg"
+                        android:text=""
 
                         android:textColor="@color/colorPrimary"
                         android:textSize="14dp" />
@@ -383,6 +383,40 @@
                     android:paddingBottom="6dp"
 
                     android:text="@string/Offer_btn"
+                    android:textColor="@color/white"
+                    android:textSize="12dp" />
+                <TextView
+                    android:id="@+id/reject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/button_cancle"
+                    android:fontFamily="@font/din_bold"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:visibility="gone"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="6dp"
+
+                    android:text="@string/rejecxted"
+                    android:textColor="@color/white"
+                    android:textSize="12dp" />
+                <TextView
+                    android:id="@+id/accept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/button_accept"
+                    android:fontFamily="@font/din_bold"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:visibility="gone"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="6dp"
+
+                    android:text="@string/Accepted_status"
                     android:textColor="@color/white"
                     android:textSize="12dp" />
 

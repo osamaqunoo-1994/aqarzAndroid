@@ -51,6 +51,7 @@ public class MyOfferOrderActivity extends AppCompatActivity {
     TextView uuid;
     String is_selected = "";
 
+
     List<MyOfferModule> homeModules = new ArrayList<>();
     private BottomSheetDialogFragment_MyEstate.ItemClickListener mItemClickListener;
 
@@ -75,7 +76,10 @@ public class MyOfferOrderActivity extends AppCompatActivity {
 
             String getUuid = getIntent().getStringExtra("getUuid");
             id_offer = getUuid;
-//            uuid.setText(getUuid + "");
+
+            String id = getIntent().getStringExtra("id");
+
+            uuid.setText(id + "");
         } catch (Exception e) {
 
         }
@@ -208,7 +212,14 @@ public class MyOfferOrderActivity extends AppCompatActivity {
 
                                 Gson gson = new Gson();
 
+
                                 MyOfferModule homeModule = gson.fromJson(mJson, MyOfferModule.class);
+
+                                if (homeModule.getStatus() != null) {
+                                    if (homeModule.getStatus().equals("active")) {
+                                        addAqares.setVisibility(View.GONE);
+                                    }
+                                }
                                 homeModules.add(homeModule);
                             }
 
@@ -319,4 +330,12 @@ public class MyOfferOrderActivity extends AppCompatActivity {
 
         super.onResume();
     }
+
+    public static void finishs() {
+
+
+        activity.finish();
+
+    }
+
 }

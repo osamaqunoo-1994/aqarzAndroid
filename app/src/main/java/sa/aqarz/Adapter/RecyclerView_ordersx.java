@@ -88,7 +88,9 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
         TextView name_estate;
         TextView new_offer;
         TextView Watting;
+        TextView reject;
         TextView date;
+        TextView accept;
         TextView number_id;
         ImageView image_icon;
         ImageView add_favorite;
@@ -109,6 +111,8 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
             image_icon = view.findViewById(R.id.image_icon);
             date = view.findViewById(R.id.date);
             add_favorite = view.findViewById(R.id.add_favorite);
+            reject = view.findViewById(R.id.reject);
+            accept = view.findViewById(R.id.accept);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
@@ -143,23 +147,42 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 //
 
 
-        holder.number_id.setText("#"+alldata.get(position).getId()+"");
-        holder.price.setText(alldata.get(position).getEstatePriceRange()+"");
-        holder.view_type.setText(alldata.get(position).getDirEstate()+"");
-        holder.space.setText(alldata.get(position).getStreetViewRange()+"");
-        holder.name_estate.setText(alldata.get(position).getEstateTypeName()+"");
-        holder.date.setText(alldata.get(position).getCreated_at()+"");
+        holder.number_id.setText("#" + alldata.get(position).getId() + "");
+        holder.price.setText(alldata.get(position).getEstatePriceRange() + "");
+        holder.view_type.setText(alldata.get(position).getDirEstate() + "");
+        holder.space.setText(alldata.get(position).getStreetViewRange() + "");
+        holder.name_estate.setText(alldata.get(position).getEstateTypeName() + "");
+        holder.date.setText(alldata.get(position).getCreated_at() + "");
         holder.address.setText(alldata.get(position).getCityName() + " , " + alldata.get(position).getNeighborhoodName());
 
         Picasso.get().load(alldata.get(position).getEstateTypeIcon()).into(holder.image_icon);
 
-
         if (alldata.get(position).getHas_my_offer().toString().equals("0")) {
             holder.new_offer.setVisibility(View.VISIBLE);
             holder.Watting.setVisibility(View.GONE);
+            holder.reject.setVisibility(View.GONE);
+            holder.accept.setVisibility(View.GONE);
+
         } else {
             holder.new_offer.setVisibility(View.GONE);
             holder.Watting.setVisibility(View.VISIBLE);
+            holder.reject.setVisibility(View.GONE);
+            holder.accept.setVisibility(View.GONE);
+            if (alldata.get(position).getStatus() == null) {
+
+            } else if (alldata.get(position).getStatus().equals("active")) {
+//
+            } else if (alldata.get(position).getStatus().equals("rejected_customer ")) {
+                holder.new_offer.setVisibility(View.GONE);
+                holder.Watting.setVisibility(View.GONE);
+                holder.reject.setVisibility(View.VISIBLE);
+                holder.accept.setVisibility(View.GONE);
+            } else if (alldata.get(position).getStatus().equals("accepted_customer")) {
+                holder.new_offer.setVisibility(View.GONE);
+                holder.Watting.setVisibility(View.GONE);
+                holder.reject.setVisibility(View.GONE);
+                holder.accept.setVisibility(View.VISIBLE);
+            }
         }
 
 
@@ -228,10 +251,10 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 //                RequestOrderActivity.set_fragment(position);
 
 
-                if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(position);
-                }
-//
+//                if (mItemClickListener != null) {
+//                    mItemClickListener.onItemClick(position);
+//                }
+////
 
             }
         });
@@ -249,6 +272,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 
                         Intent intent = new Intent(context, AllOfferOrderActivity.class);
                         intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
+                        intent.putExtra("id", alldata.get(position).getId() + "");
                         context.startActivity(intent);
 //                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
@@ -280,6 +304,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 
                         Intent intent = new Intent(context, MyOfferOrderActivity.class);
                         intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
+                        intent.putExtra("id", alldata.get(position).getId() + "");
                         context.startActivity(intent);
 //                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 

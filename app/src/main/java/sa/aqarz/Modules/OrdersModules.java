@@ -69,6 +69,9 @@ public class OrdersModules {
     @SerializedName("in_fav")
     @Expose
     private String in_fav;
+    @SerializedName("status")
+    @Expose
+    private String status;
     @SerializedName("neighborhood_name")
     @Expose
     private String neighborhoodName;
@@ -87,6 +90,10 @@ public class OrdersModules {
 
     public String getCreated_at() {
         return created_at;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public void setUuid(String uuid) {

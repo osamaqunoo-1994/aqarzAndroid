@@ -42,8 +42,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import sa.aqarz.Activity.Auth.ConfirmationActivity;
 import sa.aqarz.Activity.Auth.NewConfirmationActivity;
 import sa.aqarz.Activity.RealState.AllOfferOrderActivity;
+import sa.aqarz.Activity.RealState.MyOfferOrderActivity;
+import sa.aqarz.Activity.RealState.OfferDetailsActivity;
 import sa.aqarz.Adapter.RecyclerView_MyState;
 import sa.aqarz.Adapter.RecyclerView_ordersx;
+import sa.aqarz.Fragment.OrdersFragment;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
@@ -57,6 +60,7 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
 
     EditText a1, a2, a3, a4;
     String uuid_r = "";
+    String estate_ixd = "";
     Button confirmation;
 
     @Override
@@ -194,6 +198,7 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
 
                         sendObj.put("uuid", uuid_r);//form operation list api in setting
                         sendObj.put("code", code2);//form estate type list api in setting
+                        sendObj.put("estate_id", estate_ixd);//form estate type list api in setting
                         sendObj.put("status", "accepted_customer");//form estate type list api in setting
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -222,8 +227,9 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
 //    categories_bottomSheetDialogFragment = new Categories_BottomSheetDialogFragment("");
 //                categories_bottomSheetDialogFragment.show(getSupportFragmentManager(), "");
 
-    public BottomSheetDialogFragment_ConfirmationCode(String uuid) {
+    public BottomSheetDialogFragment_ConfirmationCode(String uuid, String estate_id) {
         uuid_r = uuid;
+        estate_ixd = estate_id;
 
     }
 
@@ -273,6 +279,14 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
                             WebService.Make_Toast_color(getActivity(), message, "success");
 
 
+                            try {
+                                OrdersFragment.refrech();
+                                MyOfferOrderActivity.finishs();
+                                OfferDetailsActivity.finishs();
+                            } catch (Exception e) {
+
+                            }
+
                         }
                     } else {
                         String message = response.getString("message");
@@ -298,7 +312,6 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
 
                 try {
                     WebService.loading(getActivity(), false);
-
 
 
                     NetworkResponse response = error.networkResponse;

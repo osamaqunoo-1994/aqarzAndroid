@@ -2,6 +2,7 @@ package sa.aqarz.Activity.RealState;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -47,16 +48,18 @@ public class OfferDetailsActivity extends AppCompatActivity {
     LinearLayout status_4;
     IResult mResultCallback;
 
-    BottomSheetDialogFragment_ConfirmationCode bottomSheetDialogFragment_confirmationCode;
+    static BottomSheetDialogFragment_ConfirmationCode bottomSheetDialogFragment_confirmationCode;
     Button con;
     Button call;
     Button cancleorder;
+    public static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer_details);
         back = findViewById(R.id.back);
+        activity = this;
         number_order = findViewById(R.id.number_order);
         name = findViewById(R.id.name);
         status_1 = findViewById(R.id.status_1);
@@ -118,67 +121,63 @@ public class OfferDetailsActivity extends AppCompatActivity {
         con.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bottomSheetDialogFragment_confirmationCode = new BottomSheetDialogFragment_ConfirmationCode(myOfferModule.getUuid() + "");
+                bottomSheetDialogFragment_confirmationCode = new BottomSheetDialogFragment_ConfirmationCode(myOfferModule.getUuid() + "", myOfferModule.getEstateId() + "");
                 bottomSheetDialogFragment_confirmationCode.show(getSupportFragmentManager(), "");
             }
         });
 
         name.setText(myOfferModule.getBeneficiaryName() + "");
         number_order.setText(myOfferModule.getId() + "");
-        System.out.println("dsdfsdsd"+myOfferModule.getStatus());
+        System.out.println("dsdfsdsd" + myOfferModule.getStatus());
 
         if (myOfferModule.getStatus() == null) {
             status_1.setVisibility(View.VISIBLE);
             status_2.setVisibility(View.GONE);
             status_3.setVisibility(View.GONE);
-            status_4.setVisibility(View.VISIBLE);
-            cancleorder.setBackground(getDrawable(R.drawable.mash));
-            cancleorder.setTextColor(getColor(R.color.textColor2));
-            cancleorder.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
+            status_4.setVisibility(View.GONE);
+//            cancleorder.setBackground(getDrawable(R.drawable.mash));
+//            cancleorder.setTextColor(getColor(R.color.textColor2));
+//            cancleorder.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            });
         } else if (myOfferModule.getStatus().toString().equals("active")) {
-            status_1.setVisibility(View.VISIBLE);
-            status_2.setVisibility(View.GONE);
-            status_3.setVisibility(View.GONE);
-            cancleorder.setBackground(getDrawable(R.drawable.button_cancle));
-            cancleorder.setTextColor(getColor(R.color.white));
-
-            status_4.setVisibility(View.GONE);
-        }else if (myOfferModule.getStatus().equals("rejected_customer ")) {
-
-            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$4");
-
-            cancleorder.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-            cancleorder.setTextColor(getColor(R.color.textColor2));
-
-            cancleorder.setBackground(getDrawable(R.drawable.mash));
-            status_1.setVisibility(View.GONE);
-            status_2.setVisibility(View.GONE);
-            status_3.setVisibility(View.GONE);
-            status_4.setVisibility(View.GONE);
-        }
-        else if (myOfferModule.getStatus().toString().equals("accepted_customer")) {
             status_1.setVisibility(View.GONE);
             status_2.setVisibility(View.VISIBLE);
             status_3.setVisibility(View.GONE);
-            cancleorder.setTextColor(getColor(R.color.textColor2));
+            status_4.setVisibility(View.VISIBLE);
 
-            cancleorder.setBackground(getDrawable(R.drawable.mash));
-            cancleorder.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+//            cancleorder.setBackground(getDrawable(R.drawable.button_cancle));
+//            cancleorder.setTextColor(getColor(R.color.white));
 
-                }
-            });
+
+        } else if (myOfferModule.getStatus().equals("rejected_customer ")) {
+
+            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$4");
+
+
+//            cancleorder.setTextColor(getColor(R.color.textColor2));
+
+//            cancleorder.setBackground(getDrawable(R.drawable.mash));
+            status_1.setVisibility(View.GONE);
+            status_2.setVisibility(View.GONE);
+            status_3.setVisibility(View.GONE);
+            status_4.setVisibility(View.GONE);
+        } else if (myOfferModule.getStatus().toString().equals("accepted_customer")) {
+            status_1.setVisibility(View.GONE);
+            status_2.setVisibility(View.VISIBLE);
+            status_3.setVisibility(View.GONE);
+//            cancleorder.setTextColor(getColor(R.color.textColor2));
+//
+//            cancleorder.setBackground(getDrawable(R.drawable.mash));
+//            cancleorder.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            });
             status_4.setVisibility(View.VISIBLE);
         }
 
@@ -269,6 +268,14 @@ public class OfferDetailsActivity extends AppCompatActivity {
             }
         };
 
+
+    }
+
+
+    public static void finishs() {
+
+        bottomSheetDialogFragment_confirmationCode.dismiss();
+        activity.finish();
 
     }
 

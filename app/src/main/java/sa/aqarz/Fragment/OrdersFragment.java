@@ -4,6 +4,7 @@ package sa.aqarz.Fragment;
  */
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -92,7 +93,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class OrdersFragment extends Fragment {
-    IResult mResultCallback;
+    static IResult mResultCallback;
 
     HorizontalScrollView section_horizantal;
     RecyclerView orders_rec;
@@ -127,7 +128,7 @@ public class OrdersFragment extends Fragment {
     TextView For_sale, rent;
     LinearLayout nodata_vis;
 
-    String opration_select = "";
+    static String opration_select = "";
     String Type_work_select = "1";
     String type_requst = "";
 
@@ -137,9 +138,9 @@ public class OrdersFragment extends Fragment {
     LinearLayout type_requst_xml;
     TextView order;
     TextView offer;
-    String id_city_selected = "";
+    static String id_city_selected = "";
 
-
+static Activity activity;
     String type_order = "1";
     LinearLayout order_type;
 
@@ -148,7 +149,7 @@ public class OrdersFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_orders, container, false);
-
+        activity=getActivity();
         init(v);
         return v;
     }
@@ -1194,5 +1195,19 @@ public class OrdersFragment extends Fragment {
 
     public static void close_bottom() {
         bottomSheetDialogFragment_selectCity_fillter.dismiss();
+    }
+
+    public static void refrech() {
+        String id_city_ = "";
+
+        if (!id_city_selected.equals("")) {
+            id_city_ = "&city_id=" + id_city_selected;
+        } else {
+            id_city_ = "";
+        }
+        VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
+
+        mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?estate_type_id=" + opration_select + id_city_);
+
     }
 }
