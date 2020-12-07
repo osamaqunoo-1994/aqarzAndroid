@@ -296,31 +296,35 @@
             android:orientation="horizontal">
 
 
-            <Button
+            <TextView
                 android:id="@+id/accept"
 
                 android:layout_width="wrap_content"
                 android:layout_height="31dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/button_login"
+                android:gravity="center"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                android:paddingBottom="5dp"
                 android:text="@string/agree_pledge"
                 android:textColor="@color/white"
-                android:textSize="11dp" />
+                android:textSize="13dp" />
 
-            <Button
+            <TextView
                 android:id="@+id/no"
                 android:layout_width="wrap_content"
                 android:layout_height="31dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/mash"
+                android:gravity="center"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                android:paddingBottom="5dp"
 
                 android:text="@string/Not_interested"
                 android:textColor="@color/textColor2"
-                android:textSize="11dp" />
+                android:textSize="13dp" />
 
         </LinearLayout>
 
@@ -328,7 +332,6 @@
             android:layout_width="170dp"
             android:layout_height="38dp"
             android:layout_marginTop="10dp"
-
             android:layout_marginBottom="20dp"
             android:src="@drawable/terms_e" />
 

@@ -35,6 +35,9 @@
             android:name=".Activity.RealState.AllOfferOrderActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".Activity.RealState.AllOfferOrderMarket_demandsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Activity.profile.AddServiceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

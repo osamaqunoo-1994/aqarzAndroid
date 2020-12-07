@@ -3,6 +3,7 @@ package sa.aqarz.Adapter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +25,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Activity.RealState.AllOfferOrderActivity;
+import sa.aqarz.Activity.RealState.AllOfferOrderMarket_demandsActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.R;
@@ -215,9 +218,14 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
         holder.new_offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getId() + "");
-
-                bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+//                bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getId() + "");
+//
+//                bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+                Intent intent = new Intent(context, AllOfferOrderMarket_demandsActivity.class);
+                intent.putExtra("getUuid", alldata.get(position).getId() + "");
+                intent.putExtra("id", alldata.get(position).getId() + "");
+                context.startActivity(intent);
+//                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
 
             }

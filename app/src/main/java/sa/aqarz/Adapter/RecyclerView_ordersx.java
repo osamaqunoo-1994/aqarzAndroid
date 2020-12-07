@@ -541,8 +541,8 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
         View parentView = li.inflate(R.layout.upgrade_message2, null);
 
 
-        Button accept = parentView.findViewById(R.id.accept);
-        Button no = parentView.findViewById(R.id.no);
+        TextView accept = parentView.findViewById(R.id.accept);
+        TextView no = parentView.findViewById(R.id.no);
         ImageView close = parentView.findViewById(R.id.close);
         no.setOnClickListener(new View.OnClickListener() {
             @Override
