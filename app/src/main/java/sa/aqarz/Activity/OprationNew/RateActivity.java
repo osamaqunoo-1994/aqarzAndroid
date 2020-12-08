@@ -364,7 +364,7 @@ public class RateActivity extends AppCompatActivity {
                                         sendObj.put("note", description.getText().toString());//
                                         sendObj.put("lat", lat);//
                                         sendObj.put("lan", lng);//
-                                        sendObj.put("Address", Address);//
+                                        sendObj.put("address", Address);//
                                         sendObj.put("rate_request_types", Type_work_select);//
 
 
@@ -399,7 +399,7 @@ public class RateActivity extends AppCompatActivity {
                         sendObj.put("note", description.getText().toString());//
                         sendObj.put("lat", lat);//
                         sendObj.put("lan", lng);//
-                        sendObj.put("Address", Address);//
+                        sendObj.put("address", Address);//
                         sendObj.put("rate_request_types", Type_work_select);//
 
 

@@ -44,6 +44,7 @@ import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import sa.aqarz.Fragment.ChatFragment;
 import sa.aqarz.Fragment.MapsFragment;
 import sa.aqarz.Fragment.MoreFragment;
+import sa.aqarz.Fragment.NotficationFragment;
 import sa.aqarz.Fragment.OrdersFragment;
 import sa.aqarz.Fragment.SubscriptionsFragment;
 import sa.aqarz.R;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     static ImageView image_1;
+    static ImageView image_s;
     static ImageView image_2;
     static ImageView image_3;
     static ImageView image_4;
@@ -67,8 +69,9 @@ public class MainActivity extends AppCompatActivity {
     static TextView text_2;
     static TextView text_3;
     static TextView text_4;
+    static TextView text_s;
 
-    LinearLayout lay_1, lay_2, lay_3, lay_4;
+    LinearLayout lay_1, lay_2, lay_3, lay_4,lay_s;
 
     FloatingActionButton myFab;
 
@@ -83,16 +86,19 @@ public class MainActivity extends AppCompatActivity {
         image_2 = findViewById(R.id.image_2);
         image_3 = findViewById(R.id.image_3);
         image_4 = findViewById(R.id.image_4);
+        image_s = findViewById(R.id.image_s);
 
         text_1 = findViewById(R.id.text_1);
         text_2 = findViewById(R.id.text_2);
         text_3 = findViewById(R.id.text_3);
         text_4 = findViewById(R.id.text_4);
+        text_s = findViewById(R.id.text_s);
 
         lay_1 = findViewById(R.id.lay_1);
         lay_2 = findViewById(R.id.lay_2);
         lay_3 = findViewById(R.id.lay_3);
         lay_4 = findViewById(R.id.lay_4);
+        lay_s = findViewById(R.id.lay_s);
 
 
         myFab = (FloatingActionButton) findViewById(R.id.fab);
@@ -151,6 +157,40 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        lay_s.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(View v) {
+
+
+                text_s.setTextColor(getResources().getColor(R.color.colorPrimary));
+                text_1.setTextColor(getResources().getColor(R.color.color_un_active));
+                text_2.setTextColor(getResources().getColor(R.color.color_un_active));
+                text_3.setTextColor(getResources().getColor(R.color.color_un_active));
+                text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+
+
+                image_s.setSelected(true);
+                image_1.setSelected(false);
+                image_2.setSelected(false);
+                image_3.setSelected(false);
+                image_4.setSelected(false);
+//                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+
+
+                fragmentManager = getSupportFragmentManager();
+
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, new NotficationFragment());
+                //  fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
+
+            }
+        });
+
         lay_1.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
@@ -161,12 +201,15 @@ public class MainActivity extends AppCompatActivity {
                 text_2.setTextColor(getResources().getColor(R.color.color_un_active));
                 text_3.setTextColor(getResources().getColor(R.color.color_un_active));
                 text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+                text_s.setTextColor(getResources().getColor(R.color.color_un_active));
 
 
                 image_1.setSelected(true);
                 image_2.setSelected(false);
                 image_3.setSelected(false);
                 image_4.setSelected(false);
+                image_s.setSelected(false);
+
 //                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
@@ -191,6 +234,7 @@ public class MainActivity extends AppCompatActivity {
                 text_2.setTextColor(getResources().getColor(R.color.colorPrimary));
                 text_3.setTextColor(getResources().getColor(R.color.color_un_active));
                 text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+                text_s.setTextColor(getResources().getColor(R.color.color_un_active));
 
 
                 image_1.setSelected(false);
@@ -198,6 +242,8 @@ public class MainActivity extends AppCompatActivity {
                 image_3.setSelected(false);
                 image_4.setSelected(false);
 //
+                image_s.setSelected(false);
+
 //                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
@@ -221,6 +267,7 @@ public class MainActivity extends AppCompatActivity {
                 text_2.setTextColor(getResources().getColor(R.color.color_un_active));
                 text_3.setTextColor(getResources().getColor(R.color.colorPrimary));
                 text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+                text_s.setTextColor(getResources().getColor(R.color.color_un_active));
 
 
                 image_1.setSelected(false);
@@ -228,6 +275,8 @@ public class MainActivity extends AppCompatActivity {
                 image_3.setSelected(true);
                 image_4.setSelected(false);
 //
+                image_s.setSelected(false);
+
 //                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
@@ -252,9 +301,11 @@ public class MainActivity extends AppCompatActivity {
                 text_2.setTextColor(getResources().getColor(R.color.color_un_active));
                 text_3.setTextColor(getResources().getColor(R.color.color_un_active));
                 text_4.setTextColor(getResources().getColor(R.color.colorPrimary));
+                text_s.setTextColor(getResources().getColor(R.color.color_un_active));
 
 
                 image_1.setSelected(false);
+                image_s.setSelected(false);
                 image_2.setSelected(false);
                 image_3.setSelected(false);
                 image_4.setSelected(true);

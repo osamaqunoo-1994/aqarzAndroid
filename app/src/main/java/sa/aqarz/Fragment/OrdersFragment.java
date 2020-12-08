@@ -72,15 +72,19 @@ import sa.aqarz.Adapter.RecyclerView_orders_demands;
 import sa.aqarz.Adapter.RecyclerView_orders_demandsx;
 import sa.aqarz.Adapter.RecyclerView_orders_my_requst;
 import sa.aqarz.Adapter.RecyclerView_orders_my_requstx;
+import sa.aqarz.Adapter.RecyclerView_orders_my_requstx_det;
+import sa.aqarz.Adapter.RecyclerView_orders_my_requstx_rate;
 import sa.aqarz.Adapter.RecyclerView_orders_offer_di;
 import sa.aqarz.Adapter.RecyclerView_ordersx;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity_fillter;
 import sa.aqarz.Modules.HomeModules;
 import sa.aqarz.Modules.HomeModules_aqares;
+import sa.aqarz.Modules.MyRateModules;
 import sa.aqarz.Modules.OfferRealStateModules;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.Modules.RateModules;
 import sa.aqarz.Modules.TypeModules;
+import sa.aqarz.Modules.deferredInstallmentModules;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.Modules.financeModules;
 import sa.aqarz.R;
@@ -111,6 +115,8 @@ public class OrdersFragment extends Fragment {
     List<OfferRealStateModules> offerRealStateModulesLis = new ArrayList<>();
     List<RateModules> rate_list = new ArrayList<>();
     List<financeModules> finance_list = new ArrayList<>();
+    List<deferredInstallmentModules> deferredInstallmentModuleslist = new ArrayList<>();
+    List<MyRateModules> myRateModules = new ArrayList<>();
 
     LinearLayout my_order_layout;
     LinearLayout Shopping_request_layout;
@@ -140,7 +146,7 @@ public class OrdersFragment extends Fragment {
     TextView offer;
     static String id_city_selected = "";
 
-static Activity activity;
+    static Activity activity;
     String type_order = "1";
     LinearLayout order_type;
 
@@ -149,7 +155,7 @@ static Activity activity;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_orders, container, false);
-        activity=getActivity();
+        activity = getActivity();
         init(v);
         return v;
     }
@@ -715,6 +721,86 @@ static Activity activity;
 
 
                             orders_rec.setAdapter(new RecyclerView_orders_my_requstx(getContext(), MyRequst));
+
+                            if (MyRequst.size() != 0) {
+                                nodata_vis.setVisibility(View.GONE);
+                            } else {
+                                nodata_vis.setVisibility(View.VISIBLE);
+
+                            }
+
+
+                        } else if (requestType.equals("my_deferredInstallment")) {
+                            System.out.println("lfkdlfkdlkf");
+                            String data = response.getString("data");
+
+
+                            JSONObject jsonObject = new JSONObject(data);
+
+
+                            String datax = jsonObject.getString("data");
+
+
+                            JSONArray jsonArray = new JSONArray(datax);
+                            orders_rec.setAdapter(null);
+                            deferredInstallmentModuleslist.clear();
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                Gson gson = new Gson();
+                                deferredInstallmentModules ordersModulesm = gson.fromJson(mJson, deferredInstallmentModules.class);
+
+//                                HomeModules ordersModulesm = gson.fromJson(mJson, HomeModules.class);
+                                deferredInstallmentModuleslist.add(ordersModulesm);
+
+
+                            }
+
+
+                            orders_rec.setAdapter(new RecyclerView_orders_my_requstx_det(getContext(), deferredInstallmentModuleslist));
+
+                            if (MyRequst.size() != 0) {
+                                nodata_vis.setVisibility(View.GONE);
+                            } else {
+                                nodata_vis.setVisibility(View.VISIBLE);
+
+                            }
+
+
+                        }else if (requestType.equals("my_rate")) {
+                            System.out.println("lfkdlfkdlkf");
+                            String data = response.getString("data");
+
+
+                            JSONObject jsonObject = new JSONObject(data);
+
+
+                            String datax = jsonObject.getString("data");
+
+
+                            JSONArray jsonArray = new JSONArray(datax);
+                            orders_rec.setAdapter(null);
+                            myRateModules.clear();
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                Gson gson = new Gson();
+                                MyRateModules ordersModulesm = gson.fromJson(mJson, MyRateModules.class);
+
+//                                HomeModules ordersModulesm = gson.fromJson(mJson, HomeModules.class);
+                                myRateModules.add(ordersModulesm);
+
+
+                            }
+
+
+                            orders_rec.setAdapter(new RecyclerView_orders_my_requstx_rate(getContext(), myRateModules));
 
                             if (MyRequst.size() != 0) {
                                 nodata_vis.setVisibility(View.GONE);
