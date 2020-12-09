@@ -291,13 +291,13 @@
 
 
     <string name="Enjoy_">قم باختيار إحدى الخدمات</string>
-    <string name="requstService">اطلب خدمة</string>
+    <string name="requstService">خدمات عقاريه</string>
 
 
     <string name="RentalinstallmentService">تقسيط التاجير</string>
     <string name="AqarsService">طلب عقار</string>
-    <string name="rateService">تقييم</string>
-    <string name="financeService">تمويل</string>
+    <string name="rateService">طلب تقييم</string>
+    <string name="financeService">طلب تمويل</string>
 
 
     <string name="Next_btn">التالي</string>

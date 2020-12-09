@@ -99,9 +99,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
                             android:layout_weight="1"
-                            android:visibility="gone"
                             android:gravity="center"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:visibility="gone">
 
                             <LinearLayout
                                 android:id="@+id/AddAqareaz"
@@ -143,11 +143,10 @@
 
                             <LinearLayout
                                 android:id="@+id/aqar_layout"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:background="@drawable/edit_text_background_new_design"
 
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-
-                                android:background="@drawable/circle_requst"
                                 android:gravity="center"
                                 android:orientation="vertical">
 
@@ -155,20 +154,19 @@
                                 <ImageView
                                     android:layout_width="45dp"
                                     android:layout_height="45dp"
-                                    android:src="@drawable/ic_addaqarez"
+                                    android:src="@drawable/ic_za2"
 
-                                    app:tint="#AAABB3" />
+                                    />
 
-
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:text="@string/AqarsService"
+                                    android:textColor="#AAABB3"
+                                    android:textSize="13dp" />
                             </LinearLayout>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="@string/AqarsService"
-                                android:textColor="#AAABB3"
-                                android:textSize="13dp" />
 
                         </LinearLayout>
 
@@ -181,9 +179,10 @@
 
                             <LinearLayout
                                 android:id="@+id/rent_layout"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:background="@drawable/circle_requst"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:background="@drawable/edit_text_background_new_design"
+
                                 android:gravity="center"
                                 android:orientation="vertical">
 
@@ -191,21 +190,19 @@
                                 <ImageView
                                     android:layout_width="45dp"
                                     android:layout_height="45dp"
-                                    android:src="@drawable/ic_a1"
-                                    app:tint="#AAABB3" />
+                                    android:src="@drawable/ic_za1" />
 
+                                <TextView
+                                    android:id="@+id/text_a1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:text="@string/RentalinstallmentService"
 
+                                    android:textColor="#AAABB3"
+                                    android:textSize="13dp" />
                             </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/text_a1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="@string/RentalinstallmentService"
-
-                                android:textColor="#AAABB3"
-                                android:textSize="13dp" />
 
                         </LinearLayout>
 
@@ -216,7 +213,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="horizontal">
-
 
 
                         <LinearLayout
@@ -229,9 +225,10 @@
                             <LinearLayout
                                 android:id="@+id/rate_layout"
 
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:background="@drawable/circle_requst"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:background="@drawable/edit_text_background_new_design"
+
                                 android:gravity="center"
                                 android:orientation="vertical">
 
@@ -239,23 +236,24 @@
                                 <ImageView
                                     android:layout_width="45dp"
                                     android:layout_height="45dp"
-                                    android:src="@drawable/ic_a4"
+                                    android:src="@drawable/ic_za4"
 
-                                    app:tint="#AAABB3" />
+                                    />
 
 
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:text="@string/rateService"
+                                    android:textColor="#AAABB3"
+
+
+                                    android:textSize="13dp" />
                             </LinearLayout>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="@string/rateService"
-                                android:textColor="#AAABB3"
-
-
-                                android:textSize="13dp" />
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
@@ -267,10 +265,10 @@
 
                             <LinearLayout
                                 android:id="@+id/fini_layout"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:background="@drawable/edit_text_background_new_design"
 
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:background="@drawable/circle_requst"
                                 android:gravity="center"
                                 android:orientation="vertical">
 
@@ -278,21 +276,22 @@
                                 <ImageView
                                     android:layout_width="45dp"
                                     android:layout_height="45dp"
-                                    android:src="@drawable/ic_a3"
+                                    android:src="@drawable/ic_za3"
 
-                                    app:tint="#AAABB3" />
+                                    />
 
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:text="@string/financeService"
+                                    android:textColor="#AAABB3"
+
+                                    android:textSize="13dp" />
 
                             </LinearLayout>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="@string/financeService"
-                                android:textColor="#AAABB3"
 
-                                android:textSize="13dp" />
                         </LinearLayout>
 
 
@@ -303,7 +302,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:orientation="horizontal">
-
 
 
                         <LinearLayout
