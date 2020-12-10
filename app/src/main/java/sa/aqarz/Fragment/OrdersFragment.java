@@ -138,10 +138,12 @@ public class OrdersFragment extends Fragment {
     String Type_work_select = "1";
     String type_requst = "";
 
-
+    ImageView premium;
+    LinearLayout not_premium;
     ImageView filtter_city;
 
     LinearLayout type_requst_xml;
+    LinearLayout type_market_xml;
     TextView order;
     TextView offer;
     static String id_city_selected = "";
@@ -151,6 +153,10 @@ public class OrdersFragment extends Fragment {
     LinearLayout order_type;
 
     TextView rate_aq1, rent_aq1, finince_aq1, aqaerz_aq1;
+    TextView governmental;
+    TextView Special;
+    TextView Soldier;
+    String tenant_job_type = "Purchase";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -165,6 +171,9 @@ public class OrdersFragment extends Fragment {
         orders_rec = v.findViewById(R.id.orders_rec);
 
         type_requst_xml = v.findViewById(R.id.type_requst_xml);
+        type_market_xml = v.findViewById(R.id.type_market_xml);
+        premium = v.findViewById(R.id.premium);
+        not_premium = v.findViewById(R.id.not_premium);
         order = v.findViewById(R.id.order);
         offer = v.findViewById(R.id.offer);
         my_order_layout = v.findViewById(R.id.my_order_layout);
@@ -187,6 +196,10 @@ public class OrdersFragment extends Fragment {
         finince_aq1 = v.findViewById(R.id.finince_aq1);
         aqaerz_aq1 = v.findViewById(R.id.aqaerz_aq1);
         order_type = v.findViewById(R.id.order_type);
+
+        Soldier = v.findViewById(R.id.Soldier);
+        Special = v.findViewById(R.id.Special);
+        governmental = v.findViewById(R.id.governmental);
 
 
         try {
@@ -264,6 +277,64 @@ public class OrdersFragment extends Fragment {
         type_of_v.setAdapter(recyclerView_all_opration_bottom_sheet);
 
 
+//---------------------------------------------------------------------------------
+        governmental.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                governmental.setBackground(getResources().getDrawable(R.drawable.circle_ss));
+
+                governmental.setTextColor(getResources().getColor(R.color.white));
+
+
+                Soldier.setBackground(null);
+
+                Soldier.setTextColor(getResources().getColor(R.color.color_filter));
+
+                Special.setBackground(null);
+
+                Special.setTextColor(getResources().getColor(R.color.color_filter));
+
+
+                tenant_job_type = "Purchase";
+            }
+        });
+        Soldier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Soldier.setBackground(getResources().getDrawable(R.drawable.circle_ss));
+
+                Soldier.setTextColor(getResources().getColor(R.color.white));
+
+
+                governmental.setBackground(null);
+
+                governmental.setTextColor(getResources().getColor(R.color.color_filter));
+                Special.setBackground(null);
+
+                Special.setTextColor(getResources().getColor(R.color.color_filter));
+                tenant_job_type = "rent";
+
+            }
+        });
+        init_volley();
+        Special.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Special.setBackground(getResources().getDrawable(R.drawable.circle_ss));
+
+                Special.setTextColor(getResources().getColor(R.color.white));
+
+
+                governmental.setBackground(null);
+
+                governmental.setTextColor(getResources().getColor(R.color.color_filter));
+                Soldier.setBackground(null);
+
+                Soldier.setTextColor(getResources().getColor(R.color.color_filter));
+                tenant_job_type = "investment";
+
+            }
+        });
         //------------------------------------------------------------------------------------------------------------
 
 
@@ -284,7 +355,7 @@ public class OrdersFragment extends Fragment {
 
 
                 type_order = "1";
-                type_sale.setVisibility(View.VISIBLE);
+                type_sale.setVisibility(View.GONE);
                 type_of_v.setVisibility(View.VISIBLE);
 
                 send_requst_by_type("my_request");
@@ -409,7 +480,7 @@ public class OrdersFragment extends Fragment {
                 order.setTextColor(getResources().getColor(R.color.white));
 
 
-                offer.setBackground(null);
+                offer.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
 
                 offer.setTextColor(getResources().getColor(R.color.black));
                 if (Settings.CheckIsCompleate()) {
@@ -496,13 +567,14 @@ public class OrdersFragment extends Fragment {
 
                 Real_Estate_order_text.setTextColor(getResources().getColor(R.color.textColor));
                 Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
-                type_sale.setVisibility(View.VISIBLE);
+                type_sale.setVisibility(View.GONE);
 
                 list_opration.setVisibility(View.VISIBLE);
-                type_sale.setVisibility(View.VISIBLE);
+                type_sale.setVisibility(View.GONE);
                 order_type.setVisibility(View.VISIBLE);
                 type_of_v.setVisibility(View.VISIBLE);
                 type_requst_xml.setVisibility(View.GONE);
+                type_market_xml.setVisibility(View.GONE);
 
                 aqaerz_aq1.setBackground(getResources().getDrawable(R.drawable.button_login));
 
@@ -549,7 +621,8 @@ public class OrdersFragment extends Fragment {
 
 
                 list_opration.setVisibility(View.GONE);
-                type_sale.setVisibility(View.VISIBLE);
+                type_sale.setVisibility(View.GONE);
+                type_market_xml.setVisibility(View.VISIBLE);
                 type_requst_xml.setVisibility(View.GONE);
                 type_requst_xml.setVisibility(View.GONE);
                 order_type.setVisibility(View.GONE);
@@ -587,6 +660,7 @@ public class OrdersFragment extends Fragment {
                 list_opration.setVisibility(View.GONE);
                 type_sale.setVisibility(View.GONE);
                 order_type.setVisibility(View.GONE);
+                type_market_xml.setVisibility(View.GONE);
 
                 MyRequst.clear();
 
@@ -594,7 +668,7 @@ public class OrdersFragment extends Fragment {
                 orders_rec.setAdapter(new RecyclerView_orders_my_requst(getContext(), MyRequst));
 
                 send_requst_by_type("fund_Request");
-                type_requst_xml.setVisibility(View.GONE);
+                type_requst_xml.setVisibility(View.VISIBLE);
 
 //                if (Settings.CheckIsCompleate()) {
 //
@@ -618,6 +692,21 @@ public class OrdersFragment extends Fragment {
 
             }
         });
+
+
+        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+            premium.setVisibility(View.VISIBLE);
+            offer.setVisibility(View.VISIBLE);
+            not_premium.setVisibility(View.GONE);
+
+        } else {
+
+            premium.setVisibility(View.GONE);
+            offer.setVisibility(View.GONE);
+            not_premium.setVisibility(View.VISIBLE);
+        }
+
+
         list_opration.setVisibility(View.GONE);
         type_sale.setVisibility(View.GONE);
 
@@ -636,7 +725,7 @@ public class OrdersFragment extends Fragment {
         Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
 
         list_opration.setVisibility(View.VISIBLE);
-        type_sale.setVisibility(View.VISIBLE);
+        type_sale.setVisibility(View.GONE);
 
 
         type_order = "1";
@@ -770,7 +859,7 @@ public class OrdersFragment extends Fragment {
                             }
 
 
-                        }else if (requestType.equals("my_rate")) {
+                        } else if (requestType.equals("my_rate")) {
                             System.out.println("lfkdlfkdlkf");
                             String data = response.getString("data");
 

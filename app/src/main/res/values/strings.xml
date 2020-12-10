@@ -455,6 +455,7 @@ Your request and reply in the fastest time</string>
     <string name="Remmember">Remember</string>
     <string name="WriteHere">Write Here</string>
 
+    <string name="Technical_support">Technical support</string>
 
     <string name="TimeRemmember">Time Remmember</string>
     <string name="MyOFFERFOR">عروضي على الطلب رقم </string>
@@ -475,10 +476,13 @@ Your request and reply in the fastest time</string>
     <string name="rejecxted">ملغي</string>
     <string name="anmdrj">اعتماد</string>
     <string name="Accepted_status">مقبول</string>
+    <string name="requered_found">وصول محدود</string>
     <string name="tit">لقد قمنا بإرسال كود التحقق للمستفيد أحمد
 قم بالتواصل معه ، ثم أدخل كود التحقق</string>
+    <string name="xPurchase">شراء</string>
 
     <string name="Notfication_bottm">Notfication</string>
+    <string name="order_day">طلبات اليوم</string>
 
     <string name="add_clints">Add Clintes</string>
     <string name="Watting">Watting</string>

@@ -84,6 +84,7 @@ public class MoreFragment extends Fragment {
     LinearLayout privecy;
     LinearLayout terms;
     LinearLayout all_aqarez_man;
+    LinearLayout Technical_support;
 
     TextView user_name;
     TextView language_text;
@@ -132,6 +133,7 @@ public class MoreFragment extends Fragment {
         Favorites = v.findViewById(R.id.Favorites);
         qr_code = v.findViewById(R.id.qr_code);
         all_aqarez_man = v.findViewById(R.id.all_aqarez_man);
+        Technical_support = v.findViewById(R.id.Technical_support);
 
 
         info_.setOnClickListener(new View.OnClickListener() {
@@ -252,6 +254,15 @@ public class MoreFragment extends Fragment {
 
             }
         });
+        Technical_support.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://api.whatsapp.com/send?phone=" + "966532576667";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -302,7 +313,7 @@ public class MoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                BottomSheetDialogFragment_QR bottomSheetDialogFragment_qr = new BottomSheetDialogFragment_QR(Settings.GetUser().getLink()+"",Settings.GetUser().getLogo()+"");
+                BottomSheetDialogFragment_QR bottomSheetDialogFragment_qr = new BottomSheetDialogFragment_QR(Settings.GetUser().getLink() + "", Settings.GetUser().getLogo() + "");
                 bottomSheetDialogFragment_qr.show(getActivity().getSupportFragmentManager(), "");
 
             }

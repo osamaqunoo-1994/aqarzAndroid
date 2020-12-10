@@ -38,6 +38,7 @@
 
             android:textColor="@color/white"
             android:textSize="@dimen/_15sdp" />
+
         <ImageView
             android:id="@+id/filtter_city"
             android:layout_width="37dp"
@@ -48,8 +49,8 @@
             android:layout_marginRight="8dp"
             android:background="@drawable/circle_w"
             android:padding="8dp"
-            android:tint="@color/colorPrimary"
-            android:src="@drawable/ic_filtter_city" />
+            android:src="@drawable/ic_filtter_city"
+            android:tint="@color/colorPrimary" />
 
     </LinearLayout>
 
@@ -214,41 +215,175 @@
             </RelativeLayout>
 
 
-
         </LinearLayout>
 
 
     </HorizontalScrollView>
 
     <LinearLayout
-        android:id="@+id/type_requst_xml"
+        android:id="@+id/type_market_xml"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+
+        android:layout_height="45dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/background_fill_ccc"
         android:visibility="gone">
 
-        <TextView
-            android:id="@+id/order"
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/order_today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_login"
+                    android:fontFamily="@font/din_light"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="@string/order_day"
+                    android:textColor="@color/white"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/circle_ss"
+                    android:fontFamily="@font/din_bold"
+                    android:gravity="center"
+                    android:paddingBottom="3dp"
+                    android:text="55"
+                    android:textColor="@color/white"
+                    android:textSize="10dp" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/mash"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/governmental"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/circle_ss"
+                android:fontFamily="@font/din_light"
+                android:gravity="center"
+                android:text="@string/xPurchase"
+
+
+                android:textColor="@color/white"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/Special"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/din_light"
+                android:gravity="center"
+                android:text="@string/rent"
+                android:textColor="#AAABB3"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/Soldier"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/din_light"
+                android:gravity="center"
+                android:text="@string/investment"
+
+                android:textColor="#AAABB3"
+                android:textSize="13dp" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/type_requst_xml"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:visibility="gone">
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/button_login"
-            android:fontFamily="@font/din_light"
-            android:gravity="center"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="@string/Order_es"
-            android:textColor="@color/white"
-            android:textSize="13dp" />
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/order"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_login"
+                android:fontFamily="@font/din_light"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="@string/order_day"
+                android:textColor="@color/white"
+                android:textSize="13dp" />
+
+            <TextView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/circle_ss"
+                android:fontFamily="@font/din_bold"
+                android:gravity="center"
+                android:paddingBottom="3dp"
+                android:text="55"
+                android:textColor="@color/white"
+                android:textSize="10dp" />
+
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/offer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
+            android:background="@drawable/background_fill_ccc"
+
             android:fontFamily="@font/din_light"
             android:gravity="center"
             android:paddingLeft="15dp"
@@ -257,6 +392,57 @@
             android:text="@string/MyOffer"
             android:textColor="@color/black"
             android:textSize="13dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+
+
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/premium"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_premium_"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/not_premium"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:text="@string/requered_found"
+                    android:textColor="#ee5c5c"
+                    android:textSize="12dp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_not_prumem" />
+            </LinearLayout>
+
+
+        </LinearLayout>
 
     </LinearLayout>
 

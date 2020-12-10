@@ -298,6 +298,7 @@
     <string name="AqarsService">طلب عقار</string>
     <string name="rateService">طلب تقييم</string>
     <string name="financeService">طلب تمويل</string>
+    <string name="Technical_support">الدعم الفني</string>
 
 
     <string name="Next_btn">التالي</string>
