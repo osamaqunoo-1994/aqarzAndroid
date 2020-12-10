@@ -79,6 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="38dp"
                     android:layout_marginTop="10dp"
+                    android:paddingBottom="3dp"
 
                     android:background="@drawable/mash"
                     android:gravity="center"
@@ -143,6 +144,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
+                        android:paddingBottom="3dp"
                         android:paddingLeft="@dimen/_5sdp"
                         android:paddingRight="@dimen/_5sdp"
                         android:text="@string/Shoppingrequest"
@@ -190,9 +192,8 @@
                         android:layout_marginRight="10dp"
                         android:src="@drawable/ic_group_1580" />
 
-                    <ImageView
-                        android:layout_width="10dp"
-                        android:layout_height="20dp" />
+
+
 
                     <TextView
                         android:id="@+id/Real_Estate_order_text"
@@ -202,6 +203,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
 
+                        android:layout_marginBottom="4dp"
                         android:text="@string/Real_Estate_order"
                         android:textColor="@color/white"
                         android:textSize="12dp" />
@@ -358,6 +360,7 @@
                 android:textSize="13dp" />
 
             <TextView
+                android:id="@+id/cumber_req"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_alignParentEnd="true"
@@ -367,7 +370,7 @@
                 android:fontFamily="@font/din_bold"
                 android:gravity="center"
                 android:paddingBottom="3dp"
-                android:text="55"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="10dp" />
 

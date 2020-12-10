@@ -16,6 +16,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
@@ -36,6 +37,7 @@ import java.util.Locale;
 
 import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_status;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.R;
@@ -195,25 +197,32 @@ public class RecyclerView_orders_my_requstx extends RecyclerView.Adapter<Recycle
 //
 //        }
 //
+
+        holder.new_offer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BottomSheetDialogFragment_status bottomSheetDialogFragment_status=new BottomSheetDialogFragment_status(alldata.get(position).getStatus()+"");
+
+
+                bottomSheetDialogFragment_status.show(((FragmentActivity)context).getSupportFragmentManager(), "");
+
+                //
 //
-//        holder.image_user.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                if (alldata.get(position).getType().equals("user")) {
-////                    Intent intent = new Intent(context, ProfileTravilingActivity.class);
-////                    intent.putExtra("id_user", alldata.get(position).getId() + "");
-////                    intent.putExtra("type", "other_frinds");
-////
-////                    context.startActivity(intent);
-////                } else {
-////                    Intent intent = new Intent(context, ProfileTourGuidActivity.class);
-////                    intent.putExtra("id_user", alldata.get(position).getId() + "");
-////                    intent.putExtra("type", "other_frinds");
-////
-////                    context.startActivity(intent);
-////                }
-//            }
-//        });
+//                if (alldata.get(position).getType().equals("user")) {
+//                    Intent intent = new Intent(context, ProfileTravilingActivity.class);
+//                    intent.putExtra("id_user", alldata.get(position).getId() + "");
+//                    intent.putExtra("type", "other_frinds");
+//
+//                    context.startActivity(intent);
+//                } else {
+//                    Intent intent = new Intent(context, ProfileTourGuidActivity.class);
+//                    intent.putExtra("id_user", alldata.get(position).getId() + "");
+//                    intent.putExtra("type", "other_frinds");
+//
+//                    context.startActivity(intent);
+//                }
+            }
+        });
 //
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

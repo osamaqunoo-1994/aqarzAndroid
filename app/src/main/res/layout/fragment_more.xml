@@ -651,7 +651,7 @@
                             android:layout_height="20dp"
                             android:background="@drawable/circle_fill"
                             android:padding="5dp"
-                            android:src="@drawable/ic_contact_us_icon"
+                            android:src="@drawable/ic_whatsapp"
                             app:tint="@color/white" />
 
                         <LinearLayout

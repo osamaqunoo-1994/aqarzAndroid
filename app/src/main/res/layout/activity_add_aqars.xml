@@ -139,6 +139,8 @@
                             android:drawableStart="@drawable/ic_buy"
                             android:gravity="center"
                             android:paddingLeft="8dp"
+
+
                             android:paddingRight="8dp"
                             android:text="@string/For_sale"
 

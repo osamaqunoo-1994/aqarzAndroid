@@ -156,7 +156,14 @@ public class OrdersFragment extends Fragment {
     TextView governmental;
     TextView Special;
     TextView Soldier;
+    TextView cumber_req;
     String tenant_job_type = "Purchase";
+
+
+    String type_is_today_or_my_own = "";
+    String type_is_today_or_not_market = "0";
+
+    TextView order_today;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -200,6 +207,8 @@ public class OrdersFragment extends Fragment {
         Soldier = v.findViewById(R.id.Soldier);
         Special = v.findViewById(R.id.Special);
         governmental = v.findViewById(R.id.governmental);
+        cumber_req = v.findViewById(R.id.cumber_req);
+        order_today = v.findViewById(R.id.order_today);
 
 
         try {
@@ -294,6 +303,7 @@ public class OrdersFragment extends Fragment {
 
                 Special.setTextColor(getResources().getColor(R.color.color_filter));
 
+                send_requst_by_type("market_demands");
 
                 tenant_job_type = "Purchase";
             }
@@ -313,6 +323,7 @@ public class OrdersFragment extends Fragment {
 
                 Special.setTextColor(getResources().getColor(R.color.color_filter));
                 tenant_job_type = "rent";
+                send_requst_by_type("market_demands");
 
             }
         });
@@ -332,6 +343,8 @@ public class OrdersFragment extends Fragment {
 
                 Soldier.setTextColor(getResources().getColor(R.color.color_filter));
                 tenant_job_type = "investment";
+                send_requst_by_type("market_demands");
+
 
             }
         });
@@ -470,34 +483,93 @@ public class OrdersFragment extends Fragment {
             }
         });
         //------------------------------------------------------------------------------------------------------------
+        order_today.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+        order_today.setTextColor(getResources().getColor(R.color.black));
+        order_today.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (type_is_today_or_not_market.equals("1")) {
+                    type_is_today_or_not_market = "0";
+                    order_today.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                    order_today.setTextColor(getResources().getColor(R.color.black));
+                    send_requst_by_type("market_demands");
+
+                } else {
+                    order_today.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                    order_today.setTextColor(getResources().getColor(R.color.white));
+                    type_is_today_or_not_market = "1";
+                    send_requst_by_type("market_demands");
 
 
+                }
+            }
+        });
         order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                order.setBackground(getResources().getDrawable(R.drawable.button_login));
 
-                order.setTextColor(getResources().getColor(R.color.white));
-
-
-                offer.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
-
-                offer.setTextColor(getResources().getColor(R.color.black));
-                if (Settings.CheckIsCompleate()) {
-                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
-                        send_requst_by_type("fund_Request");
+                if (type_is_today_or_my_own.equals("today")) {
 
 
-                    } else {
-                        show_dialog();
+                    order.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                    order.setTextColor(getResources().getColor(R.color.black));
+
+
+                    offer.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                    offer.setTextColor(getResources().getColor(R.color.black));
+
+
+                    if (Settings.CheckIsCompleate()) {
+                        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+
+                            send_requst_by_type("fund_Request");
+
+                            type_is_today_or_my_own = "";
+
+                        } else {
+                            show_dialog();
 //
 
 
+                        }
+                    } else {
+                        Settings.Dialog_not_compleate(getActivity());
+
+
                     }
+
                 } else {
-                    Settings.Dialog_not_compleate(getActivity());
+                    order.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                    order.setTextColor(getResources().getColor(R.color.white));
 
 
+                    offer.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                    offer.setTextColor(getResources().getColor(R.color.black));
+                    if (Settings.CheckIsCompleate()) {
+                        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+
+                            send_requst_by_type("fund_Request_today");
+
+
+                        } else {
+                            show_dialog();
+//
+
+
+                        }
+                    } else {
+                        Settings.Dialog_not_compleate(getActivity());
+
+
+                    }
+                    type_is_today_or_my_own = "today";
                 }
 
 
@@ -506,17 +578,33 @@ public class OrdersFragment extends Fragment {
         offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                offer.setBackground(getResources().getDrawable(R.drawable.button_login));
 
-                offer.setTextColor(getResources().getColor(R.color.white));
+                if (type_is_today_or_my_own.equals("my_own")) {
+                    order.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
 
-
-                order.setBackground(null);
-
-                order.setTextColor(getResources().getColor(R.color.black));
+                    order.setTextColor(getResources().getColor(R.color.black));
 
 
-                send_requst_by_type("request_offer");
+                    offer.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                    offer.setTextColor(getResources().getColor(R.color.black));
+
+                    send_requst_by_type("fund_Request");
+                    type_is_today_or_my_own = "my_own";
+                } else {
+                    offer.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                    offer.setTextColor(getResources().getColor(R.color.white));
+
+
+                    order.setBackground(null);
+
+                    order.setTextColor(getResources().getColor(R.color.black));
+
+
+                    send_requst_by_type("fund_Request_my_own");
+                    type_is_today_or_my_own = "my_own";
+                }
 
 
             }
@@ -664,6 +752,14 @@ public class OrdersFragment extends Fragment {
 
                 MyRequst.clear();
 
+                order.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                order.setTextColor(getResources().getColor(R.color.black));
+
+
+                offer.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                offer.setTextColor(getResources().getColor(R.color.black));
 
                 orders_rec.setAdapter(new RecyclerView_orders_my_requst(getContext(), MyRequst));
 
@@ -774,10 +870,24 @@ public class OrdersFragment extends Fragment {
 
 //{"status":true,"code":200,"message":"User Profile","data"
 
-
                 try {
+
+
                     boolean status = response.getBoolean("status");
                     if (status) {
+
+
+                        try {
+                            String datas = response.getString("data");
+                            JSONObject jsonObjectz = new JSONObject(datas);
+                            String total = jsonObjectz.getString("total");
+
+                            cumber_req.setText(total + "");
+
+
+                        } catch (Exception e) {
+
+                        }
 
                         if (requestType.equals("my_request")) {
                             System.out.println("lfkdlfkdlkf");
@@ -1156,7 +1266,14 @@ public class OrdersFragment extends Fragment {
                 WebService.loading(getActivity(), false);
 
                 try {
+                    ordersModules.clear();
+                    orders_rec.setAdapter(new RecyclerView_ordersx(getContext(), ordersModules));
+                    if (ordersModules.size() != 0) {
+                        nodata_vis.setVisibility(View.GONE);
+                    } else {
+                        nodata_vis.setVisibility(View.VISIBLE);
 
+                    }
                     NetworkResponse response = error.networkResponse;
                     String response_data = new String(response.data);
 
@@ -1326,6 +1443,18 @@ public class OrdersFragment extends Fragment {
             mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?estate_type_id=" + opration_select + id_city_);
 
 
+        } else if (requst_type.equals("fund_Request_my_own")) {
+
+
+            mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?estate_type_id=" + opration_select + id_city_ + "&myOwn=1");
+
+
+        } else if (requst_type.equals("fund_Request_today")) {
+
+
+            mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?estate_type_id=" + opration_select + id_city_ + "&today=1");
+
+
         } else if (requst_type.equals("request_offer")) {
 
 
@@ -1341,7 +1470,6 @@ public class OrdersFragment extends Fragment {
 
                 } else if (Type_work_select.equals("2")) {//rent
                     mVolleyService.getDataVolley("my_request", WebService.my_request + "?estate_type_id=" + opration_select + id_city_);
-
                 }
 
             } else if (type_order.equals("2")) {//finincac
@@ -1356,13 +1484,28 @@ public class OrdersFragment extends Fragment {
             }
 
         } else if (requst_type.equals("market_demands")) {
-            if (Type_work_select.equals("1")) {//sell
-                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?estate_type_id=" + opration_select + id_city_);
 
-            } else if (Type_work_select.equals("2")) {//rent
-                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?estate_type_id=" + opration_select + id_city_);
+            String today = "";
+            if (type_is_today_or_not_market.equals("1")) {
+                today = "&today=1";
+            } else {
+                today = "";
+            }
+//            tenant_job_type = "rent";
+
+            if (tenant_job_type.equals("Purchase")) {//sell
+                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?estate_type_id=" + opration_select + id_city_+today);
+
+            } else if (tenant_job_type.equals("rent")) {//rent
+                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?estate_type_id=" + opration_select + id_city_+today+"&estate_pay_type=is_rent");
+
+            }else if (tenant_job_type.equals("investment")) {//rent
+                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?estate_type_id=" + opration_select + id_city_+today);
 
             }
+            //
+
+
         }
 
 

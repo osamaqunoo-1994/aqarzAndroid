@@ -35,7 +35,7 @@ import sa.aqarz.Settings.Settings;
 public class BottomSheetDialogFragment_QR extends BottomSheetDialogFragment {
 
     ImageView image_qr;
-    Button share_qr;
+    TextView share_qr;
     CircleImageView profile;
     String link = "";
     String image_link = "";

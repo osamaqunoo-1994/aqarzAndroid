@@ -4,9 +4,12 @@ package sa.aqarz.Fragment;
  */
 
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
@@ -20,6 +23,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AlertDialog;
@@ -257,10 +261,26 @@ public class MoreFragment extends Fragment {
         Technical_support.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://api.whatsapp.com/send?phone=" + "966532576667";
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
+//                String url = "https://api.whatsapp.com/send?phone=" + "966532576667";
+//                Intent i = new Intent(Intent.ACTION_VIEW);
+//                i.setData(Uri.parse(url));
+//                startActivity(i);
+
+
+                try {
+
+
+                    Intent sendIntent = new Intent("android.intent.action.MAIN");
+                    sendIntent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.setType("text/plain");
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "");
+                    sendIntent.putExtra("jid", "966532576667" + "@s.whatsapp.net");
+                    sendIntent.setPackage("com.whatsapp");
+                    startActivity(sendIntent);
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), "Error/n" + e.toString(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
         signup.setOnClickListener(new View.OnClickListener() {

@@ -376,6 +376,7 @@ public class MapsFragment extends Fragment {
 
         }
     }
+
     public void getProfiles() {
 
         try {
@@ -504,7 +505,7 @@ public class MapsFragment extends Fragment {
 
 
         if (Settings.CheckIsAccountAqarzMan()) {
-            laout_of_change.setVisibility(View.VISIBLE);
+            laout_of_change.setVisibility(View.GONE);
 //            get_data_from_api("map_order", filtter_selected);
             get_data_from_api("map_offer", filtter_selected);
 
@@ -609,7 +610,8 @@ public class MapsFragment extends Fragment {
 
                 if (Settings.CheckIsAccountAqarzMan()) {
                     if (typeTab.equals("Orders_tab")) {
-                        get_data_from_api("list_order", filtter_selected);
+//                        get_data_from_api("list_order", filtter_selected);
+                        get_data_from_api("list_offer", filtter_selected);
 
                     } else {
                         get_data_from_api("list_offer", filtter_selected);
@@ -634,7 +636,7 @@ public class MapsFragment extends Fragment {
                 layout_list.setVisibility(View.GONE);
 
                 if (typeTab.equals("Orders_tab")) {
-                    get_data_from_api("map_order", filtter_selected);
+//                    get_data_from_api("map_order", filtter_selected);
 
                 } else {
                     get_data_from_api("map_offer", filtter_selected);
@@ -741,7 +743,8 @@ public class MapsFragment extends Fragment {
                     get_data_from_api("map_order", filtter_selected);
 
                 } else {
-                    get_data_from_api("list_order", filtter_selected);
+//                    get_data_from_api("list_order", filtter_selected);
+                    get_data_from_api("list_offer", filtter_selected);
 
                 }
 
@@ -1079,7 +1082,7 @@ public class MapsFragment extends Fragment {
                                         LatLng sydneya = new LatLng(Double.valueOf(bankModules.getLat()), Double.valueOf(bankModules.getLan()));
                                         googleMap.addMarker(new MarkerOptions()
                                                 .position(sydneya)
-                                                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2(price)))).setTag(i);
+                                                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(price)))).setTag(i);//تم التغير الشكل من السكني للكلر
 
 
                                     } catch (Exception e) {
