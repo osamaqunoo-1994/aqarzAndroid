@@ -58,10 +58,11 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
     IResult mResultCallback;
 
 
-    EditText a1, a2, a3, a4;
+    EditText a1, a2, a3, a4, a5, a6;
     String uuid_r = "";
     String estate_ixd = "";
     Button confirmation;
+    Button resend;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -71,7 +72,10 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
         a2 = v.findViewById(R.id.a2);
         a3 = v.findViewById(R.id.a3);
         a4 = v.findViewById(R.id.a4);
+        a5 = v.findViewById(R.id.a5);
+        a6 = v.findViewById(R.id.a6);
         confirmation = v.findViewById(R.id.confirmation);
+        resend = v.findViewById(R.id.resend);
 
 
         a1.requestFocus();
@@ -163,9 +167,59 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
             @Override
             public void afterTextChanged(Editable editable) {
                 if (a4.length() != 0) {
+                    a5.requestFocus();
 
                 } else {
                     a3.requestFocus();
+
+                }
+
+
+            }
+
+        });
+        a5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (a5.length() != 0) {
+                    a6.requestFocus();
+
+                } else {
+                    a4.requestFocus();
+
+                }
+
+
+            }
+
+        });
+        a6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (a6.length() != 0) {
+
+                } else {
+                    a5.requestFocus();
 
                 }
 
@@ -182,14 +236,16 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
                 if (a1.getText().toString().equals("") |
                         a2.getText().toString().equals("") |
                         a3.getText().toString().equals("") |
-                        a4.getText().toString().equals("")
+                        a4.getText().toString().equals("") |
+                        a5.getText().toString().equals("") |
+                        a6.getText().toString().equals("")
                 ) {
 
                 } else {
                     String code2 = a1.getText().toString() +
                             a2.getText().toString() +
                             a3.getText().toString() +
-                            a4.getText().toString() + "";
+                            a4.getText().toString() + a5.getText().toString() + a6.getText().toString() + "";
 
 
                     JSONObject sendObj = new JSONObject();
@@ -208,10 +264,37 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
                     VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 
                     System.out.println(sendObj.toString());
-                    mVolleyService.postDataVolley("send_offer_fund_Request", WebService.send_offer_fund_Request, sendObj);
+//                    mVolleyService.postDataVolley("send_offer_fund_Request", WebService.send_offer_fund_Request, sendObj);
+                    mVolleyService.postDataVolley("send_customer_offer_status", WebService.send_customer_offer_status, sendObj);
 
 
                 }
+
+
+            }
+        });
+
+        resend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                JSONObject sendObj = new JSONObject();
+
+                try {
+
+                    sendObj.put("uuid", uuid_r);//form operation list api in setting
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                init_volley();
+                WebService.loading(getActivity(), true);
+                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+
+                System.out.println(sendObj.toString());
+                mVolleyService.postDataVolley("provider_code_send", WebService.provider_code_send, sendObj);
 
 
             }
@@ -272,7 +355,7 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
                     boolean status = response.getBoolean("status");
                     if (status) {
 
-                        if (requestType.equals("send_offer_fund_Request")) {
+                        if (requestType.equals("send_customer_offer_status")) {
 
 
                             String message = response.getString("message");
@@ -286,6 +369,12 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
                             } catch (Exception e) {
 
                             }
+
+                        } else if (requestType.equals("provider_code_send")) {
+                            String message = response.getString("message");
+
+
+                            WebService.Make_Toast_color(getActivity(), message, "success");
 
                         }
                     } else {

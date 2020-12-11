@@ -52,6 +52,7 @@ public class WebService {
     public static String single_estat = Domain + "single/";
     public static String my_estate = Domain + "my/estate";
     public static String send_offer_fund_Request = Domain + "send/offer/fund/Request";
+    public static String send_customer_offer_status = Domain + "send/customer/offer/status";
     public static String reject_fund_offer = Domain + "reject/fund/offer";
     public static String verify = Domain + "verify";
     public static String reset_password = Domain + "reset/password";
@@ -74,6 +75,7 @@ public class WebService {
     public static String send_msg = Domain + "send/msg";
     public static String MYOfferOrder = Domain + "my/fund/request/offer";
     public static String best_provider = Domain + "best/provider";
+    public static String provider_code_send = Domain + "provider/code/send";
 
 
     public static void Header_Async(AsyncHttpClient client, boolean is_token) {
