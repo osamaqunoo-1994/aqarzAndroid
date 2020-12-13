@@ -96,6 +96,9 @@ public class EditProfileActivity extends AppCompatActivity {
     List<SettingsModules.service_types> service_types_listss = new ArrayList<>();
     List<SettingsModules.service_types> Member_typesl = new ArrayList<>();
 
+
+    TextView yes, no;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,6 +127,8 @@ public class EditProfileActivity extends AppCompatActivity {
         service_types_list = findViewById(R.id.service_types_list);
         member_list = findViewById(R.id.member_list);
         address = findViewById(R.id.address);
+        yes = findViewById(R.id.yes);
+        no = findViewById(R.id.no);
 
         Places.initialize(EditProfileActivity.this, "AIzaSyA6E2L_Feqp6HMD85eQ1RP06WnykHJj7Mc");
         PlacesClient placesClient = Places.createClient(EditProfileActivity.this);
@@ -463,6 +468,32 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 }
 
+
+            }
+        });
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                yes.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                yes.setTextColor(getResources().getColor(R.color.white));
+
+                no.setBackground(null);
+
+                no.setTextColor(getResources().getColor(R.color.textColor));
+            }
+        });
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                no.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                no.setTextColor(getResources().getColor(R.color.white));
+
+
+                yes.setBackground(null);
+
+                yes.setTextColor(getResources().getColor(R.color.textColor));
 
             }
         });

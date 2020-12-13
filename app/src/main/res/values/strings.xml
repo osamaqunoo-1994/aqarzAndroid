@@ -480,9 +480,14 @@ Your request and reply in the fastest time</string>
     <string name="tit">لقد قمنا بإرسال كود التحقق للمستفيد أحمد
 قم بالتواصل معه ، ثم أدخل كود التحقق</string>
     <string name="xPurchase">شراء</string>
+    <string name="experiencex">الخبرة العقارية</string>
 
     <string name="Notfication_bottm">Notfication</string>
     <string name="order_day">طلبات اليوم</string>
+    <string name="five_yeares">أقل من ٥ سنوات</string>
+    <string name="five_yeares_to_ten">من ٥ سنوات ١٠</string>
+    <string name="ten_yeares">أكثر من ١٠ سنوات</string>
+    <string name="have_employee">هل لديك موظفين بالمكتب؟</string>
 
     <string name="add_clints">Add Clintes</string>
     <string name="Watting">Watting</string>

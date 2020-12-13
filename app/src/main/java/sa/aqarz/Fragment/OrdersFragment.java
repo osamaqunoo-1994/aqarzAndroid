@@ -1323,8 +1323,8 @@ public class OrdersFragment extends Fragment {
         View parentView = li.inflate(R.layout.upgrade_message2, null);
 
 
-        Button accept = parentView.findViewById(R.id.accept);
-        Button no = parentView.findViewById(R.id.no);
+        TextView accept = parentView.findViewById(R.id.accept);
+        TextView no = parentView.findViewById(R.id.no);
         ImageView close = parentView.findViewById(R.id.close);
         no.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1494,13 +1494,13 @@ public class OrdersFragment extends Fragment {
 //            tenant_job_type = "rent";
 
             if (tenant_job_type.equals("Purchase")) {//sell
-                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?estate_type_id=" + opration_select + id_city_+today);
+                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?estate_type_id=" + opration_select + id_city_ + today);
 
             } else if (tenant_job_type.equals("rent")) {//rent
-                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?estate_type_id=" + opration_select + id_city_+today+"&estate_pay_type=is_rent");
+                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?estate_type_id=" + opration_select + id_city_ + today + "&estate_pay_type=is_rent");
 
-            }else if (tenant_job_type.equals("investment")) {//rent
-                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?estate_type_id=" + opration_select + id_city_+today);
+            } else if (tenant_job_type.equals("investment")) {//rent
+                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?estate_type_id=" + opration_select + id_city_ + today);
 
             }
             //
