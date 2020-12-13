@@ -55,6 +55,7 @@ import sa.aqarz.Activity.ContactUsActivity;
 import sa.aqarz.Activity.DetailsAqarzManActivity;
 import sa.aqarz.Activity.FavoriteActivity;
 import sa.aqarz.Activity.MainActivity;
+import sa.aqarz.Activity.MyOrderActivity;
 import sa.aqarz.Activity.PrivecyActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Activity.TermsActivity;
@@ -89,6 +90,7 @@ public class MoreFragment extends Fragment {
     LinearLayout terms;
     LinearLayout all_aqarez_man;
     LinearLayout Technical_support;
+    LinearLayout MyOrder;
 
     TextView user_name;
     TextView language_text;
@@ -116,6 +118,7 @@ public class MoreFragment extends Fragment {
     public void init(View v) {
         info_ = v.findViewById(R.id.info_);
         loginButton = v.findViewById(R.id.loginButton);
+        MyOrder = v.findViewById(R.id.MyOrder);
         signup = v.findViewById(R.id.signup);
         changePassword = v.findViewById(R.id.changePassword);
         with_login = v.findViewById(R.id.with_login);
@@ -252,6 +255,16 @@ public class MoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), TermsActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+            }
+        });
+        MyOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), MyOrderActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
@@ -440,6 +453,7 @@ public class MoreFragment extends Fragment {
                     no_login.setVisibility(View.GONE);
                     with_login.setVisibility(View.VISIBLE);
                     changePassword.setVisibility(View.VISIBLE);
+                    MyOrder.setVisibility(View.VISIBLE);
 
                     logout.setVisibility(View.VISIBLE);
 

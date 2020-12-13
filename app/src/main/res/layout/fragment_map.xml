@@ -12,6 +12,7 @@
         <com.google.android.gms.maps.MapView
             android:id="@+id/mapViewxx"
             android:layout_width="match_parent"
+
             android:layout_height="match_parent" />
 
 
@@ -333,7 +334,7 @@
                 android:layout_centerHorizontal="true"
 
                 android:background="@drawable/circle_w_new"
-                android:tint="@color/colorPrimary"
+                app:tint="@color/colorPrimary"
                 android:padding="@dimen/_7sdp"
                 android:src="@drawable/ic_logo_map" />
 

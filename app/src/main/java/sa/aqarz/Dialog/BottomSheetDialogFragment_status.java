@@ -29,13 +29,11 @@ import sa.aqarz.R;
 public class BottomSheetDialogFragment_status extends BottomSheetDialogFragment {
 
 
-
     String status = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_sheets_status, container, false);
-
 
 
         return v;

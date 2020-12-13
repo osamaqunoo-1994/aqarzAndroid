@@ -1,28 +1,24 @@
-package sa.aqarz.Fragment;
-/**
- * Created by osama on 10/8/2017.
- */
+package sa.aqarz.Activity;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
@@ -30,21 +26,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -52,37 +41,18 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.orhanobut.hawk.Hawk;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import sa.aqarz.Activity.Auth.LoginActivity;
-import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
-import sa.aqarz.Activity.Auth.NewPasswordActivity;
-import sa.aqarz.Activity.Auth.RegisterActivity;
-import sa.aqarz.Activity.ContactUsActivity;
-import sa.aqarz.Activity.DetailsAqarzManActivity;
-import sa.aqarz.Activity.MainActivity;
-import sa.aqarz.Activity.PrivecyActivity;
-import sa.aqarz.Activity.SplashScreenActivity;
-import sa.aqarz.Activity.TermsActivity;
 import sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
 import sa.aqarz.Adapter.RecyclerView_All_Type_order_;
 import sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
-import sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
-import sa.aqarz.Adapter.RecyclerView_HomeList;
-import sa.aqarz.Adapter.RecyclerView_HomeList_estat;
-import sa.aqarz.Adapter.RecyclerView_bottomSheet_type;
 import sa.aqarz.Adapter.RecyclerView_order_finince;
 import sa.aqarz.Adapter.RecyclerView_order_rate;
-import sa.aqarz.Adapter.RecyclerView_orders;
-import sa.aqarz.Adapter.RecyclerView_orders_demands;
 import sa.aqarz.Adapter.RecyclerView_orders_demandsx;
 import sa.aqarz.Adapter.RecyclerView_orders_my_requst;
 import sa.aqarz.Adapter.RecyclerView_orders_my_requstx;
@@ -90,12 +60,8 @@ import sa.aqarz.Adapter.RecyclerView_orders_my_requstx_det;
 import sa.aqarz.Adapter.RecyclerView_orders_my_requstx_rate;
 import sa.aqarz.Adapter.RecyclerView_orders_offer_di;
 import sa.aqarz.Adapter.RecyclerView_ordersx;
-import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares;
-import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares_orders;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares_orders_1;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity_fillter;
-import sa.aqarz.Modules.HomeModules;
-import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.MyRateModules;
 import sa.aqarz.Modules.OfferRealStateModules;
 import sa.aqarz.Modules.OrdersModules;
@@ -105,15 +71,13 @@ import sa.aqarz.Modules.deferredInstallmentModules;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.Modules.financeModules;
 import sa.aqarz.R;
-import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
-import de.hdodenhof.circleimageview.CircleImageView;
 
-
-public class OrdersFragment extends Fragment {
+public class MyOrderActivity extends AppCompatActivity {
+ImageView back;
     static IResult mResultCallback;
 
 
@@ -189,171 +153,53 @@ public class OrdersFragment extends Fragment {
 
     TextView order_today;
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_orders, container, false);
-        activity = getActivity();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_my_order);
+        activity = this;
 
 
-        mMapView = (MapView) v.findViewById(R.id.mapViewxx);
-        mMapView.onCreate(savedInstanceState);
-        mMapView.onResume(); // needed to get the map to display immediately
-        try {
-            MapsInitializer.initialize(getActivity().getApplicationContext());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        mMapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap mMap) {
-                googleMap = mMap;
-                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-//                style = "MAP_TYPE_NORMAL";
-                googleMap.getUiSettings().setRotateGesturesEnabled(true);
 
-                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                    @Override
-                    public boolean onMarkerClick(Marker marker) {
-
-
-                        if (marker.getTag().toString().equals("mylocation")) {
-
-                        } else {
-
-                            {
-//
-
-                                if (marker.getTag().toString().equals("mylocation")) {
-
-                                } else {
-
-//
-//                                    CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(getActivity(), homeModules.get(Integer.valueOf(marker.getTag().toString())));
-//                                    mMap.setInfoWindowAdapter(customInfoWindow);
-//                                    mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-//                                        @Override
-//                                        public void onInfoWindowClick(Marker marker) {
-//
-//
-//                                            try {
-//                                                if (!marker.getTag().toString().equals("mylocation")) {
-//                                                    Intent intent = new Intent(getContext(), DetailsActivity.class);
-//                                                    intent.putExtra("id", homeModules.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
-//                                                    System.out.println(homeModules.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
-//                                                    getActivity().startActivity(intent);
-//                                                }
-//                                            } catch (Exception e) {
-//
-//                                            }
-//
-//
-//                                        }
-//                                    });
-
-                                    BottomSheetDialogFragment_DetailsAqares_orders_1 bottomSheetDialogFragment_detailsAqares_orders = new BottomSheetDialogFragment_DetailsAqares_orders_1(demandsModules_list.get(Integer.valueOf(marker.getTag().toString())));
-                                    bottomSheetDialogFragment_detailsAqares_orders.show(getFragmentManager(), "");
-                                }
-                            }
-
-
-                        }
-                        return false;
-                    }
-                });
-
-//                try {
-//                    if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-////                                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
-//
-////                        ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
-//                        requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
-//                        LatLng mylocation = getLocation_sau();
-//                        if (mylocation != null) {
-////                            googleMap.addMarker(new MarkerOptions()
-////                                    .position(mylocation)).setTag("mylocation");
-////
-////                            ;
-//                            CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
-//                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-//
-//
-////                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 40));
-////                            // Zoom in, animating the camera.
-////                            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-//                            // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-////                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
-//                        }
-//                    } else {
-//
-//
-//                        LatLng mylocation = getLocation();
-//                        if (mylocation != null) {
-//                            googleMap.addMarker(new MarkerOptions()
-//                                    .position(mylocation)).setTag("mylocation");
-//
-//                            ;
-//                            CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
-//                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-//
-//
-////                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 40));
-////                            // Zoom in, animating the camera.
-////                            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-//                            // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-////                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
-//                        }
-//
-//
-//                    }
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-
-
-            }
-        });
-
-        init(v);
-        return v;
+        init();
     }
+    public void init() {
+        orders_rec = findViewById(R.id.orders_rec);
 
+        type_requst_xml = findViewById(R.id.type_requst_xml);
+        convert_to_map = findViewById(R.id.convert_to_map);
+        type_market_xml = findViewById(R.id.type_market_xml);
+        premium = findViewById(R.id.premium);
+        not_premium = findViewById(R.id.not_premium);
+        order = findViewById(R.id.order);
+        offer = findViewById(R.id.offer);
+        my_order_layout = findViewById(R.id.my_order_layout);
+        Shopping_request_layout = findViewById(R.id.Shopping_request_layout);
+        Real_Estate_order_layout = findViewById(R.id.Real_Estate_order_layout);
+        my_order_text = findViewById(R.id.my_order_text);
+        Real_Estate_order_text = findViewById(R.id.Real_Estate_order_text);
+        Real_Estate_order_image = findViewById(R.id.Real_Estate_order_image);
+        Shopping_request_text = findViewById(R.id.Shopping_request_text);
+        list_opration = findViewById(R.id.list_opration);
+        For_sale = findViewById(R.id.For_sale);
+        rent = findViewById(R.id.rent);
+        type_of_v = findViewById(R.id.type_of_v);
+        type_sale = findViewById(R.id.type_sale);
+        section_horizantal = findViewById(R.id.section_horizantal);
+        nodata_vis = findViewById(R.id.nodata_vis);
+        filtter_city = findViewById(R.id.filtter_city);
+        rate_aq1 = findViewById(R.id.rate_aq1);
+        rent_aq1 = findViewById(R.id.rent_aq1);
+        finince_aq1 = findViewById(R.id.finince_aq1);
+        aqaerz_aq1 = findViewById(R.id.aqaerz_aq1);
+        order_type = findViewById(R.id.order_type);
 
-    public void init(View v) {
-        orders_rec = v.findViewById(R.id.orders_rec);
-
-        type_requst_xml = v.findViewById(R.id.type_requst_xml);
-        convert_to_map = v.findViewById(R.id.convert_to_map);
-        type_market_xml = v.findViewById(R.id.type_market_xml);
-        premium = v.findViewById(R.id.premium);
-        not_premium = v.findViewById(R.id.not_premium);
-        order = v.findViewById(R.id.order);
-        offer = v.findViewById(R.id.offer);
-        my_order_layout = v.findViewById(R.id.my_order_layout);
-        Shopping_request_layout = v.findViewById(R.id.Shopping_request_layout);
-        Real_Estate_order_layout = v.findViewById(R.id.Real_Estate_order_layout);
-        my_order_text = v.findViewById(R.id.my_order_text);
-        Real_Estate_order_text = v.findViewById(R.id.Real_Estate_order_text);
-        Real_Estate_order_image = v.findViewById(R.id.Real_Estate_order_image);
-        Shopping_request_text = v.findViewById(R.id.Shopping_request_text);
-        list_opration = v.findViewById(R.id.list_opration);
-        For_sale = v.findViewById(R.id.For_sale);
-        rent = v.findViewById(R.id.rent);
-        type_of_v = v.findViewById(R.id.type_of_v);
-        type_sale = v.findViewById(R.id.type_sale);
-        section_horizantal = v.findViewById(R.id.section_horizantal);
-        nodata_vis = v.findViewById(R.id.nodata_vis);
-        filtter_city = v.findViewById(R.id.filtter_city);
-        rate_aq1 = v.findViewById(R.id.rate_aq1);
-        rent_aq1 = v.findViewById(R.id.rent_aq1);
-        finince_aq1 = v.findViewById(R.id.finince_aq1);
-        aqaerz_aq1 = v.findViewById(R.id.aqaerz_aq1);
-        order_type = v.findViewById(R.id.order_type);
-
-        Soldier = v.findViewById(R.id.Soldier);
-        Special = v.findViewById(R.id.Special);
-        governmental = v.findViewById(R.id.governmental);
-        cumber_req = v.findViewById(R.id.cumber_req);
-        order_today = v.findViewById(R.id.order_today);
+        Soldier = findViewById(R.id.Soldier);
+        Special = findViewById(R.id.Special);
+        governmental = findViewById(R.id.governmental);
+        cumber_req = findViewById(R.id.cumber_req);
+        order_today = findViewById(R.id.order_today);
 
         try {
 //            data = Settings.getSettings().getOprationType().getOriginal().getData();
@@ -366,9 +212,9 @@ public class OrdersFragment extends Fragment {
 
 
             LinearLayoutManager layoutManager1
-                    = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+                    = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
             list_opration.setLayoutManager(layoutManager1);
-            RecyclerView_All_Type_order_ recyclerView_all_type_order_ = new RecyclerView_All_Type_order_(getContext(), data);
+            RecyclerView_All_Type_order_ recyclerView_all_type_order_ = new RecyclerView_All_Type_order_(this, data);
             recyclerView_all_type_order_.addItemClickListener(new RecyclerView_All_Comfort_in_fragment.ItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
@@ -397,7 +243,7 @@ public class OrdersFragment extends Fragment {
 
 
         LinearLayoutManager layoutManager1
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         orders_rec.setLayoutManager(layoutManager1);
 //        orders_rec.setAdapter(new RecyclerView_orders(getContext(), ordersModules));
 //------------------------------------------------------------------------------------------------------------
@@ -411,11 +257,11 @@ public class OrdersFragment extends Fragment {
 
 
         LinearLayoutManager layoutManagerxmx
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+                = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         type_of_v.setLayoutManager(layoutManagerxmx);
 
 
-        RecyclerView_All_opration_bottom_sheet recyclerView_all_opration_bottom_sheet = new RecyclerView_All_opration_bottom_sheet(getContext(), type_list);
+        RecyclerView_All_opration_bottom_sheet recyclerView_all_opration_bottom_sheet = new RecyclerView_All_opration_bottom_sheet(this, type_list);
         recyclerView_all_opration_bottom_sheet.addItemClickListener(new RecyclerView_All_opration_bottom_sheet.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -682,7 +528,7 @@ public class OrdersFragment extends Fragment {
 
                         }
                     } else {
-                        Settings.Dialog_not_compleate(getActivity());
+                        Settings.Dialog_not_compleate(MyOrderActivity.this);
 
 
                     }
@@ -709,7 +555,7 @@ public class OrdersFragment extends Fragment {
 
                         }
                     } else {
-                        Settings.Dialog_not_compleate(getActivity());
+                        Settings.Dialog_not_compleate(MyOrderActivity.this);
 
 
                     }
@@ -770,87 +616,87 @@ public class OrdersFragment extends Fragment {
                 });
 
 
-                bottomSheetDialogFragment_selectCity_fillter.show(getParentFragmentManager(), "");
+                bottomSheetDialogFragment_selectCity_fillter.show(getSupportFragmentManager(), "");
             }
         });
-        //------------------------------------------------------------------------------------------------------------
-        convert_to_map.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if (convert_to_map_text.equals("list")) {
-                    convert_to_map_text = "map";
-                    orders_rec.setVisibility(View.GONE);
-                    mMapView.setVisibility(View.VISIBLE);
-                    googleMap.clear();
-
-                    for (int i = 0; i < demandsModules_list.size(); i++) {
-
-
-//                        JsonParser parser = new JsonParser();
-//                        JsonElement mJson = parser.parse(jsonArray.getString(i));
+//        //------------------------------------------------------------------------------------------------------------
+//        convert_to_map.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
 //
-//                        Gson gson = new Gson();
 //
-                        demandsModules ordersModulesm = demandsModules_list.get(i);
-                        String price = ordersModulesm.getPriceTo();
-                        try {
-
-                            int price_int = Integer.valueOf(price);
-
-                            int prices = (int) price_int;
-
-
-                            if (price_int < 1000) {
-
-                                price = prices + "";
-                            } else if (price_int > 1000 && price_int < 999999) {
-                                prices = (int) price_int / 1000;
-
-                                price = prices + getResources().getString(R.string.K);
-
-                            } else if (price_int > 999999) {
-                                prices = (int) price_int / 1000000;
-
-                                price = prices + getResources().getString(R.string.Million);
-
-                            }
-//                            System.out.println(bankModules.getTotalPrice() + "--------------" + price);
-
+//                if (convert_to_map_text.equals("list")) {
+//                    convert_to_map_text = "map";
+//                    orders_rec.setVisibility(View.GONE);
+//                    mMapView.setVisibility(View.VISIBLE);
+//                    googleMap.clear();
 //
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-//                        demandsModules_list.add(ordersModulesm);
-                        LatLng sydneya = new LatLng(Double.valueOf(ordersModulesm.getLat()), Double.valueOf(ordersModulesm.getLan()));
-                        googleMap.addMarker(new MarkerOptions()
-                                .position(sydneya)
-                                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(price)))).setTag(i);//تم التغير الشكل من السكني للكلر
-
-                    }
-
-
-                } else {
-                    convert_to_map_text = "list";
-                    orders_rec.setVisibility(View.VISIBLE);
-                    mMapView.setVisibility(View.GONE);
-
-                    orders_rec.setAdapter(new RecyclerView_orders_demandsx(getContext(), demandsModules_list));
-
-
-                    if (demandsModules_list.size() != 0) {
-                        nodata_vis.setVisibility(View.GONE);
-                    } else {
-                        nodata_vis.setVisibility(View.VISIBLE);
-
-                    }
-
-                }
-
-
-            }
-        });
+//                    for (int i = 0; i < demandsModules_list.size(); i++) {
+//
+//
+////                        JsonParser parser = new JsonParser();
+////                        JsonElement mJson = parser.parse(jsonArray.getString(i));
+////
+////                        Gson gson = new Gson();
+////
+//                        demandsModules ordersModulesm = demandsModules_list.get(i);
+//                        String price = ordersModulesm.getPriceTo();
+//                        try {
+//
+//                            int price_int = Integer.valueOf(price);
+//
+//                            int prices = (int) price_int;
+//
+//
+//                            if (price_int < 1000) {
+//
+//                                price = prices + "";
+//                            } else if (price_int > 1000 && price_int < 999999) {
+//                                prices = (int) price_int / 1000;
+//
+//                                price = prices + getResources().getString(R.string.K);
+//
+//                            } else if (price_int > 999999) {
+//                                prices = (int) price_int / 1000000;
+//
+//                                price = prices + getResources().getString(R.string.Million);
+//
+//                            }
+////                            System.out.println(bankModules.getTotalPrice() + "--------------" + price);
+//
+////
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+////                        demandsModules_list.add(ordersModulesm);
+//                        LatLng sydneya = new LatLng(Double.valueOf(ordersModulesm.getLat()), Double.valueOf(ordersModulesm.getLan()));
+//                        googleMap.addMarker(new MarkerOptions()
+//                                .position(sydneya)
+//                                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(price)))).setTag(i);//تم التغير الشكل من السكني للكلر
+//
+//                    }
+//
+//
+//                } else {
+//                    convert_to_map_text = "list";
+//                    orders_rec.setVisibility(View.VISIBLE);
+//                    mMapView.setVisibility(View.GONE);
+//
+//                    orders_rec.setAdapter(new RecyclerView_orders_demandsx(MyOrderActivity.this, demandsModules_list));
+//
+//
+//                    if (demandsModules_list.size() != 0) {
+//                        nodata_vis.setVisibility(View.GONE);
+//                    } else {
+//                        nodata_vis.setVisibility(View.VISIBLE);
+//
+//                    }
+//
+//                }
+//
+//
+//            }
+//        });
         //------------------------------------------------------------------------------------------------------------
 
         if (Settings.CheckIsAccountAqarzMan()) {
@@ -876,7 +722,7 @@ public class OrdersFragment extends Fragment {
                 Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 Real_Estate_order_text.setTextColor(getResources().getColor(R.color.textColor));
-                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
+                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(MyOrderActivity.this, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
                 type_sale.setVisibility(View.GONE);
 
                 list_opration.setVisibility(View.VISIBLE);
@@ -918,7 +764,7 @@ public class OrdersFragment extends Fragment {
 
                 MyRequst.clear();
 
-                orders_rec.setAdapter(new RecyclerView_orders_my_requst(getContext(), MyRequst));
+                orders_rec.setAdapter(new RecyclerView_orders_my_requst(MyOrderActivity.this, MyRequst));
 
 
                 send_requst_by_type("my_request");
@@ -950,7 +796,7 @@ public class OrdersFragment extends Fragment {
                 Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 Real_Estate_order_text.setTextColor(getResources().getColor(R.color.textColor));
-                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
+                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(MyOrderActivity.this, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
 
 
                 list_opration.setVisibility(View.GONE);
@@ -965,7 +811,7 @@ public class OrdersFragment extends Fragment {
                 MyRequst.clear();
 
 
-                orders_rec.setAdapter(new RecyclerView_orders_my_requst(getContext(), MyRequst));
+                orders_rec.setAdapter(new RecyclerView_orders_my_requst(MyOrderActivity.this, MyRequst));
                 send_requst_by_type("market_demands");
 
             }
@@ -988,7 +834,7 @@ public class OrdersFragment extends Fragment {
                 Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.background_order));
 
                 Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
-                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
+                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(MyOrderActivity.this, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
 
 
                 if (convert_to_map_text.equals("list")) {
@@ -1019,7 +865,7 @@ public class OrdersFragment extends Fragment {
 
                 offer.setTextColor(getResources().getColor(R.color.black));
 
-                orders_rec.setAdapter(new RecyclerView_orders_my_requst(getContext(), MyRequst));
+                orders_rec.setAdapter(new RecyclerView_orders_my_requst(MyOrderActivity.this, MyRequst));
 
                 send_requst_by_type("fund_Request");
                 type_requst_xml.setVisibility(View.VISIBLE);
@@ -1076,7 +922,7 @@ public class OrdersFragment extends Fragment {
         Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
         Real_Estate_order_text.setTextColor(getResources().getColor(R.color.textColor));
-        Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
+        Real_Estate_order_image.setColorFilter(ContextCompat.getColor(MyOrderActivity.this, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
 
 //        list_opration.setVisibility(View.VISIBLE);
 //        type_sale.setVisibility(View.GONE);
@@ -1087,59 +933,60 @@ public class OrdersFragment extends Fragment {
 
         MyRequst.clear();
 
-        orders_rec.setAdapter(new RecyclerView_orders_my_requst(getContext(), MyRequst));
+        orders_rec.setAdapter(new RecyclerView_orders_my_requst(MyOrderActivity.this, MyRequst));
+        my_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
 
-        Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+        my_order_text.setTextColor(getResources().getColor(R.color.white));
 
-        Shopping_request_text.setTextColor(getResources().getColor(R.color.white));
+        Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
-
-        my_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
-
-        my_order_text.setTextColor(getResources().getColor(R.color.textColor));
-
+        Shopping_request_text.setTextColor(getResources().getColor(R.color.textColor));
 
         Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
         Real_Estate_order_text.setTextColor(getResources().getColor(R.color.textColor));
-        Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
-
-
-        list_opration.setVisibility(View.GONE);
+        Real_Estate_order_image.setColorFilter(ContextCompat.getColor(MyOrderActivity.this, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
         type_sale.setVisibility(View.GONE);
-        type_market_xml.setVisibility(View.VISIBLE);
-        convert_to_map.setVisibility(View.VISIBLE);
-        type_requst_xml.setVisibility(View.GONE);
-        type_requst_xml.setVisibility(View.GONE);
-        order_type.setVisibility(View.GONE);
-        my_order_layout.setVisibility(View.GONE);
 
+        list_opration.setVisibility(View.VISIBLE);
+        type_sale.setVisibility(View.GONE);
+        order_type.setVisibility(View.VISIBLE);
+        type_of_v.setVisibility(View.VISIBLE);
+        type_requst_xml.setVisibility(View.GONE);
+        type_market_xml.setVisibility(View.GONE);
+        convert_to_map.setVisibility(View.GONE);
 
 //        send_requst_by_type("my_request");
-        send_requst_by_type("market_demands");
+        aqaerz_aq1.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+        aqaerz_aq1.setTextColor(getResources().getColor(R.color.white));
+
+
+        finince_aq1.setBackground(null);
+        finince_aq1.setTextColor(getResources().getColor(R.color.black));
+        rent_aq1.setBackground(null);
+        rent_aq1.setTextColor(getResources().getColor(R.color.black));
+        rate_aq1.setBackground(null);
+        rate_aq1.setTextColor(getResources().getColor(R.color.black));
+
+
+        type_order = "1";
+
+
+        MyRequst.clear();
+
+        orders_rec.setAdapter(new RecyclerView_orders_my_requst(MyOrderActivity.this, MyRequst));
+
+
+        send_requst_by_type("my_request");
+
+
+
+
+        convert_to_map.setVisibility(View.GONE);
+
 
     }
-
-
-    public static OrdersFragment newInstance(String text) {
-
-        OrdersFragment f = new OrdersFragment();
-        Bundle b = new Bundle();
-        b.putString("msg", text);
-
-        f.setArguments(b);
-
-        return f;
-    }
-
-
-    @Override
-    public void onResume() {
-
-
-        super.onResume();
-    }
-
     public void init_volley() {
 
 
@@ -1148,7 +995,7 @@ public class OrdersFragment extends Fragment {
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + response);
-                WebService.loading(getActivity(), false);
+                WebService.loading(MyOrderActivity.this, false);
 
                 type_requst = "" + requestType;
 
@@ -1204,7 +1051,7 @@ public class OrdersFragment extends Fragment {
                             }
 
 
-                            orders_rec.setAdapter(new RecyclerView_orders_my_requstx(getContext(), MyRequst));
+                            orders_rec.setAdapter(new RecyclerView_orders_my_requstx(MyOrderActivity.this, MyRequst));
 
                             if (MyRequst.size() != 0) {
                                 nodata_vis.setVisibility(View.GONE);
@@ -1244,7 +1091,7 @@ public class OrdersFragment extends Fragment {
                             }
 
 
-                            orders_rec.setAdapter(new RecyclerView_orders_my_requstx_det(getContext(), deferredInstallmentModuleslist));
+                            orders_rec.setAdapter(new RecyclerView_orders_my_requstx_det(MyOrderActivity.this, deferredInstallmentModuleslist));
 
                             if (MyRequst.size() != 0) {
                                 nodata_vis.setVisibility(View.GONE);
@@ -1284,7 +1131,7 @@ public class OrdersFragment extends Fragment {
                             }
 
 
-                            orders_rec.setAdapter(new RecyclerView_orders_my_requstx_rate(getContext(), myRateModules));
+                            orders_rec.setAdapter(new RecyclerView_orders_my_requstx_rate(MyOrderActivity.this, myRateModules));
 
                             if (MyRequst.size() != 0) {
                                 nodata_vis.setVisibility(View.GONE);
@@ -1324,7 +1171,7 @@ public class OrdersFragment extends Fragment {
                             }
 
 
-                            orders_rec.setAdapter(new RecyclerView_order_rate(getContext(), rate_list));
+                            orders_rec.setAdapter(new RecyclerView_order_rate(MyOrderActivity.this, rate_list));
 
                             if (rate_list.size() != 0) {
                                 nodata_vis.setVisibility(View.GONE);
@@ -1364,7 +1211,7 @@ public class OrdersFragment extends Fragment {
                             }
 
 
-                            orders_rec.setAdapter(new RecyclerView_order_finince(getContext(), finance_list));
+                            orders_rec.setAdapter(new RecyclerView_order_finince(MyOrderActivity.this, finance_list));
 
                             if (finance_list.size() != 0) {
                                 nodata_vis.setVisibility(View.GONE);
@@ -1380,7 +1227,7 @@ public class OrdersFragment extends Fragment {
 
 
 //                            WebService.Make_Toast_color(getActivity(), message, "success");
-                            LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                            LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                             final View popupView = layoutInflater.inflate(R.layout.upgrade_message, null);
 
                             ImageView close = popupView.findViewById(R.id.close);
@@ -1398,10 +1245,10 @@ public class OrdersFragment extends Fragment {
                                 @Override
                                 public void onClick(View v) {
 
-                                    WebService.loading(getActivity(), true);
+                                    WebService.loading(MyOrderActivity.this, true);
 
                                     init_volley();
-                                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+                                    VolleyService mVolleyService = new VolleyService(mResultCallback, MyOrderActivity.this);
                                     mVolleyService.getDataVolley("upgrade", WebService.upgrade);
 
 
@@ -1410,7 +1257,7 @@ public class OrdersFragment extends Fragment {
                             });
 
 
-                            final android.app.AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            final android.app.AlertDialog.Builder builder = new AlertDialog.Builder(MyOrderActivity.this);
 
 //            alertDialog_country =
                             builder.setView(popupView);
@@ -1449,7 +1296,7 @@ public class OrdersFragment extends Fragment {
 
                                 }
 
-                                orders_rec.setAdapter(new RecyclerView_orders_demandsx(getContext(), demandsModules_list));
+                                orders_rec.setAdapter(new RecyclerView_orders_demandsx(MyOrderActivity.this, demandsModules_list));
 
 
                                 if (demandsModules_list.size() != 0) {
@@ -1537,7 +1384,7 @@ public class OrdersFragment extends Fragment {
 
                             }
 
-                            orders_rec.setAdapter(new RecyclerView_orders_offer_di(getContext(), offerRealStateModulesLis));
+                            orders_rec.setAdapter(new RecyclerView_orders_offer_di(MyOrderActivity.this, offerRealStateModulesLis));
 
                             if (offerRealStateModulesLis.size() != 0) {
                                 nodata_vis.setVisibility(View.GONE);
@@ -1574,7 +1421,7 @@ public class OrdersFragment extends Fragment {
                             }
 
 
-                            orders_rec.setAdapter(new RecyclerView_ordersx(getContext(), ordersModules));
+                            orders_rec.setAdapter(new RecyclerView_ordersx(MyOrderActivity.this, ordersModules));
                             if (ordersModules.size() != 0) {
                                 nodata_vis.setVisibility(View.GONE);
                             } else {
@@ -1587,7 +1434,7 @@ public class OrdersFragment extends Fragment {
                         String message = response.getString("message");
 
 
-                        WebService.Make_Toast_color(getActivity(), message, "error");
+                        WebService.Make_Toast_color(MyOrderActivity.this, message, "error");
 
                     }
 
@@ -1603,11 +1450,11 @@ public class OrdersFragment extends Fragment {
             public void notifyError(String requestType, VolleyError error) {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.getMessage());
-                WebService.loading(getActivity(), false);
+                WebService.loading(MyOrderActivity.this, false);
 
                 try {
                     ordersModules.clear();
-                    orders_rec.setAdapter(new RecyclerView_ordersx(getContext(), ordersModules));
+                    orders_rec.setAdapter(new RecyclerView_ordersx(MyOrderActivity.this, ordersModules));
                     if (ordersModules.size() != 0) {
                         nodata_vis.setVisibility(View.GONE);
                     } else {
@@ -1629,7 +1476,7 @@ public class OrdersFragment extends Fragment {
                         nodata_vis.setVisibility(View.VISIBLE);
 
                     } else {
-                        WebService.Make_Toast_color(getActivity(), message, "error");
+                        WebService.Make_Toast_color(MyOrderActivity.this, message, "error");
 
                     }
 
@@ -1646,7 +1493,7 @@ public class OrdersFragment extends Fragment {
 
             @Override
             public void notify_Async_Error(String requestType, String error) {
-                WebService.loading(getActivity(), false);
+                WebService.loading(MyOrderActivity.this, false);
 
             }
 
@@ -1657,8 +1504,8 @@ public class OrdersFragment extends Fragment {
     }
 
     public void show_dialog() {
-        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(getContext());
-        LayoutInflater li = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(MyOrderActivity.this);
+        LayoutInflater li = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View parentView = li.inflate(R.layout.upgrade_message2, null);
 
@@ -1686,10 +1533,10 @@ public class OrdersFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                WebService.loading(getActivity(), true);
+                WebService.loading(MyOrderActivity.this, true);
 
                 init_volley();
-                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+                VolleyService mVolleyService = new VolleyService(mResultCallback, MyOrderActivity.this);
                 mVolleyService.getDataVolley("upgrade", WebService.upgrade);
 //
                 bottomSheerDialog.cancel();
@@ -1705,7 +1552,7 @@ public class OrdersFragment extends Fragment {
         // dark navigation bar icons
         View decorView = window.getDecorView();
         decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getActivity().getResources().getDisplayMetrics());
+        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
 
 
 //        ((View) decorView.getParent()).setBackgroundColor(context.getResources().getColor(android.R.color.transparent));
@@ -1715,58 +1562,13 @@ public class OrdersFragment extends Fragment {
     }
 
 
-    public void send_requst_by_type1(String requst_type) {
-        type_requst = requst_type;
 
-
-        String id_city_ = "";
-
-        if (!id_city_selected.equals("")) {
-            id_city_ = "&city_id=" + id_city_selected;
-        } else {
-            id_city_ = "";
-        }
-
-
-        if (requst_type.equals("fund_Request")) {
-
-            WebService.loading(getActivity(), true);
-
-            init_volley();
-            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-
-
-            mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?estate_type_id=" + opration_select + id_city_);
-
-            System.out.println(WebService.fund_Request + "?estate_type_id=" + opration_select + id_city_);
-        } else if (requst_type.equals("market_demands")) {
-
-            WebService.loading(getActivity(), true);
-
-            init_volley();
-            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?estate_type_id=" + opration_select + id_city_);
-
-        } else if (requst_type.equals("my_request")) {
-            WebService.loading(getActivity(), true);
-
-            init_volley();
-            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("my_request", WebService.my_request + "?estate_type_id=" + opration_select + id_city_);
-        } else if (requst_type.equals("request_offer")) {
-            WebService.loading(getActivity(), true);
-
-            init_volley();
-            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("request_offer", WebService.my_fund_request_offer + "?estate_type_id=" + opration_select + id_city_);
-        }
-    }
 
     public void send_requst_by_type(String requst_type) {
         type_requst = requst_type;
-        WebService.loading(getActivity(), true);
+        WebService.loading(MyOrderActivity.this, true);
         init_volley();
-        VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+        VolleyService mVolleyService = new VolleyService(mResultCallback, MyOrderActivity.this);
 
         String id_city_ = "";
 
@@ -1871,7 +1673,7 @@ public class OrdersFragment extends Fragment {
 
     private Bitmap getMarkerBitmapFromView(String Price) {
 
-        View customMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom, null);
+        View customMarkerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom, null);
         TextView markerImageView = (TextView) customMarkerView.findViewById(R.id.numb);
 //        markerImageView.setImageResource(resId);
         markerImageView.setText(Price);
@@ -1890,5 +1692,4 @@ public class OrdersFragment extends Fragment {
         customMarkerView.draw(canvas);
         return returnedBitmap;
     }
-
 }
