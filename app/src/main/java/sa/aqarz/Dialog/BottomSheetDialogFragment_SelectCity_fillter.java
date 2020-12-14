@@ -240,6 +240,7 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
                         JSONArray jsonArray = new JSONArray(data);
                         progress.setVisibility(View.GONE);
                         cityModules_list.clear();
+                        cityModules_list_filtter.clear();
                         for (int i = 0; i < jsonArray.length(); i++) {
 
 
@@ -250,6 +251,7 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
 
                             CityModules Store_M = gson.fromJson(mJson, CityModules.class);
                             cityModules_list.add(Store_M);
+                            cityModules_list_filtter.add(Store_M);
                             Application.AllCity.add(Store_M);
                         }
 

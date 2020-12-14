@@ -58,7 +58,7 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
     IResult mResultCallback;
 
 
-    EditText a1, a2, a3, a4, a5, a6;
+    EditText a1, a2, a3, a4, a5;
     String uuid_r = "";
     String estate_ixd = "";
     Button confirmation;
@@ -73,7 +73,6 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
         a3 = v.findViewById(R.id.a3);
         a4 = v.findViewById(R.id.a4);
         a5 = v.findViewById(R.id.a5);
-        a6 = v.findViewById(R.id.a6);
         confirmation = v.findViewById(R.id.confirmation);
         resend = v.findViewById(R.id.resend);
 
@@ -192,7 +191,7 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
             @Override
             public void afterTextChanged(Editable editable) {
                 if (a5.length() != 0) {
-                    a6.requestFocus();
+
 
                 } else {
                     a4.requestFocus();
@@ -203,30 +202,8 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
             }
 
         });
-        a6.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (a6.length() != 0) {
-
-                } else {
-                    a5.requestFocus();
-
-                }
 
 
-            }
-
-        });
 
 
         confirmation.setOnClickListener(new View.OnClickListener() {
@@ -237,15 +214,15 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
                         a2.getText().toString().equals("") |
                         a3.getText().toString().equals("") |
                         a4.getText().toString().equals("") |
-                        a5.getText().toString().equals("") |
-                        a6.getText().toString().equals("")
+                        a5.getText().toString().equals("")
+
                 ) {
 
                 } else {
                     String code2 = a1.getText().toString() +
                             a2.getText().toString() +
                             a3.getText().toString() +
-                            a4.getText().toString() + a5.getText().toString() + a6.getText().toString() + "";
+                            a4.getText().toString() + a5.getText().toString()+ "";
 
 
                     JSONObject sendObj = new JSONObject();

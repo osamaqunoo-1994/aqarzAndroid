@@ -117,7 +117,7 @@
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
                         android:hint="@string/phone_number"
-                        android:inputType="textEmailAddress"
+                        android:inputType="number"
 
 
                         android:paddingLeft="10dp"

@@ -54,7 +54,7 @@ public class MyOfferOrderActivity extends AppCompatActivity {
 
     List<MyOfferModule> homeModules = new ArrayList<>();
     private BottomSheetDialogFragment_MyEstate.ItemClickListener mItemClickListener;
-
+    String getUuid = "";
     static Activity activity;
 
     @Override
@@ -74,12 +74,12 @@ public class MyOfferOrderActivity extends AppCompatActivity {
 
         try {
 
-            String getUuid = getIntent().getStringExtra("getUuid");
+            getUuid = getIntent().getStringExtra("getUuid");
             id_offer = getUuid;
 
             String id = getIntent().getStringExtra("id");
 
-            uuid.setText(id + "");
+            uuid.setText(getResources().getString(R.string.MyOFFERFOR) + " " + getUuid + "");
         } catch (Exception e) {
 
         }
@@ -218,9 +218,13 @@ public class MyOfferOrderActivity extends AppCompatActivity {
                                 if (homeModule.getStatus() != null) {
                                     if (homeModule.getStatus().equals("active")) {
                                         addAqares.setVisibility(View.GONE);
+                                        uuid.setText(getResources().getString(R.string.MyOFFERFOR_title) + " " + getUuid + "");
+
                                     }
                                     if (homeModule.getStatus().equals("accepted_customer")) {
                                         addAqares.setVisibility(View.GONE);
+                                        uuid.setText(getResources().getString(R.string.MyOFFERFOR_title) + " " + getUuid + "");
+
                                     }
                                 }
                                 homeModules.add(homeModule);

@@ -93,7 +93,7 @@ ImageView back;
     LinearLayout type_sale;
     List<OrdersModules> ordersModules = new ArrayList<>();
     List<demandsModules> MyRequst = new ArrayList<>();
-    List<demandsModules> MyRequstssssss = new ArrayList<>();
+
 
     static BottomSheetDialogFragment_SelectCity_fillter bottomSheetDialogFragment_selectCity_fillter;
 

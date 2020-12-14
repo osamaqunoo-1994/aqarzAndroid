@@ -313,7 +313,7 @@ public class RecyclerView_order_rate extends RecyclerView.Adapter<RecyclerView_o
                         String message = response.getString("message");
 
 
-                        WebService.Make_Toast_color((Activity) context, message, "success");
+//                        WebService.Make_Toast_color((Activity) context, message, "success");
 
 
                     }

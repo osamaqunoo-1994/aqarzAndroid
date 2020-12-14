@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     static TextView text_4;
     static TextView text_s;
 
-    LinearLayout lay_1, lay_2, lay_3, lay_4,lay_s;
+    LinearLayout lay_1, lay_2, lay_3, lay_4, lay_s;
 
     FloatingActionButton myFab;
 
@@ -230,31 +230,49 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                text_1.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_2.setTextColor(getResources().getColor(R.color.colorPrimary));
-                text_3.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_4.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+                if (Settings.checkLogin()) {
+                    text_1.setTextColor(getResources().getColor(R.color.color_un_active));
+                    text_2.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    text_3.setTextColor(getResources().getColor(R.color.color_un_active));
+                    text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+                    text_s.setTextColor(getResources().getColor(R.color.color_un_active));
 
 
-                image_1.setSelected(false);
-                image_2.setSelected(true);
-                image_3.setSelected(false);
-                image_4.setSelected(false);
+                    image_1.setSelected(false);
+                    image_2.setSelected(true);
+                    image_3.setSelected(false);
+                    image_4.setSelected(false);
 //
-                image_s.setSelected(false);
+                    image_s.setSelected(false);
 
 //                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 
-                fragmentManager = getSupportFragmentManager();
+                    fragmentManager = getSupportFragmentManager();
 
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, new OrdersFragment());
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.container, new OrdersFragment());
+                    //  fragmentTransaction.commit();
+                    fragmentTransaction.commitAllowingStateLoss();
+                } else {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+                            .setCancelable(false)
+                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                                    startActivity(intent);
+
+                                }
+                            })
+                            .setNegativeButton(getResources().getString(R.string.no), null)
+                            .show();
+                }
+
 
             }
         });
@@ -262,20 +280,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if (Settings.checkLogin()) {
 
-                text_1.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_2.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_3.setTextColor(getResources().getColor(R.color.colorPrimary));
-                text_4.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+                    text_1.setTextColor(getResources().getColor(R.color.color_un_active));
+                    text_2.setTextColor(getResources().getColor(R.color.color_un_active));
+                    text_3.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+                    text_s.setTextColor(getResources().getColor(R.color.color_un_active));
 
 
-                image_1.setSelected(false);
-                image_2.setSelected(false);
-                image_3.setSelected(true);
-                image_4.setSelected(false);
+                    image_1.setSelected(false);
+                    image_2.setSelected(false);
+                    image_3.setSelected(true);
+                    image_4.setSelected(false);
 //
-                image_s.setSelected(false);
+                    image_s.setSelected(false);
 
 //                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
@@ -283,13 +302,28 @@ public class MainActivity extends AppCompatActivity {
 //                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 
 
-                fragmentManager = getSupportFragmentManager();
+                    fragmentManager = getSupportFragmentManager();
 
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, new ChatFragment());
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.container, new ChatFragment());
+                    //  fragmentTransaction.commit();
+                    fragmentTransaction.commitAllowingStateLoss();
+                } else {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+                            .setCancelable(false)
+                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
 
+                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                                    startActivity(intent);
+
+                                }
+                            })
+                            .setNegativeButton(getResources().getString(R.string.no), null)
+                            .show();
+                }
             }
         });
         lay_4.setOnClickListener(new View.OnClickListener() {

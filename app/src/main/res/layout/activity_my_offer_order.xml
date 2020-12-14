@@ -50,6 +50,8 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
+            android:layout_weight="1"
             android:fillViewport="true">
 
 
@@ -62,26 +64,19 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_margin="10dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:fontFamily="@font/din_bold"
-                        android:text="@string/MyOFFERFOR"
-                        android:textColor="@color/black"
-                        android:textSize="15dp" />
-
-                    <TextView
                         android:id="@+id/uuid"
-                        android:layout_width="wrap_content"
+
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:fontFamily="@font/din_bold"
-
+                        android:gravity="center"
+                        android:text="@string/MyOFFERFOR"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
@@ -103,41 +98,42 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"></androidx.recyclerview.widget.RecyclerView>
 
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:gravity="center|end"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:layout_marginBottom="20dp"
-                        android:id="@+id/addAqares"
-                        android:layout_marginTop="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_marginRight="@dimen/_10sdp"
-                        android:background="@drawable/mash"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:text="@string/Offer_btn" />
-
-                    <Button
-                        android:id="@+id/confirm"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:background="@drawable/button_login"
-                        android:text="@string/Confirm_btn"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
-                </LinearLayout>
 
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center|end"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/addAqares"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/mash"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="@string/Offer_btn" />
+
+            <Button
+                android:id="@+id/confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/button_login"
+                android:text="@string/Confirm_btn"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+        </LinearLayout>
 
 
     </LinearLayout>

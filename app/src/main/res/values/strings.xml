@@ -459,6 +459,7 @@ Your request and reply in the fastest time</string>
 
     <string name="TimeRemmember">Time Remmember</string>
     <string name="MyOFFERFOR">عروضي على الطلب رقم </string>
+    <string name="MyOFFERFOR_title">العرض المقبول من قبل الصندوق على الطلب رقم </string>
     <string name="MOreAqarezMan">العقاريين الأكثر نشاطاً </string>
     <string name="contune">متابعة </string>
     <string name="OrderDetialss">بيانات الطلب </string>

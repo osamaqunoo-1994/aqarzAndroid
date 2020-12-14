@@ -481,7 +481,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                         String message = response.getString("message");
 
 
-                        WebService.Make_Toast_color((Activity) context, message, "success");
+//                        WebService.Make_Toast_color((Activity) context, message, "success");
 
 
                     }

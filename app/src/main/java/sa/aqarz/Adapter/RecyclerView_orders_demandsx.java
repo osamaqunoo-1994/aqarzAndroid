@@ -320,7 +320,7 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
                         String message = response.getString("message");
 
 
-                        WebService.Make_Toast_color((Activity) context, message, "success");
+//                        WebService.Make_Toast_color((Activity) context, message, "success");
 
 
                     }
