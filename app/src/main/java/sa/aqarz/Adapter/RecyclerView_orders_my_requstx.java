@@ -87,6 +87,7 @@ public class RecyclerView_orders_my_requstx extends RecyclerView.Adapter<Recycle
         TextView space;
         TextView name_estate;
         TextView new_offer;
+        TextView type;
         ImageView image_icon;
         ImageView add_favorite;
 
@@ -102,6 +103,7 @@ public class RecyclerView_orders_my_requstx extends RecyclerView.Adapter<Recycle
             view_type = view.findViewById(R.id.view_type);
             new_offer = view.findViewById(R.id.new_offer);
             image_icon = view.findViewById(R.id.image_icon);
+            type = view.findViewById(R.id.type);
             add_favorite = view.findViewById(R.id.add_favorite);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
@@ -140,6 +142,7 @@ public class RecyclerView_orders_my_requstx extends RecyclerView.Adapter<Recycle
         holder.price.setText(alldata.get(position).getPriceFrom() + " - " + alldata.get(position).getPriceTo());
 //        holder.view_type.setText(alldata.get(position).getDirEstate());
         holder.space.setText(alldata.get(position).getAreaFrom() + " - " + alldata.get(position).getAreaTo());
+        holder.type.setText(alldata.get(position).getOperationTypeName());
 
 
         System.out.println(alldata.get(position).getAreaFrom() + " - " + alldata.get(position).getAreaTo());
@@ -201,10 +204,10 @@ public class RecyclerView_orders_my_requstx extends RecyclerView.Adapter<Recycle
         holder.new_offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BottomSheetDialogFragment_status bottomSheetDialogFragment_status=new BottomSheetDialogFragment_status(alldata.get(position).getStatus()+"");
+                BottomSheetDialogFragment_status bottomSheetDialogFragment_status = new BottomSheetDialogFragment_status(alldata.get(position).getStatus() + "");
 
 
-                bottomSheetDialogFragment_status.show(((FragmentActivity)context).getSupportFragmentManager(), "");
+                bottomSheetDialogFragment_status.show(((FragmentActivity) context).getSupportFragmentManager(), "");
 
                 //
 //
@@ -301,7 +304,7 @@ public class RecyclerView_orders_my_requstx extends RecyclerView.Adapter<Recycle
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_orders_my_orderx, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_my_order, parent, false);
 
 
         // Fresco.initialize(context);

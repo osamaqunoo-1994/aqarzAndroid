@@ -88,6 +88,13 @@ public class LoginActivity extends AppCompatActivity {
         forget_pass = findViewById(R.id.forget_pass);
         pass_checkbox = findViewById(R.id.pass_checkbox);
         back = findViewById(R.id.back);
+
+
+
+
+
+
+
 //
 //        phone_ed.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 //            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -130,16 +137,16 @@ public class LoginActivity extends AppCompatActivity {
 //        if (isRTL(getResources().getConfiguration().locale))
 //            password.setGravity(View.TEXT_ALIGNMENT_TEXT_START);
 //
+////
+//        if (Hawk.get("lang").toString().equals("ar")) {
 //
-        if (Hawk.get("lang").toString().equals("ar")) {
-
-            password.setGravity(Gravity.RIGHT);
-
-        } else {
-            password.setGravity(Gravity.LEFT);
-
-
-        }
+//            password.setGravity(Gravity.RIGHT);
+//
+//        } else {
+//            password.setGravity(Gravity.LEFT);
+//
+//
+//        }
 
 
         new_account.setOnClickListener(new View.OnClickListener() {

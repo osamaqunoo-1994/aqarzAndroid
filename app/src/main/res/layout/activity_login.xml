@@ -135,6 +135,7 @@
                     android:layout_height="45dp"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:background="@drawable/edit_text_background_new_design"
+                    android:layoutDirection="ltr"
 
                     android:gravity="center"
                     android:orientation="horizontal">
@@ -153,12 +154,12 @@
                         android:id="@+id/password"
 
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
 
 
-                        android:gravity="start|center"
+
 
                         android:hint="@string/password"
                         android:inputType="textPassword"

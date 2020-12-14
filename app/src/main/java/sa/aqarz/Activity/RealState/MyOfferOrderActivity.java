@@ -218,12 +218,12 @@ public class MyOfferOrderActivity extends AppCompatActivity {
                                 if (homeModule.getStatus() != null) {
                                     if (homeModule.getStatus().equals("active")) {
                                         addAqares.setVisibility(View.GONE);
-                                        uuid.setText(getResources().getString(R.string.MyOFFERFOR_title) + " " + getUuid + "");
+//                                        uuid.setText(getResources().getString(R.string.MyOFFERFOR_title) + " " + getUuid + "");
 
                                     }
                                     if (homeModule.getStatus().equals("accepted_customer")) {
                                         addAqares.setVisibility(View.GONE);
-                                        uuid.setText(getResources().getString(R.string.MyOFFERFOR_title) + " " + getUuid + "");
+//                                        uuid.setText(getResources().getString(R.string.MyOFFERFOR_title) + " " + getUuid + "");
 
                                     }
                                 }
