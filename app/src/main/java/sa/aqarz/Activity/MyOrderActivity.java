@@ -361,6 +361,7 @@ ImageView back;
                 type_order = "1";
                 type_sale.setVisibility(View.GONE);
                 type_of_v.setVisibility(View.VISIBLE);
+                type_sale.setVisibility(View.VISIBLE);
 
                 send_requst_by_type("my_request");
             }
@@ -374,6 +375,7 @@ ImageView back;
 
                 type_sale.setVisibility(View.GONE);
                 type_of_v.setVisibility(View.GONE);
+                type_sale.setVisibility(View.GONE);
 
                 aqaerz_aq1.setBackground(null);
                 aqaerz_aq1.setTextColor(getResources().getColor(R.color.black));
@@ -419,6 +421,7 @@ ImageView back;
 
                 type_sale.setVisibility(View.GONE);
                 type_of_v.setVisibility(View.GONE);
+                type_sale.setVisibility(View.GONE);
 
                 finince_aq1.setBackground(null);
                 finince_aq1.setTextColor(getResources().getColor(R.color.black));
@@ -909,7 +912,7 @@ ImageView back;
 
 
         list_opration.setVisibility(View.GONE);
-        type_sale.setVisibility(View.GONE);
+        type_sale.setVisibility(View.VISIBLE);
 
 
         my_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
@@ -950,7 +953,7 @@ ImageView back;
         type_sale.setVisibility(View.GONE);
 
         list_opration.setVisibility(View.VISIBLE);
-        type_sale.setVisibility(View.GONE);
+        type_sale.setVisibility(View.VISIBLE);
         order_type.setVisibility(View.VISIBLE);
         type_of_v.setVisibility(View.VISIBLE);
         type_requst_xml.setVisibility(View.GONE);

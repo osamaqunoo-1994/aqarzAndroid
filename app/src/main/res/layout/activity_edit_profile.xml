@@ -113,27 +113,56 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="50dp"
                     android:layout_marginRight="20dp"
-                    android:text="@string/name"
+                    android:text="@string/name_office"
                     android:textColor="@color/black"
-
-                    android:visibility="gone"></TextView>
+                    android:textSize="13dp"
+                    android:visibility="visible"></TextView>
 
 
                 <EditText
-                    android:id="@+id/name_ed"
+                    android:id="@+id/name_office"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="45dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/mash"
 
-                    android:drawableStart="@drawable/ic_profil"
+
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/name_office"
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/name_cli"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    android:visibility="visible"></TextView>
+
+
+                <EditText
+                    android:id="@+id/name_ed"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/mash"
 
 
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
-                    android:hint="@string/name"
+                    android:hint="@string/name_cli"
                     android:inputType="text"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
@@ -148,8 +177,8 @@
                     android:layout_marginRight="20dp"
                     android:text="@string/phone_number"
                     android:textColor="@color/black"
-
-                    android:visibility="gone"></TextView>
+                    android:textSize="13dp"
+                    android:visibility="visible"></TextView>
 
 
                 <TextView
@@ -177,12 +206,12 @@
                 <TextView
                     android:id="@+id/phone_ed"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="45dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/mash"
-                    android:drawableStart="@drawable/ic_phone_t"
+
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
                     android:hint="@string/phone_number"
@@ -201,8 +230,8 @@
                     android:layout_marginRight="20dp"
                     android:text="@string/linkShare"
                     android:textColor="@color/black"
-
-                    android:visibility="gone"></TextView>
+                    android:textSize="13dp"
+                    android:visibility="visible"></TextView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -212,13 +241,14 @@
                     android:layout_marginRight="20dp">
 
                     <EditText
+                        android:id="@+id/link"
 
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="45dp"
 
                         android:layout_weight="1"
                         android:background="@drawable/mash"
-                        android:drawableStart="@drawable/ic_www"
+
                         android:drawablePadding="10dp"
                         android:gravity="center_vertical"
                         android:hint="@string/site_hint"
@@ -234,11 +264,13 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
+                        android:visibility="gone"
                         android:gravity="center"
                         android:text="aqarz.sa/" />
 
                     <ImageView
                         android:layout_width="50dp"
+                        android:visibility="gone"
                         android:layout_height="50dp"
                         android:background="@drawable/circle_requst"
                         android:padding="15dp"
@@ -255,18 +287,18 @@
                     android:layout_marginRight="20dp"
                     android:text="@string/email"
                     android:textColor="@color/black"
-
-                    android:visibility="gone"></TextView>
+                    android:textSize="13dp"
+                    android:visibility="visible"></TextView>
 
                 <EditText
                     android:id="@+id/www"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="45dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/mash"
-                    android:drawableStart="@drawable/ic_email_edit"
+
                     android:drawablePadding="10dp"
 
                     android:gravity="center_vertical"
@@ -286,18 +318,18 @@
                     android:layout_marginRight="20dp"
                     android:text="@string/Address"
                     android:textColor="@color/black"
-
-                    android:visibility="gone"></TextView>
+                    android:textSize="13dp"
+                    android:visibility="visible"></TextView>
 
                 <TextView
                     android:id="@+id/address"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="45dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/mash"
-                    android:drawableStart="@drawable/ic_pin_3"
+
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
                     android:hint="@string/Address"
@@ -340,6 +372,7 @@
 
 
                     <CheckBox
+                        android:id="@+id/less_than_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/five_yeares" />
@@ -359,6 +392,7 @@
 
 
                     <CheckBox
+                        android:id="@+id/form_5_to_10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/five_yeares_to_ten" />
@@ -378,6 +412,7 @@
 
 
                     <CheckBox
+                        android:id="@+id/more_than_10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/ten_yeares" />

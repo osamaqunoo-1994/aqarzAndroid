@@ -27,6 +27,9 @@ public class User {
     @SerializedName("type")
     @Expose
     private String type;
+    @SerializedName("user_name")
+    @Expose
+    private String user_name;
     @SerializedName("mobile")
     @Expose
     private String mobile;
@@ -36,6 +39,9 @@ public class User {
     @SerializedName("is_pay")
     @Expose
     private String is_pay;
+    @SerializedName("onwer_name")
+    @Expose
+    private String onwer_name;
     @SerializedName("is_certified")
     @Expose
     private String is_certified;
@@ -139,6 +145,10 @@ public class User {
         return count_request;
     }
 
+    public String getOnwer_name() {
+        return onwer_name;
+    }
+
     public String getCount_visit() {
         return count_visit;
     }
@@ -153,6 +163,10 @@ public class User {
 
     public String getMobile() {
         return mobile;
+    }
+
+    public String getUser_name() {
+        return user_name;
     }
 
     public Integer getId() {

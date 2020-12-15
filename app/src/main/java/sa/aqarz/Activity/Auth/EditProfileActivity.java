@@ -19,6 +19,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -72,7 +74,8 @@ public class EditProfileActivity extends AppCompatActivity {
     TextView email_ed;
     TextView phone_ed;
     TextView address;
-
+    EditText name_office;
+    EditText link;
     Button done;
     BottomSheetDialogFragment_SelectCity bottomSheetDialogFragment_selectCity;
 
@@ -98,6 +101,11 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
     TextView yes, no;
+    String type_yes_no = "0";
+    String type_experiencex = "";
+
+
+    CheckBox more_than_10, form_5_to_10, less_than_5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +125,10 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     public void init() {
+        less_than_5 = findViewById(R.id.less_than_5);
+        form_5_to_10 = findViewById(R.id.form_5_to_10);
+        more_than_10 = findViewById(R.id.more_than_10);
+        link = findViewById(R.id.link);
         name_ed = findViewById(R.id.name_ed);
         email_ed = findViewById(R.id.www);
         phone_ed = findViewById(R.id.phone_ed);
@@ -129,6 +141,7 @@ public class EditProfileActivity extends AppCompatActivity {
         address = findViewById(R.id.address);
         yes = findViewById(R.id.yes);
         no = findViewById(R.id.no);
+        name_office = findViewById(R.id.name_office);
 
         Places.initialize(EditProfileActivity.this, "AIzaSyA6E2L_Feqp6HMD85eQ1RP06WnykHJj7Mc");
         PlacesClient placesClient = Places.createClient(EditProfileActivity.this);
@@ -203,12 +216,55 @@ public class EditProfileActivity extends AppCompatActivity {
             Address_t = Settings.GetUser().getAddress();
 
             address.setText(Address_t + "");
+            link.setText(Settings.GetUser().getUser_name() + "");
 
         } catch (Exception e) {
 
         }
 
         Member_typesl = Settings.getSettings().getMember_types();
+
+
+        less_than_5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    less_than_5.setChecked(true);
+                    form_5_to_10.setChecked(false);
+                    more_than_10.setChecked(false);
+                    type_experiencex = "less_than_5";
+                }
+            }
+        });
+
+
+        form_5_to_10.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    less_than_5.setChecked(false);
+                    form_5_to_10.setChecked(true);
+                    more_than_10.setChecked(false);
+                    type_experiencex = "form_5_to_10";
+
+                }
+            }
+        });
+
+
+        more_than_10.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    less_than_5.setChecked(false);
+                    form_5_to_10.setChecked(false);
+                    more_than_10.setChecked(true);
+                    type_experiencex = "more_than_10";
+
+                }
+            }
+        });
+
 
         try {
 
@@ -337,8 +393,16 @@ public class EditProfileActivity extends AppCompatActivity {
 
             phone_ed.setText(Settings.GetUser().getMobile());
 
+            if (Settings.GetUser().getOnwer_name() != null) {
+                name_ed.setText(Settings.GetUser().getOnwer_name() + "");
+
+            }
             if (Settings.GetUser().getName() != null) {
-                name_ed.setText(Settings.GetUser().getName() + "");
+                name_office.setText(Settings.GetUser().getName() + "");
+
+            }
+            if (Settings.GetUser().getUser_name() != null) {
+                link.setText(Settings.GetUser().getUser_name() + "");
 
             }
             if (Settings.GetUser().getEmail() != null) {
@@ -420,6 +484,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 if (name_ed.getText().toString().equals("")) {
                     WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.hint_name__address) + "", "error");
+                } else if (name_office.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.reqname_office) + "", "error");
                 } else if (phone_ed.getText().toString().equals("")) {
                     WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.hint_mob__address) + "", "error");
 
@@ -435,6 +501,12 @@ public class EditProfileActivity extends AppCompatActivity {
                 } else if (memmber_te.toString().equals("")) {
                     WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.selectmember) + "", "error");
 
+                } else if (type_experiencex.toString().equals("")) {
+                    WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.select_experiencex) + "", "error");
+
+                } else if (link.toString().equals("")) {
+                    WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.user_name_req) + "", "error");
+
                 } else {
                     WebService.loading(EditProfileActivity.this, true);
 
@@ -445,7 +517,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
                     try {
 
-                        sendObj.put("name", name_ed.getText().toString());
+                        sendObj.put("onwer_name", name_ed.getText().toString());
 //                        sendObj.put("city_id", city_id);
                         sendObj.put("neighborhood_id", 2);
                         sendObj.put("email", email_ed.getText().toString() + "");
@@ -453,10 +525,14 @@ public class EditProfileActivity extends AppCompatActivity {
 //                        sendObj.put("members_name", "mebmer1,mebmer_nam2");
 
                         sendObj.put("services_id", service_types_te);
+                        sendObj.put("name", name_office.getText().toString());
                         sendObj.put("members_id", memmber_te);
                         sendObj.put("lan", lng);
                         sendObj.put("lat", lat);
                         sendObj.put("address", Address_t);
+                        sendObj.put("user_name", link.getText().toString());
+                        sendObj.put("experience", type_experiencex);
+                        sendObj.put("office_staff", type_yes_no);
 
 
                         System.out.println(sendObj.toString());
@@ -479,7 +555,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 yes.setTextColor(getResources().getColor(R.color.white));
 
                 no.setBackground(null);
-
+                type_yes_no = "1";
                 no.setTextColor(getResources().getColor(R.color.textColor));
             }
         });
@@ -489,6 +565,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 no.setBackground(getResources().getDrawable(R.drawable.button_login));
 
                 no.setTextColor(getResources().getColor(R.color.white));
+                type_yes_no = "0";
 
 
                 yes.setBackground(null);

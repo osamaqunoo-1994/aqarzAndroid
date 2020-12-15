@@ -406,6 +406,7 @@ Your request and reply in the fastest time</string>
 
     <string name="select_service">select Service</string>
     <string name="selectmember">select member</string>
+    <string name="select_experiencex">select experience</string>
 
 
     <string name="Select_Location">Select Location</string>
@@ -490,6 +491,10 @@ Your request and reply in the fastest time</string>
     <string name="five_yeares_to_ten">من ٥ سنوات ١٠</string>
     <string name="ten_yeares">أكثر من ١٠ سنوات</string>
     <string name="have_employee">هل لديك موظفين بالمكتب؟</string>
+    <string name="name_office">اسم المكتب</string>
+    <string name="reqname_office">مطلوب اسم المكتب</string>
+    <string name="name_cli">اسم المسؤول</string>
+    <string name="user_name_req">اسم الرابط مطلوب</string>
 
     <string name="add_clints">Add Clintes</string>
     <string name="rate_text">تقييمك لعرض العقار ؟</string>
