@@ -25,6 +25,7 @@ import java.util.List;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Activity.RealState.OfferDetailsActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_status;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_status_cancle;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.MyOfferModule;
 import sa.aqarz.R;
@@ -162,7 +163,13 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
             holder.contnue.setVisibility(View.GONE);
             holder.rejecteds.setVisibility(View.GONE);
             holder.status.setVisibility(View.VISIBLE);
+
         } else if (alldata.get(position).getStatus().toString().equals("active")) {
+            holder.contnue.setVisibility(View.VISIBLE);
+            holder.rejecteds.setVisibility(View.GONE);
+            holder.status.setVisibility(View.GONE);
+
+        } else if (alldata.get(position).getStatus().toString().equals("sending_code")) {
             holder.contnue.setVisibility(View.VISIBLE);
             holder.rejecteds.setVisibility(View.GONE);
             holder.status.setVisibility(View.GONE);
@@ -171,6 +178,7 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
             holder.rejecteds.setVisibility(View.VISIBLE);
             holder.contnue.setVisibility(View.GONE);
             holder.status.setVisibility(View.GONE);
+
             System.out.println("dkflfjlkfdlfkldfkldfkdlfk");
         } else if (alldata.get(position).getStatus().toString().equals("accepted_customer")) {
             holder.contnue.setVisibility(View.VISIBLE);
@@ -244,7 +252,7 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
             @Override
             public void onClick(View v) {
 
-                BottomSheetDialogFragment_status bottomSheetDialogFragment_status = new BottomSheetDialogFragment_status("");
+                BottomSheetDialogFragment_status_cancle bottomSheetDialogFragment_status = new BottomSheetDialogFragment_status_cancle("");
 
                 bottomSheetDialogFragment_status.show(((FragmentActivity) context).getSupportFragmentManager(), "");
 

@@ -471,6 +471,7 @@ Your request and reply in the fastest time</string>
     <string name="ord_rm">الطلب بإنتظار موافقة العميل</string>
     <string name="ord_rms">تم  إغلاق الطلب</string>
     <string name="addCodeConfirm">أدخل كود التحقق</string>
+    <string name="request_code">اطلب كود التحقق</string>
     <string name="allclintsshate">العقاريين الأكثر نشاطاً</string>
     <string name="OfferMoqadam">عرض مقدم</string>
     <string name="orderMoqadam">طلب منفذ</string>
@@ -491,6 +492,7 @@ Your request and reply in the fastest time</string>
     <string name="have_employee">هل لديك موظفين بالمكتب؟</string>
 
     <string name="add_clints">Add Clintes</string>
+    <string name="rate_text">تقييمك لعرض العقار ؟</string>
     <string name="Watting">Watting</string>
 
     <string name="sequare">م<sup>2</sup></string>

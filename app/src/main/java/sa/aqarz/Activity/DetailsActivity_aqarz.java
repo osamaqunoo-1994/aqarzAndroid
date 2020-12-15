@@ -75,6 +75,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     TextView name_owner;
     TextView last_update;
     TextView ads_number;
+    TextView link;
     TextView views_nummm;
     LinearLayout call;
     RecyclerView comfort_rec;
@@ -113,6 +114,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
         call = findViewById(R.id.call);
         favorit = findViewById(R.id.favorit);
         profile = findViewById(R.id.profile);
+        link = findViewById(R.id.link);
         chat = findViewById(R.id.chat);
 
 
@@ -290,6 +292,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
                             bathroom.setText(homeModules_aqares.getBathroomsNumber() + "");
                             purpose.setText(homeModules_aqares.getBathroomsNumber() + "");
                             name_owner.setText(homeModules_aqares.getOwnerName() + "");
+//                            link.setText(homeModules_aqares.get() + "");
 
                             profile.setOnClickListener(new View.OnClickListener() {
                                 @Override

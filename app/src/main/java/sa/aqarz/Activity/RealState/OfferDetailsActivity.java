@@ -1,10 +1,12 @@
 package sa.aqarz.Activity.RealState;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -46,14 +48,17 @@ public class OfferDetailsActivity extends AppCompatActivity {
     LinearLayout status_2;
     LinearLayout status_3;
     LinearLayout status_4;
+    LinearLayout status_ss;
     IResult mResultCallback;
 
     static BottomSheetDialogFragment_ConfirmationCode bottomSheetDialogFragment_confirmationCode;
     Button con;
-    Button call;
-    Button cancleorder;
+    Button requst_code;
+    LinearLayout call;
+    TextView cancleorder;
     public static Activity activity;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +71,11 @@ public class OfferDetailsActivity extends AppCompatActivity {
         status_2 = findViewById(R.id.status_2);
         status_3 = findViewById(R.id.status_3);
         status_4 = findViewById(R.id.status_4);
+        status_ss = findViewById(R.id.status_ss);
         call = findViewById(R.id.call);
         cancleorder = findViewById(R.id.cancleorder);
         con = findViewById(R.id.con);
+        requst_code = findViewById(R.id.requst_code);
 
         myOfferModule = Application.myOfferModule;
 
@@ -118,6 +125,30 @@ public class OfferDetailsActivity extends AppCompatActivity {
 
             }
         });
+        requst_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                JSONObject sendObj = new JSONObject();
+
+                try {
+
+                    sendObj.put("uuid", myOfferModule.getUuid() + "");//form operation list api in setting
+//                    sendObj.put("estate_id", is_selected);//form estate type list api in setting
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                init_volley();
+                WebService.loading(OfferDetailsActivity.this, true);
+                VolleyService mVolleyService = new VolleyService(mResultCallback, OfferDetailsActivity.this);
+
+                System.out.println(sendObj.toString());
+                mVolleyService.postDataVolley("provider_code_send", WebService.provider_code_send, sendObj);
+
+
+            }
+        });
         con.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,8 +166,9 @@ public class OfferDetailsActivity extends AppCompatActivity {
             status_2.setVisibility(View.GONE);
             status_3.setVisibility(View.GONE);
             status_4.setVisibility(View.GONE);
+            status_ss.setVisibility(View.GONE);
             call.setBackground(getDrawable(R.drawable.mash));
-            call.setTextColor(getColor(R.color.textColor2));
+//            call.set(getColor(R.color.textColor2));
             call.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -144,9 +176,21 @@ public class OfferDetailsActivity extends AppCompatActivity {
                 }
             });
         } else if (myOfferModule.getStatus().toString().equals("active")) {
+            status_1.setVisibility(View.VISIBLE);
+            status_2.setVisibility(View.GONE);
+            status_3.setVisibility(View.GONE);
+            status_4.setVisibility(View.GONE);
+            status_ss.setVisibility(View.VISIBLE);
+
+//            cancleorder.setBackground(getDrawable(R.drawable.button_cancle));
+//            cancleorder.setTextColor(getColor(R.color.white));
+
+
+        } else if (myOfferModule.getStatus().toString().equals("sending_code")) {
             status_1.setVisibility(View.GONE);
             status_2.setVisibility(View.VISIBLE);
             status_3.setVisibility(View.GONE);
+            status_ss.setVisibility(View.GONE);
             status_4.setVisibility(View.VISIBLE);
 
 //            cancleorder.setBackground(getDrawable(R.drawable.button_cancle));
@@ -165,9 +209,11 @@ public class OfferDetailsActivity extends AppCompatActivity {
             status_2.setVisibility(View.GONE);
             status_3.setVisibility(View.GONE);
             status_4.setVisibility(View.GONE);
+            status_ss.setVisibility(View.GONE);
         } else if (myOfferModule.getStatus().toString().equals("accepted_customer")) {
             status_1.setVisibility(View.GONE);
             status_2.setVisibility(View.GONE);
+            status_ss.setVisibility(View.GONE);
             status_3.setVisibility(View.VISIBLE);
             cancleorder.setTextColor(getColor(R.color.textColor2));
 
@@ -197,24 +243,38 @@ public class OfferDetailsActivity extends AppCompatActivity {
                     boolean status = response.getBoolean("status");
                     if (status) {
 
+                        if (requestType.equals("provider_code_send")) {
+                            String message = response.getString("message");
+                            WebService.Make_Toast_color(OfferDetailsActivity.this, message, "success");
 
-                        String message = response.getString("message");
-                        WebService.Make_Toast_color(OfferDetailsActivity.this, message, "success");
+                            status_1.setVisibility(View.GONE);
+                            status_2.setVisibility(View.VISIBLE);
+                            status_3.setVisibility(View.GONE);
+                            status_ss.setVisibility(View.GONE);
+                            status_4.setVisibility(View.VISIBLE);
 
-                        status_1.setVisibility(View.GONE);
-                        status_2.setVisibility(View.GONE);
-                        status_3.setVisibility(View.GONE);
-                        status_4.setVisibility(View.GONE);
+
+                        } else {
+                            String message = response.getString("message");
+                            WebService.Make_Toast_color(OfferDetailsActivity.this, message, "success");
+
+                            status_1.setVisibility(View.GONE);
+                            status_2.setVisibility(View.GONE);
+                            status_3.setVisibility(View.GONE);
+                            status_4.setVisibility(View.GONE);
 //                        cancleorder.setVisibility(View.GONE);
-                        cancleorder.setBackground(getDrawable(R.drawable.mash));
-                        cancleorder.setTextColor(getColor(R.color.textColor2));
+                            cancleorder.setBackground(getDrawable(R.drawable.mash));
+//                        cancleorder.setTextColor(getColor(R.color.textColor2));
 
-                        cancleorder.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
+                            cancleorder.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
 
-                            }
-                        });
+                                }
+                            });
+                        }
+
+
                     } else {
                         String message = response.getString("message");
 

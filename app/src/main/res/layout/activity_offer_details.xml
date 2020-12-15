@@ -167,6 +167,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/cancleorder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+
+                    android:paddingBottom="6dp"
+
+                    android:text="@string/cancleorder"
+                    android:textColor="@color/red_btn_bg_color"
+                    android:textSize="14dp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -204,6 +218,37 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
+
+                <LinearLayout
+                    android:id="@+id/call"
+                    android:layout_width="100dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+
+                    android:background="@drawable/button_login"
+                    android:fontFamily="@font/din_bold"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/ic_phone"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/call"
+                        android:textColor="@color/white"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -211,32 +256,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:gravity="center">
-
-                <Button
-                    android:id="@+id/call"
-                    android:layout_width="150dp"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/button_login"
-                    android:fontFamily="@font/din_bold"
-                    android:paddingBottom="6dp"
-                    android:text="@string/call"
-                    android:textColor="@color/white"
-                    android:textSize="17dp" />
-
-                <Button
-                    android:id="@+id/cancleorder"
-                    android:layout_width="150dp"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/button_cancle"
-                    android:paddingBottom="6dp"
-
-                    android:text="@string/cancleorder"
-                    android:textColor="@color/white"
-                    android:textSize="17dp" />
 
 
             </LinearLayout>
@@ -315,7 +334,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:text="@string/ord_r"
+                        android:text="@string/ord_rm"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
@@ -377,7 +396,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:text="@string/ord_rm"
+                        android:text="@string/ord_r"
+
                         android:textColor="#AAABB3"
                         android:textSize="15dp" />
 
@@ -514,7 +534,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:text="@string/ord_r"
+
+                        android:text="@string/ord_rm"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
@@ -575,7 +596,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:text="@string/ord_rm"
+                        android:text="@string/ord_r"
+
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
@@ -711,7 +733,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:text="@string/ord_r"
+                        android:text="@string/ord_rm"
+
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
@@ -773,7 +796,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:text="@string/ord_rm"
+                        android:text="@string/ord_r"
+
                         android:textColor="@color/black"
                         android:textSize="15dp" />
 
@@ -883,6 +907,42 @@
 
                     android:paddingBottom="6dp"
                     android:text="@string/addCodeConfirm"
+
+                    android:textColor="@color/white"
+                    android:textSize="17dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/status_ss"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="30dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:gravity="center"
+                    android:text="@string/tit"
+                    android:textColor="@color/black"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/requst_code"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/button_login"
+
+                    android:paddingBottom="6dp"
+                    android:text="@string/request_code"
 
                     android:textColor="@color/white"
                     android:textSize="17dp" />

@@ -1,33 +1,22 @@
 package sa.aqarz.Dialog;
 
 import android.app.Dialog;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.squareup.picasso.Picasso;
 
-import androidmads.library.qrgenearator.QRGContents;
-import androidmads.library.qrgenearator.QRGEncoder;
-import de.hdodenhof.circleimageview.CircleImageView;
 import sa.aqarz.R;
 
 
-public class BottomSheetDialogFragment_status extends BottomSheetDialogFragment {
+public class BottomSheetDialogFragment_status_cancle extends BottomSheetDialogFragment {
 
 
     String status = "";
@@ -41,13 +30,14 @@ public class BottomSheetDialogFragment_status extends BottomSheetDialogFragment 
         close = v.findViewById(R.id.close);
         text_close = v.findViewById(R.id.text_close);
 
-        text_close.setVisibility(View.GONE);
+
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
             }
         });
+
 
         text_close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +53,7 @@ public class BottomSheetDialogFragment_status extends BottomSheetDialogFragment 
 //    categories_bottomSheetDialogFragment = new Categories_BottomSheetDialogFragment("");
 //                categories_bottomSheetDialogFragment.show(getSupportFragmentManager(), "");
 
-    public BottomSheetDialogFragment_status(String status) {
+    public BottomSheetDialogFragment_status_cancle(String status) {
         this.status = status;
 
     }
