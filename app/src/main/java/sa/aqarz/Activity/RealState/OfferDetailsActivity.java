@@ -2,6 +2,8 @@ package sa.aqarz.Activity.RealState;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -30,6 +32,7 @@ import java.util.List;
 import sa.aqarz.Adapter.RecyclerView_MyState;
 import sa.aqarz.Adapter.RecyclerView_ordersx;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_ConfirmationCode;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_Congratulations;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.MyOfferModule;
 import sa.aqarz.R;
@@ -43,7 +46,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
     TextView name;
     TextView names;
     TextView number_order;
-    MyOfferModule myOfferModule;
+    public static MyOfferModule myOfferModule;
 
     LinearLayout status_1;
     LinearLayout status_2;
@@ -58,6 +61,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
     LinearLayout call;
     TextView cancleorder;
     public static Activity activity;
+    public static FragmentManager ft;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -78,6 +82,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
         names = findViewById(R.id.names);
         con = findViewById(R.id.con);
         requst_code = findViewById(R.id.requst_code);
+        ft = ((FragmentActivity) activity).getSupportFragmentManager();
 
         myOfferModule = Application.myOfferModule;
 
@@ -156,6 +161,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 bottomSheetDialogFragment_confirmationCode = new BottomSheetDialogFragment_ConfirmationCode(myOfferModule.getUuid() + "", myOfferModule.getEstateId() + "");
                 bottomSheetDialogFragment_confirmationCode.show(getSupportFragmentManager(), "");
+
             }
         });
 
@@ -338,7 +344,14 @@ public class OfferDetailsActivity extends AppCompatActivity {
     public static void finishs() {
 
         bottomSheetDialogFragment_confirmationCode.dismiss();
-        activity.finish();
+//        activity.finish();
+
+        try {
+            BottomSheetDialogFragment_Congratulations bottomSheetDialogFragmentCongratulations = new BottomSheetDialogFragment_Congratulations(myOfferModule.getId() + "");
+            bottomSheetDialogFragmentCongratulations.show(ft, "");
+        } catch (Exception e) {
+
+        }
 
     }
 

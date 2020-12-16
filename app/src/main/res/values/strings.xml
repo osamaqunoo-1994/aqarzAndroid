@@ -484,6 +484,9 @@ Your request and reply in the fastest time</string>
 </string>
     <string name="tit2">قم بالتواصل معه ، ثم أدخل كود التحقق</string>
     <string name="xPurchase">شراء</string>
+    <string name="accept_ocrder">تم قبول عرضك رقم </string>
+    <string name="accept_ocrder2">من قبل مستفيد الصندوق العقاري </string>
+    <string name="congratiulation">تهانينا</string>
     <string name="experiencex">الخبرة العقارية</string>
 
     <string name="Notfication_bottm">Notfication</string>
