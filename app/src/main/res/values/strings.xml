@@ -467,7 +467,7 @@ Your request and reply in the fastest time</string>
     <string name="OrderstatusDetialss">حالة الطلب </string>
     <string name="OrderNumber">رقم الطلب</string>
     <string name="UserNameOrder">اسم المستفيد</string>
-    <string name="cancleorder">الغاء الطلب</string>
+    <string name="cancleorder">هل تريد إلغاء العرض ؟</string>
     <string name="ord_r">طلب معاينة العقار</string>
     <string name="ord_rm">الطلب بإنتظار موافقة العميل</string>
     <string name="ord_rms">تم  إغلاق الطلب</string>
@@ -480,8 +480,9 @@ Your request and reply in the fastest time</string>
     <string name="anmdrj">اعتماد</string>
     <string name="Accepted_status">مقبول</string>
     <string name="requered_found">وصول محدود</string>
-    <string name="tit">لقد قمنا بإرسال كود التحقق للمستفيد أحمد
-قم بالتواصل معه ، ثم أدخل كود التحقق</string>
+    <string name="tit">لقد قمنا بإرسال كود التحقق للمستفيد
+</string>
+    <string name="tit2">قم بالتواصل معه ، ثم أدخل كود التحقق</string>
     <string name="xPurchase">شراء</string>
     <string name="experiencex">الخبرة العقارية</string>
 

@@ -222,6 +222,14 @@ public class ChatRoomActivity extends AppCompatActivity {
 //
 //                            }
 
+//                            WebService.loading(ChatRoomActivity.this, true);
+
+                            init_volley();
+                            VolleyService mVolleyService = new VolleyService(mResultCallback, ChatRoomActivity.this);
+
+                            mVolleyService.getDataVolley("msg", WebService.msg + "/" + user_id+"/det");
+
+
 
                         } else if (requestType.equals("send_msg")) {
 
@@ -232,8 +240,10 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                             message.setAdapter(new RecyclerView_ChatRoom(ChatRoomActivity.this, ordersModules));
                             text_mesage.setText("");
-                            WebService.Make_Toast_color(ChatRoomActivity.this, messagecc, "success");
+//                            WebService.Make_Toast_color(ChatRoomActivity.this, messagecc, "success");
 
+                        }else{
+                            System.out.println("ooorororroro");
                         }
 
                     } else {

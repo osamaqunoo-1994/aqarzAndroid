@@ -71,6 +71,7 @@ public class WebService {
     public static String add_client = Domain + "add/client";
     public static String my_client = Domain + "my/client";
     public static String my_msg = Domain + "my/msg";
+    public static String msg = Domain + "msg";
     public static String my_profile = Domain + "my/profile";
     public static String user = Domain + "user/";
     public static String send_msg = Domain + "send/msg";

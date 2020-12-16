@@ -446,6 +446,7 @@ public class MoreFragment extends Fragment {
                     with_login.setVisibility(View.GONE);
                     changePassword.setVisibility(View.GONE);
                     logout.setVisibility(View.GONE);
+                    MyOrder.setVisibility(View.GONE);
 
                 } else {
 
@@ -475,6 +476,7 @@ public class MoreFragment extends Fragment {
                 with_login.setVisibility(View.GONE);
                 changePassword.setVisibility(View.GONE);
                 logout.setVisibility(View.GONE);
+                MyOrder.setVisibility(View.GONE);
 
             }
 

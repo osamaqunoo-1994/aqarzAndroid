@@ -20,7 +20,7 @@
     <string name="email">البريد الإلكتروني</string>
     <string name="password">كلمة المرور</string>
     <string name="login">تسجيل الدخول</string>
-    <string name="sign_up">انشاء حساب </string>
+    <string name="sign_up">حساب جديد </string>
     <string name="don_t_have_an_account">ليس لديك حساب ؟</string>
     <string name="hint_email_address">أدخل البريد الإلكتروني ؟</string>
     <string name="forgot_your_password">هل نسيت كلمة المرور ؟</string>
@@ -298,7 +298,7 @@
     <string name="AqarsService">طلب عقار</string>
     <string name="rateService">طلب تقييم</string>
     <string name="financeService">طلب تمويل</string>
-    <string name="Technical_support">الدعم الفني</string>
+    <string name="Technical_support">خدمة العملاء</string>
 
 
     <string name="Next_btn">التالي</string>

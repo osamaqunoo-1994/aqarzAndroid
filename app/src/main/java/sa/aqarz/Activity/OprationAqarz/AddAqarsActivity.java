@@ -138,6 +138,12 @@ public class AddAqarsActivity extends AppCompatActivity {
     TextView Add_charts_text;
     TextView deluxe, average, normal;
     TextView north, south, east, west;
+    String interface_north = "";
+    String interface_south = "";
+    String interface_east = "";
+    String interface_west = "";
+
+
     TextView unmarried, married;
 
     ImageView select_image;
@@ -186,7 +192,6 @@ public class AddAqarsActivity extends AppCompatActivity {
 
 
     String finishing_type = "deluxe";
-    String interface_ = "north";
     String social_status = "unmarried";
 
 
@@ -517,14 +522,14 @@ public class AddAqarsActivity extends AppCompatActivity {
         property_dd_yes1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                property_dd_yes.setBackground(getResources().getDrawable(R.drawable.button_login));
+                property_dd_yes1.setBackground(getResources().getDrawable(R.drawable.button_login));
 
-                property_dd_yes.setTextColor(getResources().getColor(R.color.white));
+                property_dd_yes1.setTextColor(getResources().getColor(R.color.white));
 
 
-                property_dd_no.setBackground(null);
+                property_dd_no1.setBackground(null);
 
-                property_dd_no.setTextColor(getResources().getColor(R.color.textColor));
+                property_dd_no1.setTextColor(getResources().getColor(R.color.textColor));
 
 
             }
@@ -532,14 +537,14 @@ public class AddAqarsActivity extends AppCompatActivity {
         property_dd_no1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                property_dd_no.setBackground(getResources().getDrawable(R.drawable.button_login));
+                property_dd_no1.setBackground(getResources().getDrawable(R.drawable.button_login));
 
-                property_dd_no.setTextColor(getResources().getColor(R.color.white));
+                property_dd_no1.setTextColor(getResources().getColor(R.color.white));
 
 
-                property_dd_yes.setBackground(null);
+                property_dd_yes1.setBackground(null);
 
-                property_dd_yes.setTextColor(getResources().getColor(R.color.textColor));
+                property_dd_yes1.setTextColor(getResources().getColor(R.color.textColor));
 
             }
         });
@@ -1261,98 +1266,149 @@ public class AddAqarsActivity extends AppCompatActivity {
         north.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                north.setBackground(getResources().getDrawable(R.drawable.button_login));
-
-                north.setTextColor(getResources().getColor(R.color.white));
 
 
-                west.setBackground(getResources().getDrawable(R.drawable.mash));
+                if (interface_north.equals("")) {
+                    north.setBackground(getResources().getDrawable(R.drawable.button_login));
 
-                west.setTextColor(getResources().getColor(R.color.textColor));
+                    north.setTextColor(getResources().getColor(R.color.white));
+                    interface_north = "north";
+
+                } else {
+                    north.setBackground(getResources().getDrawable(R.drawable.mash));
+//
+                    north.setTextColor(getResources().getColor(R.color.textColor));
+                    interface_north = "";
+
+//
+                }
 
 
-                south.setBackground(getResources().getDrawable(R.drawable.mash));
+//                west.setBackground(getResources().getDrawable(R.drawable.mash));
+//
+//                west.setTextColor(getResources().getColor(R.color.textColor));
+//
+//
+//                south.setBackground(getResources().getDrawable(R.drawable.mash));
+//
+//                south.setTextColor(getResources().getColor(R.color.textColor));
+//
+//
+//                east.setBackground(getResources().getDrawable(R.drawable.mash));
+//
+//                east.setTextColor(getResources().getColor(R.color.textColor));
 
-                south.setTextColor(getResources().getColor(R.color.textColor));
 
-
-                east.setBackground(getResources().getDrawable(R.drawable.mash));
-
-                east.setTextColor(getResources().getColor(R.color.textColor));
-
-                interface_ = "north";
             }
         });
         south.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                south.setBackground(getResources().getDrawable(R.drawable.button_login));
-
-                south.setTextColor(getResources().getColor(R.color.white));
 
 
-                north.setBackground(getResources().getDrawable(R.drawable.mash));
+                if (interface_south.equals("")) {
+                    south.setBackground(getResources().getDrawable(R.drawable.button_login));
 
-                north.setTextColor(getResources().getColor(R.color.textColor));
+                    south.setTextColor(getResources().getColor(R.color.white));
+                    interface_south = "south";
+
+                } else {
+                    south.setBackground(getResources().getDrawable(R.drawable.mash));
+//
+                    south.setTextColor(getResources().getColor(R.color.textColor));
+                    interface_south = "";
+
+//
+                }
 
 
-                east.setBackground(getResources().getDrawable(R.drawable.mash));
+//                north.setBackground(getResources().getDrawable(R.drawable.mash));
+//
+//                north.setTextColor(getResources().getColor(R.color.textColor));
+//
+//
+//                east.setBackground(getResources().getDrawable(R.drawable.mash));
+//
+//                east.setTextColor(getResources().getColor(R.color.textColor));
+//
+//
+//                west.setBackground(getResources().getDrawable(R.drawable.mash));
+//
+//                west.setTextColor(getResources().getColor(R.color.textColor));
 
-                east.setTextColor(getResources().getColor(R.color.textColor));
-
-
-                west.setBackground(getResources().getDrawable(R.drawable.mash));
-
-                west.setTextColor(getResources().getColor(R.color.textColor));
-
-                interface_ = "south";
             }
         });
         east.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                east.setBackground(getResources().getDrawable(R.drawable.button_login));
-
-                east.setTextColor(getResources().getColor(R.color.white));
 
 
-                north.setBackground(getResources().getDrawable(R.drawable.mash));
+                if (interface_east.equals("")) {
+                    east.setBackground(getResources().getDrawable(R.drawable.button_login));
 
-                north.setTextColor(getResources().getColor(R.color.textColor));
+                    east.setTextColor(getResources().getColor(R.color.white));
+                    interface_east = "east";
+
+                } else {
+                    east.setBackground(getResources().getDrawable(R.drawable.mash));
+//
+                    east.setTextColor(getResources().getColor(R.color.textColor));
+                    interface_east = "";
+
+//
+                }
 
 
-                south.setBackground(getResources().getDrawable(R.drawable.mash));
+//                north.setBackground(getResources().getDrawable(R.drawable.mash));
+//
+//                north.setTextColor(getResources().getColor(R.color.textColor));
+//
+//
+//                south.setBackground(getResources().getDrawable(R.drawable.mash));
+//
+//                south.setTextColor(getResources().getColor(R.color.textColor));
+//
+//
+//                west.setBackground(getResources().getDrawable(R.drawable.mash));
+//
+//                west.setTextColor(getResources().getColor(R.color.textColor));
 
-                south.setTextColor(getResources().getColor(R.color.textColor));
 
-
-                west.setBackground(getResources().getDrawable(R.drawable.mash));
-
-                west.setTextColor(getResources().getColor(R.color.textColor));
-
-                interface_ = "east";
             }
         });
         west.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                west.setBackground(getResources().getDrawable(R.drawable.button_login));
 
-                west.setTextColor(getResources().getColor(R.color.white));
 
-                north.setBackground(getResources().getDrawable(R.drawable.mash));
+                if (interface_west.equals("")) {
+                    west.setBackground(getResources().getDrawable(R.drawable.button_login));
 
-                north.setTextColor(getResources().getColor(R.color.textColor));
+                    west.setTextColor(getResources().getColor(R.color.white));
+                    interface_west = "west";
 
-                south.setBackground(getResources().getDrawable(R.drawable.mash));
+                } else {
+                    west.setBackground(getResources().getDrawable(R.drawable.mash));
+//
+                    west.setTextColor(getResources().getColor(R.color.textColor));
+                    interface_west = "";
 
-                south.setTextColor(getResources().getColor(R.color.textColor));
+//
+                }
 
-                east.setBackground(getResources().getDrawable(R.drawable.mash));
 
-                east.setTextColor(getResources().getColor(R.color.textColor));
+//                north.setBackground(getResources().getDrawable(R.drawable.mash));
+//
+//                north.setTextColor(getResources().getColor(R.color.textColor));
+//
+//                south.setBackground(getResources().getDrawable(R.drawable.mash));
+//
+//                south.setTextColor(getResources().getColor(R.color.textColor));
+//
+//                east.setBackground(getResources().getDrawable(R.drawable.mash));
+//
+//                east.setTextColor(getResources().getColor(R.color.textColor));
 
-                interface_ = "west";
 
             }
         });
@@ -1778,6 +1834,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
 
     }
+
     public void init_volleys() {
 
 
@@ -1932,7 +1989,7 @@ public class AddAqarsActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            WebService.Make_Toast_color(AddAqarsActivity.this, "تم ارجاع الصور", "success");
+//            WebService.Make_Toast_color(AddAqarsActivity.this, "تم ارجاع الصور", "success");
 
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
@@ -2637,6 +2694,39 @@ public class AddAqarsActivity extends AppCompatActivity {
             sendObj.put("kitchen_number", number_Kitchens_plus + "");
             sendObj.put("dining_rooms_number", number_Dining_rooms + "");
             sendObj.put("finishing_type", finishing_type);
+
+
+            String interface_ = "";
+
+
+            interface_ = interface_south;
+
+
+            if (interface_.equals("")) {
+                interface_ = interface_east;
+
+            } else {
+                interface_ = "," + interface_east;
+
+            }
+
+            if (interface_.equals("")) {
+                interface_ = interface_north;
+
+            } else {
+                interface_ = "," + interface_north;
+
+            }
+
+            if (interface_.equals("")) {
+                interface_ = interface_west;
+
+            } else {
+                interface_ = "," + interface_west;
+
+            }
+
+
             sendObj.put("interface", interface_);
             sendObj.put("social_status", social_status);
             sendObj.put("city_id", city_id + "");

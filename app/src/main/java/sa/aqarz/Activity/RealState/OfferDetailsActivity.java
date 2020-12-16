@@ -41,6 +41,7 @@ import sa.aqarz.api.VolleyService;
 public class OfferDetailsActivity extends AppCompatActivity {
     ImageView back;
     TextView name;
+    TextView names;
     TextView number_order;
     MyOfferModule myOfferModule;
 
@@ -74,6 +75,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
         status_ss = findViewById(R.id.status_ss);
         call = findViewById(R.id.call);
         cancleorder = findViewById(R.id.cancleorder);
+        names = findViewById(R.id.names);
         con = findViewById(R.id.con);
         requst_code = findViewById(R.id.requst_code);
 
@@ -158,6 +160,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
         });
 
         name.setText(myOfferModule.getBeneficiaryName() + "");
+        names.setText(myOfferModule.getBeneficiaryName() + "");
         number_order.setText(myOfferModule.getId() + "");
         System.out.println("dsdfsdsd" + myOfferModule.getStatus());
 
