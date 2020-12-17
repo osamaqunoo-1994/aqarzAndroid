@@ -1,0 +1,387 @@
+package sa.aqarz.Dialog;
+
+import android.app.Dialog;
+import android.os.Build;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import org.json.JSONObject;
+
+import sa.aqarz.Activity.RealState.MyOfferOrderActivity;
+import sa.aqarz.Activity.RealState.OfferDetailsActivity;
+import sa.aqarz.Fragment.OrdersFragment;
+import sa.aqarz.R;
+import sa.aqarz.Settings.WebService;
+import sa.aqarz.api.IResult;
+import sa.aqarz.api.VolleyService;
+
+
+public class BottomSheetDialogFragment_ConfirmationCodess extends BottomSheetDialogFragment {
+    IResult mResultCallback;
+
+
+    EditText a1, a2, a3, a4, a5;
+    String uuid_r = "";
+    String estate_ixd = "";
+    Button confirmation;
+    Button resend;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.bottom_sheets_confirmation_code, container, false);
+
+        a1 = v.findViewById(R.id.a1);
+        a2 = v.findViewById(R.id.a2);
+        a3 = v.findViewById(R.id.a3);
+        a4 = v.findViewById(R.id.a4);
+        a5 = v.findViewById(R.id.a5);
+        confirmation = v.findViewById(R.id.confirmation);
+        resend = v.findViewById(R.id.resend);
+
+
+        a1.requestFocus();
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
+        a1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (a1.length() != 0) {
+                    a2.requestFocus();
+                }
+
+
+            }
+
+        });
+
+
+        a2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (a2.length() != 0) {
+                    a3.requestFocus();
+                } else {
+                    a1.requestFocus();
+
+                }
+
+
+            }
+
+        });
+
+        a3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (a3.length() != 0) {
+                    a4.requestFocus();
+                } else {
+                    a2.requestFocus();
+
+                }
+
+
+            }
+
+        });
+        a4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (a4.length() != 0) {
+                    a5.requestFocus();
+
+                } else {
+                    a3.requestFocus();
+
+                }
+
+
+            }
+
+        });
+        a5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (a5.length() != 0) {
+
+
+                } else {
+                    a4.requestFocus();
+
+                }
+
+
+            }
+
+        });
+
+
+
+
+        confirmation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (a1.getText().toString().equals("") |
+                        a2.getText().toString().equals("") |
+                        a3.getText().toString().equals("") |
+                        a4.getText().toString().equals("") |
+                        a5.getText().toString().equals("")
+
+                ) {
+
+                } else {
+                    String code2 = a1.getText().toString() +
+                            a2.getText().toString() +
+                            a3.getText().toString() +
+                            a4.getText().toString() + a5.getText().toString()+ "";
+
+
+                    JSONObject sendObj = new JSONObject();
+
+                    try {
+
+                        sendObj.put("uuid", uuid_r);//form operation list api in setting
+                        sendObj.put("code", code2);//form estate type list api in setting
+                        sendObj.put("estate_id", estate_ixd);//form estate type list api in setting
+                        sendObj.put("status", "accepted_customer");//form estate type list api in setting
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    init_volley();
+                    WebService.loading(getActivity(), true);
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+
+                    System.out.println(sendObj.toString());
+//                    mVolleyService.postDataVolley("send_offer_fund_Request", WebService.send_offer_fund_Request, sendObj);
+                    mVolleyService.postDataVolley("send_customer_offer_status", WebService.send_customer_offer_status, sendObj);
+
+
+                }
+
+
+            }
+        });
+
+        resend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                JSONObject sendObj = new JSONObject();
+
+                try {
+
+                    sendObj.put("uuid", uuid_r);//form operation list api in setting
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                init_volley();
+                WebService.loading(getActivity(), true);
+                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+
+                System.out.println(sendObj.toString());
+                mVolleyService.postDataVolley("provider_code_send", WebService.provider_code_send, sendObj);
+
+
+            }
+        });
+
+
+        return v;
+
+
+    }
+
+
+//    categories_bottomSheetDialogFragment = new Categories_BottomSheetDialogFragment("");
+//                categories_bottomSheetDialogFragment.show(getSupportFragmentManager(), "");
+
+    public BottomSheetDialogFragment_ConfirmationCodess(String uuid, String estate_id) {
+        uuid_r = uuid;
+        estate_ixd = estate_id;
+
+    }
+
+    @Override
+    public void setupDialog(Dialog dialog, int style) {
+        View contentView = View.inflate(getContext(), R.layout.bottom_sheets_qr, null);
+        dialog.setContentView(contentView);
+        ((View) contentView.getParent()).setBackgroundColor(getResources().getColor(android.R.color.transparent));
+    }
+
+
+    //Define your Interface method here
+    public interface ItemClickListener {
+        void onItemClick(int id_city, String city_naem);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (getDialog() != null && getDialog().getWindow() != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Window window = getDialog().getWindow();
+            window.findViewById(com.google.android.material.R.id.container).setFitsSystemWindows(false);
+            // dark navigation bar icons
+            View decorView = window.getDecorView();
+            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        }
+    }
+
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response);
+                WebService.loading(getActivity(), false);
+//{"status":true,"code":200,"message":"User Profile","data"
+                try {
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+
+                        if (requestType.equals("send_customer_offer_status")) {
+
+
+                            String message = response.getString("message");
+                            WebService.Make_Toast_color(getActivity(), message, "success");
+
+
+                            try {
+                                OrdersFragment.refrech();
+                                MyOfferOrderActivity.finishs();
+                                OfferDetailsActivity.finishs();
+                            } catch (Exception e) {
+
+                            }
+
+                        } else if (requestType.equals("provider_code_send")) {
+                            String message = response.getString("message");
+
+
+                            WebService.Make_Toast_color(getActivity(), message, "success");
+
+                        }
+                    } else {
+                        String message = response.getString("message");
+
+
+                        WebService.Make_Toast_color(getActivity(), message, "error");
+
+                    }
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.getMessage());
+
+                try {
+                    WebService.loading(getActivity(), false);
+
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color(getActivity(), message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+
+            }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+                WebService.loading(getActivity(), false);
+
+            }
+        };
+
+
+    }
+
+}

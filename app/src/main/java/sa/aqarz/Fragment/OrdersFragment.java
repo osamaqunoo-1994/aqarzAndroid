@@ -756,13 +756,16 @@ public class OrdersFragment extends Fragment {
 
                     offer.setTextColor(getResources().getColor(R.color.black));
 
+                    allorder_real.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                    allorder_real.setTextColor(getResources().getColor(R.color.black));
+
 
                     if (Settings.CheckIsCompleate()) {
                         if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
 
                             send_requst_by_type("fund_Request");
-
-                            type_is_today_or_my_own = "";
+//
 
                         } else {
                             show_dialog();
@@ -775,6 +778,7 @@ public class OrdersFragment extends Fragment {
 
 
                     }
+                    type_is_today_or_my_own = "";
 
                 } else {
                     order.setBackground(getResources().getDrawable(R.drawable.button_login));
@@ -785,24 +789,102 @@ public class OrdersFragment extends Fragment {
                     offer.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
 
                     offer.setTextColor(getResources().getColor(R.color.black));
+
+                    allorder_real.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                    allorder_real.setTextColor(getResources().getColor(R.color.black));
                     if (Settings.CheckIsCompleate()) {
                         if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
 
                             send_requst_by_type("fund_Request_today");
+                            type_is_today_or_my_own = "today";
 
 
                         } else {
                             show_dialog();
 //
-
-
                         }
                     } else {
                         Settings.Dialog_not_compleate(getActivity());
 
 
                     }
-                    type_is_today_or_my_own = "today";
+                }
+
+
+            }
+        });
+        allorder_real.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (type_is_today_or_my_own.equals("all")) {
+
+
+                    allorder_real.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                    allorder_real.setTextColor(getResources().getColor(R.color.black));
+
+
+                    offer.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                    offer.setTextColor(getResources().getColor(R.color.black));
+
+                    order.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                    order.setTextColor(getResources().getColor(R.color.black));
+
+
+//                    if (Settings.CheckIsCompleate()) {
+//                        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+//
+                    send_requst_by_type("fund_Request");
+//
+                    type_is_today_or_my_own = "";
+//
+//                        } else {
+//                            show_dialog();
+////
+//
+//
+//                        }
+//                    } else {
+//                        Settings.Dialog_not_compleate(getActivity());
+//
+//
+//                    }
+
+                } else {
+                    allorder_real.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                    allorder_real.setTextColor(getResources().getColor(R.color.white));
+
+
+                    offer.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                    offer.setTextColor(getResources().getColor(R.color.black));
+
+                    order.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                    order.setTextColor(getResources().getColor(R.color.black));
+//                    if (Settings.CheckIsCompleate()) {
+//                        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+//
+                    send_requst_by_type("fund_Request");
+//
+//
+//                        } else {
+//                            show_dialog();
+////
+//
+//
+//                        }
+//                    } else {
+//                        Settings.Dialog_not_compleate(getActivity());
+//
+//
+//                    }
+                    type_is_today_or_my_own = "all";
                 }
 
 
@@ -822,6 +904,11 @@ public class OrdersFragment extends Fragment {
 
                     offer.setTextColor(getResources().getColor(R.color.black));
 
+
+                    allorder_real.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                    allorder_real.setTextColor(getResources().getColor(R.color.black));
+
                     send_requst_by_type("fund_Request");
                     type_is_today_or_my_own = "my_own";
                 } else {
@@ -830,9 +917,13 @@ public class OrdersFragment extends Fragment {
                     offer.setTextColor(getResources().getColor(R.color.white));
 
 
-                    order.setBackground(null);
+                    order.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
 
                     order.setTextColor(getResources().getColor(R.color.black));
+
+                    allorder_real.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                    allorder_real.setTextColor(getResources().getColor(R.color.black));
 
 
                     send_requst_by_type("fund_Request_my_own");
@@ -942,15 +1033,7 @@ public class OrdersFragment extends Fragment {
         });
         //------------------------------------------------------------------------------------------------------------
 
-        if (Settings.CheckIsAccountAqarzMan()) {
-            my_order_layout.setVisibility(View.VISIBLE);
-            Shopping_request_layout.setVisibility(View.VISIBLE);
-            Real_Estate_order_layout.setVisibility(View.VISIBLE);
-        } else {
-            my_order_layout.setVisibility(View.VISIBLE);
-            Shopping_request_layout.setVisibility(View.GONE);
-            Real_Estate_order_layout.setVisibility(View.GONE);
-        }
+
         my_order_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1154,33 +1237,9 @@ public class OrdersFragment extends Fragment {
         type_sale.setVisibility(View.GONE);
 
 
-        my_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
-
-        my_order_text.setTextColor(getResources().getColor(R.color.white));
-
         Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
         Shopping_request_text.setTextColor(getResources().getColor(R.color.textColor));
-
-        Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
-
-        Real_Estate_order_text.setTextColor(getResources().getColor(R.color.textColor));
-        Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
-
-//        list_opration.setVisibility(View.VISIBLE);
-//        type_sale.setVisibility(View.GONE);
-
-
-        type_order = "1";
-
-
-        MyRequst.clear();
-
-        orders_rec.setAdapter(new RecyclerView_orders_my_requst(getContext(), MyRequst));
-
-        Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
-
-        Shopping_request_text.setTextColor(getResources().getColor(R.color.white));
 
 
         my_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
@@ -1188,24 +1247,56 @@ public class OrdersFragment extends Fragment {
         my_order_text.setTextColor(getResources().getColor(R.color.textColor));
 
 
-        Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
+        Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.background_order));
 
-        Real_Estate_order_text.setTextColor(getResources().getColor(R.color.textColor));
-        Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
+        Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
+        Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
 
+
+        if (convert_to_map_text.equals("list")) {
+//                    convert_to_map_text = "map";
+//                    orders_rec.setVisibility(View.GONE);
+//                    mMapView.setVisibility(View.VISIBLE);
+        } else {
+            convert_to_map_text = "list";
+            orders_rec.setVisibility(View.VISIBLE);
+            mMapView.setVisibility(View.GONE);
+
+        }
 
         list_opration.setVisibility(View.GONE);
-        type_sale.setVisibility(View.GONE);
-        type_market_xml.setVisibility(View.VISIBLE);
-        convert_to_map.setVisibility(View.VISIBLE);
-        type_requst_xml.setVisibility(View.GONE);
-        type_requst_xml.setVisibility(View.GONE);
-        order_type.setVisibility(View.GONE);
         my_order_layout.setVisibility(View.GONE);
+        type_sale.setVisibility(View.GONE);
+        order_type.setVisibility(View.GONE);
+        type_market_xml.setVisibility(View.GONE);
+        convert_to_map.setVisibility(View.GONE);
+
+        MyRequst.clear();
+
+        order.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+        order.setTextColor(getResources().getColor(R.color.black));
 
 
-//        send_requst_by_type("my_request");
-        send_requst_by_type("market_demands");
+        offer.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+        offer.setTextColor(getResources().getColor(R.color.black));
+
+        orders_rec.setAdapter(new RecyclerView_orders_my_requst(getContext(), MyRequst));
+
+        send_requst_by_type("fund_Request");
+        type_requst_xml.setVisibility(View.VISIBLE);
+
+
+        if (Settings.CheckIsAccountAqarzMan()) {
+            my_order_layout.setVisibility(View.GONE);
+            Shopping_request_layout.setVisibility(View.VISIBLE);
+            Real_Estate_order_layout.setVisibility(View.VISIBLE);
+        } else {
+            my_order_layout.setVisibility(View.VISIBLE);
+            Shopping_request_layout.setVisibility(View.GONE);
+            Real_Estate_order_layout.setVisibility(View.GONE);
+        }
 
     }
 
