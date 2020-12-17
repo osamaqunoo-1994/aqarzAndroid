@@ -42,14 +42,14 @@
         <ImageView
             android:layout_width="37dp"
             android:layout_height="37dp"
-android:visibility="invisible"
-
             android:layout_marginLeft="8dp"
+
             android:layout_marginRight="8dp"
             android:background="@drawable/circle_w"
             android:padding="8dp"
             android:src="@drawable/ic_filtter_city"
-            android:tint="@color/colorPrimary" />
+            android:tint="@color/colorPrimary"
+            android:visibility="invisible" />
 
     </LinearLayout>
 
@@ -223,8 +223,7 @@ android:visibility="invisible"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/circle_fill"
                 android:padding="8dp"
-                android:src="@drawable/ic_filtter_city"
-               />
+                android:src="@drawable/ic_filtter_city" />
         </LinearLayout>
 
 
@@ -233,72 +232,150 @@ android:visibility="invisible"
     <LinearLayout
         android:id="@+id/type_market_xml"
         android:layout_width="match_parent"
-
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
+        android:orientation="vertical"
         android:visibility="gone">
 
 
         <LinearLayout
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <RelativeLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_height="wrap_content">
 
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                <RelativeLayout
 
-                <TextView
-                    android:id="@+id/order_today"
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp"
+                    android:layout_height="match_parent">
 
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_login"
-                    android:fontFamily="@font/din_light"
-                    android:gravity="center"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:text="@string/order_day"
-                    android:textColor="@color/white"
-                    android:textSize="13dp" />
+                    <TextView
+                        android:id="@+id/allorder"
 
-                <TextView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/circle_ss"
-                    android:fontFamily="@font/din_bold"
-                    android:gravity="center"
-                    android:paddingBottom="3dp"
-                    android:text="55"
-                    android:textColor="@color/white"
-                    android:textSize="10dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/mash"
+                        android:fontFamily="@font/din_light"
+                        android:gravity="center"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="@string/all_order"
+                        android:textColor="#AAABB3"
+                        android:textSize="13dp" />
 
 
-            </RelativeLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/order_today"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/mash"
+                        android:fontFamily="@font/din_light"
+                        android:gravity="center"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="@string/order_day"
+                        android:textColor="#AAABB3"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/mash"
+                        android:fontFamily="@font/din_bold"
+                        android:gravity="center"
+                        android:paddingBottom="3dp"
+                        android:text="55"
+                        android:textColor="@color/textColor2"
+                        android:textSize="10dp" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/allOffer"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/mash"
+                        android:fontFamily="@font/din_light"
+                        android:gravity="center"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="@string/MyOffer"
+                        android:textColor="#AAABB3"
+                        android:textSize="13dp" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+
             android:background="@drawable/mash"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/governmental"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+
                 android:background="@drawable/circle_ss"
                 android:fontFamily="@font/din_light"
                 android:gravity="center"
@@ -310,9 +387,9 @@ android:visibility="invisible"
 
             <TextView
                 android:id="@+id/Special"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+
                 android:fontFamily="@font/din_light"
                 android:gravity="center"
                 android:text="@string/rent"
@@ -321,9 +398,9 @@ android:visibility="invisible"
 
             <TextView
                 android:id="@+id/Soldier"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+
                 android:fontFamily="@font/din_light"
                 android:gravity="center"
                 android:text="@string/investment"
@@ -344,7 +421,41 @@ android:visibility="invisible"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:visibility="gone">
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/allorder_real"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/mash"
+                    android:fontFamily="@font/din_light"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="@string/all_order"
+                    android:textColor="#AAABB3"
+                    android:textSize="13dp" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -386,6 +497,7 @@ android:visibility="invisible"
         </RelativeLayout>
 
         <TextView
+
             android:id="@+id/offer"
             android:layout_width="match_parent"
             android:layout_height="35dp"
@@ -404,10 +516,7 @@ android:visibility="invisible"
             android:textColor="@color/black"
             android:textSize="13dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -465,9 +574,9 @@ android:visibility="invisible"
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:fillViewport="true"
+            android:layout_height="match_parent"
 
-            android:layout_height="match_parent">
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"

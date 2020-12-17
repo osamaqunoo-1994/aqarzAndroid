@@ -181,11 +181,16 @@ public class OrdersFragment extends Fragment {
     TextView Special;
     TextView Soldier;
     TextView cumber_req;
+    TextView allOffer;
+    TextView allorder;
+    TextView allorder_real;
     String tenant_job_type = "Purchase";
 
 
     String type_is_today_or_my_own = "";
     String type_is_today_or_not_market = "0";
+    String type_is_today_or_not_market1 = "0";
+    String type_is_today_or_not_market2 = "0";
 
     TextView order_today;
 
@@ -321,6 +326,8 @@ public class OrdersFragment extends Fragment {
     public void init(View v) {
         orders_rec = v.findViewById(R.id.orders_rec);
 
+        allOffer = v.findViewById(R.id.allOffer);
+        allorder = v.findViewById(R.id.allorder);
         type_requst_xml = v.findViewById(R.id.type_requst_xml);
         convert_to_map = v.findViewById(R.id.convert_to_map);
         type_market_xml = v.findViewById(R.id.type_market_xml);
@@ -354,6 +361,7 @@ public class OrdersFragment extends Fragment {
         governmental = v.findViewById(R.id.governmental);
         cumber_req = v.findViewById(R.id.cumber_req);
         order_today = v.findViewById(R.id.order_today);
+        allorder_real = v.findViewById(R.id.allorder_real);
 
         try {
 //            data = Settings.getSettings().getOprationType().getOriginal().getData();
@@ -628,8 +636,14 @@ public class OrdersFragment extends Fragment {
         });
         //------------------------------------------------------------------------------------------------------------
         order_today.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+        allorder.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+        allOffer.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
 
         order_today.setTextColor(getResources().getColor(R.color.black));
+        allorder.setTextColor(getResources().getColor(R.color.black));
+        allOffer.setTextColor(getResources().getColor(R.color.black));
+
+
         order_today.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -649,6 +663,81 @@ public class OrdersFragment extends Fragment {
 
 
                 }
+
+
+                allorder.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+                allOffer.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+
+                allorder.setTextColor(getResources().getColor(R.color.black));
+                allOffer.setTextColor(getResources().getColor(R.color.black));
+
+
+                type_is_today_or_not_market1 = "0";
+                type_is_today_or_not_market2 = "0";
+            }
+        });
+        allorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (type_is_today_or_not_market1.equals("1")) {
+                    type_is_today_or_not_market1 = "0";
+                    allorder.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                    allorder.setTextColor(getResources().getColor(R.color.black));
+                    send_requst_by_type("market_demands");
+
+                } else {
+                    allorder.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                    allorder.setTextColor(getResources().getColor(R.color.white));
+                    type_is_today_or_not_market1 = "1";
+                    send_requst_by_type("market_demands");
+
+
+                }
+                order_today.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                allOffer.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                order_today.setTextColor(getResources().getColor(R.color.black));
+
+                allOffer.setTextColor(getResources().getColor(R.color.black));
+                type_is_today_or_not_market = "0";
+
+                type_is_today_or_not_market2 = "0";
+
+            }
+        });
+        allOffer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (type_is_today_or_not_market2.equals("1")) {
+                    type_is_today_or_not_market2 = "0";
+                    allOffer.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+                    allOffer.setTextColor(getResources().getColor(R.color.black));
+                    send_requst_by_type("market_demands");
+
+                } else {
+                    allOffer.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                    allOffer.setTextColor(getResources().getColor(R.color.white));
+                    type_is_today_or_not_market2 = "1";
+                    send_requst_by_type("market_demands");
+
+
+                }
+                order_today.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+                allorder.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+
+
+                order_today.setTextColor(getResources().getColor(R.color.black));
+                allorder.setTextColor(getResources().getColor(R.color.black));
+
+                type_is_today_or_not_market = "0";
+                type_is_today_or_not_market1 = "0";
+
             }
         });
         order.setOnClickListener(new View.OnClickListener() {
