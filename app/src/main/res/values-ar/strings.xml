@@ -267,6 +267,7 @@
     <string name="MyOrder">طلباتي</string>
     <string name="Shoppingrequest">طلبات السوق</string>
     <string name="Real_Estate_order">طلبات الصندوق العقاري</string>
+    <string name="Real_Estate_orders">طلبات الصندوق</string>
 
     <string name="chat">مراسلة</string>
     <string name="call">اتصال</string>
@@ -700,5 +701,62 @@
     <string name="searchAqarz">ابحث عن عقارك</string>
 
     <string name="Watting">قيد الانتظار</string>
+
+
+
+
+
+    <string name="MyOFFERFOR">عروضي على الطلب رقم </string>
+    <string name="MyOFFERFOR_title">العرض المقبول من قبل الصندوق على الطلب رقم </string>
+    <string name="MOreAqarezMan">العقاريين الأكثر نشاطاً </string>
+    <string name="contune">متابعة </string>
+    <string name="OrderDetialss">بيانات الطلب </string>
+    <string name="OrderstatusDetialss">حالة الطلب </string>
+    <string name="OrderNumber">رقم الطلب</string>
+    <string name="UserNameOrder">اسم المستفيد</string>
+    <string name="cancleorder">هل تريد إلغاء العرض ؟</string>
+    <string name="ord_r">طلب معاينة العقار</string>
+    <string name="ord_rm">الطلب بإنتظار موافقة العميل</string>
+    <string name="ord_rms">تم  إغلاق الطلب</string>
+    <string name="addCodeConfirm">أدخل كود التحقق</string>
+    <string name="request_code">اطلب كود التحقق</string>
+    <string name="allclintsshate">العقاريين الأكثر نشاطاً</string>
+    <string name="OfferMoqadam">عرض مقدم</string>
+    <string name="orderMoqadam">طلب منفذ</string>
+    <string name="rejecxted">ملغي</string>
+    <string name="anmdrj">اعتماد</string>
+    <string name="Accepted_status">مقبول</string>
+    <string name="requered_found">وصول محدود</string>
+    <string name="tit">لقد قمنا بإرسال كود التحقق للمستفيد
+</string>
+    <string name="tit2">قم بالتواصل معه ، ثم أدخل كود التحقق</string>
+    <string name="xPurchase">شراء</string>
+    <string name="accept_ocrder">تم قبول عرضك رقم </string>
+    <string name="accept_ocrder2">من قبل مستفيد الصندوق العقاري </string>
+    <string name="congratiulation">تهانينا</string>
+    <string name="experiencex">الخبرة العقارية</string>
+
+    <string name="order_day">طلبات اليوم</string>
+    <string name="all_order">كل الطلبات</string>
+    <string name="five_yeares">أقل من ٥ سنوات</string>
+    <string name="five_yeares_to_ten">من ٥ سنوات ١٠</string>
+    <string name="ten_yeares">أكثر من ١٠ سنوات</string>
+    <string name="have_employee">هل لديك موظفين بالمكتب؟</string>
+    <string name="name_office">اسم المكتب</string>
+    <string name="reqname_office">مطلوب اسم المكتب</string>
+    <string name="name_cli">اسم المسؤول</string>
+    <string name="user_name_req">اسم الرابط مطلوب</string>
+
+    <string name="rate_text">تقييمك لعرض العقار ؟</string>
+
+    <string name="sequare">م<sup>2</sup></string>
+    <string name="select_experiencex">select experience</string>
+    <string name="requstServicess">اطلب خدمة</string>
+
+    <string name="select_serv">اختر خدمة</string>
+    <string name="name_Select_serv">الاسم</string>
+    <string name="mobile_number_select">رقم الجوال</string>
+    <string name="order_detils">تفاصيل الطلب</string>
+
 
 </resources>

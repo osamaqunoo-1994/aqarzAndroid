@@ -212,7 +212,100 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/Shoppingrequest_layout"
+
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:background="@drawable/edit_text_background_new_design"
+
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+
+                                <ImageView
+                                    android:layout_width="45dp"
+                                    android:layout_height="45dp"
+                                    android:src="@drawable/ic_logo_map"
+                                    app:tint="@color/colorPrimary"
+
+                                    />
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:text="@string/Shoppingrequest"
+                                    android:textColor="#AAABB3"
+
+
+                                    android:textSize="13dp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+
+                            android:orientation="vertical"
+                            android:textSize="13dp">
+
+                            <LinearLayout
+                                android:id="@+id/Real_Estate_orders_layout"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:background="@drawable/edit_text_background_new_design"
+
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+
+                                <ImageView
+                                    android:layout_width="45dp"
+                                    android:layout_height="45dp"
+                                    android:src="@drawable/ic_group_1580"
+                                    app:tint="#00A5A5"
+
+                                    />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:text="@string/Real_Estate_orders"
+                                    android:textColor="#AAABB3"
+
+                                    android:textSize="13dp" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
 
                         <LinearLayout

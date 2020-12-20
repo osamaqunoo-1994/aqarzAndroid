@@ -275,7 +275,9 @@ new password</string>
 
     <string name="Enjoy_">Select one services or offers </string>
     <string name="requstService">Requst Service</string>
+    <string name="requstServicess">Requst Service</string>
 
+    <string name="Real_Estate_orders">Real State</string>
 
     <string name="RentalinstallmentService">Rent installment</string>
     <string name="AqarsService">Realestate</string>
@@ -406,7 +408,6 @@ Your request and reply in the fastest time</string>
 
     <string name="select_service">select Service</string>
     <string name="selectmember">select member</string>
-    <string name="select_experiencex">select experience</string>
 
 
     <string name="Select_Location">Select Location</string>
@@ -459,56 +460,66 @@ Your request and reply in the fastest time</string>
     <string name="Technical_support">Technical support</string>
 
     <string name="TimeRemmember">Time Remmember</string>
-    <string name="MyOFFERFOR">عروضي على الطلب رقم </string>
-    <string name="MyOFFERFOR_title">العرض المقبول من قبل الصندوق على الطلب رقم </string>
-    <string name="MOreAqarezMan">العقاريين الأكثر نشاطاً </string>
-    <string name="contune">متابعة </string>
-    <string name="OrderDetialss">بيانات الطلب </string>
-    <string name="OrderstatusDetialss">حالة الطلب </string>
-    <string name="OrderNumber">رقم الطلب</string>
-    <string name="UserNameOrder">اسم المستفيد</string>
-    <string name="cancleorder">هل تريد إلغاء العرض ؟</string>
-    <string name="ord_r">طلب معاينة العقار</string>
-    <string name="ord_rm">الطلب بإنتظار موافقة العميل</string>
-    <string name="ord_rms">تم  إغلاق الطلب</string>
-    <string name="addCodeConfirm">أدخل كود التحقق</string>
-    <string name="request_code">اطلب كود التحقق</string>
-    <string name="allclintsshate">العقاريين الأكثر نشاطاً</string>
-    <string name="OfferMoqadam">عرض مقدم</string>
-    <string name="orderMoqadam">طلب منفذ</string>
-    <string name="rejecxted">ملغي</string>
-    <string name="anmdrj">اعتماد</string>
-    <string name="Accepted_status">مقبول</string>
-    <string name="requered_found">وصول محدود</string>
-    <string name="tit">لقد قمنا بإرسال كود التحقق للمستفيد
-</string>
-    <string name="tit2">قم بالتواصل معه ، ثم أدخل كود التحقق</string>
-    <string name="xPurchase">شراء</string>
-    <string name="accept_ocrder">تم قبول عرضك رقم </string>
-    <string name="accept_ocrder2">من قبل مستفيد الصندوق العقاري </string>
-    <string name="congratiulation">تهانينا</string>
-    <string name="experiencex">الخبرة العقارية</string>
+    <string name="MyOFFERFOR">My offers on order number </string>
+    <string name="MyOFFERFOR_title">Offer accepted by the Fund on Application No. </string>
+    <string name="MOreAqarezMan">The most active real estate agents </string>
+    <string name="contune">Continue </string>
+    <string name="OrderDetialss">Request data </string>
+    <string name="OrderstatusDetialss">Order Status </string>
+    <string name="OrderNumber">No Order</string>
+    <string name="UserNameOrder">Beneficiary Name</string>
+    <string name="cancleorder">Do you want to cancel the offer? ؟</string>
+    <string name="ord_r">Request to inspect the property</string>
+    <string name="ord_rm">The request is pending the approval of the client</string>
+    <string name="ord_rms">The request has been closed</string>
+    <string name="addCodeConfirm">Enter the verification code</string>
+    <string name="request_code">Request the verification code</string>
+    <string name="allclintsshate">The most active real estate agents</string>
+    <string name="OfferMoqadam">Presented</string>
+    <string name="orderMoqadam">Order request</string>
+    <string name="rejecxted">Canceled</string>
+    <string name="anmdrj">trust</string>
+    <string name="Accepted_status">Acceptable</string>
+    <string name="requered_found">Limited access</string>
+    <string name="tit">We have sent the verification code to the beneficiary</string>
+    <string name="tit2">Contact him, then enter the verification code</string>
+    <string name="xPurchase">buy</string>
+    <string name="accept_ocrder">Your order has been accepted </string>
 
     <string name="Notfication_bottm">Notfication</string>
-    <string name="order_day">طلبات اليوم</string>
-    <string name="all_order">كل الطلبات</string>
-    <string name="five_yeares">أقل من ٥ سنوات</string>
-    <string name="five_yeares_to_ten">من ٥ سنوات ١٠</string>
-    <string name="ten_yeares">أكثر من ١٠ سنوات</string>
-    <string name="have_employee">هل لديك موظفين بالمكتب؟</string>
-    <string name="name_office">اسم المكتب</string>
-    <string name="reqname_office">مطلوب اسم المكتب</string>
-    <string name="name_cli">اسم المسؤول</string>
-    <string name="user_name_req">اسم الرابط مطلوب</string>
+
 
     <string name="add_clints">Add Clintes</string>
-    <string name="rate_text">تقييمك لعرض العقار ؟</string>
     <string name="Watting">Watting</string>
 
-    <string name="sequare">م<sup>2</sup></string>
 
     <string name="more">More</string>
     <string name="uncomplata">Un Compleat</string>
+
+    <string name="accept_ocrder2">By the real estate fund beneficiary</string>
+    <string name="congratiulation">Congratulation</string>
+    <string name="experiencex">Real estate experience</string>
+
+    <string name="order_day">today</string>
+    <string name="all_order">all order</string>
+    <string name="five_yeares">les than 5 years</string>
+    <string name="five_yeares_to_ten">from 5 years to 10 years</string>
+    <string name="ten_yeares">mor than 10 years</string>
+    <string name="have_employee">are have clints in office?</string>
+    <string name="name_office">Name Ofice</string>
+    <string name="reqname_office">Name Ofice Requierd</string>
+    <string name="name_cli">name Owner</string>
+    <string name="user_name_req">Link it required</string>
+
+    <string name="rate_text">Rate you?</string>
+
+    <string name="sequare">م<sup>2</sup></string>
+    <string name="select_experiencex">select experience</string>
+
+    <string name="select_serv">Select Service</string>
+    <string name="name_Select_serv">Name</string>
+    <string name="mobile_number_select">Mobile Number</string>
+    <string name="order_detils">Details Order</string>
 
 
     <string name="tet_terms">ﺍﺗﻔﺎﻗﻴﺔ ﺍﻹﺳﺘﺨﺪﺍﻡﻋﺒﺮ ﺩﺧﻮﻟﻚ ﻭﺍﺳﺘﺨﺪﺍﻣﻚ ﻣﻮﻗﻊ ﺃﻭ ﺗﻄﺒﻴﻖ ﻋﻘﺎﺭﺯ ﻓﺈﻧﻚ ﺗﻘﺮ ﻭﺗﻮﺍﻓﻖ، ﺩﻭﻥ ﺇﺟﺮﺍﺀ ﺃﻱ ﺗﻌﺪﻳﻞ ﻭﺩﻭﻥ ﺃﻳﺔ ﻗﻴﻮﺩ ﺃﻭ ﺗﺒﺪﻳﻞ، ﻋﻠﻰ ﺍﻷﺣﻜﺎﻡ ﻭﺍﻟﺸﺮﻭﻁ ﺍﻟﻮﺍﺭﺩﺓ ﻓﻲ ﻫﺬﻩ (ﺍﻻﺗﻔﺎﻗﻴﺔ). ﺃﻧﺖ ﺗﻘﺮ ﻭﺗﻀﻤﻦ ﺣﻘﻚ ﺍﻟﻘﺎﻧﻮﻧﻲ ﻟﻠﺪﺧﻮﻝ ﻓﻲ ﻫﺬﻩ ﺍﻻﺗﻔﺎﻗﻴﺔ ﻭﺍﺳﺘﺨﺪﺍﻡ ﺍﻟﺨﺪﻣﺎﺕ ﺍﻟﺘﻲ ﻧﻘﺪﻣﻬﺎ ﻓﻲ ﻋﻘﺎﺭﺯ ﻭﻓﻘﺎً ﻟﻜﺎﻓﺔ ﺍﻟﺸﺮﻭﻁ ﻭﺍﻷﺣﻜﺎﻡ ﺍﻟﻮﺍﺭﺩﺓ ﻓﻴﻬﺎ.

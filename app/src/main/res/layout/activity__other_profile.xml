@@ -415,7 +415,7 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/mash"
                 android:gravity="center"
-                android:text="@string/requstService"
+                android:text="@string/requstServicess"
                 android:textColor="#AAABB3" />
 
 

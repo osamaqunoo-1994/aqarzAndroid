@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.R;
 
@@ -22,6 +23,8 @@ public class RequestServiceActivity extends AppCompatActivity {
     LinearLayout rate_layout;
     LinearLayout fini_layout;
     LinearLayout AddAqareaz;
+    LinearLayout Shoppingrequest_layout;
+    LinearLayout Real_Estate_orders_layout;
 
     TextView text_a1;
     ImageView back;
@@ -38,6 +41,8 @@ public class RequestServiceActivity extends AppCompatActivity {
         rate_layout = findViewById(R.id.rate_layout);
         fini_layout = findViewById(R.id.fini_layout);
         AddAqareaz = findViewById(R.id.AddAqareaz);
+        Shoppingrequest_layout = findViewById(R.id.Shoppingrequest_layout);
+        Real_Estate_orders_layout = findViewById(R.id.Real_Estate_orders_layout);
         back = findViewById(R.id.back);
         text_a1 = findViewById(R.id.text_a1);
         activity = this;
@@ -56,6 +61,26 @@ public class RequestServiceActivity extends AppCompatActivity {
                 Intent intent = new Intent(RequestServiceActivity.this, RentActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
+
+
+            }
+        });
+        Shoppingrequest_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MainActivity.go_to_order();
+
+finish();
+
+            }
+        });  Real_Estate_orders_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MainActivity.go_to_order();
+                finish();
+
 
 
             }

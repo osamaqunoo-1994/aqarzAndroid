@@ -27,13 +27,35 @@
 
 
             >
-
-            <ImageView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="match_parent">
 
 
-                android:src="@drawable/es_logo" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+
+                    android:src="@drawable/es_logo" />
+
+                <TextView
+                    android:id="@+id/number_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+
+
+
+
+                    android:fontFamily="@font/din_bold"
+
+
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14dp" />
+            </RelativeLayout>
+
 
 
         </androidx.cardview.widget.CardView>
@@ -116,18 +138,6 @@
                     android:padding="11dp"
                     android:src="@drawable/ic_like_l" />
 
-                <TextView
-                    android:id="@+id/number_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-
-
-                    android:fontFamily="@font/din_bold"
-
-
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="14dp" />
             </LinearLayout>
 
 
@@ -211,7 +221,8 @@
                     android:fontFamily="@font/din_light"
                     android:text="@string/n4"
                     android:textColor="@color/textColor"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/address"
@@ -243,7 +254,7 @@
                     android:layout_height="30dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_space"
-                    app:tint="@color/colorPrimary" />
+                    app:tint="#5840BB" />
 
                 <TextView
 
@@ -283,13 +294,23 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+                android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:padding="5dp"
                     android:src="@drawable/ic_north"
-                    android:visibility="gone"
-                    app:tint="#00D2CB" />
+                    android:visibility="visible"
+                    app:tint="#5840BB" />
 
                 <TextView
                     android:id="@+id/view_type"
@@ -301,12 +322,13 @@
                     android:textColor="@color/textColor"
 
                     android:textSize="13dp"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -385,6 +407,7 @@
                     android:text="@string/Offer_btn"
                     android:textColor="@color/white"
                     android:textSize="12dp" />
+
                 <TextView
                     android:id="@+id/reject"
                     android:layout_width="wrap_content"
@@ -395,13 +418,14 @@
                     android:fontFamily="@font/din_bold"
                     android:gravity="center"
                     android:paddingLeft="20dp"
-                    android:visibility="gone"
                     android:paddingRight="20dp"
                     android:paddingBottom="6dp"
-
                     android:text="@string/rejecxted"
+
                     android:textColor="@color/white"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    android:visibility="gone" />
+
                 <TextView
                     android:id="@+id/accept"
                     android:layout_width="wrap_content"
@@ -412,13 +436,13 @@
                     android:fontFamily="@font/din_bold"
                     android:gravity="center"
                     android:paddingLeft="20dp"
-                    android:visibility="gone"
                     android:paddingRight="20dp"
                     android:paddingBottom="6dp"
-
                     android:text="@string/Accepted_status"
+
                     android:textColor="@color/white"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/Watting"

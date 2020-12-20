@@ -522,7 +522,7 @@ public class MapsFragment extends Fragment {
 
 
         if (Settings.CheckIsAccountAqarzMan()) {
-            laout_of_change.setVisibility(View.GONE);
+            laout_of_change.setVisibility(View.VISIBLE);
 //            get_data_from_api("map_order", filtter_selected);
             get_data_from_api("map_offer", filtter_selected);
 

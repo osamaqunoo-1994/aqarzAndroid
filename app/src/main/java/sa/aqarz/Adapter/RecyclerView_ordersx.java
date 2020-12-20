@@ -172,7 +172,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 
             } else if (alldata.get(position).getStatus().equals("active")) {
 //
-            }else if (alldata.get(position).getStatus().equals("Waiting_provider_accepted")) {
+            } else if (alldata.get(position).getStatus().equals("Waiting_provider_accepted")) {
 //
             } else if (alldata.get(position).getStatus().equals("rejected_customer ")) {
                 holder.new_offer.setVisibility(View.GONE);

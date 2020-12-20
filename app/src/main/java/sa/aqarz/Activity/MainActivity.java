@@ -53,8 +53,8 @@ import sa.aqarz.Settings.Settings;
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNav;
     private Menu menu;
-    private FragmentTransaction fragmentTransaction;
-    private FragmentManager fragmentManager;
+    private static FragmentTransaction fragmentTransaction;
+    private static FragmentManager fragmentManager;
     public static Activity activity;
     public static BottomSheetDialogFragment_MyEstate bottomSheetDialogFragment_myEstate;
     static BottomSheetDialog bottomSheerDialog;
@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout lay_1, lay_2, lay_3, lay_4, lay_s;
 
     FloatingActionButton myFab;
+    public static FragmentManager ft;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         lay_4 = findViewById(R.id.lay_4);
         lay_s = findViewById(R.id.lay_s);
 
+        ft = ((FragmentActivity) activity).getSupportFragmentManager();
 
         myFab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -561,6 +564,53 @@ public class MainActivity extends AppCompatActivity {
 
         bottomSheetDialogFragment_myEstate.show(((FragmentActivity) activity).getSupportFragmentManager(), "");
 
+
+    }
+
+    public static void go_to_order() {
+
+        if (Settings.checkLogin()) {
+            text_1.setTextColor(activity.getResources().getColor(R.color.color_un_active));
+            text_2.setTextColor(activity.getResources().getColor(R.color.colorPrimary));
+            text_3.setTextColor(activity.getResources().getColor(R.color.color_un_active));
+            text_4.setTextColor(activity.getResources().getColor(R.color.color_un_active));
+            text_s.setTextColor(activity.getResources().getColor(R.color.color_un_active));
+
+
+            image_1.setSelected(false);
+            image_2.setSelected(true);
+            image_3.setSelected(false);
+            image_4.setSelected(false);
+//
+            image_s.setSelected(false);
+
+//                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+
+            fragmentManager = ft;
+
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container, new OrdersFragment());
+            //  fragmentTransaction.commit();
+            fragmentTransaction.commitAllowingStateLoss();
+        } else {
+            new AlertDialog.Builder(activity)
+                    .setMessage(activity.getResources().getString(R.string.you_are_not_login_please_login))
+                    .setCancelable(false)
+                    .setPositiveButton(activity.getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            Intent intent = new Intent(activity, LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                            activity.startActivity(intent);
+
+                        }
+                    })
+                    .setNegativeButton(activity.getResources().getString(R.string.no), null)
+                    .show();
+        }
 
     }
 

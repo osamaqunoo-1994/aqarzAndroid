@@ -65,7 +65,7 @@ public class OtherProfileActivity extends AppCompatActivity {
     TextView go_to_map;
     TextView requstService;
     ImageView back;
-
+   public static User userModules;
 
     CircleImageView profile;
 
@@ -257,7 +257,10 @@ public class OtherProfileActivity extends AppCompatActivity {
                                 JsonElement mJson = parser.parse(data);
 
                                 Gson gson = new Gson();
-                                User userModules = gson.fromJson(mJson, User.class);
+                                 userModules = gson.fromJson(mJson, User.class);
+
+
+                                System.out.println("userModulesuserModules"+userModules.getService_name().size());
 
                                 myoffer_layout.setOnClickListener(new View.OnClickListener() {
                                     @Override

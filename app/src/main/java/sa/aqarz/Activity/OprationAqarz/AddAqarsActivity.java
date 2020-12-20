@@ -43,6 +43,8 @@ import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+
+
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -58,6 +60,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -75,6 +78,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -159,7 +163,7 @@ public class AddAqarsActivity extends AppCompatActivity {
     RecyclerView images_RecyclerView;
 
     AlertDialog alertDialog;
-
+    String id_of_all_image = "";
     private static GoogleMap googleMap;
     public GoogleApiClient mGoogleApiClient;
     MapView mMapView;
@@ -1529,6 +1533,8 @@ public class AddAqarsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                System.out.println("ireiruieruie");
+
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (ContextCompat.checkSelfPermission(AddAqarsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -1988,29 +1994,180 @@ public class AddAqarsActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        System.out.println("%%%%%%%%%%%%%%%%%%%%%%55");
+
+        if (requstcode == 1213) {
+
+
+//                    String filePath = resultUri.getPath().toString();
+//                    Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+//
+//                    File file_image_profile = new File(filePath);
+//                    try {
+//
+//                        RequestParams requestParams = new RequestParams();
+//
+//                        requestParams.put("photo", file_image_profile);
+//
+//
+//                        Upload_image(requestParams, selectedImagea);
+//                    } catch (Exception e) {
+//
+//                    }
+//
+
+            if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, requstcode)) {
+                ArrayList<Image> images = ImagePicker.getImages(data);
+
+                RequestParams requestParams = new RequestParams();
+                for (int i = 0; i < images.size(); i++) {
+
+                    try {
+                        File file_image_profile = new File(images.get(i).getPath());
+
+                        System.out.println();
+                        requestParams.put("photo[" + i + "]", file_image_profile);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+                Upload_image(requestParams, images);
+
+
+            }
+
+
+//                    ArrayList<Uri> image_uris = data.getParcelableArrayListExtra(ImagePickerActivity.EXTRA_IMAGE_URIS);
+//
+////                    ArrayList<String> selectionResult=data.getStringArrayListExtra("result");
+//
+////                    List<Image> images = ImagePicker.getImages(data);
+//
+//
+//                    RequestParams requestParams = new RequestParams();
+//                    for (int i = 0; i < image_uris.size(); i++) {
+//
+//                        try {
+//                            File file_image_profile = new File(image_uris.get(i).getPath());
+//
+//                            System.out.println();
+//                            requestParams.put("photo[" + i + "]", file_image_profile);
+//                        } catch (FileNotFoundException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//
+//                    }
+//                    Upload_image(requestParams, image_uris);
+
+
+//                        // Do stuff with image's path or id. For example:
+//                        for (Image in images) {
+//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+//                                Glide.with(context)
+//                                        .load(image.uri)
+//                                        .into(imageView)
+//                            } else {
+//                                Glide.with(context)
+//                                        .load(image.path)
+//                                        .into(imageView)
+//                            }
+//                        }
+
+
+        }
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
 //            WebService.Make_Toast_color(AddAqarsActivity.this, "تم ارجاع الصور", "success");
 
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 Uri resultUri = result.getUri();
+                System.out.println("dkfmdlfdlfkdf");
 
                 if (requstcode == 1213) {
-                    String filePath = resultUri.getPath().toString();
-                    Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
-
-                    File file_image_profile = new File(filePath);
-                    try {
-
-                        RequestParams requestParams = new RequestParams();
-
-                        requestParams.put("photo", file_image_profile);
 
 
-                        Upload_image(requestParams, selectedImagea);
-                    } catch (Exception e) {
+//                    String filePath = resultUri.getPath().toString();
+//                    Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
+//
+//                    File file_image_profile = new File(filePath);
+//                    try {
+//
+//                        RequestParams requestParams = new RequestParams();
+//
+//                        requestParams.put("photo", file_image_profile);
+//
+//
+//                        Upload_image(requestParams, selectedImagea);
+//                    } catch (Exception e) {
+//
+//                    }
+//
+//
+//                    if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, requstcode)) {
+//                        ArrayList<Image> images=ImagePicker.getImages(data);
+//
+//                        RequestParams requestParams = new RequestParams();
+//                    for (int i = 0; i < images.size(); i++) {
+//
+//                        try {
+//                            File file_image_profile = new File(images.get(i).getPath());
+//
+//                            System.out.println();
+//                            requestParams.put("photo[" + i + "]", file_image_profile);
+//                        } catch (FileNotFoundException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//
+//                    }
+//                        Upload_image(requestParams, images);
+//
+//
+//
+//                    }
 
-                    }
+
+//                    ArrayList<Uri> image_uris = data.getParcelableArrayListExtra(ImagePickerActivity.EXTRA_IMAGE_URIS);
+//
+////                    ArrayList<String> selectionResult=data.getStringArrayListExtra("result");
+//
+////                    List<Image> images = ImagePicker.getImages(data);
+//
+//
+//                    RequestParams requestParams = new RequestParams();
+//                    for (int i = 0; i < image_uris.size(); i++) {
+//
+//                        try {
+//                            File file_image_profile = new File(image_uris.get(i).getPath());
+//
+//                            System.out.println();
+//                            requestParams.put("photo[" + i + "]", file_image_profile);
+//                        } catch (FileNotFoundException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//
+//                    }
+//                    Upload_image(requestParams, image_uris);
+
+
+//                        // Do stuff with image's path or id. For example:
+//                        for (Image in images) {
+//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+//                                Glide.with(context)
+//                                        .load(image.uri)
+//                                        .into(imageView)
+//                            } else {
+//                                Glide.with(context)
+//                                        .load(image.path)
+//                                        .into(imageView)
+//                            }
+//                        }
+
+
                 } else if (requstcode == 1217) {
                     String filePath = resultUri.getPath().toString();
 
@@ -2191,7 +2348,7 @@ public class AddAqarsActivity extends AppCompatActivity {
     }
 
 
-    public void Upload_image(RequestParams requestParams, Bitmap selectedImage) {
+    public void Upload_image(RequestParams requestParams, ArrayList<Image> image_uris) {
 
 
         AsyncHttpClient client = new AsyncHttpClient();
@@ -2222,8 +2379,13 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                     if (status.equals("true")) {
 
-                        String data = responseBody.getString("data");
-                        selectIamgeList.add(new SelectImageModules(data, selectedImage));
+                        String data = responseBody.getString("data");//"status":true,"code":200,"message":"Estate","data":[95,96,97]}
+
+                        id_of_all_image = data;
+                        for (int i = 0; i < image_uris.size(); i++) {
+                            Bitmap selectedImagea = BitmapFactory.decodeFile(image_uris.get(i).getPath());
+                            selectIamgeList.add(new SelectImageModules(data, selectedImagea));
+                        }
                         images_RecyclerView.setAdapter(new RecyclerView_selectImage(AddAqarsActivity.this, selectIamgeList));
 
                         WebService.Make_Toast_color(AddAqarsActivity.this, message, "success");
@@ -2575,21 +2737,109 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     public void select_image_from_local(int permission, int st_code) {
         requstcode = st_code;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(AddAqarsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
 
-                // No explanation needed, we can request the permission.
+        if (permission == 1213) {
+            System.out.println("requstcode" + requstcode);
 
-                ActivityCompat.requestPermissions(AddAqarsActivity.this,
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        permission);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (ContextCompat.checkSelfPermission(AddAqarsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
+
+                    // No explanation needed, we can request the permission.
+
+                    ActivityCompat.requestPermissions(AddAqarsActivity.this,
+                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                            permission);
+
+                } else {
+
+//                    CropImage.activity()
+//                            .setGuidelines(CropImageView.Guidelines.ON)
+//                            .start(this);
+
+
+//                    Intent intent= new Intent(this, Gallery.class);
+//                    // Set the title
+//                    intent.putExtra("title","Select media");
+//                    // Mode 1 for both images and videos selection, 2 for images only and 3 for videos!
+//                    intent.putExtra("mode",1);
+//                    intent.putExtra("maxSelection",3); // Optional
+//                    startActivityForResult(intent,permission);
+
+
+                    ImagePicker.with(this)
+                            .setFolderMode(true)
+                            .setFolderTitle("Album")
+
+                            .setDirectoryName("Image Picker")
+                            .setMultipleMode(true)
+                            .setShowNumberIndicator(true)
+                            .setMaxSize(5)
+                            .setLimitMessage("You can select up to 10 images")
+
+                            .setRequestCode(st_code)
+                            .start();
+
+
+                }
             } else {
 
-                CropImage.activity()
-                        .setGuidelines(CropImageView.Guidelines.ON)
-                        .start(this);
+//                CropImage.activity()
+//                        .setGuidelines(CropImageView.Guidelines.ON)
+//                        .start(this);
+
+                ImagePicker.with(this)
+                        .setFolderMode(true)
+                        .setFolderTitle("Album")
+
+                        .setDirectoryName("Image Picker")
+                        .setMultipleMode(true)
+                        .setShowNumberIndicator(true)
+                        .setMaxSize(5)
+                        .setLimitMessage("You can select up to 10 images")
+
+                        .setRequestCode(st_code)
+                        .start();
+//                Intent intent= new Intent(this, Gallery.class);
+//                // Set the title
+//                intent.putExtra("title","Select media");
+//                // Mode 1 for both images and videos selection, 2 for images only and 3 for videos!
+//                intent.putExtra("mode",1);
+//                intent.putExtra("maxSelection",3); // Optional
+//                startActivityForResult(intent,permission);
+
+//                ImagePicker.with(AddAqarsActivity.this)
+//                        .setFolderMode(true)
+//                        .setFolderTitle("Album")
+//
+//                        .setDirectoryName("Image Picker")
+//                        .setMultipleMode(false)
+//                        .setShowNumberIndicator(true)
+//                        .setMaxSize(5)
+//                        .
+//                        .setLimitMessage("You can select one image")
+//
+//                        .setRequestCode(st_code)
+//                        .start();
+
+            }
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (ContextCompat.checkSelfPermission(AddAqarsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+
+                    // No explanation needed, we can request the permission.
+
+                    ActivityCompat.requestPermissions(AddAqarsActivity.this,
+                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                            permission);
+
+                } else {
+
+                    CropImage.activity()
+                            .setGuidelines(CropImageView.Guidelines.ON)
+                            .start(this);
 
 
 //                ImagePicker.with(AddAqarsActivity.this)
@@ -2604,11 +2854,11 @@ public class AddAqarsActivity extends AppCompatActivity {
 //
 //                        .setRequestCode(st_code)
 //                        .start();
-            }
-        } else {
-            CropImage.activity()
-                    .setGuidelines(CropImageView.Guidelines.ON)
-                    .start(this);
+                }
+            } else {
+                CropImage.activity()
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .start(this);
 
 
 //            ImagePicker.with(AddAqarsActivity.this)
@@ -2624,6 +2874,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 //                    .setRequestCode(st_code)
 //                    .start();
 
+            }
         }
 
     }
@@ -2750,7 +3001,8 @@ public class AddAqarsActivity extends AppCompatActivity {
                 }
 
             }
-            sendObj.put("attachment_estate", attachment_planned + "");
+//            sendObj.put("attachment_estate", attachment_planned + "");
+            sendObj.put("attachment_estate", id_of_all_image + "");
 
 
             String comfort_list_ = "";
