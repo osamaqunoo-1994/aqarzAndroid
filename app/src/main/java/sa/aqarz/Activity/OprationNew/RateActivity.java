@@ -68,7 +68,8 @@ public class RateActivity extends AppCompatActivity {
     GpsTracker gpsTracker;
 
     RecyclerView opration;
-//    RecyclerView opration_RecyclerView;
+    //    RecyclerView opration_RecyclerView;
+    String id = "";
 
     List<OprationModules> oprationModules_list = new ArrayList<>();
 
@@ -110,6 +111,13 @@ public class RateActivity extends AppCompatActivity {
             MapsInitializer.initialize(getApplicationContext());
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        try {
+
+            id = getIntent().getStringExtra("id");
+        } catch (Exception e) {
+
         }
         mMapView.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -180,7 +188,7 @@ public class RateActivity extends AppCompatActivity {
         //---------------------------------------------------------------------------------------
         try {
             name.setText(Settings.GetUser().getName() + "");
-            phone.setText("0"+Settings.GetUser().getMobile() + "");
+            phone.setText("0" + Settings.GetUser().getMobile() + "");
             email.setText(Settings.GetUser().getEmail() + "");
         } catch (Exception e) {
 
@@ -365,6 +373,7 @@ public class RateActivity extends AppCompatActivity {
                                         sendObj.put("lat", lat);//
                                         sendObj.put("lan", lng);//
                                         sendObj.put("address", Address);//
+                                        sendObj.put("estat_id", id);//
                                         sendObj.put("rate_request_types", Type_work_select);//
 
 
@@ -400,6 +409,8 @@ public class RateActivity extends AppCompatActivity {
                         sendObj.put("lat", lat);//
                         sendObj.put("lan", lng);//
                         sendObj.put("address", Address);//
+                        sendObj.put("estat_id", id);//
+
                         sendObj.put("rate_request_types", Type_work_select);//
 
 

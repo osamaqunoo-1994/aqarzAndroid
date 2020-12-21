@@ -153,6 +153,9 @@ public class HomeModules_aqares {
     @SerializedName("estate_type")
     @Expose
     private estate_type estate_type;
+    @SerializedName("user")
+    @Expose
+    private User user;
     @SerializedName("estate_file")
     @Expose
     private List<estate_file> estate_file;
@@ -174,6 +177,10 @@ public class HomeModules_aqares {
 
     public void setIs_selected(boolean is_selected) {
         this.is_selected = is_selected;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public boolean getIs_selected() {

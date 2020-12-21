@@ -9,14 +9,18 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -24,8 +28,13 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.orhanobut.hawk.Hawk;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONObject;
 
 import java.util.Set;
 
@@ -33,14 +42,18 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import sa.aqarz.Activity.AqarzProfileActivity;
 import sa.aqarz.Activity.Auth.EditProfileActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
+import sa.aqarz.Activity.ChatRoomActivity;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Activity.SelectLocationActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_QR;
+import sa.aqarz.Modules.User;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
+import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
+import sa.aqarz.api.VolleyService;
 
 public class MyProfileActivity extends AppCompatActivity {
     TextView offer_text;
@@ -303,6 +316,126 @@ public class MyProfileActivity extends AppCompatActivity {
             }
         });
 
+        try {
+            WebService.loading(MyProfileActivity.this, true);
+
+
+            init_volley();
+            VolleyService mVolleyService = new VolleyService(mResultCallback, MyProfileActivity.this);
+
+            mVolleyService.getDataVolley("my_profile", WebService.my_profile  );
+
+        } catch (Exception e) {
+
+        }
 
     }
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response.toString());
+                WebService.loading(MyProfileActivity.this, false);
+//{"status":true,"code":200,"message":"User Profile","data"
+                try {
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+                        String message = response.getString("message");
+
+                        if (requestType.equals("my_profile")) {
+
+                            try {
+                                String data = response.getString("data");
+
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(data);
+
+                                Gson gson = new Gson();
+                                User   userModules = gson.fromJson(mJson, User.class);
+
+                                clints_nu.setText(userModules.getCount_agent() + "");
+                                request_nu.setText(userModules.getCount_request() + "");
+                                offer_nu.setText(userModules.getCount_offer() + "");
+                                visit_nu.setText(userModules.getCount_visit() + "");
+
+
+
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+//                            try {
+//                                service_list = Settings.getSettings().getService_types();
+//                                member_list = Settings.getSettings().getMember_types();
+//
+//                            } catch (Exception e) {
+
+//                            }
+
+
+//                            VolleyService mVolleyService = new VolleyService(mResultCallback, OtherProfileActivity.this);
+//                            mVolleyService.getDataVolley("my_estate", WebService.my_estate);
+
+
+                        }
+
+                    } else {
+
+
+                    }
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+
+                WebService.loading(MyProfileActivity.this, false);
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color(MyProfileActivity.this, message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+                WebService.loading(MyProfileActivity.this, false);
+
+
+            }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+                WebService.loading(MyProfileActivity.this, false);
+
+                WebService.Make_Toast_color(MyProfileActivity.this, error, "error");
+
+
+            }
+        };
+
+
+    }
+
 }

@@ -120,7 +120,7 @@ public class AddAqarsActivity extends AppCompatActivity {
     TextView room_text;
     TextView more_comfort;
     boolean is_place = false;
-
+    ArrayList<Image> images=new ArrayList<>();
     ImageView Bathrooms_plus, Bathrooms_minus;
     TextView Bathrooms_text;
 
@@ -1841,154 +1841,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     }
 
-    public void init_volleys() {
 
-
-        mResultCallback = new IResult() {
-            @Override
-            public void notifySuccess(String requestType, JSONObject response) {
-
-
-                Log.d("TAG", "Volley requester " + requestType);
-                Log.d("TAG", "Volley JSON post" + response);
-                WebService.loading(AddAqarsActivity.this, false);
-//{"status":true,"code":200,"message":"User Profile","data"
-                if (requestType.equals("SendOrder")) {
-
-
-                } else {
-
-
-                    try {
-                        boolean status = response.getBoolean("status");
-                        if (status) {
-                            String data = response.getString("data");
-
-                            JSONArray jsonArray = new JSONArray(data);
-
-                            comfort_list.clear();
-
-                            for (int i = 0; i < jsonArray.length(); i++) {
-
-
-                                JsonParser parser = new JsonParser();
-                                JsonElement mJson = parser.parse(jsonArray.getString(i));
-
-                                Gson gson = new Gson();
-
-                                ComfortModules Store_M = gson.fromJson(mJson, ComfortModules.class);
-                                comfort_list.add(Store_M);
-                            }
-
-
-                            List<ComfortModules> comfort_listxx = new ArrayList<>();
-
-
-                            if (comfort_list.size() > 4) {
-                                more_comfort.setVisibility(View.VISIBLE);
-
-
-                                for (int i = 0; i < 4; i++) {
-
-                                    comfort_listxx.add(comfort_list.get(i));
-
-                                }
-
-
-                            } else {
-                                more_comfort.setVisibility(View.GONE);
-                                comfort_listxx = comfort_list;
-                            }
-
-                            FlowLayoutManager flowLayoutManager = new FlowLayoutManager();
-                            flowLayoutManager.setAutoMeasureEnabled(true);
-//                            flowLayoutManager.maxItemsPerLine(1);
-                            comfort_RecyclerView.setLayoutManager(flowLayoutManager);
-
-//                            comfort_RecyclerView.setLayoutManager();
-//                            comfort_RecyclerView.setLayoutManager(new FlowLayoutManager().singleItemPerLine());
-//                            comfort_RecyclerView.setLayoutManager(new FlowLayoutManager().maxItemsPerLine(3));
-
-                            RecyclerView_All_Comfort_in_fragment recyclerView_all_comfort_in_fragment = new RecyclerView_All_Comfort_in_fragment(AddAqarsActivity.this, comfort_listxx);
-
-                            recyclerView_all_comfort_in_fragment.addItemClickListener(new RecyclerView_All_Comfort_in_fragment.ItemClickListener() {
-                                @Override
-                                public void onItemClick(int position) {
-
-
-                                    if (comfort_list.get(position).get_is_selected()) {
-
-                                        comfort_list.get(position).setIs_selected(false);
-
-                                    } else {
-
-                                        comfort_list.get(position).setIs_selected(true);
-
-                                    }
-
-
-                                    System.out.println("%%%%%%%%%%%%%5" + comfort_list.get(position).get_is_selected());
-
-
-                                }
-                            });
-
-
-                            comfort_RecyclerView.setAdapter(recyclerView_all_comfort_in_fragment);
-
-
-                            more_comfort.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    more_comfort.setVisibility(View.GONE);
-                                    recyclerView_all_comfort_in_fragment.add_more_date(comfort_list);
-                                }
-                            });
-                        } else {
-                            String message = response.getString("message");
-
-                            WebService.Make_Toast_color(AddAqarsActivity.this, message, "error");
-                        }
-
-
-                    } catch (Exception e) {
-
-                    }
-
-                }
-            }
-
-
-            @Override
-            public void notifyError(String requestType, VolleyError error) {
-                Log.d("TAG", "Volley requester " + requestType);
-                Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.toString());
-
-                try {
-
-                    NetworkResponse response = error.networkResponse;
-                    String json = new String(response.data);
-
-
-                } catch (Exception e) {
-
-                }
-
-
-                WebService.loading(AddAqarsActivity.this, false);
-                WebService.Make_Toast_color(AddAqarsActivity.this, error.getMessage(), "error");
-
-
-            }
-
-            @Override
-            public void notify_Async_Error(String requestType, String error) {
-
-            }
-        };
-
-
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -2017,23 +1870,18 @@ public class AddAqarsActivity extends AppCompatActivity {
 //
 
             if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, requstcode)) {
-                ArrayList<Image> images = ImagePicker.getImages(data);
+                images    = ImagePicker.getImages(data);
 
-                RequestParams requestParams = new RequestParams();
+//                RequestParams requestParams = new RequestParams();
+
+//                Upload_image(requestParams, images);
+
+                System.out.println("imagesimages"+images.size());
                 for (int i = 0; i < images.size(); i++) {
-
-                    try {
-                        File file_image_profile = new File(images.get(i).getPath());
-
-                        System.out.println();
-                        requestParams.put("photo[" + i + "]", file_image_profile);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-
-
+                    Bitmap selectedImagea = BitmapFactory.decodeFile(images.get(i).getPath());
+                    selectIamgeList.add(new SelectImageModules("1", selectedImagea));
                 }
-                Upload_image(requestParams, images);
+                images_RecyclerView.setAdapter(new RecyclerView_selectImage(AddAqarsActivity.this, selectIamgeList));
 
 
             }
@@ -3002,7 +2850,23 @@ public class AddAqarsActivity extends AppCompatActivity {
 
             }
 //            sendObj.put("attachment_estate", attachment_planned + "");
-            sendObj.put("attachment_estate", id_of_all_image + "");
+//            sendObj.put("attachment_estate", id_of_all_image + "");
+
+            if(images!=null){
+                for (int i = 0; i < images.size(); i++) {
+
+                    try {
+                        File file_image_profile = new File(images.get(i).getPath());
+
+                        System.out.println();
+                        sendObj.put("photo[" + i + "]", file_image_profile);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
 
 
             String comfort_list_ = "";

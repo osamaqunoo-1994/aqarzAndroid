@@ -111,6 +111,7 @@ public class RentActivity extends AppCompatActivity {
     File owner_get_id_image_file = null;
     File contract_file_file = null;
     File get_id_image_file = null;
+    String  id="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,7 +167,12 @@ public class RentActivity extends AppCompatActivity {
 
 
         init_volley();
+        try{
 
+            id  =getIntent().getStringExtra("id");
+        }catch (Exception e){
+
+        }
         //---------------------------------------------------------------------------------------
         try {
             name_owner.setText(Settings.GetUser().getName() + "");
@@ -473,6 +479,7 @@ public class RentActivity extends AppCompatActivity {
                         sendObj.put("tenant_mobile", phone_owner.getText().toString());//
                         sendObj.put("tenant_identity_number", owner_id_number.getText().toString());//
                         sendObj.put("tenant_birthday", date_bertih.getText().toString());//
+                        sendObj.put("estat_id", id);//
 
 
                         sendObj.put("tenant_city_id", city_id);//

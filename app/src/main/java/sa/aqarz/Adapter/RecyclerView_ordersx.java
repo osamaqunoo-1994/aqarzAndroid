@@ -70,6 +70,16 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
         this.notifyDataSetChanged();
     }
 
+    public void loadmore(List<OrdersModules> alldatas) {
+
+
+        alldata.addAll(alldata.size()-1, alldatas);
+
+        System.out.println("this.alldata"+alldatas.size());
+        this.notifyDataSetChanged();
+    }
+
+
     public void RefreshData() {
         this.notifyDataSetChanged();
     }
@@ -91,6 +101,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
         TextView reject;
         TextView date;
         TextView accept;
+        TextView Street_view;
         TextView number_id;
         ImageView image_icon;
         ImageView add_favorite;
@@ -113,6 +124,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
             add_favorite = view.findViewById(R.id.add_favorite);
             reject = view.findViewById(R.id.reject);
             accept = view.findViewById(R.id.accept);
+            Street_view = view.findViewById(R.id.Street_view);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
@@ -153,6 +165,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
         holder.space.setText(alldata.get(position).getStreetViewRange() + "");
         holder.name_estate.setText(alldata.get(position).getEstateTypeName() + "");
         holder.date.setText(alldata.get(position).getCreated_at() + "");
+        holder.Street_view.setText(alldata.get(position).getStreetViewRange() + "");
         holder.address.setText(alldata.get(position).getCityName() + " , " + alldata.get(position).getNeighborhoodName());
 
         Picasso.get().load(alldata.get(position).getEstateTypeIcon()).into(holder.image_icon);

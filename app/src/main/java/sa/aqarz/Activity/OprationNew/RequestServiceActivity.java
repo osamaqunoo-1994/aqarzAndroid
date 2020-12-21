@@ -59,7 +59,7 @@ public class RequestServiceActivity extends AppCompatActivity {
 
 
                 Intent intent = new Intent(RequestServiceActivity.this, RentActivity.class);
-//                                intent.putExtra("from", "splash");
+                intent.putExtra("id", "");
                 startActivity(intent);
 
 
@@ -91,7 +91,7 @@ finish();
 
 
                 Intent intent = new Intent(RequestServiceActivity.this, FinanceActivity.class);
-//                                intent.putExtra("from", "splash");
+                intent.putExtra("id", "");
                 startActivity(intent);
 
 
@@ -103,7 +103,7 @@ finish();
 
 
                 Intent intent = new Intent(RequestServiceActivity.this, AddAqarsActivity.class);
-//                                intent.putExtra("from", "splash");
+                intent.putExtra("id", "");
                 startActivity(intent);
 
 
@@ -115,7 +115,7 @@ finish();
 
 
                 Intent intent = new Intent(RequestServiceActivity.this, RateActivity.class);
-//                                intent.putExtra("from", "splash");
+                intent.putExtra("id", "");
                 startActivity(intent);
 
 
@@ -127,7 +127,7 @@ finish();
 
 
                 Intent intent = new Intent(RequestServiceActivity.this, AqarzOrActivity.class);
-//                                intent.putExtra("from", "splash");
+                intent.putExtra("id", "");
                 startActivity(intent);
 
 

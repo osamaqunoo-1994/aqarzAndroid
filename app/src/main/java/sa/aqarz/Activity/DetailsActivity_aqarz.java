@@ -37,6 +37,10 @@ import java.util.Locale;
 
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
+import sa.aqarz.Activity.OprationNew.FinanceActivity;
+import sa.aqarz.Activity.OprationNew.RateActivity;
+import sa.aqarz.Activity.OprationNew.RentActivity;
+import sa.aqarz.Activity.OprationNew.RequestServiceActivity;
 import sa.aqarz.Activity.profile.OtherProfileActivity;
 import sa.aqarz.Adapter.RecyclerView_All_Comfort_in_details;
 import sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
@@ -94,6 +98,10 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
     HomeModules_aqares homeModules_aqares;
 
+
+    LinearLayout finince;
+    LinearLayout rate;
+    LinearLayout tent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +124,9 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
         profile = findViewById(R.id.profile);
         link = findViewById(R.id.link);
         chat = findViewById(R.id.chat);
+        tent = findViewById(R.id.tent);
+        rate = findViewById(R.id.rate);
+        finince = findViewById(R.id.finince);
 
 
         type_ = findViewById(R.id.type_);
@@ -141,6 +152,43 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+        tent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(DetailsActivity_aqarz.this, RentActivity.class);
+                                intent.putExtra("id", id_or_aq+"");
+                startActivity(intent);
+
+
+            }
+        });
+        finince.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(DetailsActivity_aqarz.this, FinanceActivity.class);
+                intent.putExtra("id", id_or_aq+"");
+                startActivity(intent);
+
+
+            }
+        });
+        rate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(DetailsActivity_aqarz.this, RateActivity.class);
+                intent.putExtra("id", id_or_aq+"");
+                startActivity(intent);
+
+
+            }
+        });
+
 
 
 //        type_RecyclerView = findViewById(R.id.type_RecyclerView);
@@ -292,7 +340,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
                             bathroom.setText(homeModules_aqares.getBathroomsNumber() + "");
                             purpose.setText(homeModules_aqares.getBathroomsNumber() + "");
                             name_owner.setText(homeModules_aqares.getOwnerName() + "");
-//                            link.setText(homeModules_aqares.get() + "");
+                            link.setText(homeModules_aqares.getUser().getLink() + "");
 
                             profile.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -337,25 +385,33 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
                             }
 
+                            try {
 
 //                            last_update.setText(homeModules_aqares.getCreatedAt() + "");
-                            ads_number.setText(homeModules_aqares.getId() + "");
-                            views_nummm.setText(homeModules_aqares.getSeen_count() + "");
+                                ads_number.setText(homeModules_aqares.getId() + "");
+                                views_nummm.setText(homeModules_aqares.getSeen_count() + "");
 
-                            call.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
+                                call.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
 
-                                    try {
-                                        String phone = "0" + homeModules_aqares.getOwnerMobile();
-                                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
-                                        startActivity(intent);
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
+                                        try {
+                                            String phone = "0" + homeModules_aqares.getOwnerMobile();
+                                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                                            startActivity(intent);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+
                                     }
+                                });
 
-                                }
-                            });
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            System.out.println("items_ViewPageritems_ViewPager" + homeModules_aqares.getEstate_file().size());
+
                             for (int i = 0; i < homeModules_aqares.getEstate_file().size(); i++) {
 
 

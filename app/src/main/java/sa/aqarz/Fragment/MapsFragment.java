@@ -197,15 +197,9 @@ public class MapsFragment extends Fragment {
                 googleMap.getUiSettings().setRotateGesturesEnabled(true);
 
 
-
                 mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                     @Override
                     public void onMapClick(LatLng latLng) {
-
-
-
-
-
 
 
 //                        ic_marker_lo__

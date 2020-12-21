@@ -304,6 +304,9 @@ new password</string>
 
     <string name="is_requred">is_requred</string>
     <string name="three_years">3 years</string>
+    <string name="fin_ff">طلب تمويل</string>
+    <string name="fin_ffs">طلب تقييم</string>
+    <string name="fin_ffd">تقسيط تأجير</string>
 
 
     <string name="Orders_tab">Orders</string>
@@ -611,14 +614,22 @@ Your request and reply in the fastest time</string>
     <string name="n3">area</string>
     <string name="n4">address</string>
     <string name="Clints">Clints</string>
+    <string name="calllll">مكالمة</string>
     <string name="Requst">Requst</string>
     <string name="Visit">Visit</string>
 
+
+
+
+    <string name="n13">view</string>
+
+    <string name="n53">street</string>
 
     <string name="MyMember">My Memberships</string>
     <string name="MyService">My Service</string>
     <string name="MyClints">My Clints</string>
     <string name="AddService">Add Service</string>
+
 
 
     <string name="aqarez_aq1">Aqarez</string>

@@ -28,9 +28,12 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -115,13 +118,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class OrdersFragment extends Fragment {
     static IResult mResultCallback;
-
-
+    ProgressBar progress;
+    NestedScrollView nested_scroll;
     private static GoogleMap googleMap;
     public GoogleApiClient mGoogleApiClient;
     MapView mMapView;
-
-
+    RecyclerView_ordersx recyclerView_ordersx;
+    boolean loadedAllItems = false;
     HorizontalScrollView section_horizantal;
     RecyclerView orders_rec;
     RecyclerView list_opration;
@@ -129,6 +132,10 @@ public class OrdersFragment extends Fragment {
     LinearLayout type_sale;
     List<OrdersModules> ordersModules = new ArrayList<>();
     List<demandsModules> MyRequst = new ArrayList<>();
+
+
+    int page = 1;
+
 
     static BottomSheetDialogFragment_SelectCity_fillter bottomSheetDialogFragment_selectCity_fillter;
 
@@ -362,7 +369,13 @@ public class OrdersFragment extends Fragment {
         cumber_req = v.findViewById(R.id.cumber_req);
         order_today = v.findViewById(R.id.order_today);
         allorder_real = v.findViewById(R.id.allorder_real);
+        nested_scroll = v.findViewById(R.id.nested_scroll);
+        progress = v.findViewById(R.id.progress);
 
+
+        loadedAllItems = false;
+
+        page = 1;
         try {
 //            data = Settings.getSettings().getOprationType().getOriginal().getData();
 
@@ -429,7 +442,7 @@ public class OrdersFragment extends Fragment {
             public void onItemClick(int position) {
                 opration_select = type_list.get(position).getId().toString() + "";
 
-
+                page = 1;
                 send_requst_by_type(type_requst);
 
 
@@ -454,6 +467,7 @@ public class OrdersFragment extends Fragment {
                 Special.setBackground(null);
 
                 Special.setTextColor(getResources().getColor(R.color.color_filter));
+                page = 1;
 
                 send_requst_by_type("market_demands");
 
@@ -475,6 +489,8 @@ public class OrdersFragment extends Fragment {
 
                 Special.setTextColor(getResources().getColor(R.color.color_filter));
                 tenant_job_type = "rent";
+                page = 1;
+
                 send_requst_by_type("market_demands");
 
             }
@@ -495,6 +511,8 @@ public class OrdersFragment extends Fragment {
 
                 Soldier.setTextColor(getResources().getColor(R.color.color_filter));
                 tenant_job_type = "investment";
+                page = 1;
+
                 send_requst_by_type("market_demands");
 
 
@@ -522,6 +540,7 @@ public class OrdersFragment extends Fragment {
                 type_order = "1";
                 type_sale.setVisibility(View.GONE);
                 type_of_v.setVisibility(View.VISIBLE);
+                page = 1;
 
                 send_requst_by_type("my_request");
             }
@@ -543,6 +562,7 @@ public class OrdersFragment extends Fragment {
                 rate_aq1.setBackground(null);
                 rate_aq1.setTextColor(getResources().getColor(R.color.black));
                 type_order = "2";
+                page = 1;
 
                 send_requst_by_type("my_request");
 
@@ -566,6 +586,7 @@ public class OrdersFragment extends Fragment {
                 rate_aq1.setTextColor(getResources().getColor(R.color.black));
 
                 type_order = "3";
+                page = 1;
 
                 send_requst_by_type("my_request");
 
@@ -590,6 +611,7 @@ public class OrdersFragment extends Fragment {
 
 
                 type_order = "4";
+                page = 1;
 
                 send_requst_by_type("my_request");
 
@@ -610,6 +632,8 @@ public class OrdersFragment extends Fragment {
 
                 rent.setTextColor(getResources().getColor(R.color.black));
                 Type_work_select = "1";
+                page = 1;
+
                 send_requst_by_type(type_requst);
 
 
@@ -628,6 +652,7 @@ public class OrdersFragment extends Fragment {
                 For_sale.setTextColor(getResources().getColor(R.color.black));
 
                 Type_work_select = "2";
+                page = 1;
 
 
                 send_requst_by_type(type_requst);
@@ -650,6 +675,7 @@ public class OrdersFragment extends Fragment {
                 if (type_is_today_or_not_market.equals("1")) {
                     type_is_today_or_not_market = "0";
                     order_today.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
+                    page = 1;
 
                     order_today.setTextColor(getResources().getColor(R.color.black));
                     send_requst_by_type("market_demands");
@@ -659,6 +685,8 @@ public class OrdersFragment extends Fragment {
 
                     order_today.setTextColor(getResources().getColor(R.color.white));
                     type_is_today_or_not_market = "1";
+                    page = 1;
+
                     send_requst_by_type("market_demands");
 
 
@@ -685,6 +713,8 @@ public class OrdersFragment extends Fragment {
                     allorder.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
 
                     allorder.setTextColor(getResources().getColor(R.color.black));
+                    page = 1;
+
                     send_requst_by_type("market_demands");
 
                 } else {
@@ -692,6 +722,8 @@ public class OrdersFragment extends Fragment {
 
                     allorder.setTextColor(getResources().getColor(R.color.white));
                     type_is_today_or_not_market1 = "1";
+                    page = 1;
+
                     send_requst_by_type("market_demands");
 
 
@@ -717,6 +749,8 @@ public class OrdersFragment extends Fragment {
                     allOffer.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
 
                     allOffer.setTextColor(getResources().getColor(R.color.black));
+                    page = 1;
+
                     send_requst_by_type("market_demands");
 
                 } else {
@@ -724,6 +758,8 @@ public class OrdersFragment extends Fragment {
 
                     allOffer.setTextColor(getResources().getColor(R.color.white));
                     type_is_today_or_not_market2 = "1";
+                    page = 1;
+
                     send_requst_by_type("market_demands");
 
 
@@ -763,6 +799,7 @@ public class OrdersFragment extends Fragment {
 
                     if (Settings.CheckIsCompleate()) {
                         if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+                            page = 1;
 
                             send_requst_by_type("fund_Request");
 //
@@ -795,6 +832,7 @@ public class OrdersFragment extends Fragment {
                     allorder_real.setTextColor(getResources().getColor(R.color.black));
                     if (Settings.CheckIsCompleate()) {
                         if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+                            page = 1;
 
                             send_requst_by_type("fund_Request_today");
                             type_is_today_or_my_own = "today";
@@ -838,6 +876,8 @@ public class OrdersFragment extends Fragment {
 //                    if (Settings.CheckIsCompleate()) {
 //                        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
 //
+                    page = 1;
+
                     send_requst_by_type("fund_Request");
 //
                     type_is_today_or_my_own = "";
@@ -870,6 +910,8 @@ public class OrdersFragment extends Fragment {
 //                    if (Settings.CheckIsCompleate()) {
 //                        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
 //
+                    page = 1;
+
                     send_requst_by_type("fund_Request");
 //
 //
@@ -908,6 +950,7 @@ public class OrdersFragment extends Fragment {
                     allorder_real.setBackground(getResources().getDrawable(R.drawable.background_fill_ccc));
 
                     allorder_real.setTextColor(getResources().getColor(R.color.black));
+                    page = 1;
 
                     send_requst_by_type("fund_Request");
                     type_is_today_or_my_own = "my_own";
@@ -925,6 +968,7 @@ public class OrdersFragment extends Fragment {
 
                     allorder_real.setTextColor(getResources().getColor(R.color.black));
 
+                    page = 1;
 
                     send_requst_by_type("fund_Request_my_own");
                     type_is_today_or_my_own = "my_own";
@@ -943,6 +987,7 @@ public class OrdersFragment extends Fragment {
                     public void onItemClick(String id_city, String city_naem) {
                         id_city_selected = id_city + "";
 
+                        page = 1;
 
                         send_requst_by_type(type_requst);
 
@@ -1092,6 +1137,7 @@ public class OrdersFragment extends Fragment {
 
                 orders_rec.setAdapter(new RecyclerView_orders_my_requst(getContext(), MyRequst));
 
+                page = 1;
 
                 send_requst_by_type("my_request");
 
@@ -1136,6 +1182,7 @@ public class OrdersFragment extends Fragment {
 //                WebService.loading(getActivity(), true);
                 MyRequst.clear();
 
+                page = 1;
 
                 orders_rec.setAdapter(new RecyclerView_orders_my_requst(getContext(), MyRequst));
                 send_requst_by_type("market_demands");
@@ -1192,6 +1239,7 @@ public class OrdersFragment extends Fragment {
                 offer.setTextColor(getResources().getColor(R.color.black));
 
                 orders_rec.setAdapter(new RecyclerView_orders_my_requst(getContext(), MyRequst));
+                page = 1;
 
                 send_requst_by_type("fund_Request");
                 type_requst_xml.setVisibility(View.VISIBLE);
@@ -1283,6 +1331,7 @@ public class OrdersFragment extends Fragment {
         offer.setTextColor(getResources().getColor(R.color.black));
 
         orders_rec.setAdapter(new RecyclerView_orders_my_requst(getContext(), MyRequst));
+        page = 1;
 
         send_requst_by_type("fund_Request");
         type_requst_xml.setVisibility(View.VISIBLE);
@@ -1298,6 +1347,60 @@ public class OrdersFragment extends Fragment {
             Real_Estate_order_layout.setVisibility(View.GONE);
         }
 
+        nested_scroll.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if (v.getChildAt(v.getChildCount() - 1) != null) {
+                    if ((scrollY >= (v.getChildAt(v.getChildCount() - 1).getMeasuredHeight() - v.getMeasuredHeight())) &&
+                            scrollY > oldScrollY) {
+
+                        int visibleItemCount = layoutManager1.getChildCount();
+                        int totalItemCount = layoutManager1.getItemCount();
+                        int pastVisiblesItems = layoutManager1.findFirstVisibleItemPosition();
+
+                        if (loadedAllItems) {
+
+                            if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+
+                                loadedAllItems = false;
+                                page = page + 1;
+
+
+                                send_requst_by_type(type_requst);
+
+
+//                        Load Your Data
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        recyclerView_ordersx = new RecyclerView_ordersx(getContext(), ordersModules);
+//        orders_rec.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+//
+//                try {
+//                    int lastVisiblePosition = layoutManager1.findLastVisibleItemPosition();
+//
+//
+//                    int totalItemCOunt = layoutManager1.getItemCount();
+//                    int lastVissibleItemPOs = layoutManager1.findLastVisibleItemPosition();
+//
+//
+//                    System.out.println("totalItemCOunt" + totalItemCOunt + "lastVissibleItemPOs" + lastVissibleItemPOs);
+//                    if (loadedAllItems && totalItemCOunt <= lastVissibleItemPOs + 2) {
+//
+//                    }//
+//                } catch (Exception e) {
+//
+//                }
+//
+//
+//            }
+//        });
     }
 
 
@@ -1330,7 +1433,7 @@ public class OrdersFragment extends Fragment {
                 Log.d("TAG", "Volley JSON post" + response);
                 WebService.loading(getActivity(), false);
 
-                type_requst = "" + requestType;
+//                type_requst = "" + requestType;
 
 
 //{"status":true,"code":200,"message":"User Profile","data"
@@ -1727,9 +1830,7 @@ public class OrdersFragment extends Fragment {
                             }
 
 
-                        } else {
-
-
+                        } else if (requestType.equals("pages")) {
                             System.out.println("lfkdlfkdlkf");
                             String data = response.getString("data");
 
@@ -1737,7 +1838,7 @@ public class OrdersFragment extends Fragment {
 
                             String data_inside = jsonObject_data.getString("data");
                             JSONArray jsonArray = new JSONArray(data_inside);
-                            orders_rec.setAdapter(null);
+//                            orders_rec.setAdapter(null);
                             ordersModules.clear();
                             for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -1753,14 +1854,49 @@ public class OrdersFragment extends Fragment {
 
                             }
 
+                            recyclerView_ordersx.loadmore(ordersModules);
+                            progress.setVisibility(View.GONE);
+//                            orders_rec.setAdapter(new RecyclerView_ordersx(getContext(), ordersModules));
+                            loadedAllItems = true;
 
-                            orders_rec.setAdapter(new RecyclerView_ordersx(getContext(), ordersModules));
+                        } else {
+
+
+                            System.out.println("lfkdlfkdlkf");
+                            String data = response.getString("data");
+
+                            JSONObject jsonObject_data = new JSONObject(data);
+
+                            String data_inside = jsonObject_data.getString("data");
+                            JSONArray jsonArray = new JSONArray(data_inside);
+                            orders_rec.setAdapter(null);
+                            ordersModules.clear();
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                Gson gson = new Gson();
+
+                                OrdersModules ordersModulesm = gson.fromJson(mJson, OrdersModules.class);
+                                ordersModules.add(ordersModulesm);
+
+
+                            }
+
+                            recyclerView_ordersx = new RecyclerView_ordersx(getContext(), ordersModules);
+                            orders_rec.setAdapter(recyclerView_ordersx);
+
                             if (ordersModules.size() != 0) {
                                 nodata_vis.setVisibility(View.GONE);
                             } else {
                                 nodata_vis.setVisibility(View.VISIBLE);
 
                             }
+                            loadedAllItems = true;
+
                         }
                     } else {
 
@@ -1944,11 +2080,20 @@ public class OrdersFragment extends Fragment {
 
     public void send_requst_by_type(String requst_type) {
         type_requst = requst_type;
-        WebService.loading(getActivity(), true);
+
+        if (page > 1) {
+            progress.setVisibility(View.VISIBLE);
+        } else {
+            WebService.loading(getActivity(), true);
+
+        }
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 
         String id_city_ = "";
+
+
+        System.out.println("type_requsttype_requst" + type_requst);
 
         if (!id_city_selected.equals("")) {
             id_city_ = "&city_id=" + id_city_selected;
@@ -1959,20 +2104,41 @@ public class OrdersFragment extends Fragment {
 
         if (requst_type.equals("fund_Request")) {
 
+            if (page > 1) {
+                mVolleyService.getDataVolley("pages", WebService.fund_Request + "?estate_type_id=" + opration_select + "&page=" + page + id_city_);
 
-            mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?estate_type_id=" + opration_select + id_city_);
+            } else {
+                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?estate_type_id=" + opration_select + "&page=" + page + id_city_);
+
+
+            }
 
 
         } else if (requst_type.equals("fund_Request_my_own")) {
 
+            if (page > 1) {
 
-            mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?estate_type_id=" + opration_select + id_city_ + "&myOwn=1");
+                mVolleyService.getDataVolley("pages", WebService.fund_Request + "?estate_type_id=" + opration_select + id_city_ + "&myOwn=1" + "&page=" + page);
+
+            } else {
+                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?estate_type_id=" + opration_select + id_city_ + "&myOwn=1" + "&page=" + page);
+
+
+            }
 
 
         } else if (requst_type.equals("fund_Request_today")) {
 
+            if (page > 1) {
 
-            mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?estate_type_id=" + opration_select + id_city_ + "&today=1");
+
+                mVolleyService.getDataVolley("pages", WebService.fund_Request + "?estate_type_id=" + opration_select + id_city_ + "&today=1" + "&page=" + page);
+
+            } else {
+                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?estate_type_id=" + opration_select + id_city_ + "&today=1" + "&page=" + page);
+
+
+            }
 
 
         } else if (requst_type.equals("request_offer")) {

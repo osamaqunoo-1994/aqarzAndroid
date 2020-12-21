@@ -115,6 +115,7 @@ public class FinanceActivity extends AppCompatActivity {
     ImageView image_id;
     File National_address_file = null;
     File image_id_file = null;
+    String  id="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,7 +171,12 @@ public class FinanceActivity extends AppCompatActivity {
 
         buldingnumber = findViewById(R.id.buldingnumber);
         StreetName = findViewById(R.id.StreetName);
+        try{
 
+              id=getIntent().getStringExtra("id");
+        }catch (Exception e){
+
+        }
         //---------------------------------------------------------------------------------------
         try {
             name.setText(Settings.GetUser().getName() + "");
@@ -671,6 +677,7 @@ init_volley();
 
                         }
 
+                        sendObj.put("estat_id", id);//
 
                         if (National_address_file != null) {
                             sendObj.put("national_address_file", National_address_file);//
