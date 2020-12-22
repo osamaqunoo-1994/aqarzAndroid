@@ -133,6 +133,9 @@ public class HomeModules_aqares {
     @SerializedName("created_at")
     @Expose
     private String createdAt;
+    @SerializedName("rate")
+    @Expose
+    private String rate;
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
@@ -163,6 +166,9 @@ public class HomeModules_aqares {
     @SerializedName("comforts")
     @Expose
     private List<ComfortModules> comforts;
+    @SerializedName("rates")
+    @Expose
+    private List<rates> rates;
 
 
     public String getAddress() {
@@ -174,6 +180,14 @@ public class HomeModules_aqares {
     }
 
     boolean is_selected = false;
+
+    public List<HomeModules_aqares.rates> getRates() {
+        return rates;
+    }
+
+    public String getRate() {
+        return rate;
+    }
 
     public void setIs_selected(boolean is_selected) {
         this.is_selected = is_selected;
@@ -762,4 +776,39 @@ public class HomeModules_aqares {
             return estate_id;
         }
     }
+
+    public class rates {
+        @SerializedName("id")
+        @Expose
+        private Integer id;
+
+
+        @SerializedName("note")
+        @Expose
+        private String note;
+        @SerializedName("user_name")
+        @Expose
+        private String user_name;
+        @SerializedName("user")
+        @Expose
+        private User user;
+
+        public User getUser() {
+            return user;
+        }
+
+        public String getUser_name() {
+            return user_name;
+        }
+
+        public Integer getId() {
+            return id;
+        }
+
+        public String getNote() {
+            return note;
+        }
+    }
+
+
 }

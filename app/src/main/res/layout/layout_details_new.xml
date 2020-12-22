@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:hedgehog="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -406,25 +407,23 @@
                             android:textColor="@color/textColor"
                             android:textSize="15dp" />
 
-                        <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
 
+                        <com.hedgehog.ratingbar.RatingBar
+                            android:id="@+id/rate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            app:srb_clearRatingEnabled="true"
-                            app:srb_clickable="false"
-                            app:srb_drawableEmpty="@drawable/ic_rate_s"
-                            app:srb_drawableFilled="@drawable/ic_rate_fill"
-                            app:srb_isIndicator="false"
-                            app:srb_minimumStars="1"
-                            app:srb_numStars="5"
-                            app:srb_rating="2"
-                            app:srb_scrollable="true"
-                            app:srb_starHeight="15dp"
-                            app:srb_starPadding="3dp"
-                            app:srb_starWidth="15dp"
-                            app:srb_stepSize="0.5"></com.willy.ratingbar.ScaleRatingBar>
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            app:starEmpty="@drawable/ic_star__2_"
+                            app:starFill="@drawable/ic_star__1_"
+                            hedgehog:clickable="true"
+                            hedgehog:halfstart="false"
+                            hedgehog:starCount="5"
+                            hedgehog:starHalf="@mipmap/star_half"
+                            hedgehog:starImageHeight="20dp"
+                            hedgehog:starImagePadding="5"
+                            hedgehog:starImageWidth="20dp" />
 
 
                         <LinearLayout
@@ -1259,40 +1258,77 @@
                 android:layout_marginTop="10dp"
                 android:background="#E4E4E4" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/button_login"
+                android:fontFamily="@font/din_bold"
+                android:paddingLeft="15dp"
+                android:paddingTop="4dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="4dp"
+                android:text="@string/coments"
+                android:textColor="@color/white"
+                android:textSize="14dp" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_coments"
+
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:gravity="center">
+                android:gravity="start">
 
                 <TextView
+                    android:id="@+id/rate_aqarez"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp"
-                    android:text="@string/rate_text" />
-
-                <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/simpleRatingBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    app:srb_clearRatingEnabled="true"
-                    app:srb_clickable="true"
-                    app:srb_drawableEmpty="@drawable/ic_rate_s"
-                    app:srb_drawableFilled="@drawable/ic_rate_fill"
-                    app:srb_isIndicator="false"
-                    app:srb_minimumStars="1"
-                    app:srb_numStars="5"
-                    app:srb_rating="2"
-                    app:srb_scrollable="true"
-                    app:srb_starHeight="15dp"
-                    app:srb_starPadding="3dp"
-                    app:srb_starWidth="15dp"
-                    app:srb_stepSize="0.5"></com.willy.ratingbar.ScaleRatingBar>
+                    android:text="@string/rate_text"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/button_login"
+                android:fontFamily="@font/din_bold"
+                android:paddingLeft="15dp"
+                android:paddingTop="4dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="4dp"
+                android:text="@string/estati_like"
+                android:textColor="@color/white"
+                android:textSize="14dp" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_list_all"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
 
             <LinearLayout
                 android:id="@+id/call"

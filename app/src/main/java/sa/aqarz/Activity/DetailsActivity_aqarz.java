@@ -1,5 +1,6 @@
 package sa.aqarz.Activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
@@ -45,7 +47,11 @@ import sa.aqarz.Activity.profile.OtherProfileActivity;
 import sa.aqarz.Adapter.RecyclerView_All_Comfort_in_details;
 import sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
 import sa.aqarz.Adapter.RecyclerView_All_Type_in_order;
+import sa.aqarz.Adapter.RecyclerView_HomeList_estat;
+import sa.aqarz.Adapter.RecyclerView_coments;
+import sa.aqarz.Adapter.RecyclerView_samilar;
 import sa.aqarz.Adapter.home_viewPager_Adapter;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_Rate;
 import sa.aqarz.Fragment.OrdersFragment;
 import sa.aqarz.Modules.ComfortModules;
 import sa.aqarz.Modules.HomeModules_aqares;
@@ -61,7 +67,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     ViewPager home_viewPager;
     IResult mResultCallback;
     int oi = 0;
-
+    public static Activity activity;
     TextView operation_type_name;
     TextView estate_type_name;
     TextView price;
@@ -88,6 +94,8 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     LinearLayout profile;
     LinearLayout chat;
     //
+
+    RecyclerView rec_list_all;
     private ArrayList<String> items_ViewPager = new ArrayList<String>();
 //
 //    RecyclerView type_RecyclerView;
@@ -97,16 +105,21 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     ImageView favorit;
 
     HomeModules_aqares homeModules_aqares;
+    List<HomeModules_aqares> homeModules_aqares_list = new ArrayList<>();
 
 
     LinearLayout finince;
     LinearLayout rate;
     LinearLayout tent;
+    TextView rate_aqarez;
+    RecyclerView list_coments;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_details_new);
         init();
+        activity = this;
     }
 
     public void init() {
@@ -127,6 +140,9 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
         tent = findViewById(R.id.tent);
         rate = findViewById(R.id.rate);
         finince = findViewById(R.id.finince);
+        rate_aqarez = findViewById(R.id.rate_aqarez);
+        rec_list_all = findViewById(R.id.rec_list_all);
+        list_coments = findViewById(R.id.list_coments);
 
 
         type_ = findViewById(R.id.type_);
@@ -152,13 +168,25 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
+
+        LinearLayoutManager layoutManager1
+                = new LinearLayoutManager(DetailsActivity_aqarz.this, LinearLayoutManager.HORIZONTAL, false);
+        rec_list_all.setLayoutManager(layoutManager1);
+
+
+        LinearLayoutManager layoutManager1s
+                = new LinearLayoutManager(DetailsActivity_aqarz.this, LinearLayoutManager.VERTICAL, false);
+        list_coments.setLayoutManager(layoutManager1s);
+
+
         tent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
                 Intent intent = new Intent(DetailsActivity_aqarz.this, RentActivity.class);
-                                intent.putExtra("id", id_or_aq+"");
+                intent.putExtra("id", id_or_aq + "");
                 startActivity(intent);
 
 
@@ -170,7 +198,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
 
                 Intent intent = new Intent(DetailsActivity_aqarz.this, FinanceActivity.class);
-                intent.putExtra("id", id_or_aq+"");
+                intent.putExtra("id", id_or_aq + "");
                 startActivity(intent);
 
 
@@ -182,13 +210,21 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
 
                 Intent intent = new Intent(DetailsActivity_aqarz.this, RateActivity.class);
-                intent.putExtra("id", id_or_aq+"");
+                intent.putExtra("id", id_or_aq + "");
                 startActivity(intent);
 
 
             }
         });
+        rate_aqarez.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetDialogFragment_Rate bottomSheetDialogFragment_rate = new BottomSheetDialogFragment_Rate(id_or_aq + "");
 
+                bottomSheetDialogFragment_rate.show(getSupportFragmentManager(), "");
+
+            }
+        });
 
 
 //        type_RecyclerView = findViewById(R.id.type_RecyclerView);
@@ -298,7 +334,38 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 //                        String message = response.getString("message");
 
 
-                        if (requestType.equals("favorite")) {
+                        if (requestType.equals("smilier")) {
+
+
+//                            JSONObject jsonObject_data = new JSONObject(data);
+//
+//                            String data_inside = jsonObject_data.getString("data");
+                            JSONArray jsonArray = new JSONArray(data);
+
+                            homeModules_aqares_list.clear();
+                            rec_list_all.setAdapter(null);
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+                                try {
+
+                                    JsonParser parser = new JsonParser();
+                                    JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                    Gson gson = new Gson();
+
+                                    HomeModules_aqares bankModules = gson.fromJson(mJson, HomeModules_aqares.class);
+                                    homeModules_aqares_list.add(bankModules);
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                            rec_list_all.setAdapter(new RecyclerView_samilar(DetailsActivity_aqarz.this, homeModules_aqares_list));
+
+
+                        } else if (requestType.equals("favorite")) {
 
 //                            WebService.Make_Toast_color(DetailsActivity_aqarz.this, message, "error");
 
@@ -342,6 +409,30 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
                             name_owner.setText(homeModules_aqares.getOwnerName() + "");
                             link.setText(homeModules_aqares.getUser().getLink() + "");
 
+
+                            if (homeModules_aqares.getRate() != null) {
+
+
+                                if (homeModules_aqares.getRate().equals("0")) {
+                                    rate_aqarez.setVisibility(View.VISIBLE);
+
+                                } else {
+                                    rate_aqarez.setVisibility(View.GONE);
+
+                                }
+
+
+                            } else {
+                                rate_aqarez.setVisibility(View.VISIBLE);
+
+                            }
+
+                            try {
+                                list_coments.setAdapter(new RecyclerView_coments(DetailsActivity_aqarz.this, homeModules_aqares.getRates()));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
                             profile.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -384,6 +475,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
                                 favorit.setImageDrawable(getDrawable(R.drawable.ic_like));
 
                             }
+
 
                             try {
 
@@ -451,6 +543,12 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
                             RecyclerView_All_Comfort_in_details recyclerView_all_comfort_in_fragment = new RecyclerView_All_Comfort_in_details(DetailsActivity_aqarz.this, homeModules_aqares.getComforts());//
                             comfort_rec.setAdapter(recyclerView_all_comfort_in_fragment);
 
+
+                            init_volley();
+                            VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity_aqarz.this);
+                            mVolleyService.getDataVolley("smilier", WebService.smilier + "/" + id_or_aq + "/estate");//&request_type=pay
+
+
                         }
 
 
@@ -462,7 +560,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
 
 

@@ -216,13 +216,14 @@
                     android:fontFamily="@font/din_bold"
                     android:lines="1"
                     android:maxLines="30"
-                    android:textSize="13dp" />
+                    android:textSize="12dp" />
 
                 <LinearLayout
                     android:layout_width="15dp"
                     android:layout_height="wrap_content" />
 
                 <ImageView
+                    android:id="@+id/mobile_icon"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginLeft="5dp"
@@ -243,7 +244,7 @@
                     android:fontFamily="@font/din_bold"
                     android:text=""
 
-                    android:textSize="14dp" />
+                    android:textSize="13dp" />
 
 
             </LinearLayout>

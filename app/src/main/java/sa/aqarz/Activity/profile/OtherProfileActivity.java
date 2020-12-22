@@ -92,6 +92,8 @@ public class OtherProfileActivity extends AppCompatActivity {
     LinearLayout chat;
     LinearLayout call;
 
+    ImageView mobile_icon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,6 +125,7 @@ public class OtherProfileActivity extends AppCompatActivity {
         offer_text = findViewById(R.id.offer_text);
         clints_text = findViewById(R.id.clints_text);
         memberships_text = findViewById(R.id.memberships_text);
+        mobile_icon = findViewById(R.id.mobile_icon);
         service_text = findViewById(R.id.service_text);
 
 
@@ -273,6 +276,21 @@ public class OtherProfileActivity extends AppCompatActivity {
                                         overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                                     }
                                 });
+
+                                mobile_icon.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        try {
+                                            String phone = "0" + userModules.getMobile();
+                                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                                            startActivity(intent);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+                                });
+
                                 chat.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -288,6 +306,32 @@ public class OtherProfileActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(View v) {
 
+                                        try {
+                                            String phone = "0" + userModules.getMobile();
+                                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                                            startActivity(intent);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+                                });  mobile.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        try {
+                                            String phone = "0" + userModules.getMobile();
+                                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                                            startActivity(intent);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+                                });
+                                mobile_icon.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
                                         try {
                                             String phone = "0" + userModules.getMobile();
                                             Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));

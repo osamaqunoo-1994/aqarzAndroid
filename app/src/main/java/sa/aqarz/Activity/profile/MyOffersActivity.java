@@ -29,6 +29,7 @@ import sa.aqarz.Activity.AqarzProfileActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import sa.aqarz.Adapter.RecyclerView_List_estat_profile;
+import sa.aqarz.Adapter.RecyclerView_List_estat_profile_other;
 import sa.aqarz.Adapter.RecyclerView_clints_new;
 import sa.aqarz.Modules.Clints;
 import sa.aqarz.Modules.HomeModules_aqares;
@@ -75,6 +76,9 @@ public class MyOffersActivity extends AppCompatActivity {
                 add_offer.setVisibility(View.VISIBLE);
 
             } else {
+                VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
+
+                mVolleyService.getDataVolley("user_estate", WebService.user_estate + "/" + id_user + "/estate");
                 add_offer.setVisibility(View.GONE);
             }
 
@@ -145,6 +149,45 @@ public class MyOffersActivity extends AppCompatActivity {
 
 
                             myoffer.setAdapter(new RecyclerView_List_estat_profile(MyOffersActivity.this, homeModules));
+                            if (homeModules.size() == 0) {
+                                nodata_vis.setVisibility(View.VISIBLE);
+                            } else {
+                                nodata_vis.setVisibility(View.GONE);
+
+                            }
+
+                        } else if (requestType.equals("user_estate")) {
+                            String data = response.getString("data");
+//                        JSONObject jsonObjectdata = new JSONObject(data);
+//
+//                        String datax = jsonObjectdata.getString("data");
+
+                            JSONArray jsonArray = new JSONArray(data);
+
+
+                            homeModules.clear();
+                            myoffer.setAdapter(null);
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+                                try {
+
+                                    JsonParser parser = new JsonParser();
+                                    JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                    Gson gson = new Gson();
+
+                                    HomeModules_aqares bankModules = gson.fromJson(mJson, HomeModules_aqares.class);
+                                    homeModules.add(bankModules);
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+
+
+                            myoffer.setAdapter(new RecyclerView_List_estat_profile_other(MyOffersActivity.this, homeModules));
                             if (homeModules.size() == 0) {
                                 nodata_vis.setVisibility(View.VISIBLE);
                             } else {

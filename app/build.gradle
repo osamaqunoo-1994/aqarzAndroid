@@ -99,6 +99,7 @@ dependencies {
     implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
 
 
+    implementation 'com.hedgehog.ratingbar:app:1.1.2'
 
 
     // for experimental rx picker
