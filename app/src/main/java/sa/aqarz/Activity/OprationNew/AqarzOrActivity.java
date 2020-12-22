@@ -53,6 +53,7 @@ import sa.aqarz.Adapter.RecyclerView_All_number_room;
 import sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectNeighborhoods;
 import sa.aqarz.Modules.OprationModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
@@ -72,8 +73,10 @@ public class AqarzOrActivity extends AppCompatActivity {
     CardView map_select;
     PlacesClient placesClient;
     GpsTracker gpsTracker;
+    BottomSheetDialogFragment_SelectNeighborhoods bottomSheetDialogFragment_selectNeighborhoods;
 
     RecyclerView opration_RecyclerView;
+    String nib_id = "";
 
     List<OprationModules> oprationModules_list = new ArrayList<>();
     BottomSheetDialogFragment_SelectCity bottomSheetDialogFragment_selectCity;
@@ -88,6 +91,7 @@ public class AqarzOrActivity extends AppCompatActivity {
     private static GoogleMap googleMap;
     public GoogleApiClient mGoogleApiClient;
     MapView mMapView;
+    TextView nibors;
 
     ImageView back;
     EditText Les_space, Maximum_space, Les_price, Maximum_price, Communication_Officer, Communication_number, description;
@@ -137,6 +141,7 @@ public class AqarzOrActivity extends AppCompatActivity {
         Maximum_price = findViewById(R.id.Maximum_price);
         back = findViewById(R.id.back);
         seaction_roomes = findViewById(R.id.seaction_roomes);
+        nibors = findViewById(R.id.nibors);
 
 
         number_roomRecyclerView = findViewById(R.id.number_roomRecyclerView);
@@ -255,7 +260,31 @@ public class AqarzOrActivity extends AppCompatActivity {
 
         //---------------------------------------------------------------------------------------------
 //---
+        nibors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (city_l.getText().toString().equals("")) {
 
+                } else {
+
+                    bottomSheetDialogFragment_selectNeighborhoods = new BottomSheetDialogFragment_SelectNeighborhoods(city_id);
+                    bottomSheetDialogFragment_selectNeighborhoods.addItemClickListener(new BottomSheetDialogFragment_SelectNeighborhoods.ItemClickListener() {
+                        @Override
+                        public void onItemClick(int id_city, String city_naem) {
+                            nib_id = id_city + "";
+                            nibors.setText(city_naem);
+                            bottomSheetDialogFragment_selectNeighborhoods.dismiss();
+
+                        }
+                    });
+
+                    bottomSheetDialogFragment_selectNeighborhoods.show(getSupportFragmentManager(), "");
+
+                }
+
+
+            }
+        });
         ///------------------------------------------------------------------------------------------------------
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
 
@@ -359,7 +388,7 @@ public class AqarzOrActivity extends AppCompatActivity {
                                         sendObj.put("display_owner_mobile", "1");
                                         sendObj.put("address", Address);
                                         sendObj.put("city_id", city_id + "");
-//                                        sendObj.put("neighborhood_id", nib_id + "");
+                                        sendObj.put("neighborhood_id", nib_id + "");
                                         sendObj.put("note", description.getText().toString());
 
 

@@ -120,7 +120,7 @@ public class AddAqarsActivity extends AppCompatActivity {
     TextView room_text;
     TextView more_comfort;
     boolean is_place = false;
-    ArrayList<Image> images=new ArrayList<>();
+    ArrayList<Image> images = new ArrayList<>();
     ImageView Bathrooms_plus, Bathrooms_minus;
     TextView Bathrooms_text;
 
@@ -569,24 +569,22 @@ public class AddAqarsActivity extends AppCompatActivity {
                 opration_select = type_list.get(position).getId().toString() + "";
 
 
-                if (opration_select.toString().equals("1")) {//فيلا
+                if (opration_select.toString().equals("1")) {//شقة
+
 
                     specificationsqares.setVisibility(View.VISIBLE);
                     means_comfort.setVisibility(View.VISIBLE);
 
+                } else if (opration_select.toString().equals("2")) {//فيلا
 
-                } else if (opration_select.toString().equals("2")) {//ارض
+
+                    specificationsqares.setVisibility(View.VISIBLE);
+                    means_comfort.setVisibility(View.VISIBLE);
+                } else if (opration_select.toString().equals("3")) {//ارض
 
 
                     specificationsqares.setVisibility(View.GONE);
                     means_comfort.setVisibility(View.GONE);
-
-
-                } else if (opration_select.toString().equals("3")) {//شقه
-                    specificationsqares.setVisibility(View.VISIBLE);
-                    means_comfort.setVisibility(View.VISIBLE);
-
-
                 } else if (opration_select.toString().equals("7")) {//مزرعه
 
 
@@ -1842,7 +1840,6 @@ public class AddAqarsActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -1870,13 +1867,13 @@ public class AddAqarsActivity extends AppCompatActivity {
 //
 
             if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, requstcode)) {
-                images    = ImagePicker.getImages(data);
+                images = ImagePicker.getImages(data);
 
 //                RequestParams requestParams = new RequestParams();
 
 //                Upload_image(requestParams, images);
 
-                System.out.println("imagesimages"+images.size());
+                System.out.println("imagesimages" + images.size());
                 for (int i = 0; i < images.size(); i++) {
                     Bitmap selectedImagea = BitmapFactory.decodeFile(images.get(i).getPath());
                     selectIamgeList.add(new SelectImageModules("1", selectedImagea));
@@ -2852,7 +2849,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 //            sendObj.put("attachment_estate", attachment_planned + "");
 //            sendObj.put("attachment_estate", id_of_all_image + "");
 
-            if(images!=null){
+            if (images != null) {
                 for (int i = 0; i < images.size(); i++) {
 
                     try {

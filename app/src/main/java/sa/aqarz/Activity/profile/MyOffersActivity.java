@@ -76,9 +76,7 @@ public class MyOffersActivity extends AppCompatActivity {
 
             } else {
                 add_offer.setVisibility(View.GONE);
-
             }
-
 
         } catch (Exception e) {
 
