@@ -200,6 +200,7 @@ public class OrdersFragment extends Fragment {
     String type_is_today_or_not_market2 = "0";
 
     TextView order_today;
+    TextView market_number;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -371,8 +372,11 @@ public class OrdersFragment extends Fragment {
         allorder_real = v.findViewById(R.id.allorder_real);
         nested_scroll = v.findViewById(R.id.nested_scroll);
         progress = v.findViewById(R.id.progress);
+        market_number = v.findViewById(R.id.market_number);
 
 
+        market_number.setText(Settings.getSettings().getMarketDemands() + "");
+        cumber_req.setText(Settings.getSettings().getRequestFund() + "");
         loadedAllItems = false;
 
         page = 1;
@@ -1450,7 +1454,7 @@ public class OrdersFragment extends Fragment {
                             JSONObject jsonObjectz = new JSONObject(datas);
                             String total = jsonObjectz.getString("total");
 
-                            cumber_req.setText(total + "");
+//                            cumber_req.setText(total + "");
 
 
                         } catch (Exception e) {
@@ -2030,53 +2034,6 @@ public class OrdersFragment extends Fragment {
         bottomSheerDialog.show();
     }
 
-
-    public void send_requst_by_type1(String requst_type) {
-        type_requst = requst_type;
-
-
-        String id_city_ = "";
-
-        if (!id_city_selected.equals("")) {
-            id_city_ = "&city_id=" + id_city_selected;
-        } else {
-            id_city_ = "";
-        }
-
-
-        if (requst_type.equals("fund_Request")) {
-
-            WebService.loading(getActivity(), true);
-
-            init_volley();
-            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-
-
-            mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?estate_type_id=" + opration_select + id_city_);
-
-            System.out.println(WebService.fund_Request + "?estate_type_id=" + opration_select + id_city_);
-        } else if (requst_type.equals("market_demands")) {
-
-            WebService.loading(getActivity(), true);
-
-            init_volley();
-            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?estate_type_id=" + opration_select + id_city_);
-
-        } else if (requst_type.equals("my_request")) {
-            WebService.loading(getActivity(), true);
-
-            init_volley();
-            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("my_request", WebService.my_request + "?estate_type_id=" + opration_select + id_city_);
-        } else if (requst_type.equals("request_offer")) {
-            WebService.loading(getActivity(), true);
-
-            init_volley();
-            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("request_offer", WebService.my_fund_request_offer + "?estate_type_id=" + opration_select + id_city_);
-        }
-    }
 
     public void send_requst_by_type(String requst_type) {
         type_requst = requst_type;

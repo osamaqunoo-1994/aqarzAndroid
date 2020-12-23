@@ -35,6 +35,12 @@ public class SettingsModules {
     @SerializedName("email")
     @Expose
     private String email;
+    @SerializedName("marketDemands")
+    @Expose
+    private String marketDemands;
+    @SerializedName("RequestFund")
+    @Expose
+    private String RequestFund;
 
 
     @SerializedName("estate_types")
@@ -73,6 +79,14 @@ public class SettingsModules {
 
     public SettingsModules.estate_types getEstate_types() {
         return estate_types;
+    }
+
+    public String getMarketDemands() {
+        return marketDemands;
+    }
+
+    public String getRequestFund() {
+        return RequestFund;
     }
 
     public class estate_types {

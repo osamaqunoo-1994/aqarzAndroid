@@ -308,12 +308,13 @@
                         android:textSize="13dp" />
 
                     <TextView
+                        android:id="@+id/market_number"
                         android:layout_width="22dp"
                         android:layout_height="22dp"
                         android:layout_alignParentEnd="true"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:background="@drawable/mash"
+                        android:background="@drawable/circle_ss"
                         android:fontFamily="@font/din_bold"
                         android:gravity="center"
                         android:paddingBottom="3dp"
