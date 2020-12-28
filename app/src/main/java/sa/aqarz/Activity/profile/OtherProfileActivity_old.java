@@ -13,13 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -37,7 +30,7 @@ import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
 
-public class OtherProfileActivity extends AppCompatActivity {
+public class OtherProfileActivity_old extends AppCompatActivity {
     TextView offer_text;
     TextView clints_text;
     TextView memberships_text;
@@ -49,9 +42,9 @@ public class OtherProfileActivity extends AppCompatActivity {
     TextView link;
     TextView mobile;
     TextView go_to_map;
-//    TextView requstService;
+    TextView requstService;
     ImageView back;
-    public static User userModules;
+   public static User userModules;
 
     CircleImageView profile;
 
@@ -73,9 +66,10 @@ public class OtherProfileActivity extends AppCompatActivity {
     LinearLayout my_clints;
     LinearLayout chat;
     LinearLayout call;
+
+    ImageView mobile_icon;
     LinearLayout location;
 
-//    ImageView mobile_icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,9 +85,8 @@ public class OtherProfileActivity extends AppCompatActivity {
         link = findViewById(R.id.link);
         mobile = findViewById(R.id.mobile);
         go_to_map = findViewById(R.id.go_to_map);
-//        requstService = findViewById(R.id.requstService);
+        requstService = findViewById(R.id.requstService);
         chat = findViewById(R.id.chat);
-        location = findViewById(R.id.location);
         call = findViewById(R.id.call);
 
         visit_nu = findViewById(R.id.visit_nu);
@@ -103,48 +96,18 @@ public class OtherProfileActivity extends AppCompatActivity {
         myoffer_layout = findViewById(R.id.myoffer_layout);
         member = findViewById(R.id.member);
         my_service = findViewById(R.id.my_service);
-//        my_clints = findViewById(R.id.my_clints);
+        my_clints = findViewById(R.id.my_clints);
 
+        location = findViewById(R.id.location);
 
         offer_text = findViewById(R.id.offer_text);
         clints_text = findViewById(R.id.clints_text);
         memberships_text = findViewById(R.id.memberships_text);
-//        mobile_icon = findViewById(R.id.mobile_icon);
+        mobile_icon = findViewById(R.id.mobile_icon);
         service_text = findViewById(R.id.service_text);
 
-//
-//        mMapView = (MapView) findViewById(R.id.mapViewxx);
-//
-//        mMapView.onCreate(savedInstanceState);
-//        mMapView.onResume(); // needed to get the map to display immediately
-//
-//
-//        mMapView.getMapAsync(new OnMapReadyCallback() {
-//            @Override
-//            public void onMapReady(GoogleMap mMap) {
-//                googleMap = mMap;
-//                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-//
-////                googleMap.getUiSettings().setRotateGesturesEnabled(true);
-//
-//                if (!Settings.GetUser().getLat().toString().equals("null")) {
-//
-//                    LatLng sydney = new LatLng(Double.valueOf(Settings.GetUser().getLat()), Double.valueOf(Settings.GetUser().getLan()));
-//
-//                    googleMap.addMarker(new MarkerOptions()
-//                            .position(sydney)
-//                            .title("Marker"));
-//
-//                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
-//                    // Zoom in, animating the camera.
-//                    googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-//                    // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-//                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
-//
-//                }
-//
-//            }
-//        });
+
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,45 +116,54 @@ public class OtherProfileActivity extends AppCompatActivity {
         });
 
 
-        WebService.loading(OtherProfileActivity.this, true);
+        WebService.loading(OtherProfileActivity_old.this, true);
 
 
         init_volley();
 
         try {
             String id = getIntent().getStringExtra("id");
-            VolleyService mVolleyService = new VolleyService(mResultCallback, OtherProfileActivity.this);
+            VolleyService mVolleyService = new VolleyService(mResultCallback, OtherProfileActivity_old.this);
 
             mVolleyService.getDataVolley("user", WebService.user + id + "");
 
         } catch (Exception e) {
 
         }
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
 
-//        requstService.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////
-////                if (Settings.CheckIsAccountAqarzMan()) {
-//                Intent intent = new Intent(OtherProfileActivity.this, AddServiceActivity.class);
-////              intent.putExtra("from", "splash");
-//                startActivity(intent);
-//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-////                } else {
-////                    Intent intent = new Intent(OtherProfileActivity.this, MyProfileInformationActivity.class);
-//////              intent.putExtra("from", "splash");
-////                    startActivity(intent);
-////                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-////                }
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?saddr=" + Settings.GetUser().getLat() + "," + Settings.GetUser().getLan() + "&daddr=" + Settings.GetUser().getLat() + "," + Settings.GetUser().getLan()));
+                startActivity(intent);
+            }
+        });
+
+        requstService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //
-//            }
-//        });
+//                if (Settings.CheckIsAccountAqarzMan()) {
+                Intent intent = new Intent(OtherProfileActivity_old.this, AddServiceActivity.class);
+//              intent.putExtra("from", "splash");
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                } else {
+//                    Intent intent = new Intent(OtherProfileActivity.this, MyProfileInformationActivity.class);
+////              intent.putExtra("from", "splash");
+//                    startActivity(intent);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                }
+
+            }
+        });
 
         member.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OtherProfileActivity.this, MyMemberActivity.class);
+                Intent intent = new Intent(OtherProfileActivity_old.this, MyMemberActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
@@ -201,21 +173,21 @@ public class OtherProfileActivity extends AppCompatActivity {
         my_service.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OtherProfileActivity.this, MyServiceActivity.class);
+                Intent intent = new Intent(OtherProfileActivity_old.this, MyServiceActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
-//        my_clints.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(OtherProfileActivity.this, MyClintsActivity.class);
-////              intent.putExtra("from", "splash");
-//                startActivity(intent);
-//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-//            }
-//        });
+        my_clints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OtherProfileActivity_old.this, MyClintsActivity.class);
+//              intent.putExtra("from", "splash");
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
 
 
     }
@@ -228,7 +200,7 @@ public class OtherProfileActivity extends AppCompatActivity {
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + response.toString());
-                WebService.loading(OtherProfileActivity.this, false);
+                WebService.loading(OtherProfileActivity_old.this, false);
 //{"status":true,"code":200,"message":"User Profile","data"
                 try {
                     boolean status = response.getBoolean("status");
@@ -244,15 +216,15 @@ public class OtherProfileActivity extends AppCompatActivity {
                                 JsonElement mJson = parser.parse(data);
 
                                 Gson gson = new Gson();
-                                userModules = gson.fromJson(mJson, User.class);
+                                 userModules = gson.fromJson(mJson, User.class);
 
 
-                                System.out.println("userModulesuserModules" + userModules.getService_name().size());
+                                System.out.println("userModulesuserModules"+userModules.getService_name().size());
 
                                 myoffer_layout.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        Intent intent = new Intent(OtherProfileActivity.this, MyOffersActivity.class);
+                                        Intent intent = new Intent(OtherProfileActivity_old.this, MyOffersActivity.class);
 //              intent.putExtra("from", "splash");
                                         intent.putExtra("id_user", userModules.getId() + "");
 
@@ -261,24 +233,24 @@ public class OtherProfileActivity extends AppCompatActivity {
                                     }
                                 });
 
-//                                mobile_icon.setOnClickListener(new View.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(View v) {
-//                                        try {
-//                                            String phone = "0" + userModules.getMobile();
-//                                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
-//                                            startActivity(intent);
-//                                        } catch (Exception e) {
-//                                            e.printStackTrace();
-//                                        }
-//
-//                                    }
-//                                });
+                                mobile_icon.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        try {
+                                            String phone = "0" + userModules.getMobile();
+                                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                                            startActivity(intent);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+                                });
 
                                 chat.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        Intent intent = new Intent(OtherProfileActivity.this, ChatRoomActivity.class);
+                                        Intent intent = new Intent(OtherProfileActivity_old.this, ChatRoomActivity.class);
                                         intent.putExtra("user_id", userModules.getId() + "");
                                         intent.putExtra("parent_id", "-1");
                                         intent.putExtra("nameUser", userModules.getName() + "");
@@ -286,17 +258,6 @@ public class OtherProfileActivity extends AppCompatActivity {
                                         startActivity(intent);
                                     }
                                 });
-                                location.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-
-
-                                        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                                                Uri.parse("http://maps.google.com/maps?saddr=" + userModules.getLat() + "," + userModules.getLan() + "&daddr=" + Settings.GetUser().getLat() + "," + Settings.GetUser().getLan()));
-                                        startActivity(intent);
-                                    }
-                                });
-
                                 call.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -310,8 +271,7 @@ public class OtherProfileActivity extends AppCompatActivity {
                                         }
 
                                     }
-                                });
-                                mobile.setOnClickListener(new View.OnClickListener() {
+                                });  mobile.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
 
@@ -325,32 +285,32 @@ public class OtherProfileActivity extends AppCompatActivity {
 
                                     }
                                 });
-//                                mobile_icon.setOnClickListener(new View.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(View v) {
-//                                        try {
-//                                            String phone = "0" + userModules.getMobile();
-//                                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
-//                                            startActivity(intent);
-//                                        } catch (Exception e) {
-//                                            e.printStackTrace();
-//                                        }
-//
-//                                    }
-//                                });
+                                mobile_icon.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        try {
+                                            String phone = "0" + userModules.getMobile();
+                                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                                            startActivity(intent);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+                                });
                                 try {
                                     if (!userModules.getName().toString().equals("null")) {
                                         name.setText(userModules.getName());
 
                                     } else {
-                                        name.setText("-------");
+                                        name.setText("----------");
 
                                     }
-                                    if (!userModules.getUser_name().toString().equals("null")) {
-                                        link.setText("@"+userModules.getUser_name());
+                                    if (!userModules.getLink().toString().equals("null")) {
+                                        link.setText(userModules.getLink());
 
                                     } else {
-                                        link.setText("");
+                                        link.setText("----------------");
 
                                     }
 
@@ -435,7 +395,7 @@ public class OtherProfileActivity extends AppCompatActivity {
                     } else {
                         String message = response.getString("message");
 
-                        WebService.Make_Toast_color(OtherProfileActivity.this, message, "error");
+                        WebService.Make_Toast_color(OtherProfileActivity_old.this, message, "error");
                     }
 
 
@@ -450,7 +410,7 @@ public class OtherProfileActivity extends AppCompatActivity {
             public void notifyError(String requestType, VolleyError error) {
                 Log.d("TAG", "Volley requester " + requestType);
 
-                WebService.loading(OtherProfileActivity.this, false);
+                WebService.loading(OtherProfileActivity_old.this, false);
 
                 try {
 
@@ -462,7 +422,7 @@ public class OtherProfileActivity extends AppCompatActivity {
                     String message = jsonObject.getString("message");
 
 
-                    WebService.Make_Toast_color(OtherProfileActivity.this, message, "error");
+                    WebService.Make_Toast_color(OtherProfileActivity_old.this, message, "error");
 
                     Log.e("error response", response_data);
 
@@ -470,16 +430,16 @@ public class OtherProfileActivity extends AppCompatActivity {
 
                 }
 
-                WebService.loading(OtherProfileActivity.this, false);
+                WebService.loading(OtherProfileActivity_old.this, false);
 
 
             }
 
             @Override
             public void notify_Async_Error(String requestType, String error) {
-                WebService.loading(OtherProfileActivity.this, false);
+                WebService.loading(OtherProfileActivity_old.this, false);
 
-                WebService.Make_Toast_color(OtherProfileActivity.this, error, "error");
+                WebService.Make_Toast_color(OtherProfileActivity_old.this, error, "error");
 
 
             }
@@ -489,3 +449,4 @@ public class OtherProfileActivity extends AppCompatActivity {
     }
 
 }
+

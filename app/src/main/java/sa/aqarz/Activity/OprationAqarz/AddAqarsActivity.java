@@ -2738,7 +2738,7 @@ public class AddAqarsActivity extends AppCompatActivity {
                     .setDirectoryName("Image Picker")
                     .setMultipleMode(false)
                     .setShowNumberIndicator(true)
-                    .setMaxSize(1)
+                    .setMaxSize(5)
                     .setLimitMessage("You can select one image")
 
                     .setRequestCode(requestCode)

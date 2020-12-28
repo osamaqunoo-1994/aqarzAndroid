@@ -28,7 +28,6 @@ import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -38,24 +37,17 @@ import java.util.List;
 import java.util.Locale;
 
 import sa.aqarz.Activity.Auth.LoginActivity;
-import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Activity.OprationNew.FinanceActivity;
 import sa.aqarz.Activity.OprationNew.RateActivity;
 import sa.aqarz.Activity.OprationNew.RentActivity;
-import sa.aqarz.Activity.OprationNew.RequestServiceActivity;
 import sa.aqarz.Activity.profile.OtherProfileActivity;
 import sa.aqarz.Adapter.RecyclerView_All_Comfort_in_details;
-import sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
-import sa.aqarz.Adapter.RecyclerView_All_Type_in_order;
-import sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import sa.aqarz.Adapter.RecyclerView_coments;
 import sa.aqarz.Adapter.RecyclerView_samilar;
 import sa.aqarz.Adapter.home_viewPager_Adapter;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Rate;
-import sa.aqarz.Fragment.OrdersFragment;
 import sa.aqarz.Modules.ComfortModules;
 import sa.aqarz.Modules.HomeModules_aqares;
-import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;

@@ -7,9 +7,6 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -22,14 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import sa.aqarz.Activity.DetailsActivity;
-import sa.aqarz.Activity.RealState.OfferDetailsActivity;
 import sa.aqarz.Activity.profile.OtherProfileActivity;
 import sa.aqarz.Modules.HomeModules_aqares;
-import sa.aqarz.Modules.MyOfferModule;
 import sa.aqarz.Modules.User;
 import sa.aqarz.R;
-import sa.aqarz.Settings.Application;
 
 
 /**

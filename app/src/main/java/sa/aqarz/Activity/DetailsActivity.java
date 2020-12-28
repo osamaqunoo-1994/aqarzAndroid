@@ -1,9 +1,6 @@
 package sa.aqarz.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -18,7 +15,6 @@ import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
-import com.github.vivchar.viewpagerindicator.ViewPagerIndicator;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -27,20 +23,12 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import sa.aqarz.Activity.Auth.LoginActivity;
-import sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
-import sa.aqarz.Activity.OprationNew.RentActivity;
 import sa.aqarz.Activity.profile.OtherProfileActivity;
-import sa.aqarz.Adapter.RecyclerView_All_Type_in_order;
-import sa.aqarz.Adapter.home_viewPager_Adapter;
 import sa.aqarz.Modules.HomeModules;
-import sa.aqarz.Modules.HomeModules_aqares;
-import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
