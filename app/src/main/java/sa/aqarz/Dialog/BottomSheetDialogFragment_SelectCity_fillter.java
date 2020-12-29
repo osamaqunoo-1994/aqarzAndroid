@@ -171,14 +171,14 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OrdersFragment.close_bottom();
+//                OrdersFragment.close_bottom();
             }
         });
         select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                OrdersFragment.close_bottom();
+//                OrdersFragment.close_bottom();
 
                 ids_of_city = "";
                 for (int i = 0; i < cityModules_list.size(); i++) {

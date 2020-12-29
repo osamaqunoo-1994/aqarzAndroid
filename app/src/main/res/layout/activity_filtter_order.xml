@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.FiltterOrderActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <ImageView
+
+                android:id="@+id/back"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+
+                android:padding="8dp"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                app:tint="#AAABB3" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/din_bold"
+                android:gravity="center"
+                android:text="@string/search_filtter_order"
+                android:textColor="#424446"
+                android:textSize="14dp" />
+
+            <ImageView
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_marginLeft="8dp"
+
+                android:layout_marginRight="8dp"
+                android:background="@drawable/circle_w"
+                android:padding="8dp"
+                android:src="@drawable/ic_filtter_city"
+                android:visibility="invisible"
+                app:tint="@color/colorPrimary" />
+
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_opration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="@dimen/_10sdp"
+
+            android:layout_marginBottom="10dp"
+            android:background="#F7F7F7">
+
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/type_of_v"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/back_fififi"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/select_price"
+
+                android:textColorHint="@color/black" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_arrow_drop_down_24" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+
+            android:background="@drawable/back_fififi"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/area_fi"
+                android:textColorHint="@color/black" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_arrow_drop_down_24" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+
+            android:background="@drawable/back_fififi"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+
+            android:paddingRight="15dp">
+
+
+            <EditText
+                android:id="@+id/text_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+
+                android:hint="@string/search_city"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColorHint="#AAABB3"
+                android:textSize="13dp"></EditText>
+
+            <ImageView
+                android:id="@+id/search_btn"
+
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_search_icon" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/selected_list_city"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content" />
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+
+                android:layout_centerInParent="true"
+                android:layout_margin="30dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

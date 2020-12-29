@@ -49,7 +49,7 @@ public class OtherProfileActivity extends AppCompatActivity {
     TextView link;
     TextView mobile;
     TextView go_to_map;
-//    TextView requstService;
+    //    TextView requstService;
     ImageView back;
     public static User userModules;
 
@@ -347,7 +347,7 @@ public class OtherProfileActivity extends AppCompatActivity {
 
                                     }
                                     if (!userModules.getUser_name().toString().equals("null")) {
-                                        link.setText("@"+userModules.getUser_name());
+                                        link.setText("@" + userModules.getUser_name());
 
                                     } else {
                                         link.setText("");

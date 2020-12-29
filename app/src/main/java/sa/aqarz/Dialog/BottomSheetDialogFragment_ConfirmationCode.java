@@ -340,7 +340,7 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
 
 
                             try {
-                                OrdersFragment.refrech();
+//                                OrdersFragment.refrech();
                                 MyOfferOrderActivity.finishs();
                                 OfferDetailsActivity.finishs();
                             } catch (Exception e) {

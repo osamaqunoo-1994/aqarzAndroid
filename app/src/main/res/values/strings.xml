@@ -532,6 +532,8 @@ Your request and reply in the fastest time</string>
     <string name="my_offer_">عروضي</string>
     <string name="my_clint_">عملائي</string>
     <string name="my_lolocation_">موقعي</string>
+    <string name="search_filtter_order">تصفية البحث</string>
+    <string name="search_city">ابحث هنا عن مدينة</string>
 
 
     <string name="tet_terms">ﺍﺗﻔﺎﻗﻴﺔ ﺍﻹﺳﺘﺨﺪﺍﻡﻋﺒﺮ ﺩﺧﻮﻟﻚ ﻭﺍﺳﺘﺨﺪﺍﻣﻚ ﻣﻮﻗﻊ ﺃﻭ ﺗﻄﺒﻴﻖ ﻋﻘﺎﺭﺯ ﻓﺈﻧﻚ ﺗﻘﺮ ﻭﺗﻮﺍﻓﻖ، ﺩﻭﻥ ﺇﺟﺮﺍﺀ ﺃﻱ ﺗﻌﺪﻳﻞ ﻭﺩﻭﻥ ﺃﻳﺔ ﻗﻴﻮﺩ ﺃﻭ ﺗﺒﺪﻳﻞ، ﻋﻠﻰ ﺍﻷﺣﻜﺎﻡ ﻭﺍﻟﺸﺮﻭﻁ ﺍﻟﻮﺍﺭﺩﺓ ﻓﻲ ﻫﺬﻩ (ﺍﻻﺗﻔﺎﻗﻴﺔ). ﺃﻧﺖ ﺗﻘﺮ ﻭﺗﻀﻤﻦ ﺣﻘﻚ ﺍﻟﻘﺎﻧﻮﻧﻲ ﻟﻠﺪﺧﻮﻝ ﻓﻲ ﻫﺬﻩ ﺍﻻﺗﻔﺎﻗﻴﺔ ﻭﺍﺳﺘﺨﺪﺍﻡ ﺍﻟﺨﺪﻣﺎﺕ ﺍﻟﺘﻲ ﻧﻘﺪﻣﻬﺎ ﻓﻲ ﻋﻘﺎﺭﺯ ﻭﻓﻘﺎً ﻟﻜﺎﻓﺔ ﺍﻟﺸﺮﻭﻁ ﻭﺍﻷﺣﻜﺎﻡ ﺍﻟﻮﺍﺭﺩﺓ ﻓﻴﻬﺎ.
@@ -628,8 +630,6 @@ Your request and reply in the fastest time</string>
     <string name="Visit">Visit</string>
 
 
-
-
     <string name="n13">view</string>
 
     <string name="n53">street</string>
@@ -638,7 +638,6 @@ Your request and reply in the fastest time</string>
     <string name="MyService">My Service</string>
     <string name="MyClints">My Clints</string>
     <string name="AddService">Add Service</string>
-
 
 
     <string name="aqarez_aq1">Aqarez</string>

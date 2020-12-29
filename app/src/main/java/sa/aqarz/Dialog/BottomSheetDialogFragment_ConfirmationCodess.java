@@ -315,7 +315,7 @@ public class BottomSheetDialogFragment_ConfirmationCodess extends BottomSheetDia
 
 
                             try {
-                                OrdersFragment.refrech();
+//                                OrdersFragment.refrech();
                                 MyOfferOrderActivity.finishs();
                                 OfferDetailsActivity.finishs();
                             } catch (Exception e) {
