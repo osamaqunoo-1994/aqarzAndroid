@@ -294,6 +294,7 @@
                             android:gravity="center_vertical"
                             android:hint="@string/Total_area"
                             android:inputType="number"
+                            android:maxLength="10"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
@@ -1980,7 +1981,6 @@
                             android:layout_height="42dp"
                             android:layout_weight="1"
                             android:background="@drawable/mash"
-
                             android:gravity="center_vertical"
                             android:hint="@string/Street_view"
                             android:inputType="text"

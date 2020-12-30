@@ -28,6 +28,8 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -79,8 +81,11 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.SQLOutput;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
@@ -101,6 +106,7 @@ import sa.aqarz.Modules.SelectImageModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.GpsTracker;
+import sa.aqarz.Settings.NumberTextWatcher;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -353,6 +359,12 @@ public class AddAqarsActivity extends AppCompatActivity {
         Dining_rooms_lay = findViewById(R.id.Dining_rooms_lay);
         Boards_lay = findViewById(R.id.Boards_lay);
         Kitchens_lay = findViewById(R.id.Kitchens_lay);
+
+
+        total_price.addTextChangedListener(new NumberTextWatcher(total_price));
+        Total_area.addTextChangedListener(new NumberTextWatcher(Total_area));
+        piece_number.addTextChangedListener(new NumberTextWatcher(piece_number));
+        price_one_meter.addTextChangedListener(new NumberTextWatcher(piece_number));
 
 
         //---------------------------------------------------------------------------------------

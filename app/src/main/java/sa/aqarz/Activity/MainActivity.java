@@ -46,6 +46,7 @@ import sa.aqarz.Fragment.MapsFragment;
 import sa.aqarz.Fragment.MoreFragment;
 import sa.aqarz.Fragment.NotficationFragment;
 import sa.aqarz.Fragment.OrdersFragment;
+import sa.aqarz.Fragment.OrdersFragment_old;
 import sa.aqarz.Fragment.SubscriptionsFragment;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
@@ -256,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
                     fragmentManager = getSupportFragmentManager();
 
                     fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container, new OrdersFragment());
+                    fragmentTransaction.replace(R.id.container, new OrdersFragment_old());
                     //  fragmentTransaction.commit();
                     fragmentTransaction.commitAllowingStateLoss();
                 } else {
@@ -466,7 +467,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (Settings.checkLogin()) {
                     fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container, new OrdersFragment());
+                    fragmentTransaction.replace(R.id.container, new OrdersFragment_old());
                     //    fragmentTransaction.commit();
                     fragmentTransaction.commitAllowingStateLoss();
 
@@ -592,7 +593,7 @@ public class MainActivity extends AppCompatActivity {
             fragmentManager = ft;
 
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, new OrdersFragment());
+            fragmentTransaction.replace(R.id.container, new OrdersFragment_old());
             //  fragmentTransaction.commit();
             fragmentTransaction.commitAllowingStateLoss();
         } else {

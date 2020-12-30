@@ -150,49 +150,49 @@ public class SelectLocationActivity extends AppCompatActivity {
                         googleMap.addMarker(new MarkerOptions()
                                 .position(latLng)).setTag("mylocation");
 
-//                        lat = latLng.latitude + "";
-//                        lang = latLng.longitude + "";
-//
-//
-//                        geocoder = new Geocoder(SelectLocationActivity.this, Locale.getDefault());
-//
-//                        try {
-//
-//                            WebService.loading(SelectLocationActivity.this, true);
-//
-//                            final Handler handler = new Handler();
-//                            handler.postDelayed(new Runnable() {
-//                                @Override
-//                                public void run() {
-//
-//                                    try {
-//                                        WebService.loading(SelectLocationActivity.this, false);
-//
-//
-//                                        addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-////                                        String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-////                                        String city = addresses.get(0).getLocality();
-//                                        String state = addresses.get(0).getAdminArea();
-//                                        String country = addresses.get(0).getCountryName();
-////                                        String postalCode = addresses.get(0).getPostalCode();
-////                                        String knownName = addresses.get(0).getFeatureName(); // Onl
-//
-//
-//                                        text_search.setText(country + " - " + state);
-//                                    } catch (Exception e) {
-//
-//                                    }
-//
-//                                }
-//                            }, 500); // After 1 seconds
-//
-//
-//                            //    state country
-//
-//
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
+                        lat = latLng.latitude + "";
+                        lang = latLng.longitude + "";
+
+
+                        geocoder = new Geocoder(SelectLocationActivity.this, Locale.getDefault());
+
+                        try {
+
+                            WebService.loading(SelectLocationActivity.this, true);
+
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    try {
+                                        WebService.loading(SelectLocationActivity.this, false);
+
+
+                                        addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+//                                        String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+//                                        String city = addresses.get(0).getLocality();
+                                        String state = addresses.get(0).getAdminArea();
+                                        String country = addresses.get(0).getCountryName();
+//                                        String postalCode = addresses.get(0).getPostalCode();
+//                                        String knownName = addresses.get(0).getFeatureName(); // Onl
+
+
+                                        text_search.setText(country + " - " + state);
+                                    } catch (Exception e) {
+
+                                    }
+
+                                }
+                            }, 500); // After 1 seconds
+
+
+                            //    state country
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
 
                     }

@@ -52,6 +52,7 @@ import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectBanks;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
+import sa.aqarz.Settings.NumberTextWatcher;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -177,6 +178,21 @@ public class FinanceActivity extends AppCompatActivity {
         }catch (Exception e){
 
         }
+
+
+
+
+
+
+        priceAqar.addTextChangedListener(new NumberTextWatcher(priceAqar));
+        available_price.addTextChangedListener(new NumberTextWatcher(available_price));
+        total_sallary.addTextChangedListener(new NumberTextWatcher(total_sallary));
+
+
+
+
+
+
         //---------------------------------------------------------------------------------------
         try {
             name.setText(Settings.GetUser().getName() + "");

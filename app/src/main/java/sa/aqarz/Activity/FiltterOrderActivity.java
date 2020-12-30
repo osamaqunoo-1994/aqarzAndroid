@@ -229,45 +229,52 @@ public class FiltterOrderActivity extends AppCompatActivity {
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String data = response.getString("data");
-                        Hawk.put("AllCity", data);
+
+
+                        if (requestType.equals("city")) {
+
+
+                            Hawk.put("AllCity", data);
 
 
 //                        JSONObject jsonObjectdata = new JSONObject(data);
 //
 //                        String datax = jsonObjectdata.getString("data");
 
-                        JSONArray jsonArray = new JSONArray(data);
-                        progress.setVisibility(View.GONE);
-                        cityModules_list.clear();
-                        cityModules_list_filtter.clear();
-                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONArray jsonArray = new JSONArray(data);
+                            progress.setVisibility(View.GONE);
+                            cityModules_list.clear();
+                            cityModules_list_filtter.clear();
+                            for (int i = 0; i < jsonArray.length(); i++) {
 
 
-                            JsonParser parser = new JsonParser();
-                            JsonElement mJson = parser.parse(jsonArray.getString(i));
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
 
-                            Gson gson = new Gson();
+                                Gson gson = new Gson();
 
-                            CityModules Store_M = gson.fromJson(mJson, CityModules.class);
-                            cityModules_list.add(Store_M);
-                            cityModules_list_filtter.add(Store_M);
-                            Application.AllCity.add(Store_M);
-                        }
-
-                        RecyclerView_city_bootom_sheets_multi recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets_multi(FiltterOrderActivity.this, cityModules_list_filtter);
-                        recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_bootom_sheets_multi.ItemClickListener() {
-
-
-                            @Override
-                            public void onItemClick(List<CityModules> alldata) {
-                                cityModules_list = alldata;
-
+                                CityModules Store_M = gson.fromJson(mJson, CityModules.class);
+                                cityModules_list.add(Store_M);
+                                cityModules_list_filtter.add(Store_M);
+                                Application.AllCity.add(Store_M);
                             }
-                        });
 
-                        list_city.setAdapter(recyclerView_city_bootom_sheets);
+                            RecyclerView_city_bootom_sheets_multi recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets_multi(FiltterOrderActivity.this, cityModules_list_filtter);
+                            recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_bootom_sheets_multi.ItemClickListener() {
 
 
+                                @Override
+                                public void onItemClick(List<CityModules> alldata) {
+                                    cityModules_list = alldata;
+
+                                }
+                            });
+
+                            list_city.setAdapter(recyclerView_city_bootom_sheets);
+
+                        } else {
+
+                        }
                     } else {
                         String message = response.getString("message");
 

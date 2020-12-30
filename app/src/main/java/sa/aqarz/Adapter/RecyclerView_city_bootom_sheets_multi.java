@@ -83,7 +83,7 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
 
-//        holder.setIsRecyclable(false);
+        holder.setIsRecyclable(false);
 //        holder.title.setText(alldata.get(position).getName());
 //        holder.details.setText(alldata.get(position).getName());
 //        if (alldata.get(position).getRate() != null) {
@@ -174,9 +174,10 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
 //            }
 //        });
 //
-        holder.text.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onClick(View view) {
                 if (alldata.get(position).isSelected()) {
 
                     alldata.get(position).setSelected(false);
@@ -195,20 +196,6 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
                 if (mItemClickListener != null) {
                     mItemClickListener.onItemClick(alldata);
                 }
-
-
-//                RequestOrderActivity.set_fragment(position);
-
-
-//                Refr();
-//
-
-            }
-        });
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
 
             }
         });

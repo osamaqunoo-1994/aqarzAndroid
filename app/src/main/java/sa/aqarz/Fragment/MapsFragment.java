@@ -1069,7 +1069,11 @@ public class MapsFragment extends Fragment {
 
 
                                         String price = bankModules.getTotalPrice();
-                                        int price_int = Integer.valueOf(price);
+
+                                        String v = price.toString().replace(",", "");
+
+
+                                        int price_int = Integer.valueOf(v);
 
                                         int prices = (int) price_int;
 
@@ -1077,6 +1081,7 @@ public class MapsFragment extends Fragment {
                                         if (price_int < 1000) {
 
                                             price = prices + "";
+
                                         } else if (price_int > 1000 && price_int < 999999) {
                                             prices = (int) price_int / 1000;
 
