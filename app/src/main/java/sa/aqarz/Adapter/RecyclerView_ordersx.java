@@ -73,9 +73,9 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
     public void loadmore(List<OrdersModules> alldatas) {
 
 
-        alldata.addAll(alldata.size()-1, alldatas);
+        alldata.addAll(alldata.size() - 1, alldatas);
 
-        System.out.println("this.alldata"+alldatas.size());
+        System.out.println("this.alldata" + alldatas.size());
         this.notifyDataSetChanged();
     }
 
@@ -343,7 +343,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                 if (Settings.CheckIsCompleate()) {
 
 
-                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("0")) {
 
 //                        bottomSheetDialogFragment_offerEstate = new BottomSheetDialogFragment_OfferEstate(alldata.get(position).getUuid() + "");
 //                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
@@ -493,6 +493,40 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                     if (status) {
                         String data = response.getString("data");
 //                        String message = response.getString("message");
+
+                        if (requestType.equals("upgrade")) {
+
+                            BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(context);
+                            LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+                            View parentView = li.inflate(R.layout.bottom_sheets_sucess_ordder, null);
+
+                            TextView done = parentView.findViewById(R.id.done);
+                            done.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    bottomSheerDialog.cancel();
+                                }
+                            });
+                            bottomSheerDialog.setContentView(parentView);
+
+
+                            Window window = bottomSheerDialog.getWindow();
+                            window.findViewById(com.google.android.material.R.id.container).setFitsSystemWindows(false);
+                            // dark navigation bar icons
+                            View decorView = window.getDecorView();
+                            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+                            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, context.getResources().getDisplayMetrics());
+
+
+//        ((View) decorView.getParent()).setBackgroundColor(context.getResources().getColor(android.R.color.transparent));
+
+
+                            bottomSheerDialog.show();
+
+                        }
+
+
                         String message = response.getString("message");
 
 

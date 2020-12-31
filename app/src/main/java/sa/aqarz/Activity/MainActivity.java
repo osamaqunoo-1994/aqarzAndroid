@@ -257,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
                     fragmentManager = getSupportFragmentManager();
 
                     fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container, new OrdersFragment_old());
+                    fragmentTransaction.replace(R.id.container, new OrdersFragment());
                     //  fragmentTransaction.commit();
                     fragmentTransaction.commitAllowingStateLoss();
                 } else {
@@ -467,7 +467,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (Settings.checkLogin()) {
                     fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container, new OrdersFragment_old());
+                    fragmentTransaction.replace(R.id.container, new OrdersFragment());
                     //    fragmentTransaction.commit();
                     fragmentTransaction.commitAllowingStateLoss();
 
@@ -593,7 +593,7 @@ public class MainActivity extends AppCompatActivity {
             fragmentManager = ft;
 
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, new OrdersFragment_old());
+            fragmentTransaction.replace(R.id.container, new OrdersFragment());
             //  fragmentTransaction.commit();
             fragmentTransaction.commitAllowingStateLoss();
         } else {

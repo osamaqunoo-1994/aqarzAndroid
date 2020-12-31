@@ -6,32 +6,35 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import sa.aqarz.Modules.CityModules;
+import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
 
 
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<RecyclerView_city_bootom_sheets_multi.MyViewHolder> {
-    public static List<CityModules> alldata = new ArrayList<CityModules>();
-    static int Postion_opend = -1;
+public class RecyclerView_All_opration_bottom_sheet_type extends RecyclerView.Adapter<RecyclerView_All_opration_bottom_sheet_type.MyViewHolder> {
+    public static List<TypeModules> alldata = new ArrayList<TypeModules>();
+    static int Postion_opend = 0;
 
 
     static AlertDialog alertDialog;
-
     private ItemClickListener mItemClickListener;
+
 
     /**
      * View holder class
@@ -55,21 +58,27 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
 //        LinearLayout add_to_my;
 
 
-        CheckBox text;
+        //        LinearLayout answer_layout;
+        //  public FrameLayout frame;
+
+        LinearLayout back_ground;
+        TextView text;
+        ImageView image_in_type;
 
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
 
 
+            back_ground = view.findViewById(R.id.back_ground);
             text = view.findViewById(R.id.text);
-//            ratingbar = view.findViewById(R.id.ratingbar);
+            image_in_type = view.findViewById(R.id.image_in_type);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
     }
 
-    public RecyclerView_city_bootom_sheets_multi(Context context, List<CityModules> alldata) {
+    public RecyclerView_All_opration_bottom_sheet_type(Context context, List<TypeModules> alldata) {
         this.alldata = alldata;
         this.context = context;
     }
@@ -83,7 +92,7 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
 
-        holder.setIsRecyclable(false);
+//        holder.setIsRecyclable(false);
 //        holder.title.setText(alldata.get(position).getName());
 //        holder.details.setText(alldata.get(position).getName());
 //        if (alldata.get(position).getRate() != null) {
@@ -95,10 +104,30 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
 //            }
 //        }
 ////
-//
+        holder.text.setText(alldata.get(position).getName() + "");
+
+        holder.image_in_type.setVisibility(View.GONE);
+//        Picasso.get().load(alldata.get(position).getIcon()).into(holder.image_in_type);
+
+        if (position == Postion_opend) {
+//            holder.image_in_type.setBackground(context.getResources().getDrawable(R.drawable.button_login));
+            holder.text.setBackground(context.getResources().getDrawable(R.drawable.button_login));
+
+            holder.text.setTextColor(context.getResources().getColor(R.color.white));
+
+
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+
+        } else {
+//            holder.image_in_type.setBackground(context.getResources().getDrawable(R.drawable.circle_filter));
+            holder.text.setBackground(context.getResources().getDrawable(R.drawable.circle_filter));
+
+            holder.text.setTextColor(context.getResources().getColor(R.color.color_filter));
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.color_filter), android.graphics.PorterDuff.Mode.SRC_IN);
+
+        }
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
 ////
 //
 //        try {
@@ -115,33 +144,9 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
 //        int random = ThreadLocalRandom.current().nextInt(1, 5);
 //       holder.ratingbar.setStar(random);
 
-        holder.text.setText(alldata.get(position).getName() + "");
 
-        if (alldata.get(position).isSelected()) {
-            holder.text.setChecked(true);
-        } else {
-            holder.text.setChecked(false);
-
-        }
         //   wallet, dafter, receipt, payment
 
-//
-//        holder.text.setText(alldata.get(position).getName() + "");
-//
-//        if (position == Postion_opend) {
-//            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));
-//
-//            holder.text.setTextColor(context.getResources().getColor(R.color.white));
-//
-//
-//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
-//
-//        } else {
-//            holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
-//            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.search_background));
-//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
-//
-//        }
 
 //            double v=Double.valueOf(alldata.get(position).getRate());
 //
@@ -178,48 +183,14 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (alldata.get(position).isSelected()) {
 
-                    alldata.get(position).setSelected(false);
-                    holder.text.setChecked(false);
-
-
-                } else {
-                    alldata.get(position).setSelected(true);
-
-                    holder.text.setChecked(true);
-
-
-                }
-
+//
 
                 if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(alldata);
+                    mItemClickListener.onItemClick(position);
                 }
-
-            }
-        });
-        holder.text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (alldata.get(position).isSelected()) {
-
-                    alldata.get(position).setSelected(false);
-                    holder.text.setChecked(false);
-
-
-                } else {
-                    alldata.get(position).setSelected(true);
-
-                    holder.text.setChecked(true);
-
-
-                }
-
-
-                if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(alldata);
-                }
+                Postion_opend = position;
+                Refr();
 
             }
         });
@@ -243,7 +214,7 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_city_multi, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_filtter_type_map_order, parent, false);
 
 
         // Fresco.initialize(context);
@@ -252,9 +223,8 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
         return new MyViewHolder(v);
     }
 
-
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(List<CityModules> alldata);
+        void onItemClick(int position);
     }
 }

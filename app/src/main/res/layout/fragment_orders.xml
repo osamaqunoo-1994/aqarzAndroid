@@ -183,30 +183,6 @@
                     android:src="@drawable/ic_premium_"
                     android:visibility="visible" />
 
-                <LinearLayout
-                    android:id="@+id/not_premium"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="2dp"
-                        android:paddingRight="2dp"
-                        android:text="@string/requered_found"
-                        android:textColor="#ee5c5c"
-                        android:textSize="12dp" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_not_prumem" />
-                </LinearLayout>
 
 
             </LinearLayout>
@@ -365,10 +341,35 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/not_premium"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:text="@string/requered_found"
+                        android:textColor="#ee5c5c"
+                        android:textSize="11dp" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_not_prumem" />
+                </LinearLayout>
 
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
+                    android:id="@+id/orders_rec"
                     android:layout_height="match_parent">
 
 
@@ -381,6 +382,34 @@
                     android:layout_height="30dp"
                     android:layout_centerInParent="true"
                     android:visibility="gone" />
+
+
+
+                <LinearLayout
+                    android:id="@+id/nodata_vis"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:alpha=".3"
+                        android:src="@drawable/ic_no_data" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="@string/nodata"
+                        android:textColor="@color/textColor2" />
+
+
+                </LinearLayout>
+
+
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

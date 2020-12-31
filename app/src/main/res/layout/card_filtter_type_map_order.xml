@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingEnd="10dp">
+
+
+    <LinearLayout
+        android:id="@+id/back_ground"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_margin="5dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+
+
+        android:orientation="vertical"
+
+        >
+
+        <ImageView
+            android:id="@+id/image_in_type"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/circle_filter"
+            android:padding="12dp"
+
+
+            android:src="@drawable/ic_test_test"
+
+
+            android:visibility="gone"
+            app:tint="#AAABB3" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/circle_filter"
+            android:fontFamily="@font/din_light"
+
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="تقسيط تاجير"
+            android:textColor="#AAABB3"
+            android:textSize="@dimen/_11sdp" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

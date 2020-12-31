@@ -98,7 +98,9 @@ import sa.aqarz.Adapter.RecyclerView_ordersx;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares_orders;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares_orders_1;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_Filtter_order;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity_fillter;
+import sa.aqarz.Modules.FiltterModules;
 import sa.aqarz.Modules.HomeModules;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.MyRateModules;
@@ -121,14 +123,25 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class OrdersFragment extends Fragment {
     static IResult mResultCallback;
     static ProgressBar progress;
-
-
+    BottomSheetDialogFragment_Filtter_order bottomSheetDialogFragment_filtter_order;
+    ImageView premium;
     LinearLayout Real_Estate_order_layout;
     ImageView Real_Estate_order_image;
     TextView Real_Estate_order_text;
 
+    static LinearLayout nodata_vis;
+    List<TypeModules> type_list = new ArrayList<>();
+    static List<demandsModules> demandsModules_list = new ArrayList<>();
+    List<OfferRealStateModules> offerRealStateModulesLis = new ArrayList<>();
+    List<RateModules> rate_list = new ArrayList<>();
+    List<financeModules> finance_list = new ArrayList<>();
+    List<deferredInstallmentModules> deferredInstallmentModuleslist = new ArrayList<>();
+    List<MyRateModules> myRateModules = new ArrayList<>();
+
+    static List<OrdersModules> ordersModules = new ArrayList<>();
 
     LinearLayout Shopping_request_layout;
+    LinearLayout not_premium;
     TextView Shopping_request_text;
 
     TextView AllOrder;
@@ -147,6 +160,10 @@ public class OrdersFragment extends Fragment {
 
     ImageView open_filter;
 
+    static RecyclerView orders_rec;
+
+
+    public static FiltterModules filtterModules = new FiltterModules();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -175,8 +192,11 @@ public class OrdersFragment extends Fragment {
         Real_Estate_order_image = v.findViewById(R.id.Real_Estate_order_image);
 
         Shopping_request_layout = v.findViewById(R.id.Shopping_request_layout);
+        premium = v.findViewById(R.id.premium);
 
         Shopping_request_text = v.findViewById(R.id.Shopping_request_text);
+        orders_rec = v.findViewById(R.id.orders_rec);
+        nodata_vis = v.findViewById(R.id.nodata_vis);
 
 
         AllOrder = v.findViewById(R.id.AllOrder);
@@ -186,10 +206,28 @@ public class OrdersFragment extends Fragment {
         Myoffer_number = v.findViewById(R.id.Myoffer_number);
         today_number = v.findViewById(R.id.today_number);
         AllOrder_number = v.findViewById(R.id.AllOrder_number);
+        not_premium = v.findViewById(R.id.not_premium);
 
 
         progress = v.findViewById(R.id.progress);
         open_filter = v.findViewById(R.id.open_filter);
+
+        LinearLayoutManager layoutManager1
+                = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        orders_rec.setLayoutManager(layoutManager1);
+
+
+        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+            premium.setVisibility(View.VISIBLE);
+//            offer.setVisibility(View.VISIBLE);
+            not_premium.setVisibility(View.GONE);
+
+        } else {
+
+            premium.setVisibility(View.GONE);
+//            offer.setVisibility(View.GONE);
+            not_premium.setVisibility(View.VISIBLE);
+        }
 
 
         Action_Button();
@@ -210,6 +248,9 @@ public class OrdersFragment extends Fragment {
                 Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
                 Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.white), PorterDuff.Mode.MULTIPLY);
 
+
+                page = 1;
+
                 type_type = "fund_Request";
                 GetData(type_requst);
 
@@ -229,6 +270,9 @@ public class OrdersFragment extends Fragment {
 
                 Real_Estate_order_text.setTextColor(getResources().getColor(R.color.textColor));
                 Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColor), PorterDuff.Mode.MULTIPLY);
+
+
+                page = 1;
 
                 type_type = "market_demands";
 
@@ -259,11 +303,16 @@ public class OrdersFragment extends Fragment {
                 today_number.setTextColor(getResources().getColor(R.color.white));
                 AllOrder_number.setTextColor(getResources().getColor(R.color.textColor));
 
+
+                page = 1;
+
                 type_requst = "today";
                 GetData(type_requst);
 
             }
         });
+
+
         Myoffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -286,6 +335,9 @@ public class OrdersFragment extends Fragment {
                 Myoffer_number.setTextColor(getResources().getColor(R.color.white));
                 today_number.setTextColor(getResources().getColor(R.color.textColor));
                 AllOrder_number.setTextColor(getResources().getColor(R.color.textColor));
+
+
+                page = 1;
 
                 type_requst = "Myoffer";
                 GetData(type_requst);
@@ -315,6 +367,9 @@ public class OrdersFragment extends Fragment {
                 today_number.setTextColor(getResources().getColor(R.color.textColor));
                 AllOrder_number.setTextColor(getResources().getColor(R.color.white));
 
+
+                page = 1;
+
                 type_requst = "AllOrder";
                 GetData(type_requst);
 
@@ -325,17 +380,54 @@ public class OrdersFragment extends Fragment {
         open_filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//
+//                Intent intent = new Intent(getContext(), FiltterOrderActivity.class);
+////                Bundle bndlAnimation = ActivityOptions.makeCustomAnimation(getContext(), R.anim.rh, R.anim.slideinright).toBundle();
+//
+//
+//                startActivity(intent);
+//
+//                getActivity().overridePendingTransition(R.anim.rh, R.anim.ex);
 
-                Intent intent = new Intent(getContext(), FiltterOrderActivity.class);
-//                Bundle bndlAnimation = ActivityOptions.makeCustomAnimation(getContext(), R.anim.rh, R.anim.slideinright).toBundle();
+
+                bottomSheetDialogFragment_filtter_order = new BottomSheetDialogFragment_Filtter_order(type_type);
+                bottomSheetDialogFragment_filtter_order.addItemClickListener(new BottomSheetDialogFragment_Filtter_order.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_city, String city_naem) {
+                        bottomSheetDialogFragment_filtter_order.dismiss();
+                        page = 1;
+
+                        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" + filtterModules.getOrder_by_price() + filtterModules.getSelect_city() + filtterModules.getType_oprtion() + filtterModules.getType_type());
 
 
-                startActivity(intent);
+                        GetData(type_requst);
 
-                getActivity().overridePendingTransition(R.anim.rh, R.anim.ex);
+
+                    }
+                });
+                bottomSheetDialogFragment_filtter_order.show(getChildFragmentManager(), "");
 
             }
         });
+
+
+        Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.mash));
+
+        Shopping_request_text.setTextColor(getResources().getColor(R.color.textColor));
+
+
+        Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.background_order));
+
+        Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
+        Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.white), PorterDuff.Mode.MULTIPLY);
+
+
+        page = 1;
+
+        type_type = "fund_Request";
+        GetData(type_requst);
+
+
     }
 
 
@@ -356,18 +448,32 @@ public class OrdersFragment extends Fragment {
 
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
+        String id_city_ = "";
+        if (!filtterModules.getSelect_city().equals("")) {
+            id_city_ = "&city_id=" + filtterModules.getSelect_city();
+        } else {
+            id_city_ = "";
+        }
+        String opration_select = "";
+
+        if (!filtterModules.getSelect_city().equals("")) {
+            opration_select = "&estate_type_id=" + filtterModules.getType_oprtion();
+        } else {
+            opration_select = "";
+        }
 
 
         if (type_type.equals("fund_Request")) {
 
-            mVolleyService.getDataVolley("fund_Request", WebService.fund_Request);
-
 
             if (type_requst.equals("today")) {
+                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select);
 
             } else if (type_requst.equals("AllOrder")) {
+                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?" + "page=" + page + id_city_ + opration_select);
 
             } else if (type_requst.equals("Myoffer")) {
+                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?" + "page=" + page + "&myOwn=1" + id_city_ + opration_select);
 
             }
 
@@ -376,10 +482,13 @@ public class OrdersFragment extends Fragment {
             mVolleyService.getDataVolley("my_request", WebService.my_request);
 
             if (type_requst.equals("today")) {
+                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?" + "page=" + page + "&today=1" + id_city_ + opration_select);
 
             } else if (type_requst.equals("AllOrder")) {
+                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?" + "page=" + page + id_city_ + opration_select);
 
             } else if (type_requst.equals("Myoffer")) {
+                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?" + "page=" + page + "&myOwn=1" + id_city_ + opration_select);
 
             }
 
@@ -405,7 +514,81 @@ public class OrdersFragment extends Fragment {
 
                 try {
 
+                    if (requestType.equals("market_demands")) {
 
+                        String data = response.getString("data");
+
+                        JSONObject jsonObject_data = new JSONObject(data);
+
+                        String data_inside = jsonObject_data.getString("data");
+                        JSONArray jsonArray = new JSONArray(data_inside);
+                        orders_rec.setAdapter(null);
+                        demandsModules_list.clear();
+
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                            JsonParser parser = new JsonParser();
+                            JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                            Gson gson = new Gson();
+
+                            demandsModules ordersModulesm = gson.fromJson(mJson, demandsModules.class);
+                            demandsModules_list.add(ordersModulesm);
+
+
+                        }
+
+                        orders_rec.setAdapter(new RecyclerView_orders_demandsx(activity, demandsModules_list));
+
+
+                        if (demandsModules_list.size() != 0) {
+                            nodata_vis.setVisibility(View.GONE);
+                        } else {
+                            nodata_vis.setVisibility(View.VISIBLE);
+
+
+                        }
+
+
+                    } else if (requestType.equals("fund_Request")) {
+
+
+                        String data = response.getString("data");
+
+                        JSONObject jsonObject_data = new JSONObject(data);
+
+                        String data_inside = jsonObject_data.getString("data");
+                        JSONArray jsonArray = new JSONArray(data_inside);
+                        orders_rec.setAdapter(null);
+                        ordersModules.clear();
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                            JsonParser parser = new JsonParser();
+                            JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                            Gson gson = new Gson();
+
+                            OrdersModules ordersModulesm = gson.fromJson(mJson, OrdersModules.class);
+                            ordersModules.add(ordersModulesm);
+
+
+                        }
+
+                        RecyclerView_ordersx recyclerView_ordersx = new RecyclerView_ordersx(activity, ordersModules);
+                        orders_rec.setAdapter(recyclerView_ordersx);
+
+                        if (ordersModules.size() != 0) {
+                            nodata_vis.setVisibility(View.GONE);
+                        } else {
+                            nodata_vis.setVisibility(View.VISIBLE);
+
+                        }
+
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
