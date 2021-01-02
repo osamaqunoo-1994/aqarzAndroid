@@ -27,6 +27,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Adapter.RecyclerView_MyState;
 import sa.aqarz.Adapter.RecyclerView_MyState_offer;
@@ -56,6 +57,12 @@ public class MyOfferOrderActivity extends AppCompatActivity {
     private BottomSheetDialogFragment_MyEstate.ItemClickListener mItemClickListener;
     String getUuid = "";
     static Activity activity;
+    TextView number_order;
+    TextView name;
+    TextView name_estate;
+    TextView price;
+    TextView address;
+    TextView space;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +77,13 @@ public class MyOfferOrderActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
 
 
+        number_order = findViewById(R.id.number_order);
+        name = findViewById(R.id.name);
+        name_estate = findViewById(R.id.name_estate);
+        price = findViewById(R.id.price);
+        address = findViewById(R.id.address);
+        space = findViewById(R.id.space);
+
         activity = this;
 
         try {
@@ -78,11 +92,20 @@ public class MyOfferOrderActivity extends AppCompatActivity {
             id_offer = getUuid;
 
             String id = getIntent().getStringExtra("id");
+            number_order.setText(id + "");
 
             uuid.setText(getResources().getString(R.string.MyOFFERFOR) + " " + getUuid + "");
         } catch (Exception e) {
 
         }
+
+
+        name_estate.setText(MainActivity.ordersModules.getEstateTypeName() + "");
+        price.setText(MainActivity.ordersModules.getEstatePriceRange() + "");
+        space.setText(MainActivity.ordersModules.getStreetViewRange() + "");
+        address.setText(MainActivity.ordersModules.getCityName() + "" + " , " + MainActivity.ordersModules.getNeighborhoodName());
+
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

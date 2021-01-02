@@ -285,6 +285,8 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 //                        bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getUuid() + "");
 //                        bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
 
+
+                        MainActivity.ordersModules = alldata.get(position);
                         Intent intent = new Intent(context, AllOfferOrderActivity.class);
                         intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
                         intent.putExtra("id", alldata.get(position).getId() + "");
@@ -316,6 +318,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 
 //                        bottomSheetDialogFragment_offerEstate = new BottomSheetDialogFragment_OfferEstate(alldata.get(position).getUuid() + "");
 //                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+                        MainActivity.ordersModules = alldata.get(position);
 
                         Intent intent = new Intent(context, MyOfferOrderActivity.class);
                         intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
@@ -343,10 +346,11 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                 if (Settings.CheckIsCompleate()) {
 
 
-                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("0")) {
+                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
 
 //                        bottomSheetDialogFragment_offerEstate = new BottomSheetDialogFragment_OfferEstate(alldata.get(position).getUuid() + "");
 //                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+                        MainActivity.ordersModules = alldata.get(position);
 
                         Intent intent = new Intent(context, MyOfferOrderActivity.class);
                         intent.putExtra("getUuid", alldata.get(position).getUuid() + "");

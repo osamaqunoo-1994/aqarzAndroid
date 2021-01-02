@@ -63,6 +63,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
     public static Activity activity;
     public static FragmentManager ft;
 
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {

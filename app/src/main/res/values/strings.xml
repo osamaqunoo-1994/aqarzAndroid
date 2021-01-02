@@ -537,6 +537,8 @@ Your request and reply in the fastest time</string>
     <string name="Order_by">ترتيب حسب</string>
     <string name="lessthan">الأقل سعراً</string>
     <string name="bigthan">الأعلى سعراً</string>
+    <string name="AllOffer_hgls">العروض القريبة من مواصفات الطلب</string>
+    <string name="AllOffer_hgls2">عروضي المقدمة للطلب</string>
     <string name="success_coder">سيقوم فريق عقارز بالتواصل معك خلال
 يومي عمل لإستكمال طلبك</string>
 

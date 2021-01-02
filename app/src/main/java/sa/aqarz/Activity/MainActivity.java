@@ -48,6 +48,8 @@ import sa.aqarz.Fragment.NotficationFragment;
 import sa.aqarz.Fragment.OrdersFragment;
 import sa.aqarz.Fragment.OrdersFragment_old;
 import sa.aqarz.Fragment.SubscriptionsFragment;
+import sa.aqarz.Modules.OrdersModules;
+import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
 
@@ -60,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
     public static BottomSheetDialogFragment_MyEstate bottomSheetDialogFragment_myEstate;
     static BottomSheetDialog bottomSheerDialog;
 
-
+public static OrdersModules ordersModules;
+public static demandsModules demandsModules;
     static ImageView image_1;
     static ImageView image_s;
     static ImageView image_2;

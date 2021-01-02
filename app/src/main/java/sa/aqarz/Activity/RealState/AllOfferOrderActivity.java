@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
@@ -26,6 +27,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Adapter.RecyclerView_MyState;
 import sa.aqarz.Adapter.RecyclerView_ordersx;
@@ -55,12 +57,28 @@ public class AllOfferOrderActivity extends AppCompatActivity {
     ImageView back;
     String id;
 
+    TextView number_order;
+    TextView name;
+    TextView name_estate;
+    TextView price;
+    TextView address;
+    TextView space;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_offer_order);
 
         back = findViewById(R.id.back);
+
+        number_order = findViewById(R.id.number_order);
+        name = findViewById(R.id.name);
+        name_estate = findViewById(R.id.name_estate);
+        price = findViewById(R.id.price);
+        address = findViewById(R.id.address);
+        space = findViewById(R.id.space);
+
+
         all_my_state = findViewById(R.id.all_my_state);
         progress = findViewById(R.id.progress);
         confirm = findViewById(R.id.confirm);
@@ -74,10 +92,20 @@ public class AllOfferOrderActivity extends AppCompatActivity {
             String getUuid = getIntent().getStringExtra("getUuid");
             id_offer = getUuid;
             id = getIntent().getStringExtra("id");
-
+            number_order.setText(id + "");
         } catch (Exception e) {
 
         }
+
+
+
+        name_estate.setText(MainActivity.ordersModules.getEstateTypeName() + "");
+        price.setText(MainActivity.ordersModules.getEstatePriceRange() + "");
+        space.setText(MainActivity.ordersModules.getStreetViewRange() + "");
+        address.setText(MainActivity.ordersModules.getCityName() + "" + " , " + MainActivity.ordersModules.getNeighborhoodName());
+
+
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -25,6 +25,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.RealState.AllOfferOrderActivity;
 import sa.aqarz.Activity.RealState.AllOfferOrderMarket_demandsActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
@@ -71,6 +72,7 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
 
 
         TextView price;
+        TextView prof_name;
         TextView address;
         TextView view_type;
         TextView space;
@@ -92,6 +94,7 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
             new_offer = view.findViewById(R.id.new_offer);
             image_icon = view.findViewById(R.id.image_icon);
             add_favorite = view.findViewById(R.id.add_favorite);
+            prof_name = view.findViewById(R.id.prof_name);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
@@ -129,7 +132,8 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
         holder.price.setText(alldata.get(position).getPriceFrom() + " - " + alldata.get(position).getPriceTo());
 //        holder.view_type.setText(alldata.get(position).getDirEstate());
         holder.space.setText(alldata.get(position).getAreaFrom() + " - " + alldata.get(position).getAreaTo());
-        holder.name_estate.setText(alldata.get(position).getEstateTypeName());
+        holder.name_estate.setText(alldata.get(position).getEstateTypeName()+"");
+        holder.prof_name.setText(alldata.get(position).getOwnerName() + "");
 
 
         if (alldata.get(position).getAddress() != null) {
@@ -220,6 +224,8 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
             public void onClick(View view) {
 //                bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getId() + "");
 //
+
+                MainActivity.demandsModules = alldata.get(position);
 //                bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
                 Intent intent = new Intent(context, AllOfferOrderMarket_demandsActivity.class);
                 intent.putExtra("getUuid", alldata.get(position).getId() + "");

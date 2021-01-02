@@ -131,6 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
+                android:layout_marginTop="-2dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -146,6 +147,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
+
                     android:fontFamily="@font/din_light"
                     android:text="@string/n2"
                     android:textColor="@color/textColor"
@@ -184,6 +186,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="-2dp"
 
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -216,6 +219,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_marginTop="-2dp"
+
                 android:orientation="horizontal"
                 android:visibility="visible">
 
@@ -308,6 +313,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_marginTop="-2dp"
 
                 android:orientation="horizontal"
                 android:visibility="gone">
@@ -339,6 +345,39 @@
 
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-2dp"
+
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:tint="@color/colorPrimary"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_profil" />
+
+                <TextView
+                    android:id="@+id/prof_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/din_light"
+
+                    android:textColor="@color/textColor"
+                    android:textSize="13dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
