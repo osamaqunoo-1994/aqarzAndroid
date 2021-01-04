@@ -524,6 +524,9 @@ Your request and reply in the fastest time</string>
     <string name="mobile_number_select">Mobile Number</string>
     <string name="order_detils">Details Order</string>
     <string name="how_to_rate_aqarez">كيف تقيم عرض العقار ؟</string>
+    <string name="how_to_re_new_offer">هل انت متأكد من رغبتك بإعادة نشر هذا العرض ؟</string>
+    <string name="how_to_delete_offer">هل انت متأكد من رغبتك  بحذف هذا العرض
+ مع العلم انه لايمكنك التراجع عن هذه الخطوة لاحقاً ؟</string>
     <string name="add_note">أضف ملاحظاتك  عن العقار</string>
     <string name="canclee">الغاء</string>
     <string name="estati_like">عقارات مشابهة</string>

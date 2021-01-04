@@ -14,6 +14,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sa.aqarz.Activity.DetailsActivity_aqarz;
-import sa.aqarz.Modules.HomeModules;
+import sa.aqarz.Dialog.BottomSheetDialogFragmen_re_new_offer;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
@@ -38,7 +39,7 @@ import sa.aqarz.api.VolleyService;
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerView_HomeList_estat.MyViewHolder> {
+public class RecyclerView_other_offer_in_profile extends RecyclerView.Adapter<RecyclerView_other_offer_in_profile.MyViewHolder> {
     public static List<HomeModules_aqares> alldata = new ArrayList<HomeModules_aqares>();
     static int Postion_opend = 0;
 
@@ -92,6 +93,9 @@ public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerVi
 
         RatingBar rate;
 
+        ImageView re_news;
+        ImageView edit;
+        ImageView delete;
 
         public MyViewHolder(View view) {
             super(view);
@@ -112,6 +116,9 @@ public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerVi
 //            viesw = view.findViewById(R.id.viesw);
 
 
+            re_news = view.findViewById(R.id.re_news);
+            edit = view.findViewById(R.id.edit);
+            delete = view.findViewById(R.id.delete);
             add_favorite = view.findViewById(R.id.add_favorite);
             image_icon = view.findViewById(R.id.image_icon);
             image = view.findViewById(R.id.image);
@@ -122,6 +129,7 @@ public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerVi
             address = view.findViewById(R.id.address);
             date = view.findViewById(R.id.date);
             space = view.findViewById(R.id.space);
+
             rate = view.findViewById(R.id.rate);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 //            ratingbar = view.findViewById(R.id.ratingbar);
@@ -130,7 +138,7 @@ public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerVi
         }
     }
 
-    public RecyclerView_HomeList_estat(Context context, List<HomeModules_aqares> alldata) {
+    public RecyclerView_other_offer_in_profile(Context context, List<HomeModules_aqares> alldata) {
         this.alldata = alldata;
         this.context = context;
     }
@@ -167,6 +175,9 @@ public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerVi
 //
 //        holder.opration.setText(alldata.get(position).getEstate_type_name());
 
+//        holder.delete.setVisibility(View.VISIBLE);
+//        holder.re_news.setVisibility(View.VISIBLE);
+//        holder.space.setVisibility(View.VISIBLE);
 
         Picasso.get().load(alldata.get(position).getFirst_image() + "").into(holder.image);
         holder.price.setText(alldata.get(position).getTotalPrice());
@@ -318,7 +329,14 @@ public class RecyclerView_HomeList_estat extends RecyclerView.Adapter<RecyclerVi
 
             }
         });
+        holder.re_news.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetDialogFragmen_re_new_offer bottomSheetDialogFragmen_re_new_offer = new BottomSheetDialogFragmen_re_new_offer("");
+                bottomSheetDialogFragmen_re_new_offer.show(((FragmentActivity) context).getSupportFragmentManager(), "");
 
+            }
+        });
 
     }
 

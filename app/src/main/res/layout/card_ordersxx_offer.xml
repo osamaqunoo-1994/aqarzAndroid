@@ -231,7 +231,7 @@
                     android:layout_height="30dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_space"
-                    app:tint="#00D2CB" />
+                    app:tint="@color/colorPrimary" />
                 <TextView
 
                     android:layout_width="wrap_content"

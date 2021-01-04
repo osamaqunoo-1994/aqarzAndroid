@@ -972,7 +972,6 @@ public class MapsFragment extends Fragment {
                             homeModules.clear();
                             for (int i = 0; i < jsonArray.length(); i++) {
 
-
                                 JsonParser parser = new JsonParser();
                                 JsonElement mJson = parser.parse(jsonArray.getString(i));
 
@@ -981,9 +980,7 @@ public class MapsFragment extends Fragment {
                                 HomeModules bankModules = gson.fromJson(mJson, HomeModules.class);
                                 homeModules.add(bankModules);
 
-
 //                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(camPos));
-
 
                                 String price = bankModules.getPrice_from();
                                 int price_int = Integer.valueOf(price);
@@ -1012,7 +1009,7 @@ public class MapsFragment extends Fragment {
                                 googleMap.addMarker(new MarkerOptions()
                                         .position(sydneya)
 
-                                        .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(price)))).setTag(i);
+                                        .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2(price)))).setTag(i);
 
 
                             }
@@ -1117,8 +1114,6 @@ public class MapsFragment extends Fragment {
 //                                googleMap.addMarker(new MarkerOptions()
 //                                        .position(gaza)
 //                                        .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_marker_location))));
-
-
 //                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydneya, 13));
 //                        // Zoom in, animating the camera.
 //                        googleMap.animateCamera(CameraUpdateFactory.zoomIn());

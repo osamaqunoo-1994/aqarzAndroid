@@ -31,6 +31,8 @@ import sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import sa.aqarz.Adapter.RecyclerView_List_estat_profile;
 import sa.aqarz.Adapter.RecyclerView_List_estat_profile_other;
 import sa.aqarz.Adapter.RecyclerView_clints_new;
+import sa.aqarz.Adapter.RecyclerView_my_offer_in_profile;
+import sa.aqarz.Adapter.RecyclerView_other_offer_in_profile;
 import sa.aqarz.Modules.Clints;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.R;
@@ -148,7 +150,7 @@ public class MyOffersActivity extends AppCompatActivity {
                             }
 
 
-                            myoffer.setAdapter(new RecyclerView_List_estat_profile(MyOffersActivity.this, homeModules));
+                            myoffer.setAdapter(new RecyclerView_my_offer_in_profile(MyOffersActivity.this, homeModules));
                             if (homeModules.size() == 0) {
                                 nodata_vis.setVisibility(View.VISIBLE);
                             } else {
@@ -187,7 +189,7 @@ public class MyOffersActivity extends AppCompatActivity {
                             }
 
 
-                            myoffer.setAdapter(new RecyclerView_List_estat_profile_other(MyOffersActivity.this, homeModules));
+                            myoffer.setAdapter(new RecyclerView_other_offer_in_profile(MyOffersActivity.this, homeModules));
                             if (homeModules.size() == 0) {
                                 nodata_vis.setVisibility(View.VISIBLE);
                             } else {
