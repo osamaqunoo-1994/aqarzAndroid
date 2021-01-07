@@ -103,7 +103,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     LinearLayout finince;
     LinearLayout rate;
     LinearLayout tent;
-    TextView rate_aqarez;
+    LinearLayout rate_aqarez;
     RecyclerView list_coments;
 
     @Override

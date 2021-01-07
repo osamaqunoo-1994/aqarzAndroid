@@ -80,6 +80,7 @@ public class WebService {
     public static String send_msg = Domain + "send/msg";
     public static String MYOfferOrder = Domain + "my/fund/request/offer";
     public static String best_provider = Domain + "best/provider";
+    public static String count_call = Domain + "count";
 //    public static String provider_code_send = Domain + "provider/code/send";
 
 

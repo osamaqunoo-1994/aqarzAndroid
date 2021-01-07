@@ -464,7 +464,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="@string/my_offer_"
+                            android:text="@string/MyAqaerz_tag"
                             android:textColor="#AAABB3"
                             android:textSize="13dp" />
                     </LinearLayout>

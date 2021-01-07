@@ -142,7 +142,6 @@ public class SelectLocationActivity extends AppCompatActivity {
                 googleMap.getUiSettings().setRotateGesturesEnabled(true);
 
 
-
                 googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                     @Override
                     public void onMapClick(LatLng latLng) {
@@ -249,6 +248,7 @@ public class SelectLocationActivity extends AppCompatActivity {
     public void addItemClickListener(ItemClickListener listener) {
         mItemClickListener = listener;
     }
+
     public LatLng getLocation_sau() {
         LatLng my_location = new LatLng(24.768516, 46.691505);
         return my_location;

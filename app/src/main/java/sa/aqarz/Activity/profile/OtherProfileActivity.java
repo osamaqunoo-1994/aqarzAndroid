@@ -76,7 +76,7 @@ public class OtherProfileActivity extends AppCompatActivity {
     LinearLayout location;
 
 //    ImageView mobile_icon;
-
+String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,7 +159,7 @@ public class OtherProfileActivity extends AppCompatActivity {
         init_volley();
 
         try {
-            String id = getIntent().getStringExtra("id");
+            id= getIntent().getStringExtra("id");
             VolleyService mVolleyService = new VolleyService(mResultCallback, OtherProfileActivity.this);
 
             mVolleyService.getDataVolley("user", WebService.user + id + "");
@@ -238,28 +238,34 @@ public class OtherProfileActivity extends AppCompatActivity {
                         if (requestType.equals("user")) {
 
                             try {
-                                String data = response.getString("data");
-
-                                JsonParser parser = new JsonParser();
-                                JsonElement mJson = parser.parse(data);
-
-                                Gson gson = new Gson();
-                                userModules = gson.fromJson(mJson, User.class);
 
 
-                                System.out.println("userModulesuserModules" + userModules.getService_name().size());
+                                if (requestType.equals("count_call")) {
 
-                                myoffer_layout.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Intent intent = new Intent(OtherProfileActivity.this, MyOffersActivity.class);
+                                } else {
+
+                                    String data = response.getString("data");
+
+                                    JsonParser parser = new JsonParser();
+                                    JsonElement mJson = parser.parse(data);
+
+                                    Gson gson = new Gson();
+                                    userModules = gson.fromJson(mJson, User.class);
+
+
+                                    System.out.println("userModulesuserModules" + userModules.getService_name().size());
+
+                                    myoffer_layout.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(OtherProfileActivity.this, MyOffersActivity.class);
 //              intent.putExtra("from", "splash");
-                                        intent.putExtra("id_user", userModules.getId() + "");
+                                            intent.putExtra("id_user", userModules.getId() + "");
 
-                                        startActivity(intent);
-                                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-                                    }
-                                });
+                                            startActivity(intent);
+                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                        }
+                                    });
 
 //                                mobile_icon.setOnClickListener(new View.OnClickListener() {
 //                                    @Override
@@ -275,147 +281,154 @@ public class OtherProfileActivity extends AppCompatActivity {
 //                                    }
 //                                });
 
-                                chat.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Intent intent = new Intent(OtherProfileActivity.this, ChatRoomActivity.class);
-                                        intent.putExtra("user_id", userModules.getId() + "");
-                                        intent.putExtra("parent_id", "-1");
-                                        intent.putExtra("nameUser", userModules.getName() + "");
-                                        intent.putExtra("imageUser", userModules.getLogo() + "");
-                                        startActivity(intent);
-                                    }
-                                });
-                                location.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-
-
-                                        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                                                Uri.parse("http://maps.google.com/maps?saddr=" + userModules.getLat() + "," + userModules.getLan() + "&daddr=" + Settings.GetUser().getLat() + "," + Settings.GetUser().getLan()));
-                                        startActivity(intent);
-                                    }
-                                });
-
-                                call.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-
-                                        try {
-                                            String phone = "0" + userModules.getMobile();
-                                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                                    chat.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(OtherProfileActivity.this, ChatRoomActivity.class);
+                                            intent.putExtra("user_id", userModules.getId() + "");
+                                            intent.putExtra("parent_id", "-1");
+                                            intent.putExtra("nameUser", userModules.getName() + "");
+                                            intent.putExtra("imageUser", userModules.getLogo() + "");
                                             startActivity(intent);
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
                                         }
-
-                                    }
-                                });
-                                mobile.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-
-                                        try {
-                                            String phone = "0" + userModules.getMobile();
-                                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
-                                            startActivity(intent);
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
-                                        }
-
-                                    }
-                                });
-//                                mobile_icon.setOnClickListener(new View.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(View v) {
-//                                        try {
-//                                            String phone = "0" + userModules.getMobile();
-//                                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
-//                                            startActivity(intent);
-//                                        } catch (Exception e) {
-//                                            e.printStackTrace();
-//                                        }
-//
-//                                    }
-//                                });
-                                try {
-                                    if (!userModules.getName().toString().equals("null")) {
-                                        name.setText(userModules.getName());
-
-                                    } else {
-                                        name.setText("-------");
-
-                                    }
-                                    if (!userModules.getUser_name().toString().equals("null")) {
-                                        link.setText("@" + userModules.getUser_name());
-
-                                    } else {
-                                        link.setText("");
-
-                                    }
-
-                                    if (userModules.getIs_certified() != null) {
-                                        if (userModules.getIs_certified().equals("1")) {
-
-                                            cirtificad.setVisibility(View.VISIBLE);
-
-                                        } else {
-                                            cirtificad.setVisibility(View.GONE);
-                                        }
-                                    } else {
-                                        cirtificad.setVisibility(View.GONE);
-
-                                    }
-
-                                    if (userModules.getIs_pay() != null) {
-                                        if (userModules.getIs_pay().equals("1")) {
-
-                                            is_real_state.setVisibility(View.VISIBLE);
-
-                                        } else {
-                                            is_real_state.setVisibility(View.GONE);
-                                        }
-                                    } else {
-                                        is_real_state.setVisibility(View.GONE);
-
-                                    }
-
-                                    if (userModules.getMobile() != null) {
-                                        mobile.setText("0" + userModules.getMobile() + "");
-
-                                    }
-                                    clints_nu.setText(userModules.getCount_agent() + "");
-                                    request_nu.setText(userModules.getCount_request() + "");
-                                    offer_nu.setText(userModules.getCount_offer() + "");
-                                    visit_nu.setText(userModules.getCount_visit() + "");
-
-                                    if (!userModules.getLogo().toString().equals("null")) {
-                                        Picasso.get().load(userModules.getLogo()).into(profile);
-
-                                    }//591694624
-
-                                    qr_code.setOnClickListener(new View.OnClickListener() {
+                                    });
+                                    location.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
 
-                                            BottomSheetDialogFragment_QR bottomSheetDialogFragment_qr = new BottomSheetDialogFragment_QR(userModules.getLink() + "", userModules.getLogo() + "");
-                                            bottomSheetDialogFragment_qr.show(getSupportFragmentManager(), "");
+
+                                            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                                                    Uri.parse("http://maps.google.com/maps?saddr=" + userModules.getLat() + "," + userModules.getLan() + "&daddr=" + Settings.GetUser().getLat() + "," + Settings.GetUser().getLan()));
+                                            startActivity(intent);
+                                        }
+                                    });
+
+                                    call.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+
+                                            try {
+                                                String phone = "0" + userModules.getMobile();
+                                                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                                                startActivity(intent);
+
+
+                                                VolleyService mVolleyService = new VolleyService(mResultCallback, OtherProfileActivity.this);
+
+                                                mVolleyService.getDataVolley("count_call", WebService.count_call + "/"+id+"/call");
+
+
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
 
                                         }
                                     });
-                                } catch (Exception e) {
+                                    mobile.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
 
+                                            try {
+                                                String phone = "0" + userModules.getMobile();
+                                                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                                                startActivity(intent);
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+
+                                        }
+                                    });
+//                                mobile_icon.setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View v) {
+//                                        try {
+//                                            String phone = "0" + userModules.getMobile();
+//                                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+//                                            startActivity(intent);
+//                                        } catch (Exception e) {
+//                                            e.printStackTrace();
+//                                        }
+//
+//                                    }
+//                                });
+                                    try {
+                                        if (!userModules.getName().toString().equals("null")) {
+                                            name.setText(userModules.getName());
+
+                                        } else {
+                                            name.setText("-------");
+
+                                        }
+                                        if (!userModules.getUser_name().toString().equals("null")) {
+                                            link.setText("@" + userModules.getUser_name());
+
+                                        } else {
+                                            link.setText("");
+
+                                        }
+
+                                        if (userModules.getIs_certified() != null) {
+                                            if (userModules.getIs_certified().equals("1")) {
+
+                                                cirtificad.setVisibility(View.VISIBLE);
+
+                                            } else {
+                                                cirtificad.setVisibility(View.GONE);
+                                            }
+                                        } else {
+                                            cirtificad.setVisibility(View.GONE);
+
+                                        }
+
+                                        if (userModules.getIs_pay() != null) {
+                                            if (userModules.getIs_pay().equals("1")) {
+
+                                                is_real_state.setVisibility(View.VISIBLE);
+
+                                            } else {
+                                                is_real_state.setVisibility(View.GONE);
+                                            }
+                                        } else {
+                                            is_real_state.setVisibility(View.GONE);
+
+                                        }
+
+                                        if (userModules.getMobile() != null) {
+                                            mobile.setText("0" + userModules.getMobile() + "");
+
+                                        }
+                                        clints_nu.setText(userModules.getCount_agent() + "");
+                                        request_nu.setText(userModules.getCount_request() + "");
+                                        offer_nu.setText(userModules.getCount_offer() + "");
+                                        visit_nu.setText(userModules.getCount_visit() + "");
+
+                                        if (!userModules.getLogo().toString().equals("null")) {
+                                            Picasso.get().load(userModules.getLogo()).into(profile);
+
+                                        }//591694624
+
+                                        qr_code.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+
+                                                BottomSheetDialogFragment_QR bottomSheetDialogFragment_qr = new BottomSheetDialogFragment_QR(userModules.getLink() + "", userModules.getLogo() + "");
+                                                bottomSheetDialogFragment_qr.show(getSupportFragmentManager(), "");
+
+                                            }
+                                        });
+                                    } catch (Exception e) {
+
+                                    }
+                                    try {
+
+                                    } catch (Exception e) {
+
+                                    }
                                 }
-                                try {
 
-                                } catch (Exception e) {
-
+                                } catch(Exception e){
+                                    e.printStackTrace();
                                 }
-
-
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
 
 //                            try {
 //                                service_list = Settings.getSettings().getService_types();

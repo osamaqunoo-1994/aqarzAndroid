@@ -762,5 +762,8 @@
     <string name="mobile_number_select">رقم الجوال</string>
     <string name="order_detils">تفاصيل الطلب</string>
 
+    <string name="location_tag">الموقع</string>
+    <string name="Aqaerz_tag">العقارات</string>
+    <string name="MyAqaerz_tag">عقاراتي</string>
 
 </resources>

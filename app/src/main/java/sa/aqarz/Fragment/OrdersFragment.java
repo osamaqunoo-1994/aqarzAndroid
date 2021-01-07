@@ -456,7 +456,7 @@ public class OrdersFragment extends Fragment {
         }
         String opration_select = "";
 
-        if (!filtterModules.getSelect_city().equals("")) {
+        if (!filtterModules.getType_oprtion().equals("")) {
             opration_select = "&estate_type_id=" + filtterModules.getType_oprtion();
         } else {
             opration_select = "";

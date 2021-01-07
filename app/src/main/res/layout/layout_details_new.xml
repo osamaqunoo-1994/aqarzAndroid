@@ -417,9 +417,15 @@
                             android:layout_margin="10dp"
                             app:starEmpty="@drawable/ic_star__2_"
                             app:starFill="@drawable/ic_star__1_"
-                            hedgehog:clickable="true"
+                            hedgehog:clickable="false"
+
+                            android:focusable="false"
+                            app:clickable="false"
+
+
                             hedgehog:halfstart="false"
                             hedgehog:starCount="5"
+
                             hedgehog:starHalf="@mipmap/star_half"
                             hedgehog:starImageHeight="20dp"
                             hedgehog:starImagePadding="5"
@@ -1108,7 +1114,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:padding="3dp"
-                            android:src="@drawable/ic_group_1956"
+                            android:src="@drawable/ic_tmwqcv"
                             app:tint="@color/colorPrimary" />
 
                         <TextView
@@ -1163,7 +1169,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:padding="3dp"
-                            android:src="@drawable/ic_group_1956"
+                            android:src="@drawable/ic_viewww"
                             app:tint="@color/colorPrimary" />
 
                         <TextView
@@ -1217,7 +1223,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:padding="3dp"
-                    android:src="@drawable/ic_group_1956"
+                    android:src="@drawable/ic_last_ref"
                     app:tint="@color/colorPrimary" />
 
                 <TextView
@@ -1278,20 +1284,20 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_coments"
 
-                android:layout_margin="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp" />
 
 
             <LinearLayout
+                android:id="@+id/rate_aqarez"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:gravity="start">
 
                 <TextView
-                    android:id="@+id/rate_aqarez"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp"
@@ -1300,9 +1306,30 @@
                     android:textStyle="bold" />
 
 
+                <com.hedgehog.ratingbar.RatingBar
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    app:starEmpty="@drawable/ic_star__2_"
+                    app:starFill="@drawable/ic_star__1_"
+                    hedgehog:clickable="false"
+
+                    android:focusable="false"
+                    app:clickable="false"
+
+
+                    hedgehog:halfstart="false"
+                    hedgehog:starCount="5"
+
+                    hedgehog:starHalf="@mipmap/star_half"
+                    hedgehog:starImageHeight="20dp"
+                    hedgehog:starImagePadding="5"
+                    hedgehog:starImageWidth="20dp" />
+
+
             </LinearLayout>
-
-
 
 
             <TextView
@@ -1324,10 +1351,10 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rec_list_all"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp" />
 
 
             <LinearLayout

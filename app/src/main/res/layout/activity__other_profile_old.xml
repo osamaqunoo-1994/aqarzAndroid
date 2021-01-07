@@ -330,12 +330,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="-40dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="30dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/circless"
-                android:padding="10dp">
+                android:padding="7dp">
 
 
                 <LinearLayout
@@ -344,12 +344,14 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:gravity="center"
+
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:visibility="gone"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -377,6 +379,7 @@
 
                     <LinearLayout
                         android:layout_width="1dp"
+                        android:visibility="gone"
                         android:layout_height="30dp"
                         android:background="#E0E0E0" />
 
@@ -520,7 +523,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="@string/my_offer_"
+                            android:text="@string/Aqaerz_tag"
                             android:textColor="#AAABB3"
                             android:textSize="13dp" />
                     </LinearLayout>
@@ -641,7 +644,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="@string/my_lolocation_"
+                            android:text="@string/location_tag"
                             android:textColor="#AAABB3"
                             android:textSize="13dp" />
                     </LinearLayout>

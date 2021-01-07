@@ -586,7 +586,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:padding="3dp"
-                            android:src="@drawable/ic_group_1956"
+                            android:src="@drawable/ic_tmwqcv"
                             app:tint="@color/colorPrimary" />
 
                         <TextView
@@ -641,7 +641,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:padding="3dp"
-                            android:src="@drawable/ic_group_1956"
+                            android:src="@drawable/ic_viewww"
                             app:tint="@color/colorPrimary" />
 
                         <TextView
@@ -695,7 +695,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:padding="3dp"
-                    android:src="@drawable/ic_group_1956"
+                    android:src="@drawable/ic_last_ref"
                     app:tint="@color/colorPrimary" />
 
                 <TextView
