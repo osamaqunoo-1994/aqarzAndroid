@@ -1,5 +1,6 @@
 package sa.aqarz.Dialog;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import sa.aqarz.api.VolleyService;
 public class BottomSheetDialogFragmen_re_new_offer extends BottomSheetDialogFragment {
     IResult mResultCallback;
 
+    Button resend;
 
     Button send;
     EditText comment;
@@ -36,13 +38,46 @@ public class BottomSheetDialogFragmen_re_new_offer extends BottomSheetDialogFrag
     ImageView close;
     String estate_id = "";
     String ratee = "";
+    private ItemClickListener mItemClickListener;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_sheets_re_new_offer, container, false);
 
+        send = v.findViewById(R.id.send);
+        resend = v.findViewById(R.id.resend);
+        close = v.findViewById(R.id.close);
 
+
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                init_volley();
+//                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+//
+//                mVolleyService.getDataVolley("make_up", WebService.make_up + "/" + estate_id + "/estate");
+//
+                init_volley();
+                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+                mVolleyService.getDataVolley("make_up", WebService.make_up + "/" + estate_id + "/estate");
+
+//                mVolleyService.getDataVolley("delete", WebService.delete + "/" + estate_id + "/estate");
+
+            }
+        });
+
+        resend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        }); close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
         return v;
 
 
@@ -66,7 +101,7 @@ public class BottomSheetDialogFragmen_re_new_offer extends BottomSheetDialogFrag
 
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(int id_city, String city_naem);
+        void onItemClick(int id_estat);
     }
 
     @Override
@@ -81,6 +116,97 @@ public class BottomSheetDialogFragmen_re_new_offer extends BottomSheetDialogFrag
         }
     }
 
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response.toString());
+                WebService.loading(getActivity(), false);
+//{"status":true,"code":200,"message":"User Profile","data"
+                try {
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+
+                        String data = response.getString("data");
+                        String message = response.getString("message");
+
+                        if (requestType.equals("delete")) {
+
+                            if (mItemClickListener != null) {
+                                mItemClickListener.onItemClick(Integer.valueOf(estate_id + ""));
+                            }
+                            dismiss();
+
+                        } else if (requestType.equals("make_up")) {
+
+                            if (mItemClickListener != null) {
+                                mItemClickListener.onItemClick(Integer.valueOf(estate_id + ""));
+                            }
+                            dismiss();
+
+                        }
+//                        String message = response.getString("message");
+
+
+//                        WebService.Make_Toast_color((Activity) context, message, "success");
+
+
+                    }
+                } catch (Exception e) {
+
+                }
+
+
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+
+                WebService.loading((Activity) getActivity(), false);
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color((Activity) getActivity(), message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+                WebService.loading((Activity) getActivity(), false);
+
+
+            }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+                WebService.loading((Activity) getActivity(), false);
+
+                WebService.Make_Toast_color((Activity) getActivity(), error, "error");
+
+
+            }
+        };
+
+
+    }
+
+    public void addItemClickListener(ItemClickListener listener) {
+        mItemClickListener = listener;
+    }
 
 
 }

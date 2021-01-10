@@ -24,10 +24,12 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
+import java.sql.Ref;
 import java.util.ArrayList;
 import java.util.List;
 
 import sa.aqarz.Activity.DetailsActivity_aqarz;
+import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_delete_offer;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_re_new_offer;
 import sa.aqarz.Modules.HomeModules_aqares;
@@ -43,6 +45,7 @@ import sa.aqarz.api.VolleyService;
 public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<RecyclerView_my_offer_in_profile.MyViewHolder> {
     public static List<HomeModules_aqares> alldata = new ArrayList<HomeModules_aqares>();
     static int Postion_opend = 0;
+    static int Postion_delete = -1;
 
     IResult mResultCallback;
 
@@ -214,6 +217,14 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
 
         }
 
+
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 //
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
@@ -333,7 +344,7 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
         holder.re_news.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BottomSheetDialogFragmen_re_new_offer bottomSheetDialogFragmen_re_new_offer = new BottomSheetDialogFragmen_re_new_offer("");
+                BottomSheetDialogFragmen_re_new_offer bottomSheetDialogFragmen_re_new_offer = new BottomSheetDialogFragmen_re_new_offer(alldata.get(position).getId() + "");
                 bottomSheetDialogFragmen_re_new_offer.show(((FragmentActivity) context).getSupportFragmentManager(), "");
 
             }
@@ -341,7 +352,15 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BottomSheetDialogFragmen_delete_offer bottomSheetDialogFragmen_delete_offer = new BottomSheetDialogFragmen_delete_offer("");
+                BottomSheetDialogFragmen_delete_offer bottomSheetDialogFragmen_delete_offer = new BottomSheetDialogFragmen_delete_offer(alldata.get(position).getId() + "");
+                bottomSheetDialogFragmen_delete_offer.addItemClickListener(new BottomSheetDialogFragmen_delete_offer.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_estate) {
+                        alldata.remove(id_estate);
+                        Refr();
+
+                    }
+                });
                 bottomSheetDialogFragmen_delete_offer.show(((FragmentActivity) context).getSupportFragmentManager(), "");
 
             }
@@ -392,9 +411,20 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
                 try {
                     boolean status = response.getBoolean("status");
                     if (status) {
+
                         String data = response.getString("data");
-//                        String message = response.getString("message");
                         String message = response.getString("message");
+
+                        if (requestType.equals("delete")) {
+
+                            alldata.remove(Postion_delete);
+                            Refr();
+
+                        } else if (requestType.equals("make_up")) {
+
+
+                        }
+//                        String message = response.getString("message");
 
 
 //                        WebService.Make_Toast_color((Activity) context, message, "success");
