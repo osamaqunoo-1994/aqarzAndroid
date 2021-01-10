@@ -73,6 +73,7 @@ import sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
 import sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import sa.aqarz.Adapter.RecyclerView_date_select;
 import sa.aqarz.Adapter.RecyclerView_selectImage;
+import sa.aqarz.Adapter.RecyclerView_selectImage_url;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectNeighborhoods;
 import sa.aqarz.Modules.ComfortModules;
@@ -135,6 +136,7 @@ public class EditAqarsActivity extends AppCompatActivity {
 
     Button btn_send;
     RecyclerView images_RecyclerView;
+    RecyclerView images_RecyclerView_url;
 
     AlertDialog alertDialog;
     private static GoogleMap googleMap;
@@ -278,6 +280,7 @@ public class EditAqarsActivity extends AppCompatActivity {
 
         back = findViewById(R.id.back);
         images_RecyclerView = findViewById(R.id.images_RecyclerView);
+        images_RecyclerView_url = findViewById(R.id.images_RecyclerView_url);
         opration_RecyclerView = findViewById(R.id.opration_RecyclerView);
         select_image = findViewById(R.id.select_image);
         all_gender = findViewById(R.id.all_gender);
@@ -364,7 +367,7 @@ public class EditAqarsActivity extends AppCompatActivity {
         piece_number.addTextChangedListener(new NumberTextWatcher(piece_number));
         price_one_meter.addTextChangedListener(new NumberTextWatcher(piece_number));
 
-
+        btn_send.setText(getResources().getString(R.string.Update_button));
         //---------------------------------------------------------------------------------------
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -619,6 +622,9 @@ public class EditAqarsActivity extends AppCompatActivity {
         LinearLayoutManager layoutManagem
                 = new LinearLayoutManager(EditAqarsActivity.this, LinearLayoutManager.HORIZONTAL, false);
         images_RecyclerView.setLayoutManager(layoutManagem);
+        LinearLayoutManager layoutManagems
+                = new LinearLayoutManager(EditAqarsActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        images_RecyclerView_url.setLayoutManager(layoutManagems);
 
 
         LinearLayoutManager layoutManags
@@ -1732,6 +1738,206 @@ public class EditAqarsActivity extends AppCompatActivity {
 
                                 homeModules_aqares = gson.fromJson(mJson, HomeModules_aqares.class);
 
+                                Total_area.setText(homeModules_aqares.getTotalArea() + "");
+                                total_price.setText(homeModules_aqares.getTotalPrice() + "");
+                                city_l.setText(homeModules_aqares.getCity_name() + "");
+                                nibors.setText(homeModules_aqares.getNeighborhood_name() + "");
+                                description.setText(homeModules_aqares.getNote() + "");
+
+                                city_id = homeModules_aqares.getCity_id() + "";
+                                nib_id = homeModules_aqares.getNeighborhood_id() + "";
+
+
+                                number_Lounges = homeModules_aqares.getLoungesNumber();
+                                number_room = homeModules_aqares.getRoomsNumber();
+                                number_Bathrooms = homeModules_aqares.getBathroomsNumber();
+                                number_Boards_plus = homeModules_aqares.getBoardsNumber();
+                                number_Kitchens_plus = homeModules_aqares.getKitchenNumber();
+                                number_Dining_rooms = homeModules_aqares.getDiningRoomsNumber();
+
+
+                                Lounges_number.setText(homeModules_aqares.getLoungesNumber() + "");
+                                room_text.setText(homeModules_aqares.getRoomsNumber() + "");
+                                Bathrooms_text.setText(homeModules_aqares.getBathroomsNumber() + "");
+                                Boards_text.setText(homeModules_aqares.getBoardsNumber() + "");
+                                Kitchens_text.setText(homeModules_aqares.getKitchenNumber() + "");
+                                Dining_text.setText(homeModules_aqares.getDiningRoomsNumber() + "");
+
+                                if (number_Lounges > 0) {
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                                    Lounges_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                                    Lounges_number.setTextColor(getResources().getColor(R.color.white));
+                                }
+                                if (number_room > 0) {
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                                    room_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                                    room_text.setTextColor(getResources().getColor(R.color.white));
+                                }
+                                if (number_Bathrooms > 0) {
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                                    Bathrooms_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                                    Bathrooms_text.setTextColor(getResources().getColor(R.color.white));
+                                }
+                                if (number_Boards_plus > 0) {
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                                    Boards_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                                    Boards_text.setTextColor(getResources().getColor(R.color.white));
+                                }
+                                if (number_Kitchens_plus > 0) {
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                                    Kitchens_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                                    Kitchens_text.setTextColor(getResources().getColor(R.color.white));
+                                }
+                                if (number_Dining_rooms > 0) {
+//                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                                    Dining_rooms_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                                    Dining_text.setTextColor(getResources().getColor(R.color.white));
+                                }
+
+
+                                interface_north = homeModules_aqares.getInterface();
+                                interface_south = homeModules_aqares.getInterface();
+                                interface_east = homeModules_aqares.getInterface();
+                                interface_west = homeModules_aqares.getInterface();
+
+
+                                if (!interface_north.equals("")) {
+                                    north.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                                    north.setTextColor(getResources().getColor(R.color.white));
+
+
+                                }
+
+                                if (!interface_south.equals("")) {
+                                    south.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                                    south.setTextColor(getResources().getColor(R.color.white));
+
+
+                                }
+                                if (!interface_east.equals("")) {
+                                    east.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                                    east.setTextColor(getResources().getColor(R.color.white));
+
+
+                                }
+                                if (!interface_west.equals("")) {
+                                    west.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                                    west.setTextColor(getResources().getColor(R.color.white));
+
+
+                                }
+
+                                String finishing_type = homeModules_aqares.getFinishingType() + "";
+
+                                if (finishing_type.equals("normal")) {
+                                    normal.setBackground(getResources().getDrawable(R.drawable.button_login));
+                                    normal.setTextColor(getResources().getColor(R.color.white));
+                                    average.setBackground(getResources().getDrawable(R.drawable.mash));
+                                    average.setTextColor(getResources().getColor(R.color.textColor));
+                                    deluxe.setBackground(getResources().getDrawable(R.drawable.mash));
+
+                                    deluxe.setTextColor(getResources().getColor(R.color.textColor));
+
+
+                                } else if (finishing_type.equals("average")) {
+                                    average.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                                    average.setTextColor(getResources().getColor(R.color.white));
+
+
+                                    deluxe.setBackground(getResources().getDrawable(R.drawable.mash));
+
+                                    deluxe.setTextColor(getResources().getColor(R.color.textColor));
+
+
+                                    normal.setBackground(getResources().getDrawable(R.drawable.mash));
+
+                                    normal.setTextColor(getResources().getColor(R.color.textColor));
+
+
+                                } else if (finishing_type.equals("deluxe")) {
+                                    deluxe.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                                    deluxe.setTextColor(getResources().getColor(R.color.white));
+
+                                    average.setBackground(getResources().getDrawable(R.drawable.mash));
+
+
+                                    average.setTextColor(getResources().getColor(R.color.textColor));
+
+                                    normal.setBackground(getResources().getDrawable(R.drawable.mash));
+
+
+                                    normal.setTextColor(getResources().getColor(R.color.textColor));
+
+
+                                }
+
+                                lat = homeModules_aqares.getLat() + "";
+                                lng = homeModules_aqares.getLan() + "";
+                                Address = homeModules_aqares.getAddress() + "";
+
+                                try {
+
+
+                                    // TODO Extract the data returned from the child Activity.
+                                    String lat_ = lat;
+                                    String lang_ = lng;
+                                    String address_ = Address;
+
+                                    lat = "" + lat_;
+                                    lng = "" + lang_;
+//                                    Toast.makeText(EditAqarsActivity.this, "You selected the place: " + address_, Toast.LENGTH_SHORT).show();
+//
+                                    LatLng sydney = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
+                                    googleMap.addMarker(new MarkerOptions()
+                                            .position(sydney)
+                                            .title("Marker"));
+
+                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+                                    // Zoom in, animating the camera.
+                                    googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+                                    // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+                                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+                                    Address = address_;
+                                    is_place = false;
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+
+                                opration_select = homeModules_aqares.getEstateTypeId() + "";
+                                Type_work_select = homeModules_aqares.getOperationTypeId() + "";
+
+
+                                try {
+                                    images_RecyclerView_url.setAdapter(new RecyclerView_selectImage_url(EditAqarsActivity.this, homeModules_aqares.getEstate_file()));
+
+                                } catch (Exception e) {
+
+                                }
+//                                String id_or_aq = "";
+//
+
+
+//                                String image_planed = "";
+//                                String is_rent = "0";
+//                                String rent_type = "yearly";
+//
+
+//
+//
+//                                String social_status = "unmarried";
+//
+//
+//                                String id_of_all_image = "";
+//                                String attachment_planned = "";
+//
+
 
                             } else {
                                 JSONArray jsonArray = new JSONArray(data);
@@ -2085,7 +2291,7 @@ public class EditAqarsActivity extends AppCompatActivity {
 
                     lat = "" + lat_;
                     lng = "" + lang_;
-                    Toast.makeText(EditAqarsActivity.this, "You selected the place: " + address_, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(EditAqarsActivity.this, "You selected the place: " + address_, Toast.LENGTH_SHORT).show();
 //
                     LatLng sydney = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
                     googleMap.addMarker(new MarkerOptions()
@@ -2452,7 +2658,7 @@ public class EditAqarsActivity extends AppCompatActivity {
 
 
         AsyncHttpClient client = new AsyncHttpClient();
-        String BASE_URL = WebService.addestate;
+        String BASE_URL = WebService.update + "/" + id_or_aq + "/estate";//update/262/estate
         WebService.loading(EditAqarsActivity.this, true);
 
 
@@ -2490,6 +2696,8 @@ public class EditAqarsActivity extends AppCompatActivity {
                             BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(EditAqarsActivity.this);
                             View parentView = getLayoutInflater().inflate(R.layout.success_message, null);
                             Button close = parentView.findViewById(R.id.close);
+                            TextView text = parentView.findViewById(R.id.text);
+                            text.setText(getResources().getString(R.string.update_message_s));
                             close.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {

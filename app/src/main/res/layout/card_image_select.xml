@@ -4,24 +4,47 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_margin="5dp"
-        app:cardCornerRadius="7dp">
+  <RelativeLayout
+      android:layout_width="70dp"
+      android:layout_margin="5dp"
+
+      android:layout_height="70dp">
 
 
-        <ImageView
-            android:id="@+id/omage"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
 
-            android:background="@drawable/button_login"
+          <androidx.cardview.widget.CardView
+              android:layout_width="70dp"
+              android:layout_height="70dp"
+              app:cardCornerRadius="7dp">
 
-            android:scaleType="centerCrop">
 
-        </ImageView>
-    </androidx.cardview.widget.CardView>
+              <ImageView
+                  android:id="@+id/omage"
+                  android:layout_width="70dp"
+                  android:layout_height="70dp"
+
+                  android:background="@drawable/button_login"
+
+                  android:scaleType="centerCrop">
+
+              </ImageView>
+          </androidx.cardview.widget.CardView>
+      </LinearLayout>
+
+      <ImageView
+          android:id="@+id/delect"
+          android:layout_width="30dp"
+          android:background="@drawable/circle_red"
+          app:tint="@color/white"
+          android:padding="5dp"
+          android:src="@drawable/ic_close_black_24dp"
+          android:layout_height="30dp"/>
+
+
+  </RelativeLayout>
 
 
 </LinearLayout>

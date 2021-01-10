@@ -26,6 +26,13 @@ public class HomeModules_aqares {
     @SerializedName("in_fav")
     @Expose
     private String in_fav;
+    @SerializedName("city_id")
+    @Expose
+    private String city_id;
+    @SerializedName("neighborhood_id")
+    @Expose
+    private String neighborhood_id;
+
 
 
     @SerializedName("pace_number")
@@ -265,6 +272,13 @@ public class HomeModules_aqares {
         this.instrumentNumber = instrumentNumber;
     }
 
+    public String getCity_id() {
+        return city_id;
+    }
+
+    public String getNeighborhood_id() {
+        return neighborhood_id;
+    }
 
     public String getPaceNumber() {
         return paceNumber;

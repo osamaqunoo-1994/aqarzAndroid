@@ -508,7 +508,17 @@
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/images_RecyclerView"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+
+                            android:layout_weight="1"
+
+
+                            />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/images_RecyclerView_url"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
 
