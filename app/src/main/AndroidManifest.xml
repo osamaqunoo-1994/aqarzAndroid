@@ -22,9 +22,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.OprationNew.RentShowActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Activity.FiltterOrderActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.MyOrderActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -121,6 +123,9 @@
             android:theme="@style/AppTheme.NoActionBar_orders" />
         <activity
             android:name=".Activity.OprationAqarz.AddAqarsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.OprationAqarz.EditAqarsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.ContactUsActivity"

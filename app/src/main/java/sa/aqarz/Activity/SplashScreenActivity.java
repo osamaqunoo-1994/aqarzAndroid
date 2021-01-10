@@ -139,7 +139,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
                             }
-                        }, 500); // After 1 seconds
+                        }, 10); // After 1 seconds
 
                     } else {
 

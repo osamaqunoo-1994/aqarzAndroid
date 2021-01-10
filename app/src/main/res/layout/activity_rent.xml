@@ -148,8 +148,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/Duration_of_funding"
-                            android:textColor="@color/textColor2"
+                            android:text="@string/modetagar"
+                            android:textColor="#424446"
                             android:textSize="13dp" />
 
                         <LinearLayout
@@ -164,14 +164,14 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:text="0"
-                            android:textColor="@color/textColor2"
+                            android:textColor="#424446"
                             android:textSize="13dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/YearSeekbar"
-                            android:textColor="@color/textColor2"
+                            android:text="@string/month_tag"
+                            android:textColor="#424446"
                             android:textSize="13dp" />
                     </LinearLayout>
 
@@ -182,7 +182,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_margin="10dp"
-                        android:max="30"
+                        android:max="12"
                         android:maxHeight="5dip"
                         android:minHeight="5dip"
                         android:paddingLeft="30px"
@@ -214,7 +214,7 @@
                             android:background="@drawable/mash"
                             android:fontFamily="@font/din_light"
                             android:gravity="center_vertical"
-                            android:hint="@string/Price"
+                            android:hint="@string/dd_price_money"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
@@ -241,7 +241,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/din_bold"
-                                android:text="@string/Information_Tenant1"
+                                android:text="@string/info_estat"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="17dp" />
 
@@ -382,7 +382,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:paddingBottom="5dp">
+                        android:paddingBottom="5dp"
+                        android:visibility="gone">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -407,31 +408,6 @@
                             android:layout_weight="1" />
 
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:paddingBottom="5dp">
-
-
-                        <TextView
-                            android:id="@+id/city"
-                            android:layout_width="match_parent"
-                            android:layout_height="42dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/mash"
-                            android:gravity="center_vertical"
-                            android:hint="@string/city_name"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:text=""
-                            android:textColorHint="@color/hint_color"
-                            android:textSize="@dimen/_10sdp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -505,6 +481,32 @@
                         android:paddingBottom="5dp">
 
 
+                        <TextView
+                            android:id="@+id/city"
+                            android:layout_width="match_parent"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/mash"
+                            android:gravity="center_vertical"
+                            android:hint="@string/city_name"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text=""
+                            android:textColorHint="@color/hint_color"
+                            android:textSize="@dimen/_10sdp" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:paddingBottom="5dp">
+
+
                         <EditText
                             android:id="@+id/Total_salary"
                             android:layout_width="match_parent"
@@ -526,6 +528,91 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:paddingBottom="5dp">
+
+
+                        <EditText
+                            android:id="@+id/Total_salcary"
+                            android:layout_width="match_parent"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+
+                            android:layout_weight="1"
+                            android:background="@drawable/mash"
+                            android:gravity="center_vertical"
+                            android:hint="@string/name_directory_name"
+                            android:inputType="number"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text=""
+                            android:textColorHint="@color/hint_color"
+                            android:textSize="@dimen/_10sdp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:paddingBottom="5dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/salary_read_bank"
+                            android:textColor="#424446"
+                            android:textSize="14dp" />
+
+                        <LinearLayout
+                            android:layout_width="15dp"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:background="@drawable/back_type_work"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/ada_1_yes"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="@string/yes"
+                                android:textSize="11dp" />
+
+
+                            <TextView
+                                android:id="@+id/ada_1_no"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/button_login"
+                                android:gravity="center"
+                                android:paddingLeft="8dp"
+
+                                android:paddingRight="8dp"
+                                android:text="@string/no"
+                                android:textColor="@color/white"
+                                android:textSize="13dp" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

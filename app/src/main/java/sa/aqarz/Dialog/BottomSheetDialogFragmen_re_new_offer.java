@@ -21,6 +21,7 @@ import com.hedgehog.ratingbar.RatingBar;
 import org.json.JSONObject;
 
 import sa.aqarz.Activity.DetailsActivity_aqarz;
+import sa.aqarz.Activity.profile.OtherProfileActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -32,7 +33,7 @@ public class BottomSheetDialogFragmen_re_new_offer extends BottomSheetDialogFrag
 
     Button resend;
 
-    Button send;
+    Button sensd;
     EditText comment;
     RatingBar rate;
     ImageView close;
@@ -45,23 +46,30 @@ public class BottomSheetDialogFragmen_re_new_offer extends BottomSheetDialogFrag
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_sheets_re_new_offer, container, false);
 
-        send = v.findViewById(R.id.send);
+        sensd = v.findViewById(R.id.sensd);
         resend = v.findViewById(R.id.resend);
         close = v.findViewById(R.id.close);
 
 
-        send.setOnClickListener(new View.OnClickListener() {
+        sensd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                init_volley();
 //                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 //
+
+                WebService.loading(getActivity(), true);
+
+                init_volleys();
+
+
+                VolleyService volleyServicedd = new VolleyService(mResultCallback, getContext());
+
+                volleyServicedd.postDataVolley("make_up", WebService.make_up + "/" + estate_id + "/estate", new JSONObject());
+
+
 //                mVolleyService.getDataVolley("make_up", WebService.make_up + "/" + estate_id + "/estate");
 //
-                init_volley();
-                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-                mVolleyService.getDataVolley("make_up", WebService.make_up + "/" + estate_id + "/estate");
-
 //                mVolleyService.getDataVolley("delete", WebService.delete + "/" + estate_id + "/estate");
 
             }
@@ -72,7 +80,8 @@ public class BottomSheetDialogFragmen_re_new_offer extends BottomSheetDialogFrag
             public void onClick(View v) {
                 dismiss();
             }
-        }); close.setOnClickListener(new View.OnClickListener() {
+        });
+        close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
@@ -116,7 +125,7 @@ public class BottomSheetDialogFragmen_re_new_offer extends BottomSheetDialogFrag
         }
     }
 
-    public void init_volley() {
+    public void init_volleys() {
 
 
         mResultCallback = new IResult() {
@@ -132,13 +141,14 @@ public class BottomSheetDialogFragmen_re_new_offer extends BottomSheetDialogFrag
 
                         String data = response.getString("data");
                         String message = response.getString("message");
+                        dismiss();
 
                         if (requestType.equals("delete")) {
+                            System.out.println("estate_id" + estate_id);
 
                             if (mItemClickListener != null) {
                                 mItemClickListener.onItemClick(Integer.valueOf(estate_id + ""));
                             }
-                            dismiss();
 
                         } else if (requestType.equals("make_up")) {
 

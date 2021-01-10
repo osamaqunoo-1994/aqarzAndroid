@@ -111,7 +111,9 @@ public class RentActivity extends AppCompatActivity {
     File owner_get_id_image_file = null;
     File contract_file_file = null;
     File get_id_image_file = null;
-    String  id="";
+    String id = "";
+    TextView ada_1_yes;
+    TextView ada_1_no;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,7 +152,8 @@ public class RentActivity extends AppCompatActivity {
 
         Soldier = findViewById(R.id.Soldier);
         Special = findViewById(R.id.Special);
-
+        ada_1_yes = findViewById(R.id.ada_1_yes);
+        ada_1_no = findViewById(R.id.ada_1_no);
 
         buldingnumber = findViewById(R.id.buldingnumber);
         StreetName = findViewById(R.id.StreetName);
@@ -167,16 +170,16 @@ public class RentActivity extends AppCompatActivity {
 
 
         init_volley();
-        try{
+        try {
 
-            id  =getIntent().getStringExtra("id");
-        }catch (Exception e){
+            id = getIntent().getStringExtra("id");
+        } catch (Exception e) {
 
         }
         //---------------------------------------------------------------------------------------
         try {
             name_owner.setText(Settings.GetUser().getName() + "");
-            phone_owner.setText("0"+Settings.GetUser().getMobile() + "");
+            phone_owner.setText("0" + Settings.GetUser().getMobile() + "");
         } catch (Exception e) {
 
         }
@@ -207,6 +210,39 @@ public class RentActivity extends AppCompatActivity {
             }
         });
         opration_RecyclerView.setAdapter(recyclerView_all_opration_bottom_sheet);
+        ada_1_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ada_1_yes.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                ada_1_yes.setTextColor(getResources().getColor(R.color.white));
+
+                ada_1_no.setBackground(null);
+
+                ada_1_no.setTextColor(getResources().getColor(R.color.textColor));
+
+//                ada_ = "1";
+            }
+        });
+        ada_1_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ada_1_no.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                ada_1_no.setTextColor(getResources().getColor(R.color.white));
+
+
+                ada_1_yes.setBackground(null);
+
+                ada_1_yes.setTextColor(getResources().getColor(R.color.textColor));
+
+//                ada_ = "0";
+
+            }
+
+        });
+
+
         action_button();
         next_step();
     }

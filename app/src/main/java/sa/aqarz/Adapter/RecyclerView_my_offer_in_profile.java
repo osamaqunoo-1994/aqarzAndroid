@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sa.aqarz.Activity.DetailsActivity_aqarz;
+import sa.aqarz.Activity.OprationAqarz.EditAqarsActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_delete_offer;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_re_new_offer;
@@ -218,13 +219,6 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
         }
 
 
-        holder.edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
 //
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
@@ -345,6 +339,12 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
             @Override
             public void onClick(View v) {
                 BottomSheetDialogFragmen_re_new_offer bottomSheetDialogFragmen_re_new_offer = new BottomSheetDialogFragmen_re_new_offer(alldata.get(position).getId() + "");
+                bottomSheetDialogFragmen_re_new_offer.addItemClickListener(new BottomSheetDialogFragmen_re_new_offer.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_estat) {
+
+                    }
+                });
                 bottomSheetDialogFragmen_re_new_offer.show(((FragmentActivity) context).getSupportFragmentManager(), "");
 
             }
@@ -352,11 +352,14 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Postion_delete = position;
                 BottomSheetDialogFragmen_delete_offer bottomSheetDialogFragmen_delete_offer = new BottomSheetDialogFragmen_delete_offer(alldata.get(position).getId() + "");
                 bottomSheetDialogFragmen_delete_offer.addItemClickListener(new BottomSheetDialogFragmen_delete_offer.ItemClickListener() {
                     @Override
                     public void onItemClick(int id_estate) {
-                        alldata.remove(id_estate);
+
+                        System.out.println("id_estate" + id_estate);
+                        alldata.remove(Postion_delete);
                         Refr();
 
                     }
@@ -365,6 +368,17 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
 
             }
         });
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EditAqarsActivity.class);
+                intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
+                context.startActivity(intent);
+
+
+            }
+        });
+
 
     }
 

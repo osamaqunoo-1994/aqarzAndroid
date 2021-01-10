@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.orhanobut.hawk.Hawk;
+
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.R;
@@ -57,10 +59,17 @@ public class RequestServiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if (Hawk.contains("rent_layout")) {
 
-                Intent intent = new Intent(RequestServiceActivity.this, RentActivity.class);
-                intent.putExtra("id", "");
-                startActivity(intent);
+                    Intent intent = new Intent(RequestServiceActivity.this, RentActivity.class);
+                    intent.putExtra("id", "");
+                    startActivity(intent);
+                } else {
+                    Hawk.put("rent_layout", "rent_layout");
+                    Intent intent = new Intent(RequestServiceActivity.this, RentShowActivity.class);
+                    intent.putExtra("id", "");
+                    startActivity(intent);
+                }
 
 
             }
@@ -71,16 +80,16 @@ public class RequestServiceActivity extends AppCompatActivity {
 
                 MainActivity.go_to_order();
 
-finish();
+                finish();
 
             }
-        });  Real_Estate_orders_layout.setOnClickListener(new View.OnClickListener() {
+        });
+        Real_Estate_orders_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 MainActivity.go_to_order();
                 finish();
-
 
 
             }

@@ -545,12 +545,18 @@ Your request and reply in the fastest time</string>
     <string name="success_coder">سيقوم فريق عقارز بالتواصل معك خلال
 يومي عمل لإستكمال طلبك</string>
 
+    <string name="month_tag">شهور</string>
+    <string name="name_directory_name">اسم جهة العمل</string>
 
     <string name="location_tag">location</string>
+    <string name="service_and_pololr">تطبق الشروط والأحكام</string>
     <string name="Aqaerz_tag">Aqaerz</string>
     <string name="MyAqaerz_tag">My Aqaerz</string>
 
-
+    <string name="modetagar">مدة العقد</string>
+    <string name="salary_read_bank">الراتب محول على بنك الرياض</string>
+    <string name="dd_price_money"> أدخل سعر الإيجار</string>
+    <string name="info_estat">معلومات المستأجر</string>
 
     <string name="tet_terms">ﺍﺗﻔﺎﻗﻴﺔ ﺍﻹﺳﺘﺨﺪﺍﻡﻋﺒﺮ ﺩﺧﻮﻟﻚ ﻭﺍﺳﺘﺨﺪﺍﻣﻚ ﻣﻮﻗﻊ ﺃﻭ ﺗﻄﺒﻴﻖ ﻋﻘﺎﺭﺯ ﻓﺈﻧﻚ ﺗﻘﺮ ﻭﺗﻮﺍﻓﻖ، ﺩﻭﻥ ﺇﺟﺮﺍﺀ ﺃﻱ ﺗﻌﺪﻳﻞ ﻭﺩﻭﻥ ﺃﻳﺔ ﻗﻴﻮﺩ ﺃﻭ ﺗﺒﺪﻳﻞ، ﻋﻠﻰ ﺍﻷﺣﻜﺎﻡ ﻭﺍﻟﺸﺮﻭﻁ ﺍﻟﻮﺍﺭﺩﺓ ﻓﻲ ﻫﺬﻩ (ﺍﻻﺗﻔﺎﻗﻴﺔ). ﺃﻧﺖ ﺗﻘﺮ ﻭﺗﻀﻤﻦ ﺣﻘﻚ ﺍﻟﻘﺎﻧﻮﻧﻲ ﻟﻠﺪﺧﻮﻝ ﻓﻲ ﻫﺬﻩ ﺍﻻﺗﻔﺎﻗﻴﺔ ﻭﺍﺳﺘﺨﺪﺍﻡ ﺍﻟﺨﺪﻣﺎﺕ ﺍﻟﺘﻲ ﻧﻘﺪﻣﻬﺎ ﻓﻲ ﻋﻘﺎﺭﺯ ﻭﻓﻘﺎً ﻟﻜﺎﻓﺔ ﺍﻟﺸﺮﻭﻁ ﻭﺍﻷﺣﻜﺎﻡ ﺍﻟﻮﺍﺭﺩﺓ ﻓﻴﻬﺎ.
         ﺗﺴﻌﻰ ﻣﺆﺳﺴﺔ ﻋﻠﻮ ﻭﺃﺳﺎﺱ ﻟﻺﺗﺼﺎﻻﺕ ﻭﺗﻘﻨﻴﺔ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﻗﺪﺭ ﺍﻹﻣﻜﺎﻥ ﺇﻟﻰ ﺗﻮﻓﻴﺮ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﻋﻠﻰ ﻣﻨﺼﺘﻬﺎ ﺑﺪﻗﺔ ﻣﺘﻨﺎﻫﻴﺔ. ﺇﻻ ﺃﻧﻪ ﻗﺪ ﺗﺮﺩ ﺑﻌﺾ ﺍﻷﺧﻄﺎﺀ ﻣﻦ ﺣﻴﻦ ﻵﺧﺮ. ﻭﻻ ﺗﺘﺤﻤﻞ ﻣﺆﺳﺴﺔ ﻋﻠﻮ ﻭﺃﺳﺎﺱ ﻟﻺﺗﺼﺎﻻﺕ ﻭﺗﻘﻨﻴﺔ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﺃﻱ ﻣﺴﺆﻭﻟﻴﺔ ﻋﻦ ﺃﻱ ﺧﻄﺄ ﻓﻲ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﺍﻟﺘﻲ ﻳﺘﻀﻤﻨﻬﺎ ﺍﻟﻤﻮﻗﻊ ﺍﻭ ﺍﻟﺘﻄﺒﻴﻖ.

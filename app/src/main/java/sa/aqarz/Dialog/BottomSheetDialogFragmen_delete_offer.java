@@ -32,6 +32,7 @@ public class BottomSheetDialogFragmen_delete_offer extends BottomSheetDialogFrag
 
 
     Button send;
+    Button sendd;
     Button resend;
     EditText comment;
     RatingBar rate;
@@ -39,28 +40,32 @@ public class BottomSheetDialogFragmen_delete_offer extends BottomSheetDialogFrag
     String estate_id = "";
     String ratee = "";
 
+
     private ItemClickListener mItemClickListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_sheets_delete_offer, container, false);
-        send = v.findViewById(R.id.send);
+        sendd = v.findViewById(R.id.sendd);
         resend = v.findViewById(R.id.resend);
         close = v.findViewById(R.id.close);
 
 
-        send.setOnClickListener(new View.OnClickListener() {
+        sendd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                WebService.loading(getActivity(), true);
+
+                init_volley();
+                VolleyService mVolleyServicex = new VolleyService(mResultCallback, getContext());
+                mVolleyServicex.postDataVolley("delete", WebService.delete + "/" + estate_id + "/estate", new JSONObject());
+
 //                init_volley();
 //                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 //
 //                mVolleyService.getDataVolley("make_up", WebService.make_up + "/" + estate_id + "/estate");
 //
-                init_volley();
-                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 
-                mVolleyService.getDataVolley("delete", WebService.delete + "/" + estate_id + "/estate");
 
             }
         });
@@ -134,13 +139,14 @@ public class BottomSheetDialogFragmen_delete_offer extends BottomSheetDialogFrag
                     if (status) {
 
                         String data = response.getString("data");
-                        String message = response.getString("message");
-
+//                        String message = response.getString("message");
+                        dismiss();
                         if (requestType.equals("delete")) {
+
+                            System.out.println("mItemClickListener");
                             if (mItemClickListener != null) {
                                 mItemClickListener.onItemClick(Integer.valueOf(estate_id + ""));
                             }
-                            dismiss();
 
                         } else if (requestType.equals("make_up")) {
                             dismiss();
