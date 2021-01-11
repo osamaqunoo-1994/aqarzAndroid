@@ -235,6 +235,12 @@ public class OrdersFragment extends Fragment {
 
     public void Action_Button() {
 
+
+        AllOrder_number.setText(Settings.getSettings().getAllRequestFund() + "");
+        today_number.setText(Settings.getSettings().getRequestFund() + "");
+        Myoffer_number.setText(Settings.getSettings().getMyRequestFundOffer() + "");
+
+
         Real_Estate_order_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -253,6 +259,11 @@ public class OrdersFragment extends Fragment {
 
                 type_type = "fund_Request";
                 GetData(type_requst);
+
+
+                AllOrder_number.setText(Settings.getSettings().getAllRequestFund() + "");
+                today_number.setText(Settings.getSettings().getRequestFund() + "");
+                Myoffer_number.setText(Settings.getSettings().getMyRequestFundOffer() + "");
 
             }
         });
@@ -278,6 +289,13 @@ public class OrdersFragment extends Fragment {
 
 
                 GetData(type_requst);
+
+
+                AllOrder_number.setText(Settings.getSettings().getAllRequest() + "");
+                today_number.setText(Settings.getSettings().getMarketDemands() + "");
+                Myoffer_number.setText(Settings.getSettings().getMyRequestOffer() + "");
+
+
             }
         });
 

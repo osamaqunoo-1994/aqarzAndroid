@@ -124,6 +124,8 @@ public class User {
         return member_name;
     }
 
+
+
     public List<SettingsModules.service_types> getService_name() {
         return service_name;
     }

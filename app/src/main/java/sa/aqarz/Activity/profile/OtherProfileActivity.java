@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
@@ -24,12 +26,19 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.squareup.picasso.Picasso;
+import com.xiaofeng.flowlayoutmanager.FlowLayoutManager;
 
 import org.json.JSONObject;
 
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+import sa.aqarz.Activity.Auth.EditProfileActivity;
 import sa.aqarz.Activity.ChatRoomActivity;
+import sa.aqarz.Adapter.RecyclerVie_member_service;
+import sa.aqarz.Adapter.RecyclerView_member;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_QR;
+import sa.aqarz.Modules.SettingsModules;
 import sa.aqarz.Modules.User;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
@@ -74,9 +83,12 @@ public class OtherProfileActivity extends AppCompatActivity {
     LinearLayout chat;
     LinearLayout call;
     LinearLayout location;
+    RecyclerView member_list;
+    RecyclerView memssr_list;
 
-//    ImageView mobile_icon;
-String id;
+    //    ImageView mobile_icon;
+    String id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,12 +117,14 @@ String id;
         my_service = findViewById(R.id.my_service);
 //        my_clints = findViewById(R.id.my_clints);
 
+        member_list = findViewById(R.id.member_list);
 
         offer_text = findViewById(R.id.offer_text);
         clints_text = findViewById(R.id.clints_text);
         memberships_text = findViewById(R.id.memberships_text);
 //        mobile_icon = findViewById(R.id.mobile_icon);
         service_text = findViewById(R.id.service_text);
+        memssr_list = findViewById(R.id.memssr_list);
 
 //
 //        mMapView = (MapView) findViewById(R.id.mapViewxx);
@@ -145,6 +159,22 @@ String id;
 //
 //            }
 //        });
+
+
+        member_list.setLayoutManager(new GridLayoutManager(this, 2));
+
+
+        FlowLayoutManager flowLayoutManager = new FlowLayoutManager();
+        flowLayoutManager.setAutoMeasureEnabled(true);
+//                            flowLayoutManager.maxItemsPerLine(1);
+        member_list.setLayoutManager(flowLayoutManager);
+
+        FlowLayoutManager flowLayoutManagerss = new FlowLayoutManager();
+        flowLayoutManagerss.setAutoMeasureEnabled(true);
+//                            flowLayoutManager.maxItemsPerLine(1);
+        memssr_list.setLayoutManager(flowLayoutManagerss);
+
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,7 +189,7 @@ String id;
         init_volley();
 
         try {
-            id= getIntent().getStringExtra("id");
+            id = getIntent().getStringExtra("id");
             VolleyService mVolleyService = new VolleyService(mResultCallback, OtherProfileActivity.this);
 
             mVolleyService.getDataVolley("user", WebService.user + id + "");
@@ -267,6 +297,18 @@ String id;
                                         }
                                     });
 
+                                    RecyclerVie_member_service recyclerView_member = new RecyclerVie_member_service(OtherProfileActivity.this, userModules.getMember_name());
+
+
+                                    member_list.setAdapter(recyclerView_member);
+                                    RecyclerVie_member_service recyclerView_memberss = new RecyclerVie_member_service(OtherProfileActivity.this, userModules.getService_name());
+
+
+                                    memssr_list.setAdapter(recyclerView_memberss);
+
+                                    System.out.println("^%^%^%" + userModules.getService_name().size());
+
+
 //                                mobile_icon.setOnClickListener(new View.OnClickListener() {
 //                                    @Override
 //                                    public void onClick(View v) {
@@ -315,7 +357,7 @@ String id;
 
                                                 VolleyService mVolleyService = new VolleyService(mResultCallback, OtherProfileActivity.this);
 
-                                                mVolleyService.getDataVolley("count_call", WebService.count_call + "/"+id+"/call");
+                                                mVolleyService.getDataVolley("count_call", WebService.count_call + "/" + id + "/call");
 
 
                                             } catch (Exception e) {
@@ -426,9 +468,9 @@ String id;
                                     }
                                 }
 
-                                } catch(Exception e){
-                                    e.printStackTrace();
-                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
 
 //                            try {
 //                                service_list = Settings.getSettings().getService_types();

@@ -351,9 +351,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:visibility="gone"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
 
                         <TextView
@@ -379,9 +379,9 @@
 
                     <LinearLayout
                         android:layout_width="1dp"
-                        android:visibility="gone"
                         android:layout_height="30dp"
-                        android:background="#E0E0E0" />
+                        android:background="#E0E0E0"
+                        android:visibility="gone" />
 
 
                     <LinearLayout
@@ -535,13 +535,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="140dp"
                     android:layout_weight="1"
-
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:id="@+id/my_service"
 
+                        android:id="@+id/location"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:background="@drawable/edit_text_background_new_design"
@@ -553,7 +552,7 @@
                         <ImageView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:src="@drawable/ic_service_new"
+                            android:src="@drawable/ic_location_new"
 
                             />
 
@@ -561,7 +560,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="@string/aw3"
+                            android:text="@string/location_tag"
                             android:textColor="#AAABB3"
                             android:textSize="13dp" />
                     </LinearLayout>
@@ -576,7 +575,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginRight="20dp"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -619,12 +619,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="140dp"
                     android:layout_weight="1"
+
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/my_service"
 
-                        android:id="@+id/location"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:background="@drawable/edit_text_background_new_design"
@@ -636,7 +637,7 @@
                         <ImageView
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:src="@drawable/ic_location_new"
+                            android:src="@drawable/ic_service_new"
 
                             />
 
@@ -644,7 +645,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="@string/location_tag"
+                            android:text="@string/aw3"
                             android:textColor="#AAABB3"
                             android:textSize="13dp" />
                     </LinearLayout>
@@ -655,6 +656,80 @@
 
             </LinearLayout>
 
+            <LinearLayout
+
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@drawable/ic_member_new"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="@string/aw3x"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/member_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+
+
+            <LinearLayout
+
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+
+                android:layout_marginRight="15dp"
+
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@drawable/ic_service_new"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="@string/aw3"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/memssr_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="10dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"

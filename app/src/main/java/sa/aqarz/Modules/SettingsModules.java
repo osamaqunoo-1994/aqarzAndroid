@@ -8,6 +8,39 @@ import java.util.List;
 public class SettingsModules {
 
 
+
+
+
+    @SerializedName("allRequest")
+    @Expose
+    private String allRequest;
+
+    @SerializedName("allRequestFund")
+    @Expose
+    private String allRequestFund;
+    @SerializedName("marketDemands")
+    @Expose
+    private String marketDemands;
+    @SerializedName("RequestFund")
+    @Expose
+    private String RequestFund;
+    @SerializedName("myRequestFundOffer")
+    @Expose
+    private String myRequestFundOffer;
+    @SerializedName("myRequestOffer")
+    @Expose
+    private String myRequestOffer;
+    @SerializedName("requestReal")
+    @Expose
+    private String requestReal;
+    @SerializedName("offerReal")
+    @Expose
+    private String offerReal;
+
+
+
+
+
     @SerializedName("company_info")
     @Expose
     private String company_info;
@@ -35,12 +68,6 @@ public class SettingsModules {
     @SerializedName("email")
     @Expose
     private String email;
-    @SerializedName("marketDemands")
-    @Expose
-    private String marketDemands;
-    @SerializedName("RequestFund")
-    @Expose
-    private String RequestFund;
 
 
     @SerializedName("estate_types")
@@ -87,6 +114,30 @@ public class SettingsModules {
 
     public String getRequestFund() {
         return RequestFund;
+    }
+
+    public String getAllRequest() {
+        return allRequest;
+    }
+
+    public String getAllRequestFund() {
+        return allRequestFund;
+    }
+
+    public String getMyRequestFundOffer() {
+        return myRequestFundOffer;
+    }
+
+    public String getMyRequestOffer() {
+        return myRequestOffer;
+    }
+
+    public String getOfferReal() {
+        return offerReal;
+    }
+
+    public String getRequestReal() {
+        return requestReal;
     }
 
     public class estate_types {
