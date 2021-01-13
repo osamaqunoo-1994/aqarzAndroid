@@ -5,105 +5,38 @@ package sa.aqarz.Fragment;
 
 
 import android.app.Activity;
-import android.app.ActivityOptions;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.MapsInitializer;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.orhanobut.hawk.Hawk;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import sa.aqarz.Activity.Auth.LoginActivity;
-import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
-import sa.aqarz.Activity.Auth.NewPasswordActivity;
-import sa.aqarz.Activity.Auth.RegisterActivity;
-import sa.aqarz.Activity.ContactUsActivity;
-import sa.aqarz.Activity.DetailsAqarzManActivity;
-import sa.aqarz.Activity.FiltterOrderActivity;
-import sa.aqarz.Activity.MainActivity;
-import sa.aqarz.Activity.PrivecyActivity;
-import sa.aqarz.Activity.SplashScreenActivity;
-import sa.aqarz.Activity.TermsActivity;
-import sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
-import sa.aqarz.Adapter.RecyclerView_All_Type_order_;
-import sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
-import sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet_type;
-import sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
-import sa.aqarz.Adapter.RecyclerView_HomeList;
-import sa.aqarz.Adapter.RecyclerView_HomeList_estat;
-import sa.aqarz.Adapter.RecyclerView_bottomSheet_type;
-import sa.aqarz.Adapter.RecyclerView_order_finince;
-import sa.aqarz.Adapter.RecyclerView_order_rate;
-import sa.aqarz.Adapter.RecyclerView_orders;
-import sa.aqarz.Adapter.RecyclerView_orders_demands;
 import sa.aqarz.Adapter.RecyclerView_orders_demandsx;
-import sa.aqarz.Adapter.RecyclerView_orders_my_requst;
-import sa.aqarz.Adapter.RecyclerView_orders_my_requstx;
-import sa.aqarz.Adapter.RecyclerView_orders_my_requstx_det;
-import sa.aqarz.Adapter.RecyclerView_orders_my_requstx_rate;
-import sa.aqarz.Adapter.RecyclerView_orders_offer_di;
 import sa.aqarz.Adapter.RecyclerView_ordersx;
-import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares;
-import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares_orders;
-import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares_orders_1;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Filtter_order;
-import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity_fillter;
 import sa.aqarz.Modules.FiltterModules;
-import sa.aqarz.Modules.HomeModules;
-import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.MyRateModules;
 import sa.aqarz.Modules.OfferRealStateModules;
 import sa.aqarz.Modules.OrdersModules;
@@ -113,15 +46,13 @@ import sa.aqarz.Modules.deferredInstallmentModules;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.Modules.financeModules;
 import sa.aqarz.R;
-import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class OrdersFragment extends Fragment {
+public class OrdersFragment_old_2 extends Fragment {
     static IResult mResultCallback;
     static ProgressBar progress;
     BottomSheetDialogFragment_Filtter_order bottomSheetDialogFragment_filtter_order;
@@ -129,9 +60,6 @@ public class OrdersFragment extends Fragment {
     LinearLayout Real_Estate_order_layout;
     ImageView Real_Estate_order_image;
     TextView Real_Estate_order_text;
-    RecyclerView type_of_v;
-    RecyclerView list_opration;
-    List<TypeModules> data = new ArrayList<>();
 
     static LinearLayout nodata_vis;
     List<TypeModules> type_list = new ArrayList<>();
@@ -162,6 +90,7 @@ public class OrdersFragment extends Fragment {
     static String type_type = "fund_Request";
     static String type_requst = "today";
 
+    ImageView open_filter;
 
     static RecyclerView orders_rec;
 
@@ -178,9 +107,9 @@ public class OrdersFragment extends Fragment {
     }
 
 
-    public static OrdersFragment newInstance(String text) {
+    public static OrdersFragment_old_2 newInstance(String text) {
 
-        OrdersFragment f = new OrdersFragment();
+        OrdersFragment_old_2 f = new OrdersFragment_old_2();
         Bundle b = new Bundle();
         b.putString("msg", text);
 
@@ -210,11 +139,10 @@ public class OrdersFragment extends Fragment {
         today_number = v.findViewById(R.id.today_number);
         AllOrder_number = v.findViewById(R.id.AllOrder_number);
         not_premium = v.findViewById(R.id.not_premium);
-        type_of_v = v.findViewById(R.id.type_of_v);
 
-        list_opration = v.findViewById(R.id.list_opration);
 
         progress = v.findViewById(R.id.progress);
+        open_filter = v.findViewById(R.id.open_filter);
 
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -243,79 +171,6 @@ public class OrdersFragment extends Fragment {
         AllOrder_number.setText(Settings.getSettings().getAllRequestFund() + "");
         today_number.setText(Settings.getSettings().getRequestFund() + "");
         Myoffer_number.setText(Settings.getSettings().getMyRequestFundOffer() + "");
-
-
-
-
-        LinearLayoutManager layoutManagerxmx
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        type_of_v.setLayoutManager(layoutManagerxmx);
-
-//        if (Type.equals("fund_Request")) {
-//
-//        } else if (Type.equals("market_demands")) {
-//            type_list.addAll(Settings.getSettings().getEstate_types().getOriginal().getData());
-//        }
-        type_list.add(Settings.getSettings().getEstate_types().getOriginal().getData().get(0));
-        type_list.add(Settings.getSettings().getEstate_types().getOriginal().getData().get(1));
-        type_list.add(Settings.getSettings().getEstate_types().getOriginal().getData().get(2));
-        type_list.add(Settings.getSettings().getEstate_types().getOriginal().getData().get(3));
-
-        RecyclerView_All_opration_bottom_sheet_type recyclerView_all_opration_bottom_sheet = new RecyclerView_All_opration_bottom_sheet_type(getContext(), type_list);
-        recyclerView_all_opration_bottom_sheet.addItemClickListener(new RecyclerView_All_opration_bottom_sheet_type.ItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-//                opration_select = type_list.get(position).getId().toString() + "";
-//
-//                page = 1;
-//                send_requst_by_type(type_requst);
-
-
-            }
-        });
-        type_of_v.setAdapter(recyclerView_all_opration_bottom_sheet);
-
-
-        try {
-//            data = Settings.getSettings().getOprationType().getOriginal().getData();
-
-
-            data.add(Settings.getSettings().getOprationType().getOriginal().getData().get(0));
-            data.add(Settings.getSettings().getOprationType().getOriginal().getData().get(1));
-            data.add(Settings.getSettings().getOprationType().getOriginal().getData().get(2));
-//            data.add(Settings.getSettings().getOprationType().getOriginal().getData().get(3));
-
-
-            LinearLayoutManager layoutManager1
-                    = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-            list_opration.setLayoutManager(layoutManager1);
-            RecyclerView_All_Type_order_ recyclerView_all_type_order_ = new RecyclerView_All_Type_order_(getContext(), data);
-            recyclerView_all_type_order_.addItemClickListener(new RecyclerView_All_Comfort_in_fragment.ItemClickListener() {
-                @Override
-                public void onItemClick(int position) {
-//                    if (position == 0) {
-//                        list_opration.setVisibility(View.VISIBLE);
-//                        type_sale.setVisibility(View.VISIBLE);
-//                        section_horizantal.setVisibility(View.VISIBLE);
-//                    } else if (position == 1) {
-//                        list_opration.setVisibility(View.VISIBLE);
-//                        section_horizantal.setVisibility(View.VISIBLE);
-//                        type_sale.setVisibility(View.VISIBLE);
-//                    } else {
-//                        list_opration.setVisibility(View.VISIBLE);
-//
-//                        type_sale.setVisibility(View.GONE);
-//                        section_horizantal.setVisibility(View.GONE);
-//
-//                    }
-                }
-            });
-            list_opration.setAdapter(recyclerView_all_type_order_);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
 
 
         Real_Estate_order_layout.setOnClickListener(new View.OnClickListener() {
@@ -472,7 +327,38 @@ public class OrdersFragment extends Fragment {
             }
         });
 
+        open_filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//
+//                Intent intent = new Intent(getContext(), FiltterOrderActivity.class);
+////                Bundle bndlAnimation = ActivityOptions.makeCustomAnimation(getContext(), R.anim.rh, R.anim.slideinright).toBundle();
+//
+//
+//                startActivity(intent);
+//
+//                getActivity().overridePendingTransition(R.anim.rh, R.anim.ex);
 
+
+                bottomSheetDialogFragment_filtter_order = new BottomSheetDialogFragment_Filtter_order(type_type);
+                bottomSheetDialogFragment_filtter_order.addItemClickListener(new BottomSheetDialogFragment_Filtter_order.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_city, String city_naem) {
+                        bottomSheetDialogFragment_filtter_order.dismiss();
+                        page = 1;
+
+                        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" + filtterModules.getOrder_by_price() + filtterModules.getSelect_city() + filtterModules.getType_oprtion() + filtterModules.getType_type());
+
+
+                        GetData(type_requst);
+
+
+                    }
+                });
+                bottomSheetDialogFragment_filtter_order.show(getChildFragmentManager(), "");
+
+            }
+        });
 
 
         Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.mash));
