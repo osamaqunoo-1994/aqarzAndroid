@@ -19,6 +19,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -26,13 +28,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
@@ -85,6 +92,7 @@ import sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import sa.aqarz.Adapter.RecyclerView_HomeList;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import sa.aqarz.Adapter.RecyclerView_bottomSheet_type;
+import sa.aqarz.Adapter.RecyclerView_city_bootom_sheets_multi;
 import sa.aqarz.Adapter.RecyclerView_order_finince;
 import sa.aqarz.Adapter.RecyclerView_order_rate;
 import sa.aqarz.Adapter.RecyclerView_orders;
@@ -96,11 +104,13 @@ import sa.aqarz.Adapter.RecyclerView_orders_my_requstx_det;
 import sa.aqarz.Adapter.RecyclerView_orders_my_requstx_rate;
 import sa.aqarz.Adapter.RecyclerView_orders_offer_di;
 import sa.aqarz.Adapter.RecyclerView_ordersx;
+import sa.aqarz.Adapter.RecyclerView_select_city;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares_orders;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares_orders_1;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Filtter_order;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity_fillter;
+import sa.aqarz.Modules.CityModules;
 import sa.aqarz.Modules.FiltterModules;
 import sa.aqarz.Modules.HomeModules;
 import sa.aqarz.Modules.HomeModules_aqares;
@@ -113,6 +123,7 @@ import sa.aqarz.Modules.deferredInstallmentModules;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.Modules.financeModules;
 import sa.aqarz.R;
+import sa.aqarz.Settings.Application;
 import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
@@ -130,9 +141,16 @@ public class OrdersFragment extends Fragment {
     ImageView Real_Estate_order_image;
     TextView Real_Estate_order_text;
     RecyclerView type_of_v;
+    RecyclerView selected_list_city;
+    RecyclerView selected_list_citys;
     RecyclerView list_opration;
     List<TypeModules> data = new ArrayList<>();
 
+    List<CityModules> cityModules_list = new ArrayList<>();
+    List<CityModules> cityModules_list_filter = new ArrayList<>();
+    List<CityModules> cityModules_list_filter_selected = new ArrayList<>();
+
+    EditText text_search;
     static LinearLayout nodata_vis;
     List<TypeModules> type_list = new ArrayList<>();
     static List<demandsModules> demandsModules_list = new ArrayList<>();
@@ -146,11 +164,16 @@ public class OrdersFragment extends Fragment {
 
     LinearLayout Shopping_request_layout;
     LinearLayout not_premium;
+    LinearLayout fillter_layoiut;
+    LinearLayout show_fillter;
+    LinearLayout filtter_price_market_order;
+    LinearLayout search_price_real_state;
     TextView Shopping_request_text;
 
     TextView AllOrder;
     TextView today;
     TextView Myoffer;
+    TextView search;
     public static Activity activity;
 
     TextView Myoffer_number;
@@ -158,9 +181,12 @@ public class OrdersFragment extends Fragment {
     TextView AllOrder_number;
     static int page = 1;
 
-
+    RadioButton less, big;
+    String opration_select = "";
     static String type_type = "fund_Request";
     static String type_requst = "today";
+    static String price_order = "";
+    static String tyype_type = "";
 
 
     static RecyclerView orders_rec;
@@ -193,13 +219,19 @@ public class OrdersFragment extends Fragment {
         Real_Estate_order_layout = v.findViewById(R.id.Real_Estate_order_layout);
         Real_Estate_order_text = v.findViewById(R.id.Real_Estate_order_text);
         Real_Estate_order_image = v.findViewById(R.id.Real_Estate_order_image);
-
+        selected_list_city = v.findViewById(R.id.selected_list_city);
+        fillter_layoiut = v.findViewById(R.id.fillter_layoiut);
+        show_fillter = v.findViewById(R.id.show_fillter);
+        less = v.findViewById(R.id.less);
+        big = v.findViewById(R.id.big);
         Shopping_request_layout = v.findViewById(R.id.Shopping_request_layout);
         premium = v.findViewById(R.id.premium);
+        filtter_price_market_order = v.findViewById(R.id.filtter_price_market_order);
 
         Shopping_request_text = v.findViewById(R.id.Shopping_request_text);
         orders_rec = v.findViewById(R.id.orders_rec);
         nodata_vis = v.findViewById(R.id.nodata_vis);
+        text_search = v.findViewById(R.id.text_search);
 
 
         AllOrder = v.findViewById(R.id.AllOrder);
@@ -211,14 +243,36 @@ public class OrdersFragment extends Fragment {
         AllOrder_number = v.findViewById(R.id.AllOrder_number);
         not_premium = v.findViewById(R.id.not_premium);
         type_of_v = v.findViewById(R.id.type_of_v);
+        search_price_real_state = v.findViewById(R.id.search_price_real_state);
+        selected_list_citys = v.findViewById(R.id.selected_list_citys);
 
         list_opration = v.findViewById(R.id.list_opration);
+        search = v.findViewById(R.id.search);
 
         progress = v.findViewById(R.id.progress);
 
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         orders_rec.setLayoutManager(layoutManager1);
+        LinearLayoutManager layoutManager1c
+                = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        selected_list_city.setLayoutManager(layoutManager1c);
+        LinearLayoutManager layoutManager1cs
+                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        selected_list_citys.setLayoutManager(layoutManager1cs);
+
+        if (Application.AllCity.size() != 0) {
+            progress.setVisibility(View.GONE);
+
+            cityModules_list = Application.AllCity;
+
+
+        } else {
+            init_volley();
+            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+            mVolleyService.getDataVolley("city", WebService.cities);
+
+        }
 
 
         if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
@@ -232,9 +286,103 @@ public class OrdersFragment extends Fragment {
 //            offer.setVisibility(View.GONE);
             not_premium.setVisibility(View.VISIBLE);
         }
+        text_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                selected_list_city.setVisibility(View.VISIBLE);
+                cityModules_list_filter.clear();
+
+                System.out.println("$$$" + s + "%%%" + s.length());
+
+
+                if (s.length() > 3) {
+
+                    for (int i = 0; i < cityModules_list.size(); i++) {
+
+                        if (cityModules_list.get(i).getName().contains(s + "")) {
+
+                            System.out.println("ddddddddddd" + cityModules_list.get(i).getName());
+                            cityModules_list_filter.add(cityModules_list.get(i));
+                            RecyclerView_city_bootom_sheets_multi recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets_multi(getContext(), cityModules_list_filter);
+                            recyclerView_city_bootom_sheets.addItemClickListener2(new RecyclerView_city_bootom_sheets_multi.ItemClickListener2() {
+                                @Override
+                                public void onItemClick(List<CityModules> cityModules) {
+
+
+                                    cityModules_list.clear();
+                                    cityModules_list = cityModules;
+
+                                    Show_cityModules_list_filter_selected();
+
+                                }
+                            });
+
+                            selected_list_city.setAdapter(recyclerView_city_bootom_sheets);
+
+                        }
+
+
+                    }
+
+
+                } else {
+                    cityModules_list_filter.clear();
+                    RecyclerView_city_bootom_sheets_multi recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets_multi(getContext(), cityModules_list_filter);
+                    recyclerView_city_bootom_sheets.addItemClickListener2(new RecyclerView_city_bootom_sheets_multi.ItemClickListener2() {
+
+
+                        @Override
+                        public void onItemClick(List<CityModules> cityModules) {
+                            cityModules_list.clear();
+                            cityModules_list = cityModules;
+
+//                            if (cityModules_list.get(postion).isSelected()) {
+//                                cityModules_list.get(postion).setSelected(false);
+//
+//                            } else {
+//                                cityModules_list.get(postion).setSelected(true);
+//
+//                            }
+                            Show_cityModules_list_filter_selected();
+
+                        }
+                    });
+
+                    selected_list_city.setAdapter(recyclerView_city_bootom_sheets);
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         Action_Button();
+    }
+
+    public void Show_cityModules_list_filter_selected() {
+        System.out.println("ooeooeoeoeeoe");
+        cityModules_list_filter_selected.clear();
+
+        for (int i = 0; i < cityModules_list.size(); i++) {
+
+
+            if (cityModules_list.get(i).isSelected()) {
+
+                cityModules_list_filter_selected.add(cityModules_list.get(i));
+            }
+
+        }
+        selected_list_citys.setAdapter(new RecyclerView_select_city(getContext(), cityModules_list_filter_selected));
+
     }
 
     public void Action_Button() {
@@ -243,8 +391,6 @@ public class OrdersFragment extends Fragment {
         AllOrder_number.setText(Settings.getSettings().getAllRequestFund() + "");
         today_number.setText(Settings.getSettings().getRequestFund() + "");
         Myoffer_number.setText(Settings.getSettings().getMyRequestFundOffer() + "");
-
-
 
 
         LinearLayoutManager layoutManagerxmx
@@ -265,7 +411,7 @@ public class OrdersFragment extends Fragment {
         recyclerView_all_opration_bottom_sheet.addItemClickListener(new RecyclerView_All_opration_bottom_sheet_type.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
-//                opration_select = type_list.get(position).getId().toString() + "";
+                opration_select = type_list.get(position).getId().toString() + "";
 //
 //                page = 1;
 //                send_requst_by_type(type_requst);
@@ -293,21 +439,18 @@ public class OrdersFragment extends Fragment {
             recyclerView_all_type_order_.addItemClickListener(new RecyclerView_All_Comfort_in_fragment.ItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
-//                    if (position == 0) {
-//                        list_opration.setVisibility(View.VISIBLE);
-//                        type_sale.setVisibility(View.VISIBLE);
-//                        section_horizantal.setVisibility(View.VISIBLE);
-//                    } else if (position == 1) {
-//                        list_opration.setVisibility(View.VISIBLE);
-//                        section_horizantal.setVisibility(View.VISIBLE);
-//                        type_sale.setVisibility(View.VISIBLE);
-//                    } else {
-//                        list_opration.setVisibility(View.VISIBLE);
-//
-//                        type_sale.setVisibility(View.GONE);
-//                        section_horizantal.setVisibility(View.GONE);
-//
-//                    }
+                    if (position == 0) {
+                        tyype_type = "sell";
+                    } else if (position == 1) {
+
+                        tyype_type = "rent";
+
+                    } else {
+
+                        tyype_type = "es";
+
+
+                    }
                 }
             });
             list_opration.setAdapter(recyclerView_all_type_order_);
@@ -315,8 +458,74 @@ public class OrdersFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fillter_layoiut.setVisibility(View.GONE);
+
+                OrdersFragment.filtterModules.setOrder_by_price(price_order + "");
+                String city = "";
+                for (int i = 0; i < cityModules_list.size(); i++) {
+                    if (city.equals("")) {
+                        city = "" + cityModules_list.get(i).getId();
+                    } else {
+                        city = city + "," + cityModules_list.get(i).getId();
+
+                    }
+                }
+
+                if (type_type.equals("fund_Request")) {
+
+                    System.out.println(city);
+                    OrdersFragment.filtterModules.setSelect_city(city + "");
+                    OrdersFragment.filtterModules.setType_oprtion(opration_select + "");
+                    OrdersFragment.filtterModules.setType_type("");
+                    OrdersFragment.filtterModules.setOrder_by_price("price_order");
+
+                } else {
+
+                    System.out.println(city);
+                    OrdersFragment.filtterModules.setSelect_city(city + "");
+                    OrdersFragment.filtterModules.setType_oprtion(opration_select + "");
+                    OrdersFragment.filtterModules.setType_type(tyype_type);
+
+                }
+                page = 1;
 
 
+                GetData(type_requst);
+
+
+            }
+        });
+        show_fillter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fillter_layoiut.setVisibility(View.VISIBLE);
+            }
+        });
+
+        less.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    less.setChecked(true);
+                    less.setChecked(false);
+                    price_order = "1";
+                }
+            }
+        });
+        big.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    less.setChecked(false);
+                    less.setChecked(true);
+                    price_order = "0";
+
+                }
+            }
+        });
 
         Real_Estate_order_layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -331,7 +540,8 @@ public class OrdersFragment extends Fragment {
                 Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
                 Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.white), PorterDuff.Mode.MULTIPLY);
 
-
+                filtter_price_market_order.setVisibility(View.GONE);
+                search_price_real_state.setVisibility(View.VISIBLE);
                 page = 1;
 
                 type_type = "fund_Request";
@@ -359,6 +569,8 @@ public class OrdersFragment extends Fragment {
                 Real_Estate_order_text.setTextColor(getResources().getColor(R.color.textColor));
                 Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColor), PorterDuff.Mode.MULTIPLY);
 
+                filtter_price_market_order.setVisibility(View.VISIBLE);
+                search_price_real_state.setVisibility(View.GONE);
 
                 page = 1;
 
@@ -473,8 +685,6 @@ public class OrdersFragment extends Fragment {
         });
 
 
-
-
         Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
         Shopping_request_text.setTextColor(getResources().getColor(R.color.textColor));
@@ -578,7 +788,15 @@ public class OrdersFragment extends Fragment {
 
                 try {
 
-                    if (requestType.equals("market_demands")) {
+
+                    if (requestType.equals("city")) {
+
+                        String data = response.getString("data");
+
+                        Hawk.put("AllCity", data);
+
+
+                    } else if (requestType.equals("market_demands")) {
 
                         String data = response.getString("data");
 
@@ -710,5 +928,6 @@ public class OrdersFragment extends Fragment {
 
 
     }
+
 
 }

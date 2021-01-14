@@ -210,19 +210,19 @@ public class BottomSheetDialogFragment_Filtter_order extends BottomSheetDialogFr
 
 
                 @Override
-                public void onItemClick(List<CityModules> alldata) {
+                public void onItemClick(int i) {
 
-                    cityModules_list = alldata;
-
-                    cityModules_list_selected.clear();
-                    for (int i = 0; i < cityModules_list.size(); i++) {
-
-                        if (cityModules_list.get(i).isSelected()) {
-                            cityModules_list_selected.add(cityModules_list.get(i));
-                        }
-
-
-                    }
+//                    cityModules_list = alldata;
+//
+//                    cityModules_list_selected.clear();
+//                    for (int i = 0; i < cityModules_list.size(); i++) {
+//
+//                        if (cityModules_list.get(i).isSelected()) {
+//                            cityModules_list_selected.add(cityModules_list.get(i));
+//                        }
+//
+//
+//                    }
 
                     selected_list_city.setAdapter(new RecyclerView_select_city(getContext(), cityModules_list_selected));
                 }
@@ -280,11 +280,7 @@ public class BottomSheetDialogFragment_Filtter_order extends BottomSheetDialogFr
         search_badge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 OrdersFragment.filtterModules.setOrder_by_price(price_order + "");
-
-
                 String city = "";
                 for (int i = 0; i < cityModules_list_selected.size(); i++) {
                     if (city.equals("")) {
@@ -394,8 +390,8 @@ public class BottomSheetDialogFragment_Filtter_order extends BottomSheetDialogFr
 
 
                                 @Override
-                                public void onItemClick(List<CityModules> alldata) {
-                                    cityModules_list = alldata;
+                                public void onItemClick(int i) {
+//                                    cityModules_list = alldata;
 
                                 }
                             });

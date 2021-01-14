@@ -367,6 +367,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/show_fillter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -392,9 +393,11 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/fillter_layoiut"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+
                     android:layout_marginRight="10dp"
                     android:orientation="vertical">
 
@@ -416,16 +419,50 @@
                         android:background="#F7F7F7" />
 
                     <LinearLayout
+                        android:id="@+id/search_price_real_state"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/circle_w"
                         android:gravity="center"
                         android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
+                        android:paddingRight="10dp">
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:gravity="center_vertical"
+                            android:hint="@string/serach_price"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textColorHint="#AAABB3"
+                            android:textSize="13dp"></TextView>
+
+                        <ImageView
+
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_baseline_arrow_drop_down_24" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="@drawable/circle_w">
+                        android:background="@drawable/circle_w"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
 
                         <EditText
                             android:id="@+id/text_search"
@@ -433,12 +470,12 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
-
                             android:hint="@string/search_city"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:textColorHint="#AAABB3"
                             android:textSize="13dp"></EditText>
+
                         <ImageView
                             android:id="@+id/search_btn"
 
@@ -446,7 +483,82 @@
                             android:layout_height="20dp"
                             android:src="@drawable/ic_search_icon" />
 
+
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/selected_list_citys"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/selected_list_city"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/filtter_price_market_order"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Order_by"
+                            android:textSize="16dp" />
+
+                        <LinearLayout
+                            android:layout_width="15dp"
+                            android:layout_height="10dp" />
+
+
+                        <RadioButton
+                            android:id="@+id/less"
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/colorPrimary"
+                            android:text="@string/lessthan" />
+
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+                            android:layout_height="10dp" />
+
+
+                        <RadioButton
+                            android:id="@+id/big"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="@color/colorPrimary"
+                            android:text="@string/bigthan" />
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_login"
+                        android:gravity="center"
+                        android:padding="7dp"
+                        android:text="@string/search"
+                        android:textColor="@color/white" />
 
 
                 </LinearLayout>
@@ -480,6 +592,7 @@
                     <ImageView
                         android:layout_width="150dp"
                         android:layout_height="150dp"
+                        android:layout_marginTop="20dp"
                         android:alpha=".3"
                         android:src="@drawable/ic_no_data" />
 

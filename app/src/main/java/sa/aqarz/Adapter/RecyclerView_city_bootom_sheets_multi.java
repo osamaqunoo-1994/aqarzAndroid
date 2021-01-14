@@ -32,6 +32,7 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
     static AlertDialog alertDialog;
 
     private ItemClickListener mItemClickListener;
+    private ItemClickListener2 mItemClickListener2;
 
     /**
      * View holder class
@@ -76,6 +77,9 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
 
     public void addItemClickListener(ItemClickListener listener) {
         mItemClickListener = listener;
+    }
+    public void addItemClickListener2(ItemClickListener2 listener) {
+        mItemClickListener2 = listener;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -194,7 +198,7 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
 
 
                 if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(alldata);
+                    mItemClickListener2.onItemClick(alldata);
                 }
 
             }
@@ -218,7 +222,7 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
 
 
                 if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(alldata);
+                    mItemClickListener2.onItemClick(alldata);
                 }
 
             }
@@ -255,6 +259,10 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
 
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(List<CityModules> alldata);
+        void onItemClick(int postion);
+    }
+    //Define your Interface method here
+    public interface ItemClickListener2 {
+        void onItemClick(List<CityModules> cityModules);
     }
 }

@@ -111,19 +111,19 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
 
 
                 @Override
-                public void onItemClick(List<CityModules> alldata) {
+                public void onItemClick(int i) {
 
-                    cityModules_list = alldata;
-
-                    cityModules_list_selected.clear();
-                    for (int i = 0; i < cityModules_list.size(); i++) {
-
-                        if (cityModules_list.get(i).isSelected()) {
-                            cityModules_list_selected.add(cityModules_list.get(i));
-                        }
-
-
-                    }
+//                    cityModules_list = alldata;
+//
+//                    cityModules_list_selected.clear();
+//                    for (int i = 0; i < cityModules_list.size(); i++) {
+//
+//                        if (cityModules_list.get(i).isSelected()) {
+//                            cityModules_list_selected.add(cityModules_list.get(i));
+//                        }
+//
+//
+//                    }
 
                     selected_list_city.setAdapter(new RecyclerView_select_city(getContext(), cityModules_list_selected));
                 }
@@ -157,8 +157,8 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
 
 
                     @Override
-                    public void onItemClick(List<CityModules> alldata) {
-                        cityModules_list = alldata;
+                    public void onItemClick(int i) {
+//                        cityModules_list = alldata;
 
                     }
                 });
@@ -260,8 +260,8 @@ public class BottomSheetDialogFragment_SelectCity_fillter extends BottomSheetDia
 
 
                             @Override
-                            public void onItemClick(List<CityModules> alldata) {
-                                cityModules_list = alldata;
+                            public void onItemClick(int i) {
+//                                cityModules_list = alldata;
 
                             }
                         });
