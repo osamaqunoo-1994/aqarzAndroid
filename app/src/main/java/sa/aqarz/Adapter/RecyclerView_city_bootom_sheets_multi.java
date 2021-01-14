@@ -78,6 +78,7 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
     public void addItemClickListener(ItemClickListener listener) {
         mItemClickListener = listener;
     }
+
     public void addItemClickListener2(ItemClickListener2 listener) {
         mItemClickListener2 = listener;
     }
@@ -179,51 +180,62 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
 //        });
 //
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (alldata.get(position).isSelected()) {
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (alldata.get(position).isSelected()) {
+//
+//                    alldata.get(position).setSelected(false);
+//                    holder.text.setChecked(false);
+//
+//
+//                } else {
+//                    alldata.get(position).setSelected(true);
+//
+//                    holder.text.setChecked(true);
+//
+//
+//                }
+//
+//
+//                if (mItemClickListener2 != null) {
+//                    mItemClickListener2.onItemClick(alldata);
+//                }
+//
+//            }
+//        });
 
-                    alldata.get(position).setSelected(false);
-                    holder.text.setChecked(false);
-
-
-                } else {
-                    alldata.get(position).setSelected(true);
-
-                    holder.text.setChecked(true);
-
-
-                }
-
-
-                if (mItemClickListener != null) {
-                    mItemClickListener2.onItemClick(alldata);
-                }
-
-            }
-        });
         holder.text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (alldata.get(position).isSelected()) {
 
+
+                    System.out.println("******************");
+
                     alldata.get(position).setSelected(false);
                     holder.text.setChecked(false);
 
+                    if (mItemClickListener2 != null) {
+                        System.out.println("******************2");
 
+
+                    }
                 } else {
                     alldata.get(position).setSelected(true);
+                    System.out.println("******************1");
 
                     holder.text.setChecked(true);
 
+                    if (mItemClickListener2 != null) {
+                        System.out.println("******************2");
 
+                    }
                 }
 
 
-                if (mItemClickListener != null) {
-                    mItemClickListener2.onItemClick(alldata);
-                }
+                mItemClickListener2.onItemClick(alldata.get(position));
+
 
             }
         });
@@ -261,8 +273,9 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
     public interface ItemClickListener {
         void onItemClick(int postion);
     }
+
     //Define your Interface method here
     public interface ItemClickListener2 {
-        void onItemClick(List<CityModules> cityModules);
+        void onItemClick(CityModules cityModules);
     }
 }

@@ -308,27 +308,36 @@ public class OrdersFragment extends Fragment {
 
                             System.out.println("ddddddddddd" + cityModules_list.get(i).getName());
                             cityModules_list_filter.add(cityModules_list.get(i));
-                            RecyclerView_city_bootom_sheets_multi recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets_multi(getContext(), cityModules_list_filter);
-                            recyclerView_city_bootom_sheets.addItemClickListener2(new RecyclerView_city_bootom_sheets_multi.ItemClickListener2() {
-                                @Override
-                                public void onItemClick(List<CityModules> cityModules) {
 
-
-                                    cityModules_list.clear();
-                                    cityModules_list = cityModules;
-
-                                    Show_cityModules_list_filter_selected();
-
-                                }
-                            });
-
-                            selected_list_city.setAdapter(recyclerView_city_bootom_sheets);
 
                         }
 
 
                     }
+                    RecyclerView_city_bootom_sheets_multi recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets_multi(getContext(), cityModules_list_filter);
+                    recyclerView_city_bootom_sheets.addItemClickListener2(new RecyclerView_city_bootom_sheets_multi.ItemClickListener2() {
+                        @Override
+                        public void onItemClick(CityModules id_) {
+                            for (int i = 0; i < cityModules_list.size(); i++) {
 
+                                if (cityModules_list.get(i).getId().toString().equals(id_.getId() + "")) {
+
+                                    System.out.println("ddddddddddd" + cityModules_list.get(i).getName());
+                                    cityModules_list.get(i).setSelected(id_.isSelected());
+
+
+                                }
+
+
+                            }
+
+                            System.out.println("ddddddd####dddd");
+                            Show_cityModules_list_filter_selected();
+
+                        }
+                    });
+
+                    selected_list_city.setAdapter(recyclerView_city_bootom_sheets);
 
                 } else {
                     cityModules_list_filter.clear();
@@ -337,9 +346,9 @@ public class OrdersFragment extends Fragment {
 
 
                         @Override
-                        public void onItemClick(List<CityModules> cityModules) {
+                        public void onItemClick(CityModules cityModules) {
                             cityModules_list.clear();
-                            cityModules_list = cityModules;
+//                            cityModules_list = cityModules;
 
 //                            if (cityModules_list.get(postion).isSelected()) {
 //                                cityModules_list.get(postion).setSelected(false);
