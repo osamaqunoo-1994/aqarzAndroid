@@ -16,6 +16,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -39,6 +40,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -143,7 +147,9 @@ public class MapsFragment extends Fragment {
     String opration_select = "";
     String convert_type = "map";
 
-
+    ShowcaseView showCaseView;
+    ShowcaseView showCaseView1;
+    ShowcaseView showCaseView2;
     RecyclerView list_aqaers;
     ImageView chmnage_map_style;
 
@@ -527,6 +533,58 @@ public class MapsFragment extends Fragment {
         }
 
 
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+
+                showCaseView = new ShowcaseView.Builder(getActivity())
+                        .setTarget(new ViewTarget(R.id.addAqares, getActivity()))
+                        .setContentTitle(getResources().getString(R.string.AddAqarezTitle_show))
+                        .setContentText(getResources().getString(R.string.AddAqarezdes_show))
+
+                        .setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showCaseView.hide();
+
+                                showCaseView1 = new ShowcaseView.Builder(getActivity())
+                                        .setTarget(new ViewTarget(R.id.RequstAqars, getActivity()))
+                                        .setContentTitle(getResources().getString(R.string.RequestServicezTitle_show))
+                                        .setContentText(getResources().getString(R.string.RequestServicezdes_show))
+
+                                        .setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                showCaseView1.hide();
+
+
+                                                showCaseView2 = new ShowcaseView.Builder(getActivity())
+                                                        .setTarget(new ViewTarget(R.id.filtter, getActivity()))
+                                                        .setContentTitle(getResources().getString(R.string.filtterSearchzTitle_show))
+                                                        .setContentText(getResources().getString(R.string.filtterSearchzdes_show))
+
+
+                                                        .hideOnTouchOutside()
+
+                                                        .setStyle(R.style.CustomShowcaseTheme2)
+                                                        .build();
+                                            }
+                                        })
+
+                                        .setStyle(R.style.CustomShowcaseTheme2)
+                                        .build();
+                            }
+                        })
+
+
+                        .setStyle(R.style.CustomShowcaseTheme2)
+                        .build();
+
+
+            }
+        }, 100); // After 1 seconds
     }
 
     public void ActionButton() {
@@ -605,6 +663,7 @@ public class MapsFragment extends Fragment {
 
 
             }
+
         });
 
         //------------------------------------------------------------------------------------------------------
