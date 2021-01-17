@@ -95,6 +95,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
 
     ImageView favorit;
+    ImageView back;
 
     HomeModules_aqares homeModules_aqares;
     List<HomeModules_aqares> homeModules_aqares_list = new ArrayList<>();
@@ -135,6 +136,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
         rate_aqarez = findViewById(R.id.rate_aqarez);
         rec_list_all = findViewById(R.id.rec_list_all);
         list_coments = findViewById(R.id.list_coments);
+        back = findViewById(R.id.back);
 
 
         type_ = findViewById(R.id.type_);
@@ -153,7 +155,12 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
         comfort_rec.setLayoutManager(new GridLayoutManager(this, 2));
 
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         try {
             id_or_aq = getIntent().getStringExtra("id_aqarz");
 

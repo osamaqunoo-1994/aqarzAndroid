@@ -54,6 +54,7 @@ public class DetailsActivity extends AppCompatActivity {
     TextView name;
     String id_or_aq = "1";
     LinearLayout call;
+    ImageView back;
     ImageView favorit;
     HomeModules homeModules_aqares;
     LinearLayout profile;
@@ -85,13 +86,19 @@ public class DetailsActivity extends AppCompatActivity {
         favorit = findViewById(R.id.favorit);
         profile = findViewById(R.id.profile);
         chat = findViewById(R.id.chat);
+        back = findViewById(R.id.back);
         try {
             id_or_aq = getIntent().getStringExtra("id_aqarz");
 
         } catch (Exception e) {
 
         }
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         init_volley();
         WebService.loading(DetailsActivity.this, true);

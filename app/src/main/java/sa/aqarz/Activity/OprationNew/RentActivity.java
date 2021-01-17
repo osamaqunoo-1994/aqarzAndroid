@@ -81,12 +81,14 @@ public class RentActivity extends AppCompatActivity {
 
     String opration_select = "1";
     String contract_interval = "0";
+    String ada_ = "0";
 
 
     EditText price, name_owner, phone_owner, owner_id_number, Total_salary;
     EditText name, phone, id_number;
     EditText name_city, buldingnumber, StreetName;
     EditText Neighborhoodname, Postal_code, additional_number, unit_number;
+    EditText Total_salcary;
     TextView date_bertih;
     TextView city;
     TextView years;
@@ -154,6 +156,7 @@ public class RentActivity extends AppCompatActivity {
         Special = findViewById(R.id.Special);
         ada_1_yes = findViewById(R.id.ada_1_yes);
         ada_1_no = findViewById(R.id.ada_1_no);
+        Total_salcary = findViewById(R.id.Total_salcary);
 
         buldingnumber = findViewById(R.id.buldingnumber);
         StreetName = findViewById(R.id.StreetName);
@@ -221,7 +224,7 @@ public class RentActivity extends AppCompatActivity {
 
                 ada_1_no.setTextColor(getResources().getColor(R.color.textColor));
 
-//                ada_ = "1";
+                ada_ = "1";
             }
         });
         ada_1_no.setOnClickListener(new View.OnClickListener() {
@@ -236,7 +239,7 @@ public class RentActivity extends AppCompatActivity {
 
                 ada_1_yes.setTextColor(getResources().getColor(R.color.textColor));
 
-//                ada_ = "0";
+                ada_ = "0";
 
             }
 
@@ -489,6 +492,8 @@ public class RentActivity extends AppCompatActivity {
 
 
                         sendObj.put("rent_price", price.getText().toString());//
+                        sendObj.put("is_salary_adapter_on", ada_);//
+                        sendObj.put("employer_name", Total_salcary.getText().toString());//
 
 
 //                        sendObj.put("owner_name", name_owner.getText().toString());//
