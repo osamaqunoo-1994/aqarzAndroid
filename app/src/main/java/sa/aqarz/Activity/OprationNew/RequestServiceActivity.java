@@ -162,36 +162,39 @@ public class RequestServiceActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (!Hawk.contains("showCaseView1")) {
+
+                    Hawk.put("showCaseView1", "showCaseView1");
 
 
-                showCaseView = new ShowcaseView.Builder(RequestServiceActivity.this)
-                        .setTarget(new ViewTarget(R.id.aqar_layout, RequestServiceActivity.this))
-                        .setContentTitle(getResources().getString(R.string.requestAqarezhzTitle_show))
-                        .setContentText(getResources().getString(R.string.requestAqarezhzdes_show))
+                    showCaseView = new ShowcaseView.Builder(RequestServiceActivity.this)
+                            .setTarget(new ViewTarget(R.id.aqar_layout, RequestServiceActivity.this))
+                            .setContentTitle(getResources().getString(R.string.requestAqarezhzTitle_show))
+                            .setContentText(getResources().getString(R.string.requestAqarezhzdes_show))
 
-                        .setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                showCaseView.hide();
+                            .setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    showCaseView.hide();
 
-                                showCaseView1 = new ShowcaseView.Builder(RequestServiceActivity.this)
-                                        .setTarget(new ViewTarget(R.id.rent_layout, RequestServiceActivity.this))
-                                        .setContentTitle(getResources().getString(R.string.finincezhzTitle_show))
-                                        .setContentText(getResources().getString(R.string.finincezhzdes_show))
-
-
-                                        .hideOnTouchOutside()
-
-                                        .setStyle(R.style.CustomShowcaseTheme2)
-                                        .build();
-                            }
-                        })
+                                    showCaseView1 = new ShowcaseView.Builder(RequestServiceActivity.this)
+                                            .setTarget(new ViewTarget(R.id.rent_layout, RequestServiceActivity.this))
+                                            .setContentTitle(getResources().getString(R.string.finincezhzTitle_show))
+                                            .setContentText(getResources().getString(R.string.finincezhzdes_show))
 
 
-                        .setStyle(R.style.CustomShowcaseTheme2)
-                        .build();
+                                            .hideOnTouchOutside()
+
+                                            .setStyle(R.style.CustomShowcaseTheme2)
+                                            .build();
+                                }
+                            })
 
 
+                            .setStyle(R.style.CustomShowcaseTheme2)
+                            .build();
+
+                }
             }
         }, 100); // After 1 seconds
 

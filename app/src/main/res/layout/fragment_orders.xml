@@ -397,9 +397,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-
                     android:layout_marginRight="10dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/type_of_v"
@@ -411,13 +411,13 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/list_opration"
                         android:layout_width="wrap_content"
-                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginBottom="10dp"
+                        android:background="#F7F7F7"
 
-                        android:background="#F7F7F7" />
+                        android:visibility="gone" />
 
                     <LinearLayout
                         android:id="@+id/search_price_real_state"
@@ -450,58 +450,6 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:src="@drawable/ic_baseline_arrow_drop_down_24" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/circle_w"
-                        android:gravity="center"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp">
-
-                        <EditText
-                            android:id="@+id/text_search"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:background="@android:color/transparent"
-                            android:hint="@string/search_city"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:textColorHint="#AAABB3"
-                            android:textSize="13dp"></EditText>
-
-                        <ImageView
-                            android:id="@+id/search_btn"
-
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_search_icon" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content">
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/selected_list_citys"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp" />
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/selected_list_city"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp" />
 
                     </LinearLayout>
 
@@ -547,6 +495,59 @@
                             android:buttonTint="@color/colorPrimary"
                             android:text="@string/bigthan" />
 
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/circle_w"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+                        <EditText
+                            android:id="@+id/text_search"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/search_city"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textColorHint="#AAABB3"
+                            android:textSize="13dp"></EditText>
+
+                        <ImageView
+                            android:id="@+id/search_btn"
+
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_search_icon" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/selected_list_citys"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/selected_list_city"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp" />
 
                     </LinearLayout>
 
