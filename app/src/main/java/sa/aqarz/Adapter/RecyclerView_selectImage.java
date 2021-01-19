@@ -15,9 +15,12 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Modules.SelectImageModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
@@ -56,7 +59,8 @@ public class RecyclerView_selectImage extends RecyclerView.Adapter<RecyclerView_
 //        ProgressBar progress;
 //        LinearLayout add_to_my;
 
-ImageView omage;
+        ImageView omage;
+        ImageView delect;
 
 
         public MyViewHolder(View view) {
@@ -64,9 +68,8 @@ ImageView omage;
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
 
 
-
-
             omage = view.findViewById(R.id.omage);
+            delect = view.findViewById(R.id.delect);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
@@ -81,6 +84,7 @@ ImageView omage;
     public void addItemClickListener(ItemClickListener listener) {
         mItemClickListener = listener;
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
@@ -124,8 +128,6 @@ ImageView omage;
         //   wallet, dafter, receipt, payment
 
 
-
-
 //            double v=Double.valueOf(alldata.get(position).getRate());
 //
 //
@@ -158,24 +160,53 @@ ImageView omage;
 //        });
 //
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+        holder.omage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
+                LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+                View mView = li.inflate(R.layout.open_image, null);
+                ImageView imagedd = mView.findViewById(R.id.imagedd);
+
+                imagedd.setImageBitmap(alldata.get(position).getSelectedImage());
 
 
-                Postion_opend = position;
-                Refr();
+                mBuilder.setView(mView);
+                AlertDialog mDialog = mBuilder.create();
+                mDialog.show();
 
-//                RequestOrderActivity.set_fragment(position);
-
-
-                if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(position);
-                }
-//
 
             }
         });
+        holder.delect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                alldata.remove(position);
+                System.out.println(AddAqarsActivity.selectIamgeList.size() + "HH%%HH" + position);
+                AddAqarsActivity.selectIamgeList.remove(position);
+                Refr();
+            }
+        });
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//
+//                Postion_opend = position;
+//                Refr();
+//
+////                RequestOrderActivity.set_fragment(position);
+//
+//
+//                if (mItemClickListener != null) {
+//                    mItemClickListener.onItemClick(position);
+//                }
+////
+//
+//            }
+//        });
 
 
     }

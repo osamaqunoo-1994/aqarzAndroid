@@ -162,7 +162,7 @@ public class AddAqarsActivity extends AppCompatActivity {
     RecyclerView comfort_RecyclerView;
     List<TypeModules> type_list = new ArrayList<>();
     List<ComfortModules> comfort_list = new ArrayList<>();
-    List<SelectImageModules> selectIamgeList = new ArrayList<>();
+    public static List<SelectImageModules> selectIamgeList = new ArrayList<>();
     IResult mResultCallback;
 
     Button btn_send;

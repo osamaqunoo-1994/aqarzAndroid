@@ -78,6 +78,7 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
         TextView rejecteds;
         TextView sale;
         TextView status;
+        TextView id_number;
         ImageView image;
 
         CheckBox chechbox;
@@ -96,6 +97,7 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
             rejecteds = view.findViewById(R.id.rejecteda);
             sale = view.findViewById(R.id.sale);
             status = view.findViewById(R.id.status);
+            id_number = view.findViewById(R.id.id_number);
 
 
         }
@@ -121,6 +123,7 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
         holder.opration.setText(alldata.get(position).getEstate_type_name() + "");
         holder.address.setText(alldata.get(position).getEstateCity() + "");
         holder.sale.setText(alldata.get(position).getSale_type_name() + "");
+        holder.id_number.setText(" # " + alldata.get(position).getId() + "");
 //        holder.date.setText(alldata.get(position).getCreatedAt());
 //        if (alldata.get(position).getRate() != null) {
 //            if (!alldata.get(position).getRate().equals("null")) {
