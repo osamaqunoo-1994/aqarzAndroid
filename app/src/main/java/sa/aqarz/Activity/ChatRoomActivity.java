@@ -149,7 +149,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                     }
 
                     WebService.loading(ChatRoomActivity.this, true);
-                    System.out.println("jsonObjectjsonObjectjsonObject"+jsonObject.toString());
+                    System.out.println("jsonObjectjsonObjectjsonObject" + jsonObject.toString());
                     mVolleyService.postDataVolley("send_msg", WebService.send_msg, jsonObject);
 
 
@@ -227,8 +227,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                             init_volley();
                             VolleyService mVolleyService = new VolleyService(mResultCallback, ChatRoomActivity.this);
 
-                            mVolleyService.getDataVolley("msg", WebService.msg + "/" + user_id+"/det");
-
+                            mVolleyService.getDataVolley("msg", WebService.msg + "/" + user_id + "/det");
 
 
                         } else if (requestType.equals("send_msg")) {
@@ -242,7 +241,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                             text_mesage.setText("");
 //                            WebService.Make_Toast_color(ChatRoomActivity.this, messagecc, "success");
 
-                        }else{
+                        } else {
                             System.out.println("ooorororroro");
                         }
 
