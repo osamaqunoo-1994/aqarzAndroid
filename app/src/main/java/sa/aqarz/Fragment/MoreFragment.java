@@ -46,6 +46,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sa.aqarz.Activity.AqarzProfileActivity;
+import sa.aqarz.Activity.Auth.ForgotPasswordActivity;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.Auth.NewPasswordActivity;
@@ -63,6 +64,7 @@ import sa.aqarz.Activity.profile.AllclintActivity;
 import sa.aqarz.Activity.profile.MyProfileActivity;
 import sa.aqarz.Adapter.RecyclerView_All_Opration_in_map;
 import sa.aqarz.Adapter.RecyclerView_All_Type_in_map;
+import sa.aqarz.Dialog.BottomSheetDialogFragmen_restPassword;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_QR;
 import sa.aqarz.Modules.OprationModules;
 import sa.aqarz.Modules.TypeModules;
@@ -165,11 +167,21 @@ public class MoreFragment extends Fragment {
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), NewPasswordActivity.class);
-//                                intent.putExtra("from", "splash");
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                Intent intent = new Intent(getContext(), NewPasswordActivity.class);
+////                                intent.putExtra("from", "splash");
+//                startActivity(intent);
+//                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
+
+                BottomSheetDialogFragmen_restPassword bottomSheetDialogFragmen_restPassword=new BottomSheetDialogFragmen_restPassword("");
+                bottomSheetDialogFragmen_restPassword.show(getChildFragmentManager(),"");
+
+//                Intent intent = new Intent(getContext(), ForgotPasswordActivity.class);
+////                                intent.putExtra("from", "splash");
+//                startActivity(intent);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+//                finish();
             }
         });
         contact_us.setOnClickListener(new View.OnClickListener() {

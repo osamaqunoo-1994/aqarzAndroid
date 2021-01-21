@@ -103,7 +103,7 @@ public class MyOfferModule {
     private Integer inFav;
     @SerializedName("estate_neighborhood")
     @Expose
-    private Object estateNeighborhood;
+    private String estateNeighborhood;
     @SerializedName("estate_exclusive_contract_file")
     @Expose
     private Object estateExclusiveContractFile;
@@ -361,11 +361,11 @@ public class MyOfferModule {
         this.inFav = inFav;
     }
 
-    public Object getEstateNeighborhood() {
+    public String getEstateNeighborhood() {
         return estateNeighborhood;
     }
 
-    public void setEstateNeighborhood(Object estateNeighborhood) {
+    public void setEstateNeighborhood(String  estateNeighborhood) {
         this.estateNeighborhood = estateNeighborhood;
     }
 

@@ -22,8 +22,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.OprationNew.RentShowActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Activity.OprationNew.RateOrderActivity"></activity>
+        <activity
+            android:name=".Activity.OprationNew.RentShowActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.FiltterOrderActivity"
             android:theme="@style/AppTheme.NoActionBar" />
