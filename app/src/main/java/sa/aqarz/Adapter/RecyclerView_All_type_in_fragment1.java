@@ -64,6 +64,7 @@ public class RecyclerView_All_type_in_fragment1 extends RecyclerView.Adapter<Rec
         LinearLayout back_ground;
         TextView text;
         ImageView image_in_type;
+        ImageView selected;
 
         public MyViewHolder(View view) {
             super(view);
@@ -73,6 +74,7 @@ public class RecyclerView_All_type_in_fragment1 extends RecyclerView.Adapter<Rec
             back_ground = view.findViewById(R.id.back_ground);
             text = view.findViewById(R.id.text);
             image_in_type = view.findViewById(R.id.image_in_type);
+            selected = view.findViewById(R.id.selected);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
@@ -114,12 +116,13 @@ public class RecyclerView_All_type_in_fragment1 extends RecyclerView.Adapter<Rec
             holder.text.setTextColor(context.getResources().getColor(R.color.white));
 
             holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
-
+            holder.selected.setVisibility(View.VISIBLE);
         } else {
             holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.circle_wh));
 
             holder.text.setTextColor(context.getResources().getColor(R.color.color_filter));
             holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.color_filter), android.graphics.PorterDuff.Mode.SRC_IN);
+            holder.selected.setVisibility(View.GONE);
 
         }
 //

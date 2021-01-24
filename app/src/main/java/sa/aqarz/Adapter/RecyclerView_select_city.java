@@ -55,6 +55,7 @@ public class RecyclerView_select_city extends RecyclerView.Adapter<RecyclerView_
 
 
         TextView text_city;
+        ImageView clear;
 
 
         public MyViewHolder(View view) {
@@ -63,6 +64,7 @@ public class RecyclerView_select_city extends RecyclerView.Adapter<RecyclerView_
 
 
             text_city = view.findViewById(R.id.text_city);
+            clear = view.findViewById(R.id.clear);
 
 
 //            ratingbar = view.findViewById(R.id.ratingbar);
@@ -161,7 +163,14 @@ public class RecyclerView_select_city extends RecyclerView.Adapter<RecyclerView_
 //            }
 //        });
 //
+        holder.clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                alldata.remove(position);
+                Refr();
+            }
+        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

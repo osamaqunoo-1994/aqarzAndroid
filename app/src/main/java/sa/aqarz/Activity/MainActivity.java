@@ -30,9 +30,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.orhanobut.hawk.Hawk;
 
 import java.util.Set;
 
@@ -62,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
     public static BottomSheetDialogFragment_MyEstate bottomSheetDialogFragment_myEstate;
     static BottomSheetDialog bottomSheerDialog;
 
-public static OrdersModules ordersModules;
-public static demandsModules demandsModules;
+    public static OrdersModules ordersModules;
+    public static demandsModules demandsModules;
     static ImageView image_1;
     static ImageView image_s;
     static ImageView image_2;
@@ -76,6 +79,7 @@ public static demandsModules demandsModules;
     static TextView text_s;
 
     LinearLayout lay_1, lay_2, lay_3, lay_4, lay_s;
+    ShowcaseView showCaseView;
 
     FloatingActionButton myFab;
     public static FragmentManager ft;
@@ -372,7 +376,22 @@ public static demandsModules demandsModules;
 //            }
 //        }
 
-
+//        final Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//
+//                if (!Hawk.contains("showCaseView")) {
+//
+//                    Hawk.put("showCaseView", "showCaseView");
+//
+//
+//                }
+//
+//
+//            }
+//        }, 100); // After 1 seconds
     }
 
 //    public void init() {

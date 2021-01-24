@@ -3,19 +3,36 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-
-    <TextView
-        android:id="@+id/text_city"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/button_login"
-        android:paddingLeft="15dp"
-        android:paddingTop="5dp"
-        android:paddingRight="15dp"
-        android:paddingBottom="5dp"
-        android:textColor="@color/white"
-        android:textSize="13dp" />
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/text_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/button_login"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/white"
+                android:textSize="13dp" />
+
+            <ImageView
+                android:id="@+id/clear"
+                android:layout_width="15dp"
+                android:src="@drawable/ic_clear_white_24dp"
+                android:background="@drawable/circle_red"
+                android:layout_height="15dp" />
+        </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

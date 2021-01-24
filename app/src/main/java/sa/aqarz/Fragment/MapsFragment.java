@@ -147,7 +147,7 @@ public class MapsFragment extends Fragment {
     String opration_select = "";
     String convert_type = "map";
 
-    ShowcaseView showCaseView;
+    public static ShowcaseView showCaseView;
     ShowcaseView showCaseView1;
     ShowcaseView showCaseView2;
     RecyclerView list_aqaers;
@@ -539,52 +539,71 @@ public class MapsFragment extends Fragment {
             public void run() {
 
 
-                if (!Hawk.contains("showCaseView")) {
+                if (!Hawk.contains("showCaseView1x")) {
 
                     Hawk.put("showCaseView", "showCaseView");
-
                     showCaseView = new ShowcaseView.Builder(getActivity())
-                            .setTarget(new ViewTarget(R.id.addAqares, getActivity()))
-                            .setContentTitle(getResources().getString(R.string.AddAqarezTitle_show))
-                            .setContentText(getResources().getString(R.string.AddAqarezdes_show))
+                            .setTarget(new ViewTarget(R.id.lay_2, getActivity()))
+
+                            .setContentTitle(getResources().getString(R.string.title_orfdder))
+                            .setContentText(getResources().getString(R.string.deta_order))
 
                             .setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     showCaseView.hide();
 
-                                    showCaseView1 = new ShowcaseView.Builder(getActivity())
-                                            .setTarget(new ViewTarget(R.id.RequstAqars, getActivity()))
-                                            .setContentTitle(getResources().getString(R.string.RequestServicezTitle_show))
-                                            .setContentText(getResources().getString(R.string.RequestServicezdes_show))
+                                    showCaseView = new ShowcaseView.Builder(getActivity())
+                                            .setTarget(new ViewTarget(R.id.addAqares, getActivity()))
+                                            .setContentTitle(getResources().getString(R.string.AddAqarezTitle_show))
+                                            .setContentText(getResources().getString(R.string.AddAqarezdes_show))
 
                                             .setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
-                                                    showCaseView1.hide();
+                                                    showCaseView.hide();
+
+                                                    showCaseView1 = new ShowcaseView.Builder(getActivity())
+                                                            .setTarget(new ViewTarget(R.id.RequstAqars, getActivity()))
+                                                            .setContentTitle(getResources().getString(R.string.RequestServicezTitle_show))
+                                                            .setContentText(getResources().getString(R.string.RequestServicezdes_show))
+
+                                                            .setOnClickListener(new View.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(View v) {
+                                                                    showCaseView1.hide();
 
 
-                                                    showCaseView2 = new ShowcaseView.Builder(getActivity())
-                                                            .setTarget(new ViewTarget(R.id.filtter, getActivity()))
-                                                            .setContentTitle(getResources().getString(R.string.filtterSearchzTitle_show))
-                                                            .setContentText(getResources().getString(R.string.filtterSearchzdes_show))
+                                                                    showCaseView2 = new ShowcaseView.Builder(getActivity())
+                                                                            .setTarget(new ViewTarget(R.id.filtter, getActivity()))
+                                                                            .setContentTitle(getResources().getString(R.string.filtterSearchzTitle_show))
+                                                                            .setContentText(getResources().getString(R.string.filtterSearchzdes_show))
 
 
-                                                            .hideOnTouchOutside()
+                                                                            .hideOnTouchOutside()
+
+                                                                            .setStyle(R.style.CustomShowcaseTheme2)
+                                                                            .build();
+                                                                }
+                                                            })
 
                                                             .setStyle(R.style.CustomShowcaseTheme2)
                                                             .build();
                                                 }
                                             })
 
+
                                             .setStyle(R.style.CustomShowcaseTheme2)
                                             .build();
+
                                 }
                             })
 
 
                             .setStyle(R.style.CustomShowcaseTheme2)
                             .build();
+
+
                 }
 
 
