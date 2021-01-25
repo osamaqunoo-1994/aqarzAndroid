@@ -12,11 +12,12 @@
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="120dp"
-            android:layout_height="80dp"
+            android:layout_width="110dp"
+            android:layout_height="120dp"
             android:layout_margin="10dp"
 
             app:cardCornerRadius="10dp">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -27,22 +28,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"></ImageView>
+
                 <TextView
                     android:id="@+id/sale"
                     android:layout_width="wrap_content"
-
+                    android:layout_height="35dp"
 
 
                     android:background="@drawable/back_image_order_list"
 
-                    android:textColor="@color/white"
-
                     android:gravity="center"
-                    android:layout_height="35dp"
+
                     android:paddingLeft="15dp"
                     android:paddingTop="3dp"
                     android:paddingRight="15dp"
-                    android:paddingBottom="8dp" />
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
             </RelativeLayout>
 
 
@@ -57,7 +59,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp">
 
                 <TextView
 
@@ -93,18 +96,40 @@
                         android:text="Vila "
                         android:textColor="@color/colorPrimary"
                         android:textSize="14dp" />
+
+                    <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/simpleRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        app:srb_clearRatingEnabled="true"
+                        app:srb_clickable="true"
+                        app:srb_drawableEmpty="@drawable/ic_rate_s"
+                        app:srb_drawableFilled="@drawable/ic_rate_fill"
+                        app:srb_isIndicator="false"
+                        app:srb_minimumStars="1"
+                        app:srb_numStars="5"
+                        app:srb_rating="2"
+                        app:srb_scrollable="true"
+                        app:srb_starHeight="15dp"
+                        app:srb_starPadding="3dp"
+                        app:srb_starWidth="15dp"
+                        app:srb_stepSize="0.5"></com.willy.ratingbar.ScaleRatingBar>
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
+
                 <TextView
                     android:id="@+id/id_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
 
                     android:fontFamily="@font/din_bold"
                     android:text=" "
@@ -115,6 +140,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:gravity="center">
 
                 <ImageView
@@ -165,6 +191,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:gravity="center">
 
                 <ImageView
@@ -240,49 +267,48 @@
                 <TextView
                     android:id="@+id/contnue"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:visibility="gone"
                     android:background="@drawable/button_login"
-                    android:textColor="@color/white"
-                    android:text="@string/contune"
                     android:gravity="center"
-                    android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
-                    android:paddingTop="3dp"
                     android:paddingRight="15dp"
-                    android:paddingBottom="8dp" />
+                    android:paddingBottom="4dp"
+                    android:text="@string/contune"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
+
                 <TextView
                     android:id="@+id/status"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:visibility="gone"
                     android:background="@drawable/button_login"
-                    android:textColor="@color/white"
-                    android:text="@string/Status_"
                     android:gravity="center"
-                    android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
-                    android:paddingTop="3dp"
                     android:paddingRight="15dp"
-                    android:paddingBottom="8dp" />
+                    android:paddingBottom="4dp"
+                    android:text="@string/Status_"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
+
                 <TextView
                     android:id="@+id/rejecteda"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:visibility="gone"
 
 
-                    android:textColor="@color/red_btn_bg_color"
-                    android:text="@string/rejecxted"
                     android:gravity="center"
-                    android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
-                    android:paddingTop="3dp"
                     android:paddingRight="15dp"
-                    android:paddingBottom="8dp" />
+                    android:paddingBottom="4dp"
+                    android:text="@string/rejecxted"
+                    android:textColor="@color/red_btn_bg_color"
+                    android:visibility="gone" />
             </LinearLayout>
 
         </LinearLayout>

@@ -48,18 +48,18 @@ public class OfferDetailsActivity extends AppCompatActivity {
     TextView number_order;
     public static MyOfferModule myOfferModule;
 
-    LinearLayout status_1;
-    LinearLayout status_2;
-    LinearLayout status_3;
-    LinearLayout status_4;
-    LinearLayout status_ss;
+    static LinearLayout status_1;
+    static LinearLayout status_2;
+    static LinearLayout status_3;
+    static LinearLayout status_4;
+    static LinearLayout status_ss;
     IResult mResultCallback;
 
     static BottomSheetDialogFragment_ConfirmationCode bottomSheetDialogFragment_confirmationCode;
     Button con;
     Button requst_code;
     LinearLayout call;
-    TextView cancleorder;
+    static TextView cancleorder;
     public static Activity activity;
     public static FragmentManager ft;
 
@@ -350,6 +350,20 @@ public class OfferDetailsActivity extends AppCompatActivity {
         try {
             BottomSheetDialogFragment_Congratulations bottomSheetDialogFragmentCongratulations = new BottomSheetDialogFragment_Congratulations(myOfferModule.getId() + "");
             bottomSheetDialogFragmentCongratulations.show(ft, "");
+            status_1.setVisibility(View.GONE);
+            status_2.setVisibility(View.GONE);
+            status_ss.setVisibility(View.GONE);
+            status_3.setVisibility(View.VISIBLE);
+            cancleorder.setTextColor(activity.getResources().getColor(R.color.textColor2));
+
+            cancleorder.setBackground(activity.getResources().getDrawable(R.drawable.mash));
+            cancleorder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            status_4.setVisibility(View.GONE);
         } catch (Exception e) {
 
         }

@@ -105,7 +105,21 @@ public class SplashScreenActivity extends AppCompatActivity {
                     .show();
         }
 
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
 
+
+                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+//              intent.putExtra("from", "splash");
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                finish();
+
+
+            }
+        }, 3000); // After 1 seconds
     }
 
     public void init_volley() {

@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -71,6 +72,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import sa.aqarz.Activity.Auth.LoginActivity;
@@ -273,8 +275,33 @@ public class OrdersFragment extends Fragment {
             mVolleyService.getDataVolley("city", WebService.cities);
 
         }
+        try {
+
+            if (Hawk.contains("lang")) {
 
 
+                Locale locale = new Locale(Hawk.get("lang").toString());
+                Locale.setDefault(locale);
+                Configuration config = new Configuration();
+                config.locale = locale;
+                getActivity().getBaseContext().getResources().updateConfiguration(config,
+                        getActivity().getBaseContext().getResources().getDisplayMetrics());
+            } else {
+
+                Hawk.put("lang", LocaleUtils.getLanguage(getActivity()));
+
+                Locale locale = new Locale(Hawk.get("lang").toString());
+                Locale.setDefault(locale);
+                Configuration config = new Configuration();
+                config.locale = locale;
+                getActivity().getBaseContext().getResources().updateConfiguration(config,
+                        getActivity().getBaseContext().getResources().getDisplayMetrics());
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
             premium.setVisibility(View.VISIBLE);
 //            offer.setVisibility(View.VISIBLE);

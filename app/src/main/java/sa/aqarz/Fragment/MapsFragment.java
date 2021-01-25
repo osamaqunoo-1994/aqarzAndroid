@@ -539,7 +539,7 @@ public class MapsFragment extends Fragment {
             public void run() {
 
 
-                if (!Hawk.contains("showCaseView1x")) {
+                if (!Hawk.contains("showCaseView")) {
 
                     Hawk.put("showCaseView", "showCaseView");
                     showCaseView = new ShowcaseView.Builder(getActivity())

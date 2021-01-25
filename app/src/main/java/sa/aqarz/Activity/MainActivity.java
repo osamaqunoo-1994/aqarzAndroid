@@ -13,6 +13,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -37,6 +38,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
 
+import java.util.Locale;
 import java.util.Set;
 
 import sa.aqarz.Activity.Auth.LoginActivity;
@@ -54,6 +56,7 @@ import sa.aqarz.Fragment.SubscriptionsFragment;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.R;
+import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 
 public class MainActivity extends AppCompatActivity {
@@ -115,6 +118,28 @@ public class MainActivity extends AppCompatActivity {
         myFab = (FloatingActionButton) findViewById(R.id.fab);
 
         myFab.setColorFilter(Color.WHITE);
+
+
+        if (Hawk.contains("lang")) {
+
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+        } else {
+
+            Hawk.put("lang", LocaleUtils.getLanguage(this));
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+        }
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

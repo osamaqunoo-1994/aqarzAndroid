@@ -108,6 +108,8 @@ public class MoreFragment extends Fragment {
     TextView not_compleate;
     ImageView qr_code;
 
+
+    TextView title_info;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_more, container, false);
@@ -143,6 +145,7 @@ public class MoreFragment extends Fragment {
         qr_code = v.findViewById(R.id.qr_code);
         all_aqarez_man = v.findViewById(R.id.all_aqarez_man);
         Technical_support = v.findViewById(R.id.Technical_support);
+        title_info = v.findViewById(R.id.title_info);
 
 
         info_.setOnClickListener(new View.OnClickListener() {
@@ -459,6 +462,8 @@ public class MoreFragment extends Fragment {
                     changePassword.setVisibility(View.GONE);
                     logout.setVisibility(View.GONE);
                     MyOrder.setVisibility(View.GONE);
+                    title_info.setVisibility(View.GONE);
+                    Favorites.setVisibility(View.GONE);
 
                 } else {
 
@@ -467,6 +472,8 @@ public class MoreFragment extends Fragment {
                     with_login.setVisibility(View.VISIBLE);
                     changePassword.setVisibility(View.VISIBLE);
                     MyOrder.setVisibility(View.VISIBLE);
+                    title_info.setVisibility(View.VISIBLE);
+                    Favorites.setVisibility(View.VISIBLE);
 
                     logout.setVisibility(View.VISIBLE);
 
@@ -489,6 +496,8 @@ public class MoreFragment extends Fragment {
                 changePassword.setVisibility(View.GONE);
                 logout.setVisibility(View.GONE);
                 MyOrder.setVisibility(View.GONE);
+                Favorites.setVisibility(View.GONE);
+                title_info.setVisibility(View.GONE);
 
             }
 

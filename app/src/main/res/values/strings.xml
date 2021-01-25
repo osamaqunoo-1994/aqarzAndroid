@@ -314,6 +314,7 @@ new password</string>
     <string name="priceprice">price</string>
     <string name="area_fi">Area</string>
     <string name="Offer_btn">Offer</string>
+    <string name="Sending_code">Sending</string>
     <string name="NoInternt">No Internt Please check your conniction !</string>
     <string name="Reaty">Reaty</string>
 
@@ -523,71 +524,75 @@ Your request and reply in the fastest time</string>
     <string name="name_Select_serv">Name</string>
     <string name="mobile_number_select">Mobile Number</string>
     <string name="order_detils">Details Order</string>
-    <string name="how_to_rate_aqarez">كيف تقيم عرض العقار ؟</string>
-    <string name="how_to_re_new_offer">هل انت متأكد من رغبتك بإعادة نشر هذا العرض ؟</string>
-    <string name="how_to_delete_offer">هل انت متأكد من رغبتك  بحذف هذا العرض
- مع العلم انه لايمكنك التراجع عن هذه الخطوة لاحقاً ؟</string>
-    <string name="add_note">أضف ملاحظاتك  عن العقار</string>
-    <string name="canclee">الغاء</string>
-    <string name="estati_like">عقارات مشابهة</string>
-    <string name="coments">آراء العملاء</string>
-    <string name="share_account">مشاركة حسابي</string>
-    <string name="my_offer_">عروضي</string>
-    <string name="my_clint_">عملائي</string>
-    <string name="my_lolocation_">موقعي</string>
-    <string name="search_filtter_order">تصفية البحث</string>
-    <string name="search_city">ابحث هنا عن مدينة</string>
-    <string name="Order_by">ترتيب حسب</string>
-    <string name="lessthan">الأقل سعراً</string>
-    <string name="bigthan">الأعلى سعراً</string>
-    <string name="AllOffer_hgls">العروض القريبة من مواصفات الطلب</string>
-    <string name="AllOffer_hgls2">عروضي المقدمة للطلب</string>
-    <string name="success_coder">سيقوم فريق عقارز بالتواصل معك خلال
-يومي عمل لإستكمال طلبك</string>
+    <string name="how_to_rate_aqarez">how to rate Aqarez?</string>
+    <string name="how_to_re_new_offer">Are you sure you want to re-post this offer? ؟</string>
+    <string name="how_to_delete_offer">Are you sure you want to delete this offer?
+  Knowing that you cannot undo this step later?</string>
+    <string name="add_note">Add your notes about the property</string>
+    <string name="canclee">cancle</string>
+    <string name="estati_like">Similar properties</string>
+    <string name="coments">Customer reviews</string>
+    <string name="share_account">Share my account</string>
+    <string name="my_offer_">Aqarez</string>
+    <string name="my_clint_">clients</string>
+    <string name="my_lolocation_">location</string>
+    <string name="search_filtter_order">Search filter</string>
+    <string name="search_city">Search here for a city</string>
+    <string name="Order_by">sort by</string>
+    <string name="lessthan">The least expensive</string>
+    <string name="bigthan">Highest price</string>
+    <string name="AllOffer_hgls">Offers close to demand specifications</string>
+    <string name="AllOffer_hgls2">My offers made to order</string>
+    <string name="success_coder">Aqarz team will contact you within
+Two working days to complete your order</string>
 
-    <string name="month_tag">شهور</string>
-    <string name="name_directory_name">اسم جهة العمل</string>
+    <string name="month_tag">months</string>
+    <string name="name_directory_name">employer name</string>
 
     <string name="location_tag">location</string>
-    <string name="service_and_pololr">تطبق الشروط والأحكام</string>
+    <string name="service_and_pololr">Terms and conditions apply</string>
     <string name="Aqaerz_tag">Aqaerz</string>
     <string name="MyAqaerz_tag">My Aqaerz</string>
 
-    <string name="modetagar">مدة العقد</string>
-    <string name="update_message_s">تم التعديل بنجاح</string>
-    <string name="salary_read_bank">الراتب محول على بنك الرياض</string>
-    <string name="dd_price_money"> أدخل سعر الإيجار</string>
-    <string name="info_estat">معلومات المستأجر</string>
-    <string name="MoreFiltter">فلتر اضافي</string>
-    <string name="serach_price">اختار السعر</string>
+    <string name="modetagar">Duration of the contract</string>
+    <string name="update_message_s">Modified successfully</string>
+    <string name="salary_read_bank">Salary is transferred to Riyad Bank</string>
+    <string name="dd_price_money"> Enter the rental price</string>
+    <string name="info_estat">Tenant information</string>
+    <string name="MoreFiltter">Extra filter</string>
+    <string name="serach_price">Choose the price</string>
 
+    <string name="more_section_title">Other</string>
+    <string name="support_section_title">Technical support</string>
+    <string name="info_section_title">About the application</string>
+    <string name="person_section_title">Personal settings</string>
 
     //---------------------------------------------------
 
-    <string name="AddAqarezTitle_show">اضافة عقارز</string>
-    <string name="AddAqarezdes_show">اضافة عقارزيمكنك اضافة العقار الخاص بك بجميع تفاصيلة</string>
+    <string name="AddAqarezTitle_show">Add Aqarez</string>
+    <string name="AddAqarezdes_show">You can add your property with all its details</string>
 
 
-    <string name="RequestServicezTitle_show">طلب خدمة</string>
-    <string name="RequestServicezdes_show">يمكنك طلب خدمة من خدمات التطبيق (طلب عقار - طلب تمويل - طلبات السوق - طلبات الصندوق )</string>
+    <string name="RequestServicezTitle_show">Add Service</string>
+    <string name="RequestServicezdes_show">you can adda your service</string>
 
 
-    <string name="filtterSearchzTitle_show">فلتر البحث</string>
-    <string name="filtterSearchzdes_show">يمكنك ترتيب وبحث عن افضل واقرب النتائج المطلوبة</string>
+    <string name="filtterSearchzTitle_show">filtter</string>
+    <string name="filtterSearchzdes_show">You can arrange and search for the best and closest required results</string>
 
 
-    <string name="requestAqarezhzTitle_show">طلب عقار</string>
-    <string name="requestAqarezhzdes_show">يمكنك تحديد نوعيه وتفاصيل ومميزات العقار المطلوب</string>
+    <string name="requestAqarezhzTitle_show">Add Aqarez</string>
+    <string name="requestAqarezhzdes_show">You can specify the quality, details and features of the required property</string>
 
 
-    <string name="finincezhzTitle_show">تقسيط التاجير</string>
-    <string name="finincezhzdes_show">يمكنك طلب تقسيط التاجير بعد تعبئة الفورم</string>
+    <string name="finincezhzTitle_show">Rental installment</string>
+    <string name="finincezhzdes_show">You can request the rental installment after filling out the form</string>
 
 
-    <string name="rest_paasword">هل تريد تغير كلمة المرور الخاصه بك ؟</string>
+    <string name="rest_paasword">Do you want to change your password?</string>
 
-    <string name="title_orfdder">الطلبات</string>
-    <string name="deta_order">من هنا يمكنك مشاهدة الطلبات العقارية من الصندوق العقاري الفوريه وطلبات الافراد والشركات وارسال عروضك لهم</string>
+    <string name="title_orfdder">Requests</string>
+    <string name="deta_order">From here, you can view real estate requests from the instant real estate fund, requests from individuals and companies, and send your offers to them</string>
 
     <string name="tet_terms">ﺍﺗﻔﺎﻗﻴﺔ ﺍﻹﺳﺘﺨﺪﺍﻡﻋﺒﺮ ﺩﺧﻮﻟﻚ ﻭﺍﺳﺘﺨﺪﺍﻣﻚ ﻣﻮﻗﻊ ﺃﻭ ﺗﻄﺒﻴﻖ ﻋﻘﺎﺭﺯ ﻓﺈﻧﻚ ﺗﻘﺮ ﻭﺗﻮﺍﻓﻖ، ﺩﻭﻥ ﺇﺟﺮﺍﺀ ﺃﻱ ﺗﻌﺪﻳﻞ ﻭﺩﻭﻥ ﺃﻳﺔ ﻗﻴﻮﺩ ﺃﻭ ﺗﺒﺪﻳﻞ، ﻋﻠﻰ ﺍﻷﺣﻜﺎﻡ ﻭﺍﻟﺸﺮﻭﻁ ﺍﻟﻮﺍﺭﺩﺓ ﻓﻲ ﻫﺬﻩ (ﺍﻻﺗﻔﺎﻗﻴﺔ). ﺃﻧﺖ ﺗﻘﺮ ﻭﺗﻀﻤﻦ ﺣﻘﻚ ﺍﻟﻘﺎﻧﻮﻧﻲ ﻟﻠﺪﺧﻮﻝ ﻓﻲ ﻫﺬﻩ ﺍﻻﺗﻔﺎﻗﻴﺔ ﻭﺍﺳﺘﺨﺪﺍﻡ ﺍﻟﺨﺪﻣﺎﺕ ﺍﻟﺘﻲ ﻧﻘﺪﻣﻬﺎ ﻓﻲ ﻋﻘﺎﺭﺯ ﻭﻓﻘﺎً ﻟﻜﺎﻓﺔ ﺍﻟﺸﺮﻭﻁ ﻭﺍﻷﺣﻜﺎﻡ ﺍﻟﻮﺍﺭﺩﺓ ﻓﻴﻬﺎ.
         ﺗﺴﻌﻰ ﻣﺆﺳﺴﺔ ﻋﻠﻮ ﻭﺃﺳﺎﺱ ﻟﻺﺗﺼﺎﻻﺕ ﻭﺗﻘﻨﻴﺔ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﻗﺪﺭ ﺍﻹﻣﻜﺎﻥ ﺇﻟﻰ ﺗﻮﻓﻴﺮ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﻋﻠﻰ ﻣﻨﺼﺘﻬﺎ ﺑﺪﻗﺔ ﻣﺘﻨﺎﻫﻴﺔ. ﺇﻻ ﺃﻧﻪ ﻗﺪ ﺗﺮﺩ ﺑﻌﺾ ﺍﻷﺧﻄﺎﺀ ﻣﻦ ﺣﻴﻦ ﻵﺧﺮ. ﻭﻻ ﺗﺘﺤﻤﻞ ﻣﺆﺳﺴﺔ ﻋﻠﻮ ﻭﺃﺳﺎﺱ ﻟﻺﺗﺼﺎﻻﺕ ﻭﺗﻘﻨﻴﺔ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﺃﻱ ﻣﺴﺆﻭﻟﻴﺔ ﻋﻦ ﺃﻱ ﺧﻄﺄ ﻓﻲ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﺍﻟﺘﻲ ﻳﺘﻀﻤﻨﻬﺎ ﺍﻟﻤﻮﻗﻊ ﺍﻭ ﺍﻟﺘﻄﺒﻴﻖ.
@@ -678,7 +683,7 @@ Your request and reply in the fastest time</string>
     <string name="n3">area</string>
     <string name="n4">address</string>
     <string name="Clints">Clints</string>
-    <string name="calllll">مكالمة</string>
+    <string name="calllll">Call</string>
     <string name="Requst">Requst</string>
     <string name="Visit">Visit</string>
 

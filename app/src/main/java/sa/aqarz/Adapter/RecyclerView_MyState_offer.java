@@ -124,7 +124,7 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
         holder.address.setText(alldata.get(position).getEstateCity() + " , "+alldata.get(position).getEstateNeighborhood()+"");
         holder.sale.setText(alldata.get(position).getSale_type_name() + "");
         holder.id_number.setText(" # " + alldata.get(position).getId() + "");
-//        holder.date.setText(alldata.get(position).getCreatedAt());
+//        holder.date.setText(alldata.get(position).getesta());
 //        if (alldata.get(position).getRate() != null) {
 //            if (!alldata.get(position).getRate().equals("null")) {
 //

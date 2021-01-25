@@ -63,6 +63,7 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
     String estate_ixd = "";
     Button confirmation;
     Button resend;
+    ImageView close;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,8 +75,14 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
         a4 = v.findViewById(R.id.a4);
         a5 = v.findViewById(R.id.a5);
         confirmation = v.findViewById(R.id.confirmation);
+        close = v.findViewById(R.id.close);
         resend = v.findViewById(R.id.resend);
-
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
 
         a1.requestFocus();
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
@@ -204,8 +211,6 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
         });
 
 
-
-
         confirmation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -222,7 +227,7 @@ public class BottomSheetDialogFragment_ConfirmationCode extends BottomSheetDialo
                     String code2 = a1.getText().toString() +
                             a2.getText().toString() +
                             a3.getText().toString() +
-                            a4.getText().toString() + a5.getText().toString()+ "";
+                            a4.getText().toString() + a5.getText().toString() + "";
 
 
                     JSONObject sendObj = new JSONObject();

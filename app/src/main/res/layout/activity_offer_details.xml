@@ -148,7 +148,7 @@
                             android:layout_weight="1"
                             android:text="@string/OrderNumber"
                             android:textColor="@color/black"
-                            android:textSize="12dp" />
+                            android:textSize="11dp" />
 
                         <TextView
                             android:id="@+id/number_order"
@@ -198,7 +198,7 @@
                             android:layout_weight="1"
                             android:text="@string/UserNameOrder"
                             android:textColor="@color/black"
-                            android:textSize="12dp" />
+                            android:textSize="11dp" />
 
                         <TextView
                             android:id="@+id/name"
@@ -231,7 +231,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/OrderstatusDetialss"
                     android:textColor="@color/black"
-                    android:textSize="17dp" />
+                    android:textSize="16dp" />
 
                 <LinearLayout
                     android:layout_width="80dp"
@@ -296,7 +296,7 @@
                         android:layout_marginRight="20dp"
                         android:text="@string/ord_rm"
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
+                        android:textSize="14dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -359,7 +359,7 @@
                         android:text="@string/ord_r"
 
                         android:textColor="#AAABB3"
-                        android:textSize="15dp" />
+                        android:textSize="14dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -425,7 +425,7 @@
                         android:layout_marginRight="20dp"
                         android:text="@string/ord_rms"
                         android:textColor="#AAABB3"
-                        android:textSize="15dp" />
+                        android:textSize="14dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -887,7 +887,7 @@
 
                 android:text="@string/cancleorder"
                 android:textColor="@color/red_btn_bg_color"
-                android:textSize="14dp" />
+                android:textSize="13dp" />
 
 
             <LinearLayout
@@ -906,19 +906,21 @@
                     android:layout_marginRight="20dp"
                     android:gravity="center"
                     android:text="@string/tit"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/names"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-
                     android:layout_marginTop="2dp"
+
                     android:layout_marginRight="20dp"
                     android:gravity="center"
+                    android:textColor="@color/black"
 
-                    android:textColor="@color/black" />
+                    android:textSize="13dp" />
 
                 <TextView
                     android:layout_width="250dp"
@@ -927,9 +929,11 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginRight="20dp"
                     android:gravity="center"
-                    android:text="@string/tit2"
 
-                    android:textColor="@color/black" />
+                    android:text="@string/tit2"
+                    android:textColor="@color/black"
+
+                    android:textSize="13dp" />
 
                 <Button
                     android:id="@+id/con"
@@ -942,7 +946,7 @@
                     android:text="@string/addCodeConfirm"
 
                     android:textColor="@color/white"
-                    android:textSize="17dp" />
+                    android:textSize="15dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -964,9 +968,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:text="@string/tit"
                     android:textColor="@color/black"
+                    android:textSize="14dp"
                     android:visibility="gone" />
 
 
@@ -980,7 +986,7 @@
                     android:text="@string/request_code"
 
                     android:textColor="@color/white"
-                    android:textSize="17dp" />
+                    android:textSize="15dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
