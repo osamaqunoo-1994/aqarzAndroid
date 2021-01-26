@@ -13,6 +13,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -56,6 +58,7 @@ import sa.aqarz.Fragment.SubscriptionsFragment;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.R;
+import sa.aqarz.Settings.ForceUpdateAsync;
 import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 
@@ -154,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.container, new MapsFragment());
         //  fragmentTransaction.commit();
         fragmentTransaction.commitAllowingStateLoss();
+        forceUpdate();
 
 
         myFab.setOnClickListener(new View.OnClickListener() {
@@ -584,6 +588,8 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
         }
+
+
     }
 
     boolean doubleBackToExitPressedOnce = false;
@@ -700,4 +706,18 @@ public class MainActivity extends AppCompatActivity {
         bottomSheerDialog.show();
     }
 
+    // check version on play store and force update
+    public void forceUpdate() {
+        PackageManager packageManager = this.getPackageManager();
+        PackageInfo packageInfo = null;
+        try {
+            packageInfo = packageManager.getPackageInfo(getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        String currentVersion = packageInfo.versionName;
+
+        System.out.println("currentVersion"+currentVersion);
+        new ForceUpdateAsync(currentVersion, MainActivity.this).execute();
+    }
 }

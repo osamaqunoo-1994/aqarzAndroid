@@ -667,17 +667,14 @@
     <string name="MYProfileDetailsd">الملف الشخصي</string>
 
 
-    <string name="n1">نوع العقار</string>
+    <string name="n1">العقار</string>
     <string name="n2">السعر</string>
     <string name="n3">المساحه</string>
-    <string name="n4">العنوان</string>
+    <string name="n4">الموقع</string>
 
     <string name="Clints">عميل</string>
     <string name="Requst">طلب</string>
     <string name="Visit">زياره</string>
-
-
-
 
 
     <string name="MyMember">عضويات</string>
@@ -705,7 +702,6 @@
     <string name="searchAqarz"> ابحث عن عقارك او رقم العرض</string>
 
     <string name="Watting">قيد الانتظار</string>
-
 
 
     <string name="calllll">مكالمة</string>
@@ -769,7 +765,6 @@
     <string name="MyAqaerz_tag">عقاراتي</string>
 
 
-
     <string name="how_to_rate_aqarez">كيف تقيم عرض العقار ؟</string>
     <string name="how_to_re_new_offer">هل انت متأكد من رغبتك بإعادة نشر هذا العرض ؟</string>
     <string name="how_to_delete_offer">هل انت متأكد من رغبتك  بحذف هذا العرض
@@ -787,7 +782,7 @@
     <string name="Order_by">ترتيب حسب</string>
     <string name="lessthan">الأقل سعراً</string>
     <string name="bigthan">الأعلى سعراً</string>
-    <string name="AllOffer_hgls">العروض القريبة من مواصفات الطلب</string>
+    <string name="AllOffer_hgls">العروض القريبة من مواصفات الطلب قم باختيار العرض واضغط إرسال</string>
     <string name="AllOffer_hgls2">عروضي المقدمة للطلب</string>
     <string name="success_coder">سيقوم فريق عقارز بالتواصل معك خلال
 يومي عمل لإستكمال طلبك</string>
@@ -837,5 +832,17 @@
 
     <string name="title_orfdder">الطلبات</string>
     <string name="deta_order">من هنا يمكنك مشاهدة الطلبات العقارية من الصندوق العقاري الفوريه وطلبات الافراد والشركات وارسال عروضك لهم</string>
+
+
+
+
+
+
+
+
+    <string name="youAreNotUpdatedTitle">تحديث متوفر</string>
+    <string name="youAreNotUpdatedMessage">يتوفر اصدار جديد من تطبيق عقارز يرجى التحديث الى الاصدار </string>
+    <string name="youAreNotUpdatedMessage1"> الان </string>
+    <string name="update">تحديث</string>
 
 </resources>

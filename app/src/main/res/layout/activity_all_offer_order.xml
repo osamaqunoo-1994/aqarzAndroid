@@ -208,7 +208,19 @@
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:padding="8dp"
-                            android:src="@drawable/ic_home_id_id" />
+                            android:src="@drawable/ic_home_id_id"
+                            android:visibility="gone" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:fontFamily="@font/din_light"
+                            android:text="@string/n1"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="12dp" />
 
                         <TextView
                             android:id="@+id/name_estate"
@@ -239,11 +251,16 @@
                         android:orientation="horizontal">
 
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:padding="8dp"
-                            android:src="@drawable/ic_tag" />
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:fontFamily="@font/din_light"
+                            android:text="@string/n2"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="12dp" />
 
                         <TextView
                             android:id="@+id/price"
@@ -282,12 +299,16 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
+                        <TextView
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:padding="8dp"
-                            android:src="@drawable/ic_group_location_group" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:fontFamily="@font/din_light"
+                            android:text="@string/n4"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="12dp" />
 
                         <TextView
                             android:id="@+id/address"
@@ -313,13 +334,17 @@
                         android:orientation="horizontal"
                         android:visibility="visible">
 
+                        <TextView
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:padding="8dp"
-                            android:src="@drawable/ic_space"
-                            app:tint="#5840BB" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:fontFamily="@font/din_light"
+                            android:text="@string/n3"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="12dp" />
+
 
                         <TextView
                             android:id="@+id/space"
@@ -339,7 +364,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:fontFamily="@font/din_light"
-                            android:text="@string/metterSeqour"
+                            android:text="@string/sequare"
                             android:textColor="@color/textColor"
                             android:textSize="12dp" />
 

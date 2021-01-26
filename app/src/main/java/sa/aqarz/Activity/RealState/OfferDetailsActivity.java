@@ -196,12 +196,23 @@ public class OfferDetailsActivity extends AppCompatActivity {
 //            cancleorder.setTextColor(getColor(R.color.white));
 
 
-        } else if (myOfferModule.getStatus().toString().equals("sending_code")) {
+        } else if (myOfferModule.getStatus().toString().equals("Waiting_provider_accepted")) {
+            status_1.setVisibility(View.GONE);
+            status_2.setVisibility(View.VISIBLE);
+            status_3.setVisibility(View.GONE);
+            status_4.setVisibility(View.GONE);
+            status_ss.setVisibility(View.VISIBLE);
+
+//            cancleorder.setBackground(getDrawable(R.drawable.button_cancle));
+//            cancleorder.setTextColor(getColor(R.color.white));
+
+
+        }else if (myOfferModule.getStatus().toString().equals("sending_code")) {
             status_1.setVisibility(View.GONE);
             status_2.setVisibility(View.VISIBLE);
             status_3.setVisibility(View.GONE);
             status_ss.setVisibility(View.GONE);
-            status_4.setVisibility(View.VISIBLE);
+            status_4.setVisibility(View.GONE);
 
 //            cancleorder.setBackground(getDrawable(R.drawable.button_cancle));
 //            cancleorder.setTextColor(getColor(R.color.white));

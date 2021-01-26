@@ -30,6 +30,7 @@ import java.util.List;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Adapter.RecyclerView_MyState;
+import sa.aqarz.Adapter.RecyclerView_MyState_selected;
 import sa.aqarz.Adapter.RecyclerView_ordersx;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import sa.aqarz.Modules.HomeModules_aqares;
@@ -247,8 +248,8 @@ public class AllOfferOrderActivity extends AppCompatActivity {
                             }
 
 
-                            RecyclerView_MyState recyclerView_myState = new RecyclerView_MyState(AllOfferOrderActivity.this, homeModules);
-                            recyclerView_myState.addItemClickListener(new RecyclerView_MyState.ItemClickListener() {
+                            RecyclerView_MyState_selected recyclerView_myState = new RecyclerView_MyState_selected(AllOfferOrderActivity.this, homeModules);
+                            recyclerView_myState.addItemClickListener(new RecyclerView_MyState_selected.ItemClickListener() {
                                 @Override
                                 public void onItemClick(List<HomeModules_aqares> homeModules_aqares) {
 //                                homeModules = homeModules_aqares;

@@ -172,4 +172,6 @@
         <item name="sv_detailTextAppearance">@style/CustomTitle2</item>
 
     </style>
+
+    <style name="DialogDark"></style>
 </resources>
