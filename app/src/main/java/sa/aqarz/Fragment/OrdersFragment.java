@@ -20,6 +20,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -49,6 +50,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -75,6 +78,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import io.blushine.android.ui.showcase.MaterialShowcaseView;
+import io.blushine.android.ui.showcase.ShowcaseListener;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.Auth.NewPasswordActivity;
@@ -84,6 +89,7 @@ import sa.aqarz.Activity.DetailsAqarzManActivity;
 import sa.aqarz.Activity.FiltterOrderActivity;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.PrivecyActivity;
+import sa.aqarz.Activity.RealState.AllOfferOrderActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Activity.TermsActivity;
 import sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
@@ -147,6 +153,10 @@ public class OrdersFragment extends Fragment {
     RecyclerView selected_list_citys;
     RecyclerView list_opration;
     List<TypeModules> data = new ArrayList<>();
+    MaterialShowcaseView materialShowcaseView;
+    MaterialShowcaseView materialShowcaseView2;
+    MaterialShowcaseView materialShowcaseView3;
+    MaterialShowcaseView materialShowcaseView4;
 
     List<CityModules> cityModules_list = new ArrayList<>();
     List<CityModules> cityModules_list_filter = new ArrayList<>();
@@ -190,6 +200,7 @@ public class OrdersFragment extends Fragment {
     static String price_order = "";
     static String tyype_type = "";
 
+    public static ShowcaseView showCaseView;
 
     static RecyclerView orders_rec;
 
@@ -400,7 +411,166 @@ public class OrdersFragment extends Fragment {
 
             }
         });
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
 
+
+                if (!Hawk.contains("showCaseView_order")) {
+
+                    Hawk.put("showCaseView_order", "showCaseView_order");
+
+                    materialShowcaseView = new MaterialShowcaseView.Builder(getActivity())
+                            .setTitleText(getResources().getString(R.string.title_realstate))
+                            .setContentText(getResources().getString(R.string.desrealstate))
+                            .setContentTextColor(getResources().getColor(R.color.white))
+
+                            .setDismissText(getResources().getString(R.string.Nextt)) // Optional. When used can only dismiss the showcase by clicking on the dismiss button and target isn't pressable.
+                            .setTarget(Real_Estate_order_layout)
+
+
+//                            .setBackgroundColor(getResources().getColor(R.color.color_brimarys))
+                            .setDelay(300) // Optional. But starting animations immediately in onCreate can make the choppy
+                            .show();
+                    materialShowcaseView.addListener(new ShowcaseListener() {
+                        @Override
+                        public void onShowcaseDisplayed(MaterialShowcaseView materialShowcaseView) {
+
+                        }
+
+                        @Override
+                        public void onShowcaseDismissed(MaterialShowcaseView materialShowcaseView) {
+                            materialShowcaseView2 = new MaterialShowcaseView.Builder(getActivity())
+                                    .setTitleText(getResources().getString(R.string.title_market))
+                                    .setContentText(getResources().getString(R.string.des_market))
+                                    .setContentTextColor(getResources().getColor(R.color.white))
+
+                                    .setDismissText(getResources().getString(R.string.Nextt)) // Optional. When used can only dismiss the showcase by clicking on the dismiss button and target isn't pressable.
+                                    .setTarget(Shopping_request_layout)
+
+
+//                            .setBackgroundColor(getResources().getColor(R.color.color_brimarys))
+                                    .setDelay(300) // Optional. But starting animations immediately in onCreate can make the choppy
+                                    .show();
+                            materialShowcaseView2.addListener(new ShowcaseListener() {
+                                @Override
+                                public void onShowcaseDisplayed(MaterialShowcaseView materialShowcaseView) {
+
+                                }
+
+                                @Override
+                                public void onShowcaseDismissed(MaterialShowcaseView materialShowcaseView) {
+                                    materialShowcaseView3 = new MaterialShowcaseView.Builder(getActivity())
+                                            .setTitleText(getResources().getString(R.string.title_All))
+                                            .setContentText(getResources().getString(R.string.tdes_All))
+                                            .setContentTextColor(getResources().getColor(R.color.white))
+
+                                            .setDismissText(getResources().getString(R.string.Nextt)) // Optional. When used can only dismiss the showcase by clicking on the dismiss button and target isn't pressable.
+                                            .setTarget(AllOrder)
+
+
+//                            .setBackgroundColor(getResources().getColor(R.color.color_brimarys))
+                                            .setDelay(300) // Optional. But starting animations immediately in onCreate can make the choppy
+                                            .show();
+                                    materialShowcaseView3.addListener(new ShowcaseListener() {
+                                        @Override
+                                        public void onShowcaseDisplayed(MaterialShowcaseView materialShowcaseView) {
+
+                                        }
+
+                                        @Override
+                                        public void onShowcaseDismissed(MaterialShowcaseView materialShowcaseView) {
+                                            materialShowcaseView4 = new MaterialShowcaseView.Builder(getActivity())
+                                                    .setTitleText(getResources().getString(R.string.title_filter))
+                                                    .setContentText(getResources().getString(R.string.dies_filter))
+                                                    .setContentTextColor(getResources().getColor(R.color.white))
+
+                                                    .setDismissText(getResources().getString(R.string.Nextt)) // Optional. When used can only dismiss the showcase by clicking on the dismiss button and target isn't pressable.
+                                                    .setTarget(show_fillter)
+
+
+//                            .setBackgroundColor(getResources().getColor(R.color.color_brimarys))
+                                                    .setDelay(300) // Optional. But starting animations immediately in onCreate can make the choppy
+                                                    .show();
+                                        }
+
+                                        @Override
+                                        public void onShowcaseSkipped(MaterialShowcaseView materialShowcaseView) {
+
+                                        }
+
+                                        @Override
+                                        public void onTargetPressed(MaterialShowcaseView materialShowcaseView) {
+
+                                        }
+                                    });
+
+                                }
+
+                                @Override
+                                public void onShowcaseSkipped(MaterialShowcaseView materialShowcaseView) {
+
+                                }
+
+                                @Override
+                                public void onTargetPressed(MaterialShowcaseView materialShowcaseView) {
+
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onShowcaseSkipped(MaterialShowcaseView materialShowcaseView) {
+
+                        }
+
+                        @Override
+                        public void onTargetPressed(MaterialShowcaseView materialShowcaseView) {
+
+                        }
+                    });
+
+
+//                    showCaseView = new ShowcaseView.Builder(getActivity())
+//                            .setTarget(new ViewTarget(R.id.Real_Estate_order_layout, getActivity()))
+//
+//                            .setContentTitle(getResources().getString(R.string.title_realstate))
+//                            .setContentText(getResources().getString(R.string.desrealstate))
+//
+//                            .setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    showCaseView.hide();
+//                                    showCaseView = new ShowcaseView.Builder(getActivity())
+//                                            .setTarget(new ViewTarget(R.id.Shopping_request_layout, getActivity()))
+//
+//                                            .setContentTitle(getResources().getString(R.string.title_market))
+//                                            .setContentText(getResources().getString(R.string.des_market))
+//
+//                                            .setOnClickListener(new View.OnClickListener() {
+//                                                @Override
+//                                                public void onClick(View v) {
+//                                                    showCaseView.hide();
+//                                                }
+//                                            })
+//
+//
+//                                            .setStyle(R.style.CustomShowcaseTheme2)
+//                                            .build();
+//                                }
+//                            })
+//
+//
+//                            .setStyle(R.style.CustomShowcaseTheme2)
+//                            .build();
+
+
+                }
+
+
+            }
+        }, 100); // After 1 seconds
         Action_Button();
     }
 

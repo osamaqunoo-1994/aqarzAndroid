@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -17,7 +18,10 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -37,6 +41,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -53,8 +58,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Activity.OprationNew.RateActivity;
+import sa.aqarz.Activity.RealState.AllOfferOrderActivity;
 import sa.aqarz.Activity.SelectLocationActivity;
 import sa.aqarz.Adapter.RecyclerView_member;
 import sa.aqarz.Adapter.RecyclerView_service_types;
@@ -104,7 +111,8 @@ public class EditProfileActivity extends AppCompatActivity {
     String type_yes_no = "0";
     String type_experiencex = "";
 
-
+    TextView real_1_yes;
+    TextView real_1_no;
     CheckBox more_than_10, form_5_to_10, less_than_5;
 
     @Override
@@ -142,6 +150,8 @@ public class EditProfileActivity extends AppCompatActivity {
         yes = findViewById(R.id.yes);
         no = findViewById(R.id.no);
         name_office = findViewById(R.id.name_office);
+        real_1_yes = findViewById(R.id.real_1_yes);
+        real_1_no = findViewById(R.id.real_1_no);
 
         Places.initialize(EditProfileActivity.this, "AIzaSyA6E2L_Feqp6HMD85eQ1RP06WnykHJj7Mc");
         PlacesClient placesClient = Places.createClient(EditProfileActivity.this);
@@ -332,6 +342,52 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
         });
+
+        if (Settings.CheckIsCompleate()) {
+
+
+            if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+
+//                        bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getUuid() + "");
+//                        bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+                real_1_no.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                real_1_no.setTextColor(getResources().getColor(R.color.white));
+                real_1_yes.setBackground(null);
+
+                real_1_yes.setTextColor(getResources().getColor(R.color.textColor));
+
+            } else {
+                show_dialog();
+
+                //
+                real_1_yes.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                real_1_yes.setTextColor(getResources().getColor(R.color.white));
+                real_1_no.setBackground(null);
+
+                real_1_no.setTextColor(getResources().getColor(R.color.textColor));
+
+            }
+        } else {
+            real_1_no.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+            real_1_no.setTextColor(getResources().getColor(R.color.white));
+            real_1_yes.setBackground(null);
+
+            real_1_yes.setTextColor(getResources().getColor(R.color.textColor));
+
+        }
+        real_1_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                show_dialog();
+            }
+        });
+
 
         member_list.setAdapter(recyclerView_member);
         address.setOnClickListener(new View.OnClickListener() {
@@ -899,6 +955,64 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void show_dialog() {
+        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(EditProfileActivity.this);
+        LayoutInflater li = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View parentView = li.inflate(R.layout.upgrade_message2, null);
+
+
+        TextView accept = parentView.findViewById(R.id.accept);
+        TextView no = parentView.findViewById(R.id.no);
+        ImageView close = parentView.findViewById(R.id.close);
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheerDialog.cancel();
+
+//                                    finish();
+            }
+        });
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheerDialog.cancel();
+
+//                                    finish();
+            }
+        });
+        accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                WebService.loading(EditProfileActivity.this, true);
+
+                init_volley();
+                VolleyService mVolleyService = new VolleyService(mResultCallback, EditProfileActivity.this);
+                mVolleyService.getDataVolley("upgrade", WebService.upgrade);
+//
+                bottomSheerDialog.cancel();
+//
+//                                    finish();
+            }
+        });
+        bottomSheerDialog.setContentView(parentView);
+
+
+        Window window = bottomSheerDialog.getWindow();
+        window.findViewById(com.google.android.material.R.id.container).setFitsSystemWindows(false);
+        // dark navigation bar icons
+        View decorView = window.getDecorView();
+        decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
+
+
+//        ((View) decorView.getParent()).setBackgroundColor(context.getResources().getColor(android.R.color.transparent));
+
+
+        bottomSheerDialog.show();
     }
 
 }

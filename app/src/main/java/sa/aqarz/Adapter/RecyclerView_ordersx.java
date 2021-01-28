@@ -3,6 +3,7 @@ package sa.aqarz.Adapter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
@@ -30,6 +31,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Activity.Auth.EditProfileActivity;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.RealState.AllOfferOrderActivity;
 import sa.aqarz.Activity.RealState.MyOfferOrderActivity;
@@ -347,7 +349,8 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 
 
             }
-        });  holder.sending_code.setOnClickListener(new View.OnClickListener() {
+        });
+        holder.sending_code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -628,61 +631,78 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
     }
 
     public void show_dialog() {
-        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(context);
-        LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View parentView = li.inflate(R.layout.upgrade_message2, null);
+        new AlertDialog.Builder(context)
+                .setMessage(context.getResources().getString(R.string.real_qustion))
+                .setCancelable(false)
+                .setPositiveButton(context.getResources().getString(R.string.Participation), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        Intent intent = new Intent(context, EditProfileActivity.class);
+                        context.startActivity(intent);
 
 
-        TextView accept = parentView.findViewById(R.id.accept);
-        TextView no = parentView.findViewById(R.id.no);
-        ImageView close = parentView.findViewById(R.id.close);
-        no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottomSheerDialog.cancel();
+                    }
+                })
+                .setNegativeButton(context.getResources().getString(R.string.no), null)
+                .show();
 
-//                                    finish();
-            }
-        });
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottomSheerDialog.cancel();
 
-//                                    finish();
-            }
-        });
-        accept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                WebService.loading((Activity) context, true);
-
-                init_volley();
-                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
-                mVolleyService.getDataVolley("upgrade", WebService.upgrade);
+//        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(context);
+//        LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //
-                bottomSheerDialog.cancel();
+//        View parentView = li.inflate(R.layout.upgrade_message2, null);
 //
-//                                    finish();
-            }
-        });
-        bottomSheerDialog.setContentView(parentView);
-
-
-        Window window = bottomSheerDialog.getWindow();
-        window.findViewById(com.google.android.material.R.id.container).setFitsSystemWindows(false);
-        // dark navigation bar icons
-        View decorView = window.getDecorView();
-        decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, context.getResources().getDisplayMetrics());
-
-
-//        ((View) decorView.getParent()).setBackgroundColor(context.getResources().getColor(android.R.color.transparent));
-
-
-        bottomSheerDialog.show();
+//
+//        TextView accept = parentView.findViewById(R.id.accept);
+//        TextView no = parentView.findViewById(R.id.no);
+//        ImageView close = parentView.findViewById(R.id.close);
+//        no.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                bottomSheerDialog.cancel();
+//
+////                                    finish();
+//            }
+//        });
+//        close.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                bottomSheerDialog.cancel();
+//
+////                                    finish();
+//            }
+//        });
+//        accept.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                WebService.loading((Activity) context, true);
+//
+//                init_volley();
+//                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+//                mVolleyService.getDataVolley("upgrade", WebService.upgrade);
+////
+//                bottomSheerDialog.cancel();
+////
+////                                    finish();
+//            }
+//        });
+//        bottomSheerDialog.setContentView(parentView);
+//
+//
+//        Window window = bottomSheerDialog.getWindow();
+//        window.findViewById(com.google.android.material.R.id.container).setFitsSystemWindows(false);
+//        // dark navigation bar icons
+//        View decorView = window.getDecorView();
+//        decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+//        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, context.getResources().getDisplayMetrics());
+//
+//
+////        ((View) decorView.getParent()).setBackgroundColor(context.getResources().getColor(android.R.color.transparent));
+//
+//
+//        bottomSheerDialog.show();
     }
 
 }

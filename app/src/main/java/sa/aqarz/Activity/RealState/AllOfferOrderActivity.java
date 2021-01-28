@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,10 +17,13 @@ import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.loopj.android.http.RequestParams;
+import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -27,6 +31,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.blushine.android.ui.showcase.MaterialShowcaseView;
+import io.blushine.android.ui.showcase.ShowcaseListener;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Adapter.RecyclerView_MyState;
@@ -50,6 +56,7 @@ public class AllOfferOrderActivity extends AppCompatActivity {
     Button addAqares;
 
     String is_selected = "";
+    public static ShowcaseView showCaseView;
 
     List<HomeModules_aqares> homeModules = new ArrayList<>();
     private BottomSheetDialogFragment_MyEstate.ItemClickListener mItemClickListener;
@@ -64,6 +71,12 @@ public class AllOfferOrderActivity extends AppCompatActivity {
     TextView price;
     TextView address;
     TextView space;
+    TextView title;
+
+
+    MaterialShowcaseView materialShowcaseView;
+    MaterialShowcaseView materialShowcaseView2;
+    MaterialShowcaseView materialShowcaseView3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +91,7 @@ public class AllOfferOrderActivity extends AppCompatActivity {
         price = findViewById(R.id.price);
         address = findViewById(R.id.address);
         space = findViewById(R.id.space);
+        title = findViewById(R.id.title);
 
 
         all_my_state = findViewById(R.id.all_my_state);
@@ -99,13 +113,10 @@ public class AllOfferOrderActivity extends AppCompatActivity {
         }
 
 
-
         name_estate.setText(MainActivity.ordersModules.getEstateTypeName() + "");
         price.setText(MainActivity.ordersModules.getEstatePriceRange() + "");
         space.setText(MainActivity.ordersModules.getStreetViewRange() + "");
         address.setText(MainActivity.ordersModules.getCityName() + "" + " , " + MainActivity.ordersModules.getNeighborhoodName());
-
-
 
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -167,6 +178,77 @@ public class AllOfferOrderActivity extends AppCompatActivity {
         });
 
 
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+
+                if (!Hawk.contains("showCaseView_all_my_states")) {
+
+                    Hawk.put("showCaseView_all_my_state", "showCaseView_all_my_state");
+
+
+                    materialShowcaseView = new MaterialShowcaseView.Builder(AllOfferOrderActivity.this)
+                            .setTitleText(getResources().getString(R.string.title_all_my_state))
+                            .setContentText(getResources().getString(R.string.description_all_my_state))
+                            .setContentTextColor(getResources().getColor(R.color.white))
+
+                            .setDismissText(getResources().getString(R.string.Nextt)) // Optional. When used can only dismiss the showcase by clicking on the dismiss button and target isn't pressable.
+//                            .setTarget(title)
+
+
+//                            .setBackgroundColor(getResources().getColor(R.color.color_brimarys))
+                            .setDelay(300) // Optional. But starting animations immediately in onCreate can make the choppy
+                            .show();
+
+                    materialShowcaseView.addListener(new ShowcaseListener() {
+                        @Override
+                        public void onShowcaseDisplayed(MaterialShowcaseView materialShowcaseView) {
+
+                        }
+
+                        @Override
+                        public void onShowcaseDismissed(MaterialShowcaseView materialShowcaseView) {
+
+                        }
+
+                        @Override
+                        public void onShowcaseSkipped(MaterialShowcaseView materialShowcaseView) {
+
+                        }
+
+                        @Override
+                        public void onTargetPressed(MaterialShowcaseView materialShowcaseView) {
+
+                        }
+                    });
+
+
+//
+//                    showCaseView = new ShowcaseView.Builder(AllOfferOrderActivity.this)
+//                            .setTarget(new ViewTarget(R.id.title, AllOfferOrderActivity.this))
+//
+//                            .setContentTitle(getResources().getString(R.string.title_all_my_state))
+//                            .setContentText(getResources().getString(R.string.description_all_my_state))
+//
+//                            .setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    showCaseView.hide();
+//                                }
+//                            })
+//
+//
+//                            .setStyle(R.style.CustomShowcaseTheme2)
+//                            .build();
+
+
+                }
+
+
+            }
+        }, 100); // After 1 seconds
     }
 
     //Define your Interface method here

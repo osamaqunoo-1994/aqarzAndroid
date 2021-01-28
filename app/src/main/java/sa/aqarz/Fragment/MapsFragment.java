@@ -68,6 +68,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import io.blushine.android.ui.showcase.MaterialShowcaseView;
+import io.blushine.android.ui.showcase.ShowcaseListener;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.DetailsActivity;
@@ -113,7 +115,10 @@ public class MapsFragment extends Fragment {
 
     TextView Orders_tab;
     TextView Offers_tab;
-
+    MaterialShowcaseView materialShowcaseView;
+    MaterialShowcaseView materialShowcaseView2;
+    MaterialShowcaseView materialShowcaseView3;
+    MaterialShowcaseView materialShowcaseView4;
 
     String final_type_requst_filter = "";
     String typeTab = "Orders_tab";
@@ -542,66 +547,199 @@ public class MapsFragment extends Fragment {
                 if (!Hawk.contains("showCaseView")) {
 
                     Hawk.put("showCaseView", "showCaseView");
-                    showCaseView = new ShowcaseView.Builder(getActivity())
-                            .setTarget(new ViewTarget(R.id.lay_2, getActivity()))
 
-                            .setContentTitle(getResources().getString(R.string.title_orfdder))
+
+                    materialShowcaseView = new MaterialShowcaseView.Builder(getActivity())
+                            .setTitleText(getResources().getString(R.string.title_orfdder))
                             .setContentText(getResources().getString(R.string.deta_order))
+                            .setContentTextColor(getResources().getColor(R.color.white))
 
-                            .setOnClickListener(new View.OnClickListener() {
+                            .setDismissText(getResources().getString(R.string.Nextt)) // Optional. When used can only dismiss the showcase by clicking on the dismiss button and target isn't pressable.
+                            .setTarget(MainActivity.lay_2)
+
+
+//                            .setBackgroundColor(getResources().getColor(R.color.color_brimarys))
+                            .setDelay(300) // Optional. But starting animations immediately in onCreate can make the choppy
+                            .show();
+                    materialShowcaseView.addListener(new ShowcaseListener() {
+                        @Override
+                        public void onShowcaseDisplayed(MaterialShowcaseView materialShowcaseView) {
+
+                        }
+
+                        @Override
+                        public void onShowcaseDismissed(MaterialShowcaseView materialShowcaseView) {
+                            materialShowcaseView2 = new MaterialShowcaseView.Builder(getActivity())
+                                    .setTitleText(getResources().getString(R.string.AddAqarezTitle_show))
+                                    .setContentText(getResources().getString(R.string.AddAqarezdes_show))
+                                    .setDismissText(getResources().getString(R.string.Nextt)) // Optional. When used can only dismiss the showcase by clicking on the dismiss button and target isn't pressable.
+                                    .setTarget(addAqares)
+                                    .setContentTextColor(getResources().getColor(R.color.white))
+
+//                            .setBackgroundColor(getResources().getColor(R.color.color_brimarys))
+                                    .setDelay(300) // Optional. But starting animations immediately in onCreate can make the choppy
+                                    .show();
+                            materialShowcaseView2.addListener(new ShowcaseListener() {
                                 @Override
-                                public void onClick(View v) {
-                                    showCaseView.hide();
-
-                                    showCaseView = new ShowcaseView.Builder(getActivity())
-                                            .setTarget(new ViewTarget(R.id.addAqares, getActivity()))
-                                            .setContentTitle(getResources().getString(R.string.AddAqarezTitle_show))
-                                            .setContentText(getResources().getString(R.string.AddAqarezdes_show))
-
-                                            .setOnClickListener(new View.OnClickListener() {
-                                                @Override
-                                                public void onClick(View v) {
-                                                    showCaseView.hide();
-
-                                                    showCaseView1 = new ShowcaseView.Builder(getActivity())
-                                                            .setTarget(new ViewTarget(R.id.RequstAqars, getActivity()))
-                                                            .setContentTitle(getResources().getString(R.string.RequestServicezTitle_show))
-                                                            .setContentText(getResources().getString(R.string.RequestServicezdes_show))
-
-                                                            .setOnClickListener(new View.OnClickListener() {
-                                                                @Override
-                                                                public void onClick(View v) {
-                                                                    showCaseView1.hide();
-
-
-                                                                    showCaseView2 = new ShowcaseView.Builder(getActivity())
-                                                                            .setTarget(new ViewTarget(R.id.filtter, getActivity()))
-                                                                            .setContentTitle(getResources().getString(R.string.filtterSearchzTitle_show))
-                                                                            .setContentText(getResources().getString(R.string.filtterSearchzdes_show))
-
-
-                                                                            .hideOnTouchOutside()
-
-                                                                            .setStyle(R.style.CustomShowcaseTheme2)
-                                                                            .build();
-                                                                }
-                                                            })
-
-                                                            .setStyle(R.style.CustomShowcaseTheme2)
-                                                            .build();
-                                                }
-                                            })
-
-
-                                            .setStyle(R.style.CustomShowcaseTheme2)
-                                            .build();
+                                public void onShowcaseDisplayed(MaterialShowcaseView materialShowcaseView) {
 
                                 }
-                            })
+
+                                @Override
+                                public void onShowcaseDismissed(MaterialShowcaseView materialShowcaseView) {
+                                    materialShowcaseView3 = new MaterialShowcaseView.Builder(getActivity())
+                                            .setTitleText(getResources().getString(R.string.RequestServicezTitle_show))
+                                            .setContentText(getResources().getString(R.string.RequestServicezdes_show))
+                                            .setDismissText(getResources().getString(R.string.Nextt)) // Optional. When used can only dismiss the showcase by clicking on the dismiss button and target isn't pressable.
+                                            .setTarget(RequstAqars)
+                                            .setContentTextColor(getResources().getColor(R.color.white))
+
+//                            .setBackgroundColor(getResources().getColor(R.color.color_brimarys))
+                                            .setDelay(300) // Optional. But starting animations immediately in onCreate can make the choppy
+                                            .show();
+                                    materialShowcaseView3.addListener(new ShowcaseListener() {
+                                        @Override
+                                        public void onShowcaseDisplayed(MaterialShowcaseView materialShowcaseView) {
+
+                                        }
+
+                                        @Override
+                                        public void onShowcaseDismissed(MaterialShowcaseView materialShowcaseView) {
+                                            materialShowcaseView4 = new MaterialShowcaseView.Builder(getActivity())
+                                                    .setTitleText(getResources().getString(R.string.filtterSearchzTitle_show))
+                                                    .setContentText(getResources().getString(R.string.filtterSearchzdes_show))
+                                                    .setDismissText(getResources().getString(R.string.Nextt)) // Optional. When used can only dismiss the showcase by clicking on the dismiss button and target isn't pressable.
+                                                    .setTarget(filtter)
+                                                    .setContentTextColor(getResources().getColor(R.color.white))
+
+//                            .setBackgroundColor(getResources().getColor(R.color.color_brimarys))
+                                                    .setDelay(300) // Optional. But starting animations immediately in onCreate can make the choppy
+                                                    .show();
+
+//
+//
+                                        }
+
+                                        @Override
+                                        public void onShowcaseSkipped(MaterialShowcaseView materialShowcaseView) {
+
+                                        }
+
+                                        @Override
+                                        public void onTargetPressed(MaterialShowcaseView materialShowcaseView) {
+
+                                        }
+                                    });
 
 
-                            .setStyle(R.style.CustomShowcaseTheme2)
-                            .build();
+                                }
+
+                                @Override
+                                public void onShowcaseSkipped(MaterialShowcaseView materialShowcaseView) {
+
+                                }
+
+                                @Override
+                                public void onTargetPressed(MaterialShowcaseView materialShowcaseView) {
+
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onShowcaseSkipped(MaterialShowcaseView materialShowcaseView) {
+
+                        }
+
+                        @Override
+                        public void onTargetPressed(MaterialShowcaseView materialShowcaseView) {
+
+                        }
+                    });
+//
+//
+//                    materialShowcaseView4.addListener(new ShowcaseListener() {
+//                        @Override
+//                        public void onShowcaseDisplayed(MaterialShowcaseView materialShowcaseView) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onShowcaseDismissed(MaterialShowcaseView materialShowcaseView) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onShowcaseSkipped(MaterialShowcaseView materialShowcaseView) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onTargetPressed(MaterialShowcaseView materialShowcaseView) {
+//
+//                        }
+//                    });
+
+//                    showCaseView = new ShowcaseView.Builder(getActivity())
+//                            .setTarget(new ViewTarget(R.id.lay_2, getActivity()))
+//
+//                            .setContentTitle(getResources().getString(R.string.title_orfdder))
+//                            .setContentText(getResources().getString(R.string.deta_order))
+//
+//                            .setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    showCaseView.hide();
+//
+//                                    showCaseView = new ShowcaseView.Builder(getActivity())
+//                                            .setTarget(new ViewTarget(R.id.addAqares, getActivity()))
+//                                            .setContentTitle(getResources().getString(R.string.AddAqarezTitle_show))
+//                                            .setContentText(getResources().getString(R.string.AddAqarezdes_show))
+//
+//                                            .setOnClickListener(new View.OnClickListener() {
+//                                                @Override
+//                                                public void onClick(View v) {
+//                                                    showCaseView.hide();
+//
+//                                                    showCaseView1 = new ShowcaseView.Builder(getActivity())
+//                                                            .setTarget(new ViewTarget(R.id.RequstAqars, getActivity()))
+//                                                            .setContentTitle(getResources().getString(R.string.RequestServicezTitle_show))
+//                                                            .setContentText(getResources().getString(R.string.RequestServicezdes_show))
+//
+//                                                            .setOnClickListener(new View.OnClickListener() {
+//                                                                @Override
+//                                                                public void onClick(View v) {
+//                                                                    showCaseView1.hide();
+//
+//
+//                                                                    showCaseView2 = new ShowcaseView.Builder(getActivity())
+//                                                                            .setTarget(new ViewTarget(R.id.filtter, getActivity()))
+//                                                                            .setContentTitle(getResources().getString(R.string.filtterSearchzTitle_show))
+//                                                                            .setContentText(getResources().getString(R.string.filtterSearchzdes_show))
+//
+//
+//                                                                            .hideOnTouchOutside()
+//
+//                                                                            .setStyle(R.style.CustomShowcaseTheme2)
+//                                                                            .build();
+//                                                                }
+//                                                            })
+//
+//                                                            .setStyle(R.style.CustomShowcaseTheme2)
+//                                                            .build();
+//                                                }
+//                                            })
+//
+//
+//                                            .setStyle(R.style.CustomShowcaseTheme2)
+//                                            .build();
+//
+//                                }
+//                            })
+//
+//
+//                            .setStyle(R.style.CustomShowcaseTheme2)
+//                            .build();
 
 
                 }

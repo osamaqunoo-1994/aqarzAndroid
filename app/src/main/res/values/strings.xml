@@ -594,6 +594,34 @@ Two working days to complete your order</string>
     <string name="title_orfdder">Requests</string>
     <string name="deta_order">From here, you can view real estate requests from the instant real estate fund, requests from individuals and companies, and send your offers to them</string>
 
+
+    <string name="title_all_my_state">All My State</string>
+    <string name="Nextt">NEXT</string>
+    <string name="description_all_my_state">All your offers will appear here to quickly send it, and you can choose several properties and send them or submit a new offer and send it</string>
+
+
+    <string name="title_realstate">Real State Order</string>
+    <string name="desrealstate">In this section, you receive requests coming directly from the real estate fund. Note: In order to be able to send your offers to fund requests, you must accept the conditions and complete your profile</string>
+
+
+    <string name="title_market">Market Order</string>
+    <string name="des_market">Requests coming from subscribers</string>
+
+
+
+
+    <string name="title_All">All Order</string>
+    <string name="tdes_All">Your selection of all orders will display all requests for all regions</string>
+
+
+
+    <string name="title_filter">Filtter Order</string>
+    <string name="dies_filter">You can specify requests by city and type of property from here</string>
+
+    <string name="real_service">Do you want to activate a service real State?</string>
+    <string name="real_qustion">You are not subscribed to a service real state?</string>
+    <string name="Participation">Participation</string>
+
     <string name="tet_terms">ﺍﺗﻔﺎﻗﻴﺔ ﺍﻹﺳﺘﺨﺪﺍﻡﻋﺒﺮ ﺩﺧﻮﻟﻚ ﻭﺍﺳﺘﺨﺪﺍﻣﻚ ﻣﻮﻗﻊ ﺃﻭ ﺗﻄﺒﻴﻖ ﻋﻘﺎﺭﺯ ﻓﺈﻧﻚ ﺗﻘﺮ ﻭﺗﻮﺍﻓﻖ، ﺩﻭﻥ ﺇﺟﺮﺍﺀ ﺃﻱ ﺗﻌﺪﻳﻞ ﻭﺩﻭﻥ ﺃﻳﺔ ﻗﻴﻮﺩ ﺃﻭ ﺗﺒﺪﻳﻞ، ﻋﻠﻰ ﺍﻷﺣﻜﺎﻡ ﻭﺍﻟﺸﺮﻭﻁ ﺍﻟﻮﺍﺭﺩﺓ ﻓﻲ ﻫﺬﻩ (ﺍﻻﺗﻔﺎﻗﻴﺔ). ﺃﻧﺖ ﺗﻘﺮ ﻭﺗﻀﻤﻦ ﺣﻘﻚ ﺍﻟﻘﺎﻧﻮﻧﻲ ﻟﻠﺪﺧﻮﻝ ﻓﻲ ﻫﺬﻩ ﺍﻻﺗﻔﺎﻗﻴﺔ ﻭﺍﺳﺘﺨﺪﺍﻡ ﺍﻟﺨﺪﻣﺎﺕ ﺍﻟﺘﻲ ﻧﻘﺪﻣﻬﺎ ﻓﻲ ﻋﻘﺎﺭﺯ ﻭﻓﻘﺎً ﻟﻜﺎﻓﺔ ﺍﻟﺸﺮﻭﻁ ﻭﺍﻷﺣﻜﺎﻡ ﺍﻟﻮﺍﺭﺩﺓ ﻓﻴﻬﺎ.
         ﺗﺴﻌﻰ ﻣﺆﺳﺴﺔ ﻋﻠﻮ ﻭﺃﺳﺎﺱ ﻟﻺﺗﺼﺎﻻﺕ ﻭﺗﻘﻨﻴﺔ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﻗﺪﺭ ﺍﻹﻣﻜﺎﻥ ﺇﻟﻰ ﺗﻮﻓﻴﺮ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﻋﻠﻰ ﻣﻨﺼﺘﻬﺎ ﺑﺪﻗﺔ ﻣﺘﻨﺎﻫﻴﺔ. ﺇﻻ ﺃﻧﻪ ﻗﺪ ﺗﺮﺩ ﺑﻌﺾ ﺍﻷﺧﻄﺎﺀ ﻣﻦ ﺣﻴﻦ ﻵﺧﺮ. ﻭﻻ ﺗﺘﺤﻤﻞ ﻣﺆﺳﺴﺔ ﻋﻠﻮ ﻭﺃﺳﺎﺱ ﻟﻺﺗﺼﺎﻻﺕ ﻭﺗﻘﻨﻴﺔ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﺃﻱ ﻣﺴﺆﻭﻟﻴﺔ ﻋﻦ ﺃﻱ ﺧﻄﺄ ﻓﻲ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﺍﻟﺘﻲ ﻳﺘﻀﻤﻨﻬﺎ ﺍﻟﻤﻮﻗﻊ ﺍﻭ ﺍﻟﺘﻄﺒﻴﻖ.
         ﻣﺆﺳﺴﺔ ﻋﻠﻮ ﻭﺃﺳﺎﺱ ﻟﻺﺗﺼﺎﻻﺕ ﻭﺗﻘﻨﻴﺔ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ ﻟﻠﺘﺠﺎﺭﺓ ﻫﻲ ﺷﺮﻛﺔ ﺳﻌﻮﺩﻳﺔ ١٠٠ ٪ ﻭﻣﻘﺮﻫﺎ ﺍﻟﺮﺋﻴﺴﻲ ﻳﻘﻊ ﻓﻲ ﺍﻟﺨﺒﺮ. ﻭﻳﺸﺎﺭ ﺇﻟﻴﻬﺎ ﺑﻬﺬﻩ ﺍﻻﺗﻔﺎﻗﻴﺔ ﺑﺎﺳﻢ (ﻣﺆﺳﺴﺔ ﻋﻠﻮ ﻭﺃﺳﺎﺱ ﻟﻺﺗﺼﺎﻻﺕ ﻭﺗﻘﻨﻴﺔ ﺍﻟﻤﻌﻠﻮﻣﺎﺕ) ﺃﻭ (ﻋﻘﺎﺭﺯ) ﺃﻭ (ﻧﺤﻦ) ﺃﻭ (ﻟﻨﺎ)، ﻭﺗﻤﺜﻞ ﻫﻨﺎ ﺍﻟﻄﺮﻑ ﺍﻷﻭﻝ.

@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     static TextView text_4;
     static TextView text_s;
 
-    LinearLayout lay_1, lay_2, lay_3, lay_4, lay_s;
+   public static LinearLayout lay_1, lay_2, lay_3, lay_4, lay_s;
     ShowcaseView showCaseView;
 
     FloatingActionButton myFab;
@@ -157,7 +157,13 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.container, new MapsFragment());
         //  fragmentTransaction.commit();
         fragmentTransaction.commitAllowingStateLoss();
-        forceUpdate();
+
+        try{
+            forceUpdate();
+
+        }catch (Exception e){
+
+        }
 
 
         myFab.setOnClickListener(new View.OnClickListener() {

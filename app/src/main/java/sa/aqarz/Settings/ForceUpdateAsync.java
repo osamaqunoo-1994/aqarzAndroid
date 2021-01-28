@@ -51,7 +51,7 @@ public class ForceUpdateAsync extends AsyncTask<String, String, JSONObject> {
                     .ownText();
 
             System.out.println("latestVersion"+latestVersion);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return new JSONObject();
@@ -61,7 +61,7 @@ public class ForceUpdateAsync extends AsyncTask<String, String, JSONObject> {
     protected void onPostExecute(JSONObject jsonObject) {
         if(latestVersion!=null){
             if(!currentVersion.equalsIgnoreCase(latestVersion)){
-                 Toast.makeText(context,"update is available.",Toast.LENGTH_LONG).show();
+//                 Toast.makeText(context,"update is available.",Toast.LENGTH_LONG).show();
                 showForceUpdateDialog();
 
 //                if(!(context instanceof MainActivity)) {

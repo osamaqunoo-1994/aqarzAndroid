@@ -18,8 +18,11 @@ import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.orhanobut.hawk.Hawk;
 
+import io.blushine.android.ui.showcase.MaterialShowcaseView;
+import io.blushine.android.ui.showcase.ShowcaseListener;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
+import sa.aqarz.Activity.RealState.AllOfferOrderActivity;
 import sa.aqarz.R;
 
 public class RequestServiceActivity extends AppCompatActivity {
@@ -38,6 +41,8 @@ public class RequestServiceActivity extends AppCompatActivity {
     ShowcaseView showCaseView;
     ShowcaseView showCaseView1;
 
+    MaterialShowcaseView materialShowcaseView;
+    MaterialShowcaseView materialShowcaseView2;
 
     static Activity activity;
 
@@ -167,32 +172,78 @@ public class RequestServiceActivity extends AppCompatActivity {
                     Hawk.put("showCaseView1", "showCaseView1");
 
 
-                    showCaseView = new ShowcaseView.Builder(RequestServiceActivity.this)
-                            .setTarget(new ViewTarget(R.id.aqar_layout, RequestServiceActivity.this))
-                            .setContentTitle(getResources().getString(R.string.requestAqarezhzTitle_show))
+                    materialShowcaseView = new MaterialShowcaseView.Builder(RequestServiceActivity.this)
+                            .setTitleText(getResources().getString(R.string.requestAqarezhzTitle_show))
                             .setContentText(getResources().getString(R.string.requestAqarezhzdes_show))
+                            .setContentTextColor(getResources().getColor(R.color.white))
 
-                            .setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    showCaseView.hide();
-
-                                    showCaseView1 = new ShowcaseView.Builder(RequestServiceActivity.this)
-                                            .setTarget(new ViewTarget(R.id.rent_layout, RequestServiceActivity.this))
-                                            .setContentTitle(getResources().getString(R.string.finincezhzTitle_show))
-                                            .setContentText(getResources().getString(R.string.finincezhzdes_show))
+                            .setDismissText(getResources().getString(R.string.Nextt)) // Optional. When used can only dismiss the showcase by clicking on the dismiss button and target isn't pressable.
+                            .setTarget(aqar_layout)
 
 
-                                            .hideOnTouchOutside()
+//                            .setBackgroundColor(getResources().getColor(R.color.color_brimarys))
+                            .setDelay(300) // Optional. But starting animations immediately in onCreate can make the choppy
+                            .show();
+                    materialShowcaseView.addListener(new ShowcaseListener() {
+                        @Override
+                        public void onShowcaseDisplayed(MaterialShowcaseView materialShowcaseView) {
 
-                                            .setStyle(R.style.CustomShowcaseTheme2)
-                                            .build();
-                                }
-                            })
+                        }
+
+                        @Override
+                        public void onShowcaseDismissed(MaterialShowcaseView materialShowcaseView) {
+
+                            materialShowcaseView2 = new MaterialShowcaseView.Builder(RequestServiceActivity.this)
+                                    .setTitleText(getResources().getString(R.string.finincezhzTitle_show))
+                                    .setContentText(getResources().getString(R.string.finincezhzdes_show))
+                                    .setContentTextColor(getResources().getColor(R.color.white))
+
+                                    .setDismissText(getResources().getString(R.string.Nextt)) // Optional. When used can only dismiss the showcase by clicking on the dismiss button and target isn't pressable.
+                                    .setTarget(rent_layout)
 
 
-                            .setStyle(R.style.CustomShowcaseTheme2)
-                            .build();
+//                            .setBackgroundColor(getResources().getColor(R.color.color_brimarys))
+                                    .setDelay(300) // Optional. But starting animations immediately in onCreate can make the choppy
+                                    .show();
+                        }
+
+                        @Override
+                        public void onShowcaseSkipped(MaterialShowcaseView materialShowcaseView) {
+
+                        }
+
+                        @Override
+                        public void onTargetPressed(MaterialShowcaseView materialShowcaseView) {
+
+                        }
+                    });
+
+//                    showCaseView = new ShowcaseView.Builder(RequestServiceActivity.this)
+//                            .setTarget(new ViewTarget(R.id.aqar_layout, RequestServiceActivity.this))
+//                            .setContentTitle(getResources().getString(R.string.requestAqarezhzTitle_show))
+//                            .setContentText(getResources().getString(R.string.requestAqarezhzdes_show))
+//
+//                            .setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    showCaseView.hide();
+//
+//                                    showCaseView1 = new ShowcaseView.Builder(RequestServiceActivity.this)
+//                                            .setTarget(new ViewTarget(R.id.rent_layout, RequestServiceActivity.this))
+//                                            .setContentTitle(getResources().getString(R.string.finincezhzTitle_show))
+//                                            .setContentText(getResources().getString(R.string.finincezhzdes_show))
+//
+//
+//                                            .hideOnTouchOutside()
+//
+//                                            .setStyle(R.style.CustomShowcaseTheme2)
+//                                            .build();
+//                                }
+//                            })
+//
+//
+//                            .setStyle(R.style.CustomShowcaseTheme2)
+//                            .build();
 
                 }
             }

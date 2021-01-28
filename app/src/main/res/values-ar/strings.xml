@@ -809,11 +809,11 @@
     //---------------------------------------------------
 
     <string name="AddAqarezTitle_show">اضافة عقارز</string>
-    <string name="AddAqarezdes_show">يمكنك اضافة العقار الخاص بك بجميع تفاصيلة</string>
+    <string name="AddAqarezdes_show">اضف عقار المراد عرضه بالسوق العام عبر الاختيار هنا</string>
 
 
     <string name="RequestServicezTitle_show">طلب خدمة</string>
-    <string name="RequestServicezdes_show">يمكنك طلب خدمة من خدمات التطبيق (طلب عقار - طلب تمويل - طلبات السوق - طلبات الصندوق )</string>
+    <string name="RequestServicezdes_show">الخدمات العقارية : هذا القسم يحتوي على منتجات وبرامج عقارية</string>
 
 
     <string name="filtterSearchzTitle_show">فلتر البحث</string>
@@ -836,13 +836,37 @@
 
 
 
+    <string name="title_All">كل الطلبات</string>
+    <string name="tdes_All">اختيارك كل الطلبات سيعرض لك كل الطلبات لحميع المناطق</string>
 
 
 
+    <string name="title_filter">فلتر الطلبات</string>
+    <string name="dies_filter">يمكنك تحديد الطلبات حسب المدينه ونوع العقار من هنا</string>
+
+
+
+
+    <string name="title_all_my_state">عروضي</string>
+    <string name="description_all_my_state">جميع عروضك ستظهر هنا لسرعه ارساله ويمكنك اختيار عده عقارات وارسالها  او تقديم عرض جديد وارساله</string>
+
+
+
+    <string name="title_realstate">طلبات الصندوق العقاري</string>
+    <string name="desrealstate">في هذا القسم تستقبل الطلبات القادمة من الصندوق العقاري مباشرة . ملاحظه : لتتمكن من ارسال عروضك لطلبات الصندوق لابد من قبول الشروط واكمال ملفك الشخصي</string>
+
+    <string name="Nextt">التالي</string>
+
+    <string name="title_market">طلبات السوق</string>
+    <string name="des_market">الطلبات القادمة من المشتركين</string>
 
     <string name="youAreNotUpdatedTitle">تحديث متوفر</string>
     <string name="youAreNotUpdatedMessage">يتوفر اصدار جديد من تطبيق عقارز يرجى التحديث الى الاصدار </string>
     <string name="youAreNotUpdatedMessage1"> الان </string>
     <string name="update">تحديث</string>
 
+
+    <string name="real_service">هل ترغب بالاشتراك بطلبات الصندوق?</string>
+    <string name="real_qustion">انت غير مشترك بخدمة طلبات الصندوق؟</string>
+    <string name="Participation">اشتراك</string>
 </resources>

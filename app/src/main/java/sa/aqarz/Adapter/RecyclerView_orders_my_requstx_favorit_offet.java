@@ -125,32 +125,36 @@ public class RecyclerView_orders_my_requstx_favorit_offet extends RecyclerView.A
 //        }
 //
 
-
-        holder.price.setText(alldata.get(position).getEstate().get(0).getTotalPrice());
+try{
+    holder.price.setText(alldata.get(position).getEstate().get(0).getTotalPrice());
 //        holder.view_type.setText(alldata.get(position).getDirEstate());
-        holder.space.setText(alldata.get(position).getEstate().get(0).getTotalArea());
+    holder.space.setText(alldata.get(position).getEstate().get(0).getTotalArea());
 
 
 //        System.out.println(alldata.get(position).getAreaFrom() + " - " + alldata.get(position).getAreaTo());
-        holder.name_estate.setText(alldata.get(position).getEstate().get(0).getEstate_type_name());
+    holder.name_estate.setText(alldata.get(position).getEstate().get(0).getEstate_type_name());
 
 
-        if (alldata.get(position).getEstate().get(0).getAddress() != null) {
-            holder.address.setText(alldata.get(position).getEstate().get(0).getAddress());
+    if (alldata.get(position).getEstate().get(0).getAddress() != null) {
+        holder.address.setText(alldata.get(position).getEstate().get(0).getAddress());
 
-        } else {
-            if (alldata.get(position).getEstate().get(0).getCity_name() != null) {
-                holder.address.setText(alldata.get(position).getEstate().get(0).getCity_name() + " , " + alldata.get(position).getEstate().get(0).getNeighborhood_name());
-
-            }
+    } else {
+        if (alldata.get(position).getEstate().get(0).getCity_name() != null) {
+            holder.address.setText(alldata.get(position).getEstate().get(0).getCity_name() + " , " + alldata.get(position).getEstate().get(0).getNeighborhood_name());
 
         }
+
+    }
 
 
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-        Picasso.get().load(alldata.get(position).getEstate().get(0).getFirst_image()).into(holder.image);
+    Picasso.get().load(alldata.get(position).getEstate().get(0).getFirst_image()).into(holder.image);
 ////
+}catch (Exception e){
+
+}
+
 //
 //        try {
 //
