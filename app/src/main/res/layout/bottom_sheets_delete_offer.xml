@@ -32,10 +32,10 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:background="@drawable/mash"
+                    android:background="@drawable/circle_fill"
                     android:padding="5dp"
                     android:src="@drawable/ic_close_black_24dp"
-                    app:tint="#AAABB3" />
+                    app:tint="#ffffff" />
 
             </LinearLayout>
 

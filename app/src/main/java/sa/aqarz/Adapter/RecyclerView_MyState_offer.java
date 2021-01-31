@@ -292,7 +292,7 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
 //
 //                }
                 Intent intent = new Intent(context, DetailsActivity_aqarz.class);
-                intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
+                intent.putExtra("id_aqarz", alldata.get(position).getEstateId() + "");
                 context.startActivity(intent);
 
 //

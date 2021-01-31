@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     static TextView text_4;
     static TextView text_s;
 
-   public static LinearLayout lay_1, lay_2, lay_3, lay_4, lay_s;
+    public static LinearLayout lay_1, lay_2, lay_3, lay_4, lay_s;
     ShowcaseView showCaseView;
 
     FloatingActionButton myFab;
@@ -158,10 +158,10 @@ public class MainActivity extends AppCompatActivity {
         //  fragmentTransaction.commit();
         fragmentTransaction.commitAllowingStateLoss();
 
-        try{
+        try {
             forceUpdate();
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -723,7 +723,7 @@ public class MainActivity extends AppCompatActivity {
         }
         String currentVersion = packageInfo.versionName;
 
-        System.out.println("currentVersion"+currentVersion);
+        System.out.println("currentVersion" + currentVersion);
         new ForceUpdateAsync(currentVersion, MainActivity.this).execute();
     }
 }

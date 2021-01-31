@@ -50,18 +50,17 @@
                     android:textSize="14dp"
                     android:textStyle="bold" />
 
+
                 <ImageView
-
                     android:id="@+id/back"
-                    android:layout_width="37dp"
-                    android:layout_height="37dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-
-                    android:padding="8dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/circle_fill"
+                    android:padding="5dp"
                     android:src="@drawable/ic_close_black_24dp"
-                    app:tint="#AAABB3" />
-
+                    app:tint="#ffffff" />
 
             </LinearLayout>
 
