@@ -869,4 +869,6 @@
     <string name="real_service">هل ترغب بالاشتراك بطلبات الصندوق?</string>
     <string name="real_qustion">انت غير مشترك بخدمة طلبات الصندوق؟</string>
     <string name="Participation">اشتراك</string>
+    <string name="AreYouAqarezman">هل انت عقاري</string>
+
 </resources>
