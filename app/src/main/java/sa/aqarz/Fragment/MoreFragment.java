@@ -53,6 +53,7 @@ import sa.aqarz.Activity.Auth.NewPasswordActivity;
 import sa.aqarz.Activity.Auth.NewSiginUpActivity;
 import sa.aqarz.Activity.Auth.RegisterActivity;
 import sa.aqarz.Activity.ContactUsActivity;
+import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Activity.DetailsAqarzManActivity;
 import sa.aqarz.Activity.FavoriteActivity;
 import sa.aqarz.Activity.MainActivity;
@@ -61,7 +62,9 @@ import sa.aqarz.Activity.PrivecyActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Activity.TermsActivity;
 import sa.aqarz.Activity.profile.AllclintActivity;
+import sa.aqarz.Activity.profile.MyOffersActivity;
 import sa.aqarz.Activity.profile.MyProfileActivity;
+import sa.aqarz.Activity.profile.OtherProfileActivity;
 import sa.aqarz.Adapter.RecyclerView_All_Opration_in_map;
 import sa.aqarz.Adapter.RecyclerView_All_Type_in_map;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_restPassword;
@@ -101,6 +104,9 @@ public class MoreFragment extends Fragment {
     LinearLayout contact_us;
 
     LinearLayout Favorites;
+    LinearLayout Aqarez;
+    LinearLayout clints;
+    LinearLayout profile;
     Button email_us;
     CircleImageView image_profile;
 
@@ -110,6 +116,7 @@ public class MoreFragment extends Fragment {
 
 
     TextView title_info;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_more, container, false);
@@ -142,6 +149,9 @@ public class MoreFragment extends Fragment {
         image_profile = v.findViewById(R.id.image_profile);
         not_compleate = v.findViewById(R.id.not_compleate);
         Favorites = v.findViewById(R.id.Favorites);
+        clints = v.findViewById(R.id.clints);
+        Aqarez = v.findViewById(R.id.Aqarez);
+        profile = v.findViewById(R.id.profile);
         qr_code = v.findViewById(R.id.qr_code);
         all_aqarez_man = v.findViewById(R.id.all_aqarez_man);
         Technical_support = v.findViewById(R.id.Technical_support);
@@ -176,8 +186,8 @@ public class MoreFragment extends Fragment {
 //                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
 
-                BottomSheetDialogFragmen_restPassword bottomSheetDialogFragmen_restPassword=new BottomSheetDialogFragmen_restPassword("");
-                bottomSheetDialogFragmen_restPassword.show(getChildFragmentManager(),"");
+                BottomSheetDialogFragmen_restPassword bottomSheetDialogFragmen_restPassword = new BottomSheetDialogFragmen_restPassword("");
+                bottomSheetDialogFragmen_restPassword.show(getChildFragmentManager(), "");
 
 //                Intent intent = new Intent(getContext(), ForgotPasswordActivity.class);
 ////                                intent.putExtra("from", "splash");
@@ -214,6 +224,27 @@ public class MoreFragment extends Fragment {
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(getActivity(), OtherProfileActivity.class);
+                intent.putExtra("id", Settings.GetUser().getId() + "");
+                startActivity(intent);
+
+            }
+        });
+        Aqarez.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MyOffersActivity.class);
+                intent.putExtra("id_user", "--");
+                startActivity(intent);
+
 
             }
         });
@@ -464,6 +495,9 @@ public class MoreFragment extends Fragment {
                     MyOrder.setVisibility(View.GONE);
                     title_info.setVisibility(View.GONE);
                     Favorites.setVisibility(View.GONE);
+                    clints.setVisibility(View.GONE);
+                    Aqarez.setVisibility(View.GONE);
+                    profile.setVisibility(View.GONE);
 
                 } else {
 
@@ -474,6 +508,9 @@ public class MoreFragment extends Fragment {
                     MyOrder.setVisibility(View.VISIBLE);
                     title_info.setVisibility(View.VISIBLE);
                     Favorites.setVisibility(View.VISIBLE);
+                    clints.setVisibility(View.VISIBLE);
+                    Aqarez.setVisibility(View.VISIBLE);
+                    profile.setVisibility(View.VISIBLE);
 
                     logout.setVisibility(View.VISIBLE);
 
@@ -497,6 +534,9 @@ public class MoreFragment extends Fragment {
                 logout.setVisibility(View.GONE);
                 MyOrder.setVisibility(View.GONE);
                 Favorites.setVisibility(View.GONE);
+                clints.setVisibility(View.GONE);
+                profile.setVisibility(View.GONE);
+                Aqarez.setVisibility(View.GONE);
                 title_info.setVisibility(View.GONE);
 
             }

@@ -803,7 +803,7 @@
     <string name="more_section_title">أخرى</string>
     <string name="support_section_title">الدعم الفني</string>
     <string name="info_section_title">معلومات عن التطبيق</string>
-    <string name="person_section_title">إعدادت شخصية</string>
+    <string name="person_section_title">وصول سريع</string>
 
     //---------------------------------------------------
     //---------------------------------------------------
@@ -870,5 +870,6 @@
     <string name="real_qustion">انت غير مشترك بخدمة طلبات الصندوق؟</string>
     <string name="Participation">اشتراك</string>
     <string name="AreYouAqarezman">هل انت عقاري</string>
+    <string name="Clints_title">نشاط الموظفين</string>
 
 </resources>

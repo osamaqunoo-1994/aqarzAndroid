@@ -24,8 +24,8 @@
                 android:id="@+id/with_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:background="@color/white"
+                android:orientation="vertical"
                 android:visibility="gone">
 
 
@@ -186,8 +186,6 @@
                         android:paddingEnd="10dp">
 
 
-
-
                     </LinearLayout>
 
                 </LinearLayout>
@@ -199,8 +197,8 @@
                 android:id="@+id/no_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:background="@color/white"
+                android:gravity="center"
                 android:orientation="vertical"
                 android:visibility="visible">
 
@@ -287,34 +285,81 @@
                     android:paddingLeft="10dp">
 
 
-
-
-
                     <TextView
                         android:id="@+id/title_info"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:visibility="gone"
                         android:gravity="center_vertical"
                         android:paddingBottom="5dp"
                         android:text="@string/person_section_title"
                         android:textColor="#AAABB3"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:visibility="gone" />
 
                     <LinearLayout
-                        android:id="@+id/Favorites"
-                        android:visibility="gone"
+                        android:id="@+id/profile"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/back_more_de"
                         android:gravity="center"
                         android:orientation="horizontal"
-
                         android:paddingLeft="15dp"
-                        android:paddingRight="15dp">
+
+                        android:paddingRight="15dp"
+                        android:visibility="gone">
+
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/circle_fill"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_path_profile"
+                            app:tint="@color/white" />
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+
+                            android:layout_height="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/din_regular"
+                            android:text="@string/more_profile_title"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_left_arrow" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Favorites"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/back_more_de"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+
+                        android:paddingRight="15dp"
+                        android:visibility="gone">
 
 
                         <ImageView
@@ -335,6 +380,56 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/din_regular"
                             android:text="@string/Favorites"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_left_arrow" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Aqarez"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/back_more_de"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+
+                        android:paddingRight="15dp"
+                        android:visibility="gone">
+
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/circle_fill"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_group_home"
+                            app:tint="@color/white" />
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+
+                            android:layout_height="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/din_regular"
+                            android:text="@string/MyAqaerz_tag"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp" />
 
@@ -417,7 +512,55 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/clints"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/back_more_de"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
 
+                        android:paddingRight="15dp"
+                        android:visibility="gone">
+
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/circle_fill"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_path_clints"
+                            app:tint="@color/white" />
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+
+                            android:layout_height="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/din_regular"
+                            android:text="@string/Clints_title"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_left_arrow" />
+
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/changePassword"
@@ -481,8 +624,6 @@
                     </LinearLayout>
 
 
-
-
                     <LinearLayout
                         android:id="@+id/privecy"
                         android:layout_width="match_parent"
@@ -526,6 +667,67 @@
                         android:text="@string/info_section_title"
                         android:textColor="#AAABB3"
                         android:textSize="15dp" />
+
+                    <LinearLayout
+                        android:id="@+id/all_aqarez_man"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/back_more_de"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/circle_fill_y"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_path_8829"
+                            app:tint="@color/white" />
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+
+                            android:layout_height="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/din_regular"
+                            android:text="@string/MOreAqarezMan"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text=""
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/_11sdp" />
+
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_left_arrow" />
+
+
+                    </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/terms"
 
@@ -542,7 +744,7 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:background="@drawable/circle_fill"
+                            android:background="@drawable/circle_fill_y"
                             android:padding="5dp"
                             android:src="@drawable/ic_terms___"
                             app:tint="@color/white" />
@@ -586,65 +788,7 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/all_aqarez_man"
 
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/back_more_de"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:background="@drawable/circle_fill"
-                            android:padding="5dp"
-                            android:src="@drawable/ic_path_8829"
-                            app:tint="@color/white" />
-
-                        <LinearLayout
-                            android:layout_width="10dp"
-
-                            android:layout_height="10dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/din_regular"
-                            android:text="@string/MOreAqarezMan"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_10sdp" />
-
-                        <LinearLayout
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:text=""
-                            android:textColor="@color/blue"
-                            android:textSize="@dimen/_11sdp" />
-
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:padding="6dp"
-                            android:src="@drawable/ic_left_arrow" />
-
-
-                    </LinearLayout>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -655,65 +799,6 @@
                         android:text="@string/support_section_title"
                         android:textColor="#AAABB3"
                         android:textSize="15dp" />
-                    <LinearLayout
-                        android:id="@+id/contact_us"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/back_more_de"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp">
-
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:background="@drawable/circle_fill"
-                            android:padding="5dp"
-                            android:src="@drawable/ic_contact_us_icon"
-                            app:tint="@color/white" />
-
-                        <LinearLayout
-                            android:layout_width="10dp"
-
-                            android:layout_height="10dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/din_regular"
-                            android:text="@string/Call_Us"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_10sdp" />
-
-                        <LinearLayout
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <TextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:text=""
-                            android:textColor="@color/blue"
-                            android:textSize="@dimen/_11sdp" />
-
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:padding="6dp"
-                            android:src="@drawable/ic_left_arrow" />
-
-
-                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/Technical_support"
@@ -731,7 +816,7 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:background="@drawable/circle_fill"
+                            android:background="@drawable/circle_fill_g"
                             android:padding="5dp"
                             android:src="@drawable/ic_whatsapp"
                             app:tint="@color/white" />
@@ -775,6 +860,67 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/contact_us"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/back_more_de"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp">
+
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/circle_fill_g"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_contact_us_icon"
+                            app:tint="@color/white" />
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+
+                            android:layout_height="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/din_regular"
+                            android:text="@string/Call_Us"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text=""
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/_11sdp" />
+
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:padding="6dp"
+                            android:src="@drawable/ic_left_arrow" />
+
+
+                    </LinearLayout>
+
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -785,6 +931,7 @@
                         android:text="@string/more_section_title"
                         android:textColor="#AAABB3"
                         android:textSize="15dp" />
+
                     <LinearLayout
                         android:id="@+id/langauge"
                         android:layout_width="match_parent"
@@ -800,7 +947,7 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:background="@drawable/circle_fill"
+                            android:background="@drawable/circle_fill_c"
                             android:padding="3dp"
                             android:src="@drawable/ic_lang_icon"
                             app:tint="@color/white" />
@@ -846,6 +993,7 @@
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/logout"
                         android:layout_width="match_parent"
@@ -863,7 +1011,7 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:background="@drawable/circle_fill"
+                            android:background="@drawable/circle_fill_c"
                             android:padding="5dp"
                             android:src="@drawable/ic_logoutr_icon"
                             app:tint="@color/white" />

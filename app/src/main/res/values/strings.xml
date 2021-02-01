@@ -67,6 +67,7 @@
     <string name="Personal_Details">Personal Details</string>
     <string name="Logout">Logout</string>
     <string name="Favorites">Favorites</string>
+    <string name="more_profile_title">معاينة الملف الشخصي</string>
     <string name="Done">Done</string>
     <string name="Forgot_your_password">Forgot your password?</string>
     <string name="enter_your_password">Enter your new password?</string>
@@ -566,7 +567,7 @@ Two working days to complete your order</string>
     <string name="more_section_title">Other</string>
     <string name="support_section_title">Technical support</string>
     <string name="info_section_title">About the application</string>
-    <string name="person_section_title">Personal settings</string>
+    <string name="person_section_title">Quick access</string>
 
     //---------------------------------------------------
 
@@ -862,6 +863,7 @@ Two working days to complete your order</string>
     <string name="update">Update</string>
 
 
+    <string name="Clints_title">Staff activity</string>
 
 
 </resources>
