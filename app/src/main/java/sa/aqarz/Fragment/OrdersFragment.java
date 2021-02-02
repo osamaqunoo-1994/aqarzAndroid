@@ -86,6 +86,7 @@ import sa.aqarz.Activity.Auth.NewPasswordActivity;
 import sa.aqarz.Activity.Auth.RegisterActivity;
 import sa.aqarz.Activity.ContactUsActivity;
 import sa.aqarz.Activity.DetailsAqarzManActivity;
+import sa.aqarz.Activity.FavoriteActivity;
 import sa.aqarz.Activity.FiltterOrderActivity;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.PrivecyActivity;
@@ -144,7 +145,7 @@ public class OrdersFragment extends Fragment {
     static IResult mResultCallback;
     static ProgressBar progress;
     BottomSheetDialogFragment_Filtter_order bottomSheetDialogFragment_filtter_order;
-    ImageView premium;
+    TextView premium;
     LinearLayout Real_Estate_order_layout;
     ImageView Real_Estate_order_image;
     TextView Real_Estate_order_text;
@@ -180,6 +181,8 @@ public class OrdersFragment extends Fragment {
     LinearLayout show_fillter;
     LinearLayout filtter_price_market_order;
     LinearLayout search_price_real_state;
+    LinearLayout real;
+    LinearLayout mark;
     TextView Shopping_request_text;
 
     TextView AllOrder;
@@ -199,6 +202,8 @@ public class OrdersFragment extends Fragment {
     static String type_requst = "today";
     static String price_order = "";
     static String tyype_type = "";
+
+    ImageView favorit_button;
 
     public static ShowcaseView showCaseView;
 
@@ -245,6 +250,9 @@ public class OrdersFragment extends Fragment {
         orders_rec = v.findViewById(R.id.orders_rec);
         nodata_vis = v.findViewById(R.id.nodata_vis);
         text_search = v.findViewById(R.id.text_search);
+        favorit_button = v.findViewById(R.id.favorit_button);
+        mark = v.findViewById(R.id.mark);
+        real = v.findViewById(R.id.real);
 
 
         AllOrder = v.findViewById(R.id.AllOrder);
@@ -721,6 +729,17 @@ public class OrdersFragment extends Fragment {
                 }
             }
         });
+        favorit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(getActivity(), FavoriteActivity.class);
+                getActivity().startActivity(intent);
+
+
+            }
+        });
         big.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -736,18 +755,21 @@ public class OrdersFragment extends Fragment {
         Real_Estate_order_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.mash));
+//                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.mash));
+
+
+//                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.background_order));
+
 
                 Shopping_request_text.setTextColor(getResources().getColor(R.color.textColor));
 
-
-                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.background_order));
-
-                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
-                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.white), PorterDuff.Mode.MULTIPLY);
+                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
+                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
 
                 filtter_price_market_order.setVisibility(View.GONE);
                 search_price_real_state.setVisibility(View.VISIBLE);
+                mark.setVisibility(View.GONE);
+                real.setVisibility(View.VISIBLE);
                 page = 1;
 
                 type_type = "fund_Request";
@@ -765,19 +787,20 @@ public class OrdersFragment extends Fragment {
         Shopping_request_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+//                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
 
-                Shopping_request_text.setTextColor(getResources().getColor(R.color.white));
+                Shopping_request_text.setTextColor(getResources().getColor(R.color.colorPrimary));
 
 
-                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
+//                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
                 Real_Estate_order_text.setTextColor(getResources().getColor(R.color.textColor));
                 Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColor), PorterDuff.Mode.MULTIPLY);
 
                 filtter_price_market_order.setVisibility(View.VISIBLE);
                 search_price_real_state.setVisibility(View.GONE);
-
+                mark.setVisibility(View.VISIBLE);
+                real.setVisibility(View.GONE);
                 page = 1;
 
                 type_type = "market_demands";
@@ -891,15 +914,15 @@ public class OrdersFragment extends Fragment {
         });
 
 
-        Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.mash));
+//        Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.mash));
 
         Shopping_request_text.setTextColor(getResources().getColor(R.color.textColor));
 
 
-        Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.background_order));
+//        Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.background_order));
 
-        Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
-        Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.white), PorterDuff.Mode.MULTIPLY);
+        Real_Estate_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
+        Real_Estate_order_image.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
 
 
         page = 1;
