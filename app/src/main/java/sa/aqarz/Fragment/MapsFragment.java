@@ -1306,9 +1306,15 @@ public class MapsFragment extends Fragment {
                                             price = prices + getResources().getString(R.string.K);
 
                                         } else if (price_int > 999999) {
-                                            prices = (int) price_int / 1000000;
 
-                                            price = prices + getResources().getString(R.string.Million);
+
+                                            prices = (int) price_int / 100000;
+
+
+                                            double XXXX=(double)prices / 10;
+                                            System.out.println("price_int"+XXXX);
+
+                                            price = XXXX + getResources().getString(R.string.Million);
 
                                         }
                                         System.out.println(bankModules.getTotalPrice() + "--------------" + price);
