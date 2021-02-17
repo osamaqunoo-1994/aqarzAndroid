@@ -1311,8 +1311,8 @@ public class MapsFragment extends Fragment {
                                             prices = (int) price_int / 100000;
 
 
-                                            double XXXX=(double)prices / 10;
-                                            System.out.println("price_int"+XXXX);
+                                            double XXXX = (double) prices / 10;
+                                            System.out.println("price_int" + XXXX);
 
                                             price = XXXX + getResources().getString(R.string.Million);
 
