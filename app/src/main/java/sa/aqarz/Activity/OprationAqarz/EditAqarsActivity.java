@@ -137,6 +137,7 @@ public class EditAqarsActivity extends AppCompatActivity {
     Button btn_send;
     RecyclerView images_RecyclerView;
     RecyclerView images_RecyclerView_url;
+    RecyclerView imagesplaned_RecyclerView;
 
     AlertDialog alertDialog;
     private static GoogleMap googleMap;
@@ -281,6 +282,7 @@ public class EditAqarsActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         images_RecyclerView = findViewById(R.id.images_RecyclerView);
         images_RecyclerView_url = findViewById(R.id.images_RecyclerView_url);
+        imagesplaned_RecyclerView = findViewById(R.id.imagesplaned_RecyclerView);
         opration_RecyclerView = findViewById(R.id.opration_RecyclerView);
         select_image = findViewById(R.id.select_image);
         all_gender = findViewById(R.id.all_gender);
@@ -625,6 +627,11 @@ public class EditAqarsActivity extends AppCompatActivity {
         LinearLayoutManager layoutManagems
                 = new LinearLayoutManager(EditAqarsActivity.this, LinearLayoutManager.HORIZONTAL, false);
         images_RecyclerView_url.setLayoutManager(layoutManagems);
+
+
+        LinearLayoutManager layoutManagemsa
+                = new LinearLayoutManager(EditAqarsActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        imagesplaned_RecyclerView.setLayoutManager(layoutManagemsa);
 
 
         LinearLayoutManager layoutManags
@@ -1762,6 +1769,13 @@ public class EditAqarsActivity extends AppCompatActivity {
                                 Boards_text.setText(homeModules_aqares.getBoardsNumber() + "");
                                 Kitchens_text.setText(homeModules_aqares.getKitchenNumber() + "");
                                 Dining_text.setText(homeModules_aqares.getDiningRoomsNumber() + "");
+                                Instrument_number.setText(homeModules_aqares.getInstrumentNumber() + "");
+                                piece_number.setText(homeModules_aqares.getPaceNumber() + "");
+                                No_planned.setText(homeModules_aqares.getPlannedNumber() + "");
+                                age_of_the_property.setText(homeModules_aqares.getEstateAge() + "");
+                                Role_number.setText(homeModules_aqares.getFloorNumber() + "");
+                                Street_view.setText(homeModules_aqares.getStreetView() + "");
+                                price_one_meter.setText(homeModules_aqares.getMeterPrice() + "");
 
                                 if (number_Lounges > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
@@ -1916,6 +1930,12 @@ public class EditAqarsActivity extends AppCompatActivity {
 
                                 try {
                                     images_RecyclerView_url.setAdapter(new RecyclerView_selectImage_url(EditAqarsActivity.this, homeModules_aqares.getEstate_file()));
+
+                                } catch (Exception e) {
+
+                                }
+                                try {
+                                    imagesplaned_RecyclerView.setAdapter(new RecyclerView_selectImage_url(EditAqarsActivity.this, homeModules_aqares.getPlanned_file()));
 
                                 } catch (Exception e) {
 

@@ -167,6 +167,7 @@
 
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
+
                         android:textSize="13dp" />
 
                     <ImageView
@@ -178,7 +179,6 @@
                         android:padding="@dimen/_3sdp"
 
                         android:src="@drawable/show_pass_bg" />
-
 
                 </LinearLayout>
 

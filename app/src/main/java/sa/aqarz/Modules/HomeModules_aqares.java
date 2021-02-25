@@ -170,6 +170,10 @@ public class HomeModules_aqares {
     @Expose
     private List<estate_file> estate_file;
 
+    @SerializedName("planned_file")
+    @Expose
+    private List<estate_file> planned_file;
+
     @SerializedName("comforts")
     @Expose
     private List<ComfortModules> comforts;
@@ -214,6 +218,10 @@ public class HomeModules_aqares {
 
     public Integer getId() {
         return id;
+    }
+
+    public List<HomeModules_aqares.estate_file> getPlanned_file() {
+        return planned_file;
     }
 
     public void setId(Integer id) {

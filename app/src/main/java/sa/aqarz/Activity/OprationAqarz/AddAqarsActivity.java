@@ -127,6 +127,7 @@ public class AddAqarsActivity extends AppCompatActivity {
     TextView more_comfort;
     boolean is_place = false;
     ArrayList<Image> images = new ArrayList<>();
+    ArrayList<Image> images_2 = new ArrayList<>();
     ImageView Bathrooms_plus, Bathrooms_minus;
     TextView Bathrooms_text;
 
@@ -163,10 +164,12 @@ public class AddAqarsActivity extends AppCompatActivity {
     List<TypeModules> type_list = new ArrayList<>();
     List<ComfortModules> comfort_list = new ArrayList<>();
     public static List<SelectImageModules> selectIamgeList = new ArrayList<>();
+    public static List<SelectImageModules> selectIamgeList_2 = new ArrayList<>();
     IResult mResultCallback;
 
     Button btn_send;
     RecyclerView images_RecyclerView;
+    RecyclerView imagesplaned_RecyclerView;
 
     AlertDialog alertDialog;
     String id_of_all_image = "";
@@ -280,6 +283,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
         back = findViewById(R.id.back);
         images_RecyclerView = findViewById(R.id.images_RecyclerView);
+        imagesplaned_RecyclerView = findViewById(R.id.imagesplaned_RecyclerView);
         opration_RecyclerView = findViewById(R.id.opration_RecyclerView);
         select_image = findViewById(R.id.select_image);
         all_gender = findViewById(R.id.all_gender);
@@ -621,6 +625,9 @@ public class AddAqarsActivity extends AppCompatActivity {
         LinearLayoutManager layoutManagem
                 = new LinearLayoutManager(AddAqarsActivity.this, LinearLayoutManager.HORIZONTAL, false);
         images_RecyclerView.setLayoutManager(layoutManagem);
+        LinearLayoutManager layoutManagems
+                = new LinearLayoutManager(AddAqarsActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        imagesplaned_RecyclerView.setLayoutManager(layoutManagems);
 
 
         LinearLayoutManager layoutManags
@@ -1586,13 +1593,11 @@ public class AddAqarsActivity extends AppCompatActivity {
                     } else {
 
 
-                        select_image_from_local(1217, 1217);
-
+                        select_image_from_local(20, 20);
                     }
                 } else {
 
-                    select_image_from_local(1217, 1217);
-
+                    select_image_from_local(20, 20);
 
                 }
 
@@ -1617,11 +1622,14 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                     } else {
 
-                        select_image_from_local(20, 20);
+
+                        select_image_from_local(1217, 1217);
+
                     }
                 } else {
 
-                    select_image_from_local(20, 20);
+                    select_image_from_local(1217, 1217);
+
 
                 }
 
@@ -1861,23 +1869,6 @@ public class AddAqarsActivity extends AppCompatActivity {
         if (requstcode == 1213) {
 
 
-//                    String filePath = resultUri.getPath().toString();
-//                    Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
-//
-//                    File file_image_profile = new File(filePath);
-//                    try {
-//
-//                        RequestParams requestParams = new RequestParams();
-//
-//                        requestParams.put("photo", file_image_profile);
-//
-//
-//                        Upload_image(requestParams, selectedImagea);
-//                    } catch (Exception e) {
-//
-//                    }
-//
-
             if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, requstcode)) {
                 images = ImagePicker.getImages(data);
 
@@ -1896,42 +1887,23 @@ public class AddAqarsActivity extends AppCompatActivity {
             }
 
 
-//                    ArrayList<Uri> image_uris = data.getParcelableArrayListExtra(ImagePickerActivity.EXTRA_IMAGE_URIS);
-//
-////                    ArrayList<String> selectionResult=data.getStringArrayListExtra("result");
-//
-////                    List<Image> images = ImagePicker.getImages(data);
-//
-//
-//                    RequestParams requestParams = new RequestParams();
-//                    for (int i = 0; i < image_uris.size(); i++) {
-//
-//                        try {
-//                            File file_image_profile = new File(image_uris.get(i).getPath());
-//
-//                            System.out.println();
-//                            requestParams.put("photo[" + i + "]", file_image_profile);
-//                        } catch (FileNotFoundException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//
-//                    }
-//                    Upload_image(requestParams, image_uris);
+        }
+        if (requstcode == 1217) {
 
 
-//                        // Do stuff with image's path or id. For example:
-//                        for (Image in images) {
-//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-//                                Glide.with(context)
-//                                        .load(image.uri)
-//                                        .into(imageView)
-//                            } else {
-//                                Glide.with(context)
-//                                        .load(image.path)
-//                                        .into(imageView)
-//                            }
-//                        }
+            if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, requstcode)) {
+                images_2 = ImagePicker.getImages(data);
+
+
+                System.out.println("imagesimages" + images_2.size());
+                for (int i = 0; i < images_2.size(); i++) {
+                    Bitmap selectedImagea = BitmapFactory.decodeFile(images_2.get(i).getPath());
+                    selectIamgeList_2.add(new SelectImageModules("1", selectedImagea));
+                }
+                imagesplaned_RecyclerView.setAdapter(new RecyclerView_selectImage(AddAqarsActivity.this, selectIamgeList_2));
+
+
+            }
 
 
         }
@@ -1946,100 +1918,16 @@ public class AddAqarsActivity extends AppCompatActivity {
                 if (requstcode == 1213) {
 
 
-//                    String filePath = resultUri.getPath().toString();
-//                    Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
-//
-//                    File file_image_profile = new File(filePath);
-//                    try {
-//
-//                        RequestParams requestParams = new RequestParams();
-//
-//                        requestParams.put("photo", file_image_profile);
-//
-//
-//                        Upload_image(requestParams, selectedImagea);
-//                    } catch (Exception e) {
-//
-//                    }
-//
-//
-//                    if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, requstcode)) {
-//                        ArrayList<Image> images=ImagePicker.getImages(data);
-//
-//                        RequestParams requestParams = new RequestParams();
-//                    for (int i = 0; i < images.size(); i++) {
-//
-//                        try {
-//                            File file_image_profile = new File(images.get(i).getPath());
-//
-//                            System.out.println();
-//                            requestParams.put("photo[" + i + "]", file_image_profile);
-//                        } catch (FileNotFoundException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//
-//                    }
-//                        Upload_image(requestParams, images);
-//
-//
-//
-//                    }
-
-
-//                    ArrayList<Uri> image_uris = data.getParcelableArrayListExtra(ImagePickerActivity.EXTRA_IMAGE_URIS);
-//
-////                    ArrayList<String> selectionResult=data.getStringArrayListExtra("result");
-//
-////                    List<Image> images = ImagePicker.getImages(data);
-//
-//
-//                    RequestParams requestParams = new RequestParams();
-//                    for (int i = 0; i < image_uris.size(); i++) {
-//
-//                        try {
-//                            File file_image_profile = new File(image_uris.get(i).getPath());
-//
-//                            System.out.println();
-//                            requestParams.put("photo[" + i + "]", file_image_profile);
-//                        } catch (FileNotFoundException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//
-//                    }
-//                    Upload_image(requestParams, image_uris);
-
-
-//                        // Do stuff with image's path or id. For example:
-//                        for (Image in images) {
-//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-//                                Glide.with(context)
-//                                        .load(image.uri)
-//                                        .into(imageView)
-//                            } else {
-//                                Glide.with(context)
-//                                        .load(image.path)
-//                                        .into(imageView)
-//                            }
-//                        }
-
-
                 } else if (requstcode == 1217) {
-                    String filePath = resultUri.getPath().toString();
 
-                    Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
 
-                    Instrument_file.setImageBitmap(selectedImagea);
-
-                    instrument_filexx = new File(filePath);
                 } else if (requstcode == 20) {
                     String filePath = resultUri.getPath().toString();
 
                     Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
 
 
-                    Add_charts_image.setImageBitmap(selectedImagea);
+                    Instrument_file.setImageBitmap(selectedImagea);
 
                     File file_image_profile = new File(filePath);
 
@@ -2050,7 +1938,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                         requestParams.put("photo", file_image_profile);
 
-                        Upload_image_planed(requestParams, selectedImagea);
+//                        Upload_image_planed(requestParams, selectedImagea);
                     } catch (Exception e) {
 
                     }
@@ -2113,93 +2001,6 @@ public class AddAqarsActivity extends AppCompatActivity {
 
 
         }
-
-
-//
-//        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1213)) {
-//
-//
-//            if (data != null) {
-//                ArrayList<Image> images = ImagePicker.getImages(data);
-//                String filePath = images.get(0).getPath().toString();
-//                Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
-//
-//                File file_image_profile = new File(filePath);
-//                try {
-//
-//                    RequestParams requestParams = new RequestParams();
-//
-//                    requestParams.put("photo", file_image_profile);
-//
-//
-//                    Upload_image(requestParams, selectedImagea);
-//                } catch (Exception e) {
-//
-//                }
-////                image_id.setImageBitmap(selectedImagea);
-////                get_id_image_file = new File(filePath);
-////                try {
-////                    RequestParams requestParams = new RequestParams();
-////                    requestParams.put("photo", file_image_profile);
-////
-////                } catch (Exception e) {
-////                }
-//            }
-//        }
-//
-//        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 1217)) {
-//
-//
-//            if (data != null) {
-//                ArrayList<Image> images = ImagePicker.getImages(data);
-//                String filePath = images.get(0).getPath().toString();
-//                Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
-//
-//
-//                Instrument_file.setImageBitmap(selectedImagea);
-//
-//                instrument_filexx = new File(filePath);
-//
-////                image_id.setImageBitmap(selectedImagea);
-////                get_id_image_file = new File(filePath);
-////                try {
-////                    RequestParams requestParams = new RequestParams();
-////                    requestParams.put("photo", file_image_profile);
-////
-////                } catch (Exception e) {
-////                }
-//            }
-//        }
-//
-//
-//        if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 20)) {
-//
-//
-//            if (data != null) {
-//                ArrayList<Image> images = ImagePicker.getImages(data);
-//                String filePath = images.get(0).getPath().toString();
-//                Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
-//
-//
-//                Add_charts_image.setImageBitmap(selectedImagea);
-//
-//                File file_image_profile = new File(filePath);
-//
-//
-//                try {
-//
-//                    RequestParams requestParams = new RequestParams();
-//
-//                    requestParams.put("photo", file_image_profile);
-//
-//                    Upload_image_planed(requestParams, selectedImagea);
-//                } catch (Exception e) {
-//
-//                }
-//
-//
-//            }
-//        }
 
 
     }
@@ -2681,6 +2482,79 @@ public class AddAqarsActivity extends AppCompatActivity {
 //                        .start();
 
             }
+        } else if (permission == 1217) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (ContextCompat.checkSelfPermission(AddAqarsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+
+                    // No explanation needed, we can request the permission.
+
+                    ActivityCompat.requestPermissions(AddAqarsActivity.this,
+                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                            permission);
+
+                } else {
+//
+//                    CropImage.activity()
+//                            .setGuidelines(CropImageView.Guidelines.ON)
+//                            .start(this);
+
+                    ImagePicker.with(this)
+                            .setFolderMode(true)
+                            .setFolderTitle("Album")
+
+                            .setDirectoryName("Image Picker")
+                            .setMultipleMode(true)
+                            .setShowNumberIndicator(true)
+                            .setMaxSize(5)
+                            .setLimitMessage("You can select up to 10 images")
+
+                            .setRequestCode(st_code)
+                            .start();
+//                ImagePicker.with(AddAqarsActivity.this)
+//                        .setFolderMode(true)
+//                        .setFolderTitle("Album")
+//
+//                        .setDirectoryName("Image Picker")
+//                        .setMultipleMode(false)
+//                        .setShowNumberIndicator(true)
+//                        .setMaxSize(1)
+//                        .setLimitMessage("You can select one image")
+//
+//                        .setRequestCode(st_code)
+//                        .start();
+                }
+            } else {
+//                CropImage.activity()
+//                        .setGuidelines(CropImageView.Guidelines.ON)
+//                        .start(this);
+
+                ImagePicker.with(this)
+                        .setFolderMode(true)
+                        .setFolderTitle("Album")
+
+                        .setDirectoryName("Image Picker")
+                        .setMultipleMode(true)
+                        .setShowNumberIndicator(true)
+                        .setMaxSize(5)
+                        .setLimitMessage("You can select up to 10 images")
+
+                        .setRequestCode(st_code)
+                        .start();
+//            ImagePicker.with(AddAqarsActivity.this)
+//                    .setFolderMode(true)
+//                    .setFolderTitle("Album")
+//
+//                    .setDirectoryName("Image Picker")
+//                    .setMultipleMode(false)
+//                    .setShowNumberIndicator(true)
+//                    .setMaxSize(1)
+//                    .setLimitMessage("You can select one image")
+//
+//                    .setRequestCode(st_code)
+//                    .start();
+
+            }
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (ContextCompat.checkSelfPermission(AddAqarsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -2869,6 +2743,21 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                         System.out.println();
                         sendObj.put("photo[" + i + "]", file_image_profile);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+            if (images_2 != null) {
+                for (int i = 0; i < images_2.size(); i++) {
+
+                    try {
+                        File file_image_profile = new File(images_2.get(i).getPath());
+
+                        System.out.println();
+                        sendObj.put("attachment_planned[" + i + "]", file_image_profile);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }

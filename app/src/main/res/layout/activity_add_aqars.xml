@@ -516,6 +516,7 @@
 
 
                             />
+
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/images_RecyclerView_url"
                             android:layout_width="wrap_content"
@@ -1713,7 +1714,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -1864,6 +1865,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
+                        android:orientation="horizontal"
                         android:paddingBottom="5dp">
 
                         <TextView
@@ -1874,46 +1876,65 @@
                             android:textColor="@color/textColor2"
                             android:textSize="15dp" />
 
-                        <LinearLayout
+                        <HorizontalScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_20sdp"
+                            <LinearLayout
 
-                            android:gravity="center"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-
-
-                            >
-
-                            <ImageView
-                                android:id="@+id/Add_charts_image"
-                                android:layout_width="76dp"
-                                android:layout_height="76dp"
-
-                                android:layout_margin="10dp"
-                                android:layout_marginStart="@dimen/_20sdp"
-                                android:background="@drawable/ic_group_2564"
-                                android:padding="12dp" />
-
-
-                            <TextView
-
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="6dp"
-                                android:layout_weight="1"
-                                android:background="@android:color/transparent"
-                                android:fontFamily="@font/din_light"
-                                android:hint="@string/Instrument_file"
-                                android:textColor="@color/cookie_success"
-                                android:textColorHint="#AAABB3"
-                                android:textSize="15dp"
-                                android:visibility="gone" />
+                                android:layout_marginStart="@dimen/_20sdp"
+                                android:gravity="center"
+
+                                android:orientation="horizontal"
+                                android:paddingLeft="5dp"
+                                android:paddingRight="5dp"
 
 
-                        </LinearLayout>
+                                >
+
+                                <ImageView
+                                    android:id="@+id/Add_charts_image"
+                                    android:layout_width="76dp"
+                                    android:layout_height="76dp"
+
+                                    android:layout_margin="10dp"
+                                    android:layout_marginStart="@dimen/_20sdp"
+                                    android:background="@drawable/ic_group_2564"
+                                    android:padding="12dp" />
+
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/imagesplaned_RecyclerView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+
+                                    android:layout_weight="1"
+
+
+                                    />
+
+
+                                <TextView
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="6dp"
+                                    android:layout_weight="1"
+                                    android:background="@android:color/transparent"
+                                    android:fontFamily="@font/din_light"
+                                    android:hint="@string/Instrument_file"
+                                    android:textColor="@color/cookie_success"
+                                    android:textColorHint="#AAABB3"
+                                    android:textSize="15dp"
+                                    android:visibility="gone" />
+
+
+                            </LinearLayout>
+
+                        </HorizontalScrollView>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -1941,7 +1962,6 @@
                             android:hint="@string/age_of_the_property"
                             android:inputType="number"
                             android:paddingLeft="10dp"
-
                             android:paddingRight="10dp"
                             android:text=""
                             android:textColorHint="@color/hint_color"

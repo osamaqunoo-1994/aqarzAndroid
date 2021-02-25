@@ -214,6 +214,8 @@ public class RegisterActivity extends AppCompatActivity {
                         sendObj.put("mobile", phone_ed.getText().toString());
                         sendObj.put("password", password.getText().toString());
                         sendObj.put("password_confirmation", password.getText().toString());
+                        sendObj.put("lat", "0.0");
+                        sendObj.put("lan","0.0");
 
                         sendObj.put("device_token", "157");
                         sendObj.put("type", type);
