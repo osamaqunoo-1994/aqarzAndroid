@@ -53,6 +53,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
@@ -208,14 +209,48 @@ public class MapsFragment extends Fragment {
                 googleMap.getUiSettings().setRotateGesturesEnabled(true);
 
 
-                mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-                    @Override
-                    public void onMapClick(LatLng latLng) {
+                //get latlong for corners for specified place
+                LatLng one = new LatLng(30.250032, 38.374554);
+                LatLng two = new LatLng(19.117340, 49.913804);
+                LatLng three = new LatLng(25.784818, 49.666975);
+                LatLng forth = new LatLng(23.031780, 39.361870);
+
+                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+                //add them to builder
+                builder.include(one);
+                builder.include(two);
+                builder.include(three);
+                builder.include(forth);
+
+                LatLngBounds bounds = builder.build();
+
+                //get width and height to current display screen
+                int width = getResources().getDisplayMetrics().widthPixels;
+                int height = getResources().getDisplayMetrics().heightPixels;
+
+                // 20% padding
+                int padding = (int) (width * 0.05);
+
+                //set latlong bounds
+                mMap.setLatLngBoundsForCameraTarget(bounds);
+
+                //move camera to fill the bound to screen
+                mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding));
+
+                //set zoom to level to current so that you won't be able to zoom out viz. move outside bounds
+                mMap.setMinZoomPreference(mMap.getCameraPosition().zoom);
 
 
-//                        ic_marker_lo__
-                    }
-                });
+//
+//                mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+//                    @Override
+//                    public void onMapClick(LatLng latLng) {
+//
+//
+////                        ic_marker_lo__
+//                    }
+//                });
 
 
                 mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -324,8 +359,8 @@ public class MapsFragment extends Fragment {
                                     .position(mylocation)).setTag("mylocation");
 
                             ;
-                            CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
-                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+//                            CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
+//                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 
 //                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 40));
@@ -916,8 +951,8 @@ public class MapsFragment extends Fragment {
                                     .position(mylocation)).setTag("mylocation");
 
                             ;
-                            CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(11).build();
-                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+//                            CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(11).build();
+//                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 //                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 20));
 //                            // Zoom in, animating the camera.
@@ -1521,8 +1556,8 @@ public class MapsFragment extends Fragment {
                             .position(mylocation)).setTag("mylocation");
 
                     ;
-                    CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
-                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+//                    CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
+//                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 //                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 20));
 //                    // Zoom in, animating the camera.
