@@ -865,6 +865,8 @@ Two working days to complete your order</string>
 
     <string name="Clints_title">Staff activity</string>
     <string name="Enabled">Enabled</string>
+    <string name="filter_view_http_gizmos">filter_view_http_gizmos</string>
+    <string name="filter_view_example_gizmos">filter_view_example_gizmos</string>
 
 
 </resources>

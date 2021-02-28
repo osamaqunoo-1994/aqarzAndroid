@@ -18,6 +18,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -97,6 +98,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_activity_layout);
         activity = this;
 //        init();
+
+
+//        Intent intent = getIntent();
+//        String action = intent.getAction();
+//        Uri data = intent.getData();
+
 
         image_1 = findViewById(R.id.image_1);
         image_2 = findViewById(R.id.image_2);

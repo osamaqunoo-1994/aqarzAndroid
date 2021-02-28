@@ -162,9 +162,64 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
             }
         });
         try {
+
             id_or_aq = getIntent().getStringExtra("id_aqarz");
 
+            if (id_or_aq != null | !id_or_aq.toString().equals("null")) {
+                System.out.println("0000000000000");
+                init_volley();
+                WebService.loading(DetailsActivity_aqarz.this, true);
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity_aqarz.this);
+                mVolleyService.getDataVolley("single_estat", WebService.single_estat + id_or_aq + "/estate");
+
+            } else {
+                Intent intent = getIntent();
+                String action = intent.getAction();
+                Uri data = intent.getData();
+
+                System.out.println("action" + action);
+                System.out.println("data" + data);
+
+
+                String[] separated = data.toString().split("/");
+
+                String number = separated[3]; // this will contain " they taste good"
+
+                System.out.println("$$$$$$$$$$$$$" + number);
+
+
+                init_volley();
+                WebService.loading(DetailsActivity_aqarz.this, true);
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity_aqarz.this);
+                mVolleyService.getDataVolley("single_estat", WebService.single_estat + number + "/estate");
+
+            }
+
+
         } catch (Exception e) {
+            Intent intent = getIntent();
+            String action = intent.getAction();
+            Uri data = intent.getData();
+
+            System.out.println("action" + action);
+            System.out.println("data" + data);
+
+
+            String[] separated = data.toString().split("/");
+
+            String number = separated[4]; // this will contain " they taste good"
+
+            System.out.println("$$$$$$$$$$$$$" + number);
+
+
+            init_volley();
+            WebService.loading(DetailsActivity_aqarz.this, true);
+
+            VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity_aqarz.this);
+            mVolleyService.getDataVolley("single_estat", WebService.single_estat + number + "/estate");
+
 
         }
 
@@ -306,12 +361,6 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
             }
         });
-
-        init_volley();
-        WebService.loading(DetailsActivity_aqarz.this, true);
-
-        VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity_aqarz.this);
-        mVolleyService.getDataVolley("single_estat", WebService.single_estat + id_or_aq + "/estate");
 
 
     }
