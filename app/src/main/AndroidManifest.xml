@@ -126,7 +126,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
-                //https://aqarz.sa/estate
+                //https://aqarz.sa/estate/44/show
                 <data
                     android:host="aqarz.sa"
                     android:pathPrefix="/estate"

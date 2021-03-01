@@ -91,6 +91,7 @@ import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares_orders;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Filtter;
 import sa.aqarz.Modules.BankModules;
+import sa.aqarz.Modules.CityLocation;
 import sa.aqarz.Modules.HomeModules;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.OprationModules;
@@ -128,6 +129,10 @@ public class MapsFragment extends Fragment {
     TextView addAqares;
     RecyclerView type;
     RecyclerView selsct_type_all;
+
+    List<CityLocation> city_location = new ArrayList<>();
+
+
 
     List<TypeModules> typeModules_list = new ArrayList<>();
     List<select_typeModules> oprationModules_list = new ArrayList<>();
@@ -212,16 +217,16 @@ public class MapsFragment extends Fragment {
                 //get latlong for corners for specified place
                 LatLng one = new LatLng(30.250032, 38.374554);
                 LatLng two = new LatLng(19.117340, 49.913804);
-                LatLng three = new LatLng(25.784818, 49.666975);
-                LatLng forth = new LatLng(23.031780, 39.361870);
+//                LatLng three = new LatLng(25.784818, 49.666975);
+//                LatLng forth = new LatLng(23.031780, 39.361870);
 
                 LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
                 //add them to builder
                 builder.include(one);
                 builder.include(two);
-                builder.include(three);
-                builder.include(forth);
+//                builder.include(three);
+//                builder.include(forth);
 
                 LatLngBounds bounds = builder.build();
 
@@ -560,17 +565,67 @@ public class MapsFragment extends Fragment {
         ActionButton();
         action_btn();
 
+//
+//        if (Settings.CheckIsAccountAqarzMan()) {
+//            laout_of_change.setVisibility(View.VISIBLE);
+////            get_data_from_api("map_order", filtter_selected);
+//            get_data_from_api("map_offer", filtter_selected);
+//
+//        } else {
+//            laout_of_change.setVisibility(View.GONE);
+//            get_data_from_api("map_offer", filtter_selected);
+//
+//        }
 
-        if (Settings.CheckIsAccountAqarzMan()) {
-            laout_of_change.setVisibility(View.VISIBLE);
-//            get_data_from_api("map_order", filtter_selected);
-            get_data_from_api("map_offer", filtter_selected);
 
-        } else {
-            laout_of_change.setVisibility(View.GONE);
-            get_data_from_api("map_offer", filtter_selected);
+
+        city_location.add(new CityLocation(1,"الرياض","24.774265","46.738586"));
+        city_location.add(new CityLocation(2,"جدّة","21.54472","39.17611"));
+        city_location.add(new CityLocation(3,"الدمام","26.39222","49.97778"));
+        city_location.add(new CityLocation(4,"مكة","21.42250","39.82611"));
+        city_location.add(new CityLocation(5,"نجران","17.49250","44.13472"));
+        city_location.add(new CityLocation(6,"المدينة","24.46722","39.61111"));
+        city_location.add(new CityLocation(7,"تبوك","28.38417","36.58000"));
+        city_location.add(new CityLocation(8,"حائل","27.52444","41.70389"));
+        city_location.add(new CityLocation(9,"عرعر","30.98333","41.01667"));
+        city_location.add(new CityLocation(10,"جازان","16.89472","42.55778"));
+        city_location.add(new CityLocation(11,"الباحة","20.01250","41.46000"));
+        city_location.add(new CityLocation(12,"القصيم","26.333333","43.966667"));
+        city_location.add(new CityLocation(13,"عسير","18.5473952","42.0534398"));
+        city_location.add(new CityLocation(14,"الجوف","29.97111","40.20028"));
+        city_location.add(new CityLocation(15,"الأحساء","25.383333","49.583333"));
+
+
+
+
+
+        for(int i=0;i<city_location.size();i++){
+
+
+            LatLng sydneya = new LatLng(Double.valueOf(city_location.get(i).getLat()), Double.valueOf(city_location.get(i).getLang()));
+            googleMap.addMarker(new MarkerOptions()
+                    .position(sydneya)
+
+                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2(city_location.get(i).getName()+"")))).setTag(i);
+
+
+
+
 
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         final Handler handler = new Handler();
@@ -1479,6 +1534,27 @@ public class MapsFragment extends Fragment {
     private Bitmap getMarkerBitmapFromView2(String Price) {
 
         View customMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom2, null);
+        TextView markerImageView = (TextView) customMarkerView.findViewById(R.id.numb);
+//        markerImageView.setImageResource(resId);
+        markerImageView.setText(Price);
+
+
+        customMarkerView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        customMarkerView.layout(0, 0, customMarkerView.getMeasuredWidth(), customMarkerView.getMeasuredHeight());
+        customMarkerView.buildDrawingCache();
+        Bitmap returnedBitmap = Bitmap.createBitmap(customMarkerView.getMeasuredWidth(), customMarkerView.getMeasuredHeight(),
+                Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(returnedBitmap);
+        canvas.drawColor(Color.WHITE, PorterDuff.Mode.SRC_IN);
+        Drawable drawable = customMarkerView.getBackground();
+        if (drawable != null)
+            drawable.draw(canvas);
+        customMarkerView.draw(canvas);
+        return returnedBitmap;
+    }
+    private Bitmap getMarkerBitmapFromView2_city(String Price) {
+
+        View customMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom3, null);
         TextView markerImageView = (TextView) customMarkerView.findViewById(R.id.numb);
 //        markerImageView.setImageResource(resId);
         markerImageView.setText(Price);
