@@ -177,12 +177,51 @@ public class AqarzProfileActivity_other extends AppCompatActivity {
 
         try {
             String id = getIntent().getStringExtra("id");
-            VolleyService mVolleyService = new VolleyService(mResultCallback, AqarzProfileActivity_other.this);
+            if (id != null | !id.toString().equals("null")) {
 
-            mVolleyService.getDataVolley("user", WebService.user + id + "");
+                VolleyService mVolleyService = new VolleyService(mResultCallback, AqarzProfileActivity_other.this);
+
+                mVolleyService.getDataVolleyWithoutToken("user", WebService.user + id + "");
+            } else {
+                Intent intent = getIntent();
+                String action = intent.getAction();
+                Uri data = intent.getData();
+
+                System.out.println("action" + action);
+                System.out.println("data" + data);
+
+
+                String[] separated = data.toString().split("/");
+
+                String number = separated[3]; // this will contain " they taste good"
+
+                System.out.println("$$$$$$$$$$$$$" + number);
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, AqarzProfileActivity_other.this);
+
+                mVolleyService.getDataVolleyWithoutToken("user", WebService.user + number + "");
+            }
+
 
         } catch (Exception e) {
+            e.printStackTrace();
+            Intent intent = getIntent();
+            String action = intent.getAction();
+            Uri data = intent.getData();
 
+            System.out.println("action" + action);
+            System.out.println("data" + data);
+
+
+            String[] separated = data.toString().split("/");
+
+            String number = separated[3]; // this will contain " they taste good"
+
+            System.out.println("$$$$$$$$$$$$$" + number);
+
+            VolleyService mVolleyService = new VolleyService(mResultCallback, AqarzProfileActivity_other.this);
+
+            mVolleyService.getDataVolleyWithoutToken("user", WebService.user + number + "");
         }
 
         offer_text.setOnClickListener(new View.OnClickListener() {

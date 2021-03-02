@@ -65,19 +65,32 @@ public class BottomSheetDialogFragment_QR extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
 
-                Drawable mDrawable = image_qr.getDrawable();
-                Bitmap mBitmap = ((BitmapDrawable) mDrawable).getBitmap();
+//                Drawable mDrawable = image_qr.getDrawable();
+//                Bitmap mBitmap = ((BitmapDrawable) mDrawable).getBitmap();
+//
+//                String path = MediaStore.Images.Media.insertImage(getActivity().getContentResolver(),
+//                        mBitmap, "Design", null);
+//
+//                Uri uri = Uri.parse(path);
+//
+//                Intent share = new Intent(Intent.ACTION_SEND);
+//                share.setType("image/*");
+////                share.putExtra(Intent.EXTRA_STREAM, uri);
+//                share.putExtra(Intent.EXTRA_TEXT, Settings.GetUser().getLink()+"");
+//                getActivity().startActivity(Intent.createChooser(share, "Share Your qr!"));
 
-                String path = MediaStore.Images.Media.insertImage(getActivity().getContentResolver(),
-                        mBitmap, "Design", null);
 
-                Uri uri = Uri.parse(path);
+                /*Create an ACTION_SEND Intent*/
+                Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                /*This will be the actual content you wish you share.*/
 
-                Intent share = new Intent(Intent.ACTION_SEND);
-                share.setType("image/*");
-                share.putExtra(Intent.EXTRA_STREAM, uri);
-                share.putExtra(Intent.EXTRA_TEXT, "");
-                getActivity().startActivity(Intent.createChooser(share, "Share Your qr!"));
+                /*The type of the content is text, obviously.*/
+                intent.setType("text/plain");
+                /*Applying information Subject and Body.*/
+                intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
+                intent.putExtra(Intent.EXTRA_TEXT, Settings.GetUser().getLink() + "");
+                /*Fire!*/
+                startActivity(Intent.createChooser(intent, "Share"));
             }
         });
 

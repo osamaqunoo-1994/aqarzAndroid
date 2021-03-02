@@ -133,7 +133,6 @@ public class MapsFragment extends Fragment {
     List<CityLocation> city_location = new ArrayList<>();
 
 
-
     List<TypeModules> typeModules_list = new ArrayList<>();
     List<select_typeModules> oprationModules_list = new ArrayList<>();
     CircleImageView image_profile;
@@ -258,13 +257,45 @@ public class MapsFragment extends Fragment {
 //                });
 
 
+                city_location.add(new CityLocation(1, "الرياض", "24.774265", "46.738586"));
+                city_location.add(new CityLocation(2, "جدّة", "21.54472", "39.17611"));
+                city_location.add(new CityLocation(3, "الدمام", "26.39222", "49.97778"));
+                city_location.add(new CityLocation(4, "مكة", "21.42250", "39.82611"));
+                city_location.add(new CityLocation(5, "نجران", "17.49250", "44.13472"));
+                city_location.add(new CityLocation(6, "المدينة", "24.46722", "39.61111"));
+                city_location.add(new CityLocation(7, "تبوك", "28.38417", "36.58000"));
+                city_location.add(new CityLocation(8, "حائل", "27.52444", "41.70389"));
+                city_location.add(new CityLocation(9, "عرعر", "30.98333", "41.01667"));
+                city_location.add(new CityLocation(10, "جازان", "16.89472", "42.55778"));
+                city_location.add(new CityLocation(11, "الباحة", "20.01250", "41.46000"));
+                city_location.add(new CityLocation(12, "القصيم", "26.333333", "43.966667"));
+                city_location.add(new CityLocation(13, "عسير", "18.5473952", "42.0534398"));
+                city_location.add(new CityLocation(14, "الجوف", "29.97111", "40.20028"));
+                city_location.add(new CityLocation(15, "الأحساء", "25.383333", "49.583333"));
+
+
+                for (int i = 0; i < city_location.size(); i++) {
+
+
+                    LatLng sydneya = new LatLng(Double.valueOf(city_location.get(i).getLat()), Double.valueOf(city_location.get(i).getLang()));
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(sydneya)
+
+                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(city_location.get(i).getName() + "")))).setTag("allArea");
+
+
+                }
+
+
                 mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
 
 
                         if (marker.getTag().toString().equals("mylocation")) {
+                        } else if (marker.getTag().toString().equals("allArea")){
 
+                            System.out.println("^^^^^^^^^^^^^^^^^^^");
                         } else {
                             if (final_type_requst_filter.equals("list_order")) {
 
@@ -576,56 +607,6 @@ public class MapsFragment extends Fragment {
 //            get_data_from_api("map_offer", filtter_selected);
 //
 //        }
-
-
-
-        city_location.add(new CityLocation(1,"الرياض","24.774265","46.738586"));
-        city_location.add(new CityLocation(2,"جدّة","21.54472","39.17611"));
-        city_location.add(new CityLocation(3,"الدمام","26.39222","49.97778"));
-        city_location.add(new CityLocation(4,"مكة","21.42250","39.82611"));
-        city_location.add(new CityLocation(5,"نجران","17.49250","44.13472"));
-        city_location.add(new CityLocation(6,"المدينة","24.46722","39.61111"));
-        city_location.add(new CityLocation(7,"تبوك","28.38417","36.58000"));
-        city_location.add(new CityLocation(8,"حائل","27.52444","41.70389"));
-        city_location.add(new CityLocation(9,"عرعر","30.98333","41.01667"));
-        city_location.add(new CityLocation(10,"جازان","16.89472","42.55778"));
-        city_location.add(new CityLocation(11,"الباحة","20.01250","41.46000"));
-        city_location.add(new CityLocation(12,"القصيم","26.333333","43.966667"));
-        city_location.add(new CityLocation(13,"عسير","18.5473952","42.0534398"));
-        city_location.add(new CityLocation(14,"الجوف","29.97111","40.20028"));
-        city_location.add(new CityLocation(15,"الأحساء","25.383333","49.583333"));
-
-
-
-
-
-        for(int i=0;i<city_location.size();i++){
-
-
-            LatLng sydneya = new LatLng(Double.valueOf(city_location.get(i).getLat()), Double.valueOf(city_location.get(i).getLang()));
-            googleMap.addMarker(new MarkerOptions()
-                    .position(sydneya)
-
-                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2(city_location.get(i).getName()+"")))).setTag(i);
-
-
-
-
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         final Handler handler = new Handler();
@@ -1552,6 +1533,7 @@ public class MapsFragment extends Fragment {
         customMarkerView.draw(canvas);
         return returnedBitmap;
     }
+
     private Bitmap getMarkerBitmapFromView2_city(String Price) {
 
         View customMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom3, null);
