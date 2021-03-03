@@ -173,11 +173,28 @@ public class SelectLocationActivity extends AppCompatActivity {
 //                                        String city = addresses.get(0).getLocality();
                                         String state = addresses.get(0).getAdminArea();
                                         String country = addresses.get(0).getCountryName();
+
+
+                                        System.out.println("countrycountry"+country);
 //                                        String postalCode = addresses.get(0).getPostalCode();
 //                                        String knownName = addresses.get(0).getFeatureName(); // Onl
 
 
                                         text_search.setText(country + " - " + state);
+
+
+                                        if(country.equals("السعودية")){
+
+                                            select.setVisibility(View.VISIBLE);
+
+                                        }else{
+                                            select.setVisibility(View.INVISIBLE);
+
+                                        }
+
+
+
+
                                     } catch (Exception e) {
 
                                     }
