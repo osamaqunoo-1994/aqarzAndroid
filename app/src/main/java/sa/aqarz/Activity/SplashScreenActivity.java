@@ -17,6 +17,7 @@ import android.view.animation.AnimationUtils;
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -58,7 +59,11 @@ public class SplashScreenActivity extends AppCompatActivity {
             int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
             decorView.setSystemUiVisibility(uiOptions);
         }
+        try {
+            FirebaseMessaging.getInstance().subscribeToTopic("aqarz");
+        } catch (Exception e) {
 
+        }
 
         if (Hawk.contains("lang")) {
 
