@@ -27,11 +27,13 @@ import org.json.JSONObject;
 
 import java.net.InetAddress;
 import java.util.Locale;
+import java.util.Set;
 
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Modules.User;
 import sa.aqarz.R;
 import sa.aqarz.Settings.LocaleUtils;
+import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
@@ -64,6 +66,26 @@ public class SplashScreenActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
+        if (Settings.checkLogin()) {
+
+
+            if(Settings.CheckIsAccountAqarzMan()){
+                try {
+                    FirebaseMessaging.getInstance().subscribeToTopic("aqarz_provider");
+                } catch (Exception e) {
+
+                }
+            }else{
+                try {
+                    FirebaseMessaging.getInstance().subscribeToTopic("aqarz_user");
+                } catch (Exception e) {
+
+                }
+            }
+
+        }
+
 
         if (Hawk.contains("lang")) {
 

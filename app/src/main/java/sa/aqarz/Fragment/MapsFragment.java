@@ -15,6 +15,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -281,7 +282,7 @@ public class MapsFragment extends Fragment {
                     googleMap.addMarker(new MarkerOptions()
                             .position(sydneya)
 
-                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(city_location.get(i).getName() + "")))).setTag("allArea");
+                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(city_location.get(i).getName() + "")))).setTag("allArea/" + i);
 
 
                 }
@@ -293,9 +294,38 @@ public class MapsFragment extends Fragment {
 
 
                         if (marker.getTag().toString().equals("mylocation")) {
-                        } else if (marker.getTag().toString().equals("allArea")){
+                        } else if (marker.getTag().toString().contains("allArea")) {
 
                             System.out.println("^^^^^^^^^^^^^^^^^^^");
+
+                            try {
+
+                                String[] separated = marker.getTag().toString().split("/");
+
+                                String number = separated[1]; // this will contain " they taste good"
+
+                                System.out.println("$$$$$$$$$$$$$" + number);
+                                LatLng my_location = new LatLng(Double.valueOf(city_location.get(Integer.valueOf(number)).getLat()+""),Double.valueOf(city_location.get(Integer.valueOf(number)).getLang()+""));
+
+//
+
+                                CameraPosition cameraPosition = new CameraPosition.Builder().target(my_location).zoom(4).build();
+                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 40));
+                            // Zoom in, animating the camera.
+                            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+//                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
+                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+
+                                get_data_from_api("map_offer", filtter_selected,city_location.get(Integer.valueOf(number)).getLat(),city_location.get(Integer.valueOf(number)).getLang());
+
+                            } catch (Exception e) {
+
+                            }
+
+
                         } else {
                             if (final_type_requst_filter.equals("list_order")) {
 
@@ -564,7 +594,7 @@ public class MapsFragment extends Fragment {
 //                opration_select = type_list.get(position).getId().toString() + "";
 
 
-                get_data_from_api(final_type_requst_filter, filtter_selected);
+//                get_data_from_api(final_type_requst_filter, filtter_selected);
 
 
             }
@@ -914,14 +944,14 @@ public class MapsFragment extends Fragment {
                 if (Settings.CheckIsAccountAqarzMan()) {
                     if (typeTab.equals("Orders_tab")) {
 //                        get_data_from_api("list_order", filtter_selected);
-                        get_data_from_api("list_offer", filtter_selected);
+//                        get_data_from_api("list_offer", filtter_selected);
 
                     } else {
-                        get_data_from_api("list_offer", filtter_selected);
+//                        get_data_from_api("list_offer", filtter_selected);
 
                     }
                 } else {
-                    get_data_from_api("list_offer", filtter_selected);
+//                    get_data_from_api("list_offer", filtter_selected);
 
                 }
 
@@ -942,7 +972,7 @@ public class MapsFragment extends Fragment {
 //                    get_data_from_api("map_order", filtter_selected);
 
                 } else {
-                    get_data_from_api("map_offer", filtter_selected);
+//                    get_data_from_api("map_offer", filtter_selected);
 
                 }
 
@@ -1017,7 +1047,7 @@ public class MapsFragment extends Fragment {
 
 
                         filtter_selected = filtter;
-                        get_data_from_api(final_type_requst_filter, filtter_selected);
+//                        get_data_from_api(final_type_requst_filter, filtter_selected);
 
                         bottomSheetDialogFragment_filtter.dismiss();
 
@@ -1043,11 +1073,11 @@ public class MapsFragment extends Fragment {
                 Offers_tab.setTextColor(getResources().getColor(R.color.color_filter));
 
                 if (convert_type.equals("map")) {
-                    get_data_from_api("map_order", filtter_selected);
+//                    get_data_from_api("map_order", filtter_selected);
 
                 } else {
 //                    get_data_from_api("list_order", filtter_selected);
-                    get_data_from_api("list_offer", filtter_selected);
+//                    get_data_from_api("list_offer", filtter_selected);
 
                 }
 
@@ -1065,10 +1095,10 @@ public class MapsFragment extends Fragment {
                 Orders_tab.setTextColor(getResources().getColor(R.color.color_filter));
 
                 if (convert_type.equals("map")) {
-                    get_data_from_api("map_offer", filtter_selected);
+//                    get_data_from_api("map_offer", filtter_selected);
 
                 } else {
-                    get_data_from_api("list_offer", filtter_selected);
+//                    get_data_from_api("list_offer", filtter_selected);
 
                 }
 
@@ -1080,7 +1110,7 @@ public class MapsFragment extends Fragment {
         search_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                get_data_from_api(final_type_requst_filter, filtter_selected);
+//                get_data_from_api(final_type_requst_filter, filtter_selected);
             }
         });
 
@@ -1088,7 +1118,7 @@ public class MapsFragment extends Fragment {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    get_data_from_api(final_type_requst_filter, filtter_selected);
+//                    get_data_from_api(final_type_requst_filter, filtter_selected);
                     return true;
                 }
                 return false;
@@ -1633,33 +1663,37 @@ public class MapsFragment extends Fragment {
     }
 
 
-    public void get_data_from_api(String type, String filtter) {
+    public void get_data_from_api(String type, String filtter,String latitude,String longitude) {
         WebService.loading(getActivity(), true);
 //estate_pay_type=is_rent
 // &price_from=1
 // &price_to=300
 // &area_from=1
 // &area_from=300
+
+
+
+
         final_type_requst_filter = type;
         if (type.equals("list_order")) {
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("list_order", WebService.Home_1 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().longitude + "&estate_type=" + opration_select + "" + filtter + "&search=" + search_text.getText().toString());//&request_type=pay
+            mVolleyService.getDataVolley("list_order", WebService.Home_1 + "?lat=" + latitude + "&lan=" + longitude + "&estate_type=" + opration_select + "" + filtter + "&search=" + search_text.getText().toString());//&request_type=pay
 
         } else if (type.equals("list_offer")) {//aqarz
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("list_offer", WebService.Home_2 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().longitude + "&estate_type=" + opration_select + "" + filtter + "&search=" + search_text.getText().toString());
+            mVolleyService.getDataVolley("list_offer", WebService.Home_2 + "?lat=" + latitude + "&lan=" + longitude + "&estate_type=" + opration_select + "" + filtter + "&search=" + search_text.getText().toString());
 
         } else if (type.equals("map_order")) {
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("map_order", WebService.Home_3 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().longitude + "&estate_type=" + opration_select + "" + filtter + "&search=" + search_text.getText().toString());//&request_type=pay
+            mVolleyService.getDataVolley("map_order", WebService.Home_3 + "?lat=" + latitude + "&lan=" + longitude + "&estate_type=" + opration_select + "" + filtter + "&search=" + search_text.getText().toString());//&request_type=pay
 
         } else if (type.equals("map_offer")) {//aqarz//"search="+search_text.getText().toString()+
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-            mVolleyService.getDataVolley("map_offer", WebService.Home_4 + "?lat=" + getLocation().latitude + "&lan=" + getLocation().longitude + "&estate_type=" + opration_select + "" + filtter + "&search=" + search_text.getText().toString());
+            mVolleyService.getDataVolley("map_offer", WebService.Home_4 + "?lat=" + latitude + "&lan=" + longitude + "&estate_type=" + opration_select + "" + filtter + "&search=" + search_text.getText().toString());
 
         }
 
