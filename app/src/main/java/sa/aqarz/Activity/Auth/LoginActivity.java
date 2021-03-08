@@ -24,6 +24,7 @@ import com.android.volley.ParseError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -88,11 +89,6 @@ public class LoginActivity extends AppCompatActivity {
         forget_pass = findViewById(R.id.forget_pass);
         pass_checkbox = findViewById(R.id.pass_checkbox);
         back = findViewById(R.id.back);
-
-
-
-
-
 
 
 //
@@ -180,7 +176,11 @@ public class LoginActivity extends AppCompatActivity {
 
                         sendObj.put("username", phone_ed.getText().toString());
                         sendObj.put("password", password.getText().toString());
-                        sendObj.put("device_token", "154");
+                        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+
+                        System.out.println("refreshedToken " + refreshedToken);
+
+                        sendObj.put("device_token", refreshedToken);
                         sendObj.put("device_type", "android");
 
                     } catch (JSONException e) {
@@ -196,7 +196,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
-//                                intent.putExtra("from", "splash");
+//              intent.putExtra("from", "splash");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 

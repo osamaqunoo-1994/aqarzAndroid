@@ -145,8 +145,8 @@ public class MapsFragment extends Fragment {
 
     List<HomeModules> homeModules = new ArrayList<>();
     List<HomeModules_aqares> homeModules_aqares = new ArrayList<>();
-
-
+    String x_latitude = "";
+    String x_longitude = "";
     RelativeLayout layout_list;
     LinearLayout layout_button;
     RelativeLayout layout_button_2;
@@ -170,6 +170,7 @@ public class MapsFragment extends Fragment {
     ImageView get_location;
     GpsTracker gpsTracker;
     ImageView filtter;
+    ImageView cityMap;
 
 
     ImageView nodata_vis;
@@ -185,6 +186,7 @@ public class MapsFragment extends Fragment {
         mMapView = (MapView) v.findViewById(R.id.mapViewxx);
         Orders_tab = v.findViewById(R.id.Orders_tab);
         Offers_tab = v.findViewById(R.id.Offers_tab);
+        cityMap = v.findViewById(R.id.cityMap);
 
         init(v);
         getProfile();
@@ -288,6 +290,60 @@ public class MapsFragment extends Fragment {
                 }
 
 
+
+                cityMap.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        googleMap.clear();
+
+                        //get latlong for corners for specified place
+                        LatLng one = new LatLng(30.250032, 38.374554);
+                        LatLng two = new LatLng(19.117340, 49.913804);
+//                LatLng three = new LatLng(25.784818, 49.666975);
+//                LatLng forth = new LatLng(23.031780, 39.361870);
+
+                        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+                        //add them to builder
+                        builder.include(one);
+                        builder.include(two);
+//                builder.include(three);
+//                builder.include(forth);
+
+                        LatLngBounds bounds = builder.build();
+
+                        //get width and height to current display screen
+                        int width = getResources().getDisplayMetrics().widthPixels;
+                        int height = getResources().getDisplayMetrics().heightPixels;
+
+                        // 20% padding
+                        int padding = (int) (width * 0.05);
+
+                        //set latlong bounds
+                        mMap.setLatLngBoundsForCameraTarget(bounds);
+
+                        //move camera to fill the bound to screen
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding));
+
+                        //set zoom to level to current so that you won't be able to zoom out viz. move outside bounds
+                        mMap.setMinZoomPreference(mMap.getCameraPosition().zoom);
+
+
+//
+//
+                        for (int i = 0; i < city_location.size(); i++) {
+
+                            LatLng sydneya = new LatLng(Double.valueOf(city_location.get(i).getLat()), Double.valueOf(city_location.get(i).getLang()));
+                            googleMap.addMarker(new MarkerOptions()
+                                    .position(sydneya)
+
+                                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(city_location.get(i).getName() + "")))).setTag("allArea/" + i);
+
+
+                        }
+                    }
+                });
+
                 mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
@@ -305,21 +361,21 @@ public class MapsFragment extends Fragment {
                                 String number = separated[1]; // this will contain " they taste good"
 
                                 System.out.println("$$$$$$$$$$$$$" + number);
-                                LatLng my_location = new LatLng(Double.valueOf(city_location.get(Integer.valueOf(number)).getLat()+""),Double.valueOf(city_location.get(Integer.valueOf(number)).getLang()+""));
+                                LatLng my_location = new LatLng(Double.valueOf(city_location.get(Integer.valueOf(number)).getLat() + ""), Double.valueOf(city_location.get(Integer.valueOf(number)).getLang() + ""));
 
 //
 
                                 CameraPosition cameraPosition = new CameraPosition.Builder().target(my_location).zoom(4).build();
-                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 
-                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 40));
-                            // Zoom in, animating the camera.
-                            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 10));
+                                // Zoom in, animating the camera.
+                                googleMap.animateCamera(CameraUpdateFactory.zoomIn());
 //                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+                                googleMap.animateCamera(CameraUpdateFactory.zoomTo(14), 3000, null);
 
-                                get_data_from_api("map_offer", filtter_selected,city_location.get(Integer.valueOf(number)).getLat(),city_location.get(Integer.valueOf(number)).getLang());
+                                get_data_from_api("map_offer", filtter_selected, city_location.get(Integer.valueOf(number)).getLat(), city_location.get(Integer.valueOf(number)).getLang());
 
                             } catch (Exception e) {
 
@@ -1663,7 +1719,7 @@ public class MapsFragment extends Fragment {
     }
 
 
-    public void get_data_from_api(String type, String filtter,String latitude,String longitude) {
+    public void get_data_from_api(String type, String filtter, String latitude, String longitude) {
         WebService.loading(getActivity(), true);
 //estate_pay_type=is_rent
 // &price_from=1
@@ -1671,7 +1727,8 @@ public class MapsFragment extends Fragment {
 // &area_from=1
 // &area_from=300
 
-
+        x_latitude = latitude;
+        x_longitude = longitude;
 
 
         final_type_requst_filter = type;
