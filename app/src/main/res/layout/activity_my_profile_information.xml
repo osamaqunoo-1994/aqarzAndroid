@@ -159,7 +159,7 @@
 
 
                     <CheckBox
-                        android:id="@+id/more_than_10"
+                        android:id="@+id/are_you_aqarez"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/AreYouAqarezman" />

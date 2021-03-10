@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -34,13 +35,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.orhanobut.hawk.Hawk;
 
+import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Set;
 
@@ -48,6 +60,7 @@ import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.Auth.RegisterActivity;
 import sa.aqarz.Activity.OprationNew.RequestServiceActivity;
+import sa.aqarz.Activity.profile.OtherProfileActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import sa.aqarz.Fragment.ChatFragment;
 import sa.aqarz.Fragment.MapsFragment;
@@ -56,12 +69,16 @@ import sa.aqarz.Fragment.NotficationFragment;
 import sa.aqarz.Fragment.OrdersFragment;
 import sa.aqarz.Fragment.OrdersFragment_old;
 import sa.aqarz.Fragment.SubscriptionsFragment;
+import sa.aqarz.Modules.HomeModules;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.ForceUpdateAsync;
 import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
+import sa.aqarz.Settings.WebService;
+import sa.aqarz.api.IResult;
+import sa.aqarz.api.VolleyService;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNav;
@@ -84,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
     static TextView text_3;
     static TextView text_4;
     static TextView text_s;
+    IResult mResultCallback;
 
     public static LinearLayout lay_1, lay_2, lay_3, lay_4, lay_s;
     ShowcaseView showCaseView;
@@ -329,6 +347,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
         lay_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -434,6 +453,30 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
 //        }, 100); // After 1 seconds
+
+
+        if (Settings.checkLogin()) {
+
+            init_volley();
+//            WebService.loading(DetailsActivity.this, true);
+
+            JSONObject jsonObject = new JSONObject();
+            try {
+                String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+
+                System.out.println("device_token " + refreshedToken);
+                jsonObject.put("device_token", refreshedToken);
+            } catch (Exception e) {
+
+            }
+
+            VolleyService mVolleyService = new VolleyService(mResultCallback, MainActivity.this);
+            mVolleyService.postDataVolley("updateDeviceToken", WebService.updateDeviceToken, jsonObject);
+
+
+        }
+
+
     }
 
 //    public void init() {
@@ -733,4 +776,73 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("currentVersion" + currentVersion);
         new ForceUpdateAsync(currentVersion, MainActivity.this).execute();
     }
+
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response.toString());
+                WebService.loading(MainActivity.this, false);
+//{"status":true,"code":200,"message":"User Profile","data"
+                try {
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+                        String data = response.getString("data");
+
+
+                    }
+
+
+                } catch (Exception e) {
+
+                }
+
+
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+
+                WebService.loading(MainActivity.this, false);
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color(MainActivity.this, message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+                WebService.loading(MainActivity.this, false);
+
+
+            }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+                WebService.loading(MainActivity.this, false);
+
+                WebService.Make_Toast_color(MainActivity.this, error, "error");
+
+
+            }
+        };
+
+
+    }
+
 }

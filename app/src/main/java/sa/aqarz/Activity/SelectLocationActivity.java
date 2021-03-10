@@ -33,6 +33,8 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.io.IOException;
 import java.util.List;
@@ -174,8 +176,31 @@ public class SelectLocationActivity extends AppCompatActivity {
                                         String state = addresses.get(0).getAdminArea();
                                         String country = addresses.get(0).getCountryName();
 
+//
+//                                        try {
+//                                            List<Address> addresses = geocoder.getFromLocationName(
+//                                                    "السعودية", 5);
+//                                            PolylineOptions polylineOptions = new PolylineOptions();
+//
+//                                            for (int i = 0; i < addresses.size(); i++) {
+//
+//                                                System.out.println("**&&^%%%" + addresses.get(i).getLatitude() + "--" + addresses.get(i).getLongitude());
+//                                                polylineOptions.add(new LatLng(addresses.get(i).getLatitude(), addresses.get(i).getLongitude()));
+//
+//
+//                                            }
+//
+//                                            Polyline polyline = googleMap.addPolyline(polylineOptions);
+//
+//
+//                                            if (addresses.size() > 0) {
+//                                                Log.d("TAG", "ADRESSE " + addresses.get(0) + ",LAT :" + addresses.get(0).getLatitude() + ", LONG :" + addresses.get(0).getLongitude());
+//                                            }
+//                                        } catch (IOException e) {
+//                                            e.printStackTrace();
+//                                        }
 
-                                        System.out.println("countrycountry"+country);
+                                        System.out.println("countrycountry" + country);
 //                                        String postalCode = addresses.get(0).getPostalCode();
 //                                        String knownName = addresses.get(0).getFeatureName(); // Onl
 
@@ -183,16 +208,14 @@ public class SelectLocationActivity extends AppCompatActivity {
                                         text_search.setText(country + " - " + state);
 
 
-                                        if(country.equals("السعودية")){
+                                        if (country.equals("السعودية")) {
 
                                             select.setVisibility(View.VISIBLE);
 
-                                        }else{
+                                        } else {
                                             select.setVisibility(View.INVISIBLE);
 
                                         }
-
-
 
 
                                     } catch (Exception e) {

@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -216,6 +217,10 @@ public class RegisterActivity extends AppCompatActivity {
                         sendObj.put("password_confirmation", password.getText().toString());
                         sendObj.put("lat", "0.0");
                         sendObj.put("lan","0.0");
+                        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+
+                        System.out.println("device_token " + refreshedToken);
+                        sendObj.put("device_token", refreshedToken);
 
                         sendObj.put("device_token", "157");
                         sendObj.put("type", type);

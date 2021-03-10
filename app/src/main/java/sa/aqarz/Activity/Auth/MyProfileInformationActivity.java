@@ -17,6 +17,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -65,6 +67,11 @@ public class MyProfileInformationActivity extends AppCompatActivity {
     CircleImageView image_profile;
     File image_file_file = null;
 
+
+    CheckBox are_you_aqarez;
+
+
+    String type="user";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +98,7 @@ public class MyProfileInformationActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         edit_image = findViewById(R.id.edit_image);
         image_profile = findViewById(R.id.image_profile);
+        are_you_aqarez = findViewById(R.id.are_you_aqarez);
 
 
         try {
@@ -103,6 +111,23 @@ public class MyProfileInformationActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
+
+        are_you_aqarez.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    type = "provider";
+
+                } else {
+                    type = "user";
+
+                }
+
+            }
+        });
+
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,7 +204,8 @@ public class MyProfileInformationActivity extends AppCompatActivity {
                     try {
 
                         sendObj.put("name", name_ed.getText().toString());
-//                        sendObj.put("email", email_ed.getText().toString());
+                        sendObj.put("email", email_ed.getText().toString());
+                        sendObj.put("type", type);
 //                        sendObj.put("mobile", phone_ed.getText().toString());
 
 

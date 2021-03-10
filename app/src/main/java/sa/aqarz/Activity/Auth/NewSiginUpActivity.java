@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -101,8 +102,12 @@ public class NewSiginUpActivity extends AppCompatActivity {
 
 
                         sendObj.put("mobile", phone_ed.getText().toString() + "");
-                        sendObj.put("device_token", "157");
+                        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+
+                        System.out.println("device_token " + refreshedToken);
+
                         sendObj.put("device_type", "android");
+                        sendObj.put("device_token", refreshedToken);
 
                         sendObj.put("type", type);
                         sendObj.put("country_code", "+966");

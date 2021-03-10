@@ -49,12 +49,23 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage.getNotification() != null) {
             RemoteMessage.Notification notification = remoteMessage.getNotification();
 //            sendNotification("xxx",notification.getTitle(),notification.getBody(),"");
+
             showNotification(notification.getTitle(), notification.getBody(), "xxx");
+
+
+            System.out.println("((((((" + notification.getTitle() + "((((((" + notification.getBody() + "((((((" + "xxx");
+
 
 //            System.out.println("notification" + notification.getBody() + "%%%% " + notification.getTitle());
         } else {
 //            sendNotification(remoteMessage.getData().get("type"),"NaqlThaqeel",remoteMessage.getData().get("body"),"");
             showNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("body"), remoteMessage.getData().get("type"));
+
+            System.out.println("######((((((" + remoteMessage.getData().get("title") + "((((((" + remoteMessage.getData().get("body") + "((((((" + remoteMessage.getData().get("type"));
+
+
+            //
+//
 //            System.out.println("getData1" + remoteMessage.getData());
 //            System.out.println(remoteMessage.getData().toString() + "%%%% " + remoteMessage.getData().toString());
 
@@ -93,6 +104,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Intent intent;
         intent = new Intent(this, SplashScreenActivity.class);
 //        System.out.println("typetype" + type);
+
+
+        System.out.println("type_notfication" + type);
 
         if (type != null) {
             if (type.equals("message")) {

@@ -85,6 +85,7 @@ public class WebService {
     public static String count_call = Domain + "count";
     public static String delete = Domain + "delete";
     public static String make_up = Domain + "make/up";
+    public static String updateDeviceToken = Domain + "updateDeviceToken";
 //    public static String provider_code_send = Domain + "provider/code/send";
 
 
