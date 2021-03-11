@@ -138,12 +138,12 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void run() {
 
 
-//                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-////              intent.putExtra("from", "splash");
-//                startActivity(intent);
-//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-//                finish();
-//
+                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+//              intent.putExtra("from", "splash");
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                finish();
+
 
             }
         }, 3000); // After 1 seconds

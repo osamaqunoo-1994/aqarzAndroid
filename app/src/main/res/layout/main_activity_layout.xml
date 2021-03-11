@@ -14,10 +14,9 @@
         android:layout_gravity="bottom">
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="60dp"
 
             >
 
@@ -30,7 +29,54 @@
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 tools:background="#EFF0F2" />
 
-        </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/gray_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#50000000"
+                android:orientation="vertical"
+
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/service_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="100dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/add_aqar"
+                    android:layout_width="200dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/back_click"
+                    android:gravity="center"
+                    android:text="@string/add_aqar"
+                    android:textColor="#AAABB3"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/add_service_aqarez"
+                    android:layout_width="200dp"
+                    android:layout_height="42dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/back_click"
+
+                    android:gravity="center"
+                    android:text="@string/AqarsService"
+
+                    android:textColor="#AAABB3"
+                    android:textSize="15dp" />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
 
 
         <com.google.android.material.bottomappbar.BottomAppBar
@@ -38,7 +84,6 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
-            app:backgroundTint="@color/white"
             app:contentInsetEnd="0dp"
             app:contentInsetStart="0dp"
 
@@ -72,7 +117,7 @@
                             android:id="@+id/image_1"
                             android:layout_width="22dp"
                             android:layout_height="22dp"
-                            android:src="@drawable/ic_home_new"
+                            android:src="@drawable/ic_saudi_arabia_menu"
 
                             />
 
@@ -103,7 +148,7 @@
                             android:layout_width="22dp"
                             android:layout_height="22dp"
 
-                            android:src="@drawable/ic_order_new" />
+                            android:src="@drawable/ic_order_menu" />
 
                         <TextView
                             android:id="@+id/text_2"
@@ -120,12 +165,13 @@
 
                     <LinearLayout
                         android:id="@+id/lay_s"
-
                         android:layout_width="match_parent"
+
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="invisible">
 
 
                         <ImageView
@@ -163,7 +209,7 @@
                             android:layout_width="22dp"
                             android:layout_height="22dp"
 
-                            android:src="@drawable/ic_message_new" />
+                            android:src="@drawable/ic_service_menu" />
 
                         <TextView
                             android:id="@+id/text_3"
@@ -171,7 +217,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:fontFamily="sans-serif-condensed-medium"
-                            android:text="@string/messages"
+                            android:text="@string/Service_fill"
                             android:textColor="#898D97"
                             android:textSize="11dp" />
 
@@ -191,8 +237,9 @@
                             android:id="@+id/image_4"
                             android:layout_width="22dp"
                             android:layout_height="22dp"
+                            android:padding="4dp"
 
-                            android:src="@drawable/ic_more_new" />
+                            android:src="@drawable/ic_user_menu" />
 
                         <TextView
                             android:id="@+id/text_4"
@@ -200,7 +247,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:fontFamily="sans-serif-condensed-medium"
-                            android:text="@string/More"
+                            android:text="@string/Profile_menu"
                             android:textColor="#898D97"
                             android:textSize="11dp" />
 
@@ -218,9 +265,9 @@
             android:id="@+id/fab"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:src="@drawable/ic_logo_map"
+            android:src="@drawable/ic_plus"
             android:tint="@color/white"
-            android:visibility="gone"
+            android:visibility="visible"
             app:backgroundTint="@color/colorPrimary"
 
             app:fabCustomSize="64dp"

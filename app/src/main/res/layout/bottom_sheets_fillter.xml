@@ -320,14 +320,15 @@
 
             </HorizontalScrollView>
 
-            <Button
+            <TextView
                 android:id="@+id/filtter_btn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="42dp"
                 android:layout_margin="25dp"
                 android:background="@drawable/button_login"
-
                 android:fontFamily="@font/din_light"
+
+                android:gravity="center"
                 android:text="@string/search"
 
                 android:textColor="@color/white" />

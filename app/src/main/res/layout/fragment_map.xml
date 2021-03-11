@@ -18,11 +18,11 @@
 
         <LinearLayout
             android:layout_width="30dp"
-            android:visibility="gone"
             android:layout_height="80dp"
+            android:layout_centerInParent="true"
 
 
-            android:layout_centerInParent="true">
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="30dp"
@@ -58,18 +58,6 @@
                 android:visibility="gone" />
 
 
-            <ImageView
-                android:id="@+id/change_list_to_map"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="15dp"
-                android:background="@drawable/circle_fill"
-                android:padding="@dimen/_8sdp"
-                android:src="@drawable/ic_marker_lo__"
-                app:tint="@color/white" />
-
-
         </RelativeLayout>
 
 
@@ -93,15 +81,15 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/search_background"
                 android:gravity="center"
-                android:orientation="horizontal">
-
+                android:orientation="horizontal"
+                android:visibility="gone">
 
 
                 <RelativeLayout
                     android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_height="40dp">
+                    android:layout_marginRight="10dp">
 
                     <ImageView
                         android:id="@+id/search_btn"
@@ -110,6 +98,7 @@
 
                         android:padding="5dp"
                         android:src="@drawable/ic_search" />
+
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/image_profile"
                         android:layout_width="38dp"
@@ -129,14 +118,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:paddingBottom="6dp"
-
                     android:background="@android:color/transparent"
+
                     android:hint="@string/searchAqarz"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
+                    android:paddingBottom="6dp"
                     android:textSize="@dimen/_11sdp" />
 
                 <LinearLayout
@@ -148,75 +137,119 @@
                     android:layout_marginBottom="5dp"
                     android:background="#AAABB3" />
 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
+
                 <ImageView
                     android:id="@+id/filtter"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
-                    android:background="@drawable/circle_fill"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_filter_home" />
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
 
+
+                    android:background="@drawable/circle_wh"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_filter_home"
+                    app:tint="@color/colorPrimary" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/opration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+
+
+                    android:visibility="visible" />
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/laout_of_change"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginLeft="20dp"
-
-                android:layout_marginRight="20dp"
-
-
-                android:background="@drawable/circle_wh">
-
-                <TextView
-                    android:id="@+id/Orders_tab"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/din_light"
-                    android:gravity="center"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:text="@string/Orders_tab"
-                    android:textColor="@color/color_filter"
-                    android:paddingBottom="6dp"
-
-                    android:textSize="13dp" />
-
-                <TextView
-                    android:id="@+id/Offers_tab"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_login"
-                    android:fontFamily="@font/din_light"
-                    android:gravity="center"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:paddingBottom="6dp"
-
-                    android:text="@string/Offers_tab"
-                    android:textColor="@color/white"
-                    android:textSize="13dp" />
-
-
-            </LinearLayout>
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/opration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/laout_of_change"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/circle_wh">
+
+                    <TextView
+                        android:id="@+id/Orders_tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/din_light"
+                        android:gravity="center"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingBottom="6dp"
+                        android:text="@string/Orders_tab"
+                        android:textColor="@color/color_filter"
+
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/Offers_tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_login"
+                        android:fontFamily="@font/din_light"
+                        android:gravity="center"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:paddingBottom="6dp"
+
+                        android:text="@string/Offers_tab"
+                        android:textColor="@color/white"
+                        android:textSize="13dp" />
 
 
-                android:visibility="visible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="7dp"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/chate"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+
+
+                    android:background="@drawable/circle_wh"
+                    android:padding="9dp"
+
+                    android:src="@drawable/ic_messenger" />
+
+                <LinearLayout
+                    android:layout_width="7dp"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/notfication"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+
+                    android:background="@drawable/circle_wh"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_bell" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -249,10 +282,59 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layout_button"
+            android:id="@+id/layout_buttona"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/_13sdp"
+            android:layout_marginRight="@dimen/_13sdp"
+            android:layout_marginBottom="@dimen/_55sdp"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/chmnage_map_style"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/circle_wh"
+                android:padding="9dp"
+
+                android:src="@drawable/ic_change_style"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/convert_map_to_list"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/circle_wh"
+                android:padding="12dp"
+                android:src="@drawable/ic_list_ch"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/change_list_to_map"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/circle_fill"
+                android:padding="12dp"
+                android:src="@drawable/ic_marker_lo__"
+                android:visibility="gone"
+                app:tint="@color/white" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_button"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/_13sdp"
             android:layout_marginRight="@dimen/_13sdp"
@@ -269,37 +351,27 @@
                 android:padding="9dp"
                 android:src="@drawable/ic_location" />
 
-            <ImageView
-                android:id="@+id/chmnage_map_style"
-                android:layout_width="38dp"
-                android:layout_height="38dp"
-                android:visibility="gone"
-                android:layout_margin="2dp"
-                android:background="@drawable/circle_wh"
-
-                android:padding="9dp"
-                android:src="@drawable/ic_change_style" />
 
             <ImageView
                 android:id="@+id/cityMap"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_margin="2dp"
-                app:tint="@color/colorPrimary"
                 android:background="@drawable/circle_wh"
-
                 android:padding="9dp"
-                android:src="@drawable/sa_icon" />
+
+                android:src="@drawable/sa_icon"
+                app:tint="@color/colorPrimary" />
 
             <ImageView
-                android:id="@+id/convert_map_to_list"
+
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_margin="2dp"
-                android:visibility="gone"
                 android:background="@drawable/circle_wh"
                 android:padding="12dp"
-                android:src="@drawable/ic_list_ch" />
+                android:src="@drawable/ic_list_ch"
+                android:visibility="gone" />
 
 
         </LinearLayout>
@@ -307,10 +379,11 @@
         <RelativeLayout
             android:id="@+id/layout_button_2"
             android:layout_width="match_parent"
+
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/_20sdp"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -344,8 +417,8 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/din_light"
                     android:gravity="center"
-                    android:text="@string/add_aqar"
                     android:paddingBottom="5dp"
+                    android:text="@string/add_aqar"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_11sdp" />
             </LinearLayout>
@@ -357,9 +430,9 @@
                 android:layout_centerHorizontal="true"
 
                 android:background="@drawable/circle_w_new"
-                app:tint="@color/colorPrimary"
                 android:padding="@dimen/_7sdp"
-                android:src="@drawable/ic_logo_map" />
+                android:src="@drawable/ic_logo_map"
+                app:tint="@color/colorPrimary" />
 
 
         </RelativeLayout>

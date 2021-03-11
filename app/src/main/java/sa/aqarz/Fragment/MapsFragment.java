@@ -74,9 +74,11 @@ import io.blushine.android.ui.showcase.MaterialShowcaseView;
 import io.blushine.android.ui.showcase.ShowcaseListener;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
+import sa.aqarz.Activity.ChateActivity;
 import sa.aqarz.Activity.DetailsActivity;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Activity.MainActivity;
+import sa.aqarz.Activity.NotficationActvity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
 import sa.aqarz.Activity.OprationNew.RequestServiceActivity;
@@ -154,6 +156,8 @@ public class MapsFragment extends Fragment {
     ImageView convert_map_to_list;
     ImageView change_list_to_map;
     ImageView search_btn;
+    ImageView chate;
+    ImageView notfication;
 
     String opration_select = "";
     String convert_type = "map";
@@ -187,6 +191,9 @@ public class MapsFragment extends Fragment {
         Orders_tab = v.findViewById(R.id.Orders_tab);
         Offers_tab = v.findViewById(R.id.Offers_tab);
         cityMap = v.findViewById(R.id.cityMap);
+        notfication = v.findViewById(R.id.notfication);
+        chate = v.findViewById(R.id.chate);
+
 
         init(v);
         getProfile();
@@ -288,7 +295,6 @@ public class MapsFragment extends Fragment {
 
 
                 }
-
 
 
                 cityMap.setOnClickListener(new View.OnClickListener() {
@@ -394,53 +400,55 @@ public class MapsFragment extends Fragment {
 
                                 } else {
 
-//
-//                                    CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(getActivity(), homeModules.get(Integer.valueOf(marker.getTag().toString())));
-//                                    mMap.setInfoWindowAdapter(customInfoWindow);
-//                                    mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-//                                        @Override
-//                                        public void onInfoWindowClick(Marker marker) {
-//
-//
-//                                            try {
-//                                                if (!marker.getTag().toString().equals("mylocation")) {
-//                                                    Intent intent = new Intent(getContext(), DetailsActivity.class);
-//                                                    intent.putExtra("id", homeModules.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
-//                                                    System.out.println(homeModules.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
-//                                                    getActivity().startActivity(intent);
-//                                                }
-//                                            } catch (Exception e) {
-//
-//                                            }
-//
-//
-//                                        }
-//                                    });
 
-                                    BottomSheetDialogFragment_DetailsAqares_orders bottomSheetDialogFragment_detailsAqares_orders = new BottomSheetDialogFragment_DetailsAqares_orders(homeModules.get(Integer.valueOf(marker.getTag().toString())));
-                                    bottomSheetDialogFragment_detailsAqares_orders.show(getFragmentManager(), "");
+                                    CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(getActivity(), homeModules.get(Integer.valueOf(marker.getTag().toString())));
+                                    mMap.setInfoWindowAdapter(customInfoWindow);
+                                    mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                                        @Override
+                                        public void onInfoWindowClick(Marker marker) {
+
+
+                                            try {
+                                                if (!marker.getTag().toString().equals("mylocation")) {
+                                                    Intent intent = new Intent(getContext(), DetailsActivity.class);
+                                                    intent.putExtra("id", homeModules.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
+                                                    System.out.println(homeModules.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
+                                                    getActivity().startActivity(intent);
+                                                }
+                                            } catch (Exception e) {
+
+                                            }
+
+
+                                        }
+                                    });
+
+//                                    BottomSheetDialogFragment_DetailsAqares_orders bottomSheetDialogFragment_detailsAqares_orders = new BottomSheetDialogFragment_DetailsAqares_orders(homeModules.get(Integer.valueOf(marker.getTag().toString())));
+//                                    bottomSheetDialogFragment_detailsAqares_orders.show(getFragmentManager(), "");
                                 }
                             } else if (final_type_requst_filter.equals("map_offer")) {//aqarz
 
                                 if (marker.getTag().toString().equals("mylocation")) {
 
                                 } else {
-                                    BottomSheetDialogFragment_DetailsAqares bottomSheetDialogFragment_detailsAqares = new BottomSheetDialogFragment_DetailsAqares(homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())));
-                                    bottomSheetDialogFragment_detailsAqares.show(getFragmentManager(), "");
-//                                    CustomInfoWindowGoogleMaptyp_2 customInfoWindow = new CustomInfoWindowGoogleMaptyp_2(getActivity(), homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())));
-//                                    mMap.setInfoWindowAdapter(customInfoWindow);
-//                                    mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-//                                        @Override
-//                                        public void onInfoWindowClick(Marker marker) {
-//                                            if (!marker.getTag().toString().equals("mylocation")) {
-//
-//                                                Intent intent = new Intent(getContext(), DetailsActivity_aqarz.class);
-//                                                intent.putExtra("id", homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
-//                                                getActivity().startActivity(intent);
-//
-//                                            }
-//                                        }
-//                                    });
+//                                    BottomSheetDialogFragment_DetailsAqares bottomSheetDialogFragment_detailsAqares = new BottomSheetDialogFragment_DetailsAqares(homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())));
+//                                    bottomSheetDialogFragment_detailsAqares.show(getFragmentManager(), "");
+                                    CustomInfoWindowGoogleMaptyp_2 customInfoWindow = new CustomInfoWindowGoogleMaptyp_2(getActivity(), homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())));
+                                    mMap.setInfoWindowAdapter(customInfoWindow);
+                                    mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                                        @Override
+                                        public void onInfoWindowClick(Marker marker) {
+                                            if (!marker.getTag().toString().equals("mylocation")) {
+
+                                                Intent intent = new Intent(getContext(), DetailsActivity_aqarz.class);
+                                                intent.putExtra("id", homeModules_aqares.get(Integer.valueOf(marker.getTag().toString())).getId() + "");
+                                                getActivity().startActivity(intent);
+
+                                            }
+                                        }
+                                    });
+
+
                                 }
                             }
 
@@ -480,8 +488,7 @@ public class MapsFragment extends Fragment {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(mylocation)).setTag("mylocation");
 
-                            ;
-//                            CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
+                            //                            CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
 //                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 
@@ -656,6 +663,9 @@ public class MapsFragment extends Fragment {
             }
         });
         type.setAdapter(recyclerView_all_type_in_fragment);
+
+
+//        type.scrollToPosition(0);
 
 //---------------------------------------------------------------------------------------
 //        oprationModules_list.add(new select_typeModules(1, getContext().getResources().getString(R.string.All)));
@@ -909,7 +919,70 @@ public class MapsFragment extends Fragment {
     public void ActionButton() {
 
 //----------------------------------------------------------------------Rec
+        notfication.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!Settings.checkLogin()) {
+                    new AlertDialog.Builder(getContext())
+                            .setMessage(getActivity().getResources().getString(R.string.you_are_not_login_please_login))
+                            .setCancelable(false)
+                            .setPositiveButton(getActivity().getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
 
+                                    Intent intent = new Intent(getContext(), LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                                    startActivity(intent);
+
+                                }
+                            })
+                            .setNegativeButton(getActivity().getResources().getString(R.string.no), null)
+                            .show();
+                } else {
+
+                    if (Settings.CheckIsCompleate()) {
+
+                        Intent intent = new Intent(getContext(), NotficationActvity.class);
+//                                intent.putExtra("from", "splash");
+                        startActivity(intent);
+                    } else {
+                        Settings.Dialog_not_compleate(getActivity());
+                    }
+
+                }
+            }
+        });
+        chate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!Settings.checkLogin()) {
+                    new AlertDialog.Builder(getContext())
+                            .setMessage(getActivity().getResources().getString(R.string.you_are_not_login_please_login))
+                            .setCancelable(false)
+                            .setPositiveButton(getActivity().getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                    Intent intent = new Intent(getContext(), LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                                    startActivity(intent);
+
+                                }
+                            })
+                            .setNegativeButton(getActivity().getResources().getString(R.string.no), null)
+                            .show();
+                } else {
+
+                    if (Settings.CheckIsCompleate()) {
+
+                        Intent intent = new Intent(getContext(), ChateActivity.class);
+//                                intent.putExtra("from", "splash");
+                        startActivity(intent);
+                    } else {
+                        Settings.Dialog_not_compleate(getActivity());
+                    }
+
+                }
+            }
+        });
         RequstAqars.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -992,22 +1065,26 @@ public class MapsFragment extends Fragment {
 
 
                 layout_button.setVisibility(View.GONE);
-                layout_button_2.setVisibility(View.GONE);
+//                layout_button_2.setVisibility(View.GONE);
                 layout_list.setVisibility(View.VISIBLE);
+                change_list_to_map.setVisibility(View.VISIBLE);
+                convert_map_to_list.setVisibility(View.GONE);
 
                 convert_type = "list";
 
                 if (Settings.CheckIsAccountAqarzMan()) {
                     if (typeTab.equals("Orders_tab")) {
-//                        get_data_from_api("list_order", filtter_selected);
+                        get_data_from_api("list_order", filtter_selected, x_latitude, x_longitude);
 //                        get_data_from_api("list_offer", filtter_selected);
 
                     } else {
 //                        get_data_from_api("list_offer", filtter_selected);
+                        get_data_from_api("list_offer", filtter_selected, x_latitude, x_longitude);
 
                     }
                 } else {
 //                    get_data_from_api("list_offer", filtter_selected);
+                    get_data_from_api("list_offer", filtter_selected, x_latitude, x_longitude);
 
                 }
 
@@ -1021,8 +1098,10 @@ public class MapsFragment extends Fragment {
                 list_aqaers.setAdapter(null);
 
                 layout_button.setVisibility(View.VISIBLE);
-                layout_button_2.setVisibility(View.VISIBLE);
+//                layout_button_2.setVisibility(View.VISIBLE);
                 layout_list.setVisibility(View.GONE);
+                change_list_to_map.setVisibility(View.GONE);
+                convert_map_to_list.setVisibility(View.VISIBLE);
 
                 if (typeTab.equals("Orders_tab")) {
 //                    get_data_from_api("map_order", filtter_selected);
@@ -1072,8 +1151,7 @@ public class MapsFragment extends Fragment {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(mylocation)).setTag("mylocation");
 
-                            ;
-//                            CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(11).build();
+                            //                            CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(11).build();
 //                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 //                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 20));
@@ -1173,11 +1251,8 @@ public class MapsFragment extends Fragment {
         search_text.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-//                    get_data_from_api(final_type_requst_filter, filtter_selected);
-                    return true;
-                }
-                return false;
+                //                    get_data_from_api(final_type_requst_filter, filtter_selected);
+                return actionId == EditorInfo.IME_ACTION_SEARCH;
             }
         });
     }
@@ -1396,9 +1471,7 @@ public class MapsFragment extends Fragment {
                                 googleMap.addMarker(new MarkerOptions()
                                         .position(mylocation)).setTag("mylocation");
 
-                                ;
-
-//                                LatLng gaza = new LatLng(Double.valueOf("31.484194"), Double.valueOf("34.408283"));
+                                //                                LatLng gaza = new LatLng(Double.valueOf("31.484194"), Double.valueOf("34.408283"));
 //                                googleMap.addMarker(new MarkerOptions()
 //                                        .position(gaza)
 //                                        .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.ic_marker_location))));
@@ -1445,7 +1518,7 @@ public class MapsFragment extends Fragment {
 
                                         String price = bankModules.getTotalPrice();
 
-                                        String v = price.toString().replace(",", "");
+                                        String v = price.replace(",", "");
 
 
                                         int price_int = Integer.valueOf(v);
@@ -1699,8 +1772,7 @@ public class MapsFragment extends Fragment {
                     googleMap.addMarker(new MarkerOptions()
                             .position(mylocation)).setTag("mylocation");
 
-                    ;
-//                    CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
+                    //                    CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
 //                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 //                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 20));

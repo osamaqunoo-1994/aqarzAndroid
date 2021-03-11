@@ -610,11 +610,8 @@ Two working days to complete your order</string>
     <string name="des_market">Requests coming from subscribers</string>
 
 
-
-
     <string name="title_All">All Order</string>
     <string name="tdes_All">Your selection of all orders will display all requests for all regions</string>
-
 
 
     <string name="title_filter">Filtter Order</string>
@@ -855,8 +852,6 @@ Two working days to complete your order</string>
 </string>
 
 
-
-
     <string name="youAreNotUpdatedTitle">Update Available</string>
     <string name="youAreNotUpdatedMessage">A new version of Aqarez is available. Please update to version\s</string>
     <string name="youAreNotUpdatedMessage1">\s now</string>
@@ -868,5 +863,7 @@ Two working days to complete your order</string>
     <string name="filter_view_http_gizmos">filter_view_http_gizmos</string>
     <string name="filter_view_example_gizmos">filter_view_example_gizmos</string>
 
+    <string name="Service_fill">Service</string>
+    <string name="Profile_menu">Profile</string>
 
 </resources>

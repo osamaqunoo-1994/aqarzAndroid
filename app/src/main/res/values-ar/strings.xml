@@ -873,4 +873,12 @@
     <string name="Clints_title">نشاط الموظفين</string>
     <string name="Enabled">مفعل</string>
 
+
+
+    <string name="filter_view_http_gizmos">filter_view_http_gizmos</string>
+    <string name="filter_view_example_gizmos">filter_view_example_gizmos</string>
+
+    <string name="Service_fill">خدمات</string>
+    <string name="Profile_menu">الحساب</string>
+
 </resources>

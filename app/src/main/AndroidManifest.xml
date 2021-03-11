@@ -22,7 +22,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.OprationNew.RateOrderActivity"></activity>
+        <activity android:name=".Activity.ChateActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Activity.NotficationActvity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.OprationNew.RateOrderActivity" />
         <activity
             android:name=".Activity.OprationNew.RentShowActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -88,7 +93,7 @@
                     android:host="aqarz.sa"
                     android:pathPrefix="/"
                     android:scheme="https" />
-                <!-- note that the leading "/" is required for pathPrefix-->
+                <!-- note that the leading "/" is required for pathPrefix -->
             </intent-filter>
         </activity>
         <activity
@@ -145,7 +150,7 @@
                     android:host="aqarz.sa"
                     android:pathPrefix="/estate"
                     android:scheme="https" />
-                <!-- note that the leading "/" is required for pathPrefix-->
+                <!-- note that the leading "/" is required for pathPrefix -->
             </intent-filter>
         </activity>
         <activity
@@ -195,10 +200,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.Auth.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.SplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar_splash">
@@ -211,9 +213,7 @@
         <activity
             android:name=".Activity.MainActivity"
             android:theme="@style/AppThemes"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="adjustPan" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -237,8 +237,6 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-
-
     </application>
 
 </manifest>

@@ -61,7 +61,7 @@ public class BottomSheetDialogFragment_Filtter extends BottomSheetDialogFragment
     String type = "null";
     String opration_select = "";
 
-    Button filtter_btn;
+    TextView filtter_btn;
     CrystalRangeSeekbar price_seekpar;
     CrystalRangeSeekbar area_sseekbar;
 
