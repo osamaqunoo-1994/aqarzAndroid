@@ -48,6 +48,7 @@ public class WebService {
     public static String Home_4 = Domain + "home/estate";
     public static String Home_2 = Domain + "home/estate/list";
     public static String Home_1 = Domain + "home/list";
+    public static String regions = Domain + "regions";
     public static String smilier = Domain + "smilier";
     public static String fund_Request = Domain + "fund/Request";
     public static String rate_Request = Domain + "rate/Request";

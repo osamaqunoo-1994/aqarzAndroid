@@ -266,6 +266,11 @@ public class MapsFragment extends Fragment {
 //                    }
 //                });
 
+//                init_volley();
+//                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+//                mVolleyService.getDataVolley("regions", WebService.regions);//&request_type=pay
+//
+
 
                 city_location.add(new CityLocation(1, "الرياض", "24.774265", "46.738586"));
                 city_location.add(new CityLocation(2, "جدّة", "21.54472", "39.17611"));
@@ -291,7 +296,7 @@ public class MapsFragment extends Fragment {
                     googleMap.addMarker(new MarkerOptions()
                             .position(sydneya)
 
-                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(city_location.get(i).getName() + "")))).setTag("allArea/" + i);
+                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(city_location.get(i).getName() + "", "")))).setTag("allArea/" + i);
 
 
                 }
@@ -343,7 +348,7 @@ public class MapsFragment extends Fragment {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(sydneya)
 
-                                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(city_location.get(i).getName() + "")))).setTag("allArea/" + i);
+                                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(city_location.get(i).getName() + "", "")))).setTag("allArea/" + i);
 
 
                         }
@@ -1693,7 +1698,7 @@ public class MapsFragment extends Fragment {
         return returnedBitmap;
     }
 
-    private Bitmap getMarkerBitmapFromView2_city(String Price) {
+    private Bitmap getMarkerBitmapFromView2_city(String Price, String numbers) {
 
         View customMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom3, null);
         TextView markerImageView = (TextView) customMarkerView.findViewById(R.id.numb);
