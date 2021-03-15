@@ -69,6 +69,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeMap;
 
 import io.blushine.android.ui.showcase.MaterialShowcaseView;
 import io.blushine.android.ui.showcase.ShowcaseListener;
@@ -98,6 +99,7 @@ import sa.aqarz.Modules.CityLocation;
 import sa.aqarz.Modules.HomeModules;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.OprationModules;
+import sa.aqarz.Modules.RegionModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.Modules.select_typeModules;
 import sa.aqarz.R;
@@ -133,7 +135,7 @@ public class MapsFragment extends Fragment {
     RecyclerView type;
     RecyclerView selsct_type_all;
 
-    List<CityLocation> city_location = new ArrayList<>();
+    List<RegionModules> city_location = new ArrayList<>();
 
 
     List<TypeModules> typeModules_list = new ArrayList<>();
@@ -266,40 +268,69 @@ public class MapsFragment extends Fragment {
 //                    }
 //                });
 
-//                init_volley();
-//                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-//                mVolleyService.getDataVolley("regions", WebService.regions);//&request_type=pay
-//
+
+                if (Hawk.contains("FF")) {
+
+                    try {
+                        String data = Hawk.get("FF").toString();
+                        JSONArray jsonArray = new JSONArray(data);
+                        System.out.println("datadata" + data);
+                        System.out.println("datadatass" + jsonArray.length());
 
 
-                city_location.add(new CityLocation(1, "الرياض", "24.774265", "46.738586"));
-                city_location.add(new CityLocation(2, "جدّة", "21.54472", "39.17611"));
-                city_location.add(new CityLocation(3, "الدمام", "26.39222", "49.97778"));
-                city_location.add(new CityLocation(4, "مكة", "21.42250", "39.82611"));
-                city_location.add(new CityLocation(5, "نجران", "17.49250", "44.13472"));
-                city_location.add(new CityLocation(6, "المدينة", "24.46722", "39.61111"));
-                city_location.add(new CityLocation(7, "تبوك", "28.38417", "36.58000"));
-                city_location.add(new CityLocation(8, "حائل", "27.52444", "41.70389"));
-                city_location.add(new CityLocation(9, "عرعر", "30.98333", "41.01667"));
-                city_location.add(new CityLocation(10, "جازان", "16.89472", "42.55778"));
-                city_location.add(new CityLocation(11, "الباحة", "20.01250", "41.46000"));
-                city_location.add(new CityLocation(12, "القصيم", "26.333333", "43.966667"));
-                city_location.add(new CityLocation(13, "عسير", "18.5473952", "42.0534398"));
-                city_location.add(new CityLocation(14, "الجوف", "29.97111", "40.20028"));
-                city_location.add(new CityLocation(15, "الأحساء", "25.383333", "49.583333"));
+                        googleMap.clear();
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JsonParser parser = new JsonParser();
+                            JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                            Gson gson = new Gson();
+
+                            RegionModules bankModules = gson.fromJson(mJson, RegionModules.class);
 
 
-                for (int i = 0; i < city_location.size(); i++) {
+                            city_location.add(bankModules);
+
+                            System.out.println("#####" + bankModules.getCenter().getCoordinates().get(1) + "&&%^&^&" + bankModules.getCenter().getCoordinates().get(0));
+
+                            LatLng sydneya = new LatLng(bankModules.getCenter().getCoordinates().get(1), bankModules.getCenter().getCoordinates().get(0));
+                            googleMap.addMarker(new MarkerOptions()
+                                    .position(sydneya)
+
+                                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(bankModules.getName() + "", "")))).setTag("allArea/" + i);
 
 
-                    LatLng sydneya = new LatLng(Double.valueOf(city_location.get(i).getLat()), Double.valueOf(city_location.get(i).getLang()));
-                    googleMap.addMarker(new MarkerOptions()
-                            .position(sydneya)
+                        }
 
-                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(city_location.get(i).getName() + "", "")))).setTag("allArea/" + i);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
+                } else {
+                    WebService.loading(getActivity(), true);
+
+                    init_volley();
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+                    mVolleyService.getDataVolley("regions", WebService.regions);//&request_type=pay
 
                 }
+
+
+//                city_location.add(new CityLocation(1, "الرياض", "24.774265", "46.738586"));
+//                city_location.add(new CityLocation(2, "جدّة", "21.54472", "39.17611"));
+//                city_location.add(new CityLocation(3, "الدمام", "26.39222", "49.97778"));
+//                city_location.add(new CityLocation(4, "مكة", "21.42250", "39.82611"));
+//                city_location.add(new CityLocation(5, "نجران", "17.49250", "44.13472"));
+//                city_location.add(new CityLocation(6, "المدينة", "24.46722", "39.61111"));
+//                city_location.add(new CityLocation(7, "تبوك", "28.38417", "36.58000"));
+//                city_location.add(new CityLocation(8, "حائل", "27.52444", "41.70389"));
+//                city_location.add(new CityLocation(9, "عرعر", "30.98333", "41.01667"));
+//                city_location.add(new CityLocation(10, "جازان", "16.89472", "42.55778"));
+//                city_location.add(new CityLocation(11, "الباحة", "20.01250", "41.46000"));
+//                city_location.add(new CityLocation(12, "القصيم", "26.333333", "43.966667"));
+//                city_location.add(new CityLocation(13, "عسير", "18.5473952", "42.0534398"));
+//                city_location.add(new CityLocation(14, "الجوف", "29.97111", "40.20028"));
+//                city_location.add(new CityLocation(15, "الأحساء", "25.383333", "49.583333"));
+//
 
 
                 cityMap.setOnClickListener(new View.OnClickListener() {
@@ -344,7 +375,7 @@ public class MapsFragment extends Fragment {
 //
                         for (int i = 0; i < city_location.size(); i++) {
 
-                            LatLng sydneya = new LatLng(Double.valueOf(city_location.get(i).getLat()), Double.valueOf(city_location.get(i).getLang()));
+                            LatLng sydneya = new LatLng(Double.valueOf(city_location.get(i).getCenter().getCoordinates().get(1)), Double.valueOf(city_location.get(i).getCenter().getCoordinates().get(0)));
                             googleMap.addMarker(new MarkerOptions()
                                     .position(sydneya)
 
@@ -372,21 +403,21 @@ public class MapsFragment extends Fragment {
                                 String number = separated[1]; // this will contain " they taste good"
 
                                 System.out.println("$$$$$$$$$$$$$" + number);
-                                LatLng my_location = new LatLng(Double.valueOf(city_location.get(Integer.valueOf(number)).getLat() + ""), Double.valueOf(city_location.get(Integer.valueOf(number)).getLang() + ""));
+//                                LatLng my_location = new LatLng(Double.valueOf(city_location.get(Integer.valueOf(number)).getLat() + ""), Double.valueOf(city_location.get(Integer.valueOf(number)).getLang() + ""));
 
 //
 
-                                CameraPosition cameraPosition = new CameraPosition.Builder().target(my_location).zoom(4).build();
-                                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+//                                CameraPosition cameraPosition = new CameraPosition.Builder().target(my_location).zoom(4).build();
+//                                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+//
+//
+//                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 10));
+//                                // Zoom in, animating the camera.
+//                                googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+////                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
+//                                googleMap.animateCamera(CameraUpdateFactory.zoomTo(14), 3000, null);
 
-
-                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 10));
-                                // Zoom in, animating the camera.
-                                googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-//                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                                googleMap.animateCamera(CameraUpdateFactory.zoomTo(14), 3000, null);
-
-                                get_data_from_api("map_offer", filtter_selected, city_location.get(Integer.valueOf(number)).getLat(), city_location.get(Integer.valueOf(number)).getLang());
+//                                get_data_from_api("map_offer", filtter_selected, city_location.get(Integer.valueOf(number)).getLat(), city_location.get(Integer.valueOf(number)).getLang());
 
                             } catch (Exception e) {
 
@@ -1491,6 +1522,33 @@ public class MapsFragment extends Fragment {
 ////
                             }
 
+
+                        } else if (requestType.equals("regions")) {
+
+                            String data = response.getString("data");
+                            JSONArray jsonArray = new JSONArray(data);
+                            System.out.println("datadata" + data);
+
+                            Hawk.put("FF", data);
+
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                Gson gson = new Gson();
+
+                                RegionModules bankModules = gson.fromJson(mJson, RegionModules.class);
+
+                                city_location.add(bankModules);
+                                LatLng sydneya = new LatLng(bankModules.getCenter().getCoordinates().get(1), bankModules.getCenter().getCoordinates().get(0));
+                                googleMap.addMarker(new MarkerOptions()
+                                        .position(sydneya)
+
+                                        .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(bankModules.getName() + "", "")))).setTag("allArea/" + i);
+
+
+                            }
 
                         } else if (requestType.equals("map_offer")) {//aqarz
                             try {
