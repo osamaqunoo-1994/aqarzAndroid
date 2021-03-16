@@ -115,6 +115,7 @@ public class RegionModules {
 
 
     }
+
     public class center {
 
         @SerializedName("type")

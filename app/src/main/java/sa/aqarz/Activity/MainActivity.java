@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
         ft = ((FragmentActivity) activity).getSupportFragmentManager();
 
-        myFab = (FloatingActionButton) findViewById(R.id.fab);
+        myFab = findViewById(R.id.fab);
 
         myFab.setColorFilter(Color.WHITE);
 
@@ -613,11 +613,14 @@ public class MainActivity extends AppCompatActivity {
         if (service_layout.getVisibility() == View.VISIBLE) {
             service_layout.setVisibility(View.GONE);
             gray_layout.setVisibility(View.GONE);
+
+            myFab.setImageDrawable(getResources().getDrawable(R.drawable.ic_plus));
 //                            service_layout.animate().alpha(0.0f);
 
         } else {
             service_layout.setVisibility(View.VISIBLE);
             gray_layout.setVisibility(View.VISIBLE);
+            myFab.setImageDrawable(getResources().getDrawable(R.drawable.ic_clear_white_24dp));
 
 
         }

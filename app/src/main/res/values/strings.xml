@@ -866,4 +866,15 @@ Two working days to complete your order</string>
     <string name="Service_fill">Service</string>
     <string name="Profile_menu">Profile</string>
 
+
+
+
+
+    <string name="m_e1">تقييم</string>
+    <string name="m_e2">تقسيط تاجير</string>
+    <string name="m_e3">تمويل</string>
+    <string name="m_e4">اضافة عقار</string>
+    <string name="m_e5">طلب عقار</string>
+
+
 </resources>

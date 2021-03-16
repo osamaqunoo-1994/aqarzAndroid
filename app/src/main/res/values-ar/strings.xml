@@ -41,7 +41,7 @@
     <string name="orders">الطلبات</string>
     <string name="subscriptions">الاشتراكات</string>
     <string name="messages">مراسلة</string>
-    <string name="search">ابحث</string>
+    <string name="search">بحث</string>
     <string name="add_aqar">أضف عقار </string>
     <string name="request_aqar">طلب خدمة</string>
     <string name="text">نص</string>
@@ -269,7 +269,7 @@
     <string name="Real_Estate_order">طلبات الصندوق العقاري</string>
     <string name="Real_Estate_orders">طلبات الصندوق</string>
 
-    <string name="chat">مراسلة</string>
+    <string name="chat">محادثة</string>
     <string name="call">اتصال</string>
     <string name="price_metter">سعر المتر</string>
     <string name="Residential_purpose">الغرض سكني</string>
