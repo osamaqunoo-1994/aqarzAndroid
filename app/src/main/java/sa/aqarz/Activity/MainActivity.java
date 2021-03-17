@@ -66,6 +66,9 @@ import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.Auth.RegisterActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
+import sa.aqarz.Activity.OprationNew.FinanceActivity;
+import sa.aqarz.Activity.OprationNew.RentActivity;
+import sa.aqarz.Activity.OprationNew.RentShowActivity;
 import sa.aqarz.Activity.OprationNew.RequestServiceActivity;
 import sa.aqarz.Activity.profile.OtherProfileActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
@@ -123,6 +126,14 @@ public class MainActivity extends AppCompatActivity {
     TextView add_aqar;
     TextView add_service_aqarez;
 
+
+    LinearLayout add_aqarez_c;
+    LinearLayout request_add_aqarez_c;
+    LinearLayout rate_c;
+    LinearLayout Rental_installment_c;
+    LinearLayout finance_c;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,6 +149,13 @@ public class MainActivity extends AppCompatActivity {
 
         add_service_aqarez = findViewById(R.id.add_service_aqarez);
         add_aqar = findViewById(R.id.add_aqar);
+        add_aqarez_c = findViewById(R.id.add_aqarez_c);
+        request_add_aqarez_c = findViewById(R.id.request_add_aqarez_c);
+        rate_c = findViewById(R.id.rate_c);
+        Rental_installment_c = findViewById(R.id.Rental_installment_c);
+        finance_c = findViewById(R.id.finance_c);
+
+
 
 
         image_1 = findViewById(R.id.image_1);
@@ -530,6 +548,61 @@ public class MainActivity extends AppCompatActivity {
         image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_order_menu));
         image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_service_menu));
         image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_menu));
+
+
+        add_aqarez_c.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddAqarsActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+            }
+        });
+
+        request_add_aqarez_c.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AqarzOrActivity.class);
+                intent.putExtra("id", "");
+                startActivity(intent);
+            }
+        });
+
+        rate_c.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        Rental_installment_c.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Hawk.contains("rent_layout")) {
+
+                    Intent intent = new Intent(MainActivity.this, RentActivity.class);
+                    intent.putExtra("id", "");
+                    startActivity(intent);
+                } else {
+                    Hawk.put("rent_layout", "rent_layout");
+                    Intent intent = new Intent(MainActivity.this, RentShowActivity.class);
+                    intent.putExtra("id", "");
+                    startActivity(intent);
+                }
+
+
+            }
+        });
+        finance_c.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, FinanceActivity.class);
+                intent.putExtra("id", "");
+                startActivity(intent);
+
+            }
+        });
 
 
     }
