@@ -867,14 +867,14 @@ Two working days to complete your order</string>
     <string name="Profile_menu">Profile</string>
 
 
-
-
-
     <string name="m_e1">تقييم</string>
     <string name="m_e2">تقسيط تاجير</string>
     <string name="m_e3">تمويل</string>
     <string name="m_e4">اضافة عقار</string>
     <string name="m_e5">طلب عقار</string>
 
+    <string name="Title_order_1">طلبات الصندوق العقاري</string>
+    <string name="Title_order_2">طلبات السوق</string>
+    <string name="Title_order_3">العروض</string>
 
 </resources>

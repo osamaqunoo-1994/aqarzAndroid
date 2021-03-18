@@ -134,6 +134,9 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout finance_c;
 
 
+    public static boolean first_time_open_app = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 //        String action = intent.getAction();
 //        Uri data = intent.getData();
 
-
+        first_time_open_app = true;
         add_service_aqarez = findViewById(R.id.add_service_aqarez);
         add_aqar = findViewById(R.id.add_aqar);
         add_aqarez_c = findViewById(R.id.add_aqarez_c);
@@ -154,8 +157,6 @@ public class MainActivity extends AppCompatActivity {
         rate_c = findViewById(R.id.rate_c);
         Rental_installment_c = findViewById(R.id.Rental_installment_c);
         finance_c = findViewById(R.id.finance_c);
-
-
 
 
         image_1 = findViewById(R.id.image_1);
@@ -317,9 +318,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                 image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fill));
-                image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_order_menu));
-                image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_service_menu));
-                image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_menu));
+                image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fill));
+                image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_as));
+                image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222pro));
 
 //                image_1.setSelected(true);
 //                image_2.setSelected(false);
@@ -354,10 +355,10 @@ public class MainActivity extends AppCompatActivity {
                     text_4.setTextColor(getResources().getColor(R.color.color_un_active));
                     text_s.setTextColor(getResources().getColor(R.color.color_un_active));
 
-                    image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu));
-                    image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_order_menu_fill));
-                    image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_service_menu));
-                    image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_menu));
+                    image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fills));
+                    image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fills));
+                    image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_as));
+                    image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222pro));
 
 //
 //                    image_1.setSelected(false);
@@ -411,10 +412,10 @@ public class MainActivity extends AppCompatActivity {
                     text_4.setTextColor(getResources().getColor(R.color.color_un_active));
                     text_s.setTextColor(getResources().getColor(R.color.color_un_active));
 
-                    image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu));
-                    image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_order_menu));
-                    image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_service_menu_fill));
-                    image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_menu));
+                    image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fills));
+                    image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fill));
+                    image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_ass));
+                    image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222pro));
 
 
 //                    image_1.setSelected(false);
@@ -466,10 +467,10 @@ public class MainActivity extends AppCompatActivity {
                 text_s.setTextColor(getResources().getColor(R.color.color_un_active));
 
 
-                image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu));
-                image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_order_menu));
-                image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_service_menu));
-                image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_menu_fill));
+                image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fills));
+                image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fill));
+                image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_as));
+                image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222prof));
 
 //                image_1.setSelected(false);
 //                image_s.setSelected(false);
@@ -545,9 +546,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fill));
-        image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_order_menu));
-        image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_service_menu));
-        image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic_user_menu));
+
+        image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fill));
+        image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_as));
+        image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222pro));
 
 
         add_aqarez_c.setOnClickListener(new View.OnClickListener() {

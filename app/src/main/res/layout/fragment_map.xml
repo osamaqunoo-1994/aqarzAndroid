@@ -148,7 +148,17 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/notfication"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+
+                    android:background="@drawable/circle_wh"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_bell" />
+
+                <ImageView
                     android:id="@+id/filtter"
+                    android:visibility="gone"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
 
@@ -174,13 +184,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
 
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="10dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/laout_of_change"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
@@ -220,6 +231,63 @@
 
 
                 </LinearLayout>
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/circle_wh">
+
+                    <TextView
+                        android:id="@+id/RealStatr_order"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/din_light"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+
+                        android:paddingBottom="6dp"
+                        android:text="@string/Title_order_1"
+                        android:textColor="@color/color_filter"
+
+                        android:textSize="11dp" />
+
+                    <TextView
+                        android:id="@+id/MarketOrder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/din_light"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="6dp"
+                        android:text="@string/Title_order_2"
+                        android:textColor="@color/color_filter"
+
+                        android:textSize="11dp" />
+
+                    <TextView
+                        android:id="@+id/OfferOrder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/din_light"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="6dp"
+                        android:text="@string/Title_order_3"
+                        android:textColor="@color/color_filter"
+
+                        android:textSize="11dp" />
+
+
+
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="7dp"
@@ -229,6 +297,7 @@
                     android:id="@+id/chate"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
+                    android:visibility="gone"
 
 
                     android:background="@drawable/circle_wh"
@@ -241,9 +310,9 @@
                     android:layout_height="wrap_content" />
 
                 <ImageView
-                    android:id="@+id/notfication"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
+                    android:visibility="gone"
 
                     android:background="@drawable/circle_wh"
                     android:padding="8dp"

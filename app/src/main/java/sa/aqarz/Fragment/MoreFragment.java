@@ -116,11 +116,29 @@ public class MoreFragment extends Fragment {
 
 
     TextView title_info;
+    TextView version;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_more, container, false);
+        version = v.findViewById(R.id.version);
 
+        try {
+            PackageManager packageManager = getActivity().getPackageManager();
+            PackageInfo packageInfo = null;
+            try {
+                packageInfo = packageManager.getPackageInfo(getActivity().getPackageName(), 0);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+            String currentVersion = packageInfo.versionName;
+
+
+            version.setText(" اصدار التطبيق " + currentVersion);
+
+        } catch (Exception e) {
+
+        }
         init(v);
         return v;
     }

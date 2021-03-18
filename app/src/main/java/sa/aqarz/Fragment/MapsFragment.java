@@ -83,6 +83,7 @@ import sa.aqarz.Activity.NotficationActvity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
 import sa.aqarz.Activity.OprationNew.RequestServiceActivity;
+import sa.aqarz.Activity.OrderListActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Adapter.RecyclerView_All_Opration_in_map;
 import sa.aqarz.Adapter.RecyclerView_All_Type_in_map;
@@ -136,6 +137,7 @@ public class MapsFragment extends Fragment {
     RecyclerView selsct_type_all;
 
     List<RegionModules> city_location = new ArrayList<>();
+    List<CityLocation> list_city = new ArrayList<>();
 
 
     List<TypeModules> typeModules_list = new ArrayList<>();
@@ -186,15 +188,27 @@ public class MapsFragment extends Fragment {
     LinearLayout laout_of_change;
     EditText search_text;
 
+
+    TextView RealStatr_order;
+    TextView MarketOrder;
+    TextView OfferOrder;
+
+
+    String type_selected = "Rela";
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_map, container, false);
-        mMapView = (MapView) v.findViewById(R.id.mapViewxx);
+        mMapView = v.findViewById(R.id.mapViewxx);
         Orders_tab = v.findViewById(R.id.Orders_tab);
         Offers_tab = v.findViewById(R.id.Offers_tab);
         cityMap = v.findViewById(R.id.cityMap);
         notfication = v.findViewById(R.id.notfication);
         chate = v.findViewById(R.id.chate);
+        RealStatr_order = v.findViewById(R.id.RealStatr_order);
+        MarketOrder = v.findViewById(R.id.MarketOrder);
+        OfferOrder = v.findViewById(R.id.OfferOrder);
 
 
         init(v);
@@ -269,16 +283,19 @@ public class MapsFragment extends Fragment {
 //                });
 
 
-                if (Hawk.contains("FF")) {
+                if (!MainActivity.first_time_open_app) {
 
                     try {
                         String data = Hawk.get("FF").toString();
                         JSONArray jsonArray = new JSONArray(data);
-                        System.out.println("datadata" + data);
-                        System.out.println("datadatass" + jsonArray.length());
 
 
                         googleMap.clear();
+
+
+                        //offer Market Real
+
+
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JsonParser parser = new JsonParser();
                             JsonElement mJson = parser.parse(jsonArray.getString(i));
@@ -290,13 +307,13 @@ public class MapsFragment extends Fragment {
 
                             city_location.add(bankModules);
 
-                            System.out.println("#####" + bankModules.getCenter().getCoordinates().get(1) + "&&%^&^&" + bankModules.getCenter().getCoordinates().get(0));
-
                             LatLng sydneya = new LatLng(bankModules.getCenter().getCoordinates().get(1), bankModules.getCenter().getCoordinates().get(0));
+
+
                             googleMap.addMarker(new MarkerOptions()
                                     .position(sydneya)
 
-                                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(bankModules.getName() + "", "")))).setTag("allArea/" + i);
+                                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(bankModules.getName() + "", i + "")))).setTag("allArea/" + i);
 
 
                         }
@@ -379,7 +396,7 @@ public class MapsFragment extends Fragment {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(sydneya)
 
-                                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(city_location.get(i).getName() + "", "")))).setTag("allArea/" + i);
+                                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(city_location.get(i).getName() + "", i + "")))).setTag("allArea/" + i);
 
 
                         }
@@ -392,6 +409,44 @@ public class MapsFragment extends Fragment {
 
 
                         if (marker.getTag().toString().equals("mylocation")) {
+                        } else if (marker.getTag().toString().contains("allcity")) {
+
+
+                            System.out.println("^^^^^^^^^^^^^^^^^^^");
+
+                            try {
+
+                                String[] separated = marker.getTag().toString().split("/");
+
+                                String number = separated[1]; // this will contain " they taste good"
+
+
+//                                LatLng my_location = new LatLng(Double.valueOf(city_location.get(Integer.valueOf(number)).getCenter().getCoordinates().get(1)), Double.valueOf(city_location.get(Integer.valueOf(number)).getCenter().getCoordinates().get(0)));
+
+                                if (type_selected.equals("Real")) {
+
+
+                                    Intent intent = new Intent(getContext(), OrderListActivity.class);
+                                    getActivity().startActivity(intent);
+
+
+                                } else if (type_selected.equals("Market")) {
+
+                                    Intent intent = new Intent(getContext(), OrderListActivity.class);
+                                    getActivity().startActivity(intent);
+
+
+                                } else if (type_selected.equals("offer")) {
+
+                                    get_data_from_api("map_offer", filtter_selected, list_city.get(Integer.valueOf(number)).getLat() + "", list_city.get(Integer.valueOf(number)).getLan() + "");
+
+                                }
+
+
+                            } catch (Exception e) {
+
+                            }
+
                         } else if (marker.getTag().toString().contains("allArea")) {
 
                             System.out.println("^^^^^^^^^^^^^^^^^^^");
@@ -402,22 +457,21 @@ public class MapsFragment extends Fragment {
 
                                 String number = separated[1]; // this will contain " they taste good"
 
-                                System.out.println("$$$$$$$$$$$$$" + number);
-//                                LatLng my_location = new LatLng(Double.valueOf(city_location.get(Integer.valueOf(number)).getLat() + ""), Double.valueOf(city_location.get(Integer.valueOf(number)).getLang() + ""));
 
-//
+                                LatLng my_location = new LatLng(Double.valueOf(city_location.get(Integer.valueOf(number)).getCenter().getCoordinates().get(1)), Double.valueOf(city_location.get(Integer.valueOf(number)).getCenter().getCoordinates().get(0)));
 
-//                                CameraPosition cameraPosition = new CameraPosition.Builder().target(my_location).zoom(4).build();
-//                                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-//
-//
-//                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 10));
-//                                // Zoom in, animating the camera.
-//                                googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-////                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
-//                                googleMap.animateCamera(CameraUpdateFactory.zoomTo(14), 3000, null);
 
-//                                get_data_from_api("map_offer", filtter_selected, city_location.get(Integer.valueOf(number)).getLat(), city_location.get(Integer.valueOf(number)).getLang());
+                                CameraPosition cameraPosition = new CameraPosition.Builder().target(my_location).zoom(4).build();
+                                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 10));
+                                // Zoom in, animating the camera.
+                                googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+//                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
+                                googleMap.animateCamera(CameraUpdateFactory.zoomTo(15), 3000, null);
+
+                                get_data_from_api("citeis", filtter_selected, city_location.get(Integer.valueOf(number)).getId() + "", "");
 
                             } catch (Exception e) {
 
@@ -662,6 +716,246 @@ public class MapsFragment extends Fragment {
         list_aqaers.setLayoutManager(layoutManagexx);
 
 
+//---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
+
+
+        RealStatr_order.setBackground(getActivity().getResources().getDrawable(R.drawable.button_1));
+        MarketOrder.setBackground(null);
+        OfferOrder.setBackground(null);
+
+
+        RealStatr_order.setTextColor(getActivity().getResources().getColor(R.color.white));
+        MarketOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
+        OfferOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
+        type_selected = "Real";
+
+        RealStatr_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                RealStatr_order.setBackground(getActivity().getResources().getDrawable(R.drawable.button_1));
+                MarketOrder.setBackground(null);
+                OfferOrder.setBackground(null);
+
+
+                RealStatr_order.setTextColor(getActivity().getResources().getColor(R.color.white));
+                MarketOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
+                OfferOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
+                type_selected = "Real";
+                try {
+
+
+                    googleMap.clear();
+                    //get latlong for corners for specified place
+                    LatLng one = new LatLng(30.250032, 38.374554);
+                    LatLng two = new LatLng(19.117340, 49.913804);
+//                LatLng three = new LatLng(25.784818, 49.666975);
+//                LatLng forth = new LatLng(23.031780, 39.361870);
+
+                    LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+                    //add them to builder
+                    builder.include(one);
+                    builder.include(two);
+//                builder.include(three);
+//                builder.include(forth);
+
+                    LatLngBounds bounds = builder.build();
+
+                    //get width and height to current display screen
+                    int width = getResources().getDisplayMetrics().widthPixels;
+                    int height = getResources().getDisplayMetrics().heightPixels;
+
+                    // 20% padding
+                    int padding = (int) (width * 0.05);
+
+                    //set latlong bounds
+                    googleMap.setLatLngBoundsForCameraTarget(bounds);
+
+                    //move camera to fill the bound to screen
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding));
+
+                    //set zoom to level to current so that you won't be able to zoom out viz. move outside bounds
+                    googleMap.setMinZoomPreference(googleMap.getCameraPosition().zoom);
+
+
+                    //offer Market Real
+
+
+                    for (int i = 0; i < city_location.size(); i++) {
+
+
+                        LatLng sydneya = new LatLng(city_location.get(i).getCenter().getCoordinates().get(1), city_location.get(i).getCenter().getCoordinates().get(0));
+
+
+                        googleMap.addMarker(new MarkerOptions()
+                                .position(sydneya)
+
+                                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(city_location.get(i).getName() + "", i + "")))).setTag("allArea/" + i);
+
+
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
+        MarketOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MarketOrder.setBackground(getActivity().getResources().getDrawable(R.drawable.button_2));
+                RealStatr_order.setBackground(null);
+                OfferOrder.setBackground(null);
+
+
+                MarketOrder.setTextColor(getActivity().getResources().getColor(R.color.white));
+                RealStatr_order.setTextColor(getActivity().getResources().getColor(R.color.textColor));
+                OfferOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
+                type_selected = "Market";
+                try {
+
+
+                    googleMap.clear();
+
+                    //get latlong for corners for specified place
+                    LatLng one = new LatLng(30.250032, 38.374554);
+                    LatLng two = new LatLng(19.117340, 49.913804);
+//                LatLng three = new LatLng(25.784818, 49.666975);
+//                LatLng forth = new LatLng(23.031780, 39.361870);
+
+                    LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+                    //add them to builder
+                    builder.include(one);
+                    builder.include(two);
+//                builder.include(three);
+//                builder.include(forth);
+
+                    LatLngBounds bounds = builder.build();
+
+                    //get width and height to current display screen
+                    int width = getResources().getDisplayMetrics().widthPixels;
+                    int height = getResources().getDisplayMetrics().heightPixels;
+
+                    // 20% padding
+                    int padding = (int) (width * 0.05);
+
+                    //set latlong bounds
+                    googleMap.setLatLngBoundsForCameraTarget(bounds);
+
+                    //move camera to fill the bound to screen
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding));
+
+                    //set zoom to level to current so that you won't be able to zoom out viz. move outside bounds
+                    googleMap.setMinZoomPreference(googleMap.getCameraPosition().zoom);
+
+
+                    //offer Market Real
+
+
+                    for (int i = 0; i < city_location.size(); i++) {
+
+
+                        LatLng sydneya = new LatLng(city_location.get(i).getCenter().getCoordinates().get(1), city_location.get(i).getCenter().getCoordinates().get(0));
+
+
+                        googleMap.addMarker(new MarkerOptions()
+                                .position(sydneya)
+
+                                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(city_location.get(i).getName() + "", i + "")))).setTag("allArea/" + i);
+
+
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+        OfferOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                OfferOrder.setBackground(getActivity().getResources().getDrawable(R.drawable.button_3));
+                MarketOrder.setBackground(null);
+                RealStatr_order.setBackground(null);
+
+
+                OfferOrder.setTextColor(getActivity().getResources().getColor(R.color.white));
+                MarketOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
+                RealStatr_order.setTextColor(getActivity().getResources().getColor(R.color.textColor));
+                type_selected = "offer";
+                try {
+
+
+                    googleMap.clear();
+                    //get latlong for corners for specified place
+                    LatLng one = new LatLng(30.250032, 38.374554);
+                    LatLng two = new LatLng(19.117340, 49.913804);
+//                LatLng three = new LatLng(25.784818, 49.666975);
+//                LatLng forth = new LatLng(23.031780, 39.361870);
+
+                    LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+                    //add them to builder
+                    builder.include(one);
+                    builder.include(two);
+//                builder.include(three);
+//                builder.include(forth);
+
+                    LatLngBounds bounds = builder.build();
+
+                    //get width and height to current display screen
+                    int width = getResources().getDisplayMetrics().widthPixels;
+                    int height = getResources().getDisplayMetrics().heightPixels;
+
+                    // 20% padding
+                    int padding = (int) (width * 0.05);
+
+                    //set latlong bounds
+                    googleMap.setLatLngBoundsForCameraTarget(bounds);
+
+                    //move camera to fill the bound to screen
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding));
+
+                    //set zoom to level to current so that you won't be able to zoom out viz. move outside bounds
+                    googleMap.setMinZoomPreference(googleMap.getCameraPosition().zoom);
+
+
+                    //offer Market Real
+
+
+                    for (int i = 0; i < city_location.size(); i++) {
+
+                        LatLng sydneya = new LatLng(city_location.get(i).getCenter().getCoordinates().get(1), city_location.get(i).getCenter().getCoordinates().get(0));
+
+
+                        googleMap.addMarker(new MarkerOptions()
+                                .position(sydneya)
+
+                                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(city_location.get(i).getName() + "", i + "")))).setTag("allArea/" + i);
+
+
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
+
+//---------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------
 
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
@@ -1474,19 +1768,19 @@ public class MapsFragment extends Fragment {
                                 String price = bankModules.getPrice_from();
                                 int price_int = Integer.valueOf(price);
 
-                                int prices = (int) price_int;
+                                int prices = price_int;
 
 
                                 if (price_int < 1000) {
 
                                     price = prices + "";
                                 } else if (price_int > 1000 && price_int < 999999) {
-                                    prices = (int) price_int / 1000;
+                                    prices = price_int / 1000;
 
                                     price = prices + getResources().getString(R.string.K);
 
                                 } else if (price_int > 999999) {
-                                    prices = (int) price_int / 1000000;
+                                    prices = price_int / 1000000;
 
                                     price = prices + getResources().getString(R.string.Million);
 
@@ -1525,13 +1819,17 @@ public class MapsFragment extends Fragment {
 
                         } else if (requestType.equals("regions")) {
 
+
+                            MainActivity.first_time_open_app = false;
+
+
                             String data = response.getString("data");
                             JSONArray jsonArray = new JSONArray(data);
-                            System.out.println("datadata" + data);
+//                            System.out.println("datadata" + data);
 
                             Hawk.put("FF", data);
 
-
+                            city_location.clear();
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JsonParser parser = new JsonParser();
                                 JsonElement mJson = parser.parse(jsonArray.getString(i));
@@ -1545,10 +1843,49 @@ public class MapsFragment extends Fragment {
                                 googleMap.addMarker(new MarkerOptions()
                                         .position(sydneya)
 
-                                        .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(bankModules.getName() + "", "")))).setTag("allArea/" + i);
+                                        .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView2_city(bankModules.getName() + "", i + "")))).setTag("allArea/" + i);
 
 
                             }
+
+                        } else if (requestType.equals("citeis")) {//aqarz
+
+
+                            String data = response.getString("data");
+                            JSONArray jsonArray = new JSONArray(data);
+                            list_city.clear();
+                            googleMap.clear();
+
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+                                try {
+
+                                    JsonParser parser = new JsonParser();
+                                    JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                    Gson gson = new Gson();
+
+                                    CityLocation cityLocation = gson.fromJson(mJson, CityLocation.class);
+//                                    homeModules_aqares.add(bankModules);
+
+                                    list_city.add(cityLocation);
+
+                                    LatLng sydneya = new LatLng(Double.valueOf(cityLocation.getLat() + ""), Double.valueOf(cityLocation.getLan() + ""));
+
+
+                                    googleMap.addMarker(new MarkerOptions()
+                                            .position(sydneya)
+
+                                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView3_city(cityLocation.getName() + "", "")))).setTag("allcity/" + i);
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+
+                            }
+
 
                         } else if (requestType.equals("map_offer")) {//aqarz
                             try {
@@ -1586,7 +1923,7 @@ public class MapsFragment extends Fragment {
 
                                         int price_int = Integer.valueOf(v);
 
-                                        int prices = (int) price_int;
+                                        int prices = price_int;
 
 
                                         if (price_int < 1000) {
@@ -1594,14 +1931,14 @@ public class MapsFragment extends Fragment {
                                             price = prices + "";
 
                                         } else if (price_int > 1000 && price_int < 999999) {
-                                            prices = (int) price_int / 1000;
+                                            prices = price_int / 1000;
 
                                             price = prices + getResources().getString(R.string.K);
 
                                         } else if (price_int > 999999) {
 
 
-                                            prices = (int) price_int / 100000;
+                                            prices = price_int / 100000;
 
 
                                             double XXXX = (double) prices / 10;
@@ -1715,7 +2052,7 @@ public class MapsFragment extends Fragment {
     private Bitmap getMarkerBitmapFromView(String Price) {
 
         View customMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom, null);
-        TextView markerImageView = (TextView) customMarkerView.findViewById(R.id.numb);
+        TextView markerImageView = customMarkerView.findViewById(R.id.numb);
 //        markerImageView.setImageResource(resId);
         markerImageView.setText(Price);
 
@@ -1737,7 +2074,7 @@ public class MapsFragment extends Fragment {
     private Bitmap getMarkerBitmapFromView2(String Price) {
 
         View customMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom2, null);
-        TextView markerImageView = (TextView) customMarkerView.findViewById(R.id.numb);
+        TextView markerImageView = customMarkerView.findViewById(R.id.numb);
 //        markerImageView.setImageResource(resId);
         markerImageView.setText(Price);
 
@@ -1759,9 +2096,79 @@ public class MapsFragment extends Fragment {
     private Bitmap getMarkerBitmapFromView2_city(String Price, String numbers) {
 
         View customMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom3, null);
-        TextView markerImageView = (TextView) customMarkerView.findViewById(R.id.numb);
+        TextView markerImageView = customMarkerView.findViewById(R.id.numb);
+        TextView number_ = customMarkerView.findViewById(R.id.number_);
+        ImageView back_location = customMarkerView.findViewById(R.id.back_location);
 //        markerImageView.setImageResource(resId);
         markerImageView.setText(Price);
+
+
+        //offer Market Real
+        //city_location
+
+
+        if (type_selected.equals("Real")) {
+
+            back_location.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_path_marker_home1));
+            number_.setTextColor(getActivity().getResources().getColor(R.color.c1));
+            number_.setText(city_location.get(Integer.valueOf(numbers)).getRequests() + "");
+
+        } else if (type_selected.equals("Market")) {
+            back_location.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_path_marker_home2));
+            number_.setTextColor(getActivity().getResources().getColor(R.color.c2));
+            number_.setText(city_location.get(Integer.valueOf(numbers)).getRequests() + "");
+
+        } else if (type_selected.equals("offer")) {
+            back_location.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_path_marker_home));
+            number_.setTextColor(getActivity().getResources().getColor(R.color.colorPrimary));
+            number_.setText(city_location.get(Integer.valueOf(numbers)).getOffers() + "");
+
+        }
+
+
+        customMarkerView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        customMarkerView.layout(0, 0, customMarkerView.getMeasuredWidth(), customMarkerView.getMeasuredHeight());
+        customMarkerView.buildDrawingCache();
+        Bitmap returnedBitmap = Bitmap.createBitmap(customMarkerView.getMeasuredWidth(), customMarkerView.getMeasuredHeight(),
+                Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(returnedBitmap);
+        canvas.drawColor(Color.WHITE, PorterDuff.Mode.SRC_IN);
+        Drawable drawable = customMarkerView.getBackground();
+        if (drawable != null)
+            drawable.draw(canvas);
+        customMarkerView.draw(canvas);
+        return returnedBitmap;
+    }
+
+    private Bitmap getMarkerBitmapFromView3_city(String Price, String numbers) {
+
+        View customMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom4, null);
+        TextView markerImageView = customMarkerView.findViewById(R.id.numb);
+        TextView number_ = customMarkerView.findViewById(R.id.number_);
+        ImageView back_location = customMarkerView.findViewById(R.id.back_location);
+//        markerImageView.setImageResource(resId);
+        markerImageView.setText(Price);
+
+
+        //offer Market Real
+
+
+        if (type_selected.equals("Real")) {
+
+            back_location.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_path_marker_home1));
+            number_.setTextColor(getActivity().getResources().getColor(R.color.c1));
+//            number_.setText(list_city.get(Integer.valueOf(numbers)).getCount_fund_request() + "");
+
+        } else if (type_selected.equals("Market")) {
+            back_location.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_path_marker_home2));
+            number_.setTextColor(getActivity().getResources().getColor(R.color.c2));
+//            number_.setText(list_city.get(Integer.valueOf(numbers)).getCount_app_request() + "");
+
+        } else if (type_selected.equals("offer")) {
+            back_location.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_path_marker_home));
+//            number_.setTextColor(getActivity().getResources().getColor(R.color.colorPrimary));
+
+        }
 
 
         customMarkerView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
@@ -1886,6 +2293,11 @@ public class MapsFragment extends Fragment {
             init_volley();
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
             mVolleyService.getDataVolley("map_offer", WebService.Home_4 + "?lat=" + latitude + "&lan=" + longitude + "&estate_type=" + opration_select + "" + filtter + "&search=" + search_text.getText().toString());
+
+        } else if (type.equals("citeis")) {//aqarz//"search="+search_text.getText().toString()+
+            init_volley();
+            VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+            mVolleyService.getDataVolley("citeis", WebService.cities + "?state_id=" + latitude);
 
         }
 

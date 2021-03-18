@@ -26,9 +26,9 @@ public class RegionModules {
     @SerializedName("center")
     @Expose
     private center center;
-    @SerializedName("boundaries")
-    @Expose
-    private centerx boundaries;
+//    @SerializedName("boundaries")
+//    @Expose
+//    private centerx boundaries;
     @SerializedName("population")
     @Expose
     private String population;
@@ -41,14 +41,21 @@ public class RegionModules {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("requests")
+    @Expose
+    private String requests;
+
+    public String getRequests() {
+        return requests;
+    }
 
     public String getCode() {
         return code;
     }
 
-    public centerx getBoundaries() {
-        return boundaries;
-    }
+//    public centerx getBoundaries() {
+//        return boundaries;
+//    }
 
     public String getCapital_city_id() {
         return capital_city_id;
