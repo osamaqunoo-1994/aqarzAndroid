@@ -106,6 +106,8 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.10.3'
 
     implementation 'com.github.BlushineIO:MaterialShowcaseView:2.1.0'
+    implementation 'com.google.android.exoplayer:exoplayer:2.10.4'
+    implementation 'com.github.MasayukiSuda:ExoPlayerFilter:v0.2.4'
 
 }
 

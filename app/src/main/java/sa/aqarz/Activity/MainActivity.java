@@ -1,9 +1,7 @@
 package sa.aqarz.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -17,21 +15,13 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.transition.Fade;
-import android.transition.Slide;
-import android.transition.Transition;
-import android.transition.TransitionManager;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -43,44 +33,30 @@ import android.widget.Toast;
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.github.amlcurran.showcaseview.ShowcaseView;
-import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
-import java.util.Set;
 
 import sa.aqarz.Activity.Auth.LoginActivity;
-import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
-import sa.aqarz.Activity.Auth.RegisterActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
 import sa.aqarz.Activity.OprationNew.FinanceActivity;
 import sa.aqarz.Activity.OprationNew.RentActivity;
 import sa.aqarz.Activity.OprationNew.RentShowActivity;
-import sa.aqarz.Activity.OprationNew.RequestServiceActivity;
-import sa.aqarz.Activity.profile.OtherProfileActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import sa.aqarz.Fragment.ChatFragment;
 import sa.aqarz.Fragment.MapsFragment;
+import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
 import sa.aqarz.Fragment.MoreFragment;
 import sa.aqarz.Fragment.NotficationFragment;
 import sa.aqarz.Fragment.OrdersFragment;
-import sa.aqarz.Fragment.OrdersFragment_old;
 import sa.aqarz.Fragment.ServiceFragment;
-import sa.aqarz.Fragment.SubscriptionsFragment;
-import sa.aqarz.Modules.HomeModules;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.R;
@@ -218,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
 
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container, new MapsFragment());
+        fragmentTransaction.replace(R.id.container, new MapsFragmentNew());
         //  fragmentTransaction.commit();
         fragmentTransaction.commitAllowingStateLoss();
 
@@ -337,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentManager = getSupportFragmentManager();
 
                 fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, new MapsFragment());
+                fragmentTransaction.replace(R.id.container, new MapsFragmentNew());
                 //  fragmentTransaction.commit();
                 fragmentTransaction.commitAllowingStateLoss();
 

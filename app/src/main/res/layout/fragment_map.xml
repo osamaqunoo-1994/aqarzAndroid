@@ -158,14 +158,14 @@
 
                 <ImageView
                     android:id="@+id/filtter"
-                    android:visibility="gone"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-
-
                     android:background="@drawable/circle_wh"
+
+
                     android:padding="6dp"
                     android:src="@drawable/ic_filter_home"
+                    android:visibility="gone"
                     app:tint="@color/colorPrimary" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -191,12 +191,12 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:visibility="gone"
                     android:id="@+id/laout_of_change"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_weight="1"
-                    android:background="@drawable/circle_wh">
+                    android:background="@drawable/circle_wh"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/Orders_tab"
@@ -231,6 +231,7 @@
 
 
                 </LinearLayout>
+
                 <LinearLayout
 
                     android:layout_width="match_parent"
@@ -285,8 +286,6 @@
                         android:textSize="11dp" />
 
 
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -297,13 +296,13 @@
                     android:id="@+id/chate"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:visibility="gone"
-
-
                     android:background="@drawable/circle_wh"
-                    android:padding="9dp"
 
-                    android:src="@drawable/ic_messenger" />
+
+                    android:padding="9dp"
+                    android:src="@drawable/ic_messenger"
+
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="7dp"
@@ -312,11 +311,11 @@
                 <ImageView
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:visibility="gone"
-
                     android:background="@drawable/circle_wh"
+
                     android:padding="8dp"
-                    android:src="@drawable/ic_bell" />
+                    android:src="@drawable/ic_bell"
+                    android:visibility="gone" />
 
             </LinearLayout>
 

@@ -24,17 +24,19 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Adapter.RecyclerView_GenralNotfication;
 import sa.aqarz.Adapter.RecyclerView_chat_main;
 import sa.aqarz.Modules.MsgModules;
+import sa.aqarz.Modules.NotficationModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
 
 public class NotficationActvity extends AppCompatActivity {
-    RecyclerView chate;
+    RecyclerView notfication_list;
 
-    List<MsgModules> ordersModules = new ArrayList<>();
+    List<NotficationModules> notficationModules = new ArrayList<>();
 
     IResult mResultCallback;
     LinearLayout nodata;
@@ -48,7 +50,7 @@ public class NotficationActvity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notfication_actvity);
-        chate = findViewById(R.id.chate);
+        notfication_list = findViewById(R.id.notfication_list);
         nodata = findViewById(R.id.nodata);
         message = findViewById(R.id.message);
         notfication = findViewById(R.id.notfication);
@@ -63,12 +65,14 @@ public class NotficationActvity extends AppCompatActivity {
         title.setText(getResources().getString(R.string.Notfication_bottm));
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(NotficationActvity.this, LinearLayoutManager.VERTICAL, false);
-        chate.setLayoutManager(layoutManager1);
+        notfication_list.setLayoutManager(layoutManager1);
 
 
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, NotficationActvity.this);
-        nodata.setVisibility(View.VISIBLE);
+//        nodata.setVisibility(View.VISIBLE);
+        mVolleyService.getDataVolley("notification", WebService.notification);
+
 
         message.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,20 +126,20 @@ public class NotficationActvity extends AppCompatActivity {
                     boolean status = response.getBoolean("status");
                     if (status) {
 
-                        if (requestType.equals("my_msg")) {
+                        if (requestType.equals("notification")) {
                             System.out.println("lfkdlfkdlkf");
                             String data = response.getString("data");
 
 
-//                            JSONObject jsonObject = new JSONObject(data);
+                            JSONObject jsonObject = new JSONObject(data);
 
 
-//                            String datax = jsonObject.getString("data");
+                            String datax = jsonObject.getString("data");
 
 
-                            JSONArray jsonArray = new JSONArray(data);
-                            chate.setAdapter(null);
-                            ordersModules.clear();
+                            JSONArray jsonArray = new JSONArray(datax);
+                            notfication_list.setAdapter(null);
+                            notficationModules.clear();
                             for (int i = 0; i < jsonArray.length(); i++) {
 
 
@@ -143,18 +147,18 @@ public class NotficationActvity extends AppCompatActivity {
                                 JsonElement mJson = parser.parse(jsonArray.getString(i));
 
                                 Gson gson = new Gson();
-                                MsgModules msgModules = gson.fromJson(mJson, MsgModules.class);
+                                NotficationModules msgModules = gson.fromJson(mJson, NotficationModules.class);
 
 //                                HomeModules ordersModulesm = gson.fromJson(mJson, HomeModules.class);
-                                ordersModules.add(msgModules);
+                                notficationModules.add(msgModules);
 
 
                             }
 
-                            chate.setAdapter(new RecyclerView_chat_main(NotficationActvity.this, ordersModules));
+                            notfication_list.setAdapter(new RecyclerView_GenralNotfication(NotficationActvity.this, notficationModules));
 
 
-                            if (ordersModules.size() != 0) {
+                            if (notficationModules.size() != 0) {
                                 nodata.setVisibility(View.GONE);
                             } else {
                                 nodata.setVisibility(View.VISIBLE);
