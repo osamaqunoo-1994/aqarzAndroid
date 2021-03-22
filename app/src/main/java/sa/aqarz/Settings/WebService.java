@@ -52,6 +52,7 @@ public class WebService {
     public static String smilier = Domain + "smilier";
     public static String fund_Request = Domain + "fund/Request";
     public static String rate_Request = Domain + "rate/Request";
+    public static String rate_offer = Domain + "fund/offer";
     public static String estate_Request = Domain + "estate/Request";
     public static String single_estat = Domain + "single/";
     public static String my_estate = Domain + "my/estate";
@@ -88,6 +89,7 @@ public class WebService {
     public static String make_up = Domain + "make/up";
     public static String updateDeviceToken = Domain + "updateDeviceToken";
     public static String notification = Domain + "notification";
+    public static String cancel = Domain + "cancel";
 //    public static String provider_code_send = Domain + "provider/code/send";
 
 

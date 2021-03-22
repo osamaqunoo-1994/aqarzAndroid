@@ -38,6 +38,10 @@ public class MapsViewModel extends ViewModel {
         mapsRepository = new MapsRepository(activity);
         mapsRepository.getEstatMaps( requestType,url);
     }
+    public void getEstate_list(Activity activity,final String requestType, String url) {
+        mapsRepository = new MapsRepository(activity);
+        mapsRepository.getEstatList( requestType,url);
+    }
 
 
     public LiveData<List<RegionModules>> getRegions_list() {

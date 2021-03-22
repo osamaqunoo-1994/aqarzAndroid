@@ -118,7 +118,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 
                 try {
 
-                    sendObj.put("uuid", myOfferModule.getUuid() + "");//form operation list api in setting
+                    sendObj.put("uuid", myOfferModule.getId() + "");//form operation list api in setting
 //                    sendObj.put("estate_id", is_selected);//form estate type list api in setting
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -128,7 +128,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
                 VolleyService mVolleyService = new VolleyService(mResultCallback, OfferDetailsActivity.this);
 
                 System.out.println(sendObj.toString());
-                mVolleyService.postDataasync_with_file("reject_fund_offer", WebService.reject_fund_offer, sendObj);
+                mVolleyService.postDataasync_with_file("cancel//fund/offer", WebService.cancel + "/" + myOfferModule.getId() + "/" + WebService.rate_offer, sendObj);
 
 
             }
@@ -185,7 +185,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 
                 }
             });
-        } else if (myOfferModule.getStatus().toString().equals("active")) {
+        } else if (myOfferModule.getStatus().equals("active")) {
             status_1.setVisibility(View.VISIBLE);
             status_2.setVisibility(View.GONE);
             status_3.setVisibility(View.GONE);
@@ -196,7 +196,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 //            cancleorder.setTextColor(getColor(R.color.white));
 
 
-        } else if (myOfferModule.getStatus().toString().equals("Waiting_provider_accepted")) {
+        } else if (myOfferModule.getStatus().equals("Waiting_provider_accepted")) {
             status_1.setVisibility(View.GONE);
             status_2.setVisibility(View.VISIBLE);
             status_3.setVisibility(View.GONE);
@@ -207,7 +207,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 //            cancleorder.setTextColor(getColor(R.color.white));
 
 
-        }else if (myOfferModule.getStatus().toString().equals("sending_code")) {
+        } else if (myOfferModule.getStatus().equals("sending_code")) {
             status_1.setVisibility(View.GONE);
             status_2.setVisibility(View.VISIBLE);
             status_3.setVisibility(View.GONE);
@@ -231,7 +231,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
             status_3.setVisibility(View.GONE);
             status_4.setVisibility(View.GONE);
             status_ss.setVisibility(View.GONE);
-        } else if (myOfferModule.getStatus().toString().equals("accepted_customer")) {
+        } else if (myOfferModule.getStatus().equals("accepted_customer")) {
             status_1.setVisibility(View.GONE);
             status_2.setVisibility(View.GONE);
             status_ss.setVisibility(View.GONE);

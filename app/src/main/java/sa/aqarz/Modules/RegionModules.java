@@ -44,9 +44,16 @@ public class RegionModules {
     @SerializedName("requests")
     @Expose
     private String requests;
+    @SerializedName("app_request")
+    @Expose
+    private String app_request;
 
     public String getRequests() {
         return requests;
+    }
+
+    public String getApp_request() {
+        return app_request;
     }
 
     public String getCode() {

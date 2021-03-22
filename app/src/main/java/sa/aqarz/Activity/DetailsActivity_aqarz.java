@@ -88,7 +88,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     //
 
     RecyclerView rec_list_all;
-    private ArrayList<String> items_ViewPager = new ArrayList<String>();
+    private final ArrayList<String> items_ViewPager = new ArrayList<String>();
 //
 //    RecyclerView type_RecyclerView;
 //    List<TypeModules> typeModules_list = new ArrayList<>();
@@ -165,7 +165,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
             id_or_aq = getIntent().getStringExtra("id_aqarz");
 
-            if (id_or_aq != null | !id_or_aq.toString().equals("null")) {
+            if (id_or_aq != null | !id_or_aq.equals("null")) {
                 System.out.println("0000000000000");
                 init_volley();
                 WebService.loading(DetailsActivity_aqarz.this, true);
@@ -199,28 +199,33 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
 
         } catch (Exception e) {
-            Intent intent = getIntent();
-            String action = intent.getAction();
-            Uri data = intent.getData();
+            e.printStackTrace();
+           try {
+               Intent intent = getIntent();
+               String action = intent.getAction();
+               Uri data = intent.getData();
 
-            System.out.println("action" + action);
-            System.out.println("data" + data);
-
-
-            String[] separated = data.toString().split("/");
-
-            String number = separated[4]; // this will contain " they taste good"
-
-            System.out.println("$$$$$$$$$$$$$" + number);
+               System.out.println("action" + action);
+               System.out.println("data" + data);
 
 
-            init_volley();
-            WebService.loading(DetailsActivity_aqarz.this, true);
+               String[] separated = data.toString().split("/");
 
-            VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity_aqarz.this);
-            mVolleyService.getDataVolley("single_estat", WebService.single_estat + number + "/estate");
+               String number = separated[4]; // this will contain " they taste good"
+
+               System.out.println("$$$$$$$$$$$$$" + number);
 
 
+               init_volley();
+               WebService.loading(DetailsActivity_aqarz.this, true);
+
+               VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity_aqarz.this);
+               mVolleyService.getDataVolley("single_estat", WebService.single_estat + number + "/estate");
+
+
+           }catch (Exception e1){
+
+           }
         }
 
 

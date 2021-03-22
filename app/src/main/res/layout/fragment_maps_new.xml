@@ -39,6 +39,186 @@
 
         </LinearLayout>
 
+
+        <LinearLayout
+            android:id="@+id/all_list_backround"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_500sdp">
+
+                    <ImageView
+                        android:id="@+id/notfication"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+
+                        android:background="@drawable/circle_wh"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_bell" />
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/TypeAqarez"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+
+
+                    android:visibility="visible" />
+
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+
+                android:layout_marginRight="15dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="500dp">
+
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:background="@drawable/circle_wh">
+
+                    <TextView
+                        android:id="@+id/RealStatr_order"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/din_light"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+
+                        android:paddingBottom="6dp"
+                        android:text="@string/Title_order_1"
+                        android:textColor="@color/color_filter"
+
+                        android:textSize="11dp" />
+
+                    <TextView
+                        android:id="@+id/MarketOrder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/din_light"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="6dp"
+                        android:text="@string/Title_order_2"
+                        android:textColor="@color/color_filter"
+
+                        android:textSize="11dp" />
+
+                    <TextView
+                        android:id="@+id/OfferOrder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/din_light"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="6dp"
+                        android:text="@string/Title_order_3"
+                        android:textColor="@color/color_filter"
+
+                        android:textSize="11dp" />
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/list_estate"
+                android:layout_width="match_parent"
+                android:layout_height="1555dp"
+
+                android:background="@color/color_list_back"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/nested_scroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:fillViewport="true"
+>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="60dp"
+
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list_estate_rec"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/color_list_back"
+                            android:paddingLeft="15dp"
+
+                            android:paddingTop="15dp"
+                            android:paddingRight="15dp">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+
+                        <ProgressBar
+                            android:id="@+id/progress"
+                            android:layout_width="25dp"
+
+                            android:layout_height="25dp"
+                            android:indeterminateTint="@color/colorPrimary"
+                            android:visibility="visible"
+
+                            />
+
+
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/layout_buttona"
 
@@ -84,104 +264,6 @@
                 android:visibility="gone"
                 app:tint="@color/white" />
 
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="30dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/notfication"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-
-                    android:background="@drawable/circle_wh"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_bell" />
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/TypeAqarez"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="1"
-
-
-                    android:visibility="visible" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
-                android:layout_weight="1"
-                android:background="@drawable/circle_wh">
-
-                <TextView
-                    android:id="@+id/RealStatr_order"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/din_light"
-                    android:gravity="center"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-
-                    android:paddingBottom="6dp"
-                    android:text="@string/Title_order_1"
-                    android:textColor="@color/color_filter"
-
-                    android:textSize="11dp" />
-
-                <TextView
-                    android:id="@+id/MarketOrder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/din_light"
-                    android:gravity="center"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="6dp"
-                    android:text="@string/Title_order_2"
-                    android:textColor="@color/color_filter"
-
-                    android:textSize="11dp" />
-
-                <TextView
-                    android:id="@+id/OfferOrder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/din_light"
-                    android:gravity="center"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="6dp"
-                    android:text="@string/Title_order_3"
-                    android:textColor="@color/color_filter"
-
-                    android:textSize="11dp" />
-
-
-            </LinearLayout>
 
         </LinearLayout>
 

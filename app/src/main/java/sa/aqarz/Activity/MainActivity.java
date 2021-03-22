@@ -43,6 +43,7 @@ import org.json.JSONObject;
 
 import java.util.Locale;
 
+import io.sentry.Sentry;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         activity = this;
 //        init();
 
-
+//        Sentry.captureMessage("testing SDK setup");
 //        Intent intent = getIntent();
 //        String action = intent.getAction();
 //        Uri data = intent.getData();

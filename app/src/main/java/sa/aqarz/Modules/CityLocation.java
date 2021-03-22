@@ -24,6 +24,9 @@ public class CityLocation {
     @SerializedName("lan")
     @Expose
     private String lan;
+    @SerializedName("serial_city")
+    @Expose
+    private String serial_city;
 
     @SerializedName("is_selected")
     @Expose
@@ -47,6 +50,9 @@ public class CityLocation {
     @SerializedName("count_app_request")
     @Expose
     private String count_app_request;
+    @SerializedName("count_app_estate")
+    @Expose
+    private String count_app_estate;
 
 
 
@@ -62,7 +68,9 @@ public class CityLocation {
     }
 
 
-
+    public String getSerial_city() {
+        return serial_city;
+    }
 
     public Integer getId() {
         return id;
@@ -94,6 +102,10 @@ public class CityLocation {
 
     public String getCount_fund_request() {
         return count_fund_request;
+    }
+
+    public String getCount_app_estate() {
+        return count_app_estate;
     }
 
     public String getCount_neighborhood() {
