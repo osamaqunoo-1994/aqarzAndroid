@@ -41,6 +41,9 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".FCM.MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
+        <activity
             android:name=".Activity.OrderListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -256,7 +259,9 @@
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
 
-        <meta-data android:name="io.sentry.dsn" android:value="https://c2448ed54fb547118a318abb11d49058@o555534.ingest.sentry.io/5685741" />
+        <meta-data
+            android:name="io.sentry.dsn"
+            android:value="https://c2448ed54fb547118a318abb11d49058@o555534.ingest.sentry.io/5685741" />
     </application>
 
 </manifest>

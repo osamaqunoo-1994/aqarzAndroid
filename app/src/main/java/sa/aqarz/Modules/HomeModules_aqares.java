@@ -34,7 +34,6 @@ public class HomeModules_aqares {
     private String neighborhood_id;
 
 
-
     @SerializedName("pace_number")
     @Expose
     private String paceNumber;

@@ -6,6 +6,7 @@ import android.util.JsonToken;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -68,8 +69,6 @@ public class VolleyService {
             };
 
 
-            ;
-
             queue.add(jsonObj);
 
         } catch (Exception e) {
@@ -97,7 +96,7 @@ public class VolleyService {
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                    System.out.println("responseBody" + responseString.toString());
+                    System.out.println("responseBody" + responseString);
 
                     if (mResultCallback != null)
                         mResultCallback.notify_Async_Error(requestType, responseString);
@@ -110,7 +109,7 @@ public class VolleyService {
                         System.out.println("responseBody" + errorResponse.toString());
 
 
-                        mResultCallback.notify_Async_Error(requestType, errorResponse.getString("message").toString());
+                        mResultCallback.notify_Async_Error(requestType, errorResponse.getString("message"));
 
                     } catch (Exception e) {
 
@@ -163,8 +162,6 @@ public class VolleyService {
             };
 
 
-            ;
-
             queue.add(jsonObj);
 
         } catch (Exception e) {
@@ -201,6 +198,49 @@ public class VolleyService {
                 }
 
             };
+
+            queue.add(jsonObj);
+
+        } catch (Exception e) {
+
+        }
+    }
+
+    public void getDataVolley_with_time(final String requestType, String url) {
+        try {
+            RequestQueue queue = Volley.newRequestQueue(mContext);
+
+
+            System.out.println("urlurl " + url);
+
+
+            JsonObjectRequest jsonObj = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    if (mResultCallback != null)
+                        mResultCallback.notifySuccess(requestType, response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    if (mResultCallback != null)
+                        mResultCallback.notifyError(requestType, error);
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+
+
+                    return WebService.setHeaderVolley();
+                }
+
+            };
+
+
+            jsonObj.setRetryPolicy(new DefaultRetryPolicy(
+                    40000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
             queue.add(jsonObj);
 

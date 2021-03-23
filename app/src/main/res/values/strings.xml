@@ -15,7 +15,8 @@
     <string name="success">Success</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyASdJamfAg4qsuiXSKebSefmQlVBAzhtlk</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc</string>
+    <string name="google_maps_keyaa" templateMergeStrategy="preserve" translatable="false">AIzaSyASdJamfAg4qsuiXSKebSefmQlVBAzhtlk</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -876,5 +877,6 @@ Two working days to complete your order</string>
     <string name="Title_order_1">طلبات الصندوق العقاري</string>
     <string name="Title_order_2">طلبات السوق</string>
     <string name="Title_order_3">العروض</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

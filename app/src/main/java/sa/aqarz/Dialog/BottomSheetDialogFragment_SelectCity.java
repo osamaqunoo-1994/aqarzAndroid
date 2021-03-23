@@ -90,7 +90,7 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
 
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 
-            mVolleyService.getDataVolley("city", WebService.cities);
+            mVolleyService.getDataVolley_with_time("city", WebService.cities);
         }
 
 
@@ -131,7 +131,6 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
                         cityModules_list.clear();
                         for (int i = 0; i < jsonArray.length(); i++) {
 
-
                             JsonParser parser = new JsonParser();
                             JsonElement mJson = parser.parse(jsonArray.getString(i));
 
@@ -140,6 +139,7 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
                             CityModules Store_M = gson.fromJson(mJson, CityModules.class);
                             cityModules_list.add(Store_M);
                             Application.AllCity.add(Store_M);
+
                         }
 
                         RecyclerView_city_bootom_sheets recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets(getContext(), Application.AllCity);
@@ -218,12 +218,14 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
     public interface ItemClickListener {
         void onItemClick(int id_city, String city_naem);
     }
+
     @Override
     public void setupDialog(Dialog dialog, int style) {
         View contentView = View.inflate(getContext(), R.layout.bottom_sheets_details_aqares, null);
         dialog.setContentView(contentView);
         ((View) contentView.getParent()).setBackgroundColor(getResources().getColor(android.R.color.transparent));
     }
+
     @Override
     public void onStart() {
         super.onStart();
