@@ -150,6 +150,7 @@
 
                     <TextView
                         android:id="@+id/Shopping_request_text"
+                        android:visibility="gone"
 
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
