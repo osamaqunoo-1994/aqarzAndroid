@@ -1,6 +1,8 @@
 package sa.aqarz.Settings;
 
 import android.app.Activity;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.widget.Toast;
 
 import com.kaopiz.kprogresshud.KProgressHUD;
@@ -11,6 +13,8 @@ import com.tapadoo.alerter.Alerter;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.sentry.protocol.App;
+import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.R;
 
 
@@ -99,6 +103,9 @@ public class WebService {
         client.addHeader("Auth-Role", "user");
         client.addHeader("Accept-Language", Hawk.get("lang").toString());
         client.addHeader("v", "v2");
+        System.out.println("app_v" + Application.getversionName());
+        client.addHeader("app_v", Application.getversionName());
+
 
         if (is_token) {
             if (Hawk.contains("api_token")) {
@@ -118,6 +125,9 @@ public class WebService {
         heder.put("Accept", "application/json");
         heder.put("Accept-Language", Hawk.get("lang").toString());
         heder.put("v", "v2");
+        System.out.println("app_v" + Application.getversionName());
+        heder.put("app_v", Application.getversionName());
+
         if (Hawk.contains("api_token")) {
             if (!Hawk.get("api_token").toString().equals("")) {//Hawk.get("api_token").toString()
                 heder.put("auth", Hawk.get("api_token").toString());
@@ -135,6 +145,8 @@ public class WebService {
         heder.put("Accept", "application/json");
         heder.put("Accept-Language", Hawk.get("lang").toString());
         heder.put("v", "v2");
+        System.out.println("app_v" + Application.getversionName());
+        heder.put("app_v", Application.getversionName());
 
         if (Hawk.contains("api_token")) {
             if (!Hawk.get("api_token").toString().equals("")) {
@@ -239,6 +251,5 @@ public class WebService {
         }
 
     }
-
 
 }

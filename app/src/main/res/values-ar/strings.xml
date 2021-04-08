@@ -269,7 +269,7 @@
     <string name="Real_Estate_order">طلبات الصندوق العقاري</string>
     <string name="Real_Estate_orders">طلبات الصندوق</string>
 
-    <string name="chat">محادثة</string>
+    <string name="chat">الرسائل</string>
     <string name="call">اتصال</string>
     <string name="price_metter">سعر المتر</string>
     <string name="Residential_purpose">الغرض سكني</string>
@@ -834,22 +834,16 @@
     <string name="deta_order">من هنا يمكنك مشاهدة الطلبات العقارية من الصندوق العقاري الفوريه وطلبات الافراد والشركات وارسال عروضك لهم</string>
 
 
-
-
     <string name="title_All">كل الطلبات</string>
     <string name="tdes_All">اختيارك كل الطلبات سيعرض لك كل الطلبات لحميع المناطق</string>
-
 
 
     <string name="title_filter">فلتر الطلبات</string>
     <string name="dies_filter">يمكنك تحديد الطلبات حسب المدينه ونوع العقار من هنا</string>
 
 
-
-
     <string name="title_all_my_state">عروضي</string>
     <string name="description_all_my_state">جميع عروضك ستظهر هنا لسرعه ارساله ويمكنك اختيار عده عقارات وارسالها  او تقديم عرض جديد وارساله</string>
-
 
 
     <string name="title_realstate">طلبات الصندوق العقاري</string>
@@ -874,11 +868,38 @@
     <string name="Enabled">مفعل</string>
 
 
-
     <string name="filter_view_http_gizmos">filter_view_http_gizmos</string>
     <string name="filter_view_example_gizmos">filter_view_example_gizmos</string>
 
     <string name="Service_fill">خدمات</string>
-    <string name="Profile_menu">الحساب</string>
+    <string name="Profile_menu">حسابي</string>
+
+
+
+    <string name="m_e1">تقييم</string>
+    <string name="m_e2">تقسيط تاجير</string>
+    <string name="m_e3">تمويل</string>
+    <string name="m_e4">اضافة عقار</string>
+    <string name="m_e5">طلب عقار</string>
+
+    <string name="Title_order_1">طلبات الصندوق العقاري</string>
+    <string name="Title_order_2">طلبات السوق</string>
+    <string name="Title_order_3">العروض</string>
+    <string name="title_activity_maps">الخريطه</string>
+    <string name="search_filtter_title">تصفية البحث</string>
+    <string name="search_aqarez_man">بحث عن عقاري</string>
+
+    <string name="cancleFiltter">الغاء الفلتر</string>
+
+
+
+    <string name="mn1">شراء</string>
+    <string name="mn2">إيجار</string>
+    <string name="mn3">استثمار</string>
+    <string name="title_dialog">الخدمات العقاريه</string>
+    <string name="request_aqarez">طلب عقار</string>
+    <string name="Enterthenameyouwanttosearch">أدخل بإسم العقاري المراد البحث عنه</string>
+    <string name="searchbyqr">بحث Qr</string>
+    <string name="nameAqarez">أدخل إسم العقاري</string>
 
 </resources>

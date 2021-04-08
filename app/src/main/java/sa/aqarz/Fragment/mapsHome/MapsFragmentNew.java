@@ -954,6 +954,30 @@ public class MapsFragmentNew extends Fragment {
 
 
     }
+    public static void get_all_estate_filttters(String te) {
+
+//"home/estate", WebService.Home_4 + "?state_id=" + state_id + "&city_id=" + city_id
+
+
+        String getId_region = "";
+        String getSerial_city = "";
+
+
+        if (!region_id_postion.equals("")) {
+            getId_region = regionModules_list.get(Integer.valueOf(region_id_postion + "")).getId() + "";
+
+        }
+        if (!city_id_postion.equals("")) {
+            getSerial_city = city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
+
+        }
+
+
+        mapsViewModel.getEstate_map(activity, "home/estate", WebService.Home_4 + "?state_id=" + getId_region + "&city_id=" + getSerial_city + "&lan=" + lan + "&lat=" + lat+te);
+
+
+    }
+
 
     public static void get_all_estate_list_filttter() {
 

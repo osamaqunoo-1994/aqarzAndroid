@@ -22,9 +22,10 @@ import sa.aqarz.R;
 public class ForceUpdateAsync extends AsyncTask<String, String, JSONObject> {
 
     private String latestVersion;
-    private String currentVersion;
-    private Context context;
-    public ForceUpdateAsync(String currentVersion, Context context){
+    private final String currentVersion;
+    private final Context context;
+
+    public ForceUpdateAsync(String currentVersion, Context context) {
         this.currentVersion = currentVersion;
         this.context = context;
     }
@@ -41,7 +42,7 @@ public class ForceUpdateAsync extends AsyncTask<String, String, JSONObject> {
 //                    .select("div[itemprop=softwareVersion]")
 //                    .first()
 //                    .ownText();
-            latestVersion = Jsoup.connect("https://play.google.com/store/apps/details?id=" + context.getPackageName()+ "&hl=en")
+            latestVersion = Jsoup.connect("https://play.google.com/store/apps/details?id=" + context.getPackageName() + "&hl=en")
                     .timeout(30000)
                     .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
                     .referrer("http://www.google.com")
@@ -50,7 +51,7 @@ public class ForceUpdateAsync extends AsyncTask<String, String, JSONObject> {
                     .first()
                     .ownText();
 
-            System.out.println("latestVersion"+latestVersion);
+            System.out.println("latestVersion" + latestVersion);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,8 +60,8 @@ public class ForceUpdateAsync extends AsyncTask<String, String, JSONObject> {
 
     @Override
     protected void onPostExecute(JSONObject jsonObject) {
-        if(latestVersion!=null){
-            if(!currentVersion.equalsIgnoreCase(latestVersion)){
+        if (latestVersion != null) {
+            if (!currentVersion.equalsIgnoreCase(latestVersion)) {
 //                 Toast.makeText(context,"update is available.",Toast.LENGTH_LONG).show();
                 showForceUpdateDialog();
 
@@ -73,7 +74,7 @@ public class ForceUpdateAsync extends AsyncTask<String, String, JSONObject> {
         super.onPostExecute(jsonObject);
     }
 
-    public void showForceUpdateDialog(){
+    public void showForceUpdateDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(new ContextThemeWrapper(context,
                 R.style.AppTheme));
 
@@ -83,7 +84,7 @@ public class ForceUpdateAsync extends AsyncTask<String, String, JSONObject> {
         alertDialogBuilder.setPositiveButton(R.string.update, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + context.getPackageName())));
-                dialog.cancel();
+
             }
         });
         alertDialogBuilder.show();

@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.os.Build;
@@ -32,6 +34,7 @@ import java.util.Set;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Modules.User;
 import sa.aqarz.R;
+import sa.aqarz.Settings.ForceUpdateAsync;
 import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
@@ -70,13 +73,13 @@ public class SplashScreenActivity extends AppCompatActivity {
         if (Settings.checkLogin()) {
 
 
-            if(Settings.CheckIsAccountAqarzMan()){
+            if (Settings.CheckIsAccountAqarzMan()) {
                 try {
                     FirebaseMessaging.getInstance().subscribeToTopic("aqarz_provider");
                 } catch (Exception e) {
 
                 }
-            }else{
+            } else {
                 try {
                     FirebaseMessaging.getInstance().subscribeToTopic("aqarz_user");
                 } catch (Exception e) {
@@ -245,5 +248,20 @@ public class SplashScreenActivity extends AppCompatActivity {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    // check version on play store and force update
+    public void forceUpdate() {
+        PackageManager packageManager = this.getPackageManager();
+        PackageInfo packageInfo = null;
+        try {
+            packageInfo = packageManager.getPackageInfo(getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        String currentVersion = packageInfo.versionName;
+
+        System.out.println("currentVersion" + currentVersion);
+        new ForceUpdateAsync(currentVersion, SplashScreenActivity.this).execute();
     }
 }

@@ -77,7 +77,7 @@ public class RecyclerView_bottomSheet_type extends RecyclerView.Adapter<Recycler
     }
 
     public RecyclerView_bottomSheet_type(Context context, List<select_typeModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_bottomSheet_type.alldata = alldata;
         this.context = context;
     }
 
@@ -244,18 +244,12 @@ public class RecyclerView_bottomSheet_type extends RecyclerView.Adapter<Recycler
             public void onClick(View view) {
 
 
-
-
-
-
                 if (alldata.get(position).getSelected()) {
                     holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.circle));
 
                     holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
 
                     alldata.get(position).setSelected(false);
-
-                    alldata.get(0).setSelected(false);
 
 
                 } else {
@@ -268,17 +262,10 @@ public class RecyclerView_bottomSheet_type extends RecyclerView.Adapter<Recycler
                 }
 
 
-                if (position == 0) {
-
-
-                    for (int i = 0; i < alldata.size(); i++) {
-                        if (alldata.get(position).getSelected()) {
-                            alldata.get(i).setSelected(true);
-                        } else {
-                            alldata.get(i).setSelected(false);
-                        }
-                    }
+                for (int i = 0; i < alldata.size(); i++) {
+                    alldata.get(i).setSelected(alldata.get(i).getId() == alldata.get(position).getId());
                 }
+
 
                 Refr();
 

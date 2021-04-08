@@ -132,8 +132,9 @@
                         android:paddingBottom="6dp"
                         android:text="@string/Title_order_2"
                         android:textColor="@color/color_filter"
+                        android:textSize="11dp"
 
-                        android:textSize="11dp" />
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/OfferOrder"
@@ -170,8 +171,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
 
-                    android:fillViewport="true"
->
+                    android:fillViewport="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"

@@ -2,12 +2,18 @@ package sa.aqarz.Activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,16 +21,19 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,25 +41,37 @@ import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
+import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import io.sentry.Sentry;
 import sa.aqarz.Activity.Auth.LoginActivity;
+import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
 import sa.aqarz.Activity.OprationNew.FinanceActivity;
 import sa.aqarz.Activity.OprationNew.RentActivity;
 import sa.aqarz.Activity.OprationNew.RentShowActivity;
+import sa.aqarz.Activity.profile.AllclintActivity;
+import sa.aqarz.Activity.profile.MyProfileActivity;
+import sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
+import sa.aqarz.Adapter.RecyclerView_bottomSheet_type;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_Filtter;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_Service;
 import sa.aqarz.Fragment.ChatFragment;
 import sa.aqarz.Fragment.MapsFragment;
 import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
@@ -59,7 +80,9 @@ import sa.aqarz.Fragment.NotficationFragment;
 import sa.aqarz.Fragment.OrdersFragment;
 import sa.aqarz.Fragment.ServiceFragment;
 import sa.aqarz.Modules.OrdersModules;
+import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.Modules.demandsModules;
+import sa.aqarz.Modules.select_typeModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.ForceUpdateAsync;
 import sa.aqarz.Settings.LocaleUtils;
@@ -93,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
     LinearLayout service_layout;
     LinearLayout gray_layout;
-
+    String te = "";
     public static LinearLayout lay_1, lay_2, lay_3, lay_4, lay_s;
     ShowcaseView showCaseView;
 
@@ -112,7 +135,48 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static boolean first_time_open_app = false;
+    public static boolean first_time_ = false;
 
+
+    TextView search;
+    TextView search_aqarez_man;
+
+
+    private BottomSheetDialogFragment_Filtter.ItemClickListener mItemClickListener;
+    RecyclerView selsct_type_all;
+    RecyclerView opration;
+    List<select_typeModules> oprationModules_list = new ArrayList<>();
+    List<TypeModules> type_list = new ArrayList<>();
+
+
+    String type = "null";
+    String opration_select = "";
+
+    TextView filtter_btn;
+
+
+    TextView min_area, max_area;
+
+    String min_price = "0", max_price = "1000";
+    String min_area_ = "0", max_area_ = "1000";
+    String num_room = "1";
+
+    TextView room_1;
+    TextView room_2;
+    TextView room_3;
+    TextView room_4;
+    TextView room_5;
+
+
+    EditText Les_price, Maximum_price, Les_space, Maximum_space;
+
+
+    NavigationView navigationView_;
+
+    DrawerLayout drawer;
+    LinearLayout search_layout;
+    LinearLayout search_aqaerz;
+    TextView qr_search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,13 +191,37 @@ public class MainActivity extends AppCompatActivity {
 //        Uri data = intent.getData();
 
         first_time_open_app = true;
+        first_time_ = true;
         add_service_aqarez = findViewById(R.id.add_service_aqarez);
         add_aqar = findViewById(R.id.add_aqar);
         add_aqarez_c = findViewById(R.id.add_aqarez_c);
         request_add_aqarez_c = findViewById(R.id.request_add_aqarez_c);
+        search_aqaerz = findViewById(R.id.search_aqaerz);
         rate_c = findViewById(R.id.rate_c);
         Rental_installment_c = findViewById(R.id.Rental_installment_c);
         finance_c = findViewById(R.id.finance_c);
+        search = findViewById(R.id.search);
+        search_aqarez_man = findViewById(R.id.search_aqarez_man);
+        qr_search = findViewById(R.id.qr_search);
+
+        selsct_type_all = findViewById(R.id.selsct_type_all);
+        opration = findViewById(R.id.opration);
+        filtter_btn = findViewById(R.id.filtter_btn);
+        max_area = findViewById(R.id.max_area);
+        min_area = findViewById(R.id.min_area);
+        Les_price = findViewById(R.id.Les_price);
+        Maximum_price = findViewById(R.id.Maximum_price);
+        Les_space = findViewById(R.id.Les_space);
+        Maximum_space = findViewById(R.id.Maximum_space);
+        navigationView_ = findViewById(R.id.navigationView_);
+        drawer = findViewById(R.id.drawer);
+        search_layout = findViewById(R.id.search_layout);
+
+        room_1 = findViewById(R.id.room_1);
+        room_2 = findViewById(R.id.room_2);
+        room_3 = findViewById(R.id.room_3);
+        room_4 = findViewById(R.id.room_4);
+        room_5 = findViewById(R.id.room_5);
 
 
         image_1 = findViewById(R.id.image_1);
@@ -206,7 +294,43 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                search.setBackground(getResources().getDrawable(R.drawable.button_login));
+                search_aqarez_man.setBackground(getResources().getDrawable(R.drawable.mash));
+
+
+                search.setTextColor(getResources().getColor(R.color.white));
+                search_aqarez_man.setTextColor(getResources().getColor(R.color.textColor));
+                search_layout.setVisibility(View.VISIBLE);
+                search_aqaerz.setVisibility(View.GONE);
+            }
+        });
+        search_aqarez_man.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                search.setBackground(getResources().getDrawable(R.drawable.mash));
+                search_aqarez_man.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+
+                search.setTextColor(getResources().getColor(R.color.textColor));
+                search_aqarez_man.setTextColor(getResources().getColor(R.color.white));
+                search_layout.setVisibility(View.GONE);
+                search_aqaerz.setVisibility(View.VISIBLE);
+            }
+        });
+        qr_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, QRCameraActivity.class);
+                startActivity(intent);
+
+            }
+        });
         myFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -229,17 +353,62 @@ public class MainActivity extends AppCompatActivity {
                             .show();
                 } else {
 
-                    if (Settings.CheckIsCompleate()) {
+//                    if (Settings.CheckIsCompleate()) {
+//
+//                        toggle();
+//
+//
+////                        Intent intent = new Intent(MainActivity.this, RequestServiceActivity.class);
+//////                                intent.putExtra("from", "splash");
+////                        startActivity(intent);
+//                    } else {
+//                        Settings.Dialog_not_compleate(MainActivity.this);
+//                    }
 
-                        toggle();
+
+                    AlertDialog alertDialog;
 
 
-//                        Intent intent = new Intent(MainActivity.this, RequestServiceActivity.class);
-////                                intent.putExtra("from", "splash");
-//                        startActivity(intent);
-                    } else {
-                        Settings.Dialog_not_compleate(MainActivity.this);
-                    }
+                    LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    final View popupView = layoutInflater.inflate(R.layout.bottom_sheets_add_aqarez, null);
+
+
+                    LinearLayout req = popupView.findViewById(R.id.req);
+                    LinearLayout add_aqare = popupView.findViewById(R.id.add_aqare);
+
+
+                    req.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MainActivity.this, AqarzOrActivity.class);
+                            intent.putExtra("id", "");
+                            startActivity(intent);
+
+                        }
+                    });
+
+                    add_aqare.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+
+                            Intent intent = new Intent(MainActivity.this, AddAqarsActivity.class);
+//                                intent.putExtra("from", "splash");
+                            startActivity(intent);
+
+                        }
+                    });
+
+
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+//            alertDialog_country =
+                    builder.setView(popupView);
+
+
+                    alertDialog = builder.show();
+
+                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
                 }
 
@@ -253,30 +422,33 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                text_s.setTextColor(getResources().getColor(R.color.colorPrimary));
-                text_1.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_2.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_3.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+//                navigationView_.
 
-
-                image_s.setSelected(true);
-                image_1.setSelected(false);
-                image_2.setSelected(false);
-                image_3.setSelected(false);
-                image_4.setSelected(false);
+//                drawerLayout.closeDrawer();
+//                text_s.setTextColor(getResources().getColor(R.color.colorPrimary));
+//                text_1.setTextColor(getResources().getColor(R.color.color_un_active));
+//                text_2.setTextColor(getResources().getColor(R.color.color_un_active));
+//                text_3.setTextColor(getResources().getColor(R.color.color_un_active));
+//                text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+//
+//
+//                image_s.setSelected(true);
+//                image_1.setSelected(false);
+//                image_2.setSelected(false);
+//                image_3.setSelected(false);
+//                image_4.setSelected(false);
 //                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 
 
-                fragmentManager = getSupportFragmentManager();
-
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, new NotficationFragment());
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
+//                fragmentManager = getSupportFragmentManager();
+//
+//                fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.container, new NotficationFragment());
+//                //  fragmentTransaction.commit();
+//                fragmentTransaction.commitAllowingStateLoss();
 
             }
         });
@@ -285,19 +457,20 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
+                drawer.openDrawer(GravityCompat.START);
 
 
-                text_1.setTextColor(getResources().getColor(R.color.colorPrimary));
-                text_2.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_3.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_4.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+//                text_1.setTextColor(getResources().getColor(R.color.colorPrimary));
+//                text_2.setTextColor(getResources().getColor(R.color.color_un_active));
+//                text_3.setTextColor(getResources().getColor(R.color.color_un_active));
+//                text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+//                text_s.setTextColor(getResources().getColor(R.color.color_un_active));
 
 
-                image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fill));
-                image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fill));
-                image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_as));
-                image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222pro));
+//                image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fill));
+//                image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fill));
+//                image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_as));
+//                image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222pro));
 
 //                image_1.setSelected(true);
 //                image_2.setSelected(false);
@@ -305,18 +478,18 @@ public class MainActivity extends AppCompatActivity {
 //                image_4.setSelected(false);
 //                image_s.setSelected(false);
 
-//                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-
-
-                fragmentManager = getSupportFragmentManager();
-
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, new MapsFragmentNew());
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
+//
+//
+//                fragmentManager = getSupportFragmentManager();
+//
+//                fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.container, new MapsFragmentNew());
+//                //  fragmentTransaction.commit();
+//                fragmentTransaction.commitAllowingStateLoss();
 
             }
         });
@@ -326,36 +499,132 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if (Settings.checkLogin()) {
-                    text_1.setTextColor(getResources().getColor(R.color.color_un_active));
-                    text_2.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    text_3.setTextColor(getResources().getColor(R.color.color_un_active));
-                    text_4.setTextColor(getResources().getColor(R.color.color_un_active));
-                    text_s.setTextColor(getResources().getColor(R.color.color_un_active));
 
-                    image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fills));
-                    image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fills));
-                    image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_as));
-                    image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222pro));
 
+                    AlertDialog alertDialog;
+
+
+                    LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    final View popupView = layoutInflater.inflate(R.layout.bottom_sheets_service, null);
+
+
+                    LinearLayout rent_layout = popupView.findViewById(R.id.rent_layout);
+                    LinearLayout realState = popupView.findViewById(R.id.realState);
+                    LinearLayout settings = popupView.findViewById(R.id.settings);
+                    LinearLayout contact_us = popupView.findViewById(R.id.contact_us);
+                    LinearLayout Technical_support = popupView.findViewById(R.id.Technical_support);
+                    LinearLayout MOreAqarezMan = popupView.findViewById(R.id.MOreAqarezMan);
+                    realState.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MainActivity.this, OrderListActivity.class);
+//                                intent.putExtra("from", "splash");
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+                        }
+                    });
+                    contact_us.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MainActivity.this, ContactUsActivity.class);
+//                                intent.putExtra("from", "splash");
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+                        }
+                    });
+                    Technical_support.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+
+
+                                Intent sendIntent = new Intent("android.intent.action.MAIN");
+                                sendIntent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
+                                sendIntent.setAction(Intent.ACTION_SEND);
+                                sendIntent.setType("text/plain");
+                                sendIntent.putExtra(Intent.EXTRA_TEXT, "");
+                                sendIntent.putExtra("jid", "966532576667" + "@s.whatsapp.net");
+                                sendIntent.setPackage("com.whatsapp");
+                                startActivity(sendIntent);
+                            } catch (Exception e) {
+                                Toast.makeText(MainActivity.this, "Error/n" + e.toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                    MOreAqarezMan.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+
+                            Intent intent = new Intent(MainActivity.this, AllclintActivity.class);
+//                                intent.putExtra("from", "splash");
+                            startActivity(intent);
+
+                        }
+                    });
+                    rent_layout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            if (Hawk.contains("rent_layout")) {
+
+                                Intent intent = new Intent(MainActivity.this, RentActivity.class);
+                                intent.putExtra("id", "");
+                                startActivity(intent);
+                            } else {
+                                Hawk.put("rent_layout", "rent_layout");
+                                Intent intent = new Intent(MainActivity.this, RentShowActivity.class);
+                                intent.putExtra("id", "");
+                                startActivity(intent);
+                            }
+
+
+                        }
+                    });
+
+
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+//            alertDialog_country =
+                    builder.setView(popupView);
+
+
+                    alertDialog = builder.show();
+
+                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+//                    text_1.setTextColor(getResources().getColor(R.color.color_un_active));
+//                    text_2.setTextColor(getResources().getColor(R.color.colorPrimary));
+//                    text_3.setTextColor(getResources().getColor(R.color.color_un_active));
+//                    text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+//                    text_s.setTextColor(getResources().getColor(R.color.color_un_active));
 //
-//                    image_1.setSelected(false);
-//                    image_2.setSelected(true);
-//                    image_3.setSelected(false);
-//                    image_4.setSelected(false);
+////                    image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fills));
+////                    image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fills));
+////                    image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_as));
+////                    image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222pro));
+//
 ////
-//                    image_s.setSelected(false);
-
-//                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-
-                    fragmentManager = getSupportFragmentManager();
-
-                    fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container, new OrdersFragment());
-                    //  fragmentTransaction.commit();
-                    fragmentTransaction.commitAllowingStateLoss();
+////                    image_1.setSelected(false);
+////                    image_2.setSelected(true);
+////                    image_3.setSelected(false);
+////                    image_4.setSelected(false);
+//////
+////                    image_s.setSelected(false);
+//
+//                    image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                    image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                    image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                    image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//
+//                    fragmentManager = getSupportFragmentManager();
+//
+//                    fragmentTransaction = fragmentManager.beginTransaction();
+//                    fragmentTransaction.replace(R.id.container, new OrdersFragment());
+//                    //  fragmentTransaction.commit();
+//                    fragmentTransaction.commitAllowingStateLoss();
                 } else {
                     new AlertDialog.Builder(MainActivity.this)
                             .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
@@ -382,38 +651,42 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (Settings.checkLogin()) {
+                    Intent intent = new Intent(MainActivity.this, ChateActivity.class);
+//                                intent.putExtra("from", "splash");
+                    startActivity(intent);
 
-                    text_1.setTextColor(getResources().getColor(R.color.color_un_active));
-                    text_2.setTextColor(getResources().getColor(R.color.color_un_active));
-                    text_3.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    text_4.setTextColor(getResources().getColor(R.color.color_un_active));
-                    text_s.setTextColor(getResources().getColor(R.color.color_un_active));
-
-                    image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fills));
-                    image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fill));
-                    image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_ass));
-                    image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222pro));
-
-
-//                    image_1.setSelected(false);
-//                    image_2.setSelected(false);
-//                    image_3.setSelected(true);
-//                    image_4.setSelected(false);
-////
-//                    image_s.setSelected(false);
-
-//                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-
-
-                    fragmentManager = getSupportFragmentManager();
-
-                    fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container, new ServiceFragment());
-                    //  fragmentTransaction.commit();
-                    fragmentTransaction.commitAllowingStateLoss();
+                    //
+//                    text_1.setTextColor(getResources().getColor(R.color.color_un_active));
+//                    text_2.setTextColor(getResources().getColor(R.color.color_un_active));
+//                    text_3.setTextColor(getResources().getColor(R.color.colorPrimary));
+//                    text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+//                    text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+//
+////                    image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fills));
+////                    image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fill));
+////                    image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_ass));
+////                    image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222pro));
+//
+//
+////                    image_1.setSelected(false);
+////                    image_2.setSelected(false);
+////                    image_3.setSelected(true);
+////                    image_4.setSelected(false);
+//////
+////                    image_s.setSelected(false);
+//
+//                    image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                    image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                    image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                    image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//
+//
+//                    fragmentManager = getSupportFragmentManager();
+//
+//                    fragmentTransaction = fragmentManager.beginTransaction();
+//                    fragmentTransaction.replace(R.id.container, new ServiceFragment());
+//                    //  fragmentTransaction.commit();
+//                    fragmentTransaction.commitAllowingStateLoss();
                 } else {
                     new AlertDialog.Builder(MainActivity.this)
                             .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
@@ -437,33 +710,67 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                text_1.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_2.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_3.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_4.setTextColor(getResources().getColor(R.color.colorPrimary));
-                text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+                if (Settings.checkLogin()) {
 
 
-                image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fills));
-                image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fill));
-                image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_as));
-                image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222prof));
+                    if (Settings.CheckIsAccountAqarzMan()) {
+//                    Intent intent = new Intent(getContext(), DetailsAqarzManActivity.class);
+//                    Intent intent = new Intent(getContext(), AqarzProfileActivity.class);
+                        Intent intent = new Intent(MainActivity.this, MyProfileActivity.class);
+//                                intent.putExtra("from", "splash");
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                    } else {
+                        Intent intent = new Intent(MainActivity.this, MyProfileInformationActivity.class);
+//                                intent.putExtra("from", "splash");
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                    }
+                } else {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+                            .setCancelable(false)
+                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
 
-//                image_1.setSelected(false);
-//                image_s.setSelected(false);
-//                image_2.setSelected(false);
-//                image_3.setSelected(false);
-//                image_4.setSelected(true);
+                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                                    startActivity(intent);
+
+                                }
+                            })
+                            .setNegativeButton(getResources().getString(R.string.no), null)
+                            .show();
+                }
+
+//
+//                text_1.setTextColor(getResources().getColor(R.color.color_un_active));
+//                text_2.setTextColor(getResources().getColor(R.color.color_un_active));
+//                text_3.setTextColor(getResources().getColor(R.color.color_un_active));
+//                text_4.setTextColor(getResources().getColor(R.color.colorPrimary));
+//                text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+//
+////
+////                image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fills));
+////                image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fill));
+////                image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_as));
+////                image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222prof));
+//
+////                image_1.setSelected(false);
+////                image_s.setSelected(false);
+////                image_2.setSelected(false);
+////                image_3.setSelected(false);
+////                image_4.setSelected(true);
 //                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 //                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                fragmentManager = getSupportFragmentManager();
-
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, new MoreFragment());
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
+//                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                fragmentManager = getSupportFragmentManager();
+//
+//                fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.container, new MoreFragment());
+//                //  fragmentTransaction.commit();
+//                fragmentTransaction.commitAllowingStateLoss();
 
             }
         });
@@ -515,18 +822,22 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        text_1.setTextColor(getResources().getColor(R.color.colorPrimary));
-        text_2.setTextColor(getResources().getColor(R.color.color_un_active));
-        text_3.setTextColor(getResources().getColor(R.color.color_un_active));
-        text_4.setTextColor(getResources().getColor(R.color.color_un_active));
-        text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+//        text_1.setTextColor(getResources().getColor(R.color.colorPrimary));
+//        text_2.setTextColor(getResources().getColor(R.color.color_un_active));
+//        text_3.setTextColor(getResources().getColor(R.color.color_un_active));
+//        text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+//        text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+//
+//        image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//        image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//        image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//        image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 
-
-        image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fill));
-
-        image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fill));
-        image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_as));
-        image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222pro));
+//        image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fill));
+//
+//        image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fill));
+//        image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_as));
+//        image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222pro));
 
 
         add_aqarez_c.setOnClickListener(new View.OnClickListener() {
@@ -579,6 +890,264 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, FinanceActivity.class);
                 intent.putExtra("id", "");
                 startActivity(intent);
+
+            }
+        });
+        LinearLayoutManager layoutManagerm
+                = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        selsct_type_all.setLayoutManager(layoutManagerm);
+
+
+        oprationModules_list.add(new select_typeModules(1, getResources().getString(R.string.mn1)));
+        oprationModules_list.add(new select_typeModules(2, getResources().getString(R.string.mn2)));
+        oprationModules_list.add(new select_typeModules(3, getResources().getString(R.string.mn3)));
+//        oprationModules_list.add(new select_typeModules(1, getContext().getResources().getString(R.string.Investment)));
+
+        RecyclerView_bottomSheet_type recyclerView_bottomSheet_type = new RecyclerView_bottomSheet_type(MainActivity.this, oprationModules_list);
+        recyclerView_bottomSheet_type.addItemClickListener(new RecyclerView_bottomSheet_type.ItemClickListener() {
+            @Override
+            public void onItemClick(List<select_typeModules> select_typeModules) {
+                type = "";
+
+                for (int i = 0; i < select_typeModules.size(); i++) {
+
+                    if (i == 0) {
+
+                        if (select_typeModules.get(0).getSelected()) {
+                            type = "null";
+                            break;
+                        }
+
+                    } else {
+
+                        if (select_typeModules.get(1).getSelected()) {
+                            type = "is_pay";
+
+                        }
+                        if (select_typeModules.get(2).getSelected()) {
+                            type = "is_rent";
+
+                        }
+
+
+//                        if (select_typeModules.get(i).getSelected()) {
+//                            if (type.equals("")) {
+//                                type = select_typeModules.get(i).getId() + "";
+//                            } else {
+//                                type = type + "," + select_typeModules.get(i).getId() + "";
+//                            }
+//
+//
+//                        }
+
+
+                    }
+
+
+                }
+
+
+//                type = select_typeModules;
+
+
+            }
+        });
+        selsct_type_all.setAdapter(recyclerView_bottomSheet_type);
+        filtter_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                if (mItemClickListener != null) {
+//
+//                    mItemClickListener.onItemClick(te);
+//                }
+
+                te = "&estate_pay_type=" + type + "&price_from=" + Les_price.getText().toString() + "&price_to=" + Maximum_price.getText().toString() + "&area_from=" + Les_space.getText().toString() + "&area_from=" + Maximum_space.getText().toString();
+                MapsFragmentNew.get_all_estate_filttters(te);
+
+                drawer.closeDrawer(GravityCompat.START);
+
+
+            }
+        });
+///------------------------------------------------------------------------------------------------------
+        type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
+
+        LinearLayoutManager layoutManagerw
+                = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        opration.setLayoutManager(layoutManagerw);
+
+        RecyclerView_All_opration_bottom_sheet recyclerView_all_opration_bottom_sheet = new RecyclerView_All_opration_bottom_sheet(MainActivity.this, type_list);
+        recyclerView_all_opration_bottom_sheet.addItemClickListener(new RecyclerView_All_opration_bottom_sheet.ItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                opration_select = type_list.get(position).getId().toString() + "";
+            }
+        });
+        opration.setAdapter(recyclerView_all_opration_bottom_sheet);
+
+
+//        init_volley();
+//
+//        VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+//
+//        mVolleyService.getDataVolley("city", WebService.cities);
+//
+//        area_sseekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
+//            @Override
+//            public void valueChanged(Number minValue, Number maxValue) {
+//                min_area_ = minValue + "";
+//                max_area_ = maxValue + "";
+//
+//
+//                String minValue___ = minValue + "";
+//                int price_int = Integer.valueOf(minValue___);
+//
+//                int prices = (int) price_int;
+//
+//
+//                if (price_int < 1000) {
+//
+//                    minValue___ = prices + "";
+//                } else if (price_int > 1000 && price_int < 999999) {
+//                    prices = (int) price_int / 1000;
+//
+//                    minValue___ = prices + getResources().getString(R.string.K);
+//
+//                } else if (price_int > 999999) {
+//                    prices = (int) price_int / 1000000;
+//
+//                    minValue___ = prices + getResources().getString(R.string.Million);
+//
+//                }
+//
+//
+//                String maxValue___ = maxValue + "";
+//                int price_int_ = Integer.valueOf(maxValue___);
+//
+//                int prices_s = (int) price_int_;
+//
+//
+//                if (price_int_ < 1000) {
+//
+//                    maxValue___ = prices_s + "";
+//                } else if (price_int_ > 1000 && price_int_ < 999999) {
+//                    prices_s = (int) price_int_ / 1000;
+//
+//                    maxValue___ = prices_s + getResources().getString(R.string.K);
+//
+//                } else if (price_int_ > 999999) {
+//                    prices_s = (int) price_int_ / 1000000;
+//
+//                    maxValue___ = prices_s + getResources().getString(R.string.Million);
+//
+//                }
+//
+//
+//                max_area.setText(maxValue___ + "");
+//                min_area.setText(minValue___ + "");
+//
+//
+//            }
+//        });
+
+
+        room_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                room_1.setBackground(getResources().getDrawable(R.drawable.button_login));
+                room_2.setBackground(null);
+                room_3.setBackground(null);
+                room_4.setBackground(null);
+                room_5.setBackground(null);
+
+
+                room_1.setTextColor(getResources().getColor(R.color.white));
+                room_2.setTextColor(getResources().getColor(R.color.textColor));
+                room_3.setTextColor(getResources().getColor(R.color.textColor));
+                room_4.setTextColor(getResources().getColor(R.color.textColor));
+                room_5.setTextColor(getResources().getColor(R.color.textColor));
+                num_room = "1";
+            }
+        });
+        room_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                room_2.setBackground(getResources().getDrawable(R.drawable.button_login));
+                room_1.setBackground(null);
+                room_3.setBackground(null);
+                room_4.setBackground(null);
+                room_5.setBackground(null);
+
+
+                room_2.setTextColor(getResources().getColor(R.color.white));
+                room_1.setTextColor(getResources().getColor(R.color.textColor));
+                room_3.setTextColor(getResources().getColor(R.color.textColor));
+                room_4.setTextColor(getResources().getColor(R.color.textColor));
+                room_5.setTextColor(getResources().getColor(R.color.textColor));
+                num_room = "2";
+
+            }
+        });
+        room_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                room_3.setBackground(getResources().getDrawable(R.drawable.button_login));
+                room_2.setBackground(null);
+                room_1.setBackground(null);
+                room_4.setBackground(null);
+                room_5.setBackground(null);
+
+
+                room_3.setTextColor(getResources().getColor(R.color.white));
+                room_2.setTextColor(getResources().getColor(R.color.textColor));
+                room_1.setTextColor(getResources().getColor(R.color.textColor));
+                room_4.setTextColor(getResources().getColor(R.color.textColor));
+                room_5.setTextColor(getResources().getColor(R.color.textColor));
+                num_room = "3";
+
+            }
+        });
+        room_4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                room_4.setBackground(getResources().getDrawable(R.drawable.button_login));
+                room_2.setBackground(null);
+                room_3.setBackground(null);
+                room_1.setBackground(null);
+                room_5.setBackground(null);
+
+
+                room_4.setTextColor(getResources().getColor(R.color.white));
+                room_2.setTextColor(getResources().getColor(R.color.textColor));
+                room_3.setTextColor(getResources().getColor(R.color.textColor));
+                room_1.setTextColor(getResources().getColor(R.color.textColor));
+                room_5.setTextColor(getResources().getColor(R.color.textColor));
+                num_room = "4";
+
+            }
+        });
+        room_5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                room_5.setBackground(getResources().getDrawable(R.drawable.button_login));
+                room_2.setBackground(null);
+                room_3.setBackground(null);
+                room_4.setBackground(null);
+                room_1.setBackground(null);
+
+
+                room_5.setTextColor(getResources().getColor(R.color.white));
+                room_2.setTextColor(getResources().getColor(R.color.textColor));
+                room_3.setTextColor(getResources().getColor(R.color.textColor));
+                room_4.setTextColor(getResources().getColor(R.color.textColor));
+                room_1.setTextColor(getResources().getColor(R.color.textColor));
+                num_room = "5";
 
             }
         });
@@ -710,6 +1279,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+
+
+        if (!first_time_) {
+            forceUpdate();
+        } else {
+
+        }
+
+        super.onResume();
+    }
 
     public void goToFragment(int fragmentIndex) {
         fragmentManager = getSupportFragmentManager();
@@ -933,6 +1514,7 @@ public class MainActivity extends AppCompatActivity {
 
     // check version on play store and force update
     public void forceUpdate() {
+        first_time_ = false;
         PackageManager packageManager = this.getPackageManager();
         PackageInfo packageInfo = null;
         try {

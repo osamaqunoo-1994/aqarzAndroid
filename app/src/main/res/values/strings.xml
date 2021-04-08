@@ -868,15 +868,29 @@ Two working days to complete your order</string>
     <string name="Profile_menu">Profile</string>
 
 
-    <string name="m_e1">تقييم</string>
-    <string name="m_e2">تقسيط تاجير</string>
-    <string name="m_e3">تمويل</string>
-    <string name="m_e4">اضافة عقار</string>
-    <string name="m_e5">طلب عقار</string>
+    <string name="m_e1">Rate</string>
+    <string name="m_e2">Rental</string>
+    <string name="m_e3">Funding</string>
+    <string name="m_e4">Add Aqarez</string>
+    <string name="m_e5">Request Aqarez</string>
 
-    <string name="Title_order_1">طلبات الصندوق العقاري</string>
-    <string name="Title_order_2">طلبات السوق</string>
-    <string name="Title_order_3">العروض</string>
+    <string name="Title_order_1">Real fund requests</string>
+    <string name="Title_order_2">Market demands</string>
+    <string name="Title_order_3">Offers</string>
     <string name="title_activity_maps">Map</string>
+    <string name="search_filtter_title">Search filter</string>
+    <string name="search_aqarez_man">Search Aqarez Man</string>
+    <string name="cancleFiltter">Cancle Filtter</string>
+
+
+    <string name="mn1">شراء</string>
+    <string name="mn2">إيجار</string>
+    <string name="mn3">استثمار</string>
+    <string name="title_dialog">الخدمات العقاريه</string>
+    <string name="request_aqarez">Request Aqarez</string>
+    <string name="Enterthenameyouwanttosearch">Enter the name you want to search</string>
+    <string name="searchbyqr">Search QR</string>
+    <string name="nameAqarez">Name Aqarez</string>
+
 
 </resources>

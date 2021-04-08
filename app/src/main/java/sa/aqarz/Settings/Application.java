@@ -1,6 +1,8 @@
 package sa.aqarz.Settings;
 
 import android.app.Activity;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.view.View;
 
@@ -15,13 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Modules.CityModules;
 import sa.aqarz.Modules.MyOfferModule;
 
 
 public class Application extends android.app.Application {
 
-    static Activity activity;
+    static Application activity;
 
     public static List<CityModules> AllCity = new ArrayList<CityModules>();
 
@@ -38,6 +41,7 @@ public class Application extends android.app.Application {
 //        Fresco.initialize(this);
 //
 //
+        activity=this;
         Hawk.init(this).build();
 
         if (Hawk.contains("lang")) {
@@ -90,5 +94,20 @@ public class Application extends android.app.Application {
 
     }
 
+    // check version on play store and force update
+    public static String getversionName() {
+        PackageManager packageManager = activity.getPackageManager();
+        PackageInfo packageInfo = null;
+        try {
+            packageInfo = packageManager.getPackageInfo(activity.getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        String currentVersion = packageInfo.versionName;
+
+        System.out.println("currentVersion" + currentVersion);
+
+        return currentVersion;
+    }
 
 }
