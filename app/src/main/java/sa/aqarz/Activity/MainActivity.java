@@ -534,6 +534,16 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     });
+                    settings.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+//                                intent.putExtra("from", "splash");
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+                        }
+                    });
                     Technical_support.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
