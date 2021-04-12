@@ -101,9 +101,9 @@ public class SplashScreenActivity extends AppCompatActivity {
                     getBaseContext().getResources().getDisplayMetrics());
         } else {
 
-            Hawk.put("lang", LocaleUtils.getLanguage(this));
+            Hawk.put("lang", "ar");
 
-            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale locale = new Locale("ar");
             Locale.setDefault(locale);
             Configuration config = new Configuration();
             config.locale = locale;

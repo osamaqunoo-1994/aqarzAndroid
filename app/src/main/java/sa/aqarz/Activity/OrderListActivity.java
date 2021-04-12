@@ -138,6 +138,12 @@ public class OrderListActivity extends AppCompatActivity {
     ImageView back;
     public static FiltterModules filtterModules = new FiltterModules();
 
+
+    TextView status_1;
+    TextView status_2;
+    TextView status_3;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -167,6 +173,9 @@ public class OrderListActivity extends AppCompatActivity {
         Shopping_request_layout = findViewById(R.id.Shopping_request_layout);
         premium = findViewById(R.id.premium);
         filtter_price_market_order = findViewById(R.id.filtter_price_market_order);
+        status_1 = findViewById(R.id.status_1);
+        status_2 = findViewById(R.id.status_2);
+        status_3 = findViewById(R.id.status_3);
 
         Shopping_request_text = findViewById(R.id.Shopping_request_text);
         orders_rec = findViewById(R.id.orders_rec);
@@ -743,23 +752,23 @@ public class OrderListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AllOrder.setBackground(getResources().getDrawable(R.drawable.mash));
+                AllOrder.setBackground(null);
                 today.setBackground(getResources().getDrawable(R.drawable.button_login));
-                Myoffer.setBackground(getResources().getDrawable(R.drawable.mash));
+                Myoffer.setBackground(null);
 
 
-                Myoffer_number.setBackground(getResources().getDrawable(R.drawable.mash));
-                today_number.setBackground(getResources().getDrawable(R.drawable.circle_ss));
-                AllOrder_number.setBackground(getResources().getDrawable(R.drawable.mash));
+//                Myoffer_number.setBackground(getResources().getDrawable(R.drawable.mash));
+//                today_number.setBackground(getResources().getDrawable(R.drawable.circle_ss));
+//                AllOrder_number.setBackground(getResources().getDrawable(R.drawable.mash));
 
 
                 AllOrder.setTextColor(getResources().getColor(R.color.textColor));
                 today.setTextColor(getResources().getColor(R.color.white));
                 Myoffer.setTextColor(getResources().getColor(R.color.textColor));
 
-                Myoffer_number.setTextColor(getResources().getColor(R.color.textColor));
-                today_number.setTextColor(getResources().getColor(R.color.white));
-                AllOrder_number.setTextColor(getResources().getColor(R.color.textColor));
+//                Myoffer_number.setTextColor(getResources().getColor(R.color.textColor));
+//                today_number.setTextColor(getResources().getColor(R.color.white));
+//                AllOrder_number.setTextColor(getResources().getColor(R.color.textColor));
 
 
                 page = 1;
@@ -771,18 +780,39 @@ public class OrderListActivity extends AppCompatActivity {
         });
 
 
+        status_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+        status_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        status_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
         Myoffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                AllOrder.setBackground(getResources().getDrawable(R.drawable.mash));
-                today.setBackground(getResources().getDrawable(R.drawable.mash));
+                AllOrder.setBackground(null);
+                today.setBackground(null);
                 Myoffer.setBackground(getResources().getDrawable(R.drawable.button_login));
 
 
-                Myoffer_number.setBackground(getResources().getDrawable(R.drawable.circle_ss));
-                today_number.setBackground(getResources().getDrawable(R.drawable.mash));
-                AllOrder_number.setBackground(getResources().getDrawable(R.drawable.mash));
+//                Myoffer_number.setBackground(getResources().getDrawable(R.drawable.circle_ss));
+//                today_number.setBackground(getResources().getDrawable(R.drawable.mash));
+//                AllOrder_number.setBackground(getResources().getDrawable(R.drawable.mash));
 
 
                 AllOrder.setTextColor(getResources().getColor(R.color.textColor));
@@ -790,9 +820,9 @@ public class OrderListActivity extends AppCompatActivity {
                 Myoffer.setTextColor(getResources().getColor(R.color.white));
 
 
-                Myoffer_number.setTextColor(getResources().getColor(R.color.white));
-                today_number.setTextColor(getResources().getColor(R.color.textColor));
-                AllOrder_number.setTextColor(getResources().getColor(R.color.textColor));
+//                Myoffer_number.setTextColor(getResources().getColor(R.color.white));
+//                today_number.setTextColor(getResources().getColor(R.color.textColor));
+//                AllOrder_number.setTextColor(getResources().getColor(R.color.textColor));
 
 
                 page = 1;
@@ -808,22 +838,22 @@ public class OrderListActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 AllOrder.setBackground(getResources().getDrawable(R.drawable.button_login));
-                today.setBackground(getResources().getDrawable(R.drawable.mash));
-                Myoffer.setBackground(getResources().getDrawable(R.drawable.mash));
+                today.setBackground(null);
+                Myoffer.setBackground(null);
 
 
-                Myoffer_number.setBackground(getResources().getDrawable(R.drawable.mash));
-                today_number.setBackground(getResources().getDrawable(R.drawable.mash));
-                AllOrder_number.setBackground(getResources().getDrawable(R.drawable.circle_ss));
+//                Myoffer_number.setBackground(getResources().getDrawable(R.drawable.mash));
+//                today_number.setBackground(getResources().getDrawable(R.drawable.mash));
+//                AllOrder_number.setBackground(getResources().getDrawable(R.drawable.circle_ss));
 
 
                 AllOrder.setTextColor(getResources().getColor(R.color.white));
                 today.setTextColor(getResources().getColor(R.color.textColor));
                 Myoffer.setTextColor(getResources().getColor(R.color.textColor));
 
-                Myoffer_number.setTextColor(getResources().getColor(R.color.textColor));
-                today_number.setTextColor(getResources().getColor(R.color.textColor));
-                AllOrder_number.setTextColor(getResources().getColor(R.color.white));
+//                Myoffer_number.setTextColor(getResources().getColor(R.color.textColor));
+//                today_number.setTextColor(getResources().getColor(R.color.textColor));
+//                AllOrder_number.setTextColor(getResources().getColor(R.color.white));
 
 
                 page = 1;
@@ -843,8 +873,8 @@ public class OrderListActivity extends AppCompatActivity {
 
 //        Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.background_order));
 
-        Real_Estate_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
-        Real_Estate_order_image.setColorFilter(ContextCompat.getColor(OrderListActivity.this, R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
+//        Real_Estate_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
+//        Real_Estate_order_image.setColorFilter(ContextCompat.getColor(OrderListActivity.this, R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
 
 
         page = 1;

@@ -468,7 +468,7 @@ Your request and reply in the fastest time</string>
     <string name="TimeRemmember">Time Remmember</string>
     <string name="MyOFFERFOR">My offers on order number </string>
     <string name="MyOFFERFOR_title">Offer accepted by the Fund on Application No. </string>
-    <string name="MOreAqarezMan">The most active real estate agents </string>
+    <string name="MOreAqarezMan">most Aqarez Man</string>
     <string name="contune">Continue </string>
     <string name="OrderDetialss">Request data </string>
     <string name="OrderstatusDetialss">Order Status </string>
@@ -886,11 +886,16 @@ Two working days to complete your order</string>
     <string name="mn1">شراء</string>
     <string name="mn2">إيجار</string>
     <string name="mn3">استثمار</string>
-    <string name="title_dialog">الخدمات العقاريه</string>
+    <string name="title_dialog">Service Aqarez</string>
     <string name="request_aqarez">Request Aqarez</string>
     <string name="Enterthenameyouwanttosearch">Enter the name you want to search</string>
     <string name="searchbyqr">Search QR</string>
     <string name="nameAqarez">Name Aqarez</string>
+
+
+    <string name="asas1">طلب مقبول</string>
+    <string name="asas2">طلب معاينة</string>
+    <string name="asas3">قيد الانتظار</string>
 
 
 </resources>

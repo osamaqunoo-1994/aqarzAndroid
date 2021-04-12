@@ -177,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout search_layout;
     LinearLayout search_aqaerz;
     TextView qr_search;
+    ImageView close;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
         search = findViewById(R.id.search);
         search_aqarez_man = findViewById(R.id.search_aqarez_man);
         qr_search = findViewById(R.id.qr_search);
+        close = findViewById(R.id.close);
 
         selsct_type_all = findViewById(R.id.selsct_type_all);
         opration = findViewById(R.id.opration);
@@ -977,6 +979,13 @@ public class MainActivity extends AppCompatActivity {
 
                 drawer.closeDrawer(GravityCompat.START);
 
+
+            }
+        });
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.closeDrawer(GravityCompat.START);
 
             }
         });

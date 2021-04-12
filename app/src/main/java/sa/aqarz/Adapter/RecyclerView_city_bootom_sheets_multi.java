@@ -71,7 +71,7 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
     }
 
     public RecyclerView_city_bootom_sheets_multi(Context context, List<CityModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_city_bootom_sheets_multi.alldata = alldata;
         this.context = context;
     }
 
@@ -122,12 +122,7 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
 
         holder.text.setText(alldata.get(position).getName() + "");
 
-        if (alldata.get(position).isSelected()) {
-            holder.text.setChecked(true);
-        } else {
-            holder.text.setChecked(false);
-
-        }
+        holder.text.setChecked(alldata.get(position).isSelected());
         //   wallet, dafter, receipt, payment
 
 //
@@ -234,7 +229,7 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
                 }
 
 
-                mItemClickListener2.onItemClick(alldata.get(position));
+//                mItemClickListener2.onItemClick(alldata.get(position));
 
 
             }

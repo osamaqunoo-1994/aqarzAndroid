@@ -36,19 +36,23 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="140dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/rent_layout"
-                    android:layout_width="140dp"
-                    android:layout_height="120dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:background="@drawable/edit_text_background_new_design"
-
                     android:gravity="center"
-                    android:orientation="vertical">
+
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
 
                     <ImageView
@@ -74,12 +78,14 @@
                 <LinearLayout
                     android:id="@+id/realState"
 
-                    android:layout_width="140dp"
-                    android:layout_height="120dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:background="@drawable/edit_text_background_new_design"
-
                     android:gravity="center"
-                    android:orientation="vertical">
+
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
 
                     <ImageView
@@ -126,12 +132,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:maxLength="11"
+                    android:gravity="center"
+
 
                     android:text="@string/MOreAqarezMan"
                     android:textColor="@color/white"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
+                    android:textSize="11dp" />
 
 
             </LinearLayout>
@@ -154,11 +160,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:maxLength="11"
+                    android:gravity="center"
+
                     android:text="@string/Technical_support"
                     android:textColor="@color/white"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
+                    android:textSize="11dp" />
 
 
             </LinearLayout>
@@ -181,11 +187,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:maxLength="11"
+                    android:gravity="center"
+
                     android:text="@string/contactus_title"
                     android:textColor="@color/white"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
+                    android:textSize="11dp" />
 
 
             </LinearLayout>
@@ -208,12 +214,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:maxLength="11"
+
                     android:text="@string/Settings_title"
 
                     android:textColor="@color/white"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
+                    android:textSize="11dp" />
 
 
             </LinearLayout>

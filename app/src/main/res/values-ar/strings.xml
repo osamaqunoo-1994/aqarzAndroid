@@ -710,7 +710,7 @@
 
     <string name="MyOFFERFOR">عروضي على الطلب رقم </string>
     <string name="MyOFFERFOR_title">العرض المقبول من قبل الصندوق على الطلب رقم </string>
-    <string name="MOreAqarezMan">العقاريين الأكثر نشاطاً </string>
+    <string name="MOreAqarezMan">العقاريين الأكثر نشاطا</string>
     <string name="contune">متابعة </string>
     <string name="OrderDetialss">بيانات الطلب </string>
     <string name="OrderstatusDetialss">حالة الطلب </string>
@@ -875,7 +875,6 @@
     <string name="Profile_menu">حسابي</string>
 
 
-
     <string name="m_e1">تقييم</string>
     <string name="m_e2">تقسيط تاجير</string>
     <string name="m_e3">تمويل</string>
@@ -889,8 +888,7 @@
     <string name="search_filtter_title">تصفية البحث</string>
     <string name="search_aqarez_man">بحث عن عقاري</string>
 
-    <string name="cancleFiltter">الغاء الفلتر</string>
-
+    <string name="cancleFiltter">الغاء التحديد</string>
 
 
     <string name="mn1">شراء</string>

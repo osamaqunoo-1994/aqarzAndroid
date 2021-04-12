@@ -45,6 +45,7 @@ import sa.aqarz.Activity.Auth.EditProfileActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.ChatRoomActivity;
 import sa.aqarz.Activity.MainActivity;
+import sa.aqarz.Activity.MyOrderActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Activity.SelectLocationActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
@@ -88,6 +89,7 @@ public class MyProfileActivity extends AppCompatActivity {
     LinearLayout my_service;
     LinearLayout my_clints;
     LinearLayout location;
+    LinearLayout myorder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +117,7 @@ public class MyProfileActivity extends AppCompatActivity {
         my_clints = findViewById(R.id.my_clints);
         rate = findViewById(R.id.rate);
         location = findViewById(R.id.location);
+        myorder = findViewById(R.id.myorder);
 
 
         offer_text = findViewById(R.id.offer_text);
@@ -175,6 +178,15 @@ public class MyProfileActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
+        myorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyProfileActivity.this, MyOrderActivity.class);
+//              intent.putExtra("from", "splash");
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
         my_clints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -196,14 +208,14 @@ public class MyProfileActivity extends AppCompatActivity {
         });
 
         try {
-            if (!Settings.GetUser().getName().toString().equals("null")) {
+            if (!Settings.GetUser().getName().equals("null")) {
                 name.setText(Settings.GetUser().getName());
 
             } else {
                 name.setText("----------");
 
             }
-            if (!Settings.GetUser().getUser_name().toString().equals("null")) {
+            if (!Settings.GetUser().getUser_name().equals("null")) {
                 link.setText("@" + Settings.GetUser().getUser_name());
 
             } else {
@@ -211,7 +223,7 @@ public class MyProfileActivity extends AppCompatActivity {
 
             }
 
-            if (!Settings.GetUser().getUser_name().toString().equals("null")) {
+            if (!Settings.GetUser().getUser_name().equals("null")) {
 //                rate.setStar(Settings.GetUser().getr);
             } else {
                 link.setText("");
@@ -253,7 +265,7 @@ public class MyProfileActivity extends AppCompatActivity {
             offer_nu.setText(Settings.GetUser().getCount_offer() + "");
             visit_nu.setText(Settings.GetUser().getCount_visit() + "");
 
-            if (!Settings.GetUser().getLogo().toString().equals("null")) {
+            if (!Settings.GetUser().getLogo().equals("null")) {
                 Picasso.get().load(Settings.GetUser().getLogo()).into(profile);
 
             }//591694624
