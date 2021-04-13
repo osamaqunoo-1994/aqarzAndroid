@@ -38,6 +38,7 @@ import sa.aqarz.Activity.RealState.MyOfferOrderActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_OfferEstate;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_details_real_state;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
@@ -108,6 +109,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
         TextView sending_code;
         ImageView image_icon;
         ImageView add_favorite;
+        TextView more_details;
 
         public MyViewHolder(View view) {
             super(view);
@@ -129,6 +131,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
             accept = view.findViewById(R.id.accept);
             Street_view = view.findViewById(R.id.Street_view);
             sending_code = view.findViewById(R.id.sending_code);
+            more_details = view.findViewById(R.id.more_details);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
@@ -136,8 +139,8 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
     }
 
     public RecyclerView_ordersx(Context context, List<OrdersModules> alldata) {
-        this.alldata = alldata;
-        this.context = context;
+        RecyclerView_ordersx.alldata = alldata;
+        RecyclerView_ordersx.context = context;
     }
 
     public void addItemClickListener(ItemClickListener listener) {
@@ -174,7 +177,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 
         Picasso.get().load(alldata.get(position).getEstateTypeIcon()).into(holder.image_icon);
 
-        if (alldata.get(position).getHas_my_offer().toString().equals("0")) {
+        if (alldata.get(position).getHas_my_offer().equals("0")) {
             holder.new_offer.setVisibility(View.VISIBLE);
             holder.Watting.setVisibility(View.GONE);
             holder.reject.setVisibility(View.GONE);
@@ -266,6 +269,26 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 //        });
 //
 
+        holder.more_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                BottomSheetDialogFragment_details_real_state bottomSheetDialogFragment_details_real_state = new BottomSheetDialogFragment_details_real_state(alldata.get(position));
+                bottomSheetDialogFragment_details_real_state.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+//                Postion_opend = position;
+//                Refr();
+
+//                RequestOrderActivity.set_fragment(position);
+
+
+//                if (mItemClickListener != null) {
+//                    mItemClickListener.onItemClick(position);
+//                }
+////
+
+            }
+        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -291,7 +314,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                 if (Settings.CheckIsCompleate()) {
 
 
-                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
 
 //                        bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getUuid() + "");
 //                        bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
@@ -325,7 +348,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                 if (Settings.CheckIsCompleate()) {
 
 
-                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
 
 //                        bottomSheetDialogFragment_offerEstate = new BottomSheetDialogFragment_OfferEstate(alldata.get(position).getUuid() + "");
 //                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
@@ -357,7 +380,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                 if (Settings.CheckIsCompleate()) {
 
 
-                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
 
 //                        bottomSheetDialogFragment_offerEstate = new BottomSheetDialogFragment_OfferEstate(alldata.get(position).getUuid() + "");
 //                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
@@ -389,7 +412,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                 if (Settings.CheckIsCompleate()) {
 
 
-                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
 
 //                        bottomSheetDialogFragment_offerEstate = new BottomSheetDialogFragment_OfferEstate(alldata.get(position).getUuid() + "");
 //                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");

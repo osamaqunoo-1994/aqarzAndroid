@@ -900,4 +900,25 @@
     <string name="searchbyqr">بحث Qr</string>
     <string name="nameAqarez">أدخل إسم العقاري</string>
 
+
+
+
+    <string name="asas1">طلب مقبول</string>
+    <string name="asas2">طلب معاينة</string>
+    <string name="asas3">قيد الانتظار</string>
+    <string name="moredetails">المزيد من التفاصيل</string>
+
+
+    <string name="p1">رقم العقار</string>
+    <string name="p2">عدد الغرف</string>
+    <string name="p3">نوع العقار</string>
+    <string name="p4">حالة العقار</string>
+    <string name="p5">المساحة</string>
+    <string name="p6">الواجهة</string>
+    <string name="p7">الشارع</string>
+    <string name="p8">السعر</string>
+    <string name="p9">الموقع</string>
+    <string name="p10">المدينة</string>
+    <string name="p11">الأحياء</string>
+
 </resources>

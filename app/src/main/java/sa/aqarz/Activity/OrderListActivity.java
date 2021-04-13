@@ -784,6 +784,15 @@ public class OrderListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                status_1.setBackground(getResources().getDrawable(R.drawable.background_b2select));
+                status_1.setTextColor(getResources().getColor(R.color.white));
+
+
+                status_2.setBackground(null);
+                status_3.setBackground(null);
+                status_2.setTextColor(getResources().getColor(R.color.black));
+                status_3.setTextColor(getResources().getColor(R.color.black));
+
 
             }
         });
@@ -791,11 +800,31 @@ public class OrderListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                status_2.setBackground(getResources().getDrawable(R.drawable.background_b2select));
+                status_2.setTextColor(getResources().getColor(R.color.white));
+
+
+                status_1.setBackground(null);
+                status_3.setBackground(null);
+                status_1.setTextColor(getResources().getColor(R.color.black));
+                status_3.setTextColor(getResources().getColor(R.color.black));
+
+
             }
         });
         status_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                status_3.setBackground(getResources().getDrawable(R.drawable.background_b2select));
+                status_3.setTextColor(getResources().getColor(R.color.white));
+
+
+                status_2.setBackground(null);
+                status_1.setBackground(null);
+                status_2.setTextColor(getResources().getColor(R.color.black));
+                status_1.setTextColor(getResources().getColor(R.color.black));
+
 
             }
         });

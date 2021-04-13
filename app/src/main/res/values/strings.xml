@@ -893,9 +893,23 @@ Two working days to complete your order</string>
     <string name="nameAqarez">Name Aqarez</string>
 
 
-    <string name="asas1">طلب مقبول</string>
-    <string name="asas2">طلب معاينة</string>
-    <string name="asas3">قيد الانتظار</string>
+    <string name="asas1">Acceptable request</string>
+    <string name="asas2">Request a preview</string>
+    <string name="asas3">pending</string>
+    <string name="moredetails">more details</string>
+
+
+    <string name="p1">Aqarez Id</string>
+    <string name="p2">number rooms</string>
+    <string name="p3">Type Aqarez</string>
+    <string name="p4">Aqarez Status</string>
+    <string name="p5">Area</string>
+    <string name="p6">Interface</string>
+    <string name="p7">Street</string>
+    <string name="p8">Price</string>
+    <string name="p9">location</string>
+    <string name="p10">city</string>
+    <string name="p11">Neighborhood</string>
 
 
 </resources>
