@@ -90,7 +90,8 @@ public class MyProfileActivity extends AppCompatActivity {
     LinearLayout my_clints;
     LinearLayout location;
     LinearLayout myorder;
-
+//fmkdfjdfjkfjdf
+    //fdlkfkdjfkdjf
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -51,6 +51,8 @@ public class ContactUsActivity extends AppCompatActivity {
         phone_ed = findViewById(R.id.phone_ed);
         message = findViewById(R.id.message);
         send = findViewById(R.id.send);
+        send = findViewById(R.id.send);
+        send = findViewById(R.id.send);
 
 //
 //        email_info.setText(Settings.getSettings().getEmail());

@@ -94,6 +94,8 @@ public class WebService {
     public static String updateDeviceToken = Domain + "updateDeviceToken";
     public static String notification = Domain + "notification";
     public static String cancel = Domain + "cancel";
+    public static String canczdssdsel = Domain + "cancel";
+    public static String dsd = Domain + "cancel";
 //    public static String provider_code_send = Domain + "provider/code/send";
 
 
