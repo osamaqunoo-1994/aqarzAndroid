@@ -39,7 +39,7 @@ public class MyServiceActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         nodata_vis = findViewById(R.id.nodata_vis);
 
-
+///test
 //        WebService.loading(MyMemberActivity.this, true);
 
         LinearLayoutManager layoutManager1
