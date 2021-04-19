@@ -46,6 +46,12 @@ public class NotficationActvity extends AppCompatActivity {
     TextView title;
     ImageView back;
 
+
+    TextView all;
+    TextView requested;
+    TextView Administrativenotices;
+    TextView news_;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +62,10 @@ public class NotficationActvity extends AppCompatActivity {
         notfication = findViewById(R.id.notfication);
         title = findViewById(R.id.title);
         back = findViewById(R.id.back);
+        all = findViewById(R.id.all);
+        requested = findViewById(R.id.requested);
+        Administrativenotices = findViewById(R.id.Administrativenotices);
+        news_ = findViewById(R.id.news_);
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 //            if (back != null) {
@@ -73,6 +83,114 @@ public class NotficationActvity extends AppCompatActivity {
 //        nodata.setVisibility(View.VISIBLE);
         mVolleyService.getDataVolley("notification", WebService.notification);
 
+        all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                all.setBackground(getResources().getDrawable(R.drawable.button_login));
+                all.setTextColor(getResources().getColor(R.color.white));
+
+
+                Administrativenotices.setBackground(null);
+                Administrativenotices.setTextColor(getResources().getColor(R.color.black));
+
+
+                requested.setBackground(null);
+                requested.setTextColor(getResources().getColor(R.color.black));
+
+
+                news_.setBackground(null);
+                news_.setTextColor(getResources().getColor(R.color.black));
+
+                init_volley();
+                VolleyService mVolleyService = new VolleyService(mResultCallback, NotficationActvity.this);
+//        nodata.setVisibility(View.VISIBLE);
+                mVolleyService.getDataVolley("notification", WebService.notification);
+
+//                mVolleyService.getDataVolley("my_msg", WebService.my_msg);
+            }
+        });
+        Administrativenotices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                all.setBackground(getResources().getDrawable(R.drawable.shadow));
+                all.setTextColor(getResources().getColor(R.color.black));
+
+
+                Administrativenotices.setBackground(getResources().getDrawable(R.drawable.button_login));
+                Administrativenotices.setTextColor(getResources().getColor(R.color.white));
+
+
+                requested.setBackground(null);
+                requested.setTextColor(getResources().getColor(R.color.black));
+
+
+                news_.setBackground(null);
+                news_.setTextColor(getResources().getColor(R.color.black));
+
+                init_volley();
+                VolleyService mVolleyService = new VolleyService(mResultCallback, NotficationActvity.this);
+//        nodata.setVisibility(View.VISIBLE);
+                mVolleyService.getDataVolley("notification", WebService.notification);
+
+//                mVolleyService.getDataVolley("my_msg", WebService.my_msg);
+            }
+        });
+        requested.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                all.setBackground(getResources().getDrawable(R.drawable.shadow));
+                all.setTextColor(getResources().getColor(R.color.black));
+
+
+                requested.setBackground(getResources().getDrawable(R.drawable.button_login));
+                requested.setTextColor(getResources().getColor(R.color.white));
+
+
+                Administrativenotices.setBackground(null);
+                Administrativenotices.setTextColor(getResources().getColor(R.color.black));
+
+
+                news_.setBackground(null);
+                news_.setTextColor(getResources().getColor(R.color.black));
+
+                init_volley();
+                VolleyService mVolleyService = new VolleyService(mResultCallback, NotficationActvity.this);
+//        nodata.setVisibility(View.VISIBLE);
+                mVolleyService.getDataVolley("notification", WebService.notification);
+
+//                mVolleyService.getDataVolley("my_msg", WebService.my_msg);
+            }
+        });
+        news_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                all.setBackground(getResources().getDrawable(R.drawable.shadow));
+                all.setTextColor(getResources().getColor(R.color.black));
+
+
+                news_.setBackground(getResources().getDrawable(R.drawable.button_login));
+                news_.setTextColor(getResources().getColor(R.color.white));
+
+
+                requested.setBackground(null);
+                requested.setTextColor(getResources().getColor(R.color.black));
+
+
+                Administrativenotices.setBackground(null);
+                Administrativenotices.setTextColor(getResources().getColor(R.color.black));
+
+                init_volley();
+                VolleyService mVolleyService = new VolleyService(mResultCallback, NotficationActvity.this);
+//        nodata.setVisibility(View.VISIBLE);
+                mVolleyService.getDataVolley("notification", WebService.notification);
+
+//                mVolleyService.getDataVolley("my_msg", WebService.my_msg);
+            }
+        });
 
         message.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +259,6 @@ public class NotficationActvity extends AppCompatActivity {
                             notfication_list.setAdapter(null);
                             notficationModules.clear();
                             for (int i = 0; i < jsonArray.length(); i++) {
-
 
                                 JsonParser parser = new JsonParser();
                                 JsonElement mJson = parser.parse(jsonArray.getString(i));

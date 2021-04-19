@@ -178,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout search_aqaerz;
     TextView qr_search;
     ImageView close;
+    TextView search_filtter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView_ = findViewById(R.id.navigationView_);
         drawer = findViewById(R.id.drawer);
         search_layout = findViewById(R.id.search_layout);
+        search_filtter = findViewById(R.id.search_filtter);
 
         room_1 = findViewById(R.id.room_1);
         room_2 = findViewById(R.id.room_2);
@@ -1171,7 +1173,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        search_filtter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.closeDrawer(GravityCompat.START);
 
+
+                try {
+                    MapsFragmentNew.get_all_estate_list_filttter_();
+
+                } catch (Exception e) {
+
+                }
+            }
+        });
     }
 
 //    public void init() {

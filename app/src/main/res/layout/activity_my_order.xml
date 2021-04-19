@@ -9,17 +9,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
-
-
-
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
             <LinearLayout
@@ -53,26 +50,27 @@
                     android:id="@+id/filtter_city"
                     android:layout_width="37dp"
                     android:layout_height="37dp"
-
-
                     android:layout_marginLeft="8dp"
+
+
                     android:layout_marginRight="8dp"
                     android:background="@drawable/circle_w"
                     android:padding="8dp"
                     android:src="@drawable/ic_filtter_city"
+                    android:visibility="gone"
                     app:tint="@color/colorPrimary" />
 
             </LinearLayout>
 
 
             <HorizontalScrollView
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-
                 android:background="@color/white"
-                android:scrollbars="none">
+
+                android:scrollbars="none"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -466,9 +464,9 @@
 
                 <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:fillViewport="true"
+                    android:layout_height="match_parent"
 
-                    android:layout_height="match_parent">
+                    android:fillViewport="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -481,10 +479,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="@dimen/_10sdp"
-
                             android:layout_marginBottom="10dp"
-                            android:background="#F7F7F7">
+
+                            android:background="#F7F7F7"
+                            android:visibility="gone">
 
 
                         </androidx.recyclerview.widget.RecyclerView>
@@ -492,12 +490,14 @@
 
                         <HorizontalScrollView
                             android:id="@+id/section_horizantal"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
                             android:background="@color/white"
 
-                            android:fillViewport="true">
+                            android:fillViewport="true"
+
+                            android:visibility="gone">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -696,9 +696,6 @@
             </RelativeLayout>
 
         </LinearLayout>
-
-
-
 
 
     </LinearLayout>

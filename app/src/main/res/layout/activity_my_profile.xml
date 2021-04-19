@@ -603,42 +603,6 @@
                 android:layout_marginRight="20dp">
 
                 <LinearLayout
-                    android:id="@+id/myorder"
-                    android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:background="@drawable/edit_text_background_new_design"
-
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-
-                        <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:src="@drawable/ic_order_new"
-
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/orders"
-                            android:textColor="#AAABB3"
-                            android:textSize="13dp" />
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="140dp"
                     android:layout_weight="1"
@@ -668,6 +632,43 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:text="@string/my_lolocation_"
+                            android:textColor="#AAABB3"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/myorder"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="invisible">
+
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:background="@drawable/edit_text_background_new_design"
+
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <ImageView
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:src="@drawable/ic_order_new"
+
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/orders"
                             android:textColor="#AAABB3"
                             android:textSize="13dp" />
                     </LinearLayout>

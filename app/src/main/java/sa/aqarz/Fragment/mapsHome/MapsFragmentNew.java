@@ -118,6 +118,7 @@ public class MapsFragmentNew extends Fragment {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
+
         @Override
         public void onMapReady(GoogleMap googleMap1) {
             googleMap = googleMap1;
@@ -672,7 +673,6 @@ public class MapsFragmentNew extends Fragment {
 
     }
 
-
     public static String get_price_and_return_price(String pricsS) {
         String price = pricsS;
         String v = price.replace(",", "");
@@ -954,6 +954,7 @@ public class MapsFragmentNew extends Fragment {
 
 
     }
+
     public static void get_all_estate_filttters(String te) {
 
 //"home/estate", WebService.Home_4 + "?state_id=" + state_id + "&city_id=" + city_id
@@ -973,7 +974,7 @@ public class MapsFragmentNew extends Fragment {
         }
 
 
-        mapsViewModel.getEstate_map(activity, "home/estate", WebService.Home_4 + "?state_id=" + getId_region + "&city_id=" + getSerial_city + "&lan=" + lan + "&lat=" + lat+te);
+        mapsViewModel.getEstate_map(activity, "home/estate", WebService.Home_4 + "?state_id=" + getId_region + "&city_id=" + getSerial_city + "&lan=" + lan + "&lat=" + lat + te);
 
 
     }
@@ -993,12 +994,43 @@ public class MapsFragmentNew extends Fragment {
 
         }
         if (!city_id_postion.equals("")) {
-            getSerial_city = city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
 
+            getSerial_city = city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
         }
 
 
         mapsViewModel.getEstate_map(activity, "home/estate/list", WebService.Home_2 + "?state_id=" + getId_region + "&city_id=" + getSerial_city + "&lan=" + lan + "&lat=" + lat);
+
+
+    }
+
+    public static void get_all_estate_list_filttter_() {
+
+//"home/estate", WebService.Home_4 + "?state_id=" + state_id + "&city_id=" + city_id
+
+
+        if (type_selected.equals("Real")
+        ) {
+
+
+        } else {
+
+            String getId_region = "";
+            String getSerial_city = "";
+
+            change_layout();
+
+            if (!region_id_postion.equals("")) {
+                getId_region = regionModules_list.get(Integer.valueOf(region_id_postion + "")).getId() + "";
+            }
+            if (!city_id_postion.equals("")) {
+                getSerial_city = city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
+            }
+
+            mapsViewModel.getEstate_map(activity, "home/estate/list", WebService.Home_2 + "?state_id=" + getId_region + "&city_id=" + getSerial_city + "&lan=" + lan + "&lat=" + lat);
+
+
+        }
 
 
     }

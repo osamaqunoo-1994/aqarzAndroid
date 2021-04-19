@@ -77,7 +77,7 @@ import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
 
 public class MyOrderActivity extends AppCompatActivity {
-ImageView back;
+    ImageView back;
     static IResult mResultCallback;
 
 
@@ -162,9 +162,9 @@ ImageView back;
         activity = this;
 
 
-
         init();
     }
+
     public void init() {
         orders_rec = findViewById(R.id.orders_rec);
 
@@ -519,7 +519,7 @@ ImageView back;
 
 
                     if (Settings.CheckIsCompleate()) {
-                        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+                        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
 
                             send_requst_by_type("fund_Request");
 
@@ -547,7 +547,7 @@ ImageView back;
 
                     offer.setTextColor(getResources().getColor(R.color.black));
                     if (Settings.CheckIsCompleate()) {
-                        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+                        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
 
                             send_requst_by_type("fund_Request_today");
 
@@ -623,85 +623,7 @@ ImageView back;
                 bottomSheetDialogFragment_selectCity_fillter.show(getSupportFragmentManager(), "");
             }
         });
-//        //------------------------------------------------------------------------------------------------------------
-//        convert_to_map.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//                if (convert_to_map_text.equals("list")) {
-//                    convert_to_map_text = "map";
-//                    orders_rec.setVisibility(View.GONE);
-//                    mMapView.setVisibility(View.VISIBLE);
-//                    googleMap.clear();
-//
-//                    for (int i = 0; i < demandsModules_list.size(); i++) {
-//
-//
-////                        JsonParser parser = new JsonParser();
-////                        JsonElement mJson = parser.parse(jsonArray.getString(i));
-////
-////                        Gson gson = new Gson();
-////
-//                        demandsModules ordersModulesm = demandsModules_list.get(i);
-//                        String price = ordersModulesm.getPriceTo();
-//                        try {
-//
-//                            int price_int = Integer.valueOf(price);
-//
-//                            int prices = (int) price_int;
-//
-//
-//                            if (price_int < 1000) {
-//
-//                                price = prices + "";
-//                            } else if (price_int > 1000 && price_int < 999999) {
-//                                prices = (int) price_int / 1000;
-//
-//                                price = prices + getResources().getString(R.string.K);
-//
-//                            } else if (price_int > 999999) {
-//                                prices = (int) price_int / 1000000;
-//
-//                                price = prices + getResources().getString(R.string.Million);
-//
-//                            }
-////                            System.out.println(bankModules.getTotalPrice() + "--------------" + price);
-//
-////
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-////                        demandsModules_list.add(ordersModulesm);
-//                        LatLng sydneya = new LatLng(Double.valueOf(ordersModulesm.getLat()), Double.valueOf(ordersModulesm.getLan()));
-//                        googleMap.addMarker(new MarkerOptions()
-//                                .position(sydneya)
-//                                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(price)))).setTag(i);//تم التغير الشكل من السكني للكلر
-//
-//                    }
-//
-//
-//                } else {
-//                    convert_to_map_text = "list";
-//                    orders_rec.setVisibility(View.VISIBLE);
-//                    mMapView.setVisibility(View.GONE);
-//
-//                    orders_rec.setAdapter(new RecyclerView_orders_demandsx(MyOrderActivity.this, demandsModules_list));
-//
-//
-//                    if (demandsModules_list.size() != 0) {
-//                        nodata_vis.setVisibility(View.GONE);
-//                    } else {
-//                        nodata_vis.setVisibility(View.VISIBLE);
-//
-//                    }
-//
-//                }
-//
-//
-//            }
-//        });
-        //------------------------------------------------------------------------------------------------------------
+
 
         if (Settings.CheckIsAccountAqarzMan()) {
             my_order_layout.setVisibility(View.VISIBLE);
@@ -898,7 +820,7 @@ ImageView back;
         });
 
 
-        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
             premium.setVisibility(View.VISIBLE);
             offer.setVisibility(View.VISIBLE);
             not_premium.setVisibility(View.GONE);
@@ -985,12 +907,11 @@ ImageView back;
         send_requst_by_type("my_request");
 
 
-
-
         convert_to_map.setVisibility(View.GONE);
 
 
     }
+
     public void init_volley() {
 
 
@@ -1231,7 +1152,7 @@ ImageView back;
 
 
 //                            WebService.Make_Toast_color(getActivity(), message, "success");
-                            LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                            LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                             final View popupView = layoutInflater.inflate(R.layout.upgrade_message, null);
 
                             ImageView close = popupView.findViewById(R.id.close);
@@ -1329,19 +1250,19 @@ ImageView back;
                                     try {
                                         int price_int = Integer.valueOf(price);
 
-                                        int prices = (int) price_int;
+                                        int prices = price_int;
 
 
                                         if (price_int < 1000) {
 
                                             price = prices + "";
                                         } else if (price_int > 1000 && price_int < 999999) {
-                                            prices = (int) price_int / 1000;
+                                            prices = price_int / 1000;
 
                                             price = prices + getResources().getString(R.string.K);
 
                                         } else if (price_int > 999999) {
-                                            prices = (int) price_int / 1000000;
+                                            prices = price_int / 1000000;
 
                                             price = prices + getResources().getString(R.string.Million);
 
@@ -1566,8 +1487,6 @@ ImageView back;
     }
 
 
-
-
     public void send_requst_by_type(String requst_type) {
         type_requst = requst_type;
         WebService.loading(MyOrderActivity.this, true);
@@ -1678,7 +1597,7 @@ ImageView back;
     private Bitmap getMarkerBitmapFromView(String Price) {
 
         View customMarkerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom, null);
-        TextView markerImageView = (TextView) customMarkerView.findViewById(R.id.numb);
+        TextView markerImageView = customMarkerView.findViewById(R.id.numb);
 //        markerImageView.setImageResource(resId);
         markerImageView.setText(Price);
 

@@ -63,6 +63,7 @@ public class RecyclerView_GenralNotfication extends RecyclerView.Adapter<Recycle
 
         TextView title;
         TextView des;
+        ImageView image;
 
         public MyViewHolder(View view) {
             super(view);
@@ -72,6 +73,7 @@ public class RecyclerView_GenralNotfication extends RecyclerView.Adapter<Recycle
 //            back_ground = view.findViewById(R.id.back_ground);
             title = view.findViewById(R.id.title);
             des = view.findViewById(R.id.des);
+            image = view.findViewById(R.id.image);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
@@ -101,6 +103,18 @@ public class RecyclerView_GenralNotfication extends RecyclerView.Adapter<Recycle
 //
 //
 //            }
+
+
+        if (alldata.get(position).getType().equals("request")) {
+
+            holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.logo_png));
+
+        } else if (alldata.get(position).getType().equals("chat")) {
+            holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_message_chat));
+
+        }
+
+
 //        }
 ////
 //        holder.text.setText(alldata.get(position).getName() + "");

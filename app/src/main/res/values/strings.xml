@@ -915,4 +915,12 @@ Two working days to complete your order</string>
     <string name="dsdsdsdsdsd">Neighborhood</string>
     <string name="dsdsdssddsd">Neighborhood</string>
 
+
+
+
+    <string name="Requests_title_notfication">Requests</string>
+    <string name="Administrativenotices_title_notfication">Administrative</string>
+    <string name="news_title_notfication">News and reports</string>
+    <string name="All_title_notfication">all</string>
+
 </resources>
