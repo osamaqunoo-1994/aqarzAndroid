@@ -44,6 +44,7 @@ import sa.aqarz.Activity.AqarzProfileActivity;
 import sa.aqarz.Activity.Auth.EditProfileActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.ChatRoomActivity;
+import sa.aqarz.Activity.Employee.DetailsEmployeeActivity;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.MyOrderActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
@@ -90,7 +91,8 @@ public class MyProfileActivity extends AppCompatActivity {
     LinearLayout my_clints;
     LinearLayout location;
     LinearLayout myorder;
-//fmkdfjdfjkfjdf
+
+    //fmkdfjdfjkfjdf
     //fdlkfkdjfkdjf
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,7 +193,7 @@ public class MyProfileActivity extends AppCompatActivity {
         my_clints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MyProfileActivity.this, MyClintsActivity.class);
+                Intent intent = new Intent(MyProfileActivity.this, DetailsEmployeeActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);

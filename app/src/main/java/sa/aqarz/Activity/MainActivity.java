@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
     List<TypeModules> type_list = new ArrayList<>();
 
 
-    String type = "null";
+    String type = "";
     String opration_select = "";
 
     TextView filtter_btn;
@@ -369,50 +369,52 @@ public class MainActivity extends AppCompatActivity {
 //                        Settings.Dialog_not_compleate(MainActivity.this);
 //                    }
 
-
-                    AlertDialog alertDialog;
-
-
-                    LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    final View popupView = layoutInflater.inflate(R.layout.bottom_sheets_add_aqarez, null);
-
-
-                    LinearLayout req = popupView.findViewById(R.id.req);
-                    LinearLayout add_aqare = popupView.findViewById(R.id.add_aqare);
-
-
-                    req.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(MainActivity.this, AqarzOrActivity.class);
-                            intent.putExtra("id", "");
-                            startActivity(intent);
-
-                        }
-                    });
-
-                    add_aqare.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-
-                            Intent intent = new Intent(MainActivity.this, AddAqarsActivity.class);
-//                                intent.putExtra("from", "splash");
-                            startActivity(intent);
-
-                        }
-                    });
-
-
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-
-//            alertDialog_country =
-                    builder.setView(popupView);
-
-
-                    alertDialog = builder.show();
-
-                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                    Intent intent = new Intent(MainActivity.this, AqarzOrActivity.class);
+                    intent.putExtra("id", "");
+                    startActivity(intent);
+//                    AlertDialog alertDialog;
+//
+//
+//                    LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                    final View popupView = layoutInflater.inflate(R.layout.bottom_sheets_add_aqarez, null);
+//
+//
+//                    LinearLayout req = popupView.findViewById(R.id.req);
+//                    LinearLayout add_aqare = popupView.findViewById(R.id.add_aqare);
+//
+//
+//                    req.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            Intent intent = new Intent(MainActivity.this, AqarzOrActivity.class);
+//                            intent.putExtra("id", "");
+//                            startActivity(intent);
+//
+//                        }
+//                    });
+//
+//                    add_aqare.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//
+//
+//                            Intent intent = new Intent(MainActivity.this, AddAqarsActivity.class);
+////                                intent.putExtra("from", "splash");
+//                            startActivity(intent);
+//
+//                        }
+//                    });
+//
+//
+//                    final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//
+////            alertDialog_country =
+//                    builder.setView(popupView);
+//
+//
+//                    alertDialog = builder.show();
+//
+//                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
                 }
 
@@ -925,37 +927,19 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i = 0; i < select_typeModules.size(); i++) {
 
-                    if (i == 0) {
-
-                        if (select_typeModules.get(0).getSelected()) {
-                            type = "null";
-                            break;
-                        }
-
-                    } else {
-
-                        if (select_typeModules.get(1).getSelected()) {
-                            type = "is_pay";
-
-                        }
-                        if (select_typeModules.get(2).getSelected()) {
-                            type = "is_rent";
-
-                        }
-
-
-//                        if (select_typeModules.get(i).getSelected()) {
-//                            if (type.equals("")) {
-//                                type = select_typeModules.get(i).getId() + "";
-//                            } else {
-//                                type = type + "," + select_typeModules.get(i).getId() + "";
-//                            }
-//
-//
-//                        }
-
+                    if (select_typeModules.get(1).getSelected()) {
+                        type = "is_pay";
 
                     }
+                    if (select_typeModules.get(1).getSelected()) {
+                        type = "is_pay";
+
+                    }
+                    if (select_typeModules.get(2).getSelected()) {
+                        type = "is_rent";
+
+                    }
+
 
 
                 }
@@ -976,7 +960,28 @@ public class MainActivity extends AppCompatActivity {
 //                    mItemClickListener.onItemClick(te);
 //                }
 
-                te = "&estate_pay_type=" + type + "&price_from=" + Les_price.getText().toString() + "&price_to=" + Maximum_price.getText().toString() + "&area_from=" + Les_space.getText().toString() + "&area_from=" + Maximum_space.getText().toString();
+                te = "";
+                if (!type.equals("")) {
+                    te = te + "&estate_pay_type=" + type;
+                }
+                if (!Les_price.getText().toString().equals("")) {
+                    te = te + "&price_from=" + Les_price.getText().toString();
+                }
+                if (!opration_select.equals("")) {
+                    te = te + "&estate_type=" + opration_select;
+                }
+                if (!Maximum_price.getText().toString().equals("")) {
+                    te = te + "&price_to=" + Maximum_price.getText().toString();
+                }
+                if (!Les_space.getText().toString().equals("")) {
+                    te = te + "&area_from=" + Les_space.getText().toString();
+                }
+                if (!Maximum_space.getText().toString().equals("")) {
+                    te = te + "&area_to=" + Maximum_space.getText().toString();
+                }
+
+
+//                te = "&estate_pay_type=" + type + "&price_from=" + Les_price.getText().toString() + "&price_to=" + Maximum_price.getText().toString() + "&area_from=" + Les_space.getText().toString() + "&area_from=" + Maximum_space.getText().toString();
                 MapsFragmentNew.get_all_estate_filttters(te);
 
                 drawer.closeDrawer(GravityCompat.START);
@@ -1180,7 +1185,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 try {
-                    MapsFragmentNew.get_all_estate_list_filttter_();
+//                    MapsFragmentNew.get_all_estate_list_filttter_();
 
                 } catch (Exception e) {
 

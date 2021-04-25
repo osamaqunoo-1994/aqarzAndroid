@@ -745,12 +745,10 @@ public class MapsFragmentNew extends Fragment {
 
     public static void set_locationEstate_list(List<HomeModules_aqares> homeModules_aqares) {
 
-
-        LinearLayoutManager layoutManager1
-                = new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false);
         list_estate_rec.setLayoutManager(layoutManager1);
 
-
+        list_estate_rec.setVisibility(View.VISIBLE);
         list_estate_rec.setAdapter(new RecyclerView_HomeList_estat_new(activity, homeModules_aqares));
 
     }
@@ -963,20 +961,31 @@ public class MapsFragmentNew extends Fragment {
         String getId_region = "";
         String getSerial_city = "";
 
+        change_layout();
+
+        String filter = "?" + te;
 
         if (!region_id_postion.equals("")) {
             getId_region = regionModules_list.get(Integer.valueOf(region_id_postion + "")).getId() + "";
 
+            filter = filter + "&state_id=" + getId_region;
+
         }
         if (!city_id_postion.equals("")) {
             getSerial_city = city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
+            filter = filter + "&city_id=" + getSerial_city;
 
         }
 
 
-        mapsViewModel.getEstate_map(activity, "home/estate", WebService.Home_4 + "?state_id=" + getId_region + "&city_id=" + getSerial_city + "&lan=" + lan + "&lat=" + lat + te);
+        if (!lat.equals("")) {
+            filter = filter + "&lan=" + lan + "&lat=" + lat;
+        }
 
 
+        mapsViewModel.getEstate_map(activity, "home/estate/list", WebService.Home_2 + filter);
+
+//        https://apibeta.aqarz.sa/api/home/estate/list?estate_type=1&estate_pay_type=&price_from=&price_to=&area_from=&area_to=&room=&page=1
     }
 
 
@@ -999,7 +1008,7 @@ public class MapsFragmentNew extends Fragment {
         }
 
 
-        mapsViewModel.getEstate_map(activity, "home/estate/list", WebService.Home_2 + "?state_id=" + getId_region + "&city_id=" + getSerial_city + "&lan=" + lan + "&lat=" + lat);
+        mapsViewModel.getEstate_list(activity, "home/estate/list", WebService.Home_2 + "?state_id=" + getId_region + "&city_id=" + getSerial_city + "&lan=" + lan + "&lat=" + lat);
 
 
     }
@@ -1020,14 +1029,29 @@ public class MapsFragmentNew extends Fragment {
 
             change_layout();
 
+
+            String filter = "&" + "";
+
+
             if (!region_id_postion.equals("")) {
                 getId_region = regionModules_list.get(Integer.valueOf(region_id_postion + "")).getId() + "";
+
+                filter = filter + "?state_id=" + getId_region;
+
             }
             if (!city_id_postion.equals("")) {
                 getSerial_city = city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
+                filter = filter + "?city_id=" + getSerial_city;
+
             }
 
-            mapsViewModel.getEstate_map(activity, "home/estate/list", WebService.Home_2 + "?state_id=" + getId_region + "&city_id=" + getSerial_city + "&lan=" + lan + "&lat=" + lat);
+
+            if (!lat.equals("")) {
+                filter = filter + "?lan=" + lan + "&lat=" + lat;
+            }
+
+
+            mapsViewModel.getEstate_map(activity, "home/estate/list", WebService.Home_2 + filter);
 
 
         }

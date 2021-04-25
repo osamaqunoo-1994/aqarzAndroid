@@ -225,7 +225,7 @@ public class MapsRepository {
 //                    MapsViewModel.mutableLiveData_city.setValue(All.getData());
 
 
-                    MapsFragmentNew.set_locationEstate(All.getData());
+                    MapsFragmentNew.set_locationEstate(All.getData().getData());
 
 //                    WebService.loading(activity, false);
 //
@@ -297,12 +297,7 @@ public class MapsRepository {
                     WebService.loading(activity, false);
 
 
-
-                    String data=response.getString("data");
-
-
-
-
+                    String data = response.getString("data");
 
 
                     JsonParser parser = new JsonParser();
@@ -315,7 +310,7 @@ public class MapsRepository {
 //                    MapsViewModel.mutableLiveData_city.setValue(All.getData());
 
 
-                    MapsFragmentNew.set_locationEstate_list(All.getData());
+                    MapsFragmentNew.set_locationEstate_list(All.getData().getData());
 
 //                    WebService.loading(activity, false);
 //

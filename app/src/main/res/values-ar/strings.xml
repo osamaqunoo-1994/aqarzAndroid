@@ -901,8 +901,6 @@
     <string name="nameAqarez">أدخل إسم العقاري</string>
 
 
-
-
     <string name="asas1">طلب مقبول</string>
     <string name="asas2">طلب معاينة</string>
     <string name="asas3">قيد الانتظار</string>
@@ -922,11 +920,17 @@
     <string name="p11">الأحياء</string>
 
 
-
-
     <string name="Requests_title_notfication">طلبات متابعه</string>
     <string name="Administrativenotices_title_notfication">اشعارات ادارية</string>
     <string name="news_title_notfication">الاخبار والتقارير</string>
     <string name="All_title_notfication">الكل</string>
 
+
+    <string name="DetailsEmployee">تفاصيل الموظف</string>
+    <string name="Follow_up_on_employees">متابعة الموظفين</string>
+
+    <string name="employee__1">عدد العقارات</string>
+    <string name="employee__2">عدد عروض الصندوق</string>
+    <string name="employee__3">عدد الاتصالات</string>
+    <string name="employee__4">عدد عروض السوق</string>
 </resources>

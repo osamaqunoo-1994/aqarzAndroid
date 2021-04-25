@@ -120,6 +120,7 @@ public class VolleyService {
                 @Override
                 public void onUserException(Throwable error) {
                     System.out.println("responseBody" + error.toString());
+                    mResultCallback.notify_Async_Error(requestType, error.toString());
 
                 }
 

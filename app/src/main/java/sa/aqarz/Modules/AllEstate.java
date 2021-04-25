@@ -10,16 +10,37 @@ public class AllEstate {
 
     @SerializedName("data")
     @Expose
-    private List<HomeModules_aqares> data;
+    private data data;
     @SerializedName("status")
     @Expose
     private boolean status;
 
-    public List<HomeModules_aqares> getData() {
+
+    public AllEstate.data getData() {
         return data;
     }
 
     public boolean isStatus() {
         return status;
     }
+
+
+
+
+
+
+    public class data{
+        @SerializedName("data")
+        @Expose
+        private List<HomeModules_aqares> data;
+
+
+        public List<HomeModules_aqares> getData() {
+            return data;
+        }
+    }
+
+
+
+
 }
