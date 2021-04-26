@@ -941,7 +941,6 @@ public class MainActivity extends AppCompatActivity {
                     }
 
 
-
                 }
 
 
@@ -982,7 +981,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 //                te = "&estate_pay_type=" + type + "&price_from=" + Les_price.getText().toString() + "&price_to=" + Maximum_price.getText().toString() + "&area_from=" + Les_space.getText().toString() + "&area_from=" + Maximum_space.getText().toString();
-                MapsFragmentNew.get_all_estate_filttters(te);
+                MapsFragmentNew.get_all_estate_filttters_li(te);
 
                 drawer.closeDrawer(GravityCompat.START);
 

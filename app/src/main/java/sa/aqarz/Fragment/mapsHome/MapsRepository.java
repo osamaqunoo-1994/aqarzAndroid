@@ -16,6 +16,7 @@ import org.json.JSONObject;
 
 import sa.aqarz.Modules.AllCityList;
 import sa.aqarz.Modules.AllEstate;
+import sa.aqarz.Modules.AllEstate_map;
 import sa.aqarz.Modules.AllRegionList;
 import sa.aqarz.Modules.RegionModules;
 import sa.aqarz.Settings.WebService;
@@ -150,7 +151,7 @@ public class MapsRepository {
 //                    String data = response.getString("data");
 //                    Hawk.put("FF", data);
 
-                    System.out.println("oioioioioi");
+                    System.out.println("oioioioioi%%%%%%%%%%%");
 
                     WebService.loading(activity, false);
 
@@ -220,19 +221,19 @@ public class MapsRepository {
 
                     Gson gson = new Gson();
 
-                    AllEstate All = gson.fromJson(mJson, AllEstate.class);
+                    AllEstate_map All = gson.fromJson(mJson, AllEstate_map.class);
 
 //                    MapsViewModel.mutableLiveData_city.setValue(All.getData());
 
 
-                    MapsFragmentNew.set_locationEstate(All.getData().getData());
+                    MapsFragmentNew.set_locationEstate(All.getData());
 
 //                    WebService.loading(activity, false);
 //
 //                    String data = response.getString("data");
 //                    Hawk.put("FF", data);
 
-                    System.out.println("oioioioioi");
+                    System.out.println("oioioioioi############");
 
                     WebService.loading(activity, false);
 
@@ -291,17 +292,17 @@ public class MapsRepository {
             @Override
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("TAG", "Volley requester " + requestType);
-                Log.d("TAG", "Volley JSON post" + "That didn't work!" + response.toString());
+                Log.d("TAG", "Volley JSON post" + "T" + response.toString());
                 //                WebService.loading(activity, false);
                 try {
                     WebService.loading(activity, false);
 
 
-                    String data = response.getString("data");
+//                    String data = response.getString("data");
 
 
                     JsonParser parser = new JsonParser();
-                    JsonElement mJson = parser.parse(data);
+                    JsonElement mJson = parser.parse(response.toString());
 
                     Gson gson = new Gson();
 
@@ -317,7 +318,7 @@ public class MapsRepository {
 //                    String data = response.getString("data");
 //                    Hawk.put("FF", data);
 
-                    System.out.println("oioioioioi");
+                    System.out.println("oioioioioi@@@@@@@@@@@@@@");
 
                     WebService.loading(activity, false);
 

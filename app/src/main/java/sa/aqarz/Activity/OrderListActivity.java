@@ -143,7 +143,9 @@ public class OrderListActivity extends AppCompatActivity {
     TextView status_2;
     TextView status_3;
 
-
+    static String offer_status = "customer_accepted ";
+    TextView searcha;
+static EditText search_text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -184,6 +186,8 @@ public class OrderListActivity extends AppCompatActivity {
         favorit_button = findViewById(R.id.favorit_button);
         mark = findViewById(R.id.mark);
         real = findViewById(R.id.real);
+        searcha = findViewById(R.id.searcha);
+        search_text = findViewById(R.id.search_text);
 
 
         AllOrder = findViewById(R.id.AllOrder);
@@ -350,6 +354,8 @@ public class OrderListActivity extends AppCompatActivity {
 
             }
         });
+
+
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -603,6 +609,45 @@ public class OrderListActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        searcha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fillter_layoiut.setVisibility(View.GONE);
+
+                OrdersFragment.filtterModules.setOrder_by_price(price_order + "");
+                String city = "";
+                for (int i = 0; i < cityModules_list.size(); i++) {
+                    if (city.equals("")) {
+                        city = "" + cityModules_list.get(i).getId();
+                    } else {
+                        city = city + "," + cityModules_list.get(i).getId();
+
+                    }
+                }
+
+                if (type_type.equals("fund_Request")) {
+
+                    System.out.println(city);
+                    OrdersFragment.filtterModules.setSelect_city(city + "");
+                    OrdersFragment.filtterModules.setType_oprtion(opration_select + "");
+                    OrdersFragment.filtterModules.setType_type("");
+                    OrdersFragment.filtterModules.setOrder_by_price("price_order");
+
+                } else {
+
+                    System.out.println(city);
+                    OrdersFragment.filtterModules.setSelect_city(city + "");
+                    OrdersFragment.filtterModules.setType_oprtion(opration_select + "");
+                    OrdersFragment.filtterModules.setType_type(tyype_type);
+
+                }
+                page = 1;
+
+
+                GetData(type_requst);
+
+            }
+        });
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -748,6 +793,62 @@ public class OrderListActivity extends AppCompatActivity {
             }
         });
 
+
+        status_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                status_1.setBackground(getResources().getDrawable(R.drawable.background_b2select));
+                status_1.setTextColor(getResources().getColor(R.color.white));
+
+
+                status_2.setBackground(null);
+                status_3.setBackground(null);
+                status_2.setTextColor(getResources().getColor(R.color.black));
+                status_3.setTextColor(getResources().getColor(R.color.black));
+
+                offer_status = "customer_accepted";
+            }
+        });
+        status_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                status_2.setBackground(getResources().getDrawable(R.drawable.background_b2select));
+                status_2.setTextColor(getResources().getColor(R.color.white));
+
+
+                status_1.setBackground(null);
+                status_3.setBackground(null);
+                status_1.setTextColor(getResources().getColor(R.color.black));
+                status_3.setTextColor(getResources().getColor(R.color.black));
+
+                offer_status = "sending_code";
+
+            }
+        });
+        status_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                status_3.setBackground(getResources().getDrawable(R.drawable.background_b2select));
+                status_3.setTextColor(getResources().getColor(R.color.white));
+
+
+                status_2.setBackground(null);
+                status_1.setBackground(null);
+                status_2.setTextColor(getResources().getColor(R.color.black));
+                status_1.setTextColor(getResources().getColor(R.color.black));
+
+                offer_status = "new";
+
+            }
+        });
+        status_1.setVisibility(View.GONE);
+        status_2.setVisibility(View.GONE);
+        status_3.setVisibility(View.GONE);
+
+
         today.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -755,6 +856,11 @@ public class OrderListActivity extends AppCompatActivity {
                 AllOrder.setBackground(null);
                 today.setBackground(getResources().getDrawable(R.drawable.button_login));
                 Myoffer.setBackground(null);
+
+
+                status_1.setVisibility(View.GONE);
+                status_2.setVisibility(View.GONE);
+                status_3.setVisibility(View.GONE);
 
 
 //                Myoffer_number.setBackground(getResources().getDrawable(R.drawable.mash));
@@ -780,56 +886,6 @@ public class OrderListActivity extends AppCompatActivity {
         });
 
 
-        status_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                status_1.setBackground(getResources().getDrawable(R.drawable.background_b2select));
-                status_1.setTextColor(getResources().getColor(R.color.white));
-
-
-                status_2.setBackground(null);
-                status_3.setBackground(null);
-                status_2.setTextColor(getResources().getColor(R.color.black));
-                status_3.setTextColor(getResources().getColor(R.color.black));
-
-
-            }
-        });
-        status_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                status_2.setBackground(getResources().getDrawable(R.drawable.background_b2select));
-                status_2.setTextColor(getResources().getColor(R.color.white));
-
-
-                status_1.setBackground(null);
-                status_3.setBackground(null);
-                status_1.setTextColor(getResources().getColor(R.color.black));
-                status_3.setTextColor(getResources().getColor(R.color.black));
-
-
-            }
-        });
-        status_3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                status_3.setBackground(getResources().getDrawable(R.drawable.background_b2select));
-                status_3.setTextColor(getResources().getColor(R.color.white));
-
-
-                status_2.setBackground(null);
-                status_1.setBackground(null);
-                status_2.setTextColor(getResources().getColor(R.color.black));
-                status_1.setTextColor(getResources().getColor(R.color.black));
-
-
-            }
-        });
-
-
         Myoffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -839,6 +895,9 @@ public class OrderListActivity extends AppCompatActivity {
                 Myoffer.setBackground(getResources().getDrawable(R.drawable.button_login));
 
 
+                status_1.setVisibility(View.VISIBLE);
+                status_2.setVisibility(View.VISIBLE);
+                status_3.setVisibility(View.VISIBLE);
 //                Myoffer_number.setBackground(getResources().getDrawable(R.drawable.circle_ss));
 //                today_number.setBackground(getResources().getDrawable(R.drawable.mash));
 //                AllOrder_number.setBackground(getResources().getDrawable(R.drawable.mash));
@@ -871,6 +930,9 @@ public class OrderListActivity extends AppCompatActivity {
                 Myoffer.setBackground(null);
 
 
+                status_1.setVisibility(View.GONE);
+                status_2.setVisibility(View.GONE);
+                status_3.setVisibility(View.GONE);
 //                Myoffer_number.setBackground(getResources().getDrawable(R.drawable.mash));
 //                today_number.setBackground(getResources().getDrawable(R.drawable.mash));
 //                AllOrder_number.setBackground(getResources().getDrawable(R.drawable.circle_ss));
@@ -947,6 +1009,20 @@ public class OrderListActivity extends AppCompatActivity {
         }
 
 
+        String off = "";
+        if (type_requst.equals("Myoffer")) {
+            off = "&offer_status=" + offer_status;
+
+
+        }
+        String search_te = "";
+
+        if (search_text.getText().toString().equals("")) {
+
+            search_te="&"+ search_text.getText().toString();
+
+        }
+
         if (type_type.equals("fund_Request")) {
 
 
@@ -957,7 +1033,7 @@ public class OrderListActivity extends AppCompatActivity {
                 mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?" + "page=" + page + id_city_ + opration_select);
 
             } else if (type_requst.equals("Myoffer")) {
-                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?" + "page=" + page + "&myOwn=1" + id_city_ + opration_select);
+                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?" + "page=" + page + "&myOwn=1" + id_city_ + opration_select + "off");
 
             }
 
@@ -972,7 +1048,7 @@ public class OrderListActivity extends AppCompatActivity {
                 mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?" + "page=" + page + id_city_ + opration_select);
 
             } else if (type_requst.equals("Myoffer")) {
-                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?" + "page=" + page + "&myOwn=1" + id_city_ + opration_select);
+                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?" + "page=" + page + "&myOwn=1" + id_city_ + opration_select + off);
 
             }
 

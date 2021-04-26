@@ -5,20 +5,20 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class AllEstate {
+public class AllEstate_map {
 
 
-    @SerializedName("data")
-    @Expose
-    private data data;
     @SerializedName("status")
     @Expose
     private boolean status;
+    @SerializedName("data")
+    @Expose
+    private List<HomeModules_aqares> data;
 
-
-    public AllEstate.data getData() {
+    public List<HomeModules_aqares> getData() {
         return data;
     }
+
 
     public boolean isStatus() {
         return status;

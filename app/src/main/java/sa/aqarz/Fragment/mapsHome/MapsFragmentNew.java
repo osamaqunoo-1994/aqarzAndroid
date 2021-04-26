@@ -83,9 +83,9 @@ public class MapsFragmentNew extends Fragment {
 
     List<TypeModules> type_list = new ArrayList<>();
 
-    TextView RealStatr_order;
-    TextView MarketOrder;
-    TextView OfferOrder;
+    static TextView RealStatr_order;
+    static TextView MarketOrder;
+    static TextView OfferOrder;
     ImageView notfication;
     ImageView get_location;
     static ImageView convert_map_to_list;
@@ -629,7 +629,7 @@ public class MapsFragmentNew extends Fragment {
         }
     }
 
-    public void set_locationRegions() {
+    public static void set_locationRegions() {
 
 
         if (googleMap != null) {
@@ -747,15 +747,17 @@ public class MapsFragmentNew extends Fragment {
 
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false);
         list_estate_rec.setLayoutManager(layoutManager1);
-
+        change_layout();
         list_estate_rec.setVisibility(View.VISIBLE);
+
+        System.out.println("homeModules_aqares" + homeModules_aqares.size());
         list_estate_rec.setAdapter(new RecyclerView_HomeList_estat_new(activity, homeModules_aqares));
 
     }
 
-    private Bitmap getMarkerBitmapFromViewRegions(String Price, String numbers) {
+    private static Bitmap getMarkerBitmapFromViewRegions(String Price, String numbers) {
 
-        View customMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom3, null);
+        View customMarkerView = ((LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom3, null);
         TextView markerImageView = customMarkerView.findViewById(R.id.numb);
         TextView number_ = customMarkerView.findViewById(R.id.number_);
         ImageView back_location = customMarkerView.findViewById(R.id.back_location);
@@ -769,18 +771,18 @@ public class MapsFragmentNew extends Fragment {
 //
         if (type_selected.equals("Real")) {
 
-            back_location.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_path_marker_home1));
-            number_.setTextColor(getActivity().getResources().getColor(R.color.c1));
+            back_location.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_path_marker_home1));
+            number_.setTextColor(activity.getResources().getColor(R.color.c1));
             number_.setText(regionModules_list.get(Integer.valueOf(numbers)).getRequests() + "");
 
         } else if (type_selected.equals("Market")) {
-            back_location.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_path_marker_home2));
-            number_.setTextColor(getActivity().getResources().getColor(R.color.c2));
+            back_location.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_path_marker_home2));
+            number_.setTextColor(activity.getResources().getColor(R.color.c2));
             number_.setText(regionModules_list.get(Integer.valueOf(numbers)).getApp_request() + "");
 
         } else if (type_selected.equals("offer")) {
-            back_location.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_path_marker_home));
-            number_.setTextColor(getActivity().getResources().getColor(R.color.colorPrimary));
+            back_location.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_path_marker_home));
+            number_.setTextColor(activity.getResources().getColor(R.color.colorPrimary));
             number_.setText(regionModules_list.get(Integer.valueOf(numbers)).getOffers() + "");
 
         }
@@ -984,6 +986,52 @@ public class MapsFragmentNew extends Fragment {
 
 
         mapsViewModel.getEstate_map(activity, "home/estate/list", WebService.Home_2 + filter);
+
+//        https://apibeta.aqarz.sa/api/home/estate/list?estate_type=1&estate_pay_type=&price_from=&price_to=&area_from=&area_to=&room=&page=1
+    }
+
+    public static void get_all_estate_filttters_li(String te) {
+
+//"home/estate", WebService.Home_4 + "?state_id=" + state_id + "&city_id=" + city_id
+        OfferOrder.setBackground(activity.getResources().getDrawable(R.drawable.button_3));
+        MarketOrder.setBackground(null);
+        RealStatr_order.setBackground(null);
+//     convert_map_to_list.setVisibility(View.VISIBLE);
+
+
+        OfferOrder.setTextColor(activity.getResources().getColor(R.color.white));
+        MarketOrder.setTextColor(activity.getResources().getColor(R.color.textColor));
+        RealStatr_order.setTextColor(activity.getResources().getColor(R.color.textColor));
+        type_selected = "offer";
+        LatLng sydney = new LatLng(24.527282, 44.007305);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
+        set_locationRegions();
+        String getId_region = "";
+        String getSerial_city = "";
+
+        change_layout();
+
+        String filter = "?" + te;
+
+        if (!region_id_postion.equals("")) {
+            getId_region = regionModules_list.get(Integer.valueOf(region_id_postion + "")).getId() + "";
+
+            filter = filter + "&state_id=" + getId_region;
+
+        }
+        if (!city_id_postion.equals("")) {
+            getSerial_city = city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
+            filter = filter + "&city_id=" + getSerial_city;
+
+        }
+
+
+        if (!lat.equals("")) {
+            filter = filter + "&lan=" + lan + "&lat=" + lat;
+        }
+
+
+        mapsViewModel.getEstate_list(activity, "home/estate/list", WebService.Home_2 + filter);
 
 //        https://apibeta.aqarz.sa/api/home/estate/list?estate_type=1&estate_pay_type=&price_from=&price_to=&area_from=&area_to=&room=&page=1
     }
