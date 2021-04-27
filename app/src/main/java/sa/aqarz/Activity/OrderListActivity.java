@@ -145,7 +145,8 @@ public class OrderListActivity extends AppCompatActivity {
 
     static String offer_status = "customer_accepted ";
     TextView searcha;
-static EditText search_text;
+    static EditText search_text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -1019,7 +1020,7 @@ static EditText search_text;
 
         if (search_text.getText().toString().equals("")) {
 
-            search_te="&"+ search_text.getText().toString();
+            search_te = "&" + search_text.getText().toString();
 
         }
 

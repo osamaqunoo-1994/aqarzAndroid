@@ -74,6 +74,7 @@ import sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import sa.aqarz.Adapter.RecyclerView_date_select;
 import sa.aqarz.Adapter.RecyclerView_selectImage;
 import sa.aqarz.Adapter.RecyclerView_selectImage_url;
+import sa.aqarz.Adapter.RecyclerView_selectImage_url_image;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectNeighborhoods;
 import sa.aqarz.Modules.ComfortModules;
@@ -137,6 +138,7 @@ public class EditAqarsActivity extends AppCompatActivity {
     Button btn_send;
     RecyclerView images_RecyclerView;
     RecyclerView images_RecyclerView_url;
+    RecyclerView image;
     RecyclerView imagesplaned_RecyclerView;
 
     AlertDialog alertDialog;
@@ -282,6 +284,7 @@ public class EditAqarsActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         images_RecyclerView = findViewById(R.id.images_RecyclerView);
         images_RecyclerView_url = findViewById(R.id.images_RecyclerView_url);
+        image = findViewById(R.id.image);
         imagesplaned_RecyclerView = findViewById(R.id.imagesplaned_RecyclerView);
         opration_RecyclerView = findViewById(R.id.opration_RecyclerView);
         select_image = findViewById(R.id.select_image);
@@ -584,34 +587,34 @@ public class EditAqarsActivity extends AppCompatActivity {
                 opration_select = type_list.get(position).getId().toString() + "";
 
 
-                if (opration_select.toString().equals("1")) {//شقة
+                if (opration_select.equals("1")) {//شقة
 
 
                     specificationsqares.setVisibility(View.VISIBLE);
                     means_comfort.setVisibility(View.VISIBLE);
 
-                } else if (opration_select.toString().equals("2")) {//فيلا
+                } else if (opration_select.equals("2")) {//فيلا
 
 
                     specificationsqares.setVisibility(View.VISIBLE);
                     means_comfort.setVisibility(View.VISIBLE);
-                } else if (opration_select.toString().equals("3")) {//ارض
+                } else if (opration_select.equals("3")) {//ارض
 
 
                     specificationsqares.setVisibility(View.GONE);
                     means_comfort.setVisibility(View.GONE);
-                } else if (opration_select.toString().equals("7")) {//مزرعه
+                } else if (opration_select.equals("7")) {//مزرعه
 
 
                     specificationsqares.setVisibility(View.GONE);
                     means_comfort.setVisibility(View.GONE);
 
-                } else if (opration_select.toString().equals("4")) {//دبلكس
+                } else if (opration_select.equals("4")) {//دبلكس
                     specificationsqares.setVisibility(View.VISIBLE);
                     means_comfort.setVisibility(View.VISIBLE);
 
 
-                } else if (opration_select.toString().equals("6")) {//مكتب
+                } else if (opration_select.equals("6")) {//مكتب
 
                     specificationsqares.setVisibility(View.VISIBLE);
                     means_comfort.setVisibility(View.VISIBLE);
@@ -627,6 +630,9 @@ public class EditAqarsActivity extends AppCompatActivity {
         LinearLayoutManager layoutManagems
                 = new LinearLayoutManager(EditAqarsActivity.this, LinearLayoutManager.HORIZONTAL, false);
         images_RecyclerView_url.setLayoutManager(layoutManagems);
+        LinearLayoutManager layoutManagemsaaa
+                = new LinearLayoutManager(EditAqarsActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        image.setLayoutManager(layoutManagemsaaa);
 
 
         LinearLayoutManager layoutManagemsa
@@ -1697,13 +1703,13 @@ public class EditAqarsActivity extends AppCompatActivity {
                 }
 
 
-                if (opration_select.toString().equals("1")) {//فيلا
+                if (opration_select.equals("1")) {//فيلا
 
 
-                } else if (opration_select.toString().equals("2")) {//ارض
+                } else if (opration_select.equals("2")) {//ارض
 
 
-                } else if (opration_select.toString().equals("3")) {//شقه
+                } else if (opration_select.equals("3")) {//شقه
 
 
                 }
@@ -1725,7 +1731,13 @@ public class EditAqarsActivity extends AppCompatActivity {
                 Log.d("TAG", "Volley JSON post" + response);
                 WebService.loading(EditAqarsActivity.this, false);
 //{"status":true,"code":200,"message":"User Profile","data"
-                if (requestType.equals("SendOrder")) {
+                if (requestType.equals("deleteImg_estate")) {
+
+
+                    Log.d("TAG", "Volley JSON post seletrsssss" + response);
+
+
+                } else if (requestType.equals("SendOrder")) {
 
 
                 } else {
@@ -1776,6 +1788,45 @@ public class EditAqarsActivity extends AppCompatActivity {
                                 Role_number.setText(homeModules_aqares.getFloorNumber() + "");
                                 Street_view.setText(homeModules_aqares.getStreetView() + "");
                                 price_one_meter.setText(homeModules_aqares.getMeterPrice() + "");
+
+
+                                try {
+
+                                    System.out.println("homeModules_aqares.getEstate_file()" + homeModules_aqares.getEstate_file().size());
+
+
+//                                    images_RecyclerView_url.setAdapter(new RecyclerView_selectImage_url(EditAqarsActivity.this, homeModules_aqares.getEstate_file()));
+                                    RecyclerView_selectImage_url_image recyclerView_selectImage_url_image = new RecyclerView_selectImage_url_image(EditAqarsActivity.this, homeModules_aqares.getEstate_file());
+
+                                    recyclerView_selectImage_url_image.addItemClickListener(new RecyclerView_selectImage_url_image.ItemClickListener() {
+                                        @Override
+                                        public void onItemClick(int position) {
+                                            //-----------------------------------------------------------------------------------------
+                                            init_volley();
+                                            VolleyService mVolleyService = new VolleyService(mResultCallback, EditAqarsActivity.this);
+
+
+                                            JSONObject jsonObject = new JSONObject();
+                                            try {
+                                                jsonObject.put("image_id", position + "");
+                                            } catch (Exception e) {
+
+                                            }
+
+                                            mVolleyService.postDataVolley("deleteImg_estate", WebService.deleteImg_estate, jsonObject);
+
+                                            WebService.loading(EditAqarsActivity.this, false);
+
+                                        }
+                                    });
+
+
+                                    images_RecyclerView_url.setAdapter(recyclerView_selectImage_url_image);
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
 
                                 if (number_Lounges > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
@@ -1929,16 +1980,10 @@ public class EditAqarsActivity extends AppCompatActivity {
 
 
                                 try {
-                                    images_RecyclerView_url.setAdapter(new RecyclerView_selectImage_url(EditAqarsActivity.this, homeModules_aqares.getEstate_file()));
-
-                                } catch (Exception e) {
-
-                                }
-                                try {
                                     imagesplaned_RecyclerView.setAdapter(new RecyclerView_selectImage_url(EditAqarsActivity.this, homeModules_aqares.getPlanned_file()));
 
                                 } catch (Exception e) {
-
+                                    e.printStackTrace();
                                 }
 //                                String id_or_aq = "";
 //
@@ -2009,15 +2054,7 @@ public class EditAqarsActivity extends AppCompatActivity {
                                     public void onItemClick(int position) {
 
 
-                                        if (comfort_list.get(position).get_is_selected()) {
-
-                                            comfort_list.get(position).setIs_selected(false);
-
-                                        } else {
-
-                                            comfort_list.get(position).setIs_selected(true);
-
-                                        }
+                                        comfort_list.get(position).setIs_selected(!comfort_list.get(position).get_is_selected());
 
 
                                         System.out.println("%%%%%%%%%%%%%5" + comfort_list.get(position).get_is_selected());
@@ -2261,7 +2298,7 @@ public class EditAqarsActivity extends AppCompatActivity {
 
 
                 } else if (requstcode == 1217) {
-                    String filePath = resultUri.getPath().toString();
+                    String filePath = resultUri.getPath();
 
                     Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
 
@@ -2269,7 +2306,7 @@ public class EditAqarsActivity extends AppCompatActivity {
 
                     instrument_filexx = new File(filePath);
                 } else if (requstcode == 20) {
-                    String filePath = resultUri.getPath().toString();
+                    String filePath = resultUri.getPath();
 
                     Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
 

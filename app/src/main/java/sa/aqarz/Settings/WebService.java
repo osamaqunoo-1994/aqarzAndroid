@@ -43,6 +43,7 @@ public class WebService {
     public static String deferredInstallment = Domain + "deferredInstallment/Request";
     public static String finance = Domain + "finance/Request";
     public static String comfort = Domain + "comfort";
+    public static String deleteImg_estate = Domain + "deleteImg/estate";
     public static String addImg = Domain + "addImg/estate";
     public static String addImg_planned = Domain + "addImg/planned";
     public static String addestate = Domain + "add/estate";

@@ -509,11 +509,8 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/images_RecyclerView"
                             android:layout_width="wrap_content"
+
                             android:layout_height="wrap_content"
-
-
-                            android:layout_weight="1"
-
 
                             />
 
@@ -523,14 +520,20 @@
                             android:layout_height="wrap_content"
 
 
-                            android:layout_weight="1"
 
 
                             />
 
+
+
                     </LinearLayout>
 
+
                 </HorizontalScrollView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@+id/image"
+                    android:layout_height="wrap_content"/>
 
                 <TextView
                     android:layout_width="wrap_content"

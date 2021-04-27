@@ -24,7 +24,7 @@ import sa.aqarz.R;
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_selectImage_url extends RecyclerView.Adapter<RecyclerView_selectImage_url.MyViewHolder> {
+public class RecyclerView_selectImage_url_image extends RecyclerView.Adapter<RecyclerView_selectImage_url_image.MyViewHolder> {
     public static List<HomeModules_aqares.estate_file> alldata = new ArrayList<HomeModules_aqares.estate_file>();
     static int Postion_opend = 0;
 
@@ -71,7 +71,7 @@ public class RecyclerView_selectImage_url extends RecyclerView.Adapter<RecyclerV
         }
     }
 
-    public RecyclerView_selectImage_url(Context context, List<HomeModules_aqares.estate_file> alldatam) {
+    public RecyclerView_selectImage_url_image(Context context, List<HomeModules_aqares.estate_file> alldatam) {
         alldata = alldatam;
         this.context = context;
     }
@@ -99,10 +99,10 @@ public class RecyclerView_selectImage_url extends RecyclerView.Adapter<RecyclerV
 ////
 //
 //
-//        holder.delect.setVisibility(View.VISIBLE);
+        holder.delect.setVisibility(View.VISIBLE);
 //        holder.omage.setImageBitmap(alldata.get(position).getSelectedImage());
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.get().load(alldata.get(position).getFile().toString()).into(holder.omage);
+        Picasso.get().load(alldata.get(position).getFile()).into(holder.omage);
 ////
 //
 //        try {
@@ -168,6 +168,28 @@ public class RecyclerView_selectImage_url extends RecyclerView.Adapter<RecyclerV
 
                 if (mItemClickListener != null) {
                     mItemClickListener.onItemClick(position);
+                }
+//
+
+            }
+        });
+        holder.delect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Postion_opend = position;
+
+                alldata.remove(position);
+                Refr();
+
+
+
+//                RequestOrderActivity.set_fragment(position);
+
+
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(alldata.get(position).getId());
                 }
 //
 

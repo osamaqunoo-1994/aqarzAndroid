@@ -767,7 +767,7 @@ public class HomeModules_aqares {
     }
 
 
-    public class estate_file {
+    public static class estate_file {
         @SerializedName("id")
         @Expose
         private Integer id;
@@ -780,6 +780,10 @@ public class HomeModules_aqares {
         @SerializedName("icon")
         @Expose
         private String icon;
+
+        public estate_file(){
+
+        }
 
         public String getIcon() {
             return icon;
