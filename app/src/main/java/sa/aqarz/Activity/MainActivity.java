@@ -66,6 +66,7 @@ import sa.aqarz.Activity.OprationNew.FinanceActivity;
 import sa.aqarz.Activity.OprationNew.RentActivity;
 import sa.aqarz.Activity.OprationNew.RentShowActivity;
 import sa.aqarz.Activity.profile.AllclintActivity;
+import sa.aqarz.Activity.profile.MyProfile;
 import sa.aqarz.Activity.profile.MyProfileActivity;
 import sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import sa.aqarz.Adapter.RecyclerView_bottomSheet_type;
@@ -736,7 +737,8 @@ public class MainActivity extends AppCompatActivity {
                     if (Settings.CheckIsAccountAqarzMan()) {
 //                    Intent intent = new Intent(getContext(), DetailsAqarzManActivity.class);
 //                    Intent intent = new Intent(getContext(), AqarzProfileActivity.class);
-                        Intent intent = new Intent(MainActivity.this, MyProfileActivity.class);
+//                        Intent intent = new Intent(MainActivity.this, MyProfileActivity.class);
+                        Intent intent = new Intent(MainActivity.this, MyProfile.class);
 //                                intent.putExtra("from", "splash");
                         startActivity(intent);
                         overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);

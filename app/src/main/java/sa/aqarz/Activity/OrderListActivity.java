@@ -1025,7 +1025,7 @@ ImageView more_filtter_image;
         }
         String search_te = "";
 
-        if (search_text.getText().toString().equals("")) {
+        if (!search_text.getText().toString().equals("")) {
 
             search_te = "&search=" + search_text.getText().toString();
 

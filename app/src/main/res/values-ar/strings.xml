@@ -933,4 +933,21 @@
     <string name="employee__2">عدد عروض الصندوق</string>
     <string name="employee__3">عدد الاتصالات</string>
     <string name="employee__4">عدد عروض السوق</string>
+
+
+
+
+    <string name="adde_employee">اضافة موظف</string>
+    <string name="Successfully">بنجاح</string>
+    <string name="Bio">نبذه عن</string>
+    <string name="experience">الخبرات</string>
+    <string name="Courses">الدورات</string>
+
+
+    <string name="dsdsdsdsd">الاحياء</string>
+    <string name="dsdsdsdsdsd">الاحياء</string>
+    <string name="dsdsdssddsd">الاحياء</string>
+
+
+
 </resources>

@@ -18,6 +18,9 @@ public class User {
     @SerializedName("email")
     @Expose
     private String email;
+    @SerializedName("rate")
+    @Expose
+    private String rate;
     @SerializedName("email_verified_at")
     @Expose
     private String email_verified_at;
@@ -84,6 +87,9 @@ public class User {
     @SerializedName("address")
     @Expose
     private String address;
+    @SerializedName("count_emp")
+    @Expose
+    private String count_emp;
     @SerializedName("count_visit")
     @Expose
     private String count_visit;
@@ -111,6 +117,9 @@ public class User {
     @Expose
     private List<SettingsModules.service_types> service_name;
 
+    public String getRate() {
+        return rate;
+    }
 
     public String getServices_id() {
         return services_id;
@@ -161,6 +170,10 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public String getCount_emp() {
+        return count_emp;
     }
 
     public String getMobile() {
