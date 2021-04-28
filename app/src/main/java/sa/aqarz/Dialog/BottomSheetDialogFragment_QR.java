@@ -35,6 +35,7 @@ import sa.aqarz.Settings.Settings;
 public class BottomSheetDialogFragment_QR extends BottomSheetDialogFragment {
 
     ImageView image_qr;
+    ImageView close;
     TextView share_qr;
     CircleImageView profile;
     String link = "";
@@ -44,6 +45,7 @@ public class BottomSheetDialogFragment_QR extends BottomSheetDialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_sheets_qr, container, false);
         image_qr = v.findViewById(R.id.image_qr);
+        close = v.findViewById(R.id.close);
         share_qr = v.findViewById(R.id.share_qr);
         profile = v.findViewById(R.id.profile);
 //Settings.GetUser().getLink()
@@ -60,6 +62,13 @@ public class BottomSheetDialogFragment_QR extends BottomSheetDialogFragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
 
         share_qr.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +103,7 @@ public class BottomSheetDialogFragment_QR extends BottomSheetDialogFragment {
             }
         });
 
-        if (!image_link.toString().equals("null")) {
+        if (!image_link.equals("null")) {
             Picasso.get().load(image_link).into(profile);
 
         }

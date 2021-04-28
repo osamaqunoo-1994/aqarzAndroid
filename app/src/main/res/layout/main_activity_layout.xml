@@ -803,6 +803,7 @@
 
 
                     <EditText
+                        android:id="@+id/aqarez_name_edt"
                         android:layout_width="match_parent"
                         android:layout_height="42dp"
                         android:layout_weight="1"
@@ -810,7 +811,6 @@
                         android:fontFamily="@font/din_light"
                         android:gravity="center_vertical"
                         android:hint="@string/nameAqarez"
-                        android:inputType="number"
 
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"

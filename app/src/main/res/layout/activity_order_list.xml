@@ -410,6 +410,7 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/more_filtter_image"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="5dp"

@@ -146,7 +146,7 @@ public class OrderListActivity extends AppCompatActivity {
     static String offer_status = "customer_accepted ";
     TextView searcha;
     static EditText search_text;
-
+ImageView more_filtter_image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -189,6 +189,7 @@ public class OrderListActivity extends AppCompatActivity {
         real = findViewById(R.id.real);
         searcha = findViewById(R.id.searcha);
         search_text = findViewById(R.id.search_text);
+        more_filtter_image = findViewById(R.id.more_filtter_image);
 
 
         AllOrder = findViewById(R.id.AllOrder);
@@ -967,7 +968,13 @@ public class OrderListActivity extends AppCompatActivity {
 
 //        Real_Estate_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
 //        Real_Estate_order_image.setColorFilter(ContextCompat.getColor(OrderListActivity.this, R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
+        more_filtter_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+
+            }
+        });
 
         page = 1;
 
@@ -1020,7 +1027,7 @@ public class OrderListActivity extends AppCompatActivity {
 
         if (search_text.getText().toString().equals("")) {
 
-            search_te = "&" + search_text.getText().toString();
+            search_te = "&search=" + search_text.getText().toString();
 
         }
 
@@ -1028,13 +1035,13 @@ public class OrderListActivity extends AppCompatActivity {
 
 
             if (type_requst.equals("today")) {
-                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select);
+                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te);
 
             } else if (type_requst.equals("AllOrder")) {
-                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?" + "page=" + page + id_city_ + opration_select);
+                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?" + "page=" + page + id_city_ + opration_select + search_te);
 
             } else if (type_requst.equals("Myoffer")) {
-                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?" + "page=" + page + "&myOwn=1" + id_city_ + opration_select + "off");
+                mVolleyService.getDataVolley("fund_Request", WebService.fund_Request + "?" + "page=" + page + "&myOwn=1" + id_city_ + opration_select + "off" + search_te);
 
             }
 
@@ -1043,13 +1050,13 @@ public class OrderListActivity extends AppCompatActivity {
             mVolleyService.getDataVolley("my_request", WebService.my_request);
 
             if (type_requst.equals("today")) {
-                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?" + "page=" + page + "&today=1" + id_city_ + opration_select);
+                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te);
 
             } else if (type_requst.equals("AllOrder")) {
-                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?" + "page=" + page + id_city_ + opration_select);
+                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?" + "page=" + page + id_city_ + opration_select + search_te);
 
             } else if (type_requst.equals("Myoffer")) {
-                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?" + "page=" + page + "&myOwn=1" + id_city_ + opration_select + off);
+                mVolleyService.getDataVolley("market_demands", WebService.market_demands + "?" + "page=" + page + "&myOwn=1" + id_city_ + opration_select + off + search_te);
 
             }
 

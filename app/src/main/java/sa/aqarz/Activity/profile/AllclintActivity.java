@@ -57,12 +57,35 @@ public class AllclintActivity extends AppCompatActivity {
         });
 
 
-        init_volley();
-        WebService.loading(AllclintActivity.this, true);
+        try {
 
-        VolleyService mVolleyService = new VolleyService(mResultCallback, this);
+            String search_text = getIntent().getStringExtra("search_text");
 
-        mVolleyService.getDataVolley("best_provider", WebService.best_provider);
+
+            if (search_text != null) {
+
+                init_volley();
+                WebService.loading(AllclintActivity.this, true);
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, this);
+
+                mVolleyService.getDataVolley("best_provider", WebService.Domain + "search/user/" + search_text);
+
+            } else {
+
+                init_volley();
+                WebService.loading(AllclintActivity.this, true);
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, this);
+
+                mVolleyService.getDataVolley("best_providerxxxxxx", WebService.best_provider);
+
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }

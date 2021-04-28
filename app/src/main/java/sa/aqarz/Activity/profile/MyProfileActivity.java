@@ -209,7 +209,15 @@ public class MyProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        qr_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                BottomSheetDialogFragment_QR bottomSheetDialogFragment_qr = new BottomSheetDialogFragment_QR(Settings.GetUser().getLink() + "", Settings.GetUser().getLogo() + "");
+                bottomSheetDialogFragment_qr.show(getSupportFragmentManager(), "");
+
+            }
+        });
         try {
             if (!Settings.GetUser().getName().equals("null")) {
                 name.setText(Settings.GetUser().getName());
@@ -273,15 +281,7 @@ public class MyProfileActivity extends AppCompatActivity {
 
             }//591694624
 
-            qr_code.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                    BottomSheetDialogFragment_QR bottomSheetDialogFragment_qr = new BottomSheetDialogFragment_QR(Settings.GetUser().getLink() + "", Settings.GetUser().getLogo() + "");
-                    bottomSheetDialogFragment_qr.show(getSupportFragmentManager(), "");
-
-                }
-            });
         } catch (Exception e) {
 
         }

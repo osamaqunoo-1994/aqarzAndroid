@@ -180,6 +180,9 @@ public class MainActivity extends AppCompatActivity {
     ImageView close;
     TextView search_filtter;
 
+
+    EditText aqarez_name_edt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -206,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
         search_aqarez_man = findViewById(R.id.search_aqarez_man);
         qr_search = findViewById(R.id.qr_search);
         close = findViewById(R.id.close);
+        aqarez_name_edt = findViewById(R.id.aqarez_name_edt);
 
         selsct_type_all = findViewById(R.id.selsct_type_all);
         opration = findViewById(R.id.opration);
@@ -1184,6 +1188,13 @@ public class MainActivity extends AppCompatActivity {
 
 
                 try {
+
+
+                    Intent intent = new Intent(MainActivity.this, AllclintActivity.class);
+                    intent.putExtra("search_text", aqarez_name_edt.getText().toString() + "");
+                    startActivity(intent);
+
+
 //                    MapsFragmentNew.get_all_estate_list_filttter_();
 
                 } catch (Exception e) {
