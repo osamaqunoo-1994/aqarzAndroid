@@ -25,6 +25,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -70,6 +72,8 @@ import sa.aqarz.Activity.profile.MyProfile;
 import sa.aqarz.Activity.profile.MyProfileActivity;
 import sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import sa.aqarz.Adapter.RecyclerView_bottomSheet_type;
+import sa.aqarz.Adapter.RecyclerView_city_bootom_sheets;
+import sa.aqarz.Adapter.RecyclerView_city_bootom_sheets_multi;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Filtter;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Service;
@@ -80,11 +84,13 @@ import sa.aqarz.Fragment.MoreFragment;
 import sa.aqarz.Fragment.NotficationFragment;
 import sa.aqarz.Fragment.OrdersFragment;
 import sa.aqarz.Fragment.ServiceFragment;
+import sa.aqarz.Modules.CityModules;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.Modules.select_typeModules;
 import sa.aqarz.R;
+import sa.aqarz.Settings.Application;
 import sa.aqarz.Settings.ForceUpdateAsync;
 import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
@@ -115,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
     static TextView text_s;
     IResult mResultCallback;
 
+    List<CityModules> cityModules_list = new ArrayList<>();
+    List<CityModules> cityModules_list_selected = new ArrayList<>();
+    List<CityModules> cityModules_list_filtter = new ArrayList<>();
     LinearLayout service_layout;
     LinearLayout gray_layout;
     String te = "";
@@ -134,9 +143,10 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout Rental_installment_c;
     LinearLayout finance_c;
 
-
+    RecyclerView allcity;
     public static boolean first_time_open_app = false;
     public static boolean first_time_ = false;
+    public static boolean searh = true;
 
 
     TextView search;
@@ -183,6 +193,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     EditText aqarez_name_edt;
+    EditText search_text;
+
+
+    static LinearLayout filtter_city;
+    static LinearLayout allfilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,10 +214,14 @@ public class MainActivity extends AppCompatActivity {
         first_time_open_app = true;
         first_time_ = true;
         add_service_aqarez = findViewById(R.id.add_service_aqarez);
+        filtter_city = findViewById(R.id.filtter_city);
+        allfilter = findViewById(R.id.allfilter);
+        search_text = findViewById(R.id.search_text);
         add_aqar = findViewById(R.id.add_aqar);
         add_aqarez_c = findViewById(R.id.add_aqarez_c);
         request_add_aqarez_c = findViewById(R.id.request_add_aqarez_c);
         search_aqaerz = findViewById(R.id.search_aqaerz);
+        allcity = findViewById(R.id.allcity);
         rate_c = findViewById(R.id.rate_c);
         Rental_installment_c = findViewById(R.id.Rental_installment_c);
         finance_c = findViewById(R.id.finance_c);
@@ -1083,6 +1102,157 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 
+        filtter_acion();
+    }
+
+//    public void init() {
+//        bottomNav = findViewById(R.id.bottom_navigation);
+//
+//        if (bottomNav != null) {
+//
+//            // Select first menu item by default and show Fragment accordingly.
+//            menu = bottomNav.getMenu();
+//            //    bottomNavigationView.getMenu().getItem(0).setChecked(true);
+//
+////            selectFragment(menu.getItem(0));
+//// here to know any fragment
+//            selectFragment(menu.getItem(0));
+//
+//
+//            // Set action to perform when any menu-item is selected.
+//            bottomNav.setOnNavigationItemSelectedListener(
+//                    new BottomNavigationView.OnNavigationItemSelectedListener() {
+//                        @Override
+//                        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//
+//                            item.setChecked(true);
+//                            selectFragment(item);
+////                            selectFragment(item);
+//                            return false;
+//                        }
+//                    });
+//
+//
+//        }
+//    }
+
+    //    protected void selectFragment(MenuItem item) {
+//        item.setChecked(true);
+//        switch (item.getItemId()) {
+//            case R.id.home:
+//                goToFragment(0);
+//          /*      if (mUserSession.hasActiveSession())
+//                    if (mUserSession.getCurrentUser().getUser().getMobileVerifiedAt()== null){
+//                        Log.d("Mobile",mUserSession.getCurrentUser().getUser().getMobileVerifiedAt()+"empty");
+//                        showDialog();}*/
+//                break;
+////
+////            case R.id.subscriptions:
+////                // if(mUserSession.hasActiveSession())
+////                goToFragment(1);
+//////                else
+//////                    showAlert(MainActivity.this, getString(R.string.should_login));
+////                break;
+//
+//            case R.id.orders:
+//                goToFragment(1);
+//                break;
+//            case R.id.messages:
+//                //       if(mUserSession.hasActiveSession())
+//                goToFragment(2);
+//            /*    else
+//                    showAlert(MainActivity.this, getString(R.string.should_login));*/
+//                break;
+//            case R.id.more:
+//                //       if(mUserSession.hasActiveSession())
+//                goToFragment(3);
+//            /*    else
+//                    showAlert(MainActivity.this, getString(R.string.should_login));*/
+//                break;
+//
+//        }
+//    }
+
+    public void filtter_acion() {
+
+
+        LinearLayoutManager layoutManager1
+                = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false);
+        allcity.setLayoutManager(layoutManager1);
+
+
+        if (Application.AllCity.size() != 0) {
+
+            cityModules_list = Application.AllCity;
+
+//            cityModules_list_selected.clear();
+//            for (int i = 0; i < cityModules_list.size(); i++) {
+//
+//                if (cityModules_list.get(i).isSelected()) {
+//                    cityModules_list_selected.add(cityModules_list.get(i));
+//                }
+//
+//
+//            }
+        }
+        search_text.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if (s.length() != 0) {
+
+
+                    if (searh) {
+                        filtter_city.setVisibility(View.VISIBLE);
+                        allfilter.setVisibility(View.GONE);
+                        searh = true;
+                    }
+                    searh = true;
+
+
+                    for (int i = 0; i < cityModules_list.size(); i++) {
+
+
+                        if (cityModules_list.get(i).getName().contains(search_text.getText().toString())) {
+                            cityModules_list_filtter.add(cityModules_list.get(i));
+                        }
+
+
+                    }
+                    RecyclerView_city_bootom_sheets recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets(MainActivity.this, cityModules_list_filtter);
+                    recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_bootom_sheets.ItemClickListener() {
+                        @Override
+                        public void onItemClick(int i) {
+//                        cityModules_list = alldata;
+                            convert_city_to_filter();
+                            searh = false;
+
+                            MapsFragmentNew.city_id_postion = cityModules_list.get(i).getId() + "";
+
+                            search_text.setText(cityModules_list.get(i).getName() + "");
+
+                        }
+                    });
+
+                    allcity.setAdapter(recyclerView_city_bootom_sheets);
+
+
+                }
+
+            }
+        });
+
+
         room_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1204,75 +1374,24 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
-//    public void init() {
-//        bottomNav = findViewById(R.id.bottom_navigation);
-//
-//        if (bottomNav != null) {
-//
-//            // Select first menu item by default and show Fragment accordingly.
-//            menu = bottomNav.getMenu();
-//            //    bottomNavigationView.getMenu().getItem(0).setChecked(true);
-//
-////            selectFragment(menu.getItem(0));
-//// here to know any fragment
-//            selectFragment(menu.getItem(0));
-//
-//
-//            // Set action to perform when any menu-item is selected.
-//            bottomNav.setOnNavigationItemSelectedListener(
-//                    new BottomNavigationView.OnNavigationItemSelectedListener() {
-//                        @Override
-//                        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//
-//                            item.setChecked(true);
-//                            selectFragment(item);
-////                            selectFragment(item);
-//                            return false;
-//                        }
-//                    });
-//
-//
-//        }
-//    }
 
-    //    protected void selectFragment(MenuItem item) {
-//        item.setChecked(true);
-//        switch (item.getItemId()) {
-//            case R.id.home:
-//                goToFragment(0);
-//          /*      if (mUserSession.hasActiveSession())
-//                    if (mUserSession.getCurrentUser().getUser().getMobileVerifiedAt()== null){
-//                        Log.d("Mobile",mUserSession.getCurrentUser().getUser().getMobileVerifiedAt()+"empty");
-//                        showDialog();}*/
-//                break;
-////
-////            case R.id.subscriptions:
-////                // if(mUserSession.hasActiveSession())
-////                goToFragment(1);
-//////                else
-//////                    showAlert(MainActivity.this, getString(R.string.should_login));
-////                break;
-//
-//            case R.id.orders:
-//                goToFragment(1);
-//                break;
-//            case R.id.messages:
-//                //       if(mUserSession.hasActiveSession())
-//                goToFragment(2);
-//            /*    else
-//                    showAlert(MainActivity.this, getString(R.string.should_login));*/
-//                break;
-//            case R.id.more:
-//                //       if(mUserSession.hasActiveSession())
-//                goToFragment(3);
-//            /*    else
-//                    showAlert(MainActivity.this, getString(R.string.should_login));*/
-//                break;
-//
-//        }
-//    }
+    public static void convert_city_to_filter() {
+
+
+        filtter_city.setVisibility(View.GONE);
+        allfilter.setVisibility(View.VISIBLE);
+
+        System.out.println(
+                "dflkdlfkdlkfldkf"
+        );
+
+
+    }
+
+
     private void toggle() {
 //        Transition transition = new Slide(Gravity.BOTTOM);
 //

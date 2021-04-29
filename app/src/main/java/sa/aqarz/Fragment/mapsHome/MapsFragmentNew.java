@@ -94,7 +94,7 @@ public class MapsFragmentNew extends Fragment {
 
 
     static String region_id_postion = "";
-    static String city_id_postion = "";
+    public static String city_id_postion = "";
 
 
     static String lat = "";
@@ -1019,9 +1019,14 @@ public class MapsFragmentNew extends Fragment {
             filter = filter + "&state_id=" + getId_region;
 
         }
-        if (!city_id_postion.equals("")) {
-            getSerial_city = city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
-            filter = filter + "&city_id=" + getSerial_city;
+        try{
+            if (!city_id_postion.equals("")) {
+                getSerial_city = city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
+                filter = filter + "&city_id=" + getSerial_city;
+
+            }
+        }catch (Exception e){
+            filter = filter + "&city_id=" + city_id_postion;
 
         }
 

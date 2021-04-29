@@ -229,7 +229,7 @@ public class RecyclerView_city_bootom_sheets_multi extends RecyclerView.Adapter<
                 }
 
 
-//                mItemClickListener2.onItemClick(alldata.get(position));
+                mItemClickListener.onItemClick(position);
 
 
             }

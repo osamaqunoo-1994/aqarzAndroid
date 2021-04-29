@@ -112,7 +112,7 @@ public class RecyclerView_samilar extends RecyclerView.Adapter<RecyclerView_sami
     }
 
     public RecyclerView_samilar(Context context, List<HomeModules_aqares> alldata) {
-        this.alldata = alldata;
+        RecyclerView_samilar.alldata = alldata;
         this.context = context;
     }
 
@@ -154,9 +154,7 @@ public class RecyclerView_samilar extends RecyclerView.Adapter<RecyclerView_sami
         holder.type.setText(alldata.get(position).getEstate_type_name());
         holder.opration.setText(alldata.get(position).getOperationTypeName());
 
-        holder.date.setText(alldata.get(position).getCreatedAt()+"");
-
-
+        holder.date.setText(alldata.get(position).getCreatedAt() + "");
 
 
         if (alldata.get(position).getAddress() == null) {
@@ -176,8 +174,7 @@ public class RecyclerView_samilar extends RecyclerView.Adapter<RecyclerView_sami
 //        holder.max_space.setText(alldata.get(position).getStreetView());
 
 
-
-        if(alldata.get(position).getEstate_type()!=null){
+        if (alldata.get(position).getEstate_type() != null) {
             Picasso.get().load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
 
         }

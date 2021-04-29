@@ -184,7 +184,7 @@ public class MyProfile extends AppCompatActivity {
                                         public void onClick(View v) {
                                             Intent intent = new Intent(MyProfile.this, MyOffersActivity.class);
 //              intent.putExtra("from", "splash");
-                                            intent.putExtra("id_user", userModules.getId() + "");
+                                            intent.putExtra("id_user",  "--");
 
                                             startActivity(intent);
                                             overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
