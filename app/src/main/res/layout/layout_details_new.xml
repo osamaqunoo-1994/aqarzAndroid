@@ -1445,7 +1445,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/cancle"
+                    android:id="@+id/report"
 
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -1463,7 +1463,7 @@
                     <ImageView
                         android:layout_width="18dp"
                         android:layout_height="18dp"
-                        android:src="@drawable/ic_chat"
+                        android:src="@drawable/ic_thumb_down"
                         app:tint="@color/white" />
 
                     <LinearLayout
@@ -1474,7 +1474,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="3dp"
-                        android:text="@string/chat"
+                        android:text="@string/report__button"
                         android:textColor="@color/white" />
 
                 </LinearLayout>

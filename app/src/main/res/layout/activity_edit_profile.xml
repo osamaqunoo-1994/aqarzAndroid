@@ -30,7 +30,7 @@
 
                 android:padding="17dp"
                 android:src="@drawable/ic_back"
-                android:tint="@color/white" />
+                app:tint="@color/white" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -340,6 +340,37 @@
 
                     android:textSize="13dp" />
 
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/Bio"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    android:visibility="visible"></TextView>
+
+                <EditText
+                    android:id="@+id/Bio"
+                    android:layout_width="match_parent"
+                    android:layout_height="145dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/mash"
+
+                    android:drawablePadding="10dp"
+                    android:gravity="start"
+                    android:hint="@string/Bio"
+                    android:inputType="number"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text=""
+
+                    android:textSize="13dp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -575,6 +606,42 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="20dp"
+                    android:text="@string/experiencsssse"
+                    android:textColor="@color/black"
+
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/experience_rec"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/course"
+                    android:textColor="@color/black"
+
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/course_rec"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="20dp"
                     android:text="@string/title_select"
                     android:textColor="@color/black"
 
@@ -586,6 +653,7 @@
                     android:id="@+id/member_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
 
                 <Button
                     android:id="@+id/done"

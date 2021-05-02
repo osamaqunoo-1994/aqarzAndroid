@@ -105,6 +105,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     LinearLayout rate;
     LinearLayout tent;
     LinearLayout rate_aqarez;
+    LinearLayout report;
     RecyclerView list_coments;
 
     @Override
@@ -137,6 +138,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
         rec_list_all = findViewById(R.id.rec_list_all);
         list_coments = findViewById(R.id.list_coments);
         back = findViewById(R.id.back);
+        report = findViewById(R.id.report);
 
 
         type_ = findViewById(R.id.type_);
@@ -200,32 +202,32 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
         } catch (Exception e) {
             e.printStackTrace();
-           try {
-               Intent intent = getIntent();
-               String action = intent.getAction();
-               Uri data = intent.getData();
+            try {
+                Intent intent = getIntent();
+                String action = intent.getAction();
+                Uri data = intent.getData();
 
-               System.out.println("action" + action);
-               System.out.println("data" + data);
-
-
-               String[] separated = data.toString().split("/");
-
-               String number = separated[4]; // this will contain " they taste good"
-
-               System.out.println("$$$$$$$$$$$$$" + number);
+                System.out.println("action" + action);
+                System.out.println("data" + data);
 
 
-               init_volley();
-               WebService.loading(DetailsActivity_aqarz.this, true);
+                String[] separated = data.toString().split("/");
 
-               VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity_aqarz.this);
-               mVolleyService.getDataVolley("single_estat", WebService.single_estat + number + "/estate");
+                String number = separated[4]; // this will contain " they taste good"
+
+                System.out.println("$$$$$$$$$$$$$" + number);
 
 
-           }catch (Exception e1){
+                init_volley();
+                WebService.loading(DetailsActivity_aqarz.this, true);
 
-           }
+                VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity_aqarz.this);
+                mVolleyService.getDataVolley("single_estat", WebService.single_estat + number + "/estate");
+
+
+            } catch (Exception e1) {
+
+            }
         }
 
 
@@ -269,6 +271,18 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
 
                 Intent intent = new Intent(DetailsActivity_aqarz.this, RateActivity.class);
+                intent.putExtra("id", id_or_aq + "");
+                startActivity(intent);
+
+
+            }
+        });
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(DetailsActivity_aqarz.this, ReportAqarezActivity.class);
                 intent.putExtra("id", id_or_aq + "");
                 startActivity(intent);
 

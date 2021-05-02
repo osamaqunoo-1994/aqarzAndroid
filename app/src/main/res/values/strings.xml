@@ -937,7 +937,19 @@ Two working days to complete your order</string>
     <string name="Bio">Bio</string>
     <string name="experience">experience</string>
     <string name="Courses">Courses</string>
-    <string name="name_city_select">ادخل اسم المدينة</string>
+    <string name="name_city_select">name city</string>
+    <string name="report_c">What problem do you want to report؟</string>
+    <string name="report__s1">The data is incorrect</string>
+    <string name="report__s2">The image is not appropriate</string>
+    <string name="report__s3">other</string>
+    <string name="report__s4">..Tell us more about the problem</string>
+    <string name="report__title">Report a problem</string>
+    <string name="report__button">Report</string>
+    <string name="experiencsssse">Choose the experience</string>
+    <string name="course">Choose the course</string>
+    <string name="offer_titele_profile">offer</string>
+    <string name="aqarez_titele_profile">aqarez</string>
 
+    <string name="view_co">View</string>
 
 </resources>

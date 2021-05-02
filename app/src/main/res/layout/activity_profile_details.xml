@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
-    tools:context=".Activity.profile.MyProfile">
+    android:background="@color/white"
+    tools:context=".Activity.profile.ProfileDetailsActivity">
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -31,6 +31,7 @@
                     android:gravity="center">
 
                     <ImageView
+                        android:id="@+id/back"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:background="@drawable/circle_w"
@@ -172,6 +173,7 @@
                             android:textSize="17dp" />
 
                         <ImageView
+                            android:visibility="gone"
                             android:id="@+id/cirtificad"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
@@ -215,6 +217,46 @@
                             android:textColor="#00A5A5"
                             android:textSize="13dp"
                             android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:padding="1dp"
+                            android:src="@drawable/ic_phone" />
+
+                        <TextView
+                            android:id="@+id/phone"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp" />
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+                            android:layout_height="10dp" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:src="@drawable/ic_viewww"
+                            app:tint="#959A9C" />
+
+                        <TextView
+                            android:id="@+id/view"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp" />
 
 
                     </LinearLayout>
@@ -330,6 +372,8 @@
                     android:gravity="center">
 
                     <LinearLayout
+                        android:id="@+id/myoffer_layout"
+
                         android:layout_width="100dp"
                         android:layout_height="80dp"
                         android:background="@drawable/back_new_profile"
@@ -366,7 +410,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:layout_marginRight="2dp"
                                 android:layout_marginBottom="2dp"
-                                android:text="@string/Requst"
+                                android:text="@string/aqarez_titele_profile"
                                 android:textColor="#424446"
                                 android:textSize="12dp" />
                         </LinearLayout>
@@ -386,7 +430,6 @@
                     android:gravity="center">
 
                     <LinearLayout
-                        android:id="@+id/myoffer_layout"
                         android:layout_width="100dp"
                         android:layout_height="80dp"
                         android:background="@drawable/back_new_profile"
@@ -425,7 +468,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:layout_marginRight="2dp"
                                 android:layout_marginBottom="2dp"
-                                android:text="@string/MyOffer"
+                                android:text="@string/offer_titele_profile"
                                 android:textColor="#424446"
                                 android:textSize="12dp" />
                         </LinearLayout>
@@ -444,6 +487,7 @@
                     android:gravity="center">
 
                     <LinearLayout
+                        android:id="@+id/clints"
                         android:layout_width="100dp"
                         android:layout_height="80dp"
                         android:background="@drawable/back_new_profile"
@@ -512,7 +556,7 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_member_new"
+                    android:src="@drawable/ic_member_sa"
 
                     />
 
@@ -530,7 +574,6 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/member_list"
                 android:layout_width="match_parent"
-                android:visibility="gone"
 
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp" />
@@ -554,7 +597,7 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_service_new"
+                    android:src="@drawable/ic_service"
 
                     />
 
@@ -572,7 +615,6 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/service_list"
                 android:layout_width="match_parent"
-                android:visibility="gone"
                 android:layout_height="wrap_content"
 
                 android:layout_marginTop="10dp" />
@@ -595,7 +637,7 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_service_new"
+                    android:src="@drawable/ic_gexp"
 
                     />
 
@@ -613,7 +655,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_service"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
 
                 android:layout_marginTop="10dp" />
 
@@ -636,7 +678,7 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_service_new"
+                    android:src="@drawable/ic_cour"
 
                     />
 
@@ -654,7 +696,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/Courses"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
 
                 android:layout_marginTop="10dp" />
 
@@ -662,5 +704,6 @@
         </LinearLayout>
 
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

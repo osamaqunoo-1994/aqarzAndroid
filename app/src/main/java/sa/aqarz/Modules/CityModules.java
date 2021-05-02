@@ -18,6 +18,12 @@ public class CityModules {
     @SerializedName("name_en")
     @Expose
     private String name_en;
+    @SerializedName("lat")
+    @Expose
+    private String lat;
+    @SerializedName("lan")
+    @Expose
+    private String lan;
     @SerializedName("latitude")
     @Expose
     private String latitude;
@@ -37,12 +43,26 @@ public class CityModules {
     @Expose
     private String country_id;
 
+    @SerializedName("city")
+    @Expose
+    private CityModules city;
 
+    public CityModules getCity() {
+        return city;
+    }
 
     boolean selected=false;
 
     public boolean isSelected() {
         return selected;
+    }
+
+    public String getLan() {
+        return lan;
+    }
+
+    public String getLat() {
+        return lat;
     }
 
     public void setSelected(boolean selected) {

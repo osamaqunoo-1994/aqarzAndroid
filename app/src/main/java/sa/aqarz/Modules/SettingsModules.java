@@ -78,18 +78,24 @@ public class SettingsModules {
     @SerializedName("OprationType")
     @Expose
     private OprationType OprationType;
-    ;
 
 
     @SerializedName("member_types")
     @Expose
     private List<service_types> member_types;
-    ;
 
 
     @SerializedName("service_types")
     @Expose
     private List<service_types> service_types;
+
+    @SerializedName("experience_types")
+    @Expose
+    private List<service_types> experience_types;
+
+    @SerializedName("course_types")
+    @Expose
+    private List<service_types> course_types;
 
 
     public List<SettingsModules.service_types> getMember_types() {
@@ -114,6 +120,14 @@ public class SettingsModules {
 
     public String getRequestFund() {
         return RequestFund;
+    }
+
+    public List<SettingsModules.service_types> getCourse_types() {
+        return course_types;
+    }
+
+    public List<SettingsModules.service_types> getExperience_types() {
+        return experience_types;
     }
 
     public String getAllRequest() {

@@ -63,6 +63,8 @@ import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Activity.OprationNew.RateActivity;
 import sa.aqarz.Activity.RealState.AllOfferOrderActivity;
 import sa.aqarz.Activity.SelectLocationActivity;
+import sa.aqarz.Adapter.RecyclerView_Course;
+import sa.aqarz.Adapter.RecyclerView_experince;
 import sa.aqarz.Adapter.RecyclerView_member;
 import sa.aqarz.Adapter.RecyclerView_service_types;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
@@ -99,6 +101,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
     String service_types_te = "";
     String memmber_te = "";
+    String exp_te = "";
+    String cour_te = "";
     String city_id = "";
     String lat = "";
     String lng = "";
@@ -106,6 +110,8 @@ public class EditProfileActivity extends AppCompatActivity {
     List<SettingsModules.service_types> service_types_listss = new ArrayList<>();
     List<SettingsModules.service_types> Member_typesl = new ArrayList<>();
 
+    List<SettingsModules.service_types> experince_list = new ArrayList<>();
+    List<SettingsModules.service_types> course_list = new ArrayList<>();
 
     TextView yes, no;
     String type_yes_no = "0";
@@ -114,6 +120,12 @@ public class EditProfileActivity extends AppCompatActivity {
     TextView real_1_yes;
     TextView real_1_no;
     CheckBox more_than_10, form_5_to_10, less_than_5;
+
+
+    RecyclerView experience_recycle;
+    RecyclerView course_recycle;
+
+    EditText Bio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +164,9 @@ public class EditProfileActivity extends AppCompatActivity {
         name_office = findViewById(R.id.name_office);
         real_1_yes = findViewById(R.id.real_1_yes);
         real_1_no = findViewById(R.id.real_1_no);
+        experience_recycle = findViewById(R.id.experience_rec);
+        course_recycle = findViewById(R.id.course_rec);
+        Bio = findViewById(R.id.Bio);
 
         Places.initialize(EditProfileActivity.this, "AIzaSyA6E2L_Feqp6HMD85eQ1RP06WnykHJj7Mc");
         PlacesClient placesClient = Places.createClient(EditProfileActivity.this);
@@ -346,7 +361,7 @@ public class EditProfileActivity extends AppCompatActivity {
         if (Settings.CheckIsCompleate()) {
 
 
-            if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+            if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
 
 //                        bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getUuid() + "");
 //                        bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
@@ -462,7 +477,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
             if (Settings.GetUser().getEmail() != null) {
-                email_ed.setText(Settings.GetUser().getEmail().toString() + "");
+                email_ed.setText(Settings.GetUser().getEmail() + "");
 
             }
             if (Settings.GetUser().getCity_name() != null) {
@@ -470,6 +485,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
 
+
+            Bio.setText(Settings.GetUser().getBio() + "");
 
             Glide.with(EditProfileActivity.this).load(Settings.GetUser().getLogo() + "").error(getResources().getDrawable(R.drawable.ic_user_un)).diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true).into(image_profile);
@@ -551,13 +568,13 @@ public class EditProfileActivity extends AppCompatActivity {
                 } else if (address.getText().toString().equals("")) {
                     WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.hint_address__address) + "", "error");
 
-                } else if (service_types_te.toString().equals("")) {
+                } else if (service_types_te.equals("")) {
                     WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.select_service) + "", "error");
 
-                } else if (memmber_te.toString().equals("")) {
+                } else if (memmber_te.equals("")) {
                     WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.selectmember) + "", "error");
 
-                } else if (type_experiencex.toString().equals("")) {
+                } else if (type_experiencex.equals("")) {
                     WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.select_experiencex) + "", "error");
 
                 } else if (link.toString().equals("")) {
@@ -589,6 +606,9 @@ public class EditProfileActivity extends AppCompatActivity {
                         sendObj.put("user_name", link.getText().toString());
                         sendObj.put("experience", type_experiencex);
                         sendObj.put("office_staff", type_yes_no);
+                        sendObj.put("experiences_id", exp_te);
+                        sendObj.put("courses_id", cour_te);
+                        sendObj.put("bio", Bio.getText().toString());
 
 
                         System.out.println(sendObj.toString());
@@ -631,7 +651,146 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
+        experience_recycle.setLayoutManager(new GridLayoutManager(this, 2));
 
+        FlowLayoutManager flowLayoutManager_exp = new FlowLayoutManager();
+        flowLayoutManager.setAutoMeasureEnabled(true);
+//                            flowLayoutManager.maxItemsPerLine(1);
+        experience_recycle.setLayoutManager(flowLayoutManager_exp);
+        experince_list = Settings.getSettings().getExperience_types();
+
+        try {
+
+
+            for (int i = 0; i < experince_list.size(); i++) {
+                for (int j = 0; j < Settings.GetUser().getExperience_name().size(); j++) {
+
+
+                    try {
+                        if (experince_list.get(i).getId() == Settings.GetUser().getExperience_name().get(j).getId()) {
+
+                            experince_list.get(i).setChecked(true);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        exp_te = "";
+        for (int i = 0; i < experince_list.size(); i++) {
+            if (experince_list.get(i).isChecked()) {
+                if (exp_te.equals("")) {
+                    exp_te = experince_list.get(i).getId() + "";
+
+                } else {
+                    exp_te = exp_te + "," + experince_list.get(i).getId() + "";
+
+                }
+
+            }
+        }
+
+
+        RecyclerView_experince recyclerView_experince = new RecyclerView_experince(EditProfileActivity.this, experince_list);
+        recyclerView_experince.addItemClickListener(new RecyclerView_experince.ItemClickListener() {
+            @Override
+            public void onItemClick(List<SettingsModules.service_types> service_types) {
+                exp_te = "";
+                for (int i = 0; i < service_types.size(); i++) {
+                    if (service_types.get(i).isChecked()) {
+                        if (exp_te.equals("")) {
+                            exp_te = service_types.get(i).getId() + "";
+
+                        } else {
+                            exp_te = exp_te + "," + service_types.get(i).getId() + "";
+
+                        }
+
+                    }
+                }
+
+
+            }
+        });
+
+        experience_recycle.setAdapter(recyclerView_experince);
+
+        course_recycle.setLayoutManager(new GridLayoutManager(this, 2));
+
+        FlowLayoutManager flowLayoutManager_course = new FlowLayoutManager();
+        flowLayoutManager.setAutoMeasureEnabled(true);
+//                            flowLayoutManager.maxItemsPerLine(1);
+        course_recycle.setLayoutManager(flowLayoutManager_course);
+        course_list = Settings.getSettings().getCourse_types();
+
+        try {
+
+
+            for (int i = 0; i < course_list.size(); i++) {
+                for (int j = 0; j < Settings.GetUser().getCourse_name().size(); j++) {
+
+
+                    try {
+                        if (course_list.get(i).getId() == Settings.GetUser().getCourse_name().get(j).getId()) {
+
+                            course_list.get(i).setChecked(true);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        cour_te = "";
+        for (int i = 0; i < course_list.size(); i++) {
+            if (course_list.get(i).isChecked()) {
+                if (cour_te.equals("")) {
+                    cour_te = course_list.get(i).getId() + "";
+
+                } else {
+                    cour_te = cour_te + "," + course_list.get(i).getId() + "";
+
+                }
+
+            }
+        }
+
+
+        RecyclerView_Course recyclerView_course = new RecyclerView_Course(EditProfileActivity.this, experince_list);
+        recyclerView_course.addItemClickListener(new RecyclerView_Course.ItemClickListener() {
+            @Override
+            public void onItemClick(List<SettingsModules.service_types> service_types) {
+                cour_te = "";
+                for (int i = 0; i < service_types.size(); i++) {
+                    if (service_types.get(i).isChecked()) {
+                        if (cour_te.equals("")) {
+                            cour_te = service_types.get(i).getId() + "";
+
+                        } else {
+                            cour_te = cour_te + "," + service_types.get(i).getId() + "";
+
+                        }
+
+                    }
+                }
+
+
+            }
+        });
+
+        System.out.println("#####" + experince_list.size());
+        course_recycle.setAdapter(recyclerView_course);
     }
 
     public void init_volley() {
@@ -737,7 +896,7 @@ public class EditProfileActivity extends AppCompatActivity {
 //            Uri uri = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, images.get(0).getId()+"");
 
 
-            String filePath = images.get(0).getPath().toString();
+            String filePath = images.get(0).getPath();
             Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
 
             image_profile.setImageBitmap(selectedImagea);

@@ -78,6 +78,9 @@ public class User {
     @SerializedName("members_id")
     @Expose
     private String members_id;
+    @SerializedName("count_call")
+    @Expose
+    private String count_call;
     @SerializedName("lat")
     @Expose
     private String lat;
@@ -102,6 +105,9 @@ public class User {
     @SerializedName("count_agent")
     @Expose
     private String count_agent;
+    @SerializedName("bio")
+    @Expose
+    private String bio;
 
 
 
@@ -116,6 +122,24 @@ public class User {
     @SerializedName("service_name")
     @Expose
     private List<SettingsModules.service_types> service_name;
+    @SerializedName("experience_name")
+    @Expose
+    private List<SettingsModules.service_types> experience_name;
+    @SerializedName("course_name")
+    @Expose
+    private List<SettingsModules.service_types> course_name;
+
+    public List<SettingsModules.service_types> getCourse_name() {
+        return course_name;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public List<SettingsModules.service_types> getExperience_name() {
+        return experience_name;
+    }
 
     public String getRate() {
         return rate;
@@ -133,7 +157,9 @@ public class User {
         return member_name;
     }
 
-
+    public String getCount_call() {
+        return count_call;
+    }
 
     public List<SettingsModules.service_types> getService_name() {
         return service_name;

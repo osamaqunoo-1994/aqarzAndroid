@@ -270,7 +270,7 @@
     <string name="Real_Estate_orders">طلبات الصندوق</string>
 
     <string name="chat">الرسائل</string>
-    <string name="call">اتصال</string>
+    <string name="call">مكالمة</string>
     <string name="price_metter">سعر المتر</string>
     <string name="Residential_purpose">الغرض سكني</string>
 
@@ -672,7 +672,7 @@
     <string name="n3">المساحه</string>
     <string name="n4">الموقع</string>
 
-    <string name="Clints">عميل</string>
+    <string name="Clints">موظف</string>
     <string name="Requst">طلب</string>
     <string name="Visit">زياره</string>
 
@@ -949,5 +949,17 @@
     <string name="dsdsdssddsd">الاحياء</string>
 
 
-
+    <string name="name_city_select">ادخل اسم المدينة</string>
+    <string name="report_c">ما هي المشكلة التي تريد الإبلاغ عنها؟</string>
+    <string name="report__s1">البيانات غير صحيحة</string>
+    <string name="report__s2">الصورة غير ملائمة</string>
+    <string name="report__s3">أخرى</string>
+    <string name="report__s4">..أخبرنا أكثر عن المشكلة</string>
+    <string name="report__title">الإبلاغ عن مشكلة</string>
+    <string name="report__button">ابلاغ</string>
+    <string name="experiencsssse">اختار الخبرات</string>
+    <string name="course">اختار الدورات</string>
+    <string name="view_co">مشاهده</string>
+    <string name="offer_titele_profile">عرض</string>
+    <string name="aqarez_titele_profile">عقار</string>
 </resources>

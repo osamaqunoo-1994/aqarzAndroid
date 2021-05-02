@@ -30,10 +30,12 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -51,8 +53,12 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.orhanobut.hawk.Hawk;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -70,10 +76,12 @@ import sa.aqarz.Activity.OprationNew.RentShowActivity;
 import sa.aqarz.Activity.profile.AllclintActivity;
 import sa.aqarz.Activity.profile.MyProfile;
 import sa.aqarz.Activity.profile.MyProfileActivity;
+import sa.aqarz.Activity.profile.ProfileDetailsActivity;
 import sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import sa.aqarz.Adapter.RecyclerView_bottomSheet_type;
 import sa.aqarz.Adapter.RecyclerView_city_bootom_sheets;
 import sa.aqarz.Adapter.RecyclerView_city_bootom_sheets_multi;
+import sa.aqarz.Adapter.RecyclerView_city_side_menu;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Filtter;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Service;
@@ -85,6 +93,7 @@ import sa.aqarz.Fragment.NotficationFragment;
 import sa.aqarz.Fragment.OrdersFragment;
 import sa.aqarz.Fragment.ServiceFragment;
 import sa.aqarz.Modules.CityModules;
+import sa.aqarz.Modules.HomeModules;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.Modules.demandsModules;
@@ -120,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
     static TextView text_4;
     static TextView text_s;
     IResult mResultCallback;
-
+    AlertDialog alertDialog;
     List<CityModules> cityModules_list = new ArrayList<>();
     List<CityModules> cityModules_list_selected = new ArrayList<>();
     List<CityModules> cityModules_list_filtter = new ArrayList<>();
@@ -531,9 +540,6 @@ public class MainActivity extends AppCompatActivity {
                 if (Settings.checkLogin()) {
 
 
-                    AlertDialog alertDialog;
-
-
                     LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     final View popupView = layoutInflater.inflate(R.layout.bottom_sheets_service, null);
 
@@ -567,6 +573,7 @@ public class MainActivity extends AppCompatActivity {
                     settings.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            alertDialog.dismiss();
                             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
 //                                intent.putExtra("from", "splash");
                             startActivity(intent);
@@ -757,10 +764,10 @@ public class MainActivity extends AppCompatActivity {
 //                    Intent intent = new Intent(getContext(), DetailsAqarzManActivity.class);
 //                    Intent intent = new Intent(getContext(), AqarzProfileActivity.class);
 //                        Intent intent = new Intent(MainActivity.this, MyProfileActivity.class);
-                        Intent intent = new Intent(MainActivity.this, MyProfile.class);
+                        Intent intent = new Intent(MainActivity.this, ProfileDetailsActivity.class);
 //                                intent.putExtra("from", "splash");
                         startActivity(intent);
-                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                     } else {
                         Intent intent = new Intent(MainActivity.this, MyProfileInformationActivity.class);
 //                                intent.putExtra("from", "splash");
@@ -952,16 +959,16 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i = 0; i < select_typeModules.size(); i++) {
 
-                    if (select_typeModules.get(1).getSelected()) {
+                    if (select_typeModules.get(0).getSelected()) {
                         type = "is_pay";
 
                     }
                     if (select_typeModules.get(1).getSelected()) {
-                        type = "is_pay";
+                        type = "is_rent";
 
                     }
                     if (select_typeModules.get(2).getSelected()) {
-                        type = "is_rent";
+                        type = "is_pay";
 
                     }
 
@@ -1195,6 +1202,43 @@ public class MainActivity extends AppCompatActivity {
 //
 //            }
         }
+        search_text.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+
+                    filtter_city.setVisibility(View.VISIBLE);
+                    allfilter.setVisibility(View.GONE);
+//                    if (searh) {
+//
+////                        searh = true;
+//                    }
+//                    searh = true;
+
+//
+//                    for (int i = 0; i < cityModules_list.size(); i++) {
+//
+//
+//                        if (cityModules_list.get(i).getName().contains(search_text.getText().toString())) {
+//                            cityModules_list_filtter.add(cityModules_list.get(i));
+//                        }
+//
+//
+//                    }
+
+                    init_volley();
+                    WebService.loading(MainActivity.this, true);
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, MainActivity.this);
+                    mVolleyService.getDataVolley("cities_with_neb", WebService.cities_with_neb + "?name=" + search_text.getText().toString());
+
+
+                    return true;
+                }
+                return false;
+            }
+        });
         search_text.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -1210,42 +1254,6 @@ public class MainActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
                 if (s.length() != 0) {
-
-
-                    if (searh) {
-                        filtter_city.setVisibility(View.VISIBLE);
-                        allfilter.setVisibility(View.GONE);
-                        searh = true;
-                    }
-                    searh = true;
-
-
-                    for (int i = 0; i < cityModules_list.size(); i++) {
-
-
-                        if (cityModules_list.get(i).getName().contains(search_text.getText().toString())) {
-                            cityModules_list_filtter.add(cityModules_list.get(i));
-                        }
-
-
-                    }
-                    RecyclerView_city_bootom_sheets recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets(MainActivity.this, cityModules_list_filtter);
-                    recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_bootom_sheets.ItemClickListener() {
-                        @Override
-                        public void onItemClick(int i) {
-//                        cityModules_list = alldata;
-                            convert_city_to_filter();
-                            searh = false;
-
-                            MapsFragmentNew.city_id_postion = cityModules_list.get(i).getId() + "";
-
-                            search_text.setText(cityModules_list.get(i).getName() + "");
-
-                        }
-                    });
-
-                    allcity.setAdapter(recyclerView_city_bootom_sheets);
-
 
                 }
 
@@ -1712,6 +1720,48 @@ public class MainActivity extends AppCompatActivity {
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String data = response.getString("data");
+                        JSONObject jsonObject = new JSONObject(data);
+
+                        String datadata = jsonObject.getString("data");
+
+                        if (requestType.equals("cities_with_neb")) {
+                            JSONArray jsonArray = new JSONArray(datadata);
+                            cityModules_list_filtter.clear();
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                Gson gson = new Gson();
+
+                                CityModules homeModules_aqares = gson.fromJson(mJson, CityModules.class);
+
+                                cityModules_list_filtter.add(homeModules_aqares);
+                            }
+
+
+                            RecyclerView_city_side_menu recyclerView_city_bootom_sheets = new RecyclerView_city_side_menu(MainActivity.this, cityModules_list_filtter);
+                            recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_side_menu.ItemClickListener() {
+                                @Override
+                                public void onItemClick(int i) {
+//                        cityModules_list = alldata;
+                                    convert_city_to_filter();
+                                    searh = false;
+
+//                                    MapsFragmentNew.city_id_postion = cityModules_list_filtter.get(i).getId() + "";
+                                    MapsFragmentNew.lat = cityModules_list_filtter.get(i).getLat() + "";
+                                    MapsFragmentNew.lan = cityModules_list_filtter.get(i).getLan() + "";
+
+
+                                    search_text.setText(cityModules_list_filtter.get(i).getName() + "-" + cityModules_list_filtter.get(i).getCity().getName());
+
+                                }
+                            });
+
+                            allcity.setAdapter(recyclerView_city_bootom_sheets);
+
+
+                        }
 
 
                     }

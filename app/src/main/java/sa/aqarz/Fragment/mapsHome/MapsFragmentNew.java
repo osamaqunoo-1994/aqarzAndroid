@@ -97,8 +97,8 @@ public class MapsFragmentNew extends Fragment {
     public static String city_id_postion = "";
 
 
-    static String lat = "";
-    static String lan = "";
+    public  static String lat = "";
+    public static String lan = "";
 
     static LinearLayout list_estate;
     static LinearLayout all_list_backround;

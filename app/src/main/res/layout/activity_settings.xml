@@ -1044,6 +1044,7 @@
 
                         </LinearLayout>
 
+
                         <LinearLayout
                             android:id="@+id/logout"
                             android:layout_width="match_parent"
@@ -1055,7 +1056,7 @@
                             android:paddingLeft="15dp"
 
                             android:paddingRight="15dp"
-                            android:visibility="gone">
+                            android:visibility="visible">
 
 
                             <ImageView

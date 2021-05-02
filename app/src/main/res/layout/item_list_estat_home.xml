@@ -194,7 +194,7 @@
                         android:layout_gravity="center"
                         app:starEmpty="@drawable/ic_star__2_"
                         app:starFill="@drawable/ic_star__1_"
-                        hedgehog:clickable="true"
+                        hedgehog:clickable="false"
                         hedgehog:halfstart="false"
                         hedgehog:starCount="5"
                         hedgehog:starHalf="@mipmap/star_half"

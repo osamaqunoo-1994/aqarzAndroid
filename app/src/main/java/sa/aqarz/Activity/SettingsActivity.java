@@ -14,11 +14,13 @@ import com.orhanobut.hawk.Hawk;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_restPassword;
 import sa.aqarz.R;
 import sa.aqarz.Settings.LocaleUtils;
+import sa.aqarz.Settings.Settings;
 
 public class SettingsActivity extends AppCompatActivity {
     LinearLayout terms;
     LinearLayout changePassword;
     LinearLayout langauge;
+    LinearLayout logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
         terms = findViewById(R.id.terms);
         changePassword = findViewById(R.id.changePassword);
         langauge = findViewById(R.id.langauge);
+        logout = findViewById(R.id.logout);
 
 
         terms.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +39,32 @@ public class SettingsActivity extends AppCompatActivity {
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(SettingsActivity.this)
+                        .setMessage(getResources().getString(R.string.are_you_wantlog))
+                        .setCancelable(false)
+                        .setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+
+                                Hawk.put("user", "");
+                                Hawk.put("api_token", "");
+//                Hawk.put("user", "");
+                                finish();
+
+//                                check_user_login();
+
+
+                            }
+                        })
+                        .setNegativeButton(getResources().getString(R.string.no), null)
+                        .show();
+
 
             }
         });

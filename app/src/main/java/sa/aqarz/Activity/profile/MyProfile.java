@@ -28,6 +28,9 @@ import sa.aqarz.Activity.Auth.EditProfileActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.ChatRoomActivity;
 import sa.aqarz.Adapter.RecyclerVie_member_service;
+import sa.aqarz.Adapter.RecyclerVie_member_service_m;
+import sa.aqarz.Adapter.RecyclerView_Course;
+import sa.aqarz.Adapter.RecyclerView_experince;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_QR;
 import sa.aqarz.Modules.User;
 import sa.aqarz.R;
@@ -56,12 +59,13 @@ public class MyProfile extends AppCompatActivity {
     RecyclerView member_list;
     RecyclerView memssr_list;
     RecyclerView Courses;
-    RecyclerView service;
 
+    RecyclerView list_service;
     String id;
     IResult mResultCallback;
     LinearLayout myoffer_layout;
     LinearLayout editProfile;
+    TextView bio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +87,9 @@ public class MyProfile extends AppCompatActivity {
         editProfile = findViewById(R.id.editProfile);
 
         memssr_list = findViewById(R.id.service_list);
-        service = findViewById(R.id.service);
+
+        bio = findViewById(R.id.bio);
+        list_service = findViewById(R.id.list_service);
         Courses = findViewById(R.id.Courses);
 
         member_list.setLayoutManager(new GridLayoutManager(this, 2));
@@ -105,10 +111,11 @@ public class MyProfile extends AppCompatActivity {
 //                            flowLayoutManager.maxItemsPerLine(1);
         Courses.setLayoutManager(flowLayoutManagerssa);
 
-        FlowLayoutManager flowLayoutManagerssam = new FlowLayoutManager();
+        FlowLayoutManager flowLayoutservice = new FlowLayoutManager();
         flowLayoutManagerss.setAutoMeasureEnabled(true);
 //                            flowLayoutManager.maxItemsPerLine(1);
-        service.setLayoutManager(flowLayoutManagerssam);
+        list_service.setLayoutManager(flowLayoutservice);
+
 
         WebService.loading(MyProfile.this, true);
 
@@ -184,25 +191,36 @@ public class MyProfile extends AppCompatActivity {
                                         public void onClick(View v) {
                                             Intent intent = new Intent(MyProfile.this, MyOffersActivity.class);
 //              intent.putExtra("from", "splash");
-                                            intent.putExtra("id_user",  "--");
+                                            intent.putExtra("id_user", "--");
 
                                             startActivity(intent);
                                             overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                                         }
                                     });
 
-                                    RecyclerVie_member_service recyclerView_member = new RecyclerVie_member_service(MyProfile.this, userModules.getMember_name());
+                                    RecyclerVie_member_service service_l = new RecyclerVie_member_service(MyProfile.this, userModules.getMember_name());
 
 
-                                    member_list.setAdapter(recyclerView_member);
-                                    RecyclerVie_member_service recyclerView_memberss = new RecyclerVie_member_service(MyProfile.this, userModules.getService_name());
+                                    member_list.setAdapter(service_l);
+
+                                    RecyclerVie_member_service_m member_l = new RecyclerVie_member_service_m(MyProfile.this, userModules.getService_name());
 
 
-                                    memssr_list.setAdapter(recyclerView_memberss);
+                                    memssr_list.setAdapter(member_l);
+                                    RecyclerView_Course recyclerView_course = new RecyclerView_Course(MyProfile.this, userModules.getCourse_name());
+
+
+                                    Courses.setAdapter(recyclerView_course);
+
+
+                                    list_service.setAdapter(new RecyclerView_experince(MyProfile.this, userModules.getExperience_name()));
 
                                     System.out.println("^%^%^%" + userModules.getService_name().size());
+                                    System.out.println("getExperience_name" + userModules.getExperience_name().size());
 
-
+                                    if (userModules.getBio() != null) {
+                                        bio.setText(userModules.getBio() + "");
+                                    }
 //                                mobile_icon.setOnClickListener(new View.OnClickListener() {
 //                                    @Override
 //                                    public void onClick(View v) {

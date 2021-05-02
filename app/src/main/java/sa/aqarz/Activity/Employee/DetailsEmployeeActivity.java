@@ -35,6 +35,7 @@ import sa.aqarz.Adapter.RecyclerView_HomeList_estat_favorit;
 import sa.aqarz.Adapter.RecyclerView_orders_demandsx_favorit;
 import sa.aqarz.Adapter.RecyclerView_orders_my_requstx_favorit;
 import sa.aqarz.Adapter.RecyclerView_orders_my_requstx_favorit_offet;
+import sa.aqarz.Dialog.BottomSheetDialogFragmen_add_employee;
 import sa.aqarz.Modules.FavoritModules;
 import sa.aqarz.Modules.User;
 import sa.aqarz.Modules.demandsModules;
@@ -155,9 +156,10 @@ public class DetailsEmployeeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(DetailsEmployeeActivity.this, AddEmployeeActivity.class);
-                startActivity(intent);
-
+//                Intent intent = new Intent(DetailsEmployeeActivity.this, AddEmployeeActivity.class);
+//                startActivity(intent);
+                BottomSheetDialogFragmen_add_employee bottomSheetDialogFragmen_add_employee = new BottomSheetDialogFragmen_add_employee();
+                bottomSheetDialogFragmen_add_employee.show(getSupportFragmentManager(), "");
 
             }
         });

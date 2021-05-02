@@ -218,6 +218,45 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:padding="1dp"
+                                    android:src="@drawable/ic_phone" />
+
+                                <TextView
+                                    android:layout_marginStart="5dp"
+
+                                    android:id="@+id/phone"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                                <LinearLayout
+                                    android:layout_width="10dp"
+                                    android:layout_height="10dp" />
+
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:src="@drawable/ic_viewww"
+                                    app:tint="#959A9C" />
+
+                                <TextView
+                                    android:layout_marginStart="5dp"
+                                    android:id="@+id/view"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:gravity="center">
 
@@ -405,6 +444,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/bio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#AAABB3"
@@ -462,7 +502,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:layout_marginRight="2dp"
                                 android:layout_marginBottom="2dp"
-                                android:text="@string/Requst"
+                                android:text="@string/aqarez_titele_profile"
                                 android:textColor="#424446"
                                 android:textSize="12dp" />
                         </LinearLayout>
@@ -524,7 +564,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:layout_marginRight="2dp"
                                 android:layout_marginBottom="2dp"
-                                android:text="@string/MyOffer"
+                                android:text="@string/offer_titele_profile"
                                 android:textColor="#424446"
                                 android:textSize="12dp" />
                         </LinearLayout>
@@ -612,7 +652,7 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_member_new"
+                    android:src="@drawable/ic_member_sa"
 
                     />
 
@@ -630,6 +670,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/member_list"
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp" />
 
@@ -652,7 +693,7 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_service_new"
+                    android:src="@drawable/ic_service"
 
                     />
 
@@ -692,7 +733,7 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_service_new"
+                    android:src="@drawable/ic_gexp"
 
                     />
 
@@ -708,9 +749,9 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/service"
+                android:id="@+id/list_service"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
 
                 android:layout_marginTop="10dp" />
 
@@ -733,7 +774,7 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:padding="5dp"
-                    android:src="@drawable/ic_service_new"
+                    android:src="@drawable/ic_cour"
 
                     />
 
@@ -751,7 +792,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/Courses"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
 
                 android:layout_marginTop="10dp" />
 

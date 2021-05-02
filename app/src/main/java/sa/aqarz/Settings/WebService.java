@@ -99,6 +99,8 @@ public class WebService {
     public static String dsd = Domain + "cancel";
     public static String my_employee = Domain + "my/employee";
     public static String add_employee = Domain + "add/employee";
+    public static String report = Domain + "report";
+    public static String cities_with_neb = Domain + "cities/with/neb";
 //    public static String provider_code_send = Domain + "provider/code/send";
 
 
