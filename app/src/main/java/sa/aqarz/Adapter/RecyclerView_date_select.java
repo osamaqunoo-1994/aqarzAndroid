@@ -75,7 +75,7 @@ public class RecyclerView_date_select extends RecyclerView.Adapter<RecyclerView_
     }
 
     public RecyclerView_date_select(Context context, List<String> alldata) {
-        this.alldata = alldata;
+        RecyclerView_date_select.alldata = alldata;
         this.context = context;
     }
 
@@ -88,6 +88,12 @@ public class RecyclerView_date_select extends RecyclerView.Adapter<RecyclerView_
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
 
+//        holder.setIsRecyclable(false);
+//        holder.setIsRecyclable(false);
+//        holder.setIsRecyclable(false);
+//        holder.setIsRecyclable(false);
+//        holder.setIsRecyclable(false);
+//        holder.setIsRecyclable(false);
 //        holder.setIsRecyclable(false);
 //        holder.title.setText(alldata.get(position).getName());
 //        holder.details.setText(alldata.get(position).getName());
@@ -102,7 +108,7 @@ public class RecyclerView_date_select extends RecyclerView.Adapter<RecyclerView_
 ////
 //        holder.text.setText(alldata.get(position).getName() + "");
 //
-        holder.text.setText(alldata.get(position).toString());
+        holder.text.setText(alldata.get(position));
 //
         if (position == Postion_opend) {
             holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));

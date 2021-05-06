@@ -86,7 +86,7 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
     }
 
     public RecyclerView_chat_main(Context context, List<MsgModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_chat_main.alldata = alldata;
         this.context = context;
     }
 
@@ -115,6 +115,10 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
 //
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
+//        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
+//        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
+//        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
+//        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
 ////
 //
 //        try {
@@ -138,7 +142,7 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
 //        int random = ThreadLocalRandom.current().nextInt(1, 5);
 //       holder.ratingbar.setStar(random);
         if (alldata.get(position).getReceiverPhoto() != null) {
-            if (!alldata.get(position).getReceiverPhoto().toString().equals("")) {
+            if (!alldata.get(position).getReceiverPhoto().equals("")) {
                 Picasso.get().load(alldata.get(position).getReceiverPhoto()).error(R.drawable.ic_user_un).into(holder.image_profile);
 
             } else {

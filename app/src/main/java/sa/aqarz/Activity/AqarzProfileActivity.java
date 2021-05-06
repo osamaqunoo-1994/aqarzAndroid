@@ -194,14 +194,14 @@ public class AqarzProfileActivity extends AppCompatActivity {
             }
 
 
-            if (!Settings.GetUser().getName().toString().equals("null")) {
+            if (!Settings.GetUser().getName().equals("null")) {
                 name.setText(Settings.GetUser().getName());
 
             } else {
                 name.setText("----------");
 
             }
-            if (!Settings.GetUser().getLink().toString().equals("null")) {
+            if (!Settings.GetUser().getLink().equals("null")) {
                 link.setText(Settings.GetUser().getLink());
 
             } else {
@@ -241,9 +241,20 @@ public class AqarzProfileActivity extends AppCompatActivity {
 //
 //                } else {
 ////                email.setText("---------");
+////                email.setText("---------");
+////                email.setText("---------");
+////                email.setText("---------");
+////                email.setText("---------");
+////                email.setText("---------");
+////                email.setText("---------");
+////                email.setText("---------");
+////                email.setText("---------");
+////                email.setText("---------");
+////                email.setText("---------");
+////                email.setText("---------");
 //
 //                }
-            if (!Settings.GetUser().getLan().toString().equals("null")) {
+            if (!Settings.GetUser().getLan().equals("null")) {
                 go_to_map.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -266,7 +277,7 @@ public class AqarzProfileActivity extends AppCompatActivity {
             }
 
 
-            if (!Settings.GetUser().getLogo().toString().equals("null")) {
+            if (!Settings.GetUser().getLogo().equals("null")) {
                 Picasso.get().load(Settings.GetUser().getLogo()).into(profile);
 
             }

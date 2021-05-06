@@ -44,6 +44,9 @@ public class RegionModules {
     @SerializedName("requests")
     @Expose
     private String requests;
+    @SerializedName("estate")
+    @Expose
+    private String estate;
     @SerializedName("app_request")
     @Expose
     private String app_request;
@@ -63,6 +66,10 @@ public class RegionModules {
 //    public centerx getBoundaries() {
 //        return boundaries;
 //    }
+
+    public String getEstate() {
+        return estate;
+    }
 
     public String getCapital_city_id() {
         return capital_city_id;

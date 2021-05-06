@@ -84,7 +84,7 @@ public class RecyclerView_clints_new extends RecyclerView.Adapter<RecyclerView_c
     }
 
     public RecyclerView_clints_new(Context context, List<Clints> alldata) {
-        this.alldata = alldata;
+        RecyclerView_clints_new.alldata = alldata;
         this.context = context;
     }
 
@@ -118,6 +118,13 @@ public class RecyclerView_clints_new extends RecyclerView.Adapter<RecyclerView_c
 //            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));
 //
 //            holder.text.setTextColor(context.getResources().getColor(R.color.white));
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
 //            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
 
 //        } else {

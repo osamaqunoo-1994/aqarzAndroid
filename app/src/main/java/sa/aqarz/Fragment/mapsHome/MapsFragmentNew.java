@@ -783,7 +783,7 @@ public class MapsFragmentNew extends Fragment {
         } else if (type_selected.equals("offer")) {
             back_location.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_path_marker_home));
             number_.setTextColor(activity.getResources().getColor(R.color.colorPrimary));
-            number_.setText(regionModules_list.get(Integer.valueOf(numbers)).getOffers() + "");
+            number_.setText(regionModules_list.get(Integer.valueOf(numbers)).getEstate() + "");
 
         }
 
