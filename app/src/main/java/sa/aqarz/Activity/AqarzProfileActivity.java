@@ -139,12 +139,12 @@ public class AqarzProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(Settings.CheckIsAccountAqarzMan()){
+                if (Settings.CheckIsAccountAqarzMan()) {
                     Intent intent = new Intent(AqarzProfileActivity.this, EditProfileActivity.class);
 //              intent.putExtra("from", "splash");
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-                }else{
+                } else {
                     Intent intent = new Intent(AqarzProfileActivity.this, MyProfileInformationActivity.class);
 //              intent.putExtra("from", "splash");
                     startActivity(intent);
