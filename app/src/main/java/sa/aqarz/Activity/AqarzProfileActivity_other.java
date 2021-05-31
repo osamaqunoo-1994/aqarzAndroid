@@ -159,7 +159,7 @@ public class AqarzProfileActivity_other extends AppCompatActivity {
                 Intent intent = new Intent(AqarzProfileActivity_other.this, AddClintesActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
 
             }
@@ -177,7 +177,7 @@ public class AqarzProfileActivity_other extends AppCompatActivity {
 
         try {
             String id = getIntent().getStringExtra("id");
-            if (id != null | !id.toString().equals("null")) {
+            if (id != null | !id.equals("null")) {
 
                 VolleyService mVolleyService = new VolleyService(mResultCallback, AqarzProfileActivity_other.this);
 
@@ -442,14 +442,14 @@ public class AqarzProfileActivity_other extends AppCompatActivity {
                                     });
 
 
-                                    if (!userModules.getName().toString().equals("null")) {
+                                    if (!userModules.getName().equals("null")) {
                                         name.setText(userModules.getName());
 
                                     } else {
                                         name.setText("----------");
 
                                     }
-                                    if (!userModules.getLink().toString().equals("null")) {
+                                    if (!userModules.getLink().equals("null")) {
                                         link.setText(userModules.getLink());
 
                                     } else {
@@ -465,7 +465,7 @@ public class AqarzProfileActivity_other extends AppCompatActivity {
 ////                email.setText("---------");
 //
 //                }
-                                    if (!userModules.getLan().toString().equals("null")) {
+                                    if (!userModules.getLan().equals("null")) {
                                         go_to_map.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
@@ -488,7 +488,7 @@ public class AqarzProfileActivity_other extends AppCompatActivity {
                                     }
 
 
-                                    if (!userModules.getLogo().toString().equals("null")) {
+                                    if (!userModules.getLogo().equals("null")) {
                                         Picasso.get().load(userModules.getLogo()).into(profile);
 
                                     }

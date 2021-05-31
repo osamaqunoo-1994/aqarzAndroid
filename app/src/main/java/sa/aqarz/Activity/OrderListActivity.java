@@ -146,7 +146,8 @@ public class OrderListActivity extends AppCompatActivity {
     static String offer_status = "customer_accepted ";
     TextView searcha;
     static EditText search_text;
-ImageView more_filtter_image;
+    ImageView more_filtter_image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

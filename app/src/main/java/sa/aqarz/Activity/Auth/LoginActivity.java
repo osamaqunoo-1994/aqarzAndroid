@@ -152,7 +152,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, NewSiginUpActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                 finish();
 
             }
@@ -198,7 +198,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
                 finish();
 

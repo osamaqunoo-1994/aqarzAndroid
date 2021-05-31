@@ -141,7 +141,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                         intent.putExtra("mobile", email_ed.getText().toString() + "");
                         intent.putExtra("code", code + "");
                         startActivity(intent);
-                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                         finish();
 
                     } else {

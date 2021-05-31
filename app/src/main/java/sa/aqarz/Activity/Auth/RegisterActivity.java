@@ -183,7 +183,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                 finish();
 
 
@@ -290,7 +290,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Intent intent = new Intent(RegisterActivity.this, ConfirmationActivity.class);
 //                                intent.putExtra("from", "splash");
                         startActivity(intent);
-                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                         finish();
 
                     } else {

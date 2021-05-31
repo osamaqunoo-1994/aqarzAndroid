@@ -24,6 +24,7 @@ import com.orhanobut.hawk.Hawk;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import sa.aqarz.Activity.TermsActivity;
 import sa.aqarz.Modules.User;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
@@ -41,6 +42,7 @@ public class NewSiginUpActivity extends AppCompatActivity {
 
     String type = "user";
     IResult mResultCallback;
+    TextView Privacy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class NewSiginUpActivity extends AppCompatActivity {
         chechbox = findViewById(R.id.chechbox);
         dont_have_account = findViewById(R.id.dont_have_account);
         sign_in = findViewById(R.id.sign_in);
+        Privacy = findViewById(R.id.Privacy);
         phone_ed = findViewById(R.id.phone_ed);
 
         init_volley();
@@ -63,7 +66,7 @@ public class NewSiginUpActivity extends AppCompatActivity {
                 Intent intent = new Intent(NewSiginUpActivity.this, LoginActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                 finish();
             }
         });
@@ -132,6 +135,17 @@ public class NewSiginUpActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        Privacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(NewSiginUpActivity.this, TermsActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
     }
 
     public void init_volley() {
@@ -150,7 +164,7 @@ public class NewSiginUpActivity extends AppCompatActivity {
                         String data = response.getString("data");
 //                        "data":{"code":"076218"}
 
-                        JSONObject jsonObject=new JSONObject(data);
+                        JSONObject jsonObject = new JSONObject(data);
                         String code = jsonObject.getString("code");
 
 //                        Hawk.put("user", data);
@@ -171,7 +185,7 @@ public class NewSiginUpActivity extends AppCompatActivity {
                         intent.putExtra("mobile", phone_ed.getText().toString() + "");
                         intent.putExtra("code", code + "");
                         startActivity(intent);
-                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                         finish();
 
                     } else {

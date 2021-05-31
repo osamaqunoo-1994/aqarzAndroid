@@ -143,12 +143,12 @@ public class MyProfileActivity extends AppCompatActivity {
                     Intent intent = new Intent(MyProfileActivity.this, EditProfileActivity.class);
 //              intent.putExtra("from", "splash");
                     startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                 } else {
                     Intent intent = new Intent(MyProfileActivity.this, MyProfileInformationActivity.class);
 //              intent.putExtra("from", "splash");
                     startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                 }
 
             }
@@ -159,7 +159,7 @@ public class MyProfileActivity extends AppCompatActivity {
                 Intent intent = new Intent(MyProfileActivity.this, MyOffersActivity.class);
                 intent.putExtra("id_user", "--");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
         member.setOnClickListener(new View.OnClickListener() {
@@ -168,7 +168,7 @@ public class MyProfileActivity extends AppCompatActivity {
                 Intent intent = new Intent(MyProfileActivity.this, MyMemberActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
 
@@ -178,7 +178,7 @@ public class MyProfileActivity extends AppCompatActivity {
                 Intent intent = new Intent(MyProfileActivity.this, MyServiceActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
         myorder.setOnClickListener(new View.OnClickListener() {
@@ -187,7 +187,7 @@ public class MyProfileActivity extends AppCompatActivity {
                 Intent intent = new Intent(MyProfileActivity.this, MyOrderActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
         my_clints.setOnClickListener(new View.OnClickListener() {
@@ -196,7 +196,7 @@ public class MyProfileActivity extends AppCompatActivity {
                 Intent intent = new Intent(MyProfileActivity.this, DetailsEmployeeActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
         location.setOnClickListener(new View.OnClickListener() {

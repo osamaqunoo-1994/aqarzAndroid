@@ -220,7 +220,7 @@ public class DetailsActivity extends AppCompatActivity {
                                     Intent intent = new Intent(DetailsActivity.this, OtherProfileActivity.class);
                                     intent.putExtra("id", homeModules_aqares.getUser_id() + "");
                                     startActivity(intent);
-                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                                 }
                             });
                             chat.setOnClickListener(new View.OnClickListener() {

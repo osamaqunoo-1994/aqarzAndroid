@@ -270,7 +270,7 @@ FloatingActionButton add_clint;
                 Intent intent = new Intent(DetailsAqarzManActivity.this, EditProfileActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
 
             }
@@ -282,7 +282,7 @@ FloatingActionButton add_clint;
                 Intent intent = new Intent(DetailsAqarzManActivity.this, AddClintesActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
 
             }
@@ -482,7 +482,7 @@ FloatingActionButton add_clint;
             @Override
             public void onClick(View v) {
 
-                if (!Settings.GetUser().getLink().toString().equals("null")) {
+                if (!Settings.GetUser().getLink().equals("null")) {
 //                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Settings.GetUser().getLink().toString()));
 //                    startActivity(browserIntent);
 
@@ -490,7 +490,7 @@ FloatingActionButton add_clint;
                     Intent txtIntent = new Intent(android.content.Intent.ACTION_SEND);
                     txtIntent.setType("text/plain");
                     txtIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Aqarez");
-                    txtIntent.putExtra(android.content.Intent.EXTRA_TEXT, Settings.GetUser().getLink().toString());
+                    txtIntent.putExtra(android.content.Intent.EXTRA_TEXT, Settings.GetUser().getLink());
                     startActivity(Intent.createChooser(txtIntent, "Share"));
 
 
@@ -511,14 +511,14 @@ FloatingActionButton add_clint;
         try {
 
 
-            if (!Settings.GetUser().getName().toString().equals("null")) {
+            if (!Settings.GetUser().getName().equals("null")) {
                 title.setText(Settings.GetUser().getName());
 
             } else {
                 title.setText("----------------");
 
             }
-            if (!Settings.GetUser().getLink().toString().equals("null")) {
+            if (!Settings.GetUser().getLink().equals("null")) {
                 site.setText(Settings.GetUser().getLink());
 
             } else {
@@ -526,14 +526,14 @@ FloatingActionButton add_clint;
 
             }
 
-            if (!Settings.GetUser().getEmail().toString().equals("null")) {
+            if (!Settings.GetUser().getEmail().equals("null")) {
 //                email.setText(Settings.GetUser().getEmail());
 
             } else {
 //                email.setText("---------");
 
             }
-            if (!Settings.GetUser().getAddress().toString().equals("null")) {
+            if (!Settings.GetUser().getAddress().equals("null")) {
                 location.setText(Settings.GetUser().getAddress());
 
             } else {
@@ -577,7 +577,7 @@ FloatingActionButton add_clint;
 
 //            member_list.setAdapter(new RecyclerView_member_profile(DetailsAqarzManActivity.this, Settings.GetUser().getMember_name()));
 
-            if (!Settings.GetUser().getLogo().toString().equals("null")) {
+            if (!Settings.GetUser().getLogo().equals("null")) {
                 Picasso.get().load(Settings.GetUser().getLogo()).into(profile);
 
             }

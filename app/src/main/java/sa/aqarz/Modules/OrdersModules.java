@@ -12,6 +12,9 @@ public class OrdersModules {
     @SerializedName("uuid")
     @Expose
     private String uuid;
+    @SerializedName("link")
+    @Expose
+    private String link;
     @SerializedName("estate_type_id")
     @Expose
     private String estateTypeId;
@@ -106,6 +109,10 @@ public class OrdersModules {
 
     public void setEstateTypeId(String estateTypeId) {
         this.estateTypeId = estateTypeId;
+    }
+
+    public String getLink() {
+        return link;
     }
 
     public String getIn_fav() {

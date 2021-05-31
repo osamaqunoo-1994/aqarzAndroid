@@ -126,7 +126,7 @@ public class MyProfileActivityOld extends AppCompatActivity {
 
 //                googleMap.getUiSettings().setRotateGesturesEnabled(true);
 
-                if (!Settings.GetUser().getLat().toString().equals("null")) {
+                if (!Settings.GetUser().getLat().equals("null")) {
 
                     LatLng sydney = new LatLng(Double.valueOf(Settings.GetUser().getLat()), Double.valueOf(Settings.GetUser().getLan()));
 
@@ -158,12 +158,12 @@ public class MyProfileActivityOld extends AppCompatActivity {
                     Intent intent = new Intent(MyProfileActivityOld.this, EditProfileActivity.class);
 //              intent.putExtra("from", "splash");
                     startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                 } else {
                     Intent intent = new Intent(MyProfileActivityOld.this, MyProfileInformationActivity.class);
 //              intent.putExtra("from", "splash");
                     startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                 }
 
             }
@@ -174,7 +174,7 @@ public class MyProfileActivityOld extends AppCompatActivity {
                 Intent intent = new Intent(MyProfileActivityOld.this, MyOffersActivity.class);
               intent.putExtra("id_user", "--");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
         member.setOnClickListener(new View.OnClickListener() {
@@ -183,7 +183,7 @@ public class MyProfileActivityOld extends AppCompatActivity {
                 Intent intent = new Intent(MyProfileActivityOld.this, MyMemberActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
 
@@ -193,7 +193,7 @@ public class MyProfileActivityOld extends AppCompatActivity {
                 Intent intent = new Intent(MyProfileActivityOld.this, MyServiceActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
         my_clints.setOnClickListener(new View.OnClickListener() {
@@ -202,19 +202,19 @@ public class MyProfileActivityOld extends AppCompatActivity {
                 Intent intent = new Intent(MyProfileActivityOld.this, MyClintsActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
 
         try {
-            if (!Settings.GetUser().getName().toString().equals("null")) {
+            if (!Settings.GetUser().getName().equals("null")) {
                 name.setText(Settings.GetUser().getName());
 
             } else {
                 name.setText("----------");
 
             }
-            if (!Settings.GetUser().getLink().toString().equals("null")) {
+            if (!Settings.GetUser().getLink().equals("null")) {
                 link.setText(Settings.GetUser().getLink());
 
             } else {
@@ -257,7 +257,7 @@ public class MyProfileActivityOld extends AppCompatActivity {
             offer_nu.setText(Settings.GetUser().getCount_offer() + "");
             visit_nu.setText(Settings.GetUser().getCount_visit() + "");
 
-            if (!Settings.GetUser().getLogo().toString().equals("null")) {
+            if (!Settings.GetUser().getLogo().equals("null")) {
                 Picasso.get().load(Settings.GetUser().getLogo()).into(profile);
 
             }//591694624

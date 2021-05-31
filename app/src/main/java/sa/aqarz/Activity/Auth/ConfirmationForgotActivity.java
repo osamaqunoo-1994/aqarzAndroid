@@ -344,7 +344,7 @@ public class ConfirmationForgotActivity extends AppCompatActivity {
                         Intent intent = new Intent(ConfirmationForgotActivity.this, CreatPasswordForgotActivity.class);
                                 intent.putExtra("code", code2);
                         startActivity(intent);
-                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                         finish();
 
                     } else {

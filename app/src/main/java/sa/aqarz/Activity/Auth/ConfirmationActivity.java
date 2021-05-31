@@ -291,7 +291,7 @@ public class ConfirmationActivity extends AppCompatActivity {
                         intent.putExtra("mobile", mobilex);
                         intent.putExtra("code", codex);
                         startActivity(intent);
-                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                         finish();
                     } else {
                         WebService.Make_Toast_color(ConfirmationActivity.this, getResources().getString(R.string.The_code_is_wrong), "error");
@@ -336,7 +336,7 @@ public class ConfirmationActivity extends AppCompatActivity {
                         Intent intent = new Intent(ConfirmationActivity.this, ConfirmationActivity.class);
 //                                intent.putExtra("from", "splash");
                         startActivity(intent);
-                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                         finish();
 
                     } else {

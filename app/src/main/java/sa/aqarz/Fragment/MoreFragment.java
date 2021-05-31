@@ -186,12 +186,12 @@ public class MoreFragment extends Fragment {
                     Intent intent = new Intent(getContext(), MyProfileActivity.class);
 //                                intent.putExtra("from", "splash");
                     startActivity(intent);
-                    getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                    getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                 } else {
                     Intent intent = new Intent(getContext(), MyProfileInformationActivity.class);
 //                                intent.putExtra("from", "splash");
                     startActivity(intent);
-                    getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                    getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                 }
             }
         });
@@ -221,7 +221,7 @@ public class MoreFragment extends Fragment {
                 Intent intent = new Intent(getContext(), ContactUsActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
             }
         });
@@ -231,7 +231,7 @@ public class MoreFragment extends Fragment {
                 Intent intent = new Intent(getContext(), LoginActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
             }
         });
@@ -241,7 +241,7 @@ public class MoreFragment extends Fragment {
                 Intent intent = new Intent(getContext(), FavoriteActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 //                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
@@ -273,7 +273,7 @@ public class MoreFragment extends Fragment {
                 Intent intent = new Intent(getContext(), PrivecyActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
             }
         });
@@ -283,7 +283,7 @@ public class MoreFragment extends Fragment {
                 Intent intent = new Intent(getContext(), AllclintActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
             }
         });
@@ -321,7 +321,7 @@ public class MoreFragment extends Fragment {
                 Intent intent = new Intent(getContext(), TermsActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
             }
         });
@@ -331,7 +331,7 @@ public class MoreFragment extends Fragment {
                 Intent intent = new Intent(getContext(), MyOrderActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
             }
         });
@@ -366,7 +366,7 @@ public class MoreFragment extends Fragment {
                 Intent intent = new Intent(getContext(), NewSiginUpActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
             }
         });

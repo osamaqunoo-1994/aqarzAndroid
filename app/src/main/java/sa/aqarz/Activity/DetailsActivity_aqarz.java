@@ -508,7 +508,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
                                     Intent intent = new Intent(DetailsActivity_aqarz.this, OtherProfileActivity.class);
                                     intent.putExtra("id", homeModules_aqares.getUserId() + "");
                                     startActivity(intent);
-                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                                 }
                             });
                             chat.setOnClickListener(new View.OnClickListener() {

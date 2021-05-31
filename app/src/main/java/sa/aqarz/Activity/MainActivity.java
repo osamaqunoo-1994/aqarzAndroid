@@ -553,10 +553,11 @@ public class MainActivity extends AppCompatActivity {
                     realState.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(MainActivity.this, OrderListActivity.class);
+//                            Intent intent = new Intent(MainActivity.this, OrderListActivity.class);
+                            Intent intent = new Intent(MainActivity.this, AllOrderActivity.class);
 //                                intent.putExtra("from", "splash");
                             startActivity(intent);
-                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
                         }
                     });
@@ -566,7 +567,7 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, ContactUsActivity.class);
 //                                intent.putExtra("from", "splash");
                             startActivity(intent);
-                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
                         }
                     });
@@ -577,7 +578,7 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
 //                                intent.putExtra("from", "splash");
                             startActivity(intent);
-                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
                         }
                     });
@@ -772,7 +773,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, MyProfileInformationActivity.class);
 //                                intent.putExtra("from", "splash");
                         startActivity(intent);
-                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                     }
                 } else {
                     new AlertDialog.Builder(MainActivity.this)

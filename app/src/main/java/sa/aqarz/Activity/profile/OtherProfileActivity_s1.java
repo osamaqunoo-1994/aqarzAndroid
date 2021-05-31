@@ -212,7 +212,7 @@ public class OtherProfileActivity_s1 extends AppCompatActivity {
                 Intent intent = new Intent(OtherProfileActivity_s1.this, MyMemberActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
 
@@ -222,7 +222,7 @@ public class OtherProfileActivity_s1 extends AppCompatActivity {
                 Intent intent = new Intent(OtherProfileActivity_s1.this, MyServiceActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
 //        my_clints.setOnClickListener(new View.OnClickListener() {
@@ -281,7 +281,7 @@ public class OtherProfileActivity_s1 extends AppCompatActivity {
                                             intent.putExtra("id_user", userModules.getId() + "");
 
                                             startActivity(intent);
-                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                                         }
                                     });
 

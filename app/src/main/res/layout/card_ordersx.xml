@@ -483,11 +483,13 @@
                     android:textSize="14dp" />
 
                 <ImageView
+                    android:id="@+id/share"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:background="@drawable/mash"
                     android:padding="7dp"
-                    android:src="@drawable/ic_un_hide" />
+                    app:tint="#cccccc"
+                    android:src="@drawable/ic_share" />
 
                 <ImageView
                     android:id="@+id/add_favorite"

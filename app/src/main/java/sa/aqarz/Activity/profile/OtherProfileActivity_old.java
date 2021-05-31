@@ -149,7 +149,7 @@ public class OtherProfileActivity_old extends AppCompatActivity {
                 Intent intent = new Intent(OtherProfileActivity_old.this, AddServiceActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 //                } else {
 //                    Intent intent = new Intent(OtherProfileActivity.this, MyProfileInformationActivity.class);
 ////              intent.putExtra("from", "splash");
@@ -166,7 +166,7 @@ public class OtherProfileActivity_old extends AppCompatActivity {
                 Intent intent = new Intent(OtherProfileActivity_old.this, MyMemberActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
 
@@ -176,7 +176,7 @@ public class OtherProfileActivity_old extends AppCompatActivity {
                 Intent intent = new Intent(OtherProfileActivity_old.this, MyServiceActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
         my_clints.setOnClickListener(new View.OnClickListener() {
@@ -185,7 +185,7 @@ public class OtherProfileActivity_old extends AppCompatActivity {
                 Intent intent = new Intent(OtherProfileActivity_old.this, MyClintsActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
 
@@ -229,7 +229,7 @@ public class OtherProfileActivity_old extends AppCompatActivity {
                                         intent.putExtra("id_user", userModules.getId() + "");
 
                                         startActivity(intent);
-                                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                                     }
                                 });
 
@@ -299,14 +299,14 @@ public class OtherProfileActivity_old extends AppCompatActivity {
                                     }
                                 });
                                 try {
-                                    if (!userModules.getName().toString().equals("null")) {
+                                    if (!userModules.getName().equals("null")) {
                                         name.setText(userModules.getName());
 
                                     } else {
                                         name.setText("----------");
 
                                     }
-                                    if (!userModules.getLink().toString().equals("null")) {
+                                    if (!userModules.getLink().equals("null")) {
                                         link.setText(userModules.getLink());
 
                                     } else {
@@ -349,7 +349,7 @@ public class OtherProfileActivity_old extends AppCompatActivity {
                                     offer_nu.setText(userModules.getCount_offer() + "");
                                     visit_nu.setText(userModules.getCount_visit() + "");
 
-                                    if (!userModules.getLogo().toString().equals("null")) {
+                                    if (!userModules.getLogo().equals("null")) {
                                         Picasso.get().load(userModules.getLogo()).into(profile);
 
                                     }//591694624

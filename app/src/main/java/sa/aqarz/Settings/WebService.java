@@ -101,6 +101,8 @@ public class WebService {
     public static String add_employee = Domain + "add/employee";
     public static String report = Domain + "report";
     public static String cities_with_neb = Domain + "cities/with/neb";
+    public static String estate_price_range = Domain + "estate/price/range";
+    public static String estate_area_range = Domain + "estate/area/range";
 //    public static String provider_code_send = Domain + "provider/code/send";
 
 

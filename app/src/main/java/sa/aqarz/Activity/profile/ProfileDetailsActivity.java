@@ -157,12 +157,12 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                     Intent intent = new Intent(ProfileDetailsActivity.this, EditProfileActivity.class);
 //              intent.putExtra("from", "splash");
                     startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                 } else {
                     Intent intent = new Intent(ProfileDetailsActivity.this, MyProfileInformationActivity.class);
 //              intent.putExtra("from", "splash");
                     startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                 }
 
             }
@@ -218,7 +218,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                                             intent.putExtra("id_user", "--");
 
                                             startActivity(intent);
-                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                                         }
                                     });
 

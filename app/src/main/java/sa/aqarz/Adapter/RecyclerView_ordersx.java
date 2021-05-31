@@ -108,6 +108,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
         TextView number_id;
         TextView sending_code;
         ImageView image_icon;
+        ImageView share;
         ImageView add_favorite;
         TextView more_details;
 
@@ -132,6 +133,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
             Street_view = view.findViewById(R.id.Street_view);
             sending_code = view.findViewById(R.id.sending_code);
             more_details = view.findViewById(R.id.more_details);
+            share = view.findViewById(R.id.share);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
@@ -433,6 +435,23 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                     Settings.Dialog_not_compleate((Activity) context);
 
                 }
+
+
+            }
+        });
+        holder.share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                String url = alldata.get(position).getLink();
+
+
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(Intent.EXTRA_SUBJECT, "Sharing URL");
+                i.putExtra(Intent.EXTRA_TEXT, url + "");
+                context.startActivity(Intent.createChooser(i, "Share URL"));
 
 
             }
