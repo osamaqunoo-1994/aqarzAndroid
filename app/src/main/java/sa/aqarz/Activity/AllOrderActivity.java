@@ -65,9 +65,9 @@ public class AllOrderActivity extends AppCompatActivity {
     ImageView favorit_button;
     ImageView more_filtter_image;
 
-    TextView Myoffer_number;
-    TextView today_number;
-    TextView AllOrder_number;
+    static TextView Myoffer_number;
+    static TextView today_number;
+    static TextView AllOrder_number;
 
     TextView AllOrder;
     TextView today;
@@ -708,10 +708,11 @@ public class AllOrderActivity extends AppCompatActivity {
         if (!estate_type_id.equals("")) {
             estate_type_id_text = "&estate_type_id=" + estate_type_id;
         }
-        if (!city_id.equals("")) {
-            city_id_text = "&city_id=" + city_id;
+        if (city_id != null) {
+            if (!city_id.equals("")) {
+                city_id_text = "&city_id=" + city_id;
+            }
         }
-
 
         String url = WebService.fund_Request + "?" + type_requst_text + offer_status_text + search_text_s + price_id_text + area_estate_id_text + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
 
@@ -751,8 +752,19 @@ public class AllOrderActivity extends AppCompatActivity {
 
 
 //{"status":true,"code":200,"message":"User Profile","data"
+//allRequestFund":6165,"RequestFund":18,"myRequestFundOffer":4727
+
 
                 try {
+
+                    String allRequestFund = response.getString("allRequestFund");
+                    AllOrder_number.setText(allRequestFund + "");
+
+                    String RequestFund = response.getString("RequestFund");
+                    today_number.setText(RequestFund + "");
+
+                    String myRequestFundOffer = response.getString("myRequestFundOffer");
+                    Myoffer_number.setText(myRequestFundOffer + "");
 
 
                     if (requestType.equals("fund_Request")) {
