@@ -40,6 +40,7 @@
                             android:gravity="center">
 
                             <ImageView
+                                android:id="@+id/back"
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:background="@drawable/circle_w"
@@ -229,11 +230,11 @@
                                     android:src="@drawable/ic_phone" />
 
                                 <TextView
-                                    android:layout_marginStart="5dp"
-
                                     android:id="@+id/phone"
+
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp" />
 
                                 <LinearLayout
                                     android:layout_width="10dp"
@@ -246,10 +247,10 @@
                                     app:tint="#959A9C" />
 
                                 <TextView
-                                    android:layout_marginStart="5dp"
                                     android:id="@+id/view"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp" />
 
 
                             </LinearLayout>

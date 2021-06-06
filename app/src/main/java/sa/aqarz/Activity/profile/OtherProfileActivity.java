@@ -36,6 +36,7 @@ import org.json.JSONObject;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import sa.aqarz.Activity.AqarzProfileActivity_other;
 import sa.aqarz.Activity.Auth.EditProfileActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.ChatRoomActivity;
@@ -86,6 +87,7 @@ public class OtherProfileActivity extends AppCompatActivity {
     LinearLayout sms;
     RatingBar rate;
     RecyclerView list_service;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +109,7 @@ public class OtherProfileActivity extends AppCompatActivity {
         bio = findViewById(R.id.bio);
 
         link = findViewById(R.id.link);
+        back = findViewById(R.id.back);
         mobile = findViewById(R.id.mobile);
         myoffer_layout = findViewById(R.id.myoffer_layout);
 
@@ -152,14 +155,69 @@ public class OtherProfileActivity extends AppCompatActivity {
 
         init_volley();
 
-        try {
-            id = getIntent().getStringExtra("id");
-            VolleyService mVolleyService = new VolleyService(mResultCallback, OtherProfileActivity.this);
+//        try {
+//            id = getIntent().getStringExtra("id");
+//            VolleyService mVolleyService = new VolleyService(mResultCallback, OtherProfileActivity.this);
+//
+//            mVolleyService.getDataVolley("user", WebService.user + id + "");
+//
+//        } catch (Exception e) {
+//
+//        }
 
-            mVolleyService.getDataVolley("user", WebService.user + id + "");
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        try {
+            String id = getIntent().getStringExtra("id");
+            if (id != null | !id.equals("null")) {
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, OtherProfileActivity.this);
+
+                mVolleyService.getDataVolleyWithoutToken("user", WebService.user + id + "");
+            } else {
+                Intent intent = getIntent();
+                String action = intent.getAction();
+                Uri data = intent.getData();
+
+                System.out.println("action" + action);
+                System.out.println("data" + data);
+
+
+                String[] separated = data.toString().split("/");
+
+                String number = separated[3]; // this will contain " they taste good"
+
+                System.out.println("$$$$$$$$$$$$$" + number);
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, OtherProfileActivity.this);
+
+                mVolleyService.getDataVolleyWithoutToken("user", WebService.user + number + "");
+            }
+
 
         } catch (Exception e) {
+            e.printStackTrace();
+            Intent intent = getIntent();
+            String action = intent.getAction();
+            Uri data = intent.getData();
 
+            System.out.println("action" + action);
+            System.out.println("data" + data);
+
+
+            String[] separated = data.toString().split("/");
+
+            String number = separated[3]; // this will contain " they taste good"
+
+            System.out.println("$$$$$$$$$$$$$" + number);
+
+            VolleyService mVolleyService = new VolleyService(mResultCallback, OtherProfileActivity.this);
+
+            mVolleyService.getDataVolleyWithoutToken("user", WebService.user + number + "");
         }
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -245,12 +303,6 @@ public class OtherProfileActivity extends AppCompatActivity {
                                     list_service.setAdapter(new RecyclerView_experince(OtherProfileActivity.this, userModules.getExperience_name()));
 
 
-                                    try {
-                                        rate.setRating(Float.valueOf(userModules.getRate() + ""));
-
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
                                     Glide.with(OtherProfileActivity.this).load(userModules.getLogo() + "").error(getResources().getDrawable(R.drawable.ic_user_un)).diskCacheStrategy(DiskCacheStrategy.NONE)
                                             .skipMemoryCache(true).into(profile);
 
@@ -362,13 +414,6 @@ public class OtherProfileActivity extends AppCompatActivity {
                                             name.setText("-------");
 
                                         }
-                                        if (!userModules.getUser_name().equals("null")) {
-                                            link.setText("@" + userModules.getUser_name());
-
-                                        } else {
-                                            link.setText("");
-
-                                        }
 
                                         if (userModules.getIs_certified() != null) {
                                             if (userModules.getIs_certified().equals("1")) {
@@ -396,23 +441,35 @@ public class OtherProfileActivity extends AppCompatActivity {
 
                                         }
 
+
+                                        Clints.setText(userModules.getCount_emp() + "");
+                                        request_nu.setText(userModules.getCount_request() + "");
+                                        MyOffer.setText(userModules.getCount_fund_offer() + "");
+//                                        visit_nu.setText(userModules.getCount_visit() + "");
                                         if (userModules.getMobile() != null) {
                                             mobile.setText("0" + userModules.getMobile() + "");
 
                                         }
-                                        Clints.setText(userModules.getCount_emp() + "");
-                                        request_nu.setText(userModules.getCount_request() + "");
-                                        MyOffer.setText(userModules.getCount_offer() + "");
-//                                        visit_nu.setText(userModules.getCount_visit() + "");
-
                                         if (!userModules.getLogo().equals("null")) {
                                             Picasso.get().load(userModules.getLogo()).into(profile);
 
                                         }//591694624
+                                        if (!userModules.getUser_name().equals("null")) {
+                                            link.setText("@" + userModules.getUser_name());
 
+                                        } else {
+                                            link.setText("");
 
+                                        }
+
+                                        try {
+                                            rate.setRating(Float.valueOf(userModules.getRate() + ""));
+
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
                                     } catch (Exception e) {
-
+                                        e.printStackTrace();
                                     }
                                     try {
 

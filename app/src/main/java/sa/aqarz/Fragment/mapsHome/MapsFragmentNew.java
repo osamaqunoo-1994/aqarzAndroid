@@ -93,7 +93,7 @@ public class MapsFragmentNew extends Fragment {
     RecyclerView TypeAqarez;
 
 
-    static String region_id_postion = "";
+    public static String region_id_postion = "";
     public static String city_id_postion = "";
 
 

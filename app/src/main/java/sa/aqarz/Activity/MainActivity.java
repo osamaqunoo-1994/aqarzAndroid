@@ -1,7 +1,9 @@
 package sa.aqarz.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -11,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
@@ -45,6 +48,9 @@ import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.budiyev.android.codescanner.CodeScanner;
+import com.budiyev.android.codescanner.CodeScannerView;
+import com.budiyev.android.codescanner.DecodeCallback;
 import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.github.amlcurran.showcaseview.ShowcaseView;
@@ -56,6 +62,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.google.zxing.Result;
 import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONArray;
@@ -76,6 +83,7 @@ import sa.aqarz.Activity.OprationNew.RentShowActivity;
 import sa.aqarz.Activity.profile.AllclintActivity;
 import sa.aqarz.Activity.profile.MyProfile;
 import sa.aqarz.Activity.profile.MyProfileActivity;
+import sa.aqarz.Activity.profile.OtherProfileActivity;
 import sa.aqarz.Activity.profile.ProfileDetailsActivity;
 import sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import sa.aqarz.Adapter.RecyclerView_bottomSheet_type;
@@ -135,6 +143,8 @@ public class MainActivity extends AppCompatActivity {
     List<CityModules> cityModules_list_filtter = new ArrayList<>();
     LinearLayout service_layout;
     LinearLayout gray_layout;
+
+    TextView nodata;
     String te = "";
     public static LinearLayout lay_1, lay_2, lay_3, lay_4, lay_s;
     ShowcaseView showCaseView;
@@ -239,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
         qr_search = findViewById(R.id.qr_search);
         close = findViewById(R.id.close);
         aqarez_name_edt = findViewById(R.id.aqarez_name_edt);
+        nodata = findViewById(R.id.nodata);
 
         selsct_type_all = findViewById(R.id.selsct_type_all);
         opration = findViewById(R.id.opration);
@@ -362,9 +373,21 @@ public class MainActivity extends AppCompatActivity {
         qr_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                        // No explanation needed, we can request the permission.
 
-                Intent intent = new Intent(MainActivity.this, QRCameraActivity.class);
-                startActivity(intent);
+                        ActivityCompat.requestPermissions(MainActivity.this,
+                                new String[]{Manifest.permission.CAMERA},
+                                121);
+
+                    } else {
+
+                        Intent intent = new Intent(MainActivity.this, QRCameraActivity.class);
+                        startActivity(intent);
+                    }
+                }
+
 
             }
         });
@@ -402,7 +425,7 @@ public class MainActivity extends AppCompatActivity {
 //                        Settings.Dialog_not_compleate(MainActivity.this);
 //                    }
 
-                    Intent intent = new Intent(MainActivity.this, AqarzOrActivity.class);
+                    Intent intent = new Intent(MainActivity.this, AddAqarsActivity.class);
                     intent.putExtra("id", "");
                     startActivity(intent);
 //                    AlertDialog alertDialog;
@@ -1231,8 +1254,18 @@ public class MainActivity extends AppCompatActivity {
                     init_volley();
                     WebService.loading(MainActivity.this, true);
 
+                    String region_id_postion = "";
+                    if (MapsFragmentNew.region_id_postion != null) {
+                        region_id_postion = MapsFragmentNew.region_id_postion + "";
+                    }
+                    String city_id_postion = "";
+                    if (MapsFragmentNew.city_id_postion != null) {
+                        city_id_postion = MapsFragmentNew.city_id_postion + "";
+                    }
+
+
                     VolleyService mVolleyService = new VolleyService(mResultCallback, MainActivity.this);
-                    mVolleyService.getDataVolley("cities_with_neb", WebService.cities_with_neb + "?name=" + search_text.getText().toString());
+                    mVolleyService.getDataVolley("cities_with_neb", WebService.cities_with_neb + "?name=" + search_text.getText().toString() + "&state_id=" + region_id_postion + "&city_id=" + city_id_postion);
 
 
                     return true;
@@ -1383,7 +1416,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        aqarez_name_edt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 
+                    Intent intent = new Intent(MainActivity.this, AllclintActivity.class);
+                    intent.putExtra("search_text", aqarez_name_edt.getText().toString() + "");
+                    startActivity(intent);
+
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
 
@@ -1721,6 +1767,7 @@ public class MainActivity extends AppCompatActivity {
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String data = response.getString("data");
+                        String next_page_url = response.getString("next_page_url");
                         JSONObject jsonObject = new JSONObject(data);
 
                         String datadata = jsonObject.getString("data");
@@ -1740,6 +1787,15 @@ public class MainActivity extends AppCompatActivity {
                                 cityModules_list_filtter.add(homeModules_aqares);
                             }
 
+
+                            if (cityModules_list_filtter.size() == 0) {
+
+
+                                nodata.setVisibility(View.VISIBLE);
+                            } else {
+                                nodata.setVisibility(View.GONE);
+
+                            }
 
                             RecyclerView_city_side_menu recyclerView_city_bootom_sheets = new RecyclerView_city_side_menu(MainActivity.this, cityModules_list_filtter);
                             recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_side_menu.ItemClickListener() {
@@ -1817,4 +1873,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        } else {
+
+            Intent intent = new Intent(MainActivity.this, QRCameraActivity.class);
+            startActivity(intent);
+
+        }
+    }
 }

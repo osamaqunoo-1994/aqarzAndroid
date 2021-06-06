@@ -116,6 +116,13 @@ public class User {
     @SerializedName("city_id")
     @Expose
     private String city_id;
+
+    @SerializedName("count_estate")
+    @Expose
+    private String count_estate;
+    @SerializedName("count_fund_offer")
+    @Expose
+    private String count_fund_offer;
     @SerializedName("member_name")
     @Expose
     private List<SettingsModules.service_types> member_name;
@@ -137,8 +144,16 @@ public class User {
         return bio;
     }
 
+    public String getCount_estate() {
+        return count_estate;
+    }
+
     public List<SettingsModules.service_types> getExperience_name() {
         return experience_name;
+    }
+
+    public String getCount_fund_offer() {
+        return count_fund_offer;
     }
 
     public String getRate() {
