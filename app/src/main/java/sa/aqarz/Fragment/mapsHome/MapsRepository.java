@@ -31,9 +31,9 @@ public class MapsRepository {
 
     Activity activity;
 
-    public MapsRepository(Activity activity1) {
+    public MapsRepository(Activity activity1,boolean b) {
         activity = activity1;
-        WebService.loading(activity, true);
+        WebService.loading(activity, b);
 
 
     }

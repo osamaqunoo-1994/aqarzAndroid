@@ -76,11 +76,14 @@ public class MapsFragmentNew extends Fragment {
 
     static GoogleMap googleMap;
     static String type_selected = "Rela";
-
+    static RecyclerView_HomeList_estat_new recyclerView_homeList_estat_new;
+    static List<HomeModules_aqares> homeModules_aqares2 = new ArrayList<>();
     static SupportMapFragment mapFragment;
     static List<RegionModules> regionModules_list = new ArrayList<>();
     static List<CityLocation> city_location_list = new ArrayList<>();
 
+
+    static String urlEstat = "";
     List<TypeModules> type_list = new ArrayList<>();
 
     static TextView RealStatr_order;
@@ -91,13 +94,13 @@ public class MapsFragmentNew extends Fragment {
     static ImageView convert_map_to_list;
     static ImageView change_list_to_map;
     RecyclerView TypeAqarez;
-
+ImageView cityMap;
 
     public static String region_id_postion = "";
     public static String city_id_postion = "";
 
 
-    public  static String lat = "";
+    public static String lat = "";
     public static String lan = "";
 
     static LinearLayout list_estate;
@@ -170,7 +173,7 @@ public class MapsFragmentNew extends Fragment {
             }
         });
         mapsViewModel = new MapsViewModel();
-        mapsRepository = new MapsRepository(getActivity());
+        mapsRepository = new MapsRepository(getActivity(), false);
 
         init(view);
 
@@ -179,6 +182,7 @@ public class MapsFragmentNew extends Fragment {
 
     }
 
+    int page = 1;
 
     public void init(View v) {
 
@@ -193,6 +197,7 @@ public class MapsFragmentNew extends Fragment {
         all_list_backround = v.findViewById(R.id.all_list_backround);
         change_list_to_map = v.findViewById(R.id.change_list_to_map);
         list_estate_rec = v.findViewById(R.id.list_estate_rec);
+        cityMap = v.findViewById(R.id.cityMap);
 
 
         RealStatr_order.setBackground(getActivity().getResources().getDrawable(R.drawable.button_1));
@@ -229,7 +234,16 @@ public class MapsFragmentNew extends Fragment {
                 set_locationRegions();
             }
         });
+        cityMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LatLng sydney = new LatLng(24.527282, 44.007305);
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
 
+                set_locationRegions();
+
+            }
+        });
         MarketOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -296,6 +310,19 @@ public class MapsFragmentNew extends Fragment {
 
                 set_locationRegions();
 
+            }
+        });
+        list_estate_rec.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (!recyclerView.canScrollVertically(1)) { //1 for down
+
+                    page = page + 1;
+                    mapsViewModel.getEstate_list_without_loading(activity, "home/estate/list", urlEstat + "&page=" + page);
+
+
+                }
             }
         });
 //        mapsViewModel.getCity_list().observe(getActivity(), new Observer<List<CityLocation>>() {
@@ -749,9 +776,26 @@ public class MapsFragmentNew extends Fragment {
         list_estate_rec.setLayoutManager(layoutManager1);
         change_layout();
         list_estate_rec.setVisibility(View.VISIBLE);
+        if (recyclerView_homeList_estat_new == null) {
+            homeModules_aqares2.clear();
+            homeModules_aqares2.addAll(homeModules_aqares);
 
-        System.out.println("homeModules_aqares" + homeModules_aqares.size());
-        list_estate_rec.setAdapter(new RecyclerView_HomeList_estat_new(activity, homeModules_aqares));
+            System.out.println("homeModules_aqares" + homeModules_aqares.size());
+
+            recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_new(activity, homeModules_aqares2);
+            list_estate_rec.setAdapter(recyclerView_homeList_estat_new);
+        } else {
+
+            homeModules_aqares2.addAll(homeModules_aqares);
+
+            int fr = homeModules_aqares.size();
+            recyclerView_homeList_estat_new.Refr();
+
+            list_estate_rec.getLayoutManager().scrollToPosition(fr);
+
+        }
+        MapsFragmentNew.set_locationEstate(homeModules_aqares2);
+
 
     }
 
@@ -1019,13 +1063,13 @@ public class MapsFragmentNew extends Fragment {
             filter = filter + "&state_id=" + getId_region;
 
         }
-        try{
+        try {
             if (!city_id_postion.equals("")) {
                 getSerial_city = city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
                 filter = filter + "&city_id=" + getSerial_city;
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             filter = filter + "&city_id=" + city_id_postion;
 
         }
@@ -1035,6 +1079,8 @@ public class MapsFragmentNew extends Fragment {
             filter = filter + "&lan=" + lan + "&lat=" + lat;
         }
 
+
+        urlEstat = WebService.Home_2 + filter;
 
         mapsViewModel.getEstate_list(activity, "home/estate/list", WebService.Home_2 + filter);
 
@@ -1061,9 +1107,13 @@ public class MapsFragmentNew extends Fragment {
         }
 
 
-        mapsViewModel.getEstate_list(activity, "home/estate/list", WebService.Home_2 + "?state_id=" + getId_region + "&city_id=" + getSerial_city + "&lan=" + lan + "&lat=" + lat);
+        if (!urlEstat.equals("")) {
+            mapsViewModel.getEstate_list(activity, "home/estate/list", urlEstat + "&state_id=" + getId_region + "&city_id=" + getSerial_city + "&lan=" + lan + "&lat=" + lat);
 
+        } else {
+            mapsViewModel.getEstate_list(activity, "home/estate/list", WebService.Home_2 + "?state_id=" + getId_region + "&city_id=" + getSerial_city + "&lan=" + lan + "&lat=" + lat);
 
+        }
     }
 
     public static void get_all_estate_list_filttter_() {

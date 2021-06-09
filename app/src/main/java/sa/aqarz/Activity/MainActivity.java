@@ -1767,7 +1767,7 @@ public class MainActivity extends AppCompatActivity {
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String data = response.getString("data");
-                        String next_page_url = response.getString("next_page_url");
+//                        String next_page_url = response.getString("next_page_url");
                         JSONObject jsonObject = new JSONObject(data);
 
                         String datadata = jsonObject.getString("data");
@@ -1825,7 +1825,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
 
 

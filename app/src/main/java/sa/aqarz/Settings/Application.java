@@ -30,7 +30,7 @@ public class Application extends android.app.Application {
 
     static String statis_id = "";
 
-    public  static MyOfferModule myOfferModule;
+    public static MyOfferModule myOfferModule;
 
     @Override
     public void onCreate() {
@@ -41,7 +41,7 @@ public class Application extends android.app.Application {
 //        Fresco.initialize(this);
 //
 //
-        activity=this;
+        activity = this;
         Hawk.init(this).build();
 
         if (Hawk.contains("lang")) {

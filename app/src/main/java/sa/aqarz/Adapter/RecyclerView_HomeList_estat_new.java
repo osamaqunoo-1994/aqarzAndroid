@@ -59,25 +59,13 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
     }
 
     public void RefreshData() {
+//        alldata.addAll(homeModules_aqares);
+
         this.notifyDataSetChanged();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        //        CircleImageView story_image;
-//        ProgressBar progress;
-//        LinearLayout add_to_my;
-
-        //        ImageView image_aqars;
-//        TextView type;
-//        TextView type_2;
-//        TextView price;
-//        TextView address;
-//        TextView opration;
-//        TextView number_room;
-//        TextView number_bathroom;
-//        TextView max_space;
-//        TextView viesw;
         ImageView image;
         TextView price;
         TextView type;

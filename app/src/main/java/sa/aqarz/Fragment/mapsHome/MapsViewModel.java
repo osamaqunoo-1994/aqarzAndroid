@@ -26,20 +26,23 @@ public class MapsViewModel extends ViewModel {
 //    }
 
     public void getRegoins(Activity activity) {
-        mapsRepository = new MapsRepository(activity);
+        mapsRepository = new MapsRepository(activity,true);
         mapsRepository.getOpration();
     }
 
     public void getCity(Activity activity,String state_id) {
-        mapsRepository = new MapsRepository(activity);
+        mapsRepository = new MapsRepository(activity,true);
         mapsRepository.getCity( state_id);
     }
     public void getEstate_map(Activity activity,final String requestType, String url) {
-        mapsRepository = new MapsRepository(activity);
+        mapsRepository = new MapsRepository(activity,true);
         mapsRepository.getEstatMaps( requestType,url);
     }
     public void getEstate_list(Activity activity,final String requestType, String url) {
-        mapsRepository = new MapsRepository(activity);
+        mapsRepository = new MapsRepository(activity,true);
+        mapsRepository.getEstatList( requestType,url);
+    } public void getEstate_list_without_loading(Activity activity,final String requestType, String url) {
+        mapsRepository = new MapsRepository(activity,false);
         mapsRepository.getEstatList( requestType,url);
     }
 
