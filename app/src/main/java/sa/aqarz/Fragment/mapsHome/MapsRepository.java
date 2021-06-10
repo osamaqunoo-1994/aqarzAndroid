@@ -311,7 +311,7 @@ public class MapsRepository {
 //                    MapsViewModel.mutableLiveData_city.setValue(All.getData());
 
 
-                    MapsFragmentNew.set_locationEstate_list(All.getData().getData());
+//                    MapsFragmentNew.set_locationEstate_list(All.getData().getData());
 
 //                    WebService.loading(activity, false);
 //

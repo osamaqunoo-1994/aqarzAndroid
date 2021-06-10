@@ -1,15 +1,5 @@
 package sa.aqarz.Fragment.mapsHome;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.core.widget.NestedScrollView;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -22,64 +12,53 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.VolleyError;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.orhanobut.hawk.Hawk;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import sa.aqarz.Activity.Auth.LoginActivity;
-import sa.aqarz.Activity.ContactUsActivity;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.NotficationActvity;
 import sa.aqarz.Activity.OrderListActivity;
 import sa.aqarz.Adapter.RecyclerView_All_type_in_fragment1;
-import sa.aqarz.Adapter.RecyclerView_GenralNotfication;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat_new;
-import sa.aqarz.Modules.AllNeigbers;
 import sa.aqarz.Modules.CityLocation;
 import sa.aqarz.Modules.HomeModules_aqares;
-import sa.aqarz.Modules.Neighborhood;
 import sa.aqarz.Modules.RegionModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.CustomInfoWindowGoogleMapEstatMaps;
-import sa.aqarz.Settings.CustomInfoWindowGoogleMaptyp_2;
 import sa.aqarz.Settings.GpsTracker;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
-import sa.aqarz.api.IResult;
-import sa.aqarz.api.VolleyService;
 
-public class MapsFragmentNew extends Fragment {
+public class MapsFragmentOld extends Fragment {
 
 
     MapsRepository mapsRepository;
@@ -88,7 +67,6 @@ public class MapsFragmentNew extends Fragment {
     static List<HomeModules_aqares> homeModules_aqares = new ArrayList<>();
 
     GpsTracker gpsTracker;
-    static IResult mResultCallback;
 
     static GoogleMap googleMap;
     static String type_selected = "Rela";
@@ -97,7 +75,6 @@ public class MapsFragmentNew extends Fragment {
     static SupportMapFragment mapFragment;
     static List<RegionModules> regionModules_list = new ArrayList<>();
     static List<CityLocation> city_location_list = new ArrayList<>();
-    static List<Neighborhood> locationNeighborhood_list = new ArrayList<>();
 
     static String urlEstat = "";
     List<TypeModules> type_list = new ArrayList<>();
@@ -122,6 +99,7 @@ public class MapsFragmentNew extends Fragment {
     static LinearLayout list_estate;
     static LinearLayout all_list_backround;
 
+    static RecyclerView list_estate_rec;
     static Activity activity;
 
 
@@ -185,23 +163,6 @@ public class MapsFragmentNew extends Fragment {
 
 
                 googleMap = googleMapc;
-
-                googleMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
-                    @Override
-                    public void onCameraChange(CameraPosition cameraPosition) {
-
-                        Log.i("centerLat", cameraPosition.target.latitude + "");
-
-                        Log.i("centerLong", cameraPosition.target.longitude + "");
-
-
-                        lan = cameraPosition.target.latitude + "";
-                        lat = cameraPosition.target.longitude + "";
-
-                    }
-                });
-
-
             }
         });
         mapsViewModel = new MapsViewModel();
@@ -228,19 +189,22 @@ public class MapsFragmentNew extends Fragment {
         list_estate = v.findViewById(R.id.list_estate);
         all_list_backround = v.findViewById(R.id.all_list_backround);
         change_list_to_map = v.findViewById(R.id.change_list_to_map);
+        list_estate_rec = v.findViewById(R.id.list_estate_rec);
         cityMap = v.findViewById(R.id.cityMap);
 
 
         RealStatr_order.setBackground(getActivity().getResources().getDrawable(R.drawable.button_1));
         MarketOrder.setBackground(null);
         OfferOrder.setBackground(null);
+
         convert_map_to_list.setVisibility(View.GONE);
+
         RealStatr_order.setTextColor(getActivity().getResources().getColor(R.color.white));
         MarketOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
         OfferOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
         type_selected = "Real";
 
-        check_lastsenareo();
+
         RealStatr_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -250,6 +214,8 @@ public class MapsFragmentNew extends Fragment {
                 OfferOrder.setBackground(null);
                 convert_map_to_list.setVisibility(View.GONE);
 
+                Un_change_layout();
+
 
                 RealStatr_order.setTextColor(getActivity().getResources().getColor(R.color.white));
                 MarketOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
@@ -257,14 +223,8 @@ public class MapsFragmentNew extends Fragment {
                 type_selected = "Real";
                 LatLng sydney = new LatLng(24.527282, 44.007305);
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
-//                region_id_postion = "";
-//                Hawk.put("region_id_postion", "");
-//
-//                city_id_postion = "";
-//                Hawk.put("city_id_postion", "");
-                check_lastsenareo();
 
-//                set_locationRegions();
+                set_locationRegions();
             }
         });
         cityMap.setOnClickListener(new View.OnClickListener() {
@@ -274,12 +234,6 @@ public class MapsFragmentNew extends Fragment {
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
 
                 set_locationRegions();
-
-                region_id_postion = "";
-                Hawk.put("region_id_postion", "");
-
-                city_id_postion = "";
-                Hawk.put("city_id_postion", "");
 
             }
         });
@@ -292,20 +246,15 @@ public class MapsFragmentNew extends Fragment {
                 OfferOrder.setBackground(null);
                 convert_map_to_list.setVisibility(View.GONE);
 
+                Un_change_layout();
                 MarketOrder.setTextColor(getActivity().getResources().getColor(R.color.white));
                 RealStatr_order.setTextColor(getActivity().getResources().getColor(R.color.textColor));
                 OfferOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
                 type_selected = "Market";
                 LatLng sydney = new LatLng(24.527282, 44.007305);
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
-//                region_id_postion = "";
-//                Hawk.put("region_id_postion", "");
-//
-//                city_id_postion = "";
-//                Hawk.put("city_id_postion", "");
-                check_lastsenareo();
 
-//                set_locationRegions();
+                set_locationRegions();
 
             }
         });
@@ -325,15 +274,19 @@ public class MapsFragmentNew extends Fragment {
                 type_selected = "offer";
                 LatLng sydney = new LatLng(24.527282, 44.007305);
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
-//                region_id_postion = "";
-//                city_id_postion = "";
-//                Hawk.put("region_id_postion", "");
-//                Hawk.put("city_id_postion", "");
-//
-//                set_locationRegions();
-                check_lastsenareo();
+
+                set_locationRegions();
+
             }
         });
+
+
+        if (MainActivity.first_time_open_app) {
+            mapsViewModel.getRegoins(getActivity());
+
+        } else {
+            set_locationRegions();
+        }
 
 
         mapsViewModel.getRegions_list().observe(getActivity(), new Observer<List<RegionModules>>() {
@@ -352,19 +305,37 @@ public class MapsFragmentNew extends Fragment {
 
             }
         });
-//        list_estate_rec.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        list_estate_rec.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (!recyclerView.canScrollVertically(1)) { //1 for down
+
+                    page = page + 1;
+                    mapsViewModel.getEstate_list_without_loading(activity, "home/estate/list", urlEstat + "&page=" + page);
+
+
+                }
+            }
+        });
+//        mapsViewModel.getCity_list().observe(getActivity(), new Observer<List<CityLocation>>() {
 //            @Override
-//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-//                super.onScrolled(recyclerView, dx, dy);
-//                if (!recyclerView.canScrollVertically(1)) { //1 for down
+//            public void onChanged(List<CityLocation> cityLocations) {
 //
-//                    page = page + 1;
-//                    mapsViewModel.getEstate_list_without_loading(activity, "home/estate/list", urlEstat + "&page=" + page);
 //
+//                System.out.println("*&*&*&*&^%$#@#$%^");
+//
+//
+//                if (cityLocations != null) {
+//                    set_locationCity(cityLocations);
 //
 //                }
+//                WebService.loading(getActivity(), false);
+//
+//
 //            }
 //        });
+
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         TypeAqarez.setLayoutManager(layoutManager1);
@@ -447,8 +418,8 @@ public class MapsFragmentNew extends Fragment {
             public void onClick(View v) {
 
 
-//                change_layout();
-//                get_all_estate_list_filttter();
+                change_layout();
+                get_all_estate_list_filttter();
 
 
             }
@@ -458,7 +429,7 @@ public class MapsFragmentNew extends Fragment {
             public void onClick(View v) {
 
 
-//                Un_change_layout();
+                Un_change_layout();
 
 
             }
@@ -467,158 +438,31 @@ public class MapsFragmentNew extends Fragment {
 
     }
 
-    public void check_lastsenareo() {
+    public static void change_layout() {
+//
+//        if(region_id_postion.){
+//
+//        }
+//
 
-        if (Hawk.contains("region_id_postion")) {
-
-            if (Hawk.get("region_id_postion").toString().equals("")) {
-//                if (MainActivity.first_time_open_app) {
-                if (regionModules_list.size() == 0) {
-                    mapsViewModel.getRegoins(getActivity());
-
-                } else {
-                    set_locationRegions();
-                }
-            } else {
-
-                region_id_postion = Hawk.get("city_id_postion").toString();
-
-                if (Hawk.contains("city_id_postion")) {
-
-                    if (Hawk.get("city_id_postion").toString().equals("")) {
-                        try {
-                            region_id_postion = Hawk.get("region_id_postion").toString();
-                            lat = "" + regionModules_list.get(Integer.valueOf(region_id_postion)).getCenter().getCoordinates().get(1);
-                            lan = "" + regionModules_list.get(Integer.valueOf(region_id_postion)).getCenter().getCoordinates().get(0);
-                            LatLng my_location = new LatLng(Double.valueOf(regionModules_list.get(Integer.valueOf(region_id_postion)).getCenter().getCoordinates().get(1)), Double.valueOf(regionModules_list.get(Integer.valueOf(region_id_postion)).getCenter().getCoordinates().get(0)));
-//                            CameraPosition cameraPosition = new CameraPosition.Builder().target(my_location).zoom(4).build();
-//                            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-//                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 6));
-                            // Zoom in, animating the camera.
-//                            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-//                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
-//                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(15), 3000, null);
-
-                            mapsViewModel.getCity_list().observe((LifecycleOwner) activity, new Observer<List<CityLocation>>() {
-                                @Override
-                                public void onChanged(List<CityLocation> cityLocations) {
+        all_list_backround.setBackgroundColor(activity.getResources().getColor(R.color.color_list_back));
+        list_estate.setVisibility(View.VISIBLE);
 
 
-                                    System.out.println("*&*&*&*&^%$#@#$%^");
+        change_list_to_map.setVisibility(View.VISIBLE);
+        convert_map_to_list.setVisibility(View.GONE);
 
 
-                                    if (cityLocations != null) {
-                                        set_locationCity(cityLocations);
+    }
 
-                                    }
-                                    WebService.loading(activity, false);
+    public static void Un_change_layout() {
 
 
-                                }
-                            });
-                            mapsViewModel.getCity(activity, regionModules_list.get(Integer.valueOf(region_id_postion)).getId() + "");
+        all_list_backround.setBackground(null);
+        list_estate.setVisibility(View.GONE);
+        change_list_to_map.setVisibility(View.GONE);
+        convert_map_to_list.setVisibility(View.VISIBLE);
 
-
-                        } catch (Exception e) {
-
-                        }
-                    } else {
-                        try {
-
-
-                            city_id_postion = Hawk.get("city_id_postion").toString();
-//                        Hawk.put("city_id_postion", city_id_postion + "");
-                            lat = "" + city_location_list.get(Integer.valueOf(city_id_postion)).getLat();
-                            lan = "" + city_location_list.get(Integer.valueOf(city_id_postion)).getLan();
-                            if (type_selected.equals("Real")) {
-
-
-//                                Intent intent = new Intent(activity, OrderListActivity.class);
-//                                activity.startActivity(intent);
-
-                                WebService.loading(getActivity(), true);
-                                init_volley();
-                                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-
-                                mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + city_id_postion + "list");
-
-
-                            } else if (type_selected.equals("Market")) {
-
-
-//                                Intent intent = new Intent(activity, OrderListActivity.class);
-//                                activity.startActivity(intent);
-
-
-                            } else if (type_selected.equals("offer")) {
-
-
-                                getAllEstate();
-
-
-                            }
-
-
-                        } catch (Exception e) {
-
-                        }
-                    }
-
-
-                } else {
-
-                    try {
-                        region_id_postion = Hawk.get("region_id_postion").toString();
-                        lat = "" + regionModules_list.get(Integer.valueOf(region_id_postion)).getCenter().getCoordinates().get(1);
-                        lan = "" + regionModules_list.get(Integer.valueOf(region_id_postion)).getCenter().getCoordinates().get(0);
-                        LatLng my_location = new LatLng(Double.valueOf(regionModules_list.get(Integer.valueOf(region_id_postion)).getCenter().getCoordinates().get(1)), Double.valueOf(regionModules_list.get(Integer.valueOf(region_id_postion)).getCenter().getCoordinates().get(0)));
-//                        CameraPosition cameraPosition = new CameraPosition.Builder().target(my_location).zoom(4).build();
-//                        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-//                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 6));
-//                        // Zoom in, animating the camera.
-//                        googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-////                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
-//                        googleMap.animateCamera(CameraUpdateFactory.zoomTo(15), 3000, null);
-
-                        mapsViewModel.getCity_list().observe((LifecycleOwner) activity, new Observer<List<CityLocation>>() {
-                            @Override
-                            public void onChanged(List<CityLocation> cityLocations) {
-
-
-                                System.out.println("*&*&*&*&^%$#@#$%^");
-
-
-                                if (cityLocations != null) {
-                                    set_locationCity(cityLocations);
-
-                                }
-                                WebService.loading(activity, false);
-
-
-                            }
-                        });
-                        mapsViewModel.getCity(activity, regionModules_list.get(Integer.valueOf(region_id_postion)).getId() + "");
-
-
-                    } catch (Exception e) {
-
-                    }
-                }
-
-
-            }
-
-
-        } else {
-//            if (MainActivity.first_time_open_app) {
-            if (regionModules_list.size() == 0) {
-
-                mapsViewModel.getRegoins(getActivity());
-
-            } else {
-                set_locationRegions();
-            }
-        }
 
     }
 
@@ -638,7 +482,6 @@ public class MapsFragmentNew extends Fragment {
 
 
                         city_id_postion = number;
-                        Hawk.put("city_id_postion", city_id_postion + "");
 
 
                         lat = "" + city_location_list.get(Integer.valueOf(city_id_postion)).getLat();
@@ -648,13 +491,8 @@ public class MapsFragmentNew extends Fragment {
                         if (type_selected.equals("Real")) {
 
 
-//                            Intent intent = new Intent(activity, OrderListActivity.class);
-//                            activity.startActivity(intent);
-                            WebService.loading(activity, true);
-                            init_volley();
-                            VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
-
-                            mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + city_id_postion + "/list");
+                            Intent intent = new Intent(activity, OrderListActivity.class);
+                            activity.startActivity(intent);
 
 
                         } else if (type_selected.equals("Market")) {
@@ -667,7 +505,7 @@ public class MapsFragmentNew extends Fragment {
                         } else if (type_selected.equals("offer")) {
 
 
-                            getAllEstate();
+                            get_all_estate_filttter();
 
 
                         }
@@ -689,8 +527,6 @@ public class MapsFragmentNew extends Fragment {
 
 
                         region_id_postion = number;
-
-                        Hawk.put("region_id_postion", region_id_postion + "");
 
 
                         lat = "" + regionModules_list.get(Integer.valueOf(region_id_postion)).getCenter().getCoordinates().get(1);
@@ -804,47 +640,6 @@ public class MapsFragmentNew extends Fragment {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(sydneya)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewCity(locationCity.get(i).getName() + "", i + "")))).setTag("allcity/" + i);
-
-                        }
-
-                    }
-                }
-            });
-        }
-    }
-    public static void set_locationNeighborhood(List<Neighborhood> locationNeighborhood) {
-
-        if (googleMap != null) {
-            googleMap.clear();
-            locationNeighborhood_list.clear();
-            locationNeighborhood_list = locationNeighborhood;
-            for (int i = 0; i < locationNeighborhood.size(); i++) {
-
-                LatLng sydneya = new LatLng(Double.valueOf(locationNeighborhood.get(i).getLat() + ""), Double.valueOf(locationNeighborhood.get(i).getLan() + ""));
-
-                if (googleMap != null) {
-                    googleMap.addMarker(new MarkerOptions()
-                            .position(sydneya)
-                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewCity(locationNeighborhood.get(i).getName() + "", i + "")))).setTag("allcity/" + i);
-
-                }
-
-            }
-        } else {
-            mapFragment.getMapAsync(new OnMapReadyCallback() {
-                @Override
-                public void onMapReady(GoogleMap googleMap) {
-                    googleMap.clear();
-                    on_click_maps_marker();
-
-                    for (int i = 0; i < locationNeighborhood.size(); i++) {
-
-                        LatLng sydneya = new LatLng(Double.valueOf(locationNeighborhood.get(i).getLat() + ""), Double.valueOf(locationNeighborhood.get(i).getLan() + ""));
-
-                        if (googleMap != null) {
-                            googleMap.addMarker(new MarkerOptions()
-                                    .position(sydneya)
-                                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewCity(locationNeighborhood.get(i).getName() + "", i + "")))).setTag("allcity/" + i);
 
                         }
 
@@ -968,6 +763,34 @@ public class MapsFragmentNew extends Fragment {
 
     }
 
+    public static void set_locationEstate_list(List<HomeModules_aqares> homeModules_aqares) {
+
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false);
+        list_estate_rec.setLayoutManager(layoutManager1);
+        change_layout();
+        list_estate_rec.setVisibility(View.VISIBLE);
+        if (recyclerView_homeList_estat_new == null) {
+            homeModules_aqares2.clear();
+            homeModules_aqares2.addAll(homeModules_aqares);
+
+            System.out.println("homeModules_aqares" + homeModules_aqares.size());
+
+            recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_new(activity, homeModules_aqares2);
+            list_estate_rec.setAdapter(recyclerView_homeList_estat_new);
+        } else {
+
+            homeModules_aqares2.addAll(homeModules_aqares);
+
+            int fr = homeModules_aqares.size();
+            recyclerView_homeList_estat_new.Refr();
+
+            list_estate_rec.getLayoutManager().scrollToPosition(fr);
+
+        }
+        MapsFragmentOld.set_locationEstate(homeModules_aqares2);
+
+
+    }
 
     private static Bitmap getMarkerBitmapFromViewRegions(String Price, String numbers) {
 
@@ -1144,115 +967,190 @@ public class MapsFragmentNew extends Fragment {
 
     }
 
-    public static String filter = "";
 
+    public static void get_all_estate_filttter() {
 
-    public static void getAllEstate() {
+//"home/estate", WebService.Home_4 + "?state_id=" + state_id + "&city_id=" + city_id
+
 
         String getId_region = "";
         String getSerial_city = "";
 
 
         if (!region_id_postion.equals("")) {
-            getId_region = "?state_id=" + regionModules_list.get(Integer.valueOf(region_id_postion + "")).getId() + "";
+            getId_region = regionModules_list.get(Integer.valueOf(region_id_postion + "")).getId() + "";
 
         }
         if (!city_id_postion.equals("")) {
-            getSerial_city = "&city_id=" + city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
+            getSerial_city = city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
 
         }
 
 
-        String lat_lan = "&lan=" + lan + "&lat=" + lat;
+        mapsViewModel.getEstate_map(activity, "home/estate", WebService.Home_4 + "?state_id=" + getId_region + "&city_id=" + getSerial_city + "&lan=" + lan + "&lat=" + lat);
 
 
     }
 
-    public static void init_volley() {
+    public static void get_all_estate_filttters(String te) {
+
+//"home/estate", WebService.Home_4 + "?state_id=" + state_id + "&city_id=" + city_id
 
 
-        mResultCallback = new IResult() {
-            @Override
-            public void notifySuccess(String requestType, JSONObject response) {
-                Log.d("TAG", "Volley requester " + requestType);
-                Log.d("TAG", "Volley JSON post" + response);
-                WebService.loading(activity, false);
-//{"status":true,"code":200,"message":"User Profile","data"
-                try {
-                    boolean status = response.getBoolean("status");
-                    if (status) {
+        String getId_region = "";
+        String getSerial_city = "";
 
-                        if (requestType.equals("neighborhoods")) {
+        change_layout();
 
+        String filter = "?" + te;
 
-                            JsonParser parser = new JsonParser();
-                            JsonElement mJson = parser.parse(response.toString());
+        if (!region_id_postion.equals("")) {
+            getId_region = regionModules_list.get(Integer.valueOf(region_id_postion + "")).getId() + "";
 
-                            Gson gson = new Gson();
+            filter = filter + "&state_id=" + getId_region;
 
-                            AllNeigbers allNeigbers = gson.fromJson(mJson, AllNeigbers.class);
+        }
+        if (!city_id_postion.equals("")) {
+            getSerial_city = city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
+            filter = filter + "&city_id=" + getSerial_city;
+
+        }
 
 
-                            set_locationNeighborhood(allNeigbers.getData());
+        if (!lat.equals("")) {
+            filter = filter + "&lan=" + lan + "&lat=" + lat;
+        }
 
 
+        mapsViewModel.getEstate_map(activity, "home/estate/list", WebService.Home_2 + filter);
 
-                        } else {
-                            String message = response.getString("message");
-                            WebService.Make_Toast_color(activity, message, "success");
+//        https://apibeta.aqarz.sa/api/home/estate/list?estate_type=1&estate_pay_type=&price_from=&price_to=&area_from=&area_to=&room=&page=1
+    }
 
-                        }
+    public static void get_all_estate_filttters_li(String te) {
 
-
-                    } else {
-                        String message = response.getString("message");
-
-                        WebService.Make_Toast_color(activity, message, "error");
-                    }
+//"home/estate", WebService.Home_4 + "?state_id=" + state_id + "&city_id=" + city_id
+        OfferOrder.setBackground(activity.getResources().getDrawable(R.drawable.button_3));
+        MarketOrder.setBackground(null);
+        RealStatr_order.setBackground(null);
+//     convert_map_to_list.setVisibility(View.VISIBLE);
 
 
-                } catch (Exception e) {
+        OfferOrder.setTextColor(activity.getResources().getColor(R.color.white));
+        MarketOrder.setTextColor(activity.getResources().getColor(R.color.textColor));
+        RealStatr_order.setTextColor(activity.getResources().getColor(R.color.textColor));
+        type_selected = "offer";
+        LatLng sydney = new LatLng(24.527282, 44.007305);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
+        set_locationRegions();
+        String getId_region = "";
+        String getSerial_city = "";
 
-                }
+        change_layout();
 
+        String filter = "?" + te;
+
+        if (!region_id_postion.equals("")) {
+            getId_region = regionModules_list.get(Integer.valueOf(region_id_postion + "")).getId() + "";
+
+            filter = filter + "&state_id=" + getId_region;
+
+        }
+        try {
+            if (!city_id_postion.equals("")) {
+                getSerial_city = city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
+                filter = filter + "&city_id=" + getSerial_city;
+
+            }
+        } catch (Exception e) {
+            filter = filter + "&city_id=" + city_id_postion;
+
+        }
+
+
+        if (!lat.equals("")) {
+            filter = filter + "&lan=" + lan + "&lat=" + lat;
+        }
+
+
+        urlEstat = WebService.Home_2 + filter;
+
+        mapsViewModel.getEstate_list(activity, "home/estate/list", WebService.Home_2 + filter);
+
+//        https://apibeta.aqarz.sa/api/home/estate/list?estate_type=1&estate_pay_type=&price_from=&price_to=&area_from=&area_to=&room=&page=1
+    }
+
+
+    public static void get_all_estate_list_filttter() {
+
+//"home/estate", WebService.Home_4 + "?state_id=" + state_id + "&city_id=" + city_id
+
+
+        String getId_region = "";
+        String getSerial_city = "";
+
+
+        if (!region_id_postion.equals("")) {
+            getId_region = regionModules_list.get(Integer.valueOf(region_id_postion + "")).getId() + "";
+
+        }
+        if (!city_id_postion.equals("")) {
+
+            getSerial_city = city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
+        }
+
+
+        if (!urlEstat.equals("")) {
+            mapsViewModel.getEstate_list(activity, "home/estate/list", urlEstat + "&state_id=" + getId_region + "&city_id=" + getSerial_city + "&lan=" + lan + "&lat=" + lat);
+
+        } else {
+            mapsViewModel.getEstate_list(activity, "home/estate/list", WebService.Home_2 + "?state_id=" + getId_region + "&city_id=" + getSerial_city + "&lan=" + lan + "&lat=" + lat);
+
+        }
+    }
+
+    public static void get_all_estate_list_filttter_() {
+
+//"home/estate", WebService.Home_4 + "?state_id=" + state_id + "&city_id=" + city_id
+
+
+        if (type_selected.equals("Real")
+        ) {
+
+
+        } else {
+
+            String getId_region = "";
+            String getSerial_city = "";
+
+            change_layout();
+
+
+            String filter = "&" + "";
+
+
+            if (!region_id_postion.equals("")) {
+                getId_region = regionModules_list.get(Integer.valueOf(region_id_postion + "")).getId() + "";
+
+                filter = filter + "?state_id=" + getId_region;
+
+            }
+            if (!city_id_postion.equals("")) {
+                getSerial_city = city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
+                filter = filter + "?city_id=" + getSerial_city;
 
             }
 
 
-            @Override
-            public void notifyError(String requestType, VolleyError error) {
-                Log.d("TAG", "Volley requester " + requestType);
-                Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.getMessage());
-
-                try {
-
-                    NetworkResponse response = error.networkResponse;
-                    String response_data = new String(response.data);
-
-                    JSONObject jsonObject = new JSONObject(response_data);
-
-                    String message = jsonObject.getString("message");
-
-
-                    WebService.Make_Toast_color(activity, message, "error");
-
-                    Log.e("error response", response_data);
-
-                } catch (Exception e) {
-
-                }
-
-
-                WebService.loading(activity, false);
-
-
+            if (!lat.equals("")) {
+                filter = filter + "?lan=" + lan + "&lat=" + lat;
             }
 
-            @Override
-            public void notify_Async_Error(String requestType, String error) {
 
-            }
-        };
+            mapsViewModel.getEstate_map(activity, "home/estate/list", WebService.Home_2 + filter);
+
+
+        }
 
 
     }
