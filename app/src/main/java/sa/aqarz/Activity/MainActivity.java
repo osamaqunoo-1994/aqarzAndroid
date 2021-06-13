@@ -1772,9 +1772,10 @@ public class MainActivity extends AppCompatActivity {
 //                        String next_page_url = response.getString("next_page_url");
                         JSONObject jsonObject = new JSONObject(data);
 
-                        String datadata = jsonObject.getString("data");
 
                         if (requestType.equals("cities_with_neb")) {
+                            String datadata = jsonObject.getString("data");
+
                             JSONArray jsonArray = new JSONArray(datadata);
                             cityModules_list_filtter.clear();
 

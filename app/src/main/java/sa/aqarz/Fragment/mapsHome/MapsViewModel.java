@@ -29,10 +29,18 @@ public class MapsViewModel extends ViewModel {
         mapsRepository = new MapsRepository(activity,true);
         mapsRepository.getOpration();
     }
+    public void getRegoins_without(Activity activity) {
+        mapsRepository = new MapsRepository(activity,true);
+        mapsRepository.getOpration2();
+    }
 
     public void getCity(Activity activity,String state_id) {
         mapsRepository = new MapsRepository(activity,true);
         mapsRepository.getCity( state_id);
+    }
+    public void getCity2(Activity activity,String state_id) {
+        mapsRepository = new MapsRepository(activity,true);
+        mapsRepository.getCity2( state_id);
     }
     public void getEstate_map(Activity activity,final String requestType, String url) {
         mapsRepository = new MapsRepository(activity,true);

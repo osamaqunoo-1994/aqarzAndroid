@@ -210,12 +210,9 @@ public class AllOrderActivity extends AppCompatActivity {
 //            offer.setVisibility(View.GONE);
             not_premium.setVisibility(View.VISIBLE);
         }
-
         set_city_fillter();
-
         setdata();
         action_button();
-
         setTypeFilter();
     }
 
@@ -239,13 +236,10 @@ public class AllOrderActivity extends AppCompatActivity {
 
             if (isLoading) {
 
-
                 if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
                         && firstVisibleItemPosition >= 0
                         && totalItemCount >= 10) {
-
                     System.out.println("*&*&*&*&*&*&*");
-
 
                 }
             }
