@@ -26,6 +26,7 @@
                     android:layout_height="wrap_content"
 
                     android:paddingLeft="17dp"
+                    android:textIsSelectable="true"
                     android:paddingTop="10dp"
                     android:paddingRight="17dp"
                     android:paddingBottom="10dp"
