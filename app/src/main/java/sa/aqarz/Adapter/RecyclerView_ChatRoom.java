@@ -21,7 +21,10 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import sa.aqarz.Modules.MsgModules;
@@ -52,12 +55,14 @@ public class RecyclerView_ChatRoom extends RecyclerView.Adapter<RecyclerView_Cha
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView date;
         TextView text;
 
 
         public MyViewHolder(View view) {
             super(view);
             text = view.findViewById(R.id.text);
+            date = view.findViewById(R.id.date);
 //            category = view.findViewById(R.id.category);
 //            image = view.findViewById(R.id.image);
 //            date = view.findViewById(R.id.date);
@@ -69,7 +74,7 @@ public class RecyclerView_ChatRoom extends RecyclerView.Adapter<RecyclerView_Cha
     }
 
     public RecyclerView_ChatRoom(Context context, List<MsgModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_ChatRoom.alldata = alldata;
         this.context = context;
     }
 
@@ -85,6 +90,21 @@ public class RecyclerView_ChatRoom extends RecyclerView.Adapter<RecyclerView_Cha
             holder.text.setText(alldata.get(position).getBody() + "");
 
 
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+
+            String dateInStrings = alldata.get(position).getCreatedAt() + "";
+            String dateInString = dateInStrings.substring(0, 19);
+
+            SimpleDateFormat formatterOut = new SimpleDateFormat("dd MMM");
+
+            try {
+
+                Date date = formatter.parse(dateInString);
+                holder.date.setText(formatterOut.format(date));
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 //            holder.share.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {

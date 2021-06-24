@@ -52,7 +52,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/text_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/muli_semi_bold"
 
+                    android:textSize="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -77,21 +83,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
+
                 <TextView
                     android:id="@+id/count"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
 
                     android:background="@drawable/circle_fill"
                     android:fontFamily="@font/din_light"
                     android:gravity="center"
 
                     android:textColor="@color/white"
-                    android:textSize="12dp" />
+                    android:textSize="10dp" />
 
             </LinearLayout>
-
-
 
 
         </LinearLayout>

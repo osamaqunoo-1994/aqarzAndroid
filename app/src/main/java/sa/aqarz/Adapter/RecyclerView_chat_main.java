@@ -15,7 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -65,6 +68,7 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
         TextView name;
         TextView time;
         TextView count;
+        TextView text_date;
 
 
         CircleImageView image_profile;
@@ -79,6 +83,7 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
             time = view.findViewById(R.id.time);
             image_profile = view.findViewById(R.id.image_profile);
             count = view.findViewById(R.id.count);
+            text_date = view.findViewById(R.id.text_date);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
@@ -136,6 +141,24 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
 
         }
         holder.count.setText(alldata.get(position).getCount_not_read() + "");
+
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+
+        String dateInStrings = alldata.get(position).getCreatedAt() + "";
+        String dateInString = dateInStrings.substring(0, 19);
+
+        SimpleDateFormat formatterOut = new SimpleDateFormat("dd MMM yyyy");
+
+        try {
+
+            Date date = formatter.parse(dateInString);
+            holder.text_date.setText(formatterOut.format(date));
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
 //        holder.description.setText(alldata.get(position).getDetails()+"");
 //////
 //
@@ -202,7 +225,7 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
 
                 Intent intent = new Intent(context, ChatRoomActivity.class);
 
-                if (alldata.get(position).getReceiverId().toString().equals(Settings.GetUser().getId() + "")) {
+                if (alldata.get(position).getReceiverId().equals(Settings.GetUser().getId() + "")) {
                     intent.putExtra("user_id", alldata.get(position).getSenderId() + "");
 
                 } else {

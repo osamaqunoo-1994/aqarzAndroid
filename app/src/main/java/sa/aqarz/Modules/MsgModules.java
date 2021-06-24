@@ -20,10 +20,10 @@ public class MsgModules {
     private Object parentId;
     @SerializedName("sender_id")
     @Expose
-    private Object senderId;
+    private String senderId;
     @SerializedName("receiver_id")
     @Expose
-    private Integer receiverId;
+    private String receiverId;
     @SerializedName("sender_name")
     @Expose
     private Object senderName;
@@ -118,17 +118,10 @@ public class MsgModules {
         return senderId;
     }
 
-    public void setSenderId(Object senderId) {
-        this.senderId = senderId;
-    }
-
-    public Integer getReceiverId() {
+    public String getReceiverId() {
         return receiverId;
     }
 
-    public void setReceiverId(Integer receiverId) {
-        this.receiverId = receiverId;
-    }
 
     public Object getSenderName() {
         return senderName;
