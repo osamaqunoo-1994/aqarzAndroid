@@ -55,7 +55,6 @@ import sa.aqarz.Adapter.RecyclerView_All_type_in_fragment;
 import sa.aqarz.Modules.OprationModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
-import sa.aqarz.Settings.GpsTracker;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -65,7 +64,6 @@ public class RateActivity extends AppCompatActivity {
     List<TypeModules> type_list = new ArrayList<>();
     String opration_select = "";
     TextView For_sale, rent, investment;
-    GpsTracker gpsTracker;
 
     RecyclerView opration;
     //    RecyclerView opration_RecyclerView;
@@ -101,7 +99,7 @@ public class RateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rate);
 
 
-        mMapView = (MapView) findViewById(R.id.mapViewxx);
+        mMapView = findViewById(R.id.mapViewxx);
 
         mMapView.onCreate(savedInstanceState);
 
@@ -342,7 +340,7 @@ public class RateActivity extends AppCompatActivity {
                 ) {
                     WebService.Make_Toast(RateActivity.this, getResources().getString(R.string.AllFiledsREquered));
 
-                } else if (lat.toString().equals("")) {
+                } else if (lat.equals("")) {
 
                     new AlertDialog.Builder(RateActivity.this)
                             .setMessage(getResources().getString(R.string.message_location))
@@ -550,38 +548,8 @@ public class RateActivity extends AppCompatActivity {
     }
 
     public LatLng getLocation() {
+        return Settings.getLocation(RateActivity.this);
 
-        try {
-            gpsTracker = new GpsTracker(RateActivity.this);
-            if (gpsTracker.canGetLocation()) {
-                double latitude = gpsTracker.getLatitude();
-                double longitude = gpsTracker.getLongitude();
-                System.out.println("latitude:" + latitude);
-                System.out.println("longitude:" + longitude);
-
-                LatLng my_location = new LatLng(latitude, longitude);
-//                LatLng my_location = new LatLng(24.768516, 46.691505);
-
-                return my_location;
-
-            } else {
-                gpsTracker.showSettingsAlert();
-
-                //24.768516, 46.691505
-
-                LatLng my_location = new LatLng(24.768516, 46.691505);
-
-
-                return my_location;
-
-            }
-        } catch (Exception e) {
-
-            LatLng my_location = new LatLng(24.768516, 46.691505);
-
-
-            return my_location;
-        }
 
     }
 

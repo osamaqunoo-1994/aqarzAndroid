@@ -5,8 +5,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -16,6 +18,7 @@ import sa.aqarz.Activity.AqarzProfileActivity;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.DetailsAqarzManActivity;
+import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
 import sa.aqarz.Modules.SettingsModules;
 import sa.aqarz.Modules.User;
 import sa.aqarz.R;
@@ -44,7 +47,33 @@ public class Settings {
 
     }
 
-//
+    //
+    static LatLng my_location;
+
+    public static LatLng getLocation(Activity activity) {
+
+        try {
+            SingleShotLocationProvider.requestSingleUpdate(activity,
+                    new SingleShotLocationProvider.LocationCallback() {
+                        @Override
+                        public void onNewLocationAvailable(SingleShotLocationProvider.GPSCoordinates location) {
+                            Log.d("Location", "my location is " + location.toString());
+                            my_location = new LatLng(location.latitude, location.longitude);
+
+
+                        }
+                    });
+        } catch (Exception location) {
+            my_location = new LatLng(24.768516, 46.691505);
+
+
+        }
+
+
+        return my_location;
+
+
+    }
 
     public static User GetUser() {
 
@@ -69,13 +98,7 @@ public class Settings {
     public static boolean CheckIsCompleate() {
         try {
 
-            if (Settings.GetUser().getName() == null && Settings.GetUser().getEmail() == null) {
-                return false;
-
-            } else {
-                return true;
-
-            }
+            return Settings.GetUser().getName() != null || Settings.GetUser().getEmail() != null;
 
         } catch (Exception e) {
             Hawk.put("user", "");
@@ -92,13 +115,7 @@ public class Settings {
 
         try {
             if (Settings.checkLogin()) {
-                if (Settings.GetUser().getType().toString().equals("provider")) {
-                    return true;
-
-                } else {
-                    return false;
-
-                }
+                return Settings.GetUser().getType().equals("provider");
             } else {
                 return false;
 
@@ -120,13 +137,7 @@ public class Settings {
         try {
             if (Hawk.contains("user")) {
 
-                if (Hawk.get("user").toString().equals("")) {
-
-                    return false;
-                } else {
-
-                    return true;
-                }
+                return !Hawk.get("user").toString().equals("");
             } else {
                 return false;
             }

@@ -89,6 +89,7 @@ import java.util.Locale;
 
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
+import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
 import sa.aqarz.Activity.OprationNew.FinanceActivity;
 import sa.aqarz.Activity.SelectLocationActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
@@ -105,7 +106,6 @@ import sa.aqarz.Modules.ComfortModules;
 import sa.aqarz.Modules.SelectImageModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
-import sa.aqarz.Settings.GpsTracker;
 import sa.aqarz.Settings.NumberTextWatcher;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
@@ -233,14 +233,13 @@ public class AddAqarsActivity extends AppCompatActivity {
     TextView real_no;
 
 
-    GpsTracker gpsTracker;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_aqars);
-        mMapView = (MapView) findViewById(R.id.mapViewxx);
+        mMapView = findViewById(R.id.mapViewxx);
 
         mMapView.onCreate(savedInstanceState);
         mMapView.onResume(); // needed to get the map to display immediately
@@ -585,34 +584,34 @@ public class AddAqarsActivity extends AppCompatActivity {
                 opration_select = type_list.get(position).getId().toString() + "";
 
 
-                if (opration_select.toString().equals("1")) {//شقة
+                if (opration_select.equals("1")) {//شقة
 
 
                     specificationsqares.setVisibility(View.VISIBLE);
                     means_comfort.setVisibility(View.VISIBLE);
 
-                } else if (opration_select.toString().equals("2")) {//فيلا
+                } else if (opration_select.equals("2")) {//فيلا
 
 
                     specificationsqares.setVisibility(View.VISIBLE);
                     means_comfort.setVisibility(View.VISIBLE);
-                } else if (opration_select.toString().equals("3")) {//ارض
+                } else if (opration_select.equals("3")) {//ارض
 
 
                     specificationsqares.setVisibility(View.GONE);
                     means_comfort.setVisibility(View.GONE);
-                } else if (opration_select.toString().equals("7")) {//مزرعه
+                } else if (opration_select.equals("7")) {//مزرعه
 
 
                     specificationsqares.setVisibility(View.GONE);
                     means_comfort.setVisibility(View.GONE);
 
-                } else if (opration_select.toString().equals("4")) {//دبلكس
+                } else if (opration_select.equals("4")) {//دبلكس
                     specificationsqares.setVisibility(View.VISIBLE);
                     means_comfort.setVisibility(View.VISIBLE);
 
 
-                } else if (opration_select.toString().equals("6")) {//مكتب
+                } else if (opration_select.equals("6")) {//مكتب
 
                     specificationsqares.setVisibility(View.VISIBLE);
                     means_comfort.setVisibility(View.VISIBLE);
@@ -1694,13 +1693,13 @@ public class AddAqarsActivity extends AppCompatActivity {
                 }
 
 
-                if (opration_select.toString().equals("1")) {//فيلا
+                if (opration_select.equals("1")) {//فيلا
 
 
-                } else if (opration_select.toString().equals("2")) {//ارض
+                } else if (opration_select.equals("2")) {//ارض
 
 
-                } else if (opration_select.toString().equals("3")) {//شقه
+                } else if (opration_select.equals("3")) {//شقه
 
 
                 }
@@ -1785,15 +1784,7 @@ public class AddAqarsActivity extends AppCompatActivity {
                                 public void onItemClick(int position) {
 
 
-                                    if (comfort_list.get(position).get_is_selected()) {
-
-                                        comfort_list.get(position).setIs_selected(false);
-
-                                    } else {
-
-                                        comfort_list.get(position).setIs_selected(true);
-
-                                    }
+                                    comfort_list.get(position).setIs_selected(!comfort_list.get(position).get_is_selected());
 
 
                                     System.out.println("%%%%%%%%%%%%%5" + comfort_list.get(position).get_is_selected());
@@ -1922,7 +1913,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
 
                 } else if (requstcode == 20) {
-                    String filePath = resultUri.getPath().toString();
+                    String filePath = resultUri.getPath();
 
                     Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
 
@@ -2808,37 +2799,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     public LatLng getLocation() {
 
-        try {
-            gpsTracker = new GpsTracker(AddAqarsActivity.this);
-            if (gpsTracker.canGetLocation()) {
-                double latitude = gpsTracker.getLatitude();
-                double longitude = gpsTracker.getLongitude();
-                System.out.println("latitude:" + latitude);
-                System.out.println("longitude:" + longitude);
-
-                LatLng my_location = new LatLng(latitude, longitude);
-//                LatLng my_location = new LatLng(24.768516, 46.691505);
-
-                return my_location;
-
-            } else {
-                gpsTracker.showSettingsAlert();
-
-                //24.768516, 46.691505
-
-                LatLng my_location = new LatLng(24.768516, 46.691505);
-
-
-                return my_location;
-
-            }
-        } catch (Exception e) {
-
-            LatLng my_location = new LatLng(24.768516, 46.691505);
-
-
-            return my_location;
-        }
+        return Settings.getLocation(AddAqarsActivity.this);
 
     }
 

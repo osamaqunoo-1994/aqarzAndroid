@@ -82,6 +82,7 @@ import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.NotficationActvity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Activity.OprationAqarz.RequestOrderActivity;
+import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
 import sa.aqarz.Activity.OprationNew.RequestServiceActivity;
 import sa.aqarz.Activity.OrderListActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
@@ -106,8 +107,8 @@ import sa.aqarz.Modules.select_typeModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.CustomInfoWindowGoogleMap;
 import sa.aqarz.Settings.CustomInfoWindowGoogleMaptyp_2;
-import sa.aqarz.Settings.GpsTracker;
 import sa.aqarz.Settings.Settings;
+import sa.aqarz.Settings.SingleShotLocationProvider;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
@@ -176,7 +177,6 @@ public class MapsFragment extends Fragment {
     String style = "";
 
     ImageView get_location;
-    GpsTracker gpsTracker;
     ImageView filtter;
     ImageView cityMap;
 
@@ -2191,39 +2191,11 @@ public class MapsFragment extends Fragment {
 
     }
 
+
     public LatLng getLocation() {
 
-        try {
-            gpsTracker = new GpsTracker(getContext());
-            if (gpsTracker.canGetLocation()) {
-                double latitude = gpsTracker.getLatitude();
-                double longitude = gpsTracker.getLongitude();
-                System.out.println("latitude:" + latitude);
-                System.out.println("longitude:" + longitude);
+        return Settings.getLocation(getActivity());
 
-                LatLng my_location = new LatLng(latitude, longitude);
-//                LatLng my_location = new LatLng(24.768516, 46.691505);
-
-                return my_location;
-
-            } else {
-                gpsTracker.showSettingsAlert();
-
-                //24.768516, 46.691505
-
-                LatLng my_location = new LatLng(24.768516, 46.691505);
-
-
-                return my_location;
-
-            }
-        } catch (Exception e) {
-
-            LatLng my_location = new LatLng(24.768516, 46.691505);
-
-
-            return my_location;
-        }
 
     }
 

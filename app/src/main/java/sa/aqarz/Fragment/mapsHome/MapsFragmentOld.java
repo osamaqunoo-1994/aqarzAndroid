@@ -45,6 +45,7 @@ import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.NotficationActvity;
+import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
 import sa.aqarz.Activity.OrderListActivity;
 import sa.aqarz.Adapter.RecyclerView_All_type_in_fragment1;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat_new;
@@ -54,7 +55,6 @@ import sa.aqarz.Modules.RegionModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.CustomInfoWindowGoogleMapEstatMaps;
-import sa.aqarz.Settings.GpsTracker;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 
@@ -66,7 +66,6 @@ public class MapsFragmentOld extends Fragment {
     static MapsViewModel mapsViewModel;
     static List<HomeModules_aqares> homeModules_aqares = new ArrayList<>();
 
-    GpsTracker gpsTracker;
 
     static GoogleMap googleMap;
     static String type_selected = "Rela";
@@ -932,38 +931,7 @@ public class MapsFragmentOld extends Fragment {
     }
 
     public LatLng getLocation() {
-
-        try {
-            gpsTracker = new GpsTracker(getContext());
-            if (gpsTracker.canGetLocation()) {
-                double latitude = gpsTracker.getLatitude();
-                double longitude = gpsTracker.getLongitude();
-                System.out.println("latitude:" + latitude);
-                System.out.println("longitude:" + longitude);
-
-                LatLng my_location = new LatLng(latitude, longitude);
-//                LatLng my_location = new LatLng(24.768516, 46.691505);
-
-                return my_location;
-
-            } else {
-                gpsTracker.showSettingsAlert();
-
-                //24.768516, 46.691505
-
-                LatLng my_location = new LatLng(24.768516, 46.691505);
-
-
-                return my_location;
-
-            }
-        } catch (Exception e) {
-
-            LatLng my_location = new LatLng(24.768516, 46.691505);
-
-
-            return my_location;
-        }
+        return Settings.getLocation(getActivity());
 
     }
 

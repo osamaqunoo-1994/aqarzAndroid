@@ -968,4 +968,14 @@
 
     <string name="From_t">من</string>
     <string name="advertisementsx">عقار, قرب اكتر لجميع العقارات</string>
+
+
+
+
+
+
+    <string name="check_permission">تحقق من الإذن</string>
+    <string name="Allow_access_device_">السماح بالوصول إلى موقع هذا الجهاز لمعرفه العروض القريبة منك</string>
+
+
 </resources>

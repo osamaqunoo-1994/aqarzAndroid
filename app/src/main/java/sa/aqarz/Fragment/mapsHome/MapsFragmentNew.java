@@ -20,6 +20,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -65,6 +66,7 @@ import sa.aqarz.Activity.ContactUsActivity;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.NotficationActvity;
+import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
 import sa.aqarz.Activity.OrderListActivity;
 import sa.aqarz.Adapter.RecyclerView_All_type_in_fragment1;
 import sa.aqarz.Adapter.RecyclerView_GenralNotfication;
@@ -79,7 +81,6 @@ import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.CustomInfoWindowGoogleMapEstatMaps;
 import sa.aqarz.Settings.CustomInfoWindowGoogleMaptyp_2;
-import sa.aqarz.Settings.GpsTracker;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -92,8 +93,8 @@ public class MapsFragmentNew extends Fragment {
 
     static MapsViewModel mapsViewModel;
     static List<HomeModules_aqares> homeModules_aqares = new ArrayList<>();
+    AlertDialog alertDialog;
 
-    GpsTracker gpsTracker;
     static IResult mResultCallback;
 
     static GoogleMap googleMap;
@@ -129,7 +130,7 @@ public class MapsFragmentNew extends Fragment {
 
     static LinearLayout list_estate;
     static LinearLayout all_list_backround;
-
+    AlertDialog ad;
     static Activity activity;
     static RelativeLayout layout_list;
     RecyclerView list_aqaers;
@@ -245,6 +246,7 @@ public class MapsFragmentNew extends Fragment {
     }
 
     int page = 1;
+    RecyclerView_All_type_in_fragment1 recyclerView_all_type_in_fragment;
 
     public void init(View v) {
 
@@ -435,10 +437,11 @@ public class MapsFragmentNew extends Fragment {
         TypeAqarez.setLayoutManager(layoutManager1);
 
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
-        RecyclerView_All_type_in_fragment1 recyclerView_all_type_in_fragment = new RecyclerView_All_type_in_fragment1(getContext(), type_list);
+        recyclerView_all_type_in_fragment = new RecyclerView_All_type_in_fragment1(getContext(), type_list);
         recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_in_fragment1.ItemClickListener() {
             @Override
             public void onItemClick(List<TypeModules> typeModules) {
+
 
             }
         });
@@ -485,7 +488,42 @@ public class MapsFragmentNew extends Fragment {
             public void onClick(View v) {
                 try {
                     if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+
+//                        LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                        final View popupView = layoutInflater.inflate(R.layout.alert_permission, null);
+//
+//
+//                        TextView cancle = popupView.findViewById(R.id.cancle);
+//                        TextView ok = popupView.findViewById(R.id.ok);
+//                        cancle.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                alertDialog.dismiss();
+//                            }
+//                        });
+//                        ok.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//
+//
+//                                alertDialog.dismiss();
+//
+//                            }
+//                        });
+//
+//                        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//
+////            alertDialog_country =
+//                        builder.setView(popupView);
+//
+//
+//                        alertDialog = builder.show();
+//
+//                        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
                         requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+
                     } else {
 
 
@@ -1301,37 +1339,7 @@ public class MapsFragmentNew extends Fragment {
 
     public LatLng getLocation() {
 
-        try {
-            gpsTracker = new GpsTracker(getContext());
-            if (gpsTracker.canGetLocation()) {
-                double latitude = gpsTracker.getLatitude();
-                double longitude = gpsTracker.getLongitude();
-                System.out.println("latitude:" + latitude);
-                System.out.println("longitude:" + longitude);
-
-                LatLng my_location = new LatLng(latitude, longitude);
-//                LatLng my_location = new LatLng(24.768516, 46.691505);
-
-                return my_location;
-
-            } else {
-                gpsTracker.showSettingsAlert();
-
-                //24.768516, 46.691505
-
-                LatLng my_location = new LatLng(24.768516, 46.691505);
-
-
-                return my_location;
-
-            }
-        } catch (Exception e) {
-
-            LatLng my_location = new LatLng(24.768516, 46.691505);
-
-
-            return my_location;
-        }
+        return Settings.getLocation(getActivity());
 
     }
 

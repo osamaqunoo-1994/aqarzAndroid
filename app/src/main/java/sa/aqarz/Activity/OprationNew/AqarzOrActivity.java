@@ -37,17 +37,14 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.rtchagas.pingplacepicker.PingPlacePicker;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Activity.SelectLocationActivity;
 import sa.aqarz.Adapter.RecyclerView_All_number_room;
 import sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
@@ -57,8 +54,8 @@ import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectNeighborhoods;
 import sa.aqarz.Modules.OprationModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
-import sa.aqarz.Settings.GpsTracker;
 import sa.aqarz.Settings.Settings;
+import sa.aqarz.Settings.SingleShotLocationProvider;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
@@ -72,7 +69,6 @@ public class AqarzOrActivity extends AppCompatActivity {
     RecyclerView number_roomRecyclerView;
     CardView map_select;
     PlacesClient placesClient;
-    GpsTracker gpsTracker;
     BottomSheetDialogFragment_SelectNeighborhoods bottomSheetDialogFragment_selectNeighborhoods;
 
     RecyclerView opration_RecyclerView;
@@ -114,7 +110,7 @@ public class AqarzOrActivity extends AppCompatActivity {
         setContentView(R.layout.activity_aqarz_or);
 //        Id_eastate = getArguments().getString("Id_eastate");
 
-        mMapView = (MapView) findViewById(R.id.mapViewxx);
+        mMapView = findViewById(R.id.mapViewxx);
 
         mMapView.onCreate(savedInstanceState);
 
@@ -298,28 +294,28 @@ public class AqarzOrActivity extends AppCompatActivity {
             public void onItemClick(int position) {
                 opration_select = type_list.get(position).getId().toString() + "";
 
-                if (opration_select.toString().equals("1")) {//فيلا
+                if (opration_select.equals("1")) {//فيلا
 
                     seaction_roomes.setVisibility(View.VISIBLE);
 
 
-                } else if (opration_select.toString().equals("2")) {//ارض
+                } else if (opration_select.equals("2")) {//ارض
 
 
                     seaction_roomes.setVisibility(View.GONE);
 
 
-                } else if (opration_select.toString().equals("3")) {//شقه
+                } else if (opration_select.equals("3")) {//شقه
                     seaction_roomes.setVisibility(View.VISIBLE);
 
-                } else if (opration_select.toString().equals("7")) {//مزرعه
+                } else if (opration_select.equals("7")) {//مزرعه
                     seaction_roomes.setVisibility(View.GONE);
 
 
-                } else if (opration_select.toString().equals("4")) {//دبلكس
+                } else if (opration_select.equals("4")) {//دبلكس
                     seaction_roomes.setVisibility(View.VISIBLE);
 
-                } else if (opration_select.toString().equals("6")) {//مكتب
+                } else if (opration_select.equals("6")) {//مكتب
 
 
                     seaction_roomes.setVisibility(View.VISIBLE);
@@ -637,37 +633,10 @@ public class AqarzOrActivity extends AppCompatActivity {
 
     public LatLng getLocation() {
 
-        try {
-            gpsTracker = new GpsTracker(AqarzOrActivity.this);
-            if (gpsTracker.canGetLocation()) {
-                double latitude = gpsTracker.getLatitude();
-                double longitude = gpsTracker.getLongitude();
-                System.out.println("latitude:" + latitude);
-                System.out.println("longitude:" + longitude);
-
-                LatLng my_location = new LatLng(latitude, longitude);
-//                LatLng my_location = new LatLng(24.768516, 46.691505);
-
-                return my_location;
-
-            } else {
-                gpsTracker.showSettingsAlert();
-
-                //24.768516, 46.691505
-
-                LatLng my_location = new LatLng(24.768516, 46.691505);
 
 
-                return my_location;
+        return Settings.getLocation(AqarzOrActivity.this);
 
-            }
-        } catch (Exception e) {
-
-            LatLng my_location = new LatLng(24.768516, 46.691505);
-
-
-            return my_location;
-        }
 
     }
 

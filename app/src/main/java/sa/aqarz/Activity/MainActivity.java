@@ -223,12 +223,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
         activity = this;
-//        init();
-
-//        Sentry.captureMessage("testing SDK setup");
-//        Intent intent = getIntent();
-//        String action = intent.getAction();
-//        Uri data = intent.getData();
 
         first_time_open_app = true;
         first_time_ = true;
@@ -413,65 +407,10 @@ public class MainActivity extends AppCompatActivity {
                             .show();
                 } else {
 
-//                    if (Settings.CheckIsCompleate()) {
-//
-//                        toggle();
-//
-//
-////                        Intent intent = new Intent(MainActivity.this, RequestServiceActivity.class);
-//////                                intent.putExtra("from", "splash");
-////                        startActivity(intent);
-//                    } else {
-//                        Settings.Dialog_not_compleate(MainActivity.this);
-//                    }
-
                     Intent intent = new Intent(MainActivity.this, AddAqarsActivity.class);
                     intent.putExtra("id", "");
                     startActivity(intent);
-//                    AlertDialog alertDialog;
 //
-//
-//                    LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                    final View popupView = layoutInflater.inflate(R.layout.bottom_sheets_add_aqarez, null);
-//
-//
-//                    LinearLayout req = popupView.findViewById(R.id.req);
-//                    LinearLayout add_aqare = popupView.findViewById(R.id.add_aqare);
-//
-//
-//                    req.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            Intent intent = new Intent(MainActivity.this, AqarzOrActivity.class);
-//                            intent.putExtra("id", "");
-//                            startActivity(intent);
-//
-//                        }
-//                    });
-//
-//                    add_aqare.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//
-//
-//                            Intent intent = new Intent(MainActivity.this, AddAqarsActivity.class);
-////                                intent.putExtra("from", "splash");
-//                            startActivity(intent);
-//
-//                        }
-//                    });
-//
-//
-//                    final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-//
-////            alertDialog_country =
-//                    builder.setView(popupView);
-//
-//
-//                    alertDialog = builder.show();
-//
-//                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
                 }
 
 
@@ -484,34 +423,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-//                navigationView_.
-
-//                drawerLayout.closeDrawer();
-//                text_s.setTextColor(getResources().getColor(R.color.colorPrimary));
-//                text_1.setTextColor(getResources().getColor(R.color.color_un_active));
-//                text_2.setTextColor(getResources().getColor(R.color.color_un_active));
-//                text_3.setTextColor(getResources().getColor(R.color.color_un_active));
-//                text_4.setTextColor(getResources().getColor(R.color.color_un_active));
-//
-//
-//                image_s.setSelected(true);
-//                image_1.setSelected(false);
-//                image_2.setSelected(false);
-//                image_3.setSelected(false);
-//                image_4.setSelected(false);
-//                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-
-
-//                fragmentManager = getSupportFragmentManager();
-//
-//                fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.container, new NotficationFragment());
-//                //  fragmentTransaction.commit();
-//                fragmentTransaction.commitAllowingStateLoss();
-
             }
         });
 
@@ -520,38 +431,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawer.openDrawer(GravityCompat.START);
-
-
-//                text_1.setTextColor(getResources().getColor(R.color.colorPrimary));
-//                text_2.setTextColor(getResources().getColor(R.color.color_un_active));
-//                text_3.setTextColor(getResources().getColor(R.color.color_un_active));
-//                text_4.setTextColor(getResources().getColor(R.color.color_un_active));
-//                text_s.setTextColor(getResources().getColor(R.color.color_un_active));
-
-
-//                image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fill));
-//                image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fill));
-//                image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_as));
-//                image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222pro));
-
-//                image_1.setSelected(true);
-//                image_2.setSelected(false);
-//                image_3.setSelected(false);
-//                image_4.setSelected(false);
-//                image_s.setSelected(false);
-
-//                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//
-//
-//                fragmentManager = getSupportFragmentManager();
-//
-//                fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.container, new MapsFragmentNew());
-//                //  fragmentTransaction.commit();
-//                fragmentTransaction.commitAllowingStateLoss();
 
             }
         });
@@ -666,36 +545,6 @@ public class MainActivity extends AppCompatActivity {
 
                     alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-//                    text_1.setTextColor(getResources().getColor(R.color.color_un_active));
-//                    text_2.setTextColor(getResources().getColor(R.color.colorPrimary));
-//                    text_3.setTextColor(getResources().getColor(R.color.color_un_active));
-//                    text_4.setTextColor(getResources().getColor(R.color.color_un_active));
-//                    text_s.setTextColor(getResources().getColor(R.color.color_un_active));
-//
-////                    image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fills));
-////                    image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fills));
-////                    image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_as));
-////                    image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222pro));
-//
-////
-////                    image_1.setSelected(false);
-////                    image_2.setSelected(true);
-////                    image_3.setSelected(false);
-////                    image_4.setSelected(false);
-//////
-////                    image_s.setSelected(false);
-//
-//                    image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                    image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                    image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                    image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//
-//                    fragmentManager = getSupportFragmentManager();
-//
-//                    fragmentTransaction = fragmentManager.beginTransaction();
-//                    fragmentTransaction.replace(R.id.container, new OrdersFragment());
-//                    //  fragmentTransaction.commit();
-//                    fragmentTransaction.commitAllowingStateLoss();
                 } else {
                     new AlertDialog.Builder(MainActivity.this)
                             .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
@@ -726,38 +575,7 @@ public class MainActivity extends AppCompatActivity {
 //                                intent.putExtra("from", "splash");
                     startActivity(intent);
 
-                    //
-//                    text_1.setTextColor(getResources().getColor(R.color.color_un_active));
-//                    text_2.setTextColor(getResources().getColor(R.color.color_un_active));
-//                    text_3.setTextColor(getResources().getColor(R.color.colorPrimary));
-//                    text_4.setTextColor(getResources().getColor(R.color.color_un_active));
-//                    text_s.setTextColor(getResources().getColor(R.color.color_un_active));
-//
-////                    image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fills));
-////                    image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fill));
-////                    image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_ass));
-////                    image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222pro));
-//
-//
-////                    image_1.setSelected(false);
-////                    image_2.setSelected(false);
-////                    image_3.setSelected(true);
-////                    image_4.setSelected(false);
-//////
-////                    image_s.setSelected(false);
-//
-//                    image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                    image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                    image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                    image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//
-//
-//                    fragmentManager = getSupportFragmentManager();
-//
-//                    fragmentTransaction = fragmentManager.beginTransaction();
-//                    fragmentTransaction.replace(R.id.container, new ServiceFragment());
-//                    //  fragmentTransaction.commit();
-//                    fragmentTransaction.commitAllowingStateLoss();
+
                 } else {
                     new AlertDialog.Builder(MainActivity.this)
                             .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
@@ -816,67 +634,16 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 //
-//                text_1.setTextColor(getResources().getColor(R.color.color_un_active));
-//                text_2.setTextColor(getResources().getColor(R.color.color_un_active));
-//                text_3.setTextColor(getResources().getColor(R.color.color_un_active));
-//                text_4.setTextColor(getResources().getColor(R.color.colorPrimary));
-//                text_s.setTextColor(getResources().getColor(R.color.color_un_active));
-//
-////
-////                image_1.setImageDrawable(getResources().getDrawable(R.drawable.ic_saudi_arabia_menu_fills));
-////                image_2.setImageDrawable(getResources().getDrawable(R.drawable.ic_search_interface_symbol_fill));
-////                image_3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chat__1_as));
-////                image_4.setImageDrawable(getResources().getDrawable(R.drawable.ic__2222prof));
-//
-////                image_1.setSelected(false);
-////                image_s.setSelected(false);
-////                image_2.setSelected(false);
-////                image_3.setSelected(false);
-////                image_4.setSelected(true);
-//                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                fragmentManager = getSupportFragmentManager();
-//
-//                fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.container, new MoreFragment());
-//                //  fragmentTransaction.commit();
-//                fragmentTransaction.commitAllowingStateLoss();
 
             }
         });
 
 
-//        LinearLayout yourView = findViewById(R.id.alla);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            if (yourView != null) {
-//                yourView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);;
-//            }
-//        }
-
-//        final Handler handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//
-//                if (!Hawk.contains("showCaseView")) {
-//
-//                    Hawk.put("showCaseView", "showCaseView");
-//
-//
-//                }
-//
-//
-//            }
-//        }, 100); // After 1 seconds
 
 
         if (Settings.checkLogin()) {
 
             init_volley();
-//            WebService.loading(DetailsActivity.this, true);
 
             JSONObject jsonObject = new JSONObject();
             try {
@@ -1010,11 +777,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                if (mItemClickListener != null) {
-//
-//                    mItemClickListener.onItemClick(te);
-//                }
-
                 te = "";
                 if (!type.equals("")) {
                     te = te + "&estate_pay_type=" + type;
@@ -1070,141 +832,8 @@ public class MainActivity extends AppCompatActivity {
         opration.setAdapter(recyclerView_all_opration_bottom_sheet);
 
 
-//        init_volley();
-//
-//        VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-//
-//        mVolleyService.getDataVolley("city", WebService.cities);
-//
-//        area_sseekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
-//            @Override
-//            public void valueChanged(Number minValue, Number maxValue) {
-//                min_area_ = minValue + "";
-//                max_area_ = maxValue + "";
-//
-//
-//                String minValue___ = minValue + "";
-//                int price_int = Integer.valueOf(minValue___);
-//
-//                int prices = (int) price_int;
-//
-//
-//                if (price_int < 1000) {
-//
-//                    minValue___ = prices + "";
-//                } else if (price_int > 1000 && price_int < 999999) {
-//                    prices = (int) price_int / 1000;
-//
-//                    minValue___ = prices + getResources().getString(R.string.K);
-//
-//                } else if (price_int > 999999) {
-//                    prices = (int) price_int / 1000000;
-//
-//                    minValue___ = prices + getResources().getString(R.string.Million);
-//
-//                }
-//
-//
-//                String maxValue___ = maxValue + "";
-//                int price_int_ = Integer.valueOf(maxValue___);
-//
-//                int prices_s = (int) price_int_;
-//
-//
-//                if (price_int_ < 1000) {
-//
-//                    maxValue___ = prices_s + "";
-//                } else if (price_int_ > 1000 && price_int_ < 999999) {
-//                    prices_s = (int) price_int_ / 1000;
-//
-//                    maxValue___ = prices_s + getResources().getString(R.string.K);
-//
-//                } else if (price_int_ > 999999) {
-//                    prices_s = (int) price_int_ / 1000000;
-//
-//                    maxValue___ = prices_s + getResources().getString(R.string.Million);
-//
-//                }
-//
-//
-//                max_area.setText(maxValue___ + "");
-//                min_area.setText(minValue___ + "");
-//
-//
-//            }
-//        });
-
-
         filtter_acion();
     }
-
-//    public void init() {
-//        bottomNav = findViewById(R.id.bottom_navigation);
-//
-//        if (bottomNav != null) {
-//
-//            // Select first menu item by default and show Fragment accordingly.
-//            menu = bottomNav.getMenu();
-//            //    bottomNavigationView.getMenu().getItem(0).setChecked(true);
-//
-////            selectFragment(menu.getItem(0));
-//// here to know any fragment
-//            selectFragment(menu.getItem(0));
-//
-//
-//            // Set action to perform when any menu-item is selected.
-//            bottomNav.setOnNavigationItemSelectedListener(
-//                    new BottomNavigationView.OnNavigationItemSelectedListener() {
-//                        @Override
-//                        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//
-//                            item.setChecked(true);
-//                            selectFragment(item);
-////                            selectFragment(item);
-//                            return false;
-//                        }
-//                    });
-//
-//
-//        }
-//    }
-
-    //    protected void selectFragment(MenuItem item) {
-//        item.setChecked(true);
-//        switch (item.getItemId()) {
-//            case R.id.home:
-//                goToFragment(0);
-//          /*      if (mUserSession.hasActiveSession())
-//                    if (mUserSession.getCurrentUser().getUser().getMobileVerifiedAt()== null){
-//                        Log.d("Mobile",mUserSession.getCurrentUser().getUser().getMobileVerifiedAt()+"empty");
-//                        showDialog();}*/
-//                break;
-////
-////            case R.id.subscriptions:
-////                // if(mUserSession.hasActiveSession())
-////                goToFragment(1);
-//////                else
-//////                    showAlert(MainActivity.this, getString(R.string.should_login));
-////                break;
-//
-//            case R.id.orders:
-//                goToFragment(1);
-//                break;
-//            case R.id.messages:
-//                //       if(mUserSession.hasActiveSession())
-//                goToFragment(2);
-//            /*    else
-//                    showAlert(MainActivity.this, getString(R.string.should_login));*/
-//                break;
-//            case R.id.more:
-//                //       if(mUserSession.hasActiveSession())
-//                goToFragment(3);
-//            /*    else
-//                    showAlert(MainActivity.this, getString(R.string.should_login));*/
-//                break;
-//
-//        }
-//    }
 
     public void filtter_acion() {
 
@@ -1218,15 +847,6 @@ public class MainActivity extends AppCompatActivity {
 
             cityModules_list = Application.AllCity;
 
-//            cityModules_list_selected.clear();
-//            for (int i = 0; i < cityModules_list.size(); i++) {
-//
-//                if (cityModules_list.get(i).isSelected()) {
-//                    cityModules_list_selected.add(cityModules_list.get(i));
-//                }
-//
-//
-//            }
         }
         search_text.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -1236,23 +856,6 @@ public class MainActivity extends AppCompatActivity {
 
                     filtter_city.setVisibility(View.VISIBLE);
                     allfilter.setVisibility(View.GONE);
-//                    if (searh) {
-//
-////                        searh = true;
-//                    }
-//                    searh = true;
-
-//
-//                    for (int i = 0; i < cityModules_list.size(); i++) {
-//
-//
-//                        if (cityModules_list.get(i).getName().contains(search_text.getText().toString())) {
-//                            cityModules_list_filtter.add(cityModules_list.get(i));
-//                        }
-//
-//
-//                    }
-
                     init_volley();
                     WebService.loading(MainActivity.this, true);
 
@@ -1450,14 +1053,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void toggle() {
-//        Transition transition = new Slide(Gravity.BOTTOM);
-//
-////        Transition transition = new Fade();
-//        transition.setDuration(1000);
-//        transition.addTarget(R.id.image);
-//
-//        TransitionManager.beginDelayedTransition(, transition);
-
         if (service_layout.getVisibility() == View.VISIBLE) {
             service_layout.setVisibility(View.GONE);
             gray_layout.setVisibility(View.GONE);
@@ -1662,19 +1257,6 @@ public class MainActivity extends AppCompatActivity {
             image_2.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_order_menu_fill));
             image_3.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_service_menu));
             image_4.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_user_menu));
-
-//
-//            image_1.setSelected(false);
-//            image_2.setSelected(true);
-//            image_3.setSelected(false);
-//            image_4.setSelected(false);
-////
-//            image_s.setSelected(false);
-
-//                image_1.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_2.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_primery_), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_3.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-//                image_4.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 
             fragmentManager = ft;
 
