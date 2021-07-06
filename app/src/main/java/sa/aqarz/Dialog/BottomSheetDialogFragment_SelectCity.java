@@ -5,12 +5,18 @@ import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,10 +55,10 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
 
     RecyclerView list_city;
 
-
+    EditText search;
     List<CityModules> cityModules_list = new ArrayList<>();
-
-
+    ImageView search_btn;
+    int page = 1;
     ProgressBar progress;
 
     private ItemClickListener mItemClickListener;
@@ -62,14 +68,29 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
         View v = inflater.inflate(R.layout.bottom_sheets_select_city, container, false);
         list_city = v.findViewById(R.id.list_city);
         progress = v.findViewById(R.id.progress);
+        search = v.findViewById(R.id.search);
+        search_btn = v.findViewById(R.id.search_btn);
 
 
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         list_city.setLayoutManager(layoutManager1);
 
+        search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                //-----
+                return actionId == EditorInfo.IME_ACTION_SEARCH;
+            }
+        });
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        if (Application.AllCity.size() != 0) {
+            }
+        });
+//        if (Application.AllCity.size() != 0) {
+        if (false) {
             progress.setVisibility(View.GONE);
             RecyclerView_city_bootom_sheets recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets(getContext(), Application.AllCity);
             recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_bootom_sheets.ItemClickListener() {
@@ -92,7 +113,24 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
 
             mVolleyService.getDataVolley_with_time("city", WebService.cities);
         }
+        list_city.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (!recyclerView.canScrollVertically(1)) { //1 for down
 
+                    page = page + 1;
+
+
+//                    WebService.loading(getActivity(), true);
+//                    init_volley();
+//                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+//                    mVolleyService.getDataVolley_with_time("city+page", WebService.cities + "?page=" + page);
+
+
+                }
+            }
+        });
 
         return v;
     }
@@ -111,19 +149,18 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
         mResultCallback = new IResult() {
             @Override
             public void notifySuccess(String requestType, JSONObject response) {
-                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley requester #######" + requestType);
                 Log.d("TAG", "Volley JSON post" + response);
                 WebService.loading(getActivity(), false);
 //{"status":true,"code":200,"message":"User Profile","data"
                 try {
                     boolean status = response.getBoolean("status");
                     if (status) {
+
+
                         String data = response.getString("data");
                         Hawk.put("AllCity", data);
-
-
 //                        JSONObject jsonObjectdata = new JSONObject(data);
-//
 //                        String datax = jsonObjectdata.getString("data");
 
                         JSONArray jsonArray = new JSONArray(data);

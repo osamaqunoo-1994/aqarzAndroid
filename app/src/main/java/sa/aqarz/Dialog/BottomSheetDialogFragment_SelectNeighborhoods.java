@@ -4,11 +4,16 @@ import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,9 +50,10 @@ public class BottomSheetDialogFragment_SelectNeighborhoods extends BottomSheetDi
 
     List<CityModules> cityModules_list = new ArrayList<>();
 
+    ImageView search_btn;
 
     ProgressBar progress;
-
+    EditText search;
     private ItemClickListener mItemClickListener;
 
     @Override
@@ -55,8 +61,23 @@ public class BottomSheetDialogFragment_SelectNeighborhoods extends BottomSheetDi
         View v = inflater.inflate(R.layout.bottom_sheets_select_city, container, false);
         list_city = v.findViewById(R.id.list_city);
         progress = v.findViewById(R.id.progress);
+        search = v.findViewById(R.id.search);
+        search_btn = v.findViewById(R.id.search_btn);
 
 
+        search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                //-----
+                return actionId == EditorInfo.IME_ACTION_SEARCH;
+            }
+        });
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         list_city.setLayoutManager(layoutManager1);

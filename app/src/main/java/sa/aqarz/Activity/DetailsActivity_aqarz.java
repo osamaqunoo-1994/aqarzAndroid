@@ -88,7 +88,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     //
 
     RecyclerView rec_list_all;
-    private final ArrayList<String> items_ViewPager = new ArrayList<String>();
+    public static final ArrayList<String> items_ViewPager = new ArrayList<String>();
 //
 //    RecyclerView type_RecyclerView;
 //    List<TypeModules> typeModules_list = new ArrayList<>();

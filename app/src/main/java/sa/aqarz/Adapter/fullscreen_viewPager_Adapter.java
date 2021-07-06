@@ -10,16 +10,14 @@ import android.widget.ImageView;
 
 import androidx.viewpager.widget.PagerAdapter;
 
-
 import com.squareup.picasso.Picasso;
-import com.stfalcon.frescoimageviewer.ImageViewer;
 
 import java.util.ArrayList;
 
 import sa.aqarz.Activity.FullScreenImageActivity;
 import sa.aqarz.R;
 
-public class home_viewPager_Adapter extends PagerAdapter {
+public class fullscreen_viewPager_Adapter extends PagerAdapter {
 
 
     private final ArrayList<String> IMAGES;
@@ -27,7 +25,7 @@ public class home_viewPager_Adapter extends PagerAdapter {
     private final Context context;
 
 
-    public home_viewPager_Adapter(Context context, ArrayList<String> IMAGES) {
+    public fullscreen_viewPager_Adapter(Context context, ArrayList<String> IMAGES) {
         this.context = context;
         this.IMAGES = IMAGES;
         inflater = LayoutInflater.from(context);
@@ -104,12 +102,12 @@ public class home_viewPager_Adapter extends PagerAdapter {
 //                        .show();
 
 
-                Intent fullImageIntent = new Intent(context, FullScreenImageActivity.class);
-// uriString is an ArrayList<String> of URI of all images
-                fullImageIntent.putExtra("position", position+"");
-// pos is the position of image will be showned when open
-//                fullImageIntent.putExtra(FullScreenImageViewActivity.IMAGE_FULL_SCREEN_CURRENT_POS, position);
-                context.startActivity(fullImageIntent);
+//                Intent fullImageIntent = new Intent(context, FullScreenImageActivity.class);
+//// uriString is an ArrayList<String> of URI of all images
+//                fullImageIntent.putExtra("position", position+"");
+//// pos is the position of image will be showned when open
+////                fullImageIntent.putExtra(FullScreenImageViewActivity.IMAGE_FULL_SCREEN_CURRENT_POS, position);
+//                context.startActivity(fullImageIntent);
 //                Intent intent = new Intent(context, DetailsActivity.class);
 ////                                intent.putExtra("from", "splash");
 //                context.startActivity(intent);

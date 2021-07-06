@@ -391,6 +391,8 @@ public class AllOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setFiltter();
+                drawer.closeDrawer(GravityCompat.START);
+
             }
         });
 
@@ -715,6 +717,7 @@ public class AllOrderActivity extends AppCompatActivity {
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
         mVolleyService.getDataVolley("fund_Request", url);
+
 
     }
 
