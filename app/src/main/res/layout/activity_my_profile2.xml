@@ -19,59 +19,44 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="13dp"
+                    android:src="@drawable/ic_back"
+
+                    app:tint="@color/white" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/Profile_menu"
+                    android:textColor="@color/white"
+                    android:textSize="17dp" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="13dp"
+
+                    app:tint="@color/white" />
+
+            </LinearLayout>
+
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/circle_w"
-                        android:padding="13dp"
-
-                        android:src="@drawable/ic_back" />
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <LinearLayout
-                        android:id="@+id/editProfile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:background="@drawable/ic_rectangle_1563"
-                        android:gravity="center"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp">
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/ic_edit"
-                            app:tint="@color/colorPrimary" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="3dp"
-                            android:text="@string/EditProfile"
-                            android:textColor="@color/colorPrimary" />
-
-
-                    </LinearLayout>
-
-                </LinearLayout>
 
                 <RelativeLayout
 
@@ -122,8 +107,36 @@
                 </RelativeLayout>
 
 
-            </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/editProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/ic_rectangle_1563"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
 
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/ic_edit"
+                        app:tint="@color/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="3dp"
+                        android:text="@string/EditProfile"
+                        android:textColor="@color/colorPrimary" />
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -530,10 +543,10 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/member_list"
                 android:layout_width="match_parent"
-                android:visibility="gone"
-
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
+
+                android:layout_marginTop="10dp"
+                android:visibility="gone" />
 
 
             <LinearLayout
@@ -572,10 +585,10 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/service_list"
                 android:layout_width="match_parent"
-                android:visibility="gone"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
 
-                android:layout_marginTop="10dp" />
+                android:visibility="gone" />
 
             <LinearLayout
 
