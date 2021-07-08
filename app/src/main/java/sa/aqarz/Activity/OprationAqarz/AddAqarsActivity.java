@@ -18,6 +18,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -25,9 +26,13 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaMetadataRetriever;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -81,6 +86,10 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.SQLOutput;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -232,13 +241,15 @@ public class AddAqarsActivity extends AppCompatActivity {
     TextView real_yes;
     TextView real_no;
 
+    ImageView select_video;
 
-
+    File file_video;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_aqars);
+        select_video = findViewById(R.id.select_video);
         mMapView = findViewById(R.id.mapViewxx);
 
         mMapView.onCreate(savedInstanceState);
@@ -880,7 +891,40 @@ public class AddAqarsActivity extends AppCompatActivity {
 
 
 //-------------------------------------------------------------------------------------------------
+        select_video.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (ContextCompat.checkSelfPermission(AddAqarsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
+                        // No explanation needed, we can request the permission.
+
+                        ActivityCompat.requestPermissions(AddAqarsActivity.this,
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                1451);
+
+                    } else {
+                        Intent intent = new Intent();
+                        intent.setType("video/*");
+                        intent.setAction(Intent.ACTION_PICK);
+                        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
+
+                        startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
+
+                    }
+                } else {
+//                    Pico.openMultipleFiles(AddnewsActivity.this, Pico.TYPE_VIDEO);
+                    Intent intent = new Intent();
+                    intent.setType("video/*");
+                    intent.setAction(Intent.ACTION_PICK);
+                    intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
+
+                    startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
+
+                }
+
+            }
+        });
 //-------------------------------------------------------------------------------------------------
 
 
@@ -1879,6 +1923,55 @@ public class AddAqarsActivity extends AppCompatActivity {
 
 
         }
+
+        if (requestCode == 1451) {
+            try {
+                Uri selectedImageUri = data.getData();
+
+                // OI FILE Manager
+//              Uri  filemanagerstring = selectedImageUri.getPath();
+
+                // MEDIA GALLERY
+                String selectedImagePath = getPath(selectedImageUri);
+                System.out.println("selectedImagePath" + selectedImagePath);
+
+
+                if (selectedImagePath != null) {
+//
+
+
+                    file_video = getFile(getApplicationContext(), selectedImageUri);
+
+//                    file_ = new File(selectedImagePath);
+//
+////                    File file = new File(selectedImageUri.getPath());
+////                    Uri uri = Uri.fromFile(file);
+//
+//
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+
+//                        thumbnail_bitmap =
+                        select_video.setImageBitmap(createThumbnail(AddAqarsActivity.this, file_video.getPath() + ""));
+
+                    } else {
+
+//                        thumbnail_bitmap = ThumbnailUtils.createVideoThumbnail(selectedImagePath, MediaStore.Video.Thumbnails.FULL_SCREEN_KIND);
+
+                        select_video.setImageBitmap(ThumbnailUtils.createVideoThumbnail(file_video.getPath(), MediaStore.Video.Thumbnails.FULL_SCREEN_KIND));
+
+                    }
+//
+
+
+//                    Intent intent = new Intent(AddnewsActivity.this,
+//                            VideoplayAvtivity.class);
+//                    intent.putExtra("path", selectedImagePath);
+//                    startActivity(intent);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         if (requstcode == 1217) {
 
 
@@ -1996,6 +2089,73 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     }
 
+    public String getPath(Uri uri) {
+        String[] projection = {MediaStore.Video.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+        if (cursor != null) {
+            // HERE YOU WILL GET A NULLPOINTER IF CURSOR IS NULL
+            // THIS CAN BE, IF YOU USED OI FILE MANAGER FOR PICKING THE MEDIA
+            int column_index = cursor
+                    .getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } else
+            return null;
+    }
+
+
+    public static File getFile(Context context, Uri uri) throws IOException {
+        File destinationFilename = new File(context.getFilesDir().getPath() + File.separatorChar + queryName(context, uri));
+        try (InputStream ins = context.getContentResolver().openInputStream(uri)) {
+            createFileFromStream(ins, destinationFilename);
+        } catch (Exception ex) {
+            Log.e("Save File", ex.getMessage());
+            ex.printStackTrace();
+        }
+        return destinationFilename;
+    }
+
+    private static String queryName(Context context, Uri uri) {
+        Cursor returnCursor =
+                context.getContentResolver().query(uri, null, null, null, null);
+        assert returnCursor != null;
+        int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+        returnCursor.moveToFirst();
+        String name = returnCursor.getString(nameIndex);
+        returnCursor.close();
+        return name;
+    }
+
+    public static void createFileFromStream(InputStream ins, File destination) {
+        try (OutputStream os = new FileOutputStream(destination)) {
+            byte[] buffer = new byte[4096];
+            int length;
+            while ((length = ins.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+            os.flush();
+        } catch (Exception ex) {
+            Log.e("Save File", ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    public static Bitmap createThumbnail(Activity activity, String path) {
+        MediaMetadataRetriever mediaMetadataRetriever = null;
+        Bitmap bitmap = null;
+        try {
+            mediaMetadataRetriever = new MediaMetadataRetriever();
+            mediaMetadataRetriever.setDataSource(activity, Uri.parse(path));
+            bitmap = mediaMetadataRetriever.getFrameAtTime(1000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (mediaMetadataRetriever != null) {
+                mediaMetadataRetriever.release();
+            }
+        }
+        return bitmap;
+    }
 
     public void Upload_image(RequestParams requestParams, ArrayList<Image> image_uris) {
 
@@ -2239,7 +2399,7 @@ public class AddAqarsActivity extends AppCompatActivity {
         WebService.loading(AddAqarsActivity.this, true);
 
 
-        final int DEFAULT_TIMEOUT = 20 * 1000;
+        final int DEFAULT_TIMEOUT = 50 * 1000;
 
         client.setTimeout(DEFAULT_TIMEOUT);
         WebService.Header_Async(client, true);
@@ -2604,24 +2764,43 @@ public class AddAqarsActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-        if (ContextCompat.checkSelfPermission(AddAqarsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+        if (requestCode == 1451) {
+
+            if (ContextCompat.checkSelfPermission(AddAqarsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+
+            } else {
+                Intent intent = new Intent();
+                intent.setType("video/*");
+                intent.setAction(Intent.ACTION_PICK);
+                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
+
+                startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
+
+            }
+
+
         } else {
-            requstcode = requestCode;
+            if (ContextCompat.checkSelfPermission(AddAqarsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            } else {
+                requstcode = requestCode;
 
-            ImagePicker.with(AddAqarsActivity.this)
-                    .setFolderMode(true)
-                    .setFolderTitle("Album")
+                ImagePicker.with(AddAqarsActivity.this)
+                        .setFolderMode(true)
+                        .setFolderTitle("Album")
 
-                    .setDirectoryName("Image Picker")
-                    .setMultipleMode(false)
-                    .setShowNumberIndicator(true)
-                    .setMaxSize(5)
-                    .setLimitMessage("You can select one image")
+                        .setDirectoryName("Image Picker")
+                        .setMultipleMode(false)
+                        .setShowNumberIndicator(true)
+                        .setMaxSize(5)
+                        .setLimitMessage("You can select one image")
 
-                    .setRequestCode(requestCode)
-                    .start();
+                        .setRequestCode(requestCode)
+                        .start();
 
 
+            }
         }
 
 
@@ -2667,6 +2846,12 @@ public class AddAqarsActivity extends AppCompatActivity {
             sendObj.put("kitchen_number", number_Kitchens_plus + "");
             sendObj.put("dining_rooms_number", number_Dining_rooms + "");
             sendObj.put("finishing_type", finishing_type);
+
+
+            if (file_video != null) {
+                sendObj.put("video", file_video);
+
+            }
 
 
             String interface_ = "";

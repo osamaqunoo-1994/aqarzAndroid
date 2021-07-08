@@ -291,6 +291,9 @@
         <meta-data
             android:name="io.sentry.dsn"
             android:value="https://c2448ed54fb547118a318abb11d49058@o555534.ingest.sentry.io/5685741" />
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
     </application>
 
 </manifest>

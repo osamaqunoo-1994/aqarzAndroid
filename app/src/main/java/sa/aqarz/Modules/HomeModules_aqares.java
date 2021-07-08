@@ -109,6 +109,9 @@ public class HomeModules_aqares {
     @SerializedName("lan")
     @Expose
     private String lan;
+    @SerializedName("video")
+    @Expose
+    private String video;
     @SerializedName("note")
     @Expose
     private String note;
@@ -201,6 +204,10 @@ public class HomeModules_aqares {
 
     public void setIs_selected(boolean is_selected) {
         this.is_selected = is_selected;
+    }
+
+    public String getVideo() {
+        return video;
     }
 
     public User getUser() {

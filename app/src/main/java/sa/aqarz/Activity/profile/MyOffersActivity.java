@@ -1,5 +1,6 @@
 package sa.aqarz.Activity.profile;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,6 +48,10 @@ public class MyOffersActivity extends AppCompatActivity {
     ImageView back;
     LinearLayout nodata_vis;
     FloatingActionButton add_offer;
+    RecyclerView_my_offer_in_profile recyclerView_my_offer_in_profile;
+
+
+    int page = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +70,11 @@ public class MyOffersActivity extends AppCompatActivity {
         myoffer.setLayoutManager(layoutManager1);
 
 
+        recyclerView_my_offer_in_profile = new RecyclerView_my_offer_in_profile(MyOffersActivity.this, homeModules);
+
+        myoffer.setAdapter(recyclerView_my_offer_in_profile);
+
+
         init_volley();
 
         try {
@@ -76,6 +86,23 @@ public class MyOffersActivity extends AppCompatActivity {
 
                 mVolleyService.getDataVolley("my_estate", WebService.my_estate);
                 add_offer.setVisibility(View.VISIBLE);
+
+                myoffer.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                    @Override
+                    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                        super.onScrolled(recyclerView, dx, dy);
+                        if (!recyclerView.canScrollVertically(1)) { //1 for down
+
+                            page = page + 1;
+                            init_volley();
+                            WebService.loading(MyOffersActivity.this, true);
+
+                            VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
+                            mVolleyService.getDataVolley("my_estate", WebService.my_estate + "?page=" + page);
+
+                        }
+                    }
+                });
 
             } else {
                 VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
@@ -121,15 +148,17 @@ public class MyOffersActivity extends AppCompatActivity {
                         String message = response.getString("message");
                         if (requestType.equals("my_estate")) {
                             String data = response.getString("data");
-//                        JSONObject jsonObjectdata = new JSONObject(data);
+                            JSONObject jsonObjectdata = new JSONObject(data);
 //
-//                        String datax = jsonObjectdata.getString("data");
+                            String datax = jsonObjectdata.getString("data");
 
-                            JSONArray jsonArray = new JSONArray(data);
+                            JSONArray jsonArray = new JSONArray(datax);
 
 
-                            homeModules.clear();
-                            myoffer.setAdapter(null);
+                            if (page == 1) {
+                                homeModules.clear();
+
+                            }
 
                             for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -149,8 +178,9 @@ public class MyOffersActivity extends AppCompatActivity {
 
                             }
 
+                            recyclerView_my_offer_in_profile.Refr();
 
-                            myoffer.setAdapter(new RecyclerView_my_offer_in_profile(MyOffersActivity.this, homeModules));
+//                            myoffer.setAdapter(new RecyclerView_my_offer_in_profile(MyOffersActivity.this, homeModules));
                             if (homeModules.size() == 0) {
                                 nodata_vis.setVisibility(View.VISIBLE);
                             } else {
@@ -188,8 +218,9 @@ public class MyOffersActivity extends AppCompatActivity {
 
                             }
 
+                            recyclerView_my_offer_in_profile.Refr();
 
-                            myoffer.setAdapter(new RecyclerView_other_offer_in_profile(MyOffersActivity.this, homeModules));
+
                             if (homeModules.size() == 0) {
                                 nodata_vis.setVisibility(View.VISIBLE);
                             } else {

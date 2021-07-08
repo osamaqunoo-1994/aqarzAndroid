@@ -48,6 +48,7 @@ import sa.aqarz.Adapter.home_viewPager_Adapter;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Rate;
 import sa.aqarz.Modules.ComfortModules;
 import sa.aqarz.Modules.HomeModules_aqares;
+import sa.aqarz.Modules.imagemodules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
@@ -88,7 +89,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     //
 
     RecyclerView rec_list_all;
-    public static final ArrayList<String> items_ViewPager = new ArrayList<String>();
+    public static final ArrayList<imagemodules> items_ViewPager = new ArrayList<imagemodules>();
 //
 //    RecyclerView type_RecyclerView;
 //    List<TypeModules> typeModules_list = new ArrayList<>();
@@ -569,12 +570,18 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-                            System.out.println("items_ViewPageritems_ViewPager" + homeModules_aqares.getEstate_file().size());
+//                            System.out.println("items_ViewPageritems_ViewPager" + homeModules_aqares.getEstate_file().size());
 
+
+                            items_ViewPager.clear();
+
+                            if (homeModules_aqares.getVideo() != null) {
+                                if (!homeModules_aqares.getVideo().equals("null")) {
+                                    items_ViewPager.add(new imagemodules(homeModules_aqares.getVideo() + "", "video"));
+                                }
+                            }
                             for (int i = 0; i < homeModules_aqares.getEstate_file().size(); i++) {
-
-
-                                items_ViewPager.add(homeModules_aqares.getEstate_file().get(i).getFile());
+                                items_ViewPager.add(new imagemodules(homeModules_aqares.getEstate_file().get(i).getFile() + "", "image"));
                             }
 
                             home_viewPager.setAdapter(new home_viewPager_Adapter(DetailsActivity_aqarz.this, items_ViewPager));
@@ -595,10 +602,10 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
                                             home_viewPager.setCurrentItem(oi);
                                             oi++;
-                                            handler.postDelayed(this, 1000);
+                                            handler.postDelayed(this, 3000);
                                         }
                                     };
-                                    handler.postDelayed(runnable, 1000);
+                                    handler.postDelayed(runnable, 3000);
 
                                 }
 

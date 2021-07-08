@@ -61,8 +61,8 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
 
     public void Refr() {
 
-
-        this.notifyDataSetChanged();
+        notifyDataSetChanged();
+//        this.notifyDataSetChanged();
     }
 
     public void RefreshData() {
@@ -144,7 +144,7 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
     }
 
     public RecyclerView_my_offer_in_profile(Context context, List<HomeModules_aqares> alldata) {
-        this.alldata = alldata;
+        RecyclerView_my_offer_in_profile.alldata = alldata;
         this.context = context;
     }
 

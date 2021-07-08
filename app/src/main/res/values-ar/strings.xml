@@ -977,5 +977,6 @@
     <string name="check_permission">تحقق من الإذن</string>
     <string name="Allow_access_device_">السماح بالوصول إلى موقع هذا الجهاز لمعرفه العروض القريبة منك</string>
 
+    <string name="Selectvideo">اضف فيديو</string>
 
 </resources>

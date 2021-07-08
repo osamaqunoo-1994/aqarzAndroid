@@ -73,6 +73,9 @@ public class ProfileDetailsActivity extends AppCompatActivity {
     LinearLayout clints;
     ImageView back;
 
+
+    LinearLayout v1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +95,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         myoffer_layout = findViewById(R.id.myoffer_layout);
         clints = findViewById(R.id.clints);
         back = findViewById(R.id.back);
+        v1 = findViewById(R.id.v1);
 
         member_list = findViewById(R.id.member_list);
         editProfile = findViewById(R.id.editProfile);
@@ -222,6 +226,18 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                                         }
                                     });
 
+                                    v1.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(ProfileDetailsActivity.this, MyOffersActivity.class);
+//              intent.putExtra("from", "splash");
+                                            intent.putExtra("id_user", "--");
+
+                                            startActivity(intent);
+//                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                        }
+                                    });
+
                                     RecyclerVie_member_service service_l = new RecyclerVie_member_service(ProfileDetailsActivity.this, userModules.getMember_name());
 
 
@@ -253,7 +269,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                                     view.setText(userModules.getCount_visit() + " " + getResources().getString(R.string.view_co));
 
                                     Clints.setText(userModules.getCount_emp() + "");
-                                    request_nu.setText(userModules.getCount_request() + "");
+                                    request_nu.setText(userModules.getCount_estate() + "");
                                     MyOffer.setText(userModules.getCount_offer() + "");
 //                                mobile_icon.setOnClickListener(new View.OnClickListener() {
 //                                    @Override

@@ -2,32 +2,46 @@ package sa.aqarz.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
+import android.media.ThumbnailUtils;
+import android.net.Uri;
+import android.os.Environment;
 import android.os.Parcelable;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.viewpager.widget.PagerAdapter;
 
 
+import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Picasso;
 import com.stfalcon.frescoimageviewer.ImageViewer;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import sa.aqarz.Activity.FullScreenImageActivity;
+import sa.aqarz.Modules.imagemodules;
 import sa.aqarz.R;
 
 public class home_viewPager_Adapter extends PagerAdapter {
 
 
-    private final ArrayList<String> IMAGES;
+    private final ArrayList<imagemodules> IMAGES;
     private final LayoutInflater inflater;
     private final Context context;
 
 
-    public home_viewPager_Adapter(Context context, ArrayList<String> IMAGES) {
+    public home_viewPager_Adapter(Context context, ArrayList<imagemodules> IMAGES) {
         this.context = context;
         this.IMAGES = IMAGES;
         inflater = LayoutInflater.from(context);
@@ -49,6 +63,46 @@ public class home_viewPager_Adapter extends PagerAdapter {
 
         assert imageLayout != null;
         final ImageView image = imageLayout.findViewById(R.id.image);
+        final ImageView play_video = imageLayout.findViewById(R.id.play_video);
+        final ProgressBar progress = imageLayout.findViewById(R.id.progress);
+
+
+        if (IMAGES.get(position).getType().equals("image")) {
+            Picasso.get().load(IMAGES.get(position).getImage_url() + "").into(image);
+            imageLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent fullImageIntent = new Intent(context, FullScreenImageActivity.class);
+                    fullImageIntent.putExtra("position", position + "");
+                    context.startActivity(fullImageIntent);
+                }
+            });
+            play_video.setVisibility(View.GONE);
+
+        } else {
+            progress.setVisibility(View.GONE);
+            play_video.setVisibility(View.VISIBLE);
+            play_video.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent playVideo = new Intent(Intent.ACTION_VIEW);
+                    playVideo.setDataAndType(Uri.parse(IMAGES.get(position).getImage_url()), "video/mp4");
+                    context.startActivity(playVideo);
+                }
+            });
+
+//            long thumb = view.getLayoutPosition()*1000;
+            try {
+              Bitmap  bitmap = retriveVideoFrameFromVideo(IMAGES.get(position).getImage_url()+"");
+                if (bitmap != null) {
+                    image.setImageBitmap(bitmap);
+                }
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
+        }
+
+
 //        final TextView title = (TextView) imageLayout.findViewById(R.id.title);
 //        final TextView Disc = (TextView) imageLayout.findViewById(R.id.Disc);
 //        final LinearLayout click = (LinearLayout) imageLayout.findViewById(R.id.click);
@@ -72,7 +126,6 @@ public class home_viewPager_Adapter extends PagerAdapter {
 //
 //        Disc.setText(IMAGES.get(position).getDetails());
 ////
-        Picasso.get().load(IMAGES.get(position) + "").into(image);
 ////
 //        click.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -96,25 +149,7 @@ public class home_viewPager_Adapter extends PagerAdapter {
 //            }
 //        });
 //        imageView.setImageResource(null);
-        imageLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                new ImageViewer.Builder(context, IMAGES)
-//                        .setStartPosition(position)
-//                        .show();
 
-
-                Intent fullImageIntent = new Intent(context, FullScreenImageActivity.class);
-// uriString is an ArrayList<String> of URI of all images
-                fullImageIntent.putExtra("position", position+"");
-// pos is the position of image will be showned when open
-//                fullImageIntent.putExtra(FullScreenImageViewActivity.IMAGE_FULL_SCREEN_CURRENT_POS, position);
-                context.startActivity(fullImageIntent);
-//                Intent intent = new Intent(context, DetailsActivity.class);
-////                                intent.putExtra("from", "splash");
-//                context.startActivity(intent);
-            }
-        });
         view.addView(imageLayout, 0);
 
         return imageLayout;
@@ -134,5 +169,23 @@ public class home_viewPager_Adapter extends PagerAdapter {
         return null;
     }
 
+    public static Bitmap retriveVideoFrameFromVideo(String videoPath) throws Throwable {
+        Bitmap bitmap = null;
+        MediaMetadataRetriever mediaMetadataRetriever = null;
+        try {
+            mediaMetadataRetriever = new MediaMetadataRetriever();
+            mediaMetadataRetriever.setDataSource(videoPath, new HashMap<String, String>());
+            //   mediaMetadataRetriever.setDataSource(videoPath);
+            bitmap = mediaMetadataRetriever.getFrameAtTime();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Throwable("Exception in retriveVideoFrameFromVideo(String videoPath)" + e.getMessage());
 
+        } finally {
+            if (mediaMetadataRetriever != null) {
+                mediaMetadataRetriever.release();
+            }
+        }
+        return bitmap;
+    }
 }
