@@ -90,19 +90,19 @@ public class RecyclerView_ChatRoom extends RecyclerView.Adapter<RecyclerView_Cha
             holder.text.setText(alldata.get(position).getBody() + "");
 
 
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-
-            String dateInStrings = alldata.get(position).getCreatedAt() + "";
-            String dateInString = dateInStrings.substring(0, 19);
-
-            SimpleDateFormat formatterOut = new SimpleDateFormat("dd MMM");
-
             try {
+
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+
+                String dateInStrings = alldata.get(position).getCreatedAt() + "";
+                String dateInString = dateInStrings.substring(0, 19);
+
+                SimpleDateFormat formatterOut = new SimpleDateFormat("dd MMM");
 
                 Date date = formatter.parse(dateInString);
                 holder.date.setText(formatterOut.format(date));
 
-            } catch (ParseException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 //            holder.share.setOnClickListener(new View.OnClickListener() {

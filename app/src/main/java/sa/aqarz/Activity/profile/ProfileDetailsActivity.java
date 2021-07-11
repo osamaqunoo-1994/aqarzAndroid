@@ -50,6 +50,9 @@ public class ProfileDetailsActivity extends AppCompatActivity {
     TextView Clints;
     TextView MyOffer;
     TextView request_nu;
+    TextView accetpt;
+    TextView preview;
+    TextView watiing;
 
     public static User userModules;
 
@@ -105,6 +108,11 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         bio = findViewById(R.id.bio);
         list_service = findViewById(R.id.list_service);
         Courses = findViewById(R.id.Courses);
+
+        accetpt = findViewById(R.id.accetpt);
+        preview = findViewById(R.id.preview);
+        watiing = findViewById(R.id.watiing);
+
 
         member_list.setLayoutManager(new GridLayoutManager(this, 2));
 
@@ -271,6 +279,12 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                                     Clints.setText(userModules.getCount_emp() + "");
                                     request_nu.setText(userModules.getCount_estate() + "");
                                     MyOffer.setText(userModules.getCount_offer() + "");
+
+                                    accetpt.setText(userModules.getCount_accept_fund_offer() + "");
+                                    preview.setText(userModules.getCount_preview_fund_offer() + "");
+                                    watiing.setText(userModules.getCount_fund_offer() + "");
+
+
 //                                mobile_icon.setOnClickListener(new View.OnClickListener() {
 //                                    @Override
 //                                    public void onClick(View v) {

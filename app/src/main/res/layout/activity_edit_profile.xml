@@ -266,7 +266,7 @@
                         android:layout_marginRight="10dp"
                         android:gravity="center"
                         android:text="aqarz.sa/"
-                        android:visibility="gone" />
+                        android:visibility="visible" />
 
                     <ImageView
                         android:layout_width="50dp"
@@ -364,7 +364,6 @@
                     android:drawablePadding="10dp"
                     android:gravity="start"
                     android:hint="@string/Bio"
-                    android:inputType="number"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:text=""

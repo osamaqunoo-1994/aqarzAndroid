@@ -639,8 +639,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
         if (Settings.checkLogin()) {
 
             init_volley();

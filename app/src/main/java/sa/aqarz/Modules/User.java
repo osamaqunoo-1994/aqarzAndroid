@@ -108,6 +108,17 @@ public class User {
     @SerializedName("bio")
     @Expose
     private String bio;
+    @SerializedName("count_accept_fund_offer")
+    @Expose
+    private String count_accept_fund_offer;
+    @SerializedName("count_preview_fund_offer")
+    @Expose
+    private String count_preview_fund_offer;
+    @SerializedName("count_fund_request")
+    @Expose
+    private String count_fund_request;
+
+
 
 
 
@@ -162,6 +173,18 @@ public class User {
 
     public String getServices_id() {
         return services_id;
+    }
+
+    public String getCount_fund_request() {
+        return count_fund_request;
+    }
+
+    public String getCount_accept_fund_offer() {
+        return count_accept_fund_offer;
+    }
+
+    public String getCount_preview_fund_offer() {
+        return count_preview_fund_offer;
     }
 
     public String getCity_id() {

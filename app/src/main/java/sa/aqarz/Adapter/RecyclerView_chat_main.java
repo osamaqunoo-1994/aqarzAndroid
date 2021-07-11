@@ -223,25 +223,29 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
 
 //                RequestOrderActivity.set_fragment(position);
 
-                Intent intent = new Intent(context, ChatRoomActivity.class);
 
-                if (alldata.get(position).getReceiverId().equals(Settings.GetUser().getId() + "")) {
-                    intent.putExtra("user_id", alldata.get(position).getSenderId() + "");
+                if (alldata.get(position).getSenderId() != null) {
+                    Intent intent = new Intent(context, ChatRoomActivity.class);
 
-                } else {
-                    intent.putExtra("user_id", alldata.get(position).getReceiverId() + "");
+                    if (alldata.get(position).getReceiverId().equals(Settings.GetUser().getId() + "")) {
+                        intent.putExtra("user_id", alldata.get(position).getSenderId() + "");
 
-                }
+                    } else {
+                        intent.putExtra("user_id", alldata.get(position).getReceiverId() + "");
 
-                intent.putExtra("parent_id", alldata.get(position).getId() + "");
-                intent.putExtra("nameUser", alldata.get(position).getDisplay_name() + "");
-                intent.putExtra("imageUser", alldata.get(position).getReceiverPhoto() + "");
-                context.startActivity(intent);
+                    }
 
-                if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(position);
-                }
+                    intent.putExtra("parent_id", alldata.get(position).getId() + "");
+                    intent.putExtra("nameUser", alldata.get(position).getDisplay_name() + "");
+                    intent.putExtra("imageUser", alldata.get(position).getReceiverPhoto() + "");
+                    context.startActivity(intent);
+
+                    if (mItemClickListener != null) {
+                        mItemClickListener.onItemClick(position);
+                    }
 //
+                }
+
 
             }
         });

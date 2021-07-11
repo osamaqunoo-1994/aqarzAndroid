@@ -113,6 +113,7 @@ public class AllOrderActivity extends AppCompatActivity {
     static List<TypeModules> type_list = new ArrayList<>();
     static List<CityModules> cityModules_list_filtter = new ArrayList<>();
 
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +129,7 @@ public class AllOrderActivity extends AppCompatActivity {
         all_type = findViewById(R.id.all_type);
         search_citytext = findViewById(R.id.search_citytext);
         close = findViewById(R.id.close);
+        back = findViewById(R.id.back);
 
         status_1 = findViewById(R.id.status_1);
         status_2 = findViewById(R.id.status_2);
@@ -159,7 +161,12 @@ public class AllOrderActivity extends AppCompatActivity {
 
         progress = findViewById(R.id.progress);
 
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         layoutManager
                 = new LinearLayoutManager(AllOrderActivity.this, LinearLayoutManager.VERTICAL, false);
         AllResultRec.setLayoutManager(layoutManager);

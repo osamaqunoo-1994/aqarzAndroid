@@ -32,6 +32,9 @@ public class Neighborhood {
     @SerializedName("created_at")
     @Expose
     private String createdAt;
+    @SerializedName("request_fund_counter")
+    @Expose
+    private String request_fund_counter;
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
@@ -44,6 +47,10 @@ public class Neighborhood {
 
     public Integer getId() {
         return id;
+    }
+
+    public String getRequest_fund_counter() {
+        return request_fund_counter;
     }
 
     public void setId(Integer id) {

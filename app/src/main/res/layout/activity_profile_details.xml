@@ -370,6 +370,14 @@
                         android:textSize="13dp" />
 
 
+                    <TextView
+                        android:id="@+id/watiing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:textColor="@color/white"
+                        android:textSize="10dp" />
                 </LinearLayout>
 
 
@@ -392,6 +400,15 @@
                         android:text="@string/btn_order_preview"
                         android:textColor="@color/white"
                         android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/preview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:textColor="@color/white"
+                        android:textSize="10dp" />
 
 
                 </LinearLayout>
@@ -418,6 +435,14 @@
                         android:textSize="13dp" />
 
 
+                    <TextView
+                        android:id="@+id/accetpt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:textColor="@color/white"
+                        android:textSize="10dp" />
                 </LinearLayout>
 
 

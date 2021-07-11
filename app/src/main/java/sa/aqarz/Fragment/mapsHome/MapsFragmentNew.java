@@ -693,7 +693,9 @@ public class MapsFragmentNew extends Fragment {
                                         init_volley();
                                         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-                                        mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + city_id_postion + "/list");
+//                                        mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + city_id_postion + "/list");
+//                                        mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + city_id_postion + "/list?is_all=0");
+                                        mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + city_location_list.get(Integer.valueOf(city_id_postion)).getSerial_city() + "/list?is_all=0");
 
 
                                     } else if (type_selected.equals("Market")) {
@@ -824,7 +826,7 @@ public class MapsFragmentNew extends Fragment {
                             init_volley();
                             VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-                            mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + city_id_postion + "/list");
+                            mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + city_location_list.get(Integer.valueOf(city_id_postion)).getSerial_city() + "/list?is_all=0");
 
 
                         } else if (type_selected.equals("Market")) {
@@ -1033,7 +1035,7 @@ public class MapsFragmentNew extends Fragment {
                 if (googleMap != null) {
                     googleMap.addMarker(new MarkerOptions()
                             .position(sydneya)
-                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewNibores(locationNeighborhood.get(i).getName() + "", i + "")))).setTag("Neighb/" + i);
+                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewNibores(locationNeighborhood.get(i).getName() + "(" + locationNeighborhood.get(i).getRequest_fund_counter() + ")", i + "")))).setTag("Neighb/" + i);
 
                 }
 
@@ -1052,7 +1054,8 @@ public class MapsFragmentNew extends Fragment {
                         if (googleMap != null) {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(sydneya)
-                                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewNibores(locationNeighborhood.get(i).getName() + "", i + "")))).setTag("Neighb/" + i);
+                                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewNibores(locationNeighborhood.get(i).getName() + "(" + locationNeighborhood.get(i).getRequest_fund_counter() + ")", i + "")))).setTag("Neighb/" + i);
+//                                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewNibores(locationNeighborhood.get(i).getName() + "", i + "")))).setTag("Neighb/" + i);
 
                         }
 
