@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sa.aqarz">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the "MyLocation" functionality.
-
-
-         //
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -30,8 +28,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.FullScreenImageActivity"
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".Activity.MyInterestsActivity"
+            android:label="@string/title_activity_my_interests"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Activity.FullScreenImageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.AllOrderActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -54,18 +70,6 @@
             android:name=".Activity.SettingsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.HomeMainActivity" />
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
         <activity
             android:name=".FCM.MapsActivity"
             android:label="@string/title_activity_maps" />
@@ -149,7 +153,7 @@
             android:theme="@style/AppTheme.NoActionBar_login" />
         <activity
             android:name=".Activity.AqarzProfileActivity_other"
-            android:theme="@style/AppTheme.NoActionBar_login"></activity>
+            android:theme="@style/AppTheme.NoActionBar_login" />
         <activity
             android:name=".Activity.AddClintesActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -292,8 +296,9 @@
             android:name="io.sentry.dsn"
             android:value="https://c2448ed54fb547118a318abb11d49058@o555534.ingest.sentry.io/5685741" />
 
-        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
-
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
 
 </manifest>

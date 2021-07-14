@@ -29,6 +29,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import sa.aqarz.Activity.Auth.EditProfileActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.Employee.DetailsEmployeeActivity;
+import sa.aqarz.Activity.MyInterestsActivity;
 import sa.aqarz.Adapter.RecyclerVie_member_service;
 import sa.aqarz.Adapter.RecyclerVie_member_service_m;
 import sa.aqarz.Adapter.RecyclerView_Course;
@@ -78,6 +79,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 
 
     LinearLayout v1;
+    LinearLayout myintrest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +101,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         clints = findViewById(R.id.clints);
         back = findViewById(R.id.back);
         v1 = findViewById(R.id.v1);
+        myintrest = findViewById(R.id.myintrest);
 
         member_list = findViewById(R.id.member_list);
         editProfile = findViewById(R.id.editProfile);
@@ -183,6 +186,17 @@ public class ProfileDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        myintrest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(ProfileDetailsActivity.this, MyInterestsActivity.class);
+                startActivity(intent);
+
+
             }
         });
     }

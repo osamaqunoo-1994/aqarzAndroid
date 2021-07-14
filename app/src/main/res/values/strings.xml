@@ -964,5 +964,7 @@ Two working days to complete your order</string>
     <string name="btn_order_wating">طلبات قيد الانتظار</string>
     <string name="btn_order_preview">طلبات معاينة</string>
     <string name="btn_order_accept">طلبات مقبوله</string>
+    <string name="title_activity_my_interests">Map</string>
+    <string name="my_interests">My Interests</string>
 
 </resources>
