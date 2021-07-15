@@ -1,6 +1,8 @@
 package sa.aqarz.Activity.Employee;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -36,6 +38,7 @@ import sa.aqarz.Adapter.RecyclerView_orders_demandsx_favorit;
 import sa.aqarz.Adapter.RecyclerView_orders_my_requstx_favorit;
 import sa.aqarz.Adapter.RecyclerView_orders_my_requstx_favorit_offet;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_add_employee;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_Secess;
 import sa.aqarz.Modules.FavoritModules;
 import sa.aqarz.Modules.User;
 import sa.aqarz.Modules.demandsModules;
@@ -60,12 +63,14 @@ public class DetailsEmployeeActivity extends AppCompatActivity {
 
     FloatingActionButton add_employee;
     SwipeRefreshLayout swipe;
+    static FragmentManager activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
 
+        activity = getSupportFragmentManager();
 
         all_employee = findViewById(R.id.all_employee);
         add_employee = findViewById(R.id.add_employee);
@@ -163,6 +168,13 @@ public class DetailsEmployeeActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public static void openSuccess(String name) {
+        BottomSheetDialogFragment_Secess bottomSheetDialogFragment_secess = new BottomSheetDialogFragment_Secess(name + "");
+        bottomSheetDialogFragment_secess.show(activity, "");
+
+
     }
 
     public void init_volley() {

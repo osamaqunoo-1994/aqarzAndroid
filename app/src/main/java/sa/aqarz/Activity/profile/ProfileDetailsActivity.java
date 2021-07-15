@@ -30,6 +30,7 @@ import org.json.JSONObject;
 import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import sa.aqarz.Activity.AllOrder_filtterActivity;
 import sa.aqarz.Activity.Auth.EditProfileActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.Employee.DetailsEmployeeActivity;
@@ -83,6 +84,9 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 
 
     LinearLayout v1;
+    LinearLayout v2;
+    LinearLayout v3;
+    LinearLayout all_offer;
     LinearLayout myintrest;
 
     @Override
@@ -105,6 +109,9 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         clints = findViewById(R.id.clints);
         back = findViewById(R.id.back);
         v1 = findViewById(R.id.v1);
+        v2 = findViewById(R.id.v2);
+        all_offer = findViewById(R.id.all_offer);
+        v3 = findViewById(R.id.v3);
         myintrest = findViewById(R.id.myintrest);
 
         member_list = findViewById(R.id.member_list);
@@ -149,19 +156,21 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         WebService.loading(ProfileDetailsActivity.this, true);
 
 
+        if (Hawk.contains("lang")) {
+            Hawk.put("lang", "ar");
 
-
+        } else {
+            Hawk.put("lang", "ar");
+        }
+//
         Locale locale = new Locale(Hawk.get("lang").toString());
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
-
-
-
+//        }
         init_volley();
-
 
 
         try {
@@ -268,9 +277,44 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                                     v1.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            Intent intent = new Intent(ProfileDetailsActivity.this, MyOffersActivity.class);
+                                            Intent intent = new Intent(ProfileDetailsActivity.this, AllOrder_filtterActivity.class);
 //              intent.putExtra("from", "splash");
-                                            intent.putExtra("id_user", "--");
+                                            intent.putExtra("type", "watiing");
+
+                                            startActivity(intent);
+//                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                        }
+                                    });
+
+                                    v2.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(ProfileDetailsActivity.this, AllOrder_filtterActivity.class);
+//              intent.putExtra("from", "splash");
+                                            intent.putExtra("type", "preview");
+
+                                            startActivity(intent);
+//                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                        }
+                                    });
+
+                                    v3.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(ProfileDetailsActivity.this, AllOrder_filtterActivity.class);
+//              intent.putExtra("from", "splash");
+                                            intent.putExtra("type", "accetpt");
+
+                                            startActivity(intent);
+//                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                        }
+                                    });
+                                    all_offer.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(ProfileDetailsActivity.this, AllOrder_filtterActivity.class);
+//              intent.putExtra("from", "splash");
+                                            intent.putExtra("type", "all");
 
                                             startActivity(intent);
 //                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
@@ -313,8 +357,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 
                                     accetpt.setText(userModules.getCount_accept_fund_offer() + "");
                                     preview.setText(userModules.getCount_preview_fund_offer() + "");
-                                    watiing.setText(userModules.getCount_fund_offer() + "");
-
+                                    watiing.setText(userModules.getCount_fund_pending_offer() + "");
 
 //                                mobile_icon.setOnClickListener(new View.OnClickListener() {
 //                                    @Override

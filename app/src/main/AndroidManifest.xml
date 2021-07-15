@@ -52,6 +52,9 @@
             android:name=".Activity.AllOrderActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".Activity.AllOrder_filtterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Activity.profile.ProfileDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

@@ -55,15 +55,12 @@ public class AddEmployeeActivity extends AppCompatActivity {
 
                 } else {
                     WebService.loading(AddEmployeeActivity.this, true);
-                    init_volley();
 
                     VolleyService mVolleyService = new VolleyService(mResultCallback, AddEmployeeActivity.this);
 
-
-                    RequestParams sendObj = new RequestParams();
+                    JSONObject sendObj = new JSONObject();
 
                     try {
-
                         sendObj.put("emp_name", name.getText().toString());
                         sendObj.put("emp_mobile", phone.getText().toString());
                         sendObj.put("country_code", "966");
@@ -72,7 +69,9 @@ public class AddEmployeeActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    mVolleyService.postDataasync_with_file("add_employee", WebService.add_employee, sendObj);
+                    init_volley();
+
+                    mVolleyService.postDataVolley("add_employee", WebService.add_employee, sendObj);
 
 
                 }
@@ -100,7 +99,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
                 try {
                     boolean status = response.getBoolean("status");
                     if (status) {
-                        String data = response.getString("data");
+//                        String data = response.getString("data");
 
 
                         BottomSheetDialogFragment_Secess bottomSheetDialogFragment_secess = new BottomSheetDialogFragment_Secess(name.getText().toString() + "");

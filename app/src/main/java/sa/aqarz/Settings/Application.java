@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.view.View;
 
 import com.google.gson.Gson;
@@ -44,26 +45,36 @@ public class Application extends android.app.Application {
         activity = this;
         Hawk.init(this).build();
 
+//        if (Hawk.contains("lang")) {
+//
+//            Locale locale = new Locale(Hawk.get("lang").toString());
+//            Locale.setDefault(locale);
+//            Configuration config = new Configuration();
+//            config.locale = locale;
+//            getBaseContext().getResources().updateConfiguration(config,
+//                    getBaseContext().getResources().getDisplayMetrics());
+//        } else {
+//
+////            Hawk.put("lang", LocaleUtils.getLanguage(this));
+//            Hawk.put("lang", "ar");
+
+
         if (Hawk.contains("lang")) {
-
-            Locale locale = new Locale(Hawk.get("lang").toString());
-            Locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config,
-                    getBaseContext().getResources().getDisplayMetrics());
-        } else {
-
-//            Hawk.put("lang", LocaleUtils.getLanguage(this));
             Hawk.put("lang", "ar");
 
-            Locale locale = new Locale(Hawk.get("lang").toString());
-            Locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config,
-                    getBaseContext().getResources().getDisplayMetrics());
+        } else {
+            Hawk.put("lang", "ar");
         }
+//
+        Locale locale = new Locale(Hawk.get("lang").toString());
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+//        }
+
+
         try {
             if (Hawk.contains("AllCity")) {
 

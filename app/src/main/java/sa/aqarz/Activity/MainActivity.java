@@ -208,6 +208,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout search_aqaerz;
     TextView qr_search;
     ImageView close;
+    TextView cancle_fillter;
     TextView search_filtter;
 
 
@@ -258,6 +259,7 @@ public class MainActivity extends AppCompatActivity {
         drawer = findViewById(R.id.drawer);
         search_layout = findViewById(R.id.search_layout);
         search_filtter = findViewById(R.id.search_filtter);
+        cancle_fillter = findViewById(R.id.cancle_fillter);
 
         room_1 = findViewById(R.id.room_1);
         room_2 = findViewById(R.id.room_2);
@@ -295,26 +297,19 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (Hawk.contains("lang")) {
+            Hawk.put("lang", "ar");
 
-
-            Locale locale = new Locale(Hawk.get("lang").toString());
-            Locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config,
-                    getBaseContext().getResources().getDisplayMetrics());
         } else {
-
-            Hawk.put("lang", LocaleUtils.getLanguage(this));
-
-            Locale locale = new Locale(Hawk.get("lang").toString());
-            Locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config,
-                    getBaseContext().getResources().getDisplayMetrics());
+            Hawk.put("lang", "ar");
         }
-
+//
+        Locale locale = new Locale(Hawk.get("lang").toString());
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+//        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary, this.getTheme()));
@@ -364,6 +359,7 @@ public class MainActivity extends AppCompatActivity {
                 search_aqaerz.setVisibility(View.VISIBLE);
             }
         });
+
         qr_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -771,6 +767,39 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         selsct_type_all.setAdapter(recyclerView_bottomSheet_type);
+
+        cancle_fillter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                te = "";
+                if (!type.equals("")) {
+//                    te = te + "&estate_pay_type=" + type;
+                }
+                if (!Les_price.getText().toString().equals("")) {
+//                    te = te + "&price_from=" + Les_price.getText().toString();
+                }
+                if (!opration_select.equals("")) {
+//                    te = te + "&estate_type=" + opration_select;
+                }
+                if (!Maximum_price.getText().toString().equals("")) {
+//                    te = te + "&price_to=" + Maximum_price.getText().toString();
+                }
+                if (!Les_space.getText().toString().equals("")) {
+//                    te = te + "&area_from=" + Les_space.getText().toString();
+                }
+                if (!Maximum_space.getText().toString().equals("")) {
+//                    te = te + "&area_to=" + Maximum_space.getText().toString();
+                }
+
+
+//                te = "&estate_pay_type=" + type + "&price_from=" + Les_price.getText().toString() + "&price_to=" + Maximum_price.getText().toString() + "&area_from=" + Les_space.getText().toString() + "&area_from=" + Maximum_space.getText().toString();
+
+                MapsFragmentNew.filter = te;
+                MapsFragmentNew.getAllEstate();
+
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        });
         filtter_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -868,7 +897,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     VolleyService mVolleyService = new VolleyService(mResultCallback, MainActivity.this);
-                    mVolleyService.getDataVolley("cities_with_neb", WebService.cities_with_neb + "?name=" + search_text.getText().toString() + "&state_id=" + region_id_postion + "&city_id=" + city_id_postion);
+                    mVolleyService.getDataVolley("cities_with_neb", WebService.cities_with_neb + "?name=" + search_text.getText().toString());//+ "&state_id=" + region_id_postion + "&city_id=" + city_id_postion
 
 
                     return true;
@@ -1393,7 +1422,7 @@ public class MainActivity extends AppCompatActivity {
                                     MapsFragmentNew.lan = cityModules_list_filtter.get(i).getLan() + "";
 
 
-                                    search_text.setText(cityModules_list_filtter.get(i).getName() + "-" + cityModules_list_filtter.get(i).getCity().getName());
+                                    search_text.setText(cityModules_list_filtter.get(i).getSearch_name());//+ "-" + cityModules_list_filtter.get(i).getCity().getName()
 
                                 }
                             });

@@ -15,6 +15,9 @@ public class CityModules {
     @SerializedName("name_ar")
     @Expose
     private String name_ar;
+    @SerializedName("search_name")
+    @Expose
+    private String search_name;
     @SerializedName("name_en")
     @Expose
     private String name_en;
@@ -59,6 +62,10 @@ public class CityModules {
 
     public String getLan() {
         return lan;
+    }
+
+    public String getSearch_name() {
+        return search_name;
     }
 
     public String getLat() {

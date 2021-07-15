@@ -232,33 +232,7 @@ public class OrderListActivity extends AppCompatActivity {
             mVolleyService.getDataVolley("city", WebService.cities);
 
         }
-        try {
 
-            if (Hawk.contains("lang")) {
-
-
-                Locale locale = new Locale(Hawk.get("lang").toString());
-                Locale.setDefault(locale);
-                Configuration config = new Configuration();
-                config.locale = locale;
-                getBaseContext().getResources().updateConfiguration(config,
-                        getBaseContext().getResources().getDisplayMetrics());
-            } else {
-
-                Hawk.put("lang", LocaleUtils.getLanguage(OrderListActivity.this));
-
-                Locale locale = new Locale(Hawk.get("lang").toString());
-                Locale.setDefault(locale);
-                Configuration config = new Configuration();
-                config.locale = locale;
-                getBaseContext().getResources().updateConfiguration(config,
-                        getBaseContext().getResources().getDisplayMetrics());
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
             premium.setVisibility(View.VISIBLE);
 //            offer.setVisibility(View.VISIBLE);

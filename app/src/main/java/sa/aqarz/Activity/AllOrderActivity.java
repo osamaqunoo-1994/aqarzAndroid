@@ -50,6 +50,7 @@ import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.R;
+import sa.aqarz.Settings.BaseActivity;
 import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
@@ -178,33 +179,8 @@ public class AllOrderActivity extends AppCompatActivity {
 
         AllResultRec.addOnScrollListener(recyclerViewOnScrollListener);
 
-        try {
-
-            if (Hawk.contains("lang")) {
 
 
-                Locale locale = new Locale(Hawk.get("lang").toString());
-                Locale.setDefault(locale);
-                Configuration config = new Configuration();
-                config.locale = locale;
-                getBaseContext().getResources().updateConfiguration(config,
-                        getBaseContext().getResources().getDisplayMetrics());
-            } else {
-
-                Hawk.put("lang", LocaleUtils.getLanguage(AllOrderActivity.this));
-
-                Locale locale = new Locale(Hawk.get("lang").toString());
-                Locale.setDefault(locale);
-                Configuration config = new Configuration();
-                config.locale = locale;
-                getBaseContext().getResources().updateConfiguration(config,
-                        getBaseContext().getResources().getDisplayMetrics());
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
             premium.setVisibility(View.VISIBLE);

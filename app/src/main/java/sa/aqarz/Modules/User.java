@@ -117,6 +117,9 @@ public class User {
     @SerializedName("count_fund_request")
     @Expose
     private String count_fund_request;
+    @SerializedName("count_fund_pending_offer")
+    @Expose
+    private String count_fund_pending_offer;
 
 
 
@@ -165,6 +168,10 @@ public class User {
 
     public String getCount_fund_offer() {
         return count_fund_offer;
+    }
+
+    public String getCount_fund_pending_offer() {
+        return count_fund_pending_offer;
     }
 
     public String getRate() {

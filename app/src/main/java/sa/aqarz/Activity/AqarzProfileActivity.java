@@ -47,6 +47,7 @@ import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.SettingsModules;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.R;
+import sa.aqarz.Settings.BaseActivity;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;

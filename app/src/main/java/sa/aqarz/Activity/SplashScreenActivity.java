@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ import java.util.Set;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Modules.User;
 import sa.aqarz.R;
+import sa.aqarz.Settings.BaseActivity;
 import sa.aqarz.Settings.ForceUpdateAsync;
 import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
@@ -90,26 +92,40 @@ public class SplashScreenActivity extends AppCompatActivity {
         }
 
 
-        if (Hawk.contains("lang")) {
+//        if (Hawk.contains("lang")) {
+//
+//
+//            Locale locale = new Locale(Hawk.get("lang").toString());
+//            Locale.setDefault(locale);
+//            Configuration config = new Configuration();
+//            config.locale = locale;
+//            getBaseContext().getResources().updateConfiguration(config,
+//                    getBaseContext().getResources().getDisplayMetrics());
+//        } else {
+//
+//            Hawk.put("lang", "ar");
+//
+////            Locale locale = new Locale(Hawk.get("lang").toString());
+////            Locale.setDefault(locale);
+////            Configuration config = new Configuration();
+////            config.locale = locale;
+////            getBaseContext().getResources().updateConfiguration(config,
+////                    getBaseContext().getResources().getDisplayMetrics());
+//
+//
+//
+//
+//        }
+
+        Locale locale = new Locale(Hawk.get("lang").toString());
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
 
 
-            Locale locale = new Locale(Hawk.get("lang").toString());
-            Locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config,
-                    getBaseContext().getResources().getDisplayMetrics());
-        } else {
 
-            Hawk.put("lang", "ar");
-
-            Locale locale = new Locale("ar");
-            Locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config,
-                    getBaseContext().getResources().getDisplayMetrics());
-        }
 
 
         init_volley();

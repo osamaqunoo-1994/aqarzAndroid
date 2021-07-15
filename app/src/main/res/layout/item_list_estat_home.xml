@@ -42,7 +42,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="100dp"
-                android:layout_height="130dp"
+                android:layout_height="match_parent"
                 app:cardCornerRadius="10dp">
 
                 <RelativeLayout
@@ -65,7 +65,7 @@
                         android:id="@+id/opration"
                         android:layout_width="wrap_content"
                         android:layout_height="31dp"
-                        android:background="@drawable/background_sell_itemlsit"
+                        android:background="@drawable/button_login"
                         android:gravity="center"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
@@ -143,9 +143,9 @@
 
                     <ImageView
                         android:id="@+id/image_icon"
-                        android:layout_width="27dp"
-                        android:layout_height="27dp"
-                        android:padding="8dp"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:padding="5dp"
                         android:src="@drawable/ic_tag"
                         app:tint="@color/colorPrimary" />
 
@@ -195,12 +195,14 @@
                         app:starEmpty="@drawable/ic_star__2_"
                         app:starFill="@drawable/ic_star__1_"
                         hedgehog:clickable="false"
+                        app:clickable="false"
                         hedgehog:halfstart="false"
                         hedgehog:starCount="5"
                         hedgehog:starHalf="@mipmap/star_half"
-                        hedgehog:starImageHeight="6dp"
+                        hedgehog:starImageHeight="3dp"
                         hedgehog:starImagePadding="1"
-                        hedgehog:starImageWidth="8dp" />
+                        hedgehog:starImageWidth="3
+" />
 
 
                     <LinearLayout
@@ -220,9 +222,9 @@
 
 
                     <ImageView
-                        android:layout_width="27dp"
-                        android:layout_height="27dp"
-                        android:padding="8dp"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:padding="5dp"
                         android:src="@drawable/ic_tag"
                         app:tint="@color/colorPrimary" />
 
@@ -277,9 +279,9 @@
 
 
                     <ImageView
-                        android:layout_width="27dp"
-                        android:layout_height="27dp"
-                        android:padding="7dp"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:padding="5dp"
                         android:src="@drawable/ic_group_location_group"
                         app:tint="@color/colorPrimary" />
 
@@ -330,9 +332,9 @@
 
 
                     <ImageView
-                        android:layout_width="27dp"
-                        android:layout_height="27dp"
-                        android:padding="7dp"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:padding="5dp"
                         android:src="@drawable/ic_space"
                         app:tint="@color/colorPrimary" />
 

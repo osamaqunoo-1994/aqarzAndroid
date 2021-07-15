@@ -113,7 +113,7 @@ public class RecyclerView_city_side_menu extends RecyclerView.Adapter<RecyclerVi
 //        int random = ThreadLocalRandom.current().nextInt(1, 5);
 //       holder.ratingbar.setStar(random);
 
-        holder.text.setText(alldata.get(position).getName() + "-" + alldata.get(position).getCity().getName());
+        holder.text.setText(alldata.get(position).getSearch_name() );//+ "-" + alldata.get(position).getCity().getName()
         //   wallet, dafter, receipt, payment
 
 //

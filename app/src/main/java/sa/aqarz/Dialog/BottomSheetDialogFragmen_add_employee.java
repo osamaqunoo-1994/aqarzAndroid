@@ -22,6 +22,7 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONObject;
 
 import sa.aqarz.Activity.Employee.AddEmployeeActivity;
+import sa.aqarz.Activity.Employee.DetailsEmployeeActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -63,7 +64,7 @@ public class BottomSheetDialogFragmen_add_employee extends BottomSheetDialogFrag
                     VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 
 
-                    RequestParams sendObj = new RequestParams();
+                    JSONObject sendObj = new JSONObject();
 
                     try {
 
@@ -75,7 +76,7 @@ public class BottomSheetDialogFragmen_add_employee extends BottomSheetDialogFrag
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    mVolleyService.postDataasync_with_file("add_employee", WebService.add_employee, sendObj);
+                    mVolleyService.postDataVolley("add_employee", WebService.add_employee, sendObj);
 
 
                 }
@@ -141,11 +142,12 @@ public class BottomSheetDialogFragmen_add_employee extends BottomSheetDialogFrag
                     if (status) {
 
                         String data = response.getString("data");
-//                        String message = response.getString("message");
-                        BottomSheetDialogFragment_Secess bottomSheetDialogFragment_secess = new BottomSheetDialogFragment_Secess(name.getText().toString() + "");
-                        bottomSheetDialogFragment_secess.show(getChildFragmentManager(), "");
                         dismiss();
 
+
+                        DetailsEmployeeActivity.openSuccess(name.getText().toString());
+
+//                        String message = response.getString("message");
 
 //                        WebService.Make_Toast_color((Activity) context, message, "success");
 

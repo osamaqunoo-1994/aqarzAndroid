@@ -119,12 +119,14 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
     EditText serch_edt;
 
     List<AllCityModules.City> dataCities = new ArrayList<>();
+    List<Polygon> polygons = new ArrayList<>();
 
     RecyclerView allneb;
 
     RecyclerView_select_neb recyclerView_select_neb;
 
     Button send_to_server;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +135,7 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
 
 
         all_city = findViewById(R.id.all_city);
+        back = findViewById(R.id.back);
         open_city_list = findViewById(R.id.open_city_list);
         list_liner_city = findViewById(R.id.list_liner_city);
         selected_text_city = findViewById(R.id.selected_text_city);
@@ -141,16 +144,29 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
         allneb = findViewById(R.id.allneb);
         send_to_server = findViewById(R.id.send_to_server);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        if (Hawk.contains("lang")) {
+            Hawk.put("lang", "ar");
+
+        } else {
+            Hawk.put("lang", "ar");
+        }
+//
         Locale locale = new Locale(Hawk.get("lang").toString());
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+//        }
+
+
     }
 
     /**
@@ -188,6 +204,44 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
 
         allneb.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView_select_neb = new RecyclerView_select_neb(MyInterestsActivity.this, all_nebSelected);
+        recyclerView_select_neb.addItemClickListener(new RecyclerView_select_neb.ItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+
+//                polygons.get(position).setFillColor(Color.TRANSPARENT);
+//                all_neb.get(Integer.valueOf(polygons.get(position).getTag().toString())).setInMyInterset("0");
+
+
+                for (int i = 0; i < all_neb.size(); i++) {
+
+                    if (all_neb.get(i).getDistrictId().equals(all_nebSelected.get(position).getDistrictId())) {
+
+                        AlLNebModules.neb neb = all_neb.get(i);
+                        Polygon polygon = polygons.get(i);
+
+
+                        System.out.println("neb.getInMyInterset()" + neb.getInMyInterset());
+
+                        if (neb.getInMyInterset().equals("1")) {
+                            polygon.setFillColor(Color.TRANSPARENT);
+                            all_neb.get(Integer.valueOf(polygon.getTag().toString())).setInMyInterset("0");
+
+
+                        }
+
+
+                        all_nebSelected.remove(position);
+                        recyclerView_select_neb.Refr();
+
+                        break;
+                    }
+
+
+                }
+
+
+            }
+        });
         allneb.setAdapter(recyclerView_select_neb);
         open_city_list.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -300,7 +354,7 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
         } catch (Exception e) {
 
         }
-//        on_click_maps_marker();
+        on_click_maps_marker();
 
 
         mMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener() {
@@ -579,6 +633,8 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
 //                                polygon.setFillColor(color);
                                 polygon.setStrokeColor(Color.parseColor("#FE9457"));
                                 polygon.setStrokeWidth(8);
+
+                                polygons.add(polygon);
                             }
 
 
@@ -834,8 +890,38 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
 
                 } else if (marker.getTag().toString().contains("allneb")) {
                     String[] separated = marker.getTag().toString().split("/");
-
                     String number = separated[1];
+
+
+                    Random rnd = new Random();
+                    int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+
+                    AlLNebModules.neb neb = all_neb.get(Integer.valueOf(number));
+                    Polygon polygon = polygons.get(Integer.valueOf(number));
+
+                    if (neb.getInMyInterset().equals("1")) {
+                        polygon.setFillColor(Color.TRANSPARENT);
+                        all_neb.get(Integer.valueOf(polygon.getTag().toString())).setInMyInterset("0");
+
+
+                        for (int i = 0; i < all_nebSelected.size(); i++) {
+                            if (all_nebSelected.get(i).getDistrictId().equals(neb.getDistrictId())) {
+                                all_nebSelected.remove(i);
+                                recyclerView_select_neb.Refr();
+
+                            }
+                        }
+
+
+                    } else {
+                        polygon.setFillColor(color);
+                        all_neb.get(Integer.valueOf(polygon.getTag().toString())).setInMyInterset("1");
+
+                        all_nebSelected.add(neb);
+                        recyclerView_select_neb.Refr();
+
+
+                    }
 
 
                     return true;

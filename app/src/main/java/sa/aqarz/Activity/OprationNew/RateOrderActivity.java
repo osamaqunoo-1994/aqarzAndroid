@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import sa.aqarz.R;
+import sa.aqarz.Settings.BaseActivity;
 
 public class RateOrderActivity extends AppCompatActivity {
 

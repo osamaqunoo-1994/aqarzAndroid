@@ -156,7 +156,7 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         try {
             holder.rate.setStar(Float.valueOf(alldata.get(position).getRate() + ""));
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
 

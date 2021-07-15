@@ -294,34 +294,8 @@ public class OrdersFragment extends Fragment {
             mVolleyService.getDataVolley("city", WebService.cities);
 
         }
-        try {
 
-            if (Hawk.contains("lang")) {
-
-
-                Locale locale = new Locale(Hawk.get("lang").toString());
-                Locale.setDefault(locale);
-                Configuration config = new Configuration();
-                config.locale = locale;
-                getActivity().getBaseContext().getResources().updateConfiguration(config,
-                        getActivity().getBaseContext().getResources().getDisplayMetrics());
-            } else {
-
-                Hawk.put("lang", LocaleUtils.getLanguage(getActivity()));
-
-                Locale locale = new Locale(Hawk.get("lang").toString());
-                Locale.setDefault(locale);
-                Configuration config = new Configuration();
-                config.locale = locale;
-                getActivity().getBaseContext().getResources().updateConfiguration(config,
-                        getActivity().getBaseContext().getResources().getDisplayMetrics());
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().toString().equals("1")) {
+        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
             premium.setVisibility(View.VISIBLE);
 //            offer.setVisibility(View.VISIBLE);
             not_premium.setVisibility(View.GONE);

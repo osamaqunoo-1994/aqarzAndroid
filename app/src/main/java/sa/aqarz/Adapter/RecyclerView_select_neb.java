@@ -6,12 +6,14 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.sql.Ref;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +57,7 @@ public class RecyclerView_select_neb extends RecyclerView.Adapter<RecyclerView_s
 
 
         TextView text;
+        ImageView close;
 
         public MyViewHolder(View view) {
             super(view);
@@ -62,6 +65,7 @@ public class RecyclerView_select_neb extends RecyclerView.Adapter<RecyclerView_s
 
 
             text = view.findViewById(R.id.text);
+            close = view.findViewById(R.id.close);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
@@ -167,7 +171,7 @@ public class RecyclerView_select_neb extends RecyclerView.Adapter<RecyclerView_s
 //        });
 //
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -176,11 +180,12 @@ public class RecyclerView_select_neb extends RecyclerView.Adapter<RecyclerView_s
                     mItemClickListener.onItemClick(position);
                 }
                 Postion_opend = position;
+//                alldata.remove(position);
+                Refr();
 
 //                RequestOrderActivity.set_fragment(position);
 
 
-                Refr();
 //
 
             }
