@@ -47,7 +47,6 @@ import sa.aqarz.Modules.CityModules;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
-import sa.aqarz.Settings.BaseActivity;
 import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
@@ -78,7 +77,7 @@ public class AllOrder_filtterActivity extends AppCompatActivity {
                 = new LinearLayoutManager(AllOrder_filtterActivity.this, LinearLayoutManager.VERTICAL, false);
         AllResultRec.setLayoutManager(layoutManager1);
 
-
+        page=1;
         try {
 
 

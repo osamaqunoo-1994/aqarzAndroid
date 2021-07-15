@@ -50,7 +50,6 @@ import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.R;
-import sa.aqarz.Settings.BaseActivity;
 import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;

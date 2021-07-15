@@ -35,7 +35,6 @@ import java.util.Set;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Modules.User;
 import sa.aqarz.R;
-import sa.aqarz.Settings.BaseActivity;
 import sa.aqarz.Settings.ForceUpdateAsync;
 import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;

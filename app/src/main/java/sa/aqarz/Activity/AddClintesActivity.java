@@ -38,7 +38,6 @@ import sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.Modules.User;
 import sa.aqarz.R;
-import sa.aqarz.Settings.BaseActivity;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;

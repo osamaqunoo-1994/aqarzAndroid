@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import sa.aqarz.Settings.BaseActivity;
 
 public class MainActivity extends AppCompatActivity {
 

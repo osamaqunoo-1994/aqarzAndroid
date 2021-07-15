@@ -42,9 +42,12 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".Activity.TesTTEStctivity"
+            android:label="@string/title_activity_tes_t_t_e_stctivity"></activity>
+        <activity
             android:name=".Activity.MyInterestsActivity"
             android:label="@string/title_activity_my_interests"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.FullScreenImageActivity"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -150,22 +150,24 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
                 finish();
             }
         });
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
-        if (Hawk.contains("lang")) {
-            Hawk.put("lang", "ar");
-
-        } else {
-            Hawk.put("lang", "ar");
-        }
+//        if (Hawk.contains("lang")) {
+//            Hawk.put("lang", "ar");
 //
-        Locale locale = new Locale(Hawk.get("lang").toString());
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
+//        } else {
+//            Hawk.put("lang", "ar");
 //        }
-
+////
+//        Locale locale = new Locale(Hawk.get("lang").toString());
+//        Locale.setDefault(locale);
+//        Configuration config = new Configuration();
+//        config.locale = locale;
+//        getBaseContext().getResources().updateConfiguration(config,
+//                getBaseContext().getResources().getDisplayMetrics());
+//        }
 
     }
 
@@ -189,9 +191,10 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
+
         WebService.loading(MyInterestsActivity.this, true);
 
-        clusterManager = new ClusterManager<MyItem>(MyInterestsActivity.this, mMap);
+//        clusterManager = new ClusterManager<MyItem>(MyInterestsActivity.this, mMap);
 
 
 //        mMap.setOnCameraIdleListener(clusterManager);
@@ -209,7 +212,6 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
         } catch (Exception e) {
 
         }
-
         allneb.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView_select_neb = new RecyclerView_select_neb(MyInterestsActivity.this, all_nebSelected);
         recyclerView_select_neb.addItemClickListener(new RecyclerView_select_neb.ItemClickListener() {
