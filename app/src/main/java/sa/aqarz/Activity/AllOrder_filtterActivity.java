@@ -84,7 +84,7 @@ public class AllOrder_filtterActivity extends AppCompatActivity {
             init_volley();
             WebService.loading(AllOrder_filtterActivity.this, true);
             VolleyService mVolleyService = new VolleyService(mResultCallback, AllOrder_filtterActivity.this);
-
+            ordersModules.clear();
             recyclerView_ordersx = new RecyclerView_ordersx(AllOrder_filtterActivity.this, ordersModules);
 
             AllResultRec.setAdapter(recyclerView_ordersx);
