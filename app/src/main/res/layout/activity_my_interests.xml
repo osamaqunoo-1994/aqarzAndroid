@@ -7,39 +7,235 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".Activity.MyInterestsActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layoutDirection="rtl"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@color/colorPrimary"
-            android:gravity="center">
+            android:layout_height="match_parent"
+            android:layoutDirection="rtl"
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="9dp"
-                android:src="@drawable/ic_back"
-                app:tint="@color/white" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/my_interests"
-                android:textColor="@color/white" />
+                android:layout_height="60dp"
+                android:background="@color/colorPrimary"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_back"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/my_interests"
+                    android:textColor="@color/white" />
 
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:id="@+id/open_city_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/back_searcj"
+                    android:gravity="center"
+                    android:paddingLeft="15dp"
+
+                    android:paddingRight="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/city"
+                        android:textColor="@color/black"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/selected_text_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text=""
+
+                        android:textColor="@color/black"
+                        android:textSize="14dp" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_baseline_arrow_drop_down_24"
+                        app:tint="@color/black" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/list_liner_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_marginTop="10dp"
+
+                    android:background="@drawable/back_searcj"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/back_searcj2"
+                            android:gravity="center"
+
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_search" />
+
+                            <EditText
+                                android:id="@+id/serch_edt"
+                                android:layout_width="match_parent"
+                                android:layout_height="45dp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:gravity="center_vertical"
+                                android:hint="@string/search"
+                                android:imeOptions="actionSearch"
+                                android:inputType="text"
+                                android:paddingLeft="7dp"
+                                android:paddingRight="7dp"
+                                android:textSize="11dp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent" />
+
+                        <Button
+                            android:id="@+id/search_ok_btn"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/button_login"
+                            android:text="@string/ok"
+
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/all_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
         </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="60dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/back_searcj"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/neb_Selected"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/allneb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/send_to_server"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+
+            android:layout_margin="10dp"
+            android:background="@drawable/button_login"
+            android:text="@string/ok"
+            android:textColor="@color/white" />
     </RelativeLayout>
 
 

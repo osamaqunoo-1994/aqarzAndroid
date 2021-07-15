@@ -966,5 +966,7 @@ Two working days to complete your order</string>
     <string name="btn_order_accept">طلبات مقبوله</string>
     <string name="title_activity_my_interests">Map</string>
     <string name="my_interests">My Interests</string>
+    <string name="neb_Selected">الاحياء المحدده</string>
+    <string name="neb_Selected_msg">تم تحديد الاحياء بنجاح</string>
 
 </resources>

@@ -979,4 +979,10 @@
 
     <string name="Selectvideo">اضف فيديو</string>
 
+
+
+
+    <string name="title_activity_my_interests">الخريطه</string>
+    <string name="my_interests">اهتماماتي</string>
+
 </resources>

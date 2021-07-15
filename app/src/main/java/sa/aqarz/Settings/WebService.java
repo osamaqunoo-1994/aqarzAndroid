@@ -106,6 +106,7 @@ public class WebService {
     public static String home_estate_custom_list = Domain + "home/estate/custom/list";
     public static String title_global_cities = Domain + "title/global/cities";
     public static String title_gloable = Domain + "title/global/";
+    public static String add_neb_interest = Domain + "add/neb/interest";
 //    public static String provider_code_send = Domain + "provider/code/send";
 
 

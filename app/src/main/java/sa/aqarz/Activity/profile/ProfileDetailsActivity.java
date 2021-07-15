@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,10 +21,13 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.orhanobut.hawk.Hawk;
 import com.squareup.picasso.Picasso;
 import com.xiaofeng.flowlayoutmanager.FlowLayoutManager;
 
 import org.json.JSONObject;
+
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import sa.aqarz.Activity.Auth.EditProfileActivity;
@@ -145,7 +149,20 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         WebService.loading(ProfileDetailsActivity.this, true);
 
 
+
+
+        Locale locale = new Locale(Hawk.get("lang").toString());
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+
+
+
         init_volley();
+
+
 
         try {
             id = getIntent().getStringExtra("id");

@@ -5,12 +5,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -19,10 +23,18 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
@@ -44,6 +56,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -59,14 +72,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
+import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Activity.profile.MyOffersActivity;
 import sa.aqarz.Activity.profile.ProfileDetailsActivity;
 import sa.aqarz.Adapter.RecyclerVie_member_service;
 import sa.aqarz.Adapter.RecyclerVie_member_service_m;
 import sa.aqarz.Adapter.RecyclerView_Course;
+import sa.aqarz.Adapter.RecyclerView_city;
 import sa.aqarz.Adapter.RecyclerView_experince;
+import sa.aqarz.Adapter.RecyclerView_select_neb;
 import sa.aqarz.DataBase.FeedReaderContract;
 import sa.aqarz.DataBase.FeedReaderDbHelper;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_QR;
@@ -89,12 +106,47 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
     static SupportMapFragment mapFragment;
     private FusedLocationProviderClient fusedLocationClient;
     private List<AlLNebModules.neb> all_neb = new ArrayList<>();
+    private final List<AlLNebModules.neb> all_nebSelected = new ArrayList<>();
     private ClusterManager<MyItem> clusterManager;
+    RecyclerView all_city;
+    LinearLayout open_city_list;
+    LinearLayout list_liner_city;
+
+    TextView selected_text_city;
+
+    Button search_ok_btn;
+
+    EditText serch_edt;
+
+    List<AllCityModules.City> dataCities = new ArrayList<>();
+
+    RecyclerView allneb;
+
+    RecyclerView_select_neb recyclerView_select_neb;
+
+    Button send_to_server;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_interests);
+
+
+        all_city = findViewById(R.id.all_city);
+        open_city_list = findViewById(R.id.open_city_list);
+        list_liner_city = findViewById(R.id.list_liner_city);
+        selected_text_city = findViewById(R.id.selected_text_city);
+        search_ok_btn = findViewById(R.id.search_ok_btn);
+        serch_edt = findViewById(R.id.serch_edt);
+        allneb = findViewById(R.id.allneb);
+        send_to_server = findViewById(R.id.send_to_server);
+
+        Locale locale = new Locale(Hawk.get("lang").toString());
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -126,18 +178,125 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
         clusterManager = new ClusterManager<MyItem>(MyInterestsActivity.this, mMap);
 
 
-        mMap.setOnCameraIdleListener(clusterManager);
-        mMap.setOnMarkerClickListener(clusterManager);
+//        mMap.setOnCameraIdleListener(clusterManager);
+//        mMap.setOnMarkerClickListener(clusterManager);
 
+        LinearLayoutManager layoutManager1
+                = new LinearLayoutManager(MyInterestsActivity.this, LinearLayoutManager.VERTICAL, false);
+        all_city.setLayoutManager(layoutManager1);
+
+
+        allneb.setLayoutManager(new GridLayoutManager(this, 3));
+        recyclerView_select_neb = new RecyclerView_select_neb(MyInterestsActivity.this, all_nebSelected);
+        allneb.setAdapter(recyclerView_select_neb);
+        open_city_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (list_liner_city.getVisibility() == View.VISIBLE) {
+                    list_liner_city.setVisibility(View.GONE);
+                } else {
+                    list_liner_city.setVisibility(View.VISIBLE);
+                }
+
+
+            }
+        });
+        send_to_server.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String all_ids = "";
+
+                if (all_nebSelected.size() != 0) {
+
+                    for (int i = 0; i < all_nebSelected.size(); i++) {
+
+                        if (all_ids.equals("")) {
+                            all_ids = all_nebSelected.get(i).getDistrictId() + "";
+                        } else {
+                            all_ids = all_ids + "," + all_nebSelected.get(i).getDistrictId() + "";
+
+                        }
+
+
+                    }
+
+                    init_volley();
+                    WebService.loading(MyInterestsActivity.this, true);
+
+                    try {
+                        JSONObject jsonObject = new JSONObject();
+                        jsonObject.put("neb_ids", all_ids + "");
+
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
+//            mVolleyService.getDataVolley("user", WebService.user + id + "");
+                        mVolleyService.postDataVolley("add_neb_interest", WebService.add_neb_interest, jsonObject);
+                    } catch (Exception e) {
+
+                    }
+
+                }
+
+
+            }
+        });
+
+        search_ok_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!serch_edt.getText().toString().equals("")) {
+                    init_volley();
+                    WebService.loading(MyInterestsActivity.this, true);
+
+                    try {
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
+//            mVolleyService.getDataVolley("user", WebService.user + id + "");
+                        mVolleyService.getDataVolley("title_global_cities", WebService.title_global_cities + "?name=" + serch_edt.getText().toString());
+                    } catch (Exception e) {
+
+                    }
+                } else {
+                    list_liner_city.setVisibility(View.GONE);
+
+
+                }
+
+            }
+        });
+
+        serch_edt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+
+                    init_volley();
+                    WebService.loading(MyInterestsActivity.this, true);
+
+                    try {
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
+//            mVolleyService.getDataVolley("user", WebService.user + id + "");
+                        mVolleyService.getDataVolley("title_global_cities", WebService.title_global_cities + "?name=" + serch_edt.getText().toString());
+                    } catch (Exception e) {
+
+                    }
+
+
+                    return true;
+                }
+                return false;
+            }
+        });
 
         init_volley();
 
         try {
             VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
-
 //            mVolleyService.getDataVolley("user", WebService.user + id + "");
             mVolleyService.getDataVolley("title_global_cities", WebService.title_global_cities + "");
-
         } catch (Exception e) {
 
         }
@@ -156,9 +315,24 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
                 if (neb.getInMyInterset().equals("1")) {
                     polygon.setFillColor(Color.TRANSPARENT);
                     all_neb.get(Integer.valueOf(polygon.getTag().toString())).setInMyInterset("0");
+
+
+                    for (int i = 0; i < all_nebSelected.size(); i++) {
+                        if (all_nebSelected.get(i).getDistrictId().equals(neb.getDistrictId())) {
+                            all_nebSelected.remove(i);
+                            recyclerView_select_neb.Refr();
+
+                        }
+                    }
+
+
                 } else {
                     polygon.setFillColor(color);
                     all_neb.get(Integer.valueOf(polygon.getTag().toString())).setInMyInterset("1");
+
+                    all_nebSelected.add(neb);
+                    recyclerView_select_neb.Refr();
+
 
                 }
 
@@ -219,7 +393,33 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
                     if (status) {
                         String message = response.getString("message");
 
-                        if (requestType.equals("title_global_cities")) {
+                        if (requestType.equals("add_neb_interest")) {
+
+
+                            try {
+
+                                BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(MyInterestsActivity.this);
+                                View parentView = getLayoutInflater().inflate(R.layout.success_message, null);
+                                Button close = parentView.findViewById(R.id.close);
+                                TextView text = parentView.findViewById(R.id.text);
+                                text.setText(getResources().getString(R.string.neb_Selected_msg));
+                                close.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        bottomSheerDialog.dismiss();
+                                        finish();
+                                    }
+                                });
+                                bottomSheerDialog.setContentView(parentView);
+
+                                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
+                                bottomSheerDialog.show();
+                            } catch (Exception e) {
+
+                            }
+
+
+                        } else if (requestType.equals("title_global_cities")) {
 
 //                            String data = response.getString("data");
 
@@ -228,42 +428,42 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
 
                             Gson gson = new Gson();
                             AllCityModules allCityModules = gson.fromJson(mJson, AllCityModules.class);
-
+                            dataCities = allCityModules.getData();
                             mMap.clear();
-                            for (int i = 0; i < allCityModules.getData().size(); i++) {
-//                                double offset = i / 60d;
-//                                lat = lat + offset;
-//                                lng = lng + offset;
-                                MyItem offsetItem = new MyItem(Double.valueOf(allCityModules.getData().get(i).getCenter().getCoordinates().get(1)), Double.valueOf(allCityModules.getData().get(i).getCenter().getCoordinates().get(0)), allCityModules.getData().get(i).getNameAr() + "", "" + i);
-                                clusterManager.addItem(offsetItem);
-                            }
-
-                            LatLng latLng = new LatLng(Double.valueOf(allCityModules.getData().get(0).getCenter().getCoordinates().get(1)), Double.valueOf(allCityModules.getData().get(0).getCenter().getCoordinates().get(0)));
-
-                            CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(4.0f).build();
-                            CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
-                            mMap.moveCamera(cameraUpdate);
-
-
-                            clusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyItem>() {
-                                @Override
-                                public boolean onClusterItemClick(MyItem myItem) {
-
-
-                                    init_volley();
-                                    WebService.loading(MyInterestsActivity.this, true);
-
-                                    try {
-                                        VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
-//            mVolleyService.getDataVolley("user", WebService.user + id + "");
-                                        mVolleyService.getDataVolley("title_gloable", WebService.title_gloable + myItem.getSnippet() + "/neb");
-
-                                    } catch (Exception e) {
-
-                                    }
-                                    return false;
-                                }
-                            });
+//                            for (int i = 0; i < allCityModules.getData().size(); i++) {
+////                                double offset = i / 60d;
+////                                lat = lat + offset;
+////                                lng = lng + offset;
+//                                MyItem offsetItem = new MyItem(Double.valueOf(allCityModules.getData().get(i).getCenter().getCoordinates().get(1)), Double.valueOf(allCityModules.getData().get(i).getCenter().getCoordinates().get(0)), allCityModules.getData().get(i).getNameAr() + "", "" + i);
+//                                clusterManager.addItem(offsetItem);
+//                            }
+//
+//                            LatLng latLng = new LatLng(Double.valueOf(allCityModules.getData().get(0).getCenter().getCoordinates().get(1)), Double.valueOf(allCityModules.getData().get(0).getCenter().getCoordinates().get(0)));
+//
+//                            CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(4.0f).build();
+//                            CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+//                            mMap.moveCamera(cameraUpdate);
+//
+//
+//                            clusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyItem>() {
+//                                @Override
+//                                public boolean onClusterItemClick(MyItem myItem) {
+//
+//
+//                                    init_volley();
+//                                    WebService.loading(MyInterestsActivity.this, true);
+//
+//                                    try {
+//                                        VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
+////            mVolleyService.getDataVolley("user", WebService.user + id + "");
+//                                        mVolleyService.getDataVolley("title_gloable", WebService.title_gloable + myItem.getSnippet() + "/neb");
+//
+//                                    } catch (Exception e) {
+//
+//                                    }
+//                                    return false;
+//                                }
+//                            });
 
 //                            FeedReaderDbHelper dbHelper = new FeedReaderDbHelper(MyInterestsActivity.this);
 //
@@ -285,6 +485,32 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
 //                                System.out.println("newRowId" + newRowId);
 //
 //                            }
+
+
+                            RecyclerView_city recyclerView_city = new RecyclerView_city(MyInterestsActivity.this, allCityModules.getData());
+                            recyclerView_city.addItemClickListener(new RecyclerView_city.ItemClickListener() {
+                                @Override
+                                public void onItemClick(int position) {
+
+                                    list_liner_city.setVisibility(View.GONE);
+                                    selected_text_city.setText(allCityModules.getData().get(position).getNameAr() + "");
+                                    init_volley();
+                                    WebService.loading(MyInterestsActivity.this, true);
+
+                                    try {
+                                        VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
+//            mVolleyService.getDataVolley("user", WebService.user + id + "");
+                                        mVolleyService.getDataVolley("title_gloable", WebService.title_gloable + allCityModules.getData().get(position).getCityId() + "/neb");
+
+                                    } catch (Exception e) {
+
+                                    }
+
+
+                                }
+                            });
+
+                            all_city.setAdapter(recyclerView_city);
 
 
 //                            set_locationCity(allCityModules.getData());
@@ -352,7 +578,7 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
 
 //                                polygon.setFillColor(color);
                                 polygon.setStrokeColor(Color.parseColor("#FE9457"));
-                                polygon.setStrokeWidth(5);
+                                polygon.setStrokeWidth(8);
                             }
 
 
