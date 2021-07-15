@@ -200,7 +200,15 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(MyInterestsActivity.this, LinearLayoutManager.VERTICAL, false);
         all_city.setLayoutManager(layoutManager1);
+        init_volley();
 
+        try {
+            VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
+//            mVolleyService.getDataVolley("user", WebService.user + id + "");
+            mVolleyService.getDataVolley("title_global_cities", WebService.title_global_cities + "");
+        } catch (Exception e) {
+
+        }
 
         allneb.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView_select_neb = new RecyclerView_select_neb(MyInterestsActivity.this, all_nebSelected);
@@ -345,15 +353,7 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
             }
         });
 
-        init_volley();
 
-        try {
-            VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
-//            mVolleyService.getDataVolley("user", WebService.user + id + "");
-            mVolleyService.getDataVolley("title_global_cities", WebService.title_global_cities + "");
-        } catch (Exception e) {
-
-        }
         on_click_maps_marker();
 
 
