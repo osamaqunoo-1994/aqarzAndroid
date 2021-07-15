@@ -77,7 +77,7 @@ public class AllOrder_filtterActivity extends AppCompatActivity {
                 = new LinearLayoutManager(AllOrder_filtterActivity.this, LinearLayoutManager.VERTICAL, false);
         AllResultRec.setLayoutManager(layoutManager1);
 
-        page=1;
+        page = 1;
         try {
 
 
@@ -144,6 +144,7 @@ public class AllOrder_filtterActivity extends AppCompatActivity {
                         } else if (type.equals("all")) {
                             mVolleyService.getDataVolley("order", WebService.fund_Request + "?myOwn=1" + "&page=" + page);
                         }
+
 
 //            mVolleyService.getDataVolley("user", WebService.user + id + "");
                     } catch (Exception e) {
