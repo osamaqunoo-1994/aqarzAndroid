@@ -15,8 +15,8 @@
     <string name="success">Success</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
-    <string name="google_maps_keys" templateMergeStrategy="preserve" translatable="false">AIzaSyD7_RAhw_L6sPjaWPWJ825zuA4-5RA9o-w</string>
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyD7_RAhw_L6sPjaWPWJ825zuA4-5RA9o-w</string>
+    <string name="google_maps_keys" templateMergeStrategy="preserve" translatable="false">AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc</string>
     <string name="google_maps_keyaa" templateMergeStrategy="preserve" translatable="false">AIzaSyASdJamfAg4qsuiXSKebSefmQlVBAzhtlk</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
