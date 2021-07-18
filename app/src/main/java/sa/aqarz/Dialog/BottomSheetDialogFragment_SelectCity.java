@@ -62,6 +62,7 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
     ProgressBar progress;
 
     private ItemClickListener mItemClickListener;
+    RecyclerView_city_bootom_sheets recyclerView_city_bootom_sheets;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -80,15 +81,54 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 //-----
+                WebService.loading(getActivity(), true);
+
+                page = 1;
+                progress.setVisibility(View.VISIBLE);
+                init_volley();
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+
+                mVolleyService.getDataVolley_with_time("city", WebService.cities_page + "?is_all=1" + "&page=" + page + "&name=" + search.getText().toString());
+
                 return actionId == EditorInfo.IME_ACTION_SEARCH;
             }
         });
         search_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                page = 1;
+                WebService.loading(getActivity(), true);
+
+                progress.setVisibility(View.VISIBLE);
+                init_volley();
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+
+                mVolleyService.getDataVolley_with_time("city", WebService.cities_page + "?is_all=1" + "&page=" + page + "&name=" + search.getText().toString());
+
 
             }
         });
+
+        Application.AllCity.clear();
+        cityModules_list.clear();
+
+        recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets(getContext(), Application.AllCity);
+        recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_bootom_sheets.ItemClickListener() {
+
+
+            @Override
+            public void onItemClick(int position) {
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(Integer.valueOf(Application.AllCity.get(position).getSerial_city()), Application.AllCity.get(position).getName());
+                }
+            }
+        });
+
+        list_city.setAdapter(recyclerView_city_bootom_sheets);
+
+
 //        if (Application.AllCity.size() != 0) {
         if (false) {
             progress.setVisibility(View.GONE);
@@ -108,10 +148,8 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
 
         } else {
             init_volley();
-
             VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-
-            mVolleyService.getDataVolley_with_time("city", WebService.cities);
+            mVolleyService.getDataVolley_with_time("city", WebService.cities_page + "?is_all=1");
         }
         list_city.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -120,8 +158,12 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
                 if (!recyclerView.canScrollVertically(1)) { //1 for down
 
                     page = page + 1;
+                    progress.setVisibility(View.VISIBLE);
+                    init_volley();
 
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 
+                    mVolleyService.getDataVolley_with_time("city", WebService.cities_page + "?is_all=1" + "&page=" + page + "&name=" + search.getText().toString());
 //                    WebService.loading(getActivity(), true);
 //                    init_volley();
 //                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
@@ -160,12 +202,16 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
 
                         String data = response.getString("data");
                         Hawk.put("AllCity", data);
-//                        JSONObject jsonObjectdata = new JSONObject(data);
-//                        String datax = jsonObjectdata.getString("data");
+                        JSONObject jsonObjectdata = new JSONObject(data);
+                        String datax = jsonObjectdata.getString("data");
 
-                        JSONArray jsonArray = new JSONArray(data);
+                        JSONArray jsonArray = new JSONArray(datax);
+
+                        if (page == 1) {
+                            cityModules_list.clear();
+                            Application.AllCity.clear();
+                        }
                         progress.setVisibility(View.GONE);
-                        cityModules_list.clear();
                         for (int i = 0; i < jsonArray.length(); i++) {
 
                             JsonParser parser = new JsonParser();
@@ -178,22 +224,7 @@ public class BottomSheetDialogFragment_SelectCity extends BottomSheetDialogFragm
                             Application.AllCity.add(Store_M);
 
                         }
-
-                        RecyclerView_city_bootom_sheets recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets(getContext(), Application.AllCity);
-                        recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_bootom_sheets.ItemClickListener() {
-
-
-                            @Override
-                            public void onItemClick(int position) {
-                                if (mItemClickListener != null) {
-                                    mItemClickListener.onItemClick(Integer.valueOf(Application.AllCity.get(position).getSerial_city()), Application.AllCity.get(position).getName());
-                                }
-                            }
-                        });
-
-                        list_city.setAdapter(recyclerView_city_bootom_sheets);
-
-
+                        recyclerView_city_bootom_sheets.Refr();
                     } else {
                         String message = response.getString("message");
 

@@ -78,6 +78,8 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
         TextView space;
         TextView name_estate;
         TextView new_offer;
+        TextView number_id;
+        TextView date;
         ImageView image_icon;
         ImageView add_favorite;
 
@@ -95,6 +97,8 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
             image_icon = view.findViewById(R.id.image_icon);
             add_favorite = view.findViewById(R.id.add_favorite);
             prof_name = view.findViewById(R.id.prof_name);
+            number_id = view.findViewById(R.id.number_id);
+            date = view.findViewById(R.id.date);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
@@ -102,7 +106,7 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
     }
 
     public RecyclerView_orders_demandsx(Context context, List<demandsModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_orders_demandsx.alldata = alldata;
         this.context = context;
     }
 
@@ -132,8 +136,10 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
         holder.price.setText(alldata.get(position).getPriceFrom() + " - " + alldata.get(position).getPriceTo());
 //        holder.view_type.setText(alldata.get(position).getDirEstate());
         holder.space.setText(alldata.get(position).getAreaFrom() + " - " + alldata.get(position).getAreaTo());
-        holder.name_estate.setText(alldata.get(position).getEstateTypeName()+"");
+        holder.name_estate.setText(alldata.get(position).getEstateTypeName() + "");
         holder.prof_name.setText(alldata.get(position).getOwnerName() + "");
+        holder.number_id.setText("#" + alldata.get(position).getId() + "");
+        holder.date.setText("" + alldata.get(position).getCreatedAt() + "");
 
 
         if (alldata.get(position).getAddress() != null) {

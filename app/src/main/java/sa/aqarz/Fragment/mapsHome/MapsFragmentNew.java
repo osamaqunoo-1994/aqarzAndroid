@@ -347,8 +347,14 @@ public class MapsFragmentNew extends Fragment {
 //
 //                city_id_postion = "";
 //                Hawk.put("city_id_postion", "");
-                check_lastsenareo();
+//                check_lastsenareo();
+                region_id_postion = "";
+                Hawk.put("region_id_postion", "");
 
+                city_id_postion = "";
+                Hawk.put("city_id_postion", "");
+//                set_locationRegions();
+                check_lastsenareo();
 //                set_locationRegions();
 
             }
@@ -703,8 +709,20 @@ public class MapsFragmentNew extends Fragment {
 
 //                                Intent intent = new Intent(activity, OrderListActivity.class);
 //                                activity.startActivity(intent);
+                                        WebService.loading(activity, true);
+                                        init_volley();
+                                        VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
+
+//                                        mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + city_id_postion + "/list");
+//                                        mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + city_id_postion + "/list?is_all=0");
+                                        mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + city_location_list.get(Integer.valueOf(city_id_postion)).getSerial_city() + "/list?is_all=0");
 
 
+//                                        is_first_time = false;
+//                                        LatLng sydney = new LatLng(Double.valueOf(lat + ""), Double.valueOf(lan + ""));
+//                                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 8));
+//
+//                                        getAllEstate();
                                     } else if (type_selected.equals("offer")) {
 
                                         is_first_time = false;
@@ -831,9 +849,15 @@ public class MapsFragmentNew extends Fragment {
 
                         } else if (type_selected.equals("Market")) {
 
+                            WebService.loading(activity, true);
+                            init_volley();
+                            VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-                            Intent intent = new Intent(activity, OrderListActivity.class);
-                            activity.startActivity(intent);
+                            mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + city_location_list.get(Integer.valueOf(city_id_postion)).getSerial_city() + "/list?is_all=0");
+
+
+//                            Intent intent = new Intent(activity, OrderListActivity.class);
+//                            activity.startActivity(intent);
 
 
                         } else if (type_selected.equals("offer")) {
@@ -947,7 +971,7 @@ public class MapsFragmentNew extends Fragment {
                     Intent intent = new Intent(activity, AllOrderActivity.class);
 //                    intent.putExtra("id_aqarz", homeModules_aqares.get(Integer.valueOf(Integer.valueOf(number))).getId() + "");
 //                    System.out.println("id_aqarz" + homeModules_aqares.get(Integer.valueOf(Integer.valueOf(number))).getId());
-
+                    intent.putExtra("type", type_selected);
 
                     activity.startActivity(intent);
 
@@ -1251,8 +1275,30 @@ public class MapsFragmentNew extends Fragment {
     private static Bitmap getMarkerBitmapFromViewNibores(String Price, String numbers) {
         View customMarkerView = ((LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.marker_map_custom_nu, null);
         TextView markerImageView = customMarkerView.findViewById(R.id.numb);
+        ImageView back_ground = customMarkerView.findViewById(R.id.back_ground);
 //        markerImageView.setImageResource(resId);
         markerImageView.setText(Price);
+
+
+        if (type_selected.equals("Real")) {
+
+            back_ground.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_marker_location1));
+//            number_.setTextColor(activity.getResources().getColor(R.color.c1));
+//            number_.setText(city_location_list.get(Integer.valueOf(numbers)).getCount_fund_request() + "");
+
+        } else if (type_selected.equals("Market")) {
+            back_ground.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_marker_location2));
+//            number_.setTextColor(activity.getResources().getColor(R.color.c2));
+//            number_.setText(regionModules_list.get(Integer.valueOf(numbers)).getRequests() + "");
+//            number_.setText(city_location_list.get(Integer.valueOf(numbers)).getCount_app_request() + "");
+
+        } else if (type_selected.equals("offer")) {
+            back_ground.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_marker_location));
+//            number_.setTextColor(activity.getResources().getColor(R.color.colorPrimary));
+//            number_.setText(city_location_list.get(Integer.valueOf(numbers)).getCount_app_estate() + "");
+
+
+        }
 
 
         customMarkerView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
@@ -1266,6 +1312,8 @@ public class MapsFragmentNew extends Fragment {
         if (drawable != null)
             drawable.draw(canvas);
         customMarkerView.draw(canvas);
+
+
         return returnedBitmap;
     }
 

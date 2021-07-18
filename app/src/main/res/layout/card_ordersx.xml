@@ -101,10 +101,12 @@
 
 
                         android:fontFamily="@font/din_bold"
+                        android:textStyle="bold"
+
                         android:text=""
 
                         android:textColor="@color/colorPrimary"
-                        android:textSize="14dp" />
+                        android:textSize="16dp" />
 
                 </LinearLayout>
 
@@ -525,7 +527,7 @@
                 android:layout_height="35dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/button_login"
+                android:background="@drawable/offer_btn"
                 android:fontFamily="@font/din_bold"
                 android:gravity="center"
                 android:paddingLeft="20dp"
@@ -596,7 +598,7 @@
                 android:layout_height="35dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/back_image_order_list"
+                android:background="@drawable/wattings_btn"
                 android:fontFamily="@font/din_bold"
                 android:gravity="center"
                 android:paddingLeft="20dp"

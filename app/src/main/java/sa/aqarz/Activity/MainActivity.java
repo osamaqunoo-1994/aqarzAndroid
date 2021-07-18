@@ -403,10 +403,52 @@ public class MainActivity extends AppCompatActivity {
                             .show();
                 } else {
 
-                    Intent intent = new Intent(MainActivity.this, AddAqarsActivity.class);
-                    intent.putExtra("id", "");
-                    startActivity(intent);
+
 //
+
+
+
+
+                    LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    final View popupView = layoutInflater.inflate(R.layout.addaqarez, null);
+
+
+                    LinearLayout addAqares = popupView.findViewById(R.id.addAqares);
+                    LinearLayout RequstAqars = popupView.findViewById(R.id.RequstAqars);
+                    ImageView close = popupView.findViewById(R.id.close);
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    addAqares.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MainActivity.this, AddAqarsActivity.class);
+                            intent.putExtra("id", "");
+                            startActivity(intent);
+                            alertDialog.dismiss();
+                        }
+                    });
+                    RequstAqars.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MainActivity.this, AqarzOrActivity.class);
+                            intent.putExtra("id", "");
+                            startActivity(intent);
+                            alertDialog.dismiss();
+                        }
+                    });   close.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alertDialog.dismiss();
+                        }
+                    });
+
+//            alertDialog_country =
+                    builder.setView(popupView);
+
+
+                    alertDialog = builder.show();
+                    alertDialog.getWindow().setGravity(Gravity.BOTTOM);
+
+                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 }
 
 
@@ -448,12 +490,24 @@ public class MainActivity extends AppCompatActivity {
                     LinearLayout contact_us = popupView.findViewById(R.id.contact_us);
                     LinearLayout Technical_support = popupView.findViewById(R.id.Technical_support);
                     LinearLayout MOreAqarezMan = popupView.findViewById(R.id.MOreAqarezMan);
+                    LinearLayout market = popupView.findViewById(R.id.market);
                     realState.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
 //                            Intent intent = new Intent(MainActivity.this, OrderListActivity.class);
                             Intent intent = new Intent(MainActivity.this, AllOrderActivity.class);
-//                                intent.putExtra("from", "splash");
+                            intent.putExtra("type", "Real");
+                            startActivity(intent);
+//                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+                        }
+                    });
+                    market.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+//                            Intent intent = new Intent(MainActivity.this, OrderListActivity.class);
+                            Intent intent = new Intent(MainActivity.this, AllOrderActivity.class);
+                            intent.putExtra("type", "market");
                             startActivity(intent);
 //                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 

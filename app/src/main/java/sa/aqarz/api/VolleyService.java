@@ -206,6 +206,64 @@ public class VolleyService {
 
         }
     }
+    public void getAsync(final String requestType, String url) {
+        try {
+
+            AsyncHttpClient client = new AsyncHttpClient();
+            final int DEFAULT_TIMEOUT = 20 * 6000;
+            client.setTimeout(DEFAULT_TIMEOUT);
+            WebService.Header_Async(client, true);
+            client.get(url, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject responseBody) {
+                    System.out.println("responseBody" + responseBody.toString());
+
+
+                    if (mResultCallback != null) {
+                        mResultCallback.notifySuccess(requestType, responseBody);
+                    }
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                    System.out.println("responseBody" + responseString);
+
+                    if (mResultCallback != null)
+                        mResultCallback.notify_Async_Error(requestType, responseString);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    try {
+
+                        System.out.println("responseBody" + errorResponse.toString());
+
+
+                        mResultCallback.notify_Async_Error(requestType, errorResponse.getString("message"));
+
+                    } catch (Exception e) {
+
+                    }
+
+                }
+
+                @Override
+                public void onUserException(Throwable error) {
+                    System.out.println("responseBody" + error.toString());
+                    mResultCallback.notify_Async_Error(requestType, error.toString());
+
+                }
+
+                @Override
+                public void onProgress(long bytesWritten, long totalSize) {
+
+
+                }
+            });
+        } catch (Exception e) {
+
+        }
+    }
 
     public void getDataVolley_with_time(final String requestType, String url) {
         try {

@@ -39,6 +39,7 @@ public class WebService {
     public static String profile_image = Domain + "profile/image";
     public static String operation_type = Domain + "operation/type";
     public static String cities = Domain + "cities";
+    public static String cities_page = Domain + "cities_page";
     public static String banks = Domain + "banks";
     public static String deferredInstallment = Domain + "deferredInstallment/Request";
     public static String finance = Domain + "finance/Request";

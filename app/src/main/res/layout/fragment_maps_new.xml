@@ -132,7 +132,7 @@
                         android:textColor="@color/color_filter"
                         android:textSize="11dp"
 
-                        android:visibility="gone" />
+                        android:visibility="visible" />
 
                     <TextView
                         android:id="@+id/OfferOrder"

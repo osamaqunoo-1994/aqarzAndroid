@@ -69,12 +69,27 @@ public class BottomSheetDialogFragment_SelectNeighborhoods extends BottomSheetDi
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 //-----
+                WebService.loading(getActivity(), true);
+
+                init_volley();
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+
+                mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + id_city + "/list"+"?is_all=1&name="+search.getText().toString());
+
                 return actionId == EditorInfo.IME_ACTION_SEARCH;
             }
         });
         search_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                WebService.loading(getActivity(), true);
+
+                init_volley();
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+
+                mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + id_city + "/list"+"?is_all=1&name="+search.getText().toString());
 
             }
         });
@@ -87,7 +102,7 @@ public class BottomSheetDialogFragment_SelectNeighborhoods extends BottomSheetDi
 
         VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 
-        mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + id_city + "/list");
+        mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + id_city + "/list"+"?is_all=1&name="+search.getText().toString());
 
         return v;
     }

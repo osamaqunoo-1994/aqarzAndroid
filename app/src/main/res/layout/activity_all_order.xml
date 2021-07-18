@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F2F2F2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,18 +70,22 @@
             android:orientation="horizontal">
 
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
 
 
-                android:layout_weight="1">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/Real_Estate_order_layout"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/button_login"
                     android:gravity="center"
                     android:orientation="horizontal"
@@ -99,13 +104,13 @@
                         android:text="@string/Enabled"
 
                         android:textColor="@color/white"
-                        android:textSize="9dp" />
+                        android:textSize="5dp" />
 
                     <ImageView
                         android:id="@+id/Real_Estate_order_image"
 
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:src="@drawable/ic_group_1580" />
@@ -116,12 +121,12 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="4dp"
+                        android:layout_marginBottom="2dp"
                         android:gravity="center"
 
                         android:text="@string/Real_Estate_order"
                         android:textColor="@color/white"
-                        android:textSize="12dp"
+                        android:textSize="11dp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -129,8 +134,42 @@
                         android:layout_height="20dp" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/market_order_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/circle_w"
+                    android:gravity="center"
+                    android:orientation="horizontal"
 
-            </RelativeLayout>
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp">
+
+
+                    <TextView
+                        android:id="@+id/market_order_text"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="2dp"
+                        android:gravity="center"
+
+                        android:text="@string/title_market"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="11dp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
 
 
             <LinearLayout
@@ -202,7 +241,7 @@
                     android:id="@+id/favorit_button"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:background="@drawable/circle_requst"
+                    android:background="@drawable/circle_w"
                     android:padding="6dp"
                     android:src="@drawable/ic_love"
                     android:visibility="visible" />
@@ -722,6 +761,8 @@
 
 
                         <LinearLayout
+                            android:id="@+id/price_fund"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -749,6 +790,57 @@
 
 
                         </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/price_market"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginRight="20dp"
+                            android:gravity="center"
+                            android:paddingBottom="5dp">
+
+
+                            <EditText
+                                android:id="@+id/Les_price"
+                                android:layout_width="match_parent"
+                                android:layout_height="42dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/mash"
+                                android:fontFamily="@font/din_light"
+                                android:gravity="center_vertical"
+                                android:hint="@string/Les_price"
+                                android:inputType="number"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text=""
+                                android:textColorHint="@color/hint_color"
+                                android:textSize="@dimen/_10sdp" />
+
+                            <LinearLayout
+                                android:layout_width="10dp"
+                                android:layout_height="wrap_content" />
+
+                            <EditText
+                                android:id="@+id/Maximum_price"
+                                android:layout_width="match_parent"
+                                android:layout_height="42dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/mash"
+                                android:fontFamily="@font/din_light"
+                                android:gravity="center_vertical"
+                                android:hint="@string/Maximum_price"
+                                android:inputType="number"
+                                android:paddingLeft="10dp"
+
+                                android:paddingRight="10dp"
+                                android:text=""
+                                android:textColorHint="@color/hint_color"
+                                android:textSize="@dimen/_10sdp" />
+
+
+                        </LinearLayout>
+
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -761,8 +853,60 @@
                             android:textColor="@color/colorPrimary"
                             android:textSize="15dp" />
 
+                        <LinearLayout
+                            android:id="@+id/area_market"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginRight="20dp"
+                            android:gravity="center"
+                            android:paddingBottom="5dp">
+
+
+                            <EditText
+                                android:id="@+id/Les_space"
+                                android:layout_width="match_parent"
+                                android:layout_height="42dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/mash"
+                                android:fontFamily="@font/din_light"
+                                android:gravity="center_vertical"
+                                android:hint="@string/Les_space"
+                                android:inputType="number"
+
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text=""
+                                android:textColorHint="@color/hint_color"
+                                android:textSize="@dimen/_10sdp" />
+
+                            <LinearLayout
+                                android:layout_width="10dp"
+                                android:layout_height="wrap_content" />
+
+                            <EditText
+                                android:id="@+id/Maximum_space"
+                                android:layout_width="match_parent"
+                                android:layout_height="42dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/mash"
+                                android:fontFamily="@font/din_light"
+                                android:gravity="center_vertical"
+                                android:hint="@string/Maximum_space"
+                                android:inputType="number"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+
+                                android:text=""
+                                android:textColorHint="@color/hint_color"
+                                android:textSize="@dimen/_10sdp" />
+
+
+                        </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/area_real"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"

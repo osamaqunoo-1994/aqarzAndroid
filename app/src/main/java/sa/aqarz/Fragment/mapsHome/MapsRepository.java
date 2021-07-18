@@ -288,7 +288,7 @@ public class MapsRepository {
             }
         };
         mVolleyService = new VolleyService(mResultCallback, activity);
-        mVolleyService.getDataVolley("cities", WebService.cities + "?state_id=" + state_id);//&request_type=pay
+        mVolleyService.getAsync("cities", WebService.cities + "?state_id=" + state_id + "&is_all=0");//&request_type=pay
 
     }
 
@@ -302,7 +302,6 @@ public class MapsRepository {
                 //                WebService.loading(activity, false);
                 try {
                     WebService.loading(activity, false);
-
 
                     JsonParser parser = new JsonParser();
                     JsonElement mJson = parser.parse(response.toString());

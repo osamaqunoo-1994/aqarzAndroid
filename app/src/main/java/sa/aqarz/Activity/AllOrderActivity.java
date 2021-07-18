@@ -1,11 +1,13 @@
 package sa.aqarz.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -112,14 +114,57 @@ public class AllOrderActivity extends AppCompatActivity {
     static List<OrdersModules> ordersModules = new ArrayList<>();
     static List<TypeModules> type_list = new ArrayList<>();
     static List<CityModules> cityModules_list_filtter = new ArrayList<>();
+    static List<demandsModules> demandsModules_list = new ArrayList<>();
 
     ImageView back;
+
+    LinearLayout Real_Estate_order_layout;
+    LinearLayout market_order_layout;
+
+    TextView market_order_text;
+    TextView Real_Estate_order_text;
+
+
+    ImageView Real_Estate_order_image;
+
+
+    static String type = "Real";
+
+
+    LinearLayout price_market;
+    LinearLayout price_fund;
+    LinearLayout area_market;
+    LinearLayout area_real;
+
+
+    static EditText Les_price;
+    static EditText Maximum_price;
+    static EditText Les_space;
+    static EditText Maximum_space;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_order);
         activity = this;
+
+        price_market = findViewById(R.id.price_market);
+        price_fund = findViewById(R.id.price_fund);
+        area_market = findViewById(R.id.area_market);
+        area_real = findViewById(R.id.area_real);
+
+        Les_price = findViewById(R.id.Les_price);
+        Maximum_price = findViewById(R.id.Maximum_price);
+        Les_space = findViewById(R.id.Les_space);
+        Maximum_space = findViewById(R.id.Maximum_space);
+
+        Real_Estate_order_layout = findViewById(R.id.Real_Estate_order_layout);
+        market_order_layout = findViewById(R.id.market_order_layout);
+        market_order_text = findViewById(R.id.market_order_text);
+        Real_Estate_order_text = findViewById(R.id.Real_Estate_order_text);
+        Real_Estate_order_image = findViewById(R.id.Real_Estate_order_image);
+
 
         AllResultRec = findViewById(R.id.AllResultRec);
         filtter_city = findViewById(R.id.filtter_city);
@@ -179,8 +224,6 @@ public class AllOrderActivity extends AppCompatActivity {
         AllResultRec.addOnScrollListener(recyclerViewOnScrollListener);
 
 
-
-
         if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
             premium.setVisibility(View.VISIBLE);
 //            offer.setVisibility(View.VISIBLE);
@@ -192,6 +235,7 @@ public class AllOrderActivity extends AppCompatActivity {
 //            offer.setVisibility(View.GONE);
             not_premium.setVisibility(View.VISIBLE);
         }
+        change_type_bettwen_market_and_real();
         set_city_fillter();
         setdata();
         action_button();
@@ -234,12 +278,132 @@ public class AllOrderActivity extends AppCompatActivity {
         status_3.setVisibility(View.GONE);
 
 
-        AllOrder_number.setText(Settings.getSettings().getAllRequestFund() + "");
-        today_number.setText(Settings.getSettings().getRequestFund() + "");
-        Myoffer_number.setText(Settings.getSettings().getMyRequestFundOffer() + "");
+    }
 
-        setFiltter();
+    public void change_type_bettwen_market_and_real() {
 
+        Real_Estate_order_layout.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
+            @Override
+            public void onClick(View v) {
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+                market_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
+                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
+                market_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
+                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+                type = "Real";
+                setFiltter();
+                price_market.setVisibility(View.GONE);
+                price_fund.setVisibility(View.VISIBLE);
+                area_market.setVisibility(View.GONE);
+                area_real.setVisibility(View.VISIBLE);
+            }
+        });
+        market_order_layout.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
+            @Override
+            public void onClick(View v) {
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
+                market_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
+                market_order_text.setTextColor(getResources().getColor(R.color.white));
+
+
+                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_IN);
+
+                type = "market";
+                setFiltter();
+                price_market.setVisibility(View.VISIBLE);
+                price_fund.setVisibility(View.GONE);
+                area_market.setVisibility(View.VISIBLE);
+                area_real.setVisibility(View.GONE);
+
+
+            }
+        });
+
+
+        try {
+            String types = getIntent().getStringExtra("type");
+
+
+            if (types.equals("main")) {
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+                market_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
+                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
+                market_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
+                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+                type = "Real";
+                setFiltter();
+                AllOrder_number.setText(Settings.getSettings().getAllRequestFund() + "");
+                today_number.setText(Settings.getSettings().getRequestFund() + "");
+                Myoffer_number.setText(Settings.getSettings().getMyRequestFundOffer() + "");
+
+                price_market.setVisibility(View.GONE);
+                price_fund.setVisibility(View.VISIBLE);
+                area_market.setVisibility(View.GONE);
+                area_real.setVisibility(View.VISIBLE);
+
+
+            } else if (types.equals("Real")) {
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+                market_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
+                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
+                market_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
+                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+                type = "Real";
+                setFiltter();
+                AllOrder_number.setText(Settings.getSettings().getAllRequestFund() + "");
+                today_number.setText(Settings.getSettings().getRequestFund() + "");
+                Myoffer_number.setText(Settings.getSettings().getMyRequestFundOffer() + "");
+
+                price_market.setVisibility(View.GONE);
+                price_fund.setVisibility(View.VISIBLE);
+                area_market.setVisibility(View.GONE);
+                area_real.setVisibility(View.VISIBLE);
+
+
+            } else {//Market
+//                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
+//                market_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+//
+//                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
+//                market_order_text.setTextColor(getResources().getColor(R.color.white));
+//
+//
+//                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_IN);
+//
+//                type = "market";
+//                setFiltter();
+//                AllOrder_number.setText(Settings.getSettings().getAllRequest() + "");
+//                today_number.setText(Settings.getSettings().getMarketDemands() + "");
+//                Myoffer_number.setText(Settings.getSettings().getMyRequestOffer() + "");
+//
+//                price_market.setVisibility(View.VISIBLE);
+//                price_fund.setVisibility(View.GONE);
+//                area_market.setVisibility(View.VISIBLE);
+//                area_real.setVisibility(View.GONE);
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+                market_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
+                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
+                market_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
+                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+                type = "Real";
+                setFiltter();
+                AllOrder_number.setText(Settings.getSettings().getAllRequestFund() + "");
+                today_number.setText(Settings.getSettings().getRequestFund() + "");
+                Myoffer_number.setText(Settings.getSettings().getMyRequestFundOffer() + "");
+
+                price_market.setVisibility(View.GONE);
+                price_fund.setVisibility(View.VISIBLE);
+                area_market.setVisibility(View.GONE);
+                area_real.setVisibility(View.VISIBLE);
+            }
+        } catch (Exception e) {
+            setFiltter();
+
+        }
     }
 
     public void action_button() {
@@ -692,13 +856,39 @@ public class AllOrderActivity extends AppCompatActivity {
             }
         }
 
-        String url = WebService.fund_Request + "?" + type_requst_text + offer_status_text + search_text_s + price_id_text + area_estate_id_text + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
+        String url = "";
+        if (type.equals("Real")) {
 
-        WebService.loading(activity, true);
+            url = WebService.fund_Request + "?" + type_requst_text + offer_status_text + search_text_s + price_id_text + area_estate_id_text + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
+            WebService.loading(activity, true);
 
-        init_volley();
-        VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
-        mVolleyService.getDataVolley("fund_Request", url);
+            init_volley();
+            VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
+            mVolleyService.getDataVolley("fund_Request", url);
+        } else {
+            String te = "";
+            if (!Les_price.getText().toString().equals("")) {
+                te = te + "&price_from=" + Les_price.getText().toString();
+            }
+
+            if (!Maximum_price.getText().toString().equals("")) {
+                te = te + "&price_to=" + Maximum_price.getText().toString();
+            }
+            if (!Les_space.getText().toString().equals("")) {
+                te = te + "&area_from=" + Les_space.getText().toString();
+            }
+            if (!Maximum_space.getText().toString().equals("")) {
+                te = te + "&area_to=" + Maximum_space.getText().toString();
+            }
+
+
+            url = WebService.market_demands + "?" + type_requst_text + offer_status_text + search_text_s + te + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
+            WebService.loading(activity, true);
+
+            init_volley();
+            VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
+            mVolleyService.getDataVolley("Market_Request", url);
+        }
 
 
     }
@@ -736,17 +926,16 @@ public class AllOrderActivity extends AppCompatActivity {
 
                 try {
 
-                    String allRequestFund = response.getString("allRequestFund");
-                    AllOrder_number.setText(allRequestFund + "");
-
-                    String RequestFund = response.getString("RequestFund");
-                    today_number.setText(RequestFund + "");
-
-                    String myRequestFundOffer = response.getString("myRequestFundOffer");
-                    Myoffer_number.setText(myRequestFundOffer + "");
-
 
                     if (requestType.equals("fund_Request")) {
+                        String allRequestFund = response.getString("allRequestFund");
+                        AllOrder_number.setText(allRequestFund + "");
+
+                        String RequestFund = response.getString("RequestFund");
+                        today_number.setText(RequestFund + "");
+
+                        String myRequestFundOffer = response.getString("myRequestFundOffer");
+                        Myoffer_number.setText(myRequestFundOffer + "");
 
 
                         String data = response.getString("data");
@@ -784,6 +973,42 @@ public class AllOrderActivity extends AppCompatActivity {
 
                         }
 
+                    } else if (requestType.equals("Market_Request")) {
+                        String data = response.getString("data");
+
+                        JSONObject jsonObject_data = new JSONObject(data);
+
+                        String data_inside = jsonObject_data.getString("data");
+                        JSONArray jsonArray = new JSONArray(data_inside);
+//                        orders_rec.setAdapter(null);
+                        demandsModules_list.clear();
+
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                            JsonParser parser = new JsonParser();
+                            JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                            Gson gson = new Gson();
+
+                            demandsModules ordersModulesm = gson.fromJson(mJson, demandsModules.class);
+                            demandsModules_list.add(ordersModulesm);
+
+
+                        }
+
+                        AllResultRec.setAdapter(new RecyclerView_orders_demandsx(activity, demandsModules_list));
+
+
+                        if (demandsModules_list.size() != 0) {
+                            nodata_vis.setVisibility(View.GONE);
+                        } else {
+                            nodata_vis.setVisibility(View.VISIBLE);
+
+
+                        }
+
                     } else if (requestType.equals("cities_with_neb")) {
                         String data = response.getString("data");
                         JSONObject jsonObject = new JSONObject(data);
@@ -818,7 +1043,7 @@ public class AllOrderActivity extends AppCompatActivity {
 //                                MapsFragmentNew.lan = cityModules_list_filtter.get(i).getLan() + "";
 
 
-                                search_citytext.setText(cityModules_list_filtter.get(i).getName() + "-" + cityModules_list_filtter.get(i).getCity().getName());
+                                search_citytext.setText(cityModules_list_filtter.get(i).getName());
 
                             }
                         });
