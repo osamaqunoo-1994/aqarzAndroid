@@ -969,5 +969,16 @@ Two working days to complete your order</string>
     <string name="neb_Selected">الاحياء المحدده</string>
     <string name="neb_Selected_msg">تم تحديد الاحياء بنجاح</string>
     <string name="title_activity_tes_t_t_e_stctivity">Map</string>
+    <string name="How_to_use">طريقة الاستخدام</string>
+
+
+
+
+    <string name="type_spiner_info_1">جولة داخل التطبيق</string>
+    <string name="type_spiner_info_2">اضافة عقار</string>
+    <string name="type_spiner_info_3">عرض طلبات الصندوق</string>
+    <string name="type_spiner_info_4">ارسال عروض لطلبات الصندوق</string>
+    <string name="click_here">اضغط هنا</string>
+    <string name="novideoselected">اختر فيديو</string>
 
 </resources>

@@ -8,9 +8,6 @@ import java.util.List;
 public class SettingsModules {
 
 
-
-
-
     @SerializedName("allRequest")
     @Expose
     private String allRequest;
@@ -36,9 +33,6 @@ public class SettingsModules {
     @SerializedName("offerReal")
     @Expose
     private String offerReal;
-
-
-
 
 
     @SerializedName("company_info")
@@ -96,6 +90,9 @@ public class SettingsModules {
     @SerializedName("course_types")
     @Expose
     private List<service_types> course_types;
+    @SerializedName("videos")
+    @Expose
+    private List<videos> videos;
 
 
     public List<SettingsModules.service_types> getMember_types() {
@@ -124,6 +121,10 @@ public class SettingsModules {
 
     public List<SettingsModules.service_types> getCourse_types() {
         return course_types;
+    }
+
+    public List<SettingsModules.videos> getVideos() {
+        return videos;
     }
 
     public List<SettingsModules.service_types> getExperience_types() {
@@ -217,6 +218,31 @@ public class SettingsModules {
 
         public String getName() {
             return name;
+        }
+
+        public int getId() {
+            return id;
+        }
+    }
+
+    public class videos {
+
+        @SerializedName("id")
+        @Expose
+        private int id;
+        @SerializedName("video")
+        @Expose
+        private String video;
+        @SerializedName("title")
+        @Expose
+        private String title;
+
+        public String getTitle() {
+            return title;
+        }
+
+        public String getVideo() {
+            return video;
         }
 
         public int getId() {

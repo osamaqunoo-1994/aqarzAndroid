@@ -63,6 +63,7 @@ import com.google.gson.JsonParser;
 import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterManager;
 import com.google.maps.android.clustering.view.DefaultClusterRenderer;
+import com.loopj.android.http.RequestParams;
 import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONArray;
@@ -381,6 +382,19 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
                         }
                     }
 
+                    init_volley();
+//                    WebService.loading(MyInterestsActivity.this, true);
+
+                    try {
+
+                        RequestParams requestParams = new RequestParams();
+                        requestParams.put("neb_ids", all_neb.get(Integer.valueOf(polygon.getTag().toString())).getDistrictId() + "");
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
+//            mVolleyService.getDataVolley("user", WebService.user + id + "");
+                        mVolleyService.postDataasync_with_file("remove_neb_interest", WebService.remove_neb_interest, requestParams);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
                 } else {
                     polygon.setFillColor(color);
@@ -442,14 +456,19 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + response.toString());
-                WebService.loading(MyInterestsActivity.this, false);
 //{"status":true,"code":200,"message":"User Profile","data"
                 try {
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String message = response.getString("message");
 
-                        if (requestType.equals("add_neb_interest")) {
+                        if (requestType.equals("remove_neb_interest")) {
+
+
+                            System.out.println(")))))");
+
+
+                        } else if (requestType.equals("add_neb_interest")) {
 
 
                             try {
@@ -625,14 +644,19 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
 
                                 }
 
-//                                Random rnd = new Random();
-//                                int color = Color.argb(100, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+                                Random rnd = new Random();
+                                int color = Color.argb(100, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 
 
                                 Polygon polygon = mMap.addPolygon(rectOptions);
                                 polygon.setTag(i + "");
 
-//                                polygon.setFillColor(color);
+                                if (alLNebModules.getData().get(i).getInMyInterset().equals("1")) {
+                                    polygon.setFillColor(color);
+                                    all_nebSelected.add(alLNebModules.getData().get(i));
+                                    recyclerView_select_neb.Refr();
+                                }
+
                                 polygon.setStrokeColor(Color.parseColor("#FE9457"));
                                 polygon.setStrokeWidth(8);
 
@@ -642,6 +666,8 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
 
                         }
                     }
+                    WebService.loading(MyInterestsActivity.this, false);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -206,9 +206,12 @@ public class VolleyService {
 
         }
     }
+
     public void getAsync(final String requestType, String url) {
         try {
 
+
+            System.out.println("url " + url);
             AsyncHttpClient client = new AsyncHttpClient();
             final int DEFAULT_TIMEOUT = 20 * 6000;
             client.setTimeout(DEFAULT_TIMEOUT);
@@ -237,7 +240,6 @@ public class VolleyService {
                     try {
 
                         System.out.println("responseBody" + errorResponse.toString());
-
 
                         mResultCallback.notify_Async_Error(requestType, errorResponse.getString("message"));
 
