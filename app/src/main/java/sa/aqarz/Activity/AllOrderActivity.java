@@ -960,9 +960,20 @@ public class AllOrderActivity extends AppCompatActivity {
                         }
 
                     } else if (requestType.equals("Market_Request")) {
+                        String allRequestFund = response.getString("allRequestd");
+                        AllOrder_number.setText(allRequestFund + "");
+
+                        String RequestFund = response.getString("Request");
+                        today_number.setText(RequestFund + "");
+
+                        String myRequestFundOffer = response.getString("myRequestOffer");
+                        Myoffer_number.setText(myRequestFundOffer + "");
+
+
                         String data = response.getString("data");
 
                         JSONObject jsonObject_data = new JSONObject(data);
+
 
                         String data_inside = jsonObject_data.getString("data");
                         JSONArray jsonArray = new JSONArray(data_inside);

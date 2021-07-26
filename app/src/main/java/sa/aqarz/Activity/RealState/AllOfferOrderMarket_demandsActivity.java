@@ -245,11 +245,11 @@ public class AllOfferOrderMarket_demandsActivity extends AppCompatActivity {
 
                         } else {
                             String data = response.getString("data");
-//                        JSONObject jsonObjectdata = new JSONObject(data);
+                            JSONObject jsonObjectdata = new JSONObject(data);
 //
-//                        String datax = jsonObjectdata.getString("data");
+                            String datax = jsonObjectdata.getString("data");
 
-                            JSONArray jsonArray = new JSONArray(data);
+                            JSONArray jsonArray = new JSONArray(datax);
                             progress.setVisibility(View.GONE);
                             homeModules.clear();
                             for (int i = 0; i < jsonArray.length(); i++) {
