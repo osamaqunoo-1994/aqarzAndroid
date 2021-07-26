@@ -353,7 +353,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 
                                     Clints.setText(userModules.getCount_emp() + "");
                                     request_nu.setText(userModules.getCount_estate() + "");
-                                    MyOffer.setText(userModules.getCount_offer() + "");
+                                    MyOffer.setText(userModules.getCount_fund_offer() + "");
 
                                     accetpt.setText(userModules.getCount_accept_fund_offer() + "");
                                     preview.setText(userModules.getCount_preview_fund_offer() + "");

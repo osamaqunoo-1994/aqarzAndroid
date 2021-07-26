@@ -9,12 +9,14 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 5
-        versionName "2.2.22"
+        versionName "2.2.23"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    lintOptions {
+        checkReleaseBuilds false
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -111,12 +113,13 @@ dependencies {
     implementation 'com.github.MasayukiSuda:ExoPlayerFilter:v0.2.4'
     implementation 'io.sentry:sentry-android:4.3.0'
 
-    compile 'com.google.android.gms:play-services-base:7.3.0'
-    compile 'com.google.android.gms:play-services-location:7.3.0'
+    implementation 'com.google.android.gms:play-services-base:7.3.0'
+    implementation 'com.google.android.gms:play-services-location:7.3.0'
 
 
     implementation 'com.github.blikoon:QRCodeScanner:0.1.2'
     implementation 'com.budiyev.android:code-scanner:2.1.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
 }
 
