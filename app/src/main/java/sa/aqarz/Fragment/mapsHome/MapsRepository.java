@@ -124,6 +124,7 @@ public class MapsRepository {
 
     public void getOpration2() {
         System.out.println("^^^^^^^^^^^^^^^^^^^^^^");
+        WebService.loading(activity, true);
 
 //        final MutableLiveData<VideoModules> data = new MutableLiveData<>();
 //        MapsViewModel.mutableLiveData.setValue(null);

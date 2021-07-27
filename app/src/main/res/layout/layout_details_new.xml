@@ -143,7 +143,7 @@
                             android:textColor="@color/black"
 
 
-                            android:textSize="14dp"
+                            android:textSize="13dp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -159,7 +159,7 @@
 
 
                             android:textColor="@color/textColor"
-                            android:textSize="11dp" />
+                            android:textSize="10dp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -227,7 +227,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
 
                     android:orientation="horizontal">
 
@@ -373,9 +375,8 @@
                         android:layout_width="match_parent"
 
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:layout_marginTop="3dp"
-                        android:layout_marginRight="15dp"
                         android:gravity="center"
                         android:orientation="horizontal">
 
@@ -395,9 +396,9 @@
                             android:fontFamily="@font/din_light"
                             android:text="@string/n1"
                             android:textColor="@color/textColor"
-
                             android:textSize="15dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:visibility="gone" />
 
                         <TextView
                             android:id="@+id/estate_type_name"
@@ -407,34 +408,30 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
 
-                            android:fontFamily="@font/din_light"
+                            android:fontFamily="@font/din_bold"
                             android:text=""
                             android:textColor="@color/textColor"
                             android:textSize="15dp" />
 
-
-                        <com.hedgehog.ratingbar.RatingBar
+                        <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:id="@+id/rate_"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            app:starEmpty="@drawable/ic_star__2_"
-                            app:starFill="@drawable/ic_star__1_"
-                            hedgehog:clickable="false"
+                            app:srb_clearRatingEnabled="true"
+                            app:srb_clickable="false"
+                            app:srb_drawableEmpty="@drawable/star_rate_un"
+                            app:srb_drawableFilled="@drawable/star_rate"
+                            app:srb_isIndicator="false"
+                            app:srb_minimumStars="1"
+                            app:srb_numStars="5"
+                            app:srb_rating="2"
+                            app:srb_scrollable="false"
+                            app:srb_starHeight="13dp"
+                            app:srb_starPadding="1dp"
+                            app:srb_starWidth="13dp"
+                            app:srb_stepSize="0.5"></com.willy.ratingbar.ScaleRatingBar>
 
-                            android:focusable="false"
-                            app:clickable="false"
 
-
-                            hedgehog:halfstart="false"
-                            hedgehog:starCount="5"
-
-                            hedgehog:starHalf="@mipmap/star_half"
-                            hedgehog:starImageHeight="20dp"
-                            hedgehog:starImagePadding="5"
-                            hedgehog:starImageWidth="20dp" />
 
 
                         <LinearLayout
@@ -468,8 +465,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/din_light"
+                            android:fontFamily="@font/din_bold"
                             android:text="@string/n2"
+
                             android:textColor="@color/textColor"
                             android:textSize="15dp"
                             android:textStyle="bold" />
@@ -527,7 +525,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:fontFamily="@font/din_light"
+                            android:fontFamily="@font/din_bold"
                             android:text="@string/n4"
                             android:textColor="@color/textColor"
                             android:textSize="15dp"
@@ -539,8 +537,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
+                            android:fontFamily="@font/din_bold"
 
-                            android:fontFamily="@font/din_light"
+                            android:lines="1"
 
                             android:textColor="@color/textColor"
                             android:textSize="15dp" />
@@ -553,10 +552,10 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:src="@drawable/maps" />
 
 
@@ -577,6 +576,7 @@
                 android:layout_marginRight="10dp"
                 android:background="@drawable/button_login"
                 android:fontFamily="@font/din_bold"
+                android:textStyle="bold"
                 android:paddingLeft="15dp"
                 android:paddingTop="4dp"
                 android:paddingRight="15dp"
@@ -1299,8 +1299,9 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:layout_margin="15dp"
-                android:gravity="start">
+                android:gravity="start|center">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1312,17 +1313,18 @@
 
 
                 <com.hedgehog.ratingbar.RatingBar
+                    android:id="@+id/rate_aqarez_t"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_gravity="center"
-                    app:starEmpty="@drawable/ic_star__2_"
-                    app:starFill="@drawable/ic_star__1_"
-                    hedgehog:clickable="false"
-
                     android:focusable="false"
                     app:clickable="false"
+                    app:starEmpty="@drawable/ic_star__2_"
+
+                    app:starFill="@drawable/ic_star__1_"
+                    hedgehog:clickable="false"
 
 
                     hedgehog:halfstart="false"

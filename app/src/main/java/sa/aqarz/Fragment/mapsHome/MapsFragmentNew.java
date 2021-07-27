@@ -136,6 +136,10 @@ public class MapsFragmentNew extends Fragment {
     static Activity activity;
     static RelativeLayout layout_list;
     RecyclerView list_aqaers;
+
+    static boolean onclick_marker_aqarez = false;
+
+
     private final OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -225,7 +229,14 @@ public class MapsFragmentNew extends Fragment {
                             System.out.println("lan:" + lan + " lat:" + lat);
 
 
-                            getAllEstate();
+                            if (onclick_marker_aqarez) {
+
+                                onclick_marker_aqarez = false;
+
+                            } else {
+                                onclick_marker_aqarez = false;
+                                getAllEstate();
+                            }
 
 
                         }
@@ -603,9 +614,10 @@ public class MapsFragmentNew extends Fragment {
         all_estate_size.setVisibility(View.GONE);
 
 
-        if(Settings.checkLogin()){
+        if (Settings.checkLogin()) {
 
             if (regionModules_list.size() == 0) {
+
                 mapsViewModel.getRegoins_without(activity);
 
 
@@ -689,6 +701,9 @@ public class MapsFragmentNew extends Fragment {
                                 } else {
 
 
+                                    System.out.println("^%&%&%&%&^%");
+
+
                                     try {
                                         lat = "" + city_location_list.get(Integer.valueOf(city_id_postion)).getLat();
                                         lan = "" + city_location_list.get(Integer.valueOf(city_id_postion)).getLan();
@@ -709,6 +724,8 @@ public class MapsFragmentNew extends Fragment {
 
 //                                Intent intent = new Intent(activity, OrderListActivity.class);
 //                                activity.startActivity(intent);
+
+
 
                                             WebService.loading(activity, true);
                                             init_volley();
@@ -825,7 +842,7 @@ public class MapsFragmentNew extends Fragment {
                     }
                 }
             }
-        }else{
+        } else {
             if (regionModules_list.size() == 0) {
                 mapsViewModel.getRegoins_without(activity);
 
@@ -835,7 +852,11 @@ public class MapsFragmentNew extends Fragment {
 
     }
 
+    static Marker lastOpenned = null;
+
     public static void on_click_maps_marker() {
+
+
         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
@@ -876,7 +897,7 @@ public class MapsFragmentNew extends Fragment {
                             init_volley();
                             VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-                            mVolleyService.getAsync("neighborhoods", WebService.neighborhoods + "/" + city_location_list.get(Integer.valueOf(city_id_postion)).getSerial_city() + "/list?is_all=0");
+                            mVolleyService.getAsync("neighborhoods", WebService.neighborhoods + "/" + city_location_list.get(Integer.valueOf(city_id_postion)).getSerial_city() + "/list?is_all=2");
 
 
 //                            Intent intent = new Intent(activity, OrderListActivity.class);
@@ -959,9 +980,21 @@ public class MapsFragmentNew extends Fragment {
                     String[] separated = marker.getTag().toString().split("/");
 
                     String number = separated[1]; // this will contain " they taste good"
-
+//                    if (lastOpenned != null) {
+//                        // Close the info window
+//                        lastOpenned.hideInfoWindow();
+//
+//                        // Is the marker the same marker that was already open
+//                        if (lastOpenned.equals(marker)) {
+//                            // Nullify the lastOpenned object
+//                            lastOpenned = null;
+//                            // Return so that the info window isn't openned again
+//                            return true;
+//                        }
+//                    }
 
                     try {
+                        onclick_marker_aqarez = true;
                         CustomInfoWindowGoogleMapEstatMaps customInfoWindow = new CustomInfoWindowGoogleMapEstatMaps(activity, homeModules_aqares.get(Integer.valueOf(number)));
                         googleMap.setInfoWindowAdapter(customInfoWindow);
                         googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
@@ -979,6 +1012,10 @@ public class MapsFragmentNew extends Fragment {
                                 }
                             }
                         });
+//                        lastOpenned = marker;
+
+                        // Event was handled by our code do not launch default behaviour.
+//                        return true;
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

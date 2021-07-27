@@ -120,6 +120,7 @@ dependencies {
     implementation 'com.github.blikoon:QRCodeScanner:0.1.2'
     implementation 'com.budiyev.android:code-scanner:2.1.0'
     implementation 'androidx.multidex:multidex:2.0.1'
+    compile 'com.github.ome450901:SimpleRatingBar:1.5.1'
 
 }
 

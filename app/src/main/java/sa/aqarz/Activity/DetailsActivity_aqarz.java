@@ -25,6 +25,8 @@ import com.github.vivchar.viewpagerindicator.ViewPagerIndicator;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.hedgehog.ratingbar.RatingBar;
+import com.willy.ratingbar.ScaleRatingBar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -106,8 +108,10 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     LinearLayout rate;
     LinearLayout tent;
     LinearLayout rate_aqarez;
+    RatingBar rate_aqarez_t;
     LinearLayout report;
     RecyclerView list_coments;
+    ScaleRatingBar simpleRatingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,6 +144,8 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
         list_coments = findViewById(R.id.list_coments);
         back = findViewById(R.id.back);
         report = findViewById(R.id.report);
+        simpleRatingBar = findViewById(R.id.simpleRatingBar);
+        rate_aqarez_t = findViewById(R.id.rate_aqarez_t);
 
 
         type_ = findViewById(R.id.type_);
@@ -291,6 +297,17 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
             }
         });
         rate_aqarez.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetDialogFragment_Rate bottomSheetDialogFragment_rate = new BottomSheetDialogFragment_Rate(id_or_aq + "");
+
+                bottomSheetDialogFragment_rate.show(getSupportFragmentManager(), "");
+
+            }
+        });
+
+
+        rate_aqarez_t.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 BottomSheetDialogFragment_Rate bottomSheetDialogFragment_rate = new BottomSheetDialogFragment_Rate(id_or_aq + "");
@@ -497,6 +514,11 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
                             try {
                                 list_coments.setAdapter(new RecyclerView_coments(DetailsActivity_aqarz.this, homeModules_aqares.getRates()));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            try {
+                                simpleRatingBar.setRating(Float.valueOf(homeModules_aqares.getRate()));
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }

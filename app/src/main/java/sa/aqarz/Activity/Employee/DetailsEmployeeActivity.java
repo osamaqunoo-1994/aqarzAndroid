@@ -39,6 +39,7 @@ import sa.aqarz.Adapter.RecyclerView_orders_my_requstx_favorit;
 import sa.aqarz.Adapter.RecyclerView_orders_my_requstx_favorit_offet;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_add_employee;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Secess;
+import sa.aqarz.Modules.AllEmployee;
 import sa.aqarz.Modules.FavoritModules;
 import sa.aqarz.Modules.User;
 import sa.aqarz.Modules.demandsModules;
@@ -58,12 +59,14 @@ public class DetailsEmployeeActivity extends AppCompatActivity {
     ImageView search;
     EditText search_edt;
 
-    List<User> all_employee_list = new ArrayList<>();
+    List<AllEmployee> all_employee_list = new ArrayList<>();
     LinearLayout no_data_;
 
     FloatingActionButton add_employee;
     SwipeRefreshLayout swipe;
     static FragmentManager activity;
+
+    RecyclerView_AllEmployee recyclerView_allEmployee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +91,8 @@ public class DetailsEmployeeActivity extends AppCompatActivity {
         });
 
         all_employee.setLayoutManager(new GridLayoutManager(this, 2));
-
+        recyclerView_allEmployee=  new RecyclerView_AllEmployee(DetailsEmployeeActivity.this, all_employee_list);
+        all_employee.setAdapter(recyclerView_allEmployee);
 
         WebService.loading(DetailsEmployeeActivity.this, true);
 
@@ -211,7 +215,7 @@ public class DetailsEmployeeActivity extends AppCompatActivity {
 
                                 Gson gson = new Gson();
 
-                                User ordersModulesm = gson.fromJson(mJson, User.class);
+                                AllEmployee ordersModulesm = gson.fromJson(mJson, AllEmployee.class);
                                 all_employee_list.add(ordersModulesm);
 
                             } catch (Exception e) {
@@ -219,8 +223,8 @@ public class DetailsEmployeeActivity extends AppCompatActivity {
                             }
 
                         }
-                        all_employee.setAdapter(new RecyclerView_AllEmployee(DetailsEmployeeActivity.this, all_employee_list));
-
+//                        all_employee.setAdapter(new RecyclerView_AllEmployee(DetailsEmployeeActivity.this, all_employee_list));
+                        recyclerView_allEmployee.Refr();
 
                         if (all_employee_list.size() == 0) {
                             no_data_.setVisibility(View.VISIBLE);

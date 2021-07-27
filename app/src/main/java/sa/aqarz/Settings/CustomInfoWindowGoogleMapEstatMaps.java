@@ -7,10 +7,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
 import com.hedgehog.ratingbar.RatingBar;
 import com.squareup.picasso.Picasso;
+import com.willy.ratingbar.ScaleRatingBar;
 
 import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Modules.HomeModules_aqares;
@@ -36,31 +38,34 @@ public class CustomInfoWindowGoogleMapEstatMaps implements GoogleMap.InfoWindowA
         TextView location = view.findViewById(R.id.location);
         TextView araea = view.findViewById(R.id.araea);
         TextView price = view.findViewById(R.id.price);
-        TextView more = view.findViewById(R.id.more);
         TextView date = view.findViewById(R.id.date);
         TextView space = view.findViewById(R.id.space);
-        ImageView image = view.findViewById(R.id.image);
+        ImageView image_ = view.findViewById(R.id.image_);
         ImageView close = view.findViewById(R.id.close);
         RatingBar rate = view.findViewById(R.id.rate);
+        ScaleRatingBar simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
 
-        price.setText(homeModules_aqares.getTotalPrice() + " " + context.getResources().getString(R.string.SAR));
+        price.setText(homeModules_aqares.getTotalPrice());
         araea.setText(homeModules_aqares.getTotalArea() + " M ");
         opration.setText(homeModules_aqares.getEstate_type_name());
         date.setText(homeModules_aqares.getCreatedAt());
-        space.setText(homeModules_aqares.getTotalArea()+"");
-        location.setText("---");
+        space.setText(homeModules_aqares.getTotalArea() + "");
+//        location.setText("---");
 
         try {
 
             System.out.println("$%$%$%" + homeModules_aqares.getFirst_image());
-            Picasso.get().load(homeModules_aqares.getFirst_image() + "").into(image);
+
+
+            Glide.with(context).load(homeModules_aqares.getFirst_image() + "").into(image_);
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
 
-            rate.setStar(Float.valueOf(homeModules_aqares.getRate() + ""));
+//            rate.setStar(Float.valueOf(homeModules_aqares.getRate() + ""));
+            simpleRatingBar.setRating(Float.valueOf(homeModules_aqares.getRate() + ""));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,7 +74,7 @@ public class CustomInfoWindowGoogleMapEstatMaps implements GoogleMap.InfoWindowA
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailsActivity_aqarz.class);
 
-                System.out.println("id_aqarz"+homeModules_aqares.getId() );
+                System.out.println("id_aqarz" + homeModules_aqares.getId());
                 intent.putExtra("id_aqarz", homeModules_aqares.getId() + "");
                 context.startActivity(intent);
             }

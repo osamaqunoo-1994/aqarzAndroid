@@ -126,6 +126,9 @@ public class RecyclerVie_member_service_m extends RecyclerView.Adapter<RecyclerV
         }
 
 
+        holder.icon.setVisibility(View.GONE);
+
+
 //        if (position == Postion_opend) {
 //            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));
 //

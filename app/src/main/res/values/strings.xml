@@ -15,6 +15,8 @@
     <string name="success">Success</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
+    <string name="google_maps_keyxx" templateMergeStrategy="preserve" translatable="false">AIzaSyClGIsEG_iClUbZsKreXgoo-lqHmRPvvL4</string>
+    <string name="google_maps_keyx" templateMergeStrategy="preserve" translatable="false">AIzaSyD7_RAhw_L6sPjaWPWJ825zuA4-5RA9o-w</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCX9U6fj5-Tt5lK_23d2RFsr4Nlp3yqdoM</string>
     <string name="google_maps_keys" templateMergeStrategy="preserve" translatable="false">AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc</string>
     <string name="google_maps_keyaa" templateMergeStrategy="preserve" translatable="false">AIzaSyASdJamfAg4qsuiXSKebSefmQlVBAzhtlk</string>
@@ -863,6 +865,8 @@ Two working days to complete your order</string>
 
     <string name="Clints_title">Staff activity</string>
     <string name="Enabled">Enabled</string>
+    <string name="notEnabled">Not Enabled</string>
+
     <string name="filter_view_http_gizmos">filter_view_http_gizmos</string>
     <string name="filter_view_example_gizmos">filter_view_example_gizmos</string>
 
@@ -972,13 +976,16 @@ Two working days to complete your order</string>
     <string name="How_to_use">طريقة الاستخدام</string>
 
 
-
-
     <string name="type_spiner_info_1">جولة داخل التطبيق</string>
     <string name="type_spiner_info_2">اضافة عقار</string>
     <string name="type_spiner_info_3">عرض طلبات الصندوق</string>
     <string name="type_spiner_info_4">ارسال عروض لطلبات الصندوق</string>
     <string name="click_here">اضغط هنا</string>
     <string name="novideoselected">اختر فيديو</string>
+    <string name="EmployeeTitle">Management Employee performance</string>
+
+
+    <string name="Edit_just">Edit</string>
+
 
 </resources>

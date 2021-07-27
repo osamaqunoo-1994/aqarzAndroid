@@ -62,6 +62,8 @@ public class InfoActivity extends AppCompatActivity {
                 } else {
                     text_url = Settings.getSettings().getVideos().get(position - 1).getVideo() + "";
 
+                    System.out.println("text_url"+text_url);
+
 //                    text_url = "http://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4";
 
                     videoView.setVideoPath(text_url);

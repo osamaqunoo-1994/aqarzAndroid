@@ -330,10 +330,10 @@ public class EditProfileActivity extends AppCompatActivity {
         }
 
 
-        FlowLayoutManager flowLayoutManager = new FlowLayoutManager();
-        flowLayoutManager.setAutoMeasureEnabled(true);
-//                            flowLayoutManager.maxItemsPerLine(1);
-        member_list.setLayoutManager(flowLayoutManager);
+//        FlowLayoutManager flowLayoutManager = new FlowLayoutManager();
+//        flowLayoutManager.setAutoMeasureEnabled(true);
+////                            flowLayoutManager.maxItemsPerLine(1);
+//        member_list.setLayoutManager(flowLayoutManager);
 
 
         RecyclerView_member recyclerView_member = new RecyclerView_member(EditProfileActivity.this, Member_typesl);
@@ -651,12 +651,12 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
-        experience_recycle.setLayoutManager(new GridLayoutManager(this, 2));
+        experience_recycle.setLayoutManager(new GridLayoutManager(this, 3));
 
-        FlowLayoutManager flowLayoutManager_exp = new FlowLayoutManager();
-        flowLayoutManager.setAutoMeasureEnabled(true);
-//                            flowLayoutManager.maxItemsPerLine(1);
-        experience_recycle.setLayoutManager(flowLayoutManager_exp);
+//        FlowLayoutManager flowLayoutManager_exp = new FlowLayoutManager();
+//        flowLayoutManager.setAutoMeasureEnabled(true);
+////                            flowLayoutManager.maxItemsPerLine(1);
+//        experience_recycle.setLayoutManager(flowLayoutManager_exp);
         experince_list = Settings.getSettings().getExperience_types();
 
         try {
@@ -721,12 +721,12 @@ public class EditProfileActivity extends AppCompatActivity {
 
         experience_recycle.setAdapter(recyclerView_experince);
 
-        course_recycle.setLayoutManager(new GridLayoutManager(this, 2));
+        course_recycle.setLayoutManager(new GridLayoutManager(this, 3));
 
-        FlowLayoutManager flowLayoutManager_course = new FlowLayoutManager();
-        flowLayoutManager.setAutoMeasureEnabled(true);
-//                            flowLayoutManager.maxItemsPerLine(1);
-        course_recycle.setLayoutManager(flowLayoutManager_course);
+//        FlowLayoutManager flowLayoutManager_course = new FlowLayoutManager();
+//        flowLayoutManager.setAutoMeasureEnabled(true);
+////                            flowLayoutManager.maxItemsPerLine(1);
+//        course_recycle.setLayoutManager(flowLayoutManager_course);
         course_list = Settings.getSettings().getCourse_types();
 
         try {

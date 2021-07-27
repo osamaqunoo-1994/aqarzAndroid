@@ -58,22 +58,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:layout_margin="10dp"
 
                 android:orientation="horizontal">
 
 
                 <RelativeLayout
 
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="15dp"
                         android:background="@drawable/ic_circleee"
                         android:padding="15dp"
 
@@ -90,6 +89,7 @@
                         android:layout_height="match_parent"
 
                         android:layout_centerInParent="true"
+
                         android:src="@color/white"
                         app:civ_border_color="#9777B2"
                         app:civ_border_width="1dp" />
@@ -122,7 +122,7 @@
                             android:fontFamily="@font/din_bold"
                             android:text=""
                             android:textColor="@color/colorPrimary"
-                            android:textSize="18dp" />
+                            android:textSize="15dp" />
 
                         <ImageView
                             android:layout_width="15dp"

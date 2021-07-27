@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import sa.aqarz.Modules.AllEmployee;
 import sa.aqarz.Modules.ComfortModules;
 import sa.aqarz.Modules.User;
 import sa.aqarz.R;
@@ -29,7 +30,7 @@ import sa.aqarz.R;
  * Created by osama on 10/16/2017.
  */
 public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_AllEmployee.MyViewHolder> {
-    public static List<User> alldata = new ArrayList<User>();
+    public static List<AllEmployee> alldata = new ArrayList<AllEmployee>();
     static int Postion_opend = -1;
 
 
@@ -70,7 +71,9 @@ public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_
         TextView real_order;
         TextView calling;
         TextView market;
-        CircleImageView image;
+        TextView Enabled;
+        TextView notEnabled;
+        ImageView image;
 
         public MyViewHolder(View view) {
             super(view);
@@ -79,6 +82,8 @@ public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_
 
             back_ground = view.findViewById(R.id.back_ground);
             name = view.findViewById(R.id.name);
+            Enabled = view.findViewById(R.id.Enabled);
+            notEnabled = view.findViewById(R.id.notEnabled);
             email = view.findViewById(R.id.email);
             mobile = view.findViewById(R.id.mobile);
             aqarez = view.findViewById(R.id.aqarez);
@@ -91,7 +96,7 @@ public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_
         }
     }
 
-    public RecyclerView_AllEmployee(Context context, List<User> alldata) {
+    public RecyclerView_AllEmployee(Context context, List<AllEmployee> alldata) {
         RecyclerView_AllEmployee.alldata = alldata;
         this.context = context;
     }
@@ -119,29 +124,24 @@ public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_
 
 
 ////
+        holder.name.setText(alldata.get(position).getEmp_name() + "");
+
+        holder.mobile.setText(alldata.get(position).getEmp_mobile() + "");
 
 
-        if (alldata.get(position).getName()==null) {
-            holder.name.setText("---");
+        if (alldata.get(position).getUser() != null) {
 
+            holder.aqarez.setText(alldata.get(position).getUser().getCount_offer() + "");
+            holder.real_order.setText(alldata.get(position).getUser().getCount_request() + "");
+            holder.market.setText(alldata.get(position).getUser().getCount_request() + "");
+            holder.calling.setText(alldata.get(position).getUser().getCount_visit() + "");
+            Picasso.get().load(alldata.get(position).getUser().getLogo() + "").into(holder.image);
+            holder.notEnabled.setVisibility(View.GONE);
+            holder.Enabled.setVisibility(View.VISIBLE);
         } else {
-            holder.name.setText(alldata.get(position).getName() + "");
-
+            holder.notEnabled.setVisibility(View.VISIBLE);
+            holder.Enabled.setVisibility(View.GONE);
         }
-        if (alldata.get(position).getEmail()==null) {
-            holder.email.setText("---");
-
-        } else {
-            holder.email.setText(alldata.get(position).getEmail() + "");
-
-        }
-
-
-        holder.mobile.setText(alldata.get(position).getMobile() + "");
-        holder.aqarez.setText(alldata.get(position).getCount_offer() + "");
-        holder.real_order.setText(alldata.get(position).getCount_request() + "");
-        holder.market.setText(alldata.get(position).getCount_request() + "");
-        holder.calling.setText(alldata.get(position).getCount_visit() + "");
 
 
 //
@@ -162,7 +162,6 @@ public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_
 //        }
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-        Picasso.get().load(alldata.get(position).getLogo() + "").into(holder.image);
 ////
 //
 //        try {

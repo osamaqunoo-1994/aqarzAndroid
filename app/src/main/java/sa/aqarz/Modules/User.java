@@ -39,6 +39,9 @@ public class User {
     @SerializedName("link")
     @Expose
     private String link;
+    @SerializedName("emp_name")
+    @Expose
+    private String emp_name;
     @SerializedName("is_pay")
     @Expose
     private String is_pay;
@@ -221,6 +224,10 @@ public class User {
 
     public String getCount_offer() {
         return count_offer;
+    }
+
+    public String getEmp_name() {
+        return emp_name;
     }
 
     public String getCount_request() {

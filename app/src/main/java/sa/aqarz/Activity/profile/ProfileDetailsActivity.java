@@ -128,29 +128,32 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         watiing = findViewById(R.id.watiing);
 
 
-        member_list.setLayoutManager(new GridLayoutManager(this, 2));
+        member_list.setLayoutManager(new GridLayoutManager(this, 3));
+        memssr_list.setLayoutManager(new GridLayoutManager(this, 3));
+        Courses.setLayoutManager(new GridLayoutManager(this, 3));
+        list_service.setLayoutManager(new GridLayoutManager(this, 3));
 
-
-        FlowLayoutManager flowLayoutManager = new FlowLayoutManager();
-        flowLayoutManager.setAutoMeasureEnabled(true);
-//                            flowLayoutManager.maxItemsPerLine(1);
-        member_list.setLayoutManager(flowLayoutManager);
-
-        FlowLayoutManager flowLayoutManagerss = new FlowLayoutManager();
-        flowLayoutManagerss.setAutoMeasureEnabled(true);
-//                            flowLayoutManager.maxItemsPerLine(1);
-        memssr_list.setLayoutManager(flowLayoutManagerss);
-
-
-        FlowLayoutManager flowLayoutManagerssa = new FlowLayoutManager();
-        flowLayoutManagerss.setAutoMeasureEnabled(true);
-//                            flowLayoutManager.maxItemsPerLine(1);
-        Courses.setLayoutManager(flowLayoutManagerssa);
-
-        FlowLayoutManager flowLayoutservice = new FlowLayoutManager();
-        flowLayoutManagerss.setAutoMeasureEnabled(true);
-//                            flowLayoutManager.maxItemsPerLine(1);
-        list_service.setLayoutManager(flowLayoutservice);
+//
+//        FlowLayoutManager flowLayoutManager = new FlowLayoutManager();
+//        flowLayoutManager.setAutoMeasureEnabled(true);
+////                            flowLayoutManager.maxItemsPerLine(1);
+//        member_list.setLayoutManager(flowLayoutManager);
+//
+//        FlowLayoutManager flowLayoutManagerss = new FlowLayoutManager();
+//        flowLayoutManagerss.setAutoMeasureEnabled(true);
+////                            flowLayoutManager.maxItemsPerLine(1);
+//        memssr_list.setLayoutManager(flowLayoutManagerss);
+//
+//
+//        FlowLayoutManager flowLayoutManagerssa = new FlowLayoutManager();
+//        flowLayoutManagerss.setAutoMeasureEnabled(true);
+////                            flowLayoutManager.maxItemsPerLine(1);
+//        Courses.setLayoutManager(flowLayoutManagerssa);
+//
+//        FlowLayoutManager flowLayoutservice = new FlowLayoutManager();
+//        flowLayoutManagerss.setAutoMeasureEnabled(true);
+////                            flowLayoutManager.maxItemsPerLine(1);
+//        list_service.setLayoutManager(flowLayoutservice);
 
 
         WebService.loading(ProfileDetailsActivity.this, true);
