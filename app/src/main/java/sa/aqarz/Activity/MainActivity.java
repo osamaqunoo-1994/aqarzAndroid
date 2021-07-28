@@ -71,6 +71,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import io.sentry.Sentry;
 import sa.aqarz.Activity.Auth.LoginActivity;
@@ -407,8 +408,6 @@ public class MainActivity extends AppCompatActivity {
 //
 
 
-
-
                     LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     final View popupView = layoutInflater.inflate(R.layout.addaqarez, null);
 
@@ -434,7 +433,8 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent);
                             alertDialog.dismiss();
                         }
-                    });   close.setOnClickListener(new View.OnClickListener() {
+                    });
+                    close.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             alertDialog.dismiss();
@@ -705,6 +705,82 @@ public class MainActivity extends AppCompatActivity {
 
             VolleyService mVolleyService = new VolleyService(mResultCallback, MainActivity.this);
             mVolleyService.postDataVolley("updateDeviceToken", WebService.updateDeviceToken, jsonObject);
+
+
+            if (Settings.GetUser().getIs_employee().equals("1")) {
+
+
+                LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                final View popupView = layoutInflater.inflate(R.layout.is_emp_alert_dialog, null);
+                ImageView close = popupView.findViewById(R.id.close);
+                TextView yes = popupView.findViewById(R.id.yes);
+                TextView no = popupView.findViewById(R.id.no);
+
+
+                close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        init_volley();
+
+                        JSONObject jsonObject = new JSONObject();
+                        try {
+
+                            jsonObject.put("is_emp", "yes");
+                            jsonObject.put("mobile", Settings.GetUser().getMobile() + "");
+                            jsonObject.put("country_code", "966");
+
+                        } catch (Exception e) {
+
+                        }
+                        init_volley();
+
+                        WebService.loading(MainActivity.this, true);
+
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, MainActivity.this);
+                        mVolleyService.postDataVolley("check_employe", WebService.check_employe, jsonObject);
+
+                    }
+                });
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        init_volley();
+
+                        JSONObject jsonObject = new JSONObject();
+                        try {
+
+                            jsonObject.put("is_emp", "no");
+                            jsonObject.put("mobile", Settings.GetUser().getMobile() + "");
+                            jsonObject.put("country_code", "966");
+                        } catch (Exception e) {
+
+                        }
+                        init_volley();
+                        WebService.loading(MainActivity.this, true);
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, MainActivity.this);
+                        mVolleyService.postDataVolley("check_employe", WebService.check_employe, jsonObject);
+
+                    }
+                });
+                final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+//            alertDialog_country =
+                builder.setView(popupView);
+
+
+                alertDialog = builder.show();
+
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+
+            }
 
 
         }
@@ -1117,6 +1193,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     //jsj
     public void filtter_acion_filter_market() {
 
@@ -1638,7 +1715,21 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject(data);
 
 
-                        if (requestType.equals("cities_with_neb")) {
+                        if (requestType.equals("user")) {
+
+
+                            Hawk.put("user", data);
+
+                        } else if (requestType.equals("check_employe")) {
+
+
+                            init_volley();
+                            VolleyService mVolleyService = new VolleyService(mResultCallback, MainActivity.this);
+//            mVolleyService.getDataVolley("user", WebService.user + id + "");
+                            mVolleyService.getDataVolley("user", WebService.my_profile + "");
+
+
+                        } else if (requestType.equals("cities_with_neb")) {
                             String datadata = jsonObject.getString("data");
 
                             JSONArray jsonArray = new JSONArray(datadata);

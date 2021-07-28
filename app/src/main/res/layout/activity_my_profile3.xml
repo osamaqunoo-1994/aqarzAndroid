@@ -41,10 +41,10 @@
 
                             <ImageView
                                 android:id="@+id/back"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
                                 android:background="@drawable/circle_w"
-                                android:padding="13dp"
+                                android:padding="11dp"
 
                                 android:src="@drawable/ic_back" />
 
@@ -441,7 +441,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Bio"
                     android:textColor="#5A6368"
-                    android:textSize="14dp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -467,6 +467,7 @@
                     android:gravity="center">
 
                     <LinearLayout
+                        android:id="@+id/aqarez"
                         android:layout_width="100dp"
                         android:layout_height="80dp"
                         android:background="@drawable/back_new_profile"
@@ -752,7 +753,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_service"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
 
                 android:layout_marginTop="10dp" />
 
@@ -793,7 +794,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/Courses"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
 
                 android:layout_marginTop="10dp" />
 

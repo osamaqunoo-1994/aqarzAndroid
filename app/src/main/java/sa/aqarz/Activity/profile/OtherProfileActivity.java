@@ -58,7 +58,6 @@ public class OtherProfileActivity extends AppCompatActivity {
     TextView name;
     LinearLayout is_real_state;
     TextView link;
-    TextView mobile;
     TextView phone;
     TextView bio;
     TextView view;
@@ -82,6 +81,7 @@ public class OtherProfileActivity extends AppCompatActivity {
     String id;
     IResult mResultCallback;
     LinearLayout myoffer_layout;
+    LinearLayout aqarez;
     LinearLayout editProfile;
     LinearLayout call;
     LinearLayout sms;
@@ -104,13 +104,12 @@ public class OtherProfileActivity extends AppCompatActivity {
         is_real_state = findViewById(R.id.is_real_state);
         call = findViewById(R.id.call);
         link = findViewById(R.id.link);
-        mobile = findViewById(R.id.mobile);
         myoffer_layout = findViewById(R.id.myoffer_layout);
         bio = findViewById(R.id.bio);
 
         link = findViewById(R.id.link);
+        aqarez = findViewById(R.id.aqarez);
         back = findViewById(R.id.back);
-        mobile = findViewById(R.id.mobile);
         myoffer_layout = findViewById(R.id.myoffer_layout);
 
         member_list = findViewById(R.id.member_list);
@@ -125,29 +124,32 @@ public class OtherProfileActivity extends AppCompatActivity {
         view = findViewById(R.id.view);
 
 
-        member_list.setLayoutManager(new GridLayoutManager(this, 2));
+        member_list.setLayoutManager(new GridLayoutManager(this, 3));
+        memssr_list.setLayoutManager(new GridLayoutManager(this, 3));
+        Courses.setLayoutManager(new GridLayoutManager(this, 3));
+        list_service.setLayoutManager(new GridLayoutManager(this, 3));
 
 
-        FlowLayoutManager flowLayoutManager = new FlowLayoutManager();
-        flowLayoutManager.setAutoMeasureEnabled(true);
-//                            flowLayoutManager.maxItemsPerLine(1);
-        member_list.setLayoutManager(flowLayoutManager);
+//        FlowLayoutManager flowLayoutManager = new FlowLayoutManager();
+//        flowLayoutManager.setAutoMeasureEnabled(true);
+////                            flowLayoutManager.maxItemsPerLine(1);
+//        member_list.setLayoutManager(flowLayoutManager);
 
-        FlowLayoutManager flowLayoutManagerss = new FlowLayoutManager();
-        flowLayoutManagerss.setAutoMeasureEnabled(true);
-//                            flowLayoutManager.maxItemsPerLine(1);
-        memssr_list.setLayoutManager(flowLayoutManagerss);
-
-
-        FlowLayoutManager flowLayoutManagerssa = new FlowLayoutManager();
-        flowLayoutManagerss.setAutoMeasureEnabled(true);
-//                            flowLayoutManager.maxItemsPerLine(1);
-        Courses.setLayoutManager(flowLayoutManagerssa);
-
-        FlowLayoutManager flowLayoutservice = new FlowLayoutManager();
-        flowLayoutManagerss.setAutoMeasureEnabled(true);
-//                            flowLayoutManager.maxItemsPerLine(1);
-        list_service.setLayoutManager(flowLayoutservice);
+//        FlowLayoutManager flowLayoutManagerss = new FlowLayoutManager();
+//        flowLayoutManagerss.setAutoMeasureEnabled(true);
+////                            flowLayoutManager.maxItemsPerLine(1);
+//        memssr_list.setLayoutManager(flowLayoutManagerss);
+//
+//
+//        FlowLayoutManager flowLayoutManagerssa = new FlowLayoutManager();
+//        flowLayoutManagerss.setAutoMeasureEnabled(true);
+////                            flowLayoutManager.maxItemsPerLine(1);
+//        Courses.setLayoutManager(flowLayoutManagerssa);
+//
+//        FlowLayoutManager flowLayoutservice = new FlowLayoutManager();
+//        flowLayoutManagerss.setAutoMeasureEnabled(true);
+////                            flowLayoutManager.maxItemsPerLine(1);
+//        list_service.setLayoutManager(flowLayoutservice);
 
 
         WebService.loading(OtherProfileActivity.this, true);
@@ -327,6 +329,18 @@ public class OtherProfileActivity extends AppCompatActivity {
 //
 //                                        }
 //                                    });
+
+                                    aqarez.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(OtherProfileActivity.this, MyOffersActivity.class);
+//              intent.putExtra("from", "splash");
+                                            intent.putExtra("id_user", "" + userModules.getId());
+
+                                            startActivity(intent);
+//                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                        }
+                                    });
                                     qr_code.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -397,7 +411,7 @@ public class OtherProfileActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(View v) {
                                             try {
-                                                String phone = "0" + userModules.getMobile();
+                                                String phone = "9660" + userModules.getMobile();
                                                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
                                                 startActivity(intent);
                                             } catch (Exception e) {
@@ -446,21 +460,18 @@ public class OtherProfileActivity extends AppCompatActivity {
                                         request_nu.setText(userModules.getCount_request() + "");
                                         MyOffer.setText(userModules.getCount_fund_offer() + "");
 //                                        visit_nu.setText(userModules.getCount_visit() + "");
-                                        if (userModules.getMobile() != null) {
-                                            mobile.setText("0" + userModules.getMobile() + "");
 
-                                        }
-                                        if (!userModules.getLogo().equals("null")) {
+                                        if (userModules.getLogo() != null && !userModules.getLogo().equals("null")) {
                                             Picasso.get().load(userModules.getLogo()).into(profile);
 
                                         }//591694624
-                                        if (!userModules.getUser_name().equals("null")) {
-                                            link.setText("@" + userModules.getUser_name());
-
-                                        } else {
-                                            link.setText("");
-
-                                        }
+//                                        if (userModules.getUser_name() != null && !userModules.getUser_name().equals("null")) {
+//                                            link.setText("@" + userModules.getUser_name());
+//
+//                                        } else {
+//                                            link.setText("");
+//
+//                                        }
 
                                         try {
                                             rate.setRating(Float.valueOf(userModules.getRate() + ""));

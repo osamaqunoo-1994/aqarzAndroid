@@ -254,7 +254,12 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 
                                 } else {
 
+
                                     String data = response.getString("data");
+
+
+                                    Hawk.put("user", data);
+
 
                                     JsonParser parser = new JsonParser();
                                     JsonElement mJson = parser.parse(data);

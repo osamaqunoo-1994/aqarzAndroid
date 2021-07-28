@@ -135,6 +135,7 @@ public class AllOrderActivity extends AppCompatActivity {
     LinearLayout price_fund;
     LinearLayout area_market;
     LinearLayout area_real;
+    LinearLayout all_status_offer;
 
 
     static EditText Les_price;
@@ -164,6 +165,7 @@ public class AllOrderActivity extends AppCompatActivity {
         market_order_text = findViewById(R.id.market_order_text);
         Real_Estate_order_text = findViewById(R.id.Real_Estate_order_text);
         Real_Estate_order_image = findViewById(R.id.Real_Estate_order_image);
+        all_status_offer = findViewById(R.id.all_status_offer);
 
 
         AllResultRec = findViewById(R.id.AllResultRec);
@@ -295,6 +297,7 @@ public class AllOrderActivity extends AppCompatActivity {
                 setFiltter();
                 price_market.setVisibility(View.GONE);
                 price_fund.setVisibility(View.VISIBLE);
+                all_status_offer.setVisibility(View.VISIBLE);
                 area_market.setVisibility(View.GONE);
                 area_real.setVisibility(View.VISIBLE);
             }
@@ -317,6 +320,8 @@ public class AllOrderActivity extends AppCompatActivity {
                 price_market.setVisibility(View.VISIBLE);
                 price_fund.setVisibility(View.GONE);
                 area_market.setVisibility(View.VISIBLE);
+                all_status_offer.setVisibility(View.GONE);
+                area_real.setVisibility(View.GONE);
                 area_real.setVisibility(View.GONE);
 
 
@@ -363,6 +368,7 @@ public class AllOrderActivity extends AppCompatActivity {
                 area_market.setVisibility(View.GONE);
                 area_real.setVisibility(View.VISIBLE);
 
+                all_status_offer.setVisibility(View.VISIBLE);
 
             } else {//Market
                 Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
@@ -384,6 +390,7 @@ public class AllOrderActivity extends AppCompatActivity {
                 price_fund.setVisibility(View.GONE);
                 area_market.setVisibility(View.VISIBLE);
                 area_real.setVisibility(View.GONE);
+                all_status_offer.setVisibility(View.GONE);
 
             }
         } catch (Exception e) {
@@ -868,7 +875,7 @@ public class AllOrderActivity extends AppCompatActivity {
             }
 
 
-            url = WebService.market_demands + "?" + type_requst_text + offer_status_text + search_text_s + te + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
+            url = WebService.market_demands + "?" + type_requst_text + search_text_s + te + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
             WebService.loading(activity, true);
 
             init_volley();

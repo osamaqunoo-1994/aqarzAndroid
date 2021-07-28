@@ -2586,7 +2586,6 @@ public class AddAqarsActivity extends AppCompatActivity {
                             .setShowNumberIndicator(true)
                             .setMaxSize(5)
                             .setLimitMessage("You can select up to 10 images")
-
                             .setRequestCode(st_code)
                             .start();
 
@@ -2791,7 +2790,7 @@ public class AddAqarsActivity extends AppCompatActivity {
                         .setFolderTitle("Album")
 
                         .setDirectoryName("Image Picker")
-                        .setMultipleMode(false)
+                        .setMultipleMode(true)
                         .setShowNumberIndicator(true)
                         .setMaxSize(5)
                         .setLimitMessage("You can select one image")

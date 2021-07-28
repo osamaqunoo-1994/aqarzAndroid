@@ -726,7 +726,6 @@ public class MapsFragmentNew extends Fragment {
 //                                activity.startActivity(intent);
 
 
-
                                             WebService.loading(activity, true);
                                             init_volley();
                                             VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
@@ -852,7 +851,6 @@ public class MapsFragmentNew extends Fragment {
 
     }
 
-    static Marker lastOpenned = null;
 
     public static void on_click_maps_marker() {
 
@@ -861,7 +859,11 @@ public class MapsFragmentNew extends Fragment {
             @Override
             public boolean onMarkerClick(Marker marker) {
 
+
+
                 if (marker.getTag().toString().contains("allcity")) {
+                    marker.hideInfoWindow();
+                    googleMap.setInfoWindowAdapter(null);
 
                     try {
 
@@ -919,6 +921,8 @@ public class MapsFragmentNew extends Fragment {
 
                 } else if (marker.getTag().toString().contains("allArea")) {
                     System.out.println("^^^^^^^^^^^^^^^^^^^");
+                    marker.hideInfoWindow();
+                    googleMap.setInfoWindowAdapter(null);
 
                     try {
 
@@ -977,6 +981,9 @@ public class MapsFragmentNew extends Fragment {
 
                 } else if (marker.getTag().toString().contains("allEstate")) {
 
+
+                    System.out.println("TETETRTR "+marker.getTag().toString());
+
                     String[] separated = marker.getTag().toString().split("/");
 
                     String number = separated[1]; // this will contain " they taste good"
@@ -1022,6 +1029,7 @@ public class MapsFragmentNew extends Fragment {
 
 
                 } else if (marker.getTag().toString().contains("Neighb")) {
+                    marker.hideInfoWindow();
 
                     String[] separated = marker.getTag().toString().split("/");
 

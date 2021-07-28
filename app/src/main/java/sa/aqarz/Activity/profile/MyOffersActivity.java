@@ -105,6 +105,7 @@ public class MyOffersActivity extends AppCompatActivity {
                 });
 
             } else {
+                init_volley();
                 VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
 
                 mVolleyService.getDataVolley("user_estate", WebService.user_estate + "/" + id_user + "/estate");
