@@ -35,6 +35,9 @@ public class Neighborhood {
     @SerializedName("request_fund_counter")
     @Expose
     private String request_fund_counter;
+    @SerializedName("request_app_counter")
+    @Expose
+    private String request_app_counter;
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
@@ -83,6 +86,10 @@ public class Neighborhood {
 
     public String getSearchName() {
         return searchName;
+    }
+
+    public String getRequest_app_counter() {
+        return request_app_counter;
     }
 
     public void setSearchName(String searchName) {

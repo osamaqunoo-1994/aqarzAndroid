@@ -244,14 +244,14 @@ public class MapsFragmentNew extends Fragment {
 
                     }
                 });
+                mapsViewModel = new MapsViewModel();
+                mapsRepository = new MapsRepository(getActivity(), false);
+
+                init(view);
 
 
             }
         });
-        mapsViewModel = new MapsViewModel();
-        mapsRepository = new MapsRepository(getActivity(), false);
-
-        init(view);
 
 
 //        mapsRepository.getOpration();
@@ -362,11 +362,11 @@ public class MapsFragmentNew extends Fragment {
 //                city_id_postion = "";
 //                Hawk.put("city_id_postion", "");
 //                check_lastsenareo();
-                region_id_postion = "";
-                Hawk.put("region_id_postion", "");
-
-                city_id_postion = "";
-                Hawk.put("city_id_postion", "");
+//                region_id_postion = "";
+//                Hawk.put("region_id_postion", "");
+//
+//                city_id_postion = "";
+//                Hawk.put("city_id_postion", "");
 //                set_locationRegions();
                 check_lastsenareo();
 //                set_locationRegions();
@@ -860,7 +860,6 @@ public class MapsFragmentNew extends Fragment {
             public boolean onMarkerClick(Marker marker) {
 
 
-
                 if (marker.getTag().toString().contains("allcity")) {
                     marker.hideInfoWindow();
                     googleMap.setInfoWindowAdapter(null);
@@ -982,7 +981,7 @@ public class MapsFragmentNew extends Fragment {
                 } else if (marker.getTag().toString().contains("allEstate")) {
 
 
-                    System.out.println("TETETRTR "+marker.getTag().toString());
+                    System.out.println("TETETRTR " + marker.getTag().toString());
 
                     String[] separated = marker.getTag().toString().split("/");
 
@@ -1037,8 +1036,17 @@ public class MapsFragmentNew extends Fragment {
 
 
                     Intent intent = new Intent(activity, AllOrderActivity.class);
-//                    intent.putExtra("id_aqarz", homeModules_aqares.get(Integer.valueOf(Integer.valueOf(number))).getId() + "");
-//                    System.out.println("id_aqarz" + homeModules_aqares.get(Integer.valueOf(Integer.valueOf(number))).getId());
+
+
+//                    region_id_postion = "";
+//                Hawk.put("region_id_postion", "");
+//
+//                city_id_postion = "";
+//                Hawk.put("city_id_postion", "");
+
+
+                    intent.putExtra("id_city", city_id_postion+ "");
+                    System.out.println("id_nib" + homeModules_aqares.get(Integer.valueOf(Integer.valueOf(number))).getId());
                     intent.putExtra("type", type_selected);
 
                     activity.startActivity(intent);
@@ -1147,6 +1155,49 @@ public class MapsFragmentNew extends Fragment {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(sydneya)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewNibores(locationNeighborhood.get(i).getName() + "(" + locationNeighborhood.get(i).getRequest_fund_counter() + ")", i + "")))).setTag("Neighb/" + i);
+//                                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewNibores(locationNeighborhood.get(i).getName() + "", i + "")))).setTag("Neighb/" + i);
+
+                        }
+
+                    }
+                }
+            });
+        }
+    }
+
+    public static void set_locationNeighborhoodMarket(List<Neighborhood> locationNeighborhood) {
+
+        if (googleMap != null) {
+            googleMap.clear();
+            locationNeighborhood_list.clear();
+            locationNeighborhood_list = locationNeighborhood;
+            for (int i = 0; i < locationNeighborhood.size(); i++) {
+
+                LatLng sydneya = new LatLng(Double.valueOf(locationNeighborhood.get(i).getLat() + ""), Double.valueOf(locationNeighborhood.get(i).getLan() + ""));
+
+                if (googleMap != null) {
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(sydneya)
+                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewNibores(locationNeighborhood.get(i).getName() + "(" + locationNeighborhood.get(i).getRequest_app_counter() + ")", i + "")))).setTag("Neighb/" + i);
+
+                }
+
+            }
+        } else {
+            mapFragment.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap googleMap) {
+                    googleMap.clear();
+                    on_click_maps_marker();
+
+                    for (int i = 0; i < locationNeighborhood.size(); i++) {
+
+                        LatLng sydneya = new LatLng(Double.valueOf(locationNeighborhood.get(i).getLat() + ""), Double.valueOf(locationNeighborhood.get(i).getLan() + ""));
+
+                        if (googleMap != null) {
+                            googleMap.addMarker(new MarkerOptions()
+                                    .position(sydneya)
+                                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewNibores(locationNeighborhood.get(i).getName() + "(" + locationNeighborhood.get(i).getRequest_app_counter() + ")", i + "")))).setTag("Neighb/" + i);
 //                                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewNibores(locationNeighborhood.get(i).getName() + "", i + "")))).setTag("Neighb/" + i);
 
                         }
@@ -1534,7 +1585,16 @@ public class MapsFragmentNew extends Fragment {
                             AllNeigbers allNeigbers = gson.fromJson(mJson, AllNeigbers.class);
 
 
-                            set_locationNeighborhood(allNeigbers.getData());
+                            if (type_selected.equals("Real")) {
+
+                                set_locationNeighborhood(allNeigbers.getData());
+
+                            } else if (type_selected.equals("Market")) {
+                                set_locationNeighborhoodMarket(allNeigbers.getData());
+
+                            } else if (type_selected.equals("offer")) {
+
+                            }
 
 
                         } else if (requestType.equals("home_estate_custom_list")) {

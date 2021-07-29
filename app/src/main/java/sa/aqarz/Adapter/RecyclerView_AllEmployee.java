@@ -1,8 +1,11 @@
 package sa.aqarz.Adapter;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +17,29 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.loopj.android.http.RequestParams;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import sa.aqarz.Activity.Employee.DetailsEmployeeActivity;
 import sa.aqarz.Modules.AllEmployee;
 import sa.aqarz.Modules.ComfortModules;
 import sa.aqarz.Modules.User;
 import sa.aqarz.R;
+import sa.aqarz.Settings.WebService;
+import sa.aqarz.api.IResult;
+import sa.aqarz.api.VolleyService;
 
 
 /**
@@ -37,6 +53,7 @@ public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_
     static AlertDialog alertDialog;
     private ItemClickListener mItemClickListener;
 
+    IResult mResultCallback;
 
     /**
      * View holder class
@@ -74,6 +91,7 @@ public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_
         TextView Enabled;
         TextView notEnabled;
         ImageView image;
+        ImageView remove;
 
         public MyViewHolder(View view) {
             super(view);
@@ -91,6 +109,7 @@ public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_
             calling = view.findViewById(R.id.calling);
             market = view.findViewById(R.id.market);
             image = view.findViewById(R.id.image);
+            remove = view.findViewById(R.id.remove);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
@@ -214,9 +233,42 @@ public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_
 //        });
 //
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                new AlertDialog.Builder(context)
+                        .setMessage(context.getResources().getString(R.string.are_you_delete_post))
+                        .setCancelable(false)
+                        .setPositiveButton(context.getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Postion_opend = position;
+
+                                WebService.loading((Activity) context, true);
+
+
+                                init_volley();
+
+                                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+
+                                try {
+
+                                    RequestParams requestParams = new RequestParams();
+
+                                    requestParams.put("emp_mobile", alldata.get(position).getEmp_mobile() + "");
+                                    requestParams.put("country_code", "966");
+
+                                    mVolleyService.postDataasync_with_file("delete_employee", WebService.delete_employee, requestParams);
+
+                                } catch (Exception e) {
+
+                                }
+
+                            }
+                        })
+                        .setNegativeButton(context.getResources().getString(R.string.no), null)
+                        .show();
+
 
 //
 
@@ -291,4 +343,84 @@ public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_
     public interface ItemClickListener {
         void onItemClick(int position);
     }
+
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response.toString());
+                WebService.loading((Activity) context, false);
+//{"status":true,"code":200,"message":"User Profile","data"
+                try {
+
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+//                        alldate.setAdapter(null);
+
+                        if (requestType.equals("delete_employee")) {
+
+
+                            alldata.remove(Postion_opend);
+                            Refr();
+
+
+                        }
+
+
+                    } else {
+
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+
+                WebService.loading((Activity) context, false);
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color((Activity) context, message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+                WebService.loading((Activity) context, false);
+
+
+            }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+                WebService.loading((Activity) context, false);
+
+                WebService.Make_Toast_color((Activity) context, error, "error");
+
+
+            }
+        };
+
+
+    }
+
 }

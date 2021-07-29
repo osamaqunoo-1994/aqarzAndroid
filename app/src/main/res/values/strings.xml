@@ -965,27 +965,28 @@ Two working days to complete your order</string>
     <string name="check_permission">Check Permission</string>
     <string name="Allow_access_device_">Allow access to this device location to see offers near you</string>
 
-    <string name="btn_order_wating">طلبات قيد الانتظار</string>
-    <string name="btn_order_preview">طلبات معاينة</string>
-    <string name="btn_order_accept">طلبات مقبوله</string>
+    <string name="btn_order_wating">Pending requests</string>
+    <string name="btn_order_preview">Preview requests</string>
+    <string name="btn_order_accept">Accepted requests</string>
     <string name="title_activity_my_interests">Map</string>
     <string name="my_interests">My Interests</string>
-    <string name="neb_Selected">الاحياء المحدده</string>
-    <string name="neb_Selected_msg">تم تحديد الاحياء بنجاح</string>
+    <string name="neb_Selected">specified neighborhoods</string>
+    <string name="neb_Selected_msg">neighborhoods selected successfully</string>
     <string name="title_activity_tes_t_t_e_stctivity">Map</string>
-    <string name="How_to_use">طريقة الاستخدام</string>
+    <string name="How_to_use">How to use</string>
 
 
     <string name="type_spiner_info_1">جولة داخل التطبيق</string>
     <string name="type_spiner_info_2">اضافة عقار</string>
     <string name="type_spiner_info_3">عرض طلبات الصندوق</string>
     <string name="type_spiner_info_4">ارسال عروض لطلبات الصندوق</string>
-    <string name="click_here">اضغط هنا</string>
-    <string name="novideoselected">اختر فيديو</string>
+    <string name="click_here">Press here</string>
+    <string name="novideoselected">Choose a video</string>
     <string name="EmployeeTitle">Management Employee performance</string>
 
 
     <string name="Edit_just">Edit</string>
+    <string name="are_you_delete_post">are you remove employee</string>
 
 
 </resources>

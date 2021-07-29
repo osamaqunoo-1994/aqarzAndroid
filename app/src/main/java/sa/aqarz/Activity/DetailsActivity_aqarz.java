@@ -112,6 +112,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     LinearLayout report;
     RecyclerView list_coments;
     ScaleRatingBar simpleRatingBar;
+    ScaleRatingBar rate_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +137,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
         profile = findViewById(R.id.profile);
         link = findViewById(R.id.link);
         chat = findViewById(R.id.chat);
+        rate_user = findViewById(R.id.rate_user);
         tent = findViewById(R.id.tent);
         rate = findViewById(R.id.rate);
         finince = findViewById(R.id.finince);
@@ -494,6 +496,15 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
                             name_owner.setText(homeModules_aqares.getOwnerName() + "");
                             link.setText(homeModules_aqares.getUser().getLink() + "");
 
+
+                            try {
+                                if (homeModules_aqares.getUser() != null) {
+                                    rate_user.setRating(Float.valueOf(homeModules_aqares.getUser().getRate()));
+
+                                }
+                            } catch (Exception e) {
+
+                            }
 
                             if (homeModules_aqares.getRate() != null) {
 

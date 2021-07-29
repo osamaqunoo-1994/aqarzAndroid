@@ -609,4 +609,23 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    protected void onResume() {
+
+        init_volley();
+
+
+        try {
+            id = getIntent().getStringExtra("id");
+            VolleyService mVolleyService = new VolleyService(mResultCallback, ProfileDetailsActivity.this);
+
+//            mVolleyService.getDataVolley("user", WebService.user + id + "");
+            mVolleyService.getDataVolley("user", WebService.my_profile + "");
+
+        } catch (Exception e) {
+
+        }
+        super.onResume();
+    }
 }
