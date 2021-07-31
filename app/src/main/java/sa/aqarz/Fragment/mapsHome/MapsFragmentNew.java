@@ -746,7 +746,7 @@ public class MapsFragmentNew extends Fragment {
 
 //                                        mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + city_id_postion + "/list");
 //                                        mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + city_id_postion + "/list?is_all=0");
-                                            mVolleyService.getAsync("neighborhoods", WebService.neighborhoods + "/" + city_location_list.get(Integer.valueOf(city_id_postion)).getSerial_city() + "/list?is_all=0");
+                                            mVolleyService.getAsync("neighborhoods", WebService.neighborhoods + "/" + city_location_list.get(Integer.valueOf(city_id_postion)).getSerial_city() + "/list?is_all=2");
 
 
 //                                        is_first_time = false;
@@ -1046,7 +1046,7 @@ public class MapsFragmentNew extends Fragment {
 
 
                     intent.putExtra("id_city", city_id_postion+ "");
-                    System.out.println("id_nib" + homeModules_aqares.get(Integer.valueOf(Integer.valueOf(number))).getId());
+//                    System.out.println("id_nib" + homeModules_aqares.get(Integer.valueOf(Integer.valueOf(number))).getId());
                     intent.putExtra("type", type_selected);
 
                     activity.startActivity(intent);
