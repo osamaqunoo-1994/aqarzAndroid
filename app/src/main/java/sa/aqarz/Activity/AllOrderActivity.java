@@ -109,6 +109,7 @@ public class AllOrderActivity extends AppCompatActivity {
     static String price_id = "";
     public static boolean searh = true;
     public static boolean isLoading = false;
+    public static boolean isLoadings = false;
 
     static Activity activity;
     static List<OrdersModules> ordersModules = new ArrayList<>();
@@ -283,6 +284,123 @@ public class AllOrderActivity extends AppCompatActivity {
     }
 
     public void change_type_bettwen_market_and_real() {
+
+        Real_Estate_order_layout.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
+            @Override
+            public void onClick(View v) {
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+                market_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
+                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
+                market_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
+                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+                type = "Real";
+                setFiltter();
+                price_market.setVisibility(View.GONE);
+                price_fund.setVisibility(View.VISIBLE);
+                all_status_offer.setVisibility(View.VISIBLE);
+                area_market.setVisibility(View.GONE);
+                area_real.setVisibility(View.VISIBLE);
+            }
+        });
+        market_order_layout.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
+            @Override
+            public void onClick(View v) {
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
+                market_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
+                market_order_text.setTextColor(getResources().getColor(R.color.white));
+
+
+                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_IN);
+
+                type = "market";
+                setFiltter();
+                price_market.setVisibility(View.VISIBLE);
+                price_fund.setVisibility(View.GONE);
+                area_market.setVisibility(View.VISIBLE);
+                all_status_offer.setVisibility(View.GONE);
+                area_real.setVisibility(View.GONE);
+                area_real.setVisibility(View.GONE);
+
+
+            }
+        });
+
+
+        try {
+            String types = getIntent().getStringExtra("type");
+
+
+            if (types.equals("main")) {
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+                market_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
+                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
+                market_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
+                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+                type = "Real";
+                setFiltter();
+                AllOrder_number.setText(Settings.getSettings().getAllRequestFund() + "");
+                today_number.setText(Settings.getSettings().getRequestFund() + "");
+                Myoffer_number.setText(Settings.getSettings().getMyRequestFundOffer() + "");
+
+                price_market.setVisibility(View.GONE);
+                price_fund.setVisibility(View.VISIBLE);
+                area_market.setVisibility(View.GONE);
+                area_real.setVisibility(View.VISIBLE);
+
+
+            } else if (types.equals("Real")) {
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+                market_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
+                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
+                market_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
+                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+                type = "Real";
+                setFiltter();
+                AllOrder_number.setText(Settings.getSettings().getAllRequestFund() + "");
+                today_number.setText(Settings.getSettings().getRequestFund() + "");
+                Myoffer_number.setText(Settings.getSettings().getMyRequestFundOffer() + "");
+
+                price_market.setVisibility(View.GONE);
+                price_fund.setVisibility(View.VISIBLE);
+                area_market.setVisibility(View.GONE);
+                area_real.setVisibility(View.VISIBLE);
+
+                all_status_offer.setVisibility(View.VISIBLE);
+
+            } else {//Market
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
+                market_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
+                market_order_text.setTextColor(getResources().getColor(R.color.white));
+
+
+                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_IN);
+
+                type = "market";
+                setFiltter();
+                AllOrder_number.setText(Settings.getSettings().getAllRequest() + "");
+                today_number.setText(Settings.getSettings().getMarketDemands() + "");
+                Myoffer_number.setText(Settings.getSettings().getMyRequestOffer() + "");
+
+                price_market.setVisibility(View.VISIBLE);
+                price_fund.setVisibility(View.GONE);
+                area_market.setVisibility(View.VISIBLE);
+                area_real.setVisibility(View.GONE);
+                all_status_offer.setVisibility(View.GONE);
+
+            }
+        } catch (Exception e) {
+            setFiltter();
+
+        }
+    }
+
+    public void change_type_bettwen_market_and_readfdl_fund() {
 
         Real_Estate_order_layout.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("ResourceType")
