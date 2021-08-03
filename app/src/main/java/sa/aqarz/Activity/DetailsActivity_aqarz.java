@@ -470,17 +470,19 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
                             estate_type_name.setText(homeModules_aqares.getEstate_type_name());
                             price.setText(homeModules_aqares.getTotalPrice());
 
-
-                            if (homeModules_aqares.getAddress() == null) {
-                                if (homeModules_aqares.getCity_name() != null) {
-                                    address.setText(homeModules_aqares.getCity_name() + " - " + homeModules_aqares.getNeighborhood_name());
-
-                                }
+                            if (homeModules_aqares.getCity_name() != null) {
+                                address.setText(homeModules_aqares.getCity_name() + " - " + homeModules_aqares.getNeighborhood_name());
 
                             } else {
                                 address.setText(homeModules_aqares.getAddress());
 
                             }
+
+//                            if (homeModules_aqares.getAddress() == null) {
+//
+//                            } else {
+//
+//                            }
 
 
                             name.setText(homeModules_aqares.getEstate_type_name() + "");

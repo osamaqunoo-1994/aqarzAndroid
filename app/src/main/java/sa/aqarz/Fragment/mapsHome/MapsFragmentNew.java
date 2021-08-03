@@ -1045,7 +1045,7 @@ public class MapsFragmentNew extends Fragment {
 //                Hawk.put("city_id_postion", "");
 
 
-                    intent.putExtra("id_city", city_id_postion+ "");
+                    intent.putExtra("id_city", city_id_postion + "");
 //                    System.out.println("id_nib" + homeModules_aqares.get(Integer.valueOf(Integer.valueOf(number))).getId());
                     intent.putExtra("type", type_selected);
 
@@ -1524,15 +1524,32 @@ public class MapsFragmentNew extends Fragment {
         String getSerial_city = "";
 
 
-        if (!region_id_postion.equals("")) {
-//            getId_region = "?state_id=" + regionModules_list.get(Integer.valueOf(region_id_postion + "")).getId() + "";
+        try {
+            if (!region_id_postion.equals("")) {
+                if (regionModules_list != null) {
+                    if (regionModules_list.size() != 0) {
+                        getId_region = "?state_id=" + regionModules_list.get(Integer.valueOf(region_id_postion + "")).getId() + "";
+
+                    }
+
+                }
+
+            }
+            if (!city_id_postion.equals("")) {
+
+                if (city_location_list != null) {
+                    if (city_location_list.size() != 0) {
+                        getSerial_city = "&city_id=" + city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
+
+                    }
+
+                }
+
+            }
+
+        } catch (Exception e) {
 
         }
-        if (!city_id_postion.equals("")) {
-//            getSerial_city = "&city_id=" + city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
-
-        }
-
 
         String lat_lan = "&lan=" + lan + "&lat=" + lat;
         String distance = "50";
@@ -1555,8 +1572,8 @@ public class MapsFragmentNew extends Fragment {
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
 
-        mVolleyService.getAsync("home_estate_custom_list", WebService.home_estate_custom_list + "?" + filter + lat_lan + "&distance=" + distance);
-        urlEstat = WebService.home_estate_custom_list + "?" + filter + lat_lan + "&distance=" + distance;
+        mVolleyService.getAsync("home_estate_custom_list", WebService.home_estate_custom_list + "?" + filter + lat_lan + "&distance=" + distance + getId_region + getSerial_city);
+        urlEstat = WebService.home_estate_custom_list + "?" + filter + lat_lan + "&distance=" + distance + getId_region + getSerial_city;
 
     }
 

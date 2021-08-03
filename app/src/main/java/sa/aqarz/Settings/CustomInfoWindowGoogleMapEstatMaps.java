@@ -53,6 +53,10 @@ public class CustomInfoWindowGoogleMapEstatMaps implements GoogleMap.InfoWindowA
         space.setText(homeModules_aqares.getTotalArea() + "");
 //        location.setText("---");
 
+        if (homeModules_aqares.getCity_name() != null) {
+            location.setText("" + homeModules_aqares.getCity_name() + "-" + homeModules_aqares.getNeighborhood_name());
+        }
+
         try {
 
             System.out.println("$%$%$%" + homeModules_aqares.getFirst_image());

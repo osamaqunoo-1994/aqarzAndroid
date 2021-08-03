@@ -141,17 +141,19 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         holder.space.setText(alldata.get(position).getTotalArea() + "");
         holder.date.setText(alldata.get(position).getCreatedAt() + "");
 
-
-        if (alldata.get(position).getAddress() == null) {
-            if (alldata.get(position).getCity_name() != null) {
-                holder.address.setText(alldata.get(position).getCity_name() + " - " + alldata.get(position).getNeighborhood_name());
-
-            }
+        if (alldata.get(position).getCity_name() != null) {
+            holder.address.setText(alldata.get(position).getCity_name() + " - " + alldata.get(position).getNeighborhood_name());
 
         } else {
             holder.address.setText(alldata.get(position).getAddress());
 
         }
+
+//        if (alldata.get(position).getAddress() == null) {
+//
+//        } else {
+//
+//        }
 
         try {
             holder.rate.setStar(Float.valueOf(alldata.get(position).getRate() + ""));
