@@ -127,7 +127,9 @@ public class MapsFragmentNew extends Fragment {
 
 
     public static String lat = "";
+    public static String lat1 = "";
     public static String lan = "";
+    public static String lan1 = "";
     public static boolean is_first_time = true;
 
     static LinearLayout list_estate;
@@ -211,6 +213,10 @@ public class MapsFragmentNew extends Fragment {
                         Log.i("centerLong", cameraPosition.target.longitude + "");
 
 
+
+
+
+
                         if (!region_id_postion.equals("") && !city_id_postion.equals("") && type_selected.equals("offer")) {
 
 
@@ -224,6 +230,9 @@ public class MapsFragmentNew extends Fragment {
 
                             lat = cameraPosition.target.latitude + "";
                             lan = cameraPosition.target.longitude + "";
+
+                            lat1 = cameraPosition.target.latitude + "";
+                            lan1 = cameraPosition.target.longitude + "";
 
 
                             System.out.println("lan:" + lan + " lat:" + lat);
@@ -757,7 +766,7 @@ public class MapsFragmentNew extends Fragment {
                                         } else if (type_selected.equals("offer")) {
 
                                             is_first_time = false;
-                                            LatLng sydney = new LatLng(Double.valueOf(lat + ""), Double.valueOf(lan + ""));
+                                            LatLng sydney = new LatLng(Double.valueOf(lat1 + ""), Double.valueOf(lan1 + ""));
                                             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 8));
 
                                             getAllEstate();
