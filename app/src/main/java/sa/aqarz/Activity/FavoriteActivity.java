@@ -46,6 +46,7 @@ import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.Modules.mod_favorite;
 import sa.aqarz.Modules.of_favorite;
 import sa.aqarz.R;
+import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
@@ -89,6 +90,16 @@ public class FavoriteActivity extends AppCompatActivity {
         Shopping_request_text = findViewById(R.id.Shopping_request_text);
         Real_Estate_order_text = findViewById(R.id.Real_Estate_order_text);
         alldate = findViewById(R.id.alldate);
+
+
+
+        if(Settings.CheckIsAccountAqarzMan()){
+            Real_Estate_order_text.setVisibility(View.VISIBLE);
+        }else{
+            Real_Estate_order_text.setVisibility(View.GONE);
+
+        }
+
 
 
         LinearLayoutManager layoutManager1

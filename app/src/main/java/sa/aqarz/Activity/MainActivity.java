@@ -388,20 +388,22 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if (!Settings.checkLogin()) {
-                    new AlertDialog.Builder(MainActivity.this)
-                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
-                            .setCancelable(false)
-                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
+                    startActivity(new Intent(MainActivity.this, check_login.class));
 
-                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                                intent.putExtra("from", "splash");
-                                    startActivity(intent);
-
-                                }
-                            })
-                            .setNegativeButton(getResources().getString(R.string.no), null)
-                            .show();
+//                    new AlertDialog.Builder(MainActivity.this)
+//                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+//                            .setCancelable(false)
+//                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//
+//                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+////                                intent.putExtra("from", "splash");
+//                                    startActivity(intent);
+//
+//                                }
+//                            })
+//                            .setNegativeButton(getResources().getString(R.string.no), null)
+//                            .show();
                 } else {
 
 
@@ -477,96 +479,127 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (Settings.checkLogin()) {
+                LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                final View popupView = layoutInflater.inflate(R.layout.bottom_sheets_service, null);
 
 
-                    LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    final View popupView = layoutInflater.inflate(R.layout.bottom_sheets_service, null);
+                LinearLayout rent_layout = popupView.findViewById(R.id.rent_layout);
+                LinearLayout realState = popupView.findViewById(R.id.realState);
+                LinearLayout settings = popupView.findViewById(R.id.settings);
+                LinearLayout contact_us = popupView.findViewById(R.id.contact_us);
+                LinearLayout Technical_support = popupView.findViewById(R.id.Technical_support);
+                LinearLayout MOreAqarezMan = popupView.findViewById(R.id.MOreAqarezMan);
+                LinearLayout market = popupView.findViewById(R.id.market);
 
 
-                    LinearLayout rent_layout = popupView.findViewById(R.id.rent_layout);
-                    LinearLayout realState = popupView.findViewById(R.id.realState);
-                    LinearLayout settings = popupView.findViewById(R.id.settings);
-                    LinearLayout contact_us = popupView.findViewById(R.id.contact_us);
-                    LinearLayout Technical_support = popupView.findViewById(R.id.Technical_support);
-                    LinearLayout MOreAqarezMan = popupView.findViewById(R.id.MOreAqarezMan);
-                    LinearLayout market = popupView.findViewById(R.id.market);
-                    realState.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+                if(Settings.CheckIsAccountAqarzMan()){
+                    realState.setVisibility(View.VISIBLE);
+                }else
+                {
+                    realState.setVisibility(View.GONE);
+
+                }
+
+
+
+                realState.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (Settings.checkLogin()) {
+
+
 //                            Intent intent = new Intent(MainActivity.this, OrderListActivity.class);
                             Intent intent = new Intent(MainActivity.this, AllOrderActivity.class);
                             intent.putExtra("type", "Real");
                             startActivity(intent);
 //                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
+                        } else {
+                            startActivity(new Intent(MainActivity.this, check_login.class));
                         }
-                    });
-                    market.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+
+                    }
+                });
+                market.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (Settings.checkLogin()) {
+
+
 //                            Intent intent = new Intent(MainActivity.this, OrderListActivity.class);
                             Intent intent = new Intent(MainActivity.this, AllOrderActivity.class);
                             intent.putExtra("type", "market");
                             startActivity(intent);
 //                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
+                        } else {
+                            startActivity(new Intent(MainActivity.this, check_login.class));
                         }
-                    });
-                    contact_us.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(MainActivity.this, ContactUsActivity.class);
-//                                intent.putExtra("from", "splash");
-                            startActivity(intent);
+
+//                            Intent intent = new Intent(MainActivity.this, OrderListActivity.class);
+
 //                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
-                        }
-                    });
-                    settings.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            alertDialog.dismiss();
-                            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                    }
+                });
+                contact_us.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MainActivity.this, ContactUsActivity.class);
 //                                intent.putExtra("from", "splash");
-                            startActivity(intent);
+                        startActivity(intent);
 //                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
-                        }
-                    });
-                    Technical_support.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            try {
-
-
-                                Intent sendIntent = new Intent("android.intent.action.MAIN");
-                                sendIntent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
-                                sendIntent.setAction(Intent.ACTION_SEND);
-                                sendIntent.setType("text/plain");
-                                sendIntent.putExtra(Intent.EXTRA_TEXT, "");
-                                sendIntent.putExtra("jid", "966532576667" + "@s.whatsapp.net");
-                                sendIntent.setPackage("com.whatsapp");
-                                startActivity(sendIntent);
-                            } catch (Exception e) {
-                                Toast.makeText(MainActivity.this, "Error/n" + e.toString(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                    MOreAqarezMan.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-
-                            Intent intent = new Intent(MainActivity.this, AllclintActivity.class);
+                    }
+                });
+                settings.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
 //                                intent.putExtra("from", "splash");
-                            startActivity(intent);
+                        startActivity(intent);
+//                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
+                    }
+                });
+                Technical_support.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+
+
+                            Intent sendIntent = new Intent("android.intent.action.MAIN");
+                            sendIntent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
+                            sendIntent.setAction(Intent.ACTION_SEND);
+                            sendIntent.setType("text/plain");
+                            sendIntent.putExtra(Intent.EXTRA_TEXT, "");
+                            sendIntent.putExtra("jid", "966532576667" + "@s.whatsapp.net");
+                            sendIntent.setPackage("com.whatsapp");
+                            startActivity(sendIntent);
+                        } catch (Exception e) {
+                            Toast.makeText(MainActivity.this, "Error/n" + e.toString(), Toast.LENGTH_SHORT).show();
                         }
-                    });
-                    rent_layout.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+                    }
+                });
+                MOreAqarezMan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        Intent intent = new Intent(MainActivity.this, AllclintActivity.class);
+//                                intent.putExtra("from", "splash");
+                        startActivity(intent);
+
+                    }
+                });
+                rent_layout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (Settings.checkLogin()) {
+
 
                             if (Hawk.contains("rent_layout")) {
 
@@ -580,39 +613,40 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
 
-
+                        } else {
+                            startActivity(new Intent(MainActivity.this, check_login.class));
                         }
-                    });
 
 
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    }
+                });
+
+
+                final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
 //            alertDialog_country =
-                    builder.setView(popupView);
+                builder.setView(popupView);
 
 
-                    alertDialog = builder.show();
+                alertDialog = builder.show();
 
-                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-                } else {
-                    new AlertDialog.Builder(MainActivity.this)
-                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
-                            .setCancelable(false)
-                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-
-                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                                intent.putExtra("from", "splash");
-                                    startActivity(intent);
-
-                                }
-                            })
-                            .setNegativeButton(getResources().getString(R.string.no), null)
-                            .show();
-                }
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
 
+//                new AlertDialog.Builder(MainActivity.this)
+//                        .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+//                        .setCancelable(false)
+//                        .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int id) {
+//
+//                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+////                                intent.putExtra("from", "splash");
+//                                startActivity(intent);
+//
+//                            }
+//                        })
+//                        .setNegativeButton(getResources().getString(R.string.no), null)
+//                        .show();
             }
         });
 
@@ -627,20 +661,22 @@ public class MainActivity extends AppCompatActivity {
 
 
                 } else {
-                    new AlertDialog.Builder(MainActivity.this)
-                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
-                            .setCancelable(false)
-                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
+                    startActivity(new Intent(MainActivity.this, check_login.class));
 
-                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                                intent.putExtra("from", "splash");
-                                    startActivity(intent);
-
-                                }
-                            })
-                            .setNegativeButton(getResources().getString(R.string.no), null)
-                            .show();
+//                    new AlertDialog.Builder(MainActivity.this)
+//                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+//                            .setCancelable(false)
+//                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//
+//                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+////                                intent.putExtra("from", "splash");
+//                                    startActivity(intent);
+//
+//                                }
+//                            })
+//                            .setNegativeButton(getResources().getString(R.string.no), null)
+//                            .show();
                 }
             }
         });
@@ -667,20 +703,22 @@ public class MainActivity extends AppCompatActivity {
 //                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                     }
                 } else {
-                    new AlertDialog.Builder(MainActivity.this)
-                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
-                            .setCancelable(false)
-                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
+                    startActivity(new Intent(MainActivity.this, check_login.class));
 
-                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                                intent.putExtra("from", "splash");
-                                    startActivity(intent);
-
-                                }
-                            })
-                            .setNegativeButton(getResources().getString(R.string.no), null)
-                            .show();
+//                    new AlertDialog.Builder(MainActivity.this)
+//                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+//                            .setCancelable(false)
+//                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//
+//                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+////                                intent.putExtra("from", "splash");
+//                                    startActivity(intent);
+//
+//                                }
+//                            })
+//                            .setNegativeButton(getResources().getString(R.string.no), null)
+//                            .show();
                 }
 
 //

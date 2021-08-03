@@ -6,11 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.orhanobut.hawk.Hawk;
 
+import sa.aqarz.Activity.Auth.LoginActivity;
+import sa.aqarz.Activity.Auth.NewSiginUpActivity;
+import sa.aqarz.Activity.Auth.RegisterActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_restPassword;
 import sa.aqarz.R;
 import sa.aqarz.Settings.LocaleUtils;
@@ -21,6 +27,12 @@ public class SettingsActivity extends AppCompatActivity {
     LinearLayout changePassword;
     LinearLayout langauge;
     LinearLayout logout;
+    LinearLayout no_login;
+
+    TextView loginButton;
+    TextView signup;
+
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +42,41 @@ public class SettingsActivity extends AppCompatActivity {
         changePassword = findViewById(R.id.changePassword);
         langauge = findViewById(R.id.langauge);
         logout = findViewById(R.id.logout);
+        no_login = findViewById(R.id.no_login);
+        loginButton = findViewById(R.id.loginButton);
+        back = findViewById(R.id.back);
+        signup = findViewById(R.id.signup);
 
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         terms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SettingsActivity.this, TermsActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+            }
+        });
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+            }
+        });
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, NewSiginUpActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
 //                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
@@ -135,5 +176,22 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        if (Settings.checkLogin()) {
+            changePassword.setVisibility(View.VISIBLE);
+            logout.setVisibility(View.VISIBLE);
+            no_login.setVisibility(View.GONE);
+
+        } else {
+            changePassword.setVisibility(View.GONE);
+            logout.setVisibility(View.GONE);
+            no_login.setVisibility(View.VISIBLE);
+        }
+
+
+        super.onResume();
     }
 }

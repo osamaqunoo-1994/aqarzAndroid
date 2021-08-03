@@ -1011,5 +1011,9 @@
 
     <string name="Edit_just">تعديل</string>
     <string name="are_you_delete_post">هل تريد حذف موظف؟</string>
+    <string name="title_lo">لتتمتع بخدمات تطبيق عقارز، يرجى </string>
+    <string name="lof_ofpfs">تسجيل الدخول</string>
+
+    <string name="Profile">الحساب</string>
 
 </resources>

@@ -2,6 +2,7 @@ package sa.aqarz.Fragment.mapsHome;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
@@ -64,6 +65,7 @@ import sa.aqarz.Activity.AllOrderActivity;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.ContactUsActivity;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
+import sa.aqarz.Activity.FavoriteActivity;
 import sa.aqarz.Activity.InfoActivity;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.NotficationActvity;
@@ -124,7 +126,7 @@ public class MapsFragmentNew extends Fragment {
 
     public static String region_id_postion = "";
     public static String city_id_postion = "";
-
+    ImageView favorit;
 
     public static String lat = "";
     public static String lat1 = "";
@@ -134,12 +136,17 @@ public class MapsFragmentNew extends Fragment {
 
     static LinearLayout list_estate;
     static LinearLayout all_list_backround;
+
+    static LinearLayout filtter_type;
     AlertDialog ad;
     static Activity activity;
     static RelativeLayout layout_list;
     RecyclerView list_aqaers;
-
+    CardView notfication_layout;
     static boolean onclick_marker_aqarez = false;
+
+
+    static String type_filtter = "";
 
 
     private final OnMapReadyCallback callback = new OnMapReadyCallback() {
@@ -173,6 +180,15 @@ public class MapsFragmentNew extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+        View v = inflater.inflate(R.layout.fragment_maps_new, container, false);
+
+        all_list_backround = v.findViewById(R.id.all_list_backround);
+        filtter_type = v.findViewById(R.id.filtter_type);
+        notfication_layout = v.findViewById(R.id.notfication_layout);
+        favorit = v.findViewById(R.id.favorit);
+        RealStatr_order = v.findViewById(R.id.RealStatr_order);
+
         activity = getActivity();
         mapFragment =
                 (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
@@ -182,7 +198,7 @@ public class MapsFragmentNew extends Fragment {
         }
 
 
-        return inflater.inflate(R.layout.fragment_maps_new, container, false);
+        return v;
     }
 
     @Override
@@ -211,10 +227,6 @@ public class MapsFragmentNew extends Fragment {
                         Log.i("centerLat", cameraPosition.target.latitude + "");
 
                         Log.i("centerLong", cameraPosition.target.longitude + "");
-
-
-
-
 
 
                         if (!region_id_postion.equals("") && !city_id_postion.equals("") && type_selected.equals("offer")) {
@@ -267,7 +279,7 @@ public class MapsFragmentNew extends Fragment {
 
     }
 
-    int page = 1;
+    static int page = 1;
     RecyclerView_All_type_in_fragment1 recyclerView_all_type_in_fragment;
 
     public void init(View v) {
@@ -287,16 +299,34 @@ public class MapsFragmentNew extends Fragment {
         cityMap = v.findViewById(R.id.cityMap);
         all_estate_size = v.findViewById(R.id.all_estate_size);
         layout_list = v.findViewById(R.id.layout_list);
+        favorit = v.findViewById(R.id.favorit);
 
 
-        RealStatr_order.setBackground(getActivity().getResources().getDrawable(R.drawable.button_1));
-        MarketOrder.setBackground(null);
-        OfferOrder.setBackground(null);
-        convert_map_to_list.setVisibility(View.GONE);
-        RealStatr_order.setTextColor(getActivity().getResources().getColor(R.color.white));
-        MarketOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
-        OfferOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
-        type_selected = "Real";
+
+        if(Settings.checkLogin()){
+            if(Settings.CheckIsAccountAqarzMan()){
+                RealStatr_order.setBackground(getActivity().getResources().getDrawable(R.drawable.button_1));
+                MarketOrder.setBackground(null);
+                OfferOrder.setBackground(null);
+//        convert_map_to_list.setVisibility(View.GONE);
+                RealStatr_order.setTextColor(getActivity().getResources().getColor(R.color.white));
+                MarketOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
+                OfferOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
+                type_selected = "Real";
+            }else{
+
+                MarketOrder.setBackground(getActivity().getResources().getDrawable(R.drawable.button_2));
+                RealStatr_order.setBackground(null);
+                OfferOrder.setBackground(null);
+//                convert_map_to_list.setVisibility(View.GONE);
+
+                MarketOrder.setTextColor(getActivity().getResources().getColor(R.color.white));
+                RealStatr_order.setTextColor(getActivity().getResources().getColor(R.color.textColor));
+                OfferOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
+                type_selected = "Market";
+            }
+        }
+
 
 
         LinearLayoutManager layoutMana
@@ -314,7 +344,7 @@ public class MapsFragmentNew extends Fragment {
                 RealStatr_order.setBackground(getActivity().getResources().getDrawable(R.drawable.button_1));
                 MarketOrder.setBackground(null);
                 OfferOrder.setBackground(null);
-                convert_map_to_list.setVisibility(View.GONE);
+//                convert_map_to_list.setVisibility(View.GONE);
 
 
                 RealStatr_order.setTextColor(getActivity().getResources().getColor(R.color.white));
@@ -339,7 +369,6 @@ public class MapsFragmentNew extends Fragment {
                 LatLng sydney = new LatLng(24.527282, 44.007305);
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
 
-
                 region_id_postion = "";
                 Hawk.put("region_id_postion", "");
 
@@ -357,7 +386,7 @@ public class MapsFragmentNew extends Fragment {
                 MarketOrder.setBackground(getActivity().getResources().getDrawable(R.drawable.button_2));
                 RealStatr_order.setBackground(null);
                 OfferOrder.setBackground(null);
-                convert_map_to_list.setVisibility(View.GONE);
+//                convert_map_to_list.setVisibility(View.GONE);
 
                 MarketOrder.setTextColor(getActivity().getResources().getColor(R.color.white));
                 RealStatr_order.setTextColor(getActivity().getResources().getColor(R.color.textColor));
@@ -389,7 +418,7 @@ public class MapsFragmentNew extends Fragment {
                 OfferOrder.setBackground(getActivity().getResources().getDrawable(R.drawable.button_3));
                 MarketOrder.setBackground(null);
                 RealStatr_order.setBackground(null);
-                convert_map_to_list.setVisibility(View.VISIBLE);
+//                convert_map_to_list.setVisibility(View.VISIBLE);
 
 
                 OfferOrder.setTextColor(getActivity().getResources().getColor(R.color.white));
@@ -407,7 +436,13 @@ public class MapsFragmentNew extends Fragment {
                 check_lastsenareo();
             }
         });
-
+        favorit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), FavoriteActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
 
         mapsViewModel.getRegions_list().observe(getActivity(), new Observer<List<RegionModules>>() {
             @Override
@@ -470,6 +505,40 @@ public class MapsFragmentNew extends Fragment {
         recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_in_fragment1.ItemClickListener() {
             @Override
             public void onItemClick(List<TypeModules> typeModules) {
+                type_filtter = "";
+
+                for (int i = 0; i < typeModules.size(); i++) {
+                    if (typeModules.get(i).isIsselected()) {
+
+                        if (type_filtter.equals("")) {
+                            type_filtter = "" + typeModules.get(i).getId();
+                        } else {
+                            type_filtter = type_filtter + "," + typeModules.get(i).getId();
+
+                        }
+
+                    }
+                }
+
+
+                if (layout_list.getVisibility() == View.VISIBLE) {
+
+                    page = 1;
+
+                    recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_new(activity, homeModules_aqares);
+                    list_aqaers.setAdapter(recyclerView_homeList_estat_new);
+
+                    WebService.loading(activity, true);
+                    init_volley();
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
+
+                    mVolleyService.getAsync("home_estate_custom_list_more", WebService.home_estate_custom_list + "?estate_type=" + type_filtter);
+
+
+                } else {
+                    check_lastsenareo();
+
+                }
 
 
             }
@@ -582,13 +651,49 @@ public class MapsFragmentNew extends Fragment {
 //                change_layout();
 //                get_all_estate_list_filttter();
 
-                all_estate_size.setVisibility(View.GONE);
-                convert_map_to_list.setVisibility(View.GONE);
-                layout_list.setVisibility(View.VISIBLE);
-                change_list_to_map.setVisibility(View.VISIBLE);
 
-                recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_new(activity, homeModules_aqares);
-                list_aqaers.setAdapter(recyclerView_homeList_estat_new);
+                if (type_selected.equals("Real")) {
+
+
+                    Intent intent = new Intent(activity, AllOrderActivity.class);
+                    intent.putExtra("type", type_selected);
+
+                    activity.startActivity(intent);
+                } else if (type_selected.equals("Market")) {
+
+                    Intent intent = new Intent(activity, AllOrderActivity.class);
+
+
+                    intent.putExtra("type", type_selected);
+
+                    activity.startActivity(intent);
+                } else {
+                    all_estate_size.setVisibility(View.GONE);
+                    convert_map_to_list.setVisibility(View.GONE);
+                    layout_list.setVisibility(View.VISIBLE);
+                    change_list_to_map.setVisibility(View.VISIBLE);
+
+
+                    if (homeModules_aqares.size() == 0) {
+                        page = 1;
+
+                        recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_new(activity, homeModules_aqares);
+                        list_aqaers.setAdapter(recyclerView_homeList_estat_new);
+
+                        WebService.loading(activity, true);
+                        init_volley();
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
+
+                        mVolleyService.getAsync("home_estate_custom_list_more", WebService.home_estate_custom_list);
+
+
+                    } else {
+                        recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_new(activity, homeModules_aqares);
+                        list_aqaers.setAdapter(recyclerView_homeList_estat_new);
+
+                    }
+
+                }
 
             }
         });
@@ -619,6 +724,7 @@ public class MapsFragmentNew extends Fragment {
     }
 
     public static void check_lastsenareo() {
+
 
         all_estate_size.setVisibility(View.GONE);
 
@@ -851,15 +957,51 @@ public class MapsFragmentNew extends Fragment {
                 }
             }
         } else {
+
+            all_list_backround.setVisibility(View.GONE);
             if (regionModules_list.size() == 0) {
                 mapsViewModel.getRegoins_without(activity);
 
+
+            } else {
+
+                type_selected = "offer";
+
+                set_locationRegions();
 
             }
         }
 
     }
 
+
+    @Override
+    public void onResume() {
+
+        if (Settings.checkLogin()) {
+
+            if (Settings.CheckIsAccountAqarzMan()) {
+                favorit.setVisibility(View.VISIBLE);
+                notfication_layout.setVisibility(View.VISIBLE);
+                all_list_backround.setVisibility(View.VISIBLE);
+                RealStatr_order.setVisibility(View.VISIBLE);
+            } else {
+                all_list_backround.setVisibility(View.VISIBLE);
+                favorit.setVisibility(View.VISIBLE);
+                notfication_layout.setVisibility(View.VISIBLE);
+                RealStatr_order.setVisibility(View.GONE);
+
+            }
+
+        } else {
+            all_list_backround.setVisibility(View.GONE);
+            favorit.setVisibility(View.GONE);
+            notfication_layout.setVisibility(View.GONE);
+
+
+        }
+        super.onResume();
+    }
 
     public static void on_click_maps_marker() {
 
@@ -1651,6 +1793,10 @@ public class MapsFragmentNew extends Fragment {
                             JsonElement mJson = parser.parse(response.toString());
 
                             Gson gson = new Gson();
+
+                            if (page == 1) {
+                                homeModules_aqares.clear();
+                            }
 
                             AllEstate allNeigbers = gson.fromJson(mJson, AllEstate.class);
 

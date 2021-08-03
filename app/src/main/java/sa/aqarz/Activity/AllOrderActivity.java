@@ -238,6 +238,18 @@ public class AllOrderActivity extends AppCompatActivity {
 //            offer.setVisibility(View.GONE);
             not_premium.setVisibility(View.VISIBLE);
         }
+
+
+
+        if(Settings.CheckIsAccountAqarzMan()){
+            Real_Estate_order_layout.setVisibility(View.VISIBLE);
+        }else{
+            Real_Estate_order_layout.setVisibility(View.GONE);
+
+        }
+
+
+
         change_type_bettwen_market_and_real();
         set_city_fillter();
         setdata();
@@ -332,6 +344,8 @@ public class AllOrderActivity extends AppCompatActivity {
 
         try {
             String types = getIntent().getStringExtra("type");
+
+
 
 
             if (types.equals("main")) {
