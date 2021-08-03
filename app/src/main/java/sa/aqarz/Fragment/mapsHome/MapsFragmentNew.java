@@ -1533,32 +1533,32 @@ public class MapsFragmentNew extends Fragment {
         String getSerial_city = "";
 
 
-        try {
-            if (!region_id_postion.equals("")) {
-                if (regionModules_list != null) {
-                    if (regionModules_list.size() != 0) {
-                        getId_region = "?state_id=" + regionModules_list.get(Integer.valueOf(region_id_postion + "")).getId() + "";
-
-                    }
-
-                }
-
-            }
-            if (!city_id_postion.equals("")) {
-
-                if (city_location_list != null) {
-                    if (city_location_list.size() != 0) {
-                        getSerial_city = "&city_id=" + city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
-
-                    }
-
-                }
-
-            }
-
-        } catch (Exception e) {
-
-        }
+//        try {
+//            if (!region_id_postion.equals("")) {
+//                if (regionModules_list != null) {
+//                    if (regionModules_list.size() != 0) {
+//                        getId_region = "?state_id=" + regionModules_list.get(Integer.valueOf(region_id_postion + "")).getId() + "";
+//
+//                    }
+//
+//                }
+//
+//            }
+//            if (!city_id_postion.equals("")) {
+//
+//                if (city_location_list != null) {
+//                    if (city_location_list.size() != 0) {
+//                        getSerial_city = "&city_id=" + city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
+//
+//                    }
+//
+//                }
+//
+//            }
+//
+//        } catch (Exception e) {
+//
+//        }
 
         String lat_lan = "&lan=" + lan + "&lat=" + lat;
         String distance = "50";
