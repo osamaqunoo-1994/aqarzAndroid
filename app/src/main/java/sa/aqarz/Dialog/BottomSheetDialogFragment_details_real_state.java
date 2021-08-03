@@ -20,7 +20,7 @@ public class BottomSheetDialogFragment_details_real_state extends BottomSheetDia
 
 
     ImageView close;
-    TextView p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11;
+    TextView p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, uuid;
     OrdersModules ordersModuless;
 
     @Override
@@ -35,6 +35,7 @@ public class BottomSheetDialogFragment_details_real_state extends BottomSheetDia
         p5 = v.findViewById(R.id.p5);
         p6 = v.findViewById(R.id.p6);
         p7 = v.findViewById(R.id.p7);
+        uuid = v.findViewById(R.id.uuid);
         p8 = v.findViewById(R.id.p8);
 
         p9 = v.findViewById(R.id.p9);
@@ -50,9 +51,10 @@ public class BottomSheetDialogFragment_details_real_state extends BottomSheetDia
             p6.setText(ordersModuless.getId() + "");
             p7.setText(ordersModuless.getStreetViewRange() + "");
             p8.setText(ordersModuless.getEstatePriceRange() + "");
-            p9.setText(ordersModuless.getCityName()+"--"+ordersModuless.getNeighborhoodId() + "");
+            p9.setText(ordersModuless.getCityName() + "--" + ordersModuless.getNeighborhoodId() + "");
             p10.setText(ordersModuless.getCityName() + "");
             p11.setText(ordersModuless.getNeighborhoodId() + "");
+            uuid.setText(ordersModuless.getUuid() + "");
 
         } catch (Exception e) {
 

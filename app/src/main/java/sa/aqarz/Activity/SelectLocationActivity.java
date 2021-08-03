@@ -70,7 +70,7 @@ public class SelectLocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_location);
 
-        mMapView = (MapView) findViewById(R.id.mapViewxx);
+        mMapView = findViewById(R.id.mapViewxx);
         text_search = findViewById(R.id.text_search);
         select = findViewById(R.id.select);
         back = findViewById(R.id.back);
@@ -85,19 +85,38 @@ public class SelectLocationActivity extends AppCompatActivity {
         }
 
 
+        try {
+
+            String lat=getIntent().getStringExtra("lat");
+            String lng=getIntent().getStringExtra("lan");
+
+            System.out.println("latlat"+lat+"lnglng"+lng);
+
+            LatLng sydney = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
+
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 10));
+
+
+
+
+        }catch (Exception e){
+
+        }
+
+
         placeAutoComplete = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete);
         placeAutoComplete.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
 
                 Log.d("Maps", "Place selected: " + place.getName());
-                LatLng sydney = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
-
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
-                // Zoom in, animating the camera.
-                googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-                // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+//                LatLng sydney = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
+//
+//                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+//                // Zoom in, animating the camera.
+//                googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+//                // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+//                googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
 
 
             }

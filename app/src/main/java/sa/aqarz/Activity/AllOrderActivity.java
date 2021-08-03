@@ -227,27 +227,25 @@ public class AllOrderActivity extends AppCompatActivity {
         AllResultRec.addOnScrollListener(recyclerViewOnScrollListener);
 
 //00
-        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
-            premium.setVisibility(View.VISIBLE);
-//            offer.setVisibility(View.VISIBLE);
-            not_premium.setVisibility(View.GONE);
+//        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
+//            premium.setVisibility(View.VISIBLE);
+////            offer.setVisibility(View.VISIBLE);
+//            not_premium.setVisibility(View.GONE);
+//
+//        } else {
+//
+//            premium.setVisibility(View.GONE);
+////            offer.setVisibility(View.GONE);
+//            not_premium.setVisibility(View.VISIBLE);
+//        }
 
-        } else {
 
-            premium.setVisibility(View.GONE);
-//            offer.setVisibility(View.GONE);
-            not_premium.setVisibility(View.VISIBLE);
-        }
-
-
-
-        if(Settings.CheckIsAccountAqarzMan()){
+        if (Settings.CheckIsAccountAqarzMan()) {
             Real_Estate_order_layout.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             Real_Estate_order_layout.setVisibility(View.GONE);
 
         }
-
 
 
         change_type_bettwen_market_and_real();
@@ -344,8 +342,6 @@ public class AllOrderActivity extends AppCompatActivity {
 
         try {
             String types = getIntent().getStringExtra("type");
-
-
 
 
             if (types.equals("main")) {

@@ -120,6 +120,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
         setContentView(R.layout.layout_details_new);
         init();
         activity = this;
+
     }
 
     public void init() {
@@ -172,6 +173,10 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
                 finish();
             }
         });
+
+
+
+
         try {
 
             id_or_aq = getIntent().getStringExtra("id_aqarz");

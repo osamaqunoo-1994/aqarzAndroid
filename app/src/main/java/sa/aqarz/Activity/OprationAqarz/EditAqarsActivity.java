@@ -437,7 +437,7 @@ public class EditAqarsActivity extends AppCompatActivity {
                     bottomSheetDialogFragment_selectNeighborhoods = new BottomSheetDialogFragment_SelectNeighborhoods(city_id);
                     bottomSheetDialogFragment_selectNeighborhoods.addItemClickListener(new BottomSheetDialogFragment_SelectNeighborhoods.ItemClickListener() {
                         @Override
-                        public void onItemClick(int id_city, String city_naem) {
+                        public void onItemClick(int id_city, String city_naem,String lat,String lng) {
                             nib_id = id_city + "";
                             nibors.setText(city_naem);
                             bottomSheetDialogFragment_selectNeighborhoods.dismiss();

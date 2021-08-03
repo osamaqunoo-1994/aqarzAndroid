@@ -245,6 +245,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     File file_video;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -274,6 +275,7 @@ public class AddAqarsActivity extends AppCompatActivity {
     String city_id = "";
     String nib_id = "";
     String Address = "";
+
 
     BottomSheetDialogFragment_SelectCity bottomSheetDialogFragment_selectCity;
     BottomSheetDialogFragment_SelectNeighborhoods bottomSheetDialogFragment_selectNeighborhoods;
@@ -446,7 +448,9 @@ public class AddAqarsActivity extends AppCompatActivity {
                     bottomSheetDialogFragment_selectNeighborhoods = new BottomSheetDialogFragment_SelectNeighborhoods(city_id);
                     bottomSheetDialogFragment_selectNeighborhoods.addItemClickListener(new BottomSheetDialogFragment_SelectNeighborhoods.ItemClickListener() {
                         @Override
-                        public void onItemClick(int id_city, String city_naem) {
+                        public void onItemClick(int id_city, String city_naem, String lat_, String lng_) {
+                            lat = lat_;
+                            lng = lng_;
                             nib_id = id_city + "";
                             nibors.setText(city_naem);
                             bottomSheetDialogFragment_selectNeighborhoods.dismiss();
@@ -736,6 +740,9 @@ public class AddAqarsActivity extends AppCompatActivity {
                                 requstcode = 11;
                                 is_place = true;
                                 Intent intent = new Intent(AddAqarsActivity.this, SelectLocationActivity.class);
+
+                                intent.putExtra("lat", lat + "");
+                                intent.putExtra("lan", lng + "");
                                 startActivityForResult(intent, 11);
 
 

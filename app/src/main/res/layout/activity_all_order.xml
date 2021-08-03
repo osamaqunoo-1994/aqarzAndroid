@@ -102,9 +102,10 @@
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:text="@string/Enabled"
-
                         android:textColor="@color/white"
-                        android:textSize="5dp" />
+
+                        android:textSize="5dp"
+                        android:visibility="gone" />
 
                     <ImageView
                         android:id="@+id/Real_Estate_order_image"
@@ -140,14 +141,14 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
-                    android:visibility="visible"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/circle_w"
                     android:gravity="center"
                     android:orientation="horizontal"
-
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp">
+
+                    android:paddingRight="5dp"
+                    android:visibility="visible">
 
 
                     <TextView
@@ -492,8 +493,9 @@
             <LinearLayout
                 android:id="@+id/all_status_offer"
                 android:layout_width="wrap_content"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/status_1"
                     android:layout_width="wrap_content"
@@ -538,7 +540,6 @@
                     android:textSize="10dp" />
 
             </LinearLayout>
-
 
 
         </LinearLayout>
@@ -798,6 +799,7 @@
 
 
                         </LinearLayout>
+
                         <LinearLayout
                             android:id="@+id/price_market"
                             android:layout_width="match_parent"
