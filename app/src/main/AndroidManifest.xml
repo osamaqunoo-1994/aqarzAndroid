@@ -30,7 +30,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.DetailsNewAqarezActivity"></activity>
+        <activity android:name=".Activity.DetailsNewAqarezActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Activity.check_login"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -177,6 +178,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.SelectLocationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.SelectNewLocationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.Auth.EditProfileActivity"

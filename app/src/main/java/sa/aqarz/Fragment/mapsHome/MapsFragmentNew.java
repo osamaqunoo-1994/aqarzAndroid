@@ -65,6 +65,7 @@ import sa.aqarz.Activity.AllOrderActivity;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.ContactUsActivity;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
+import sa.aqarz.Activity.DetailsNewAqarezActivity;
 import sa.aqarz.Activity.FavoriteActivity;
 import sa.aqarz.Activity.InfoActivity;
 import sa.aqarz.Activity.MainActivity;
@@ -95,7 +96,7 @@ public class MapsFragmentNew extends Fragment {
     MapsRepository mapsRepository;
 
     static MapsViewModel mapsViewModel;
-    static List<HomeModules_aqares> homeModules_aqares = new ArrayList<>();
+  public   static List<HomeModules_aqares> homeModules_aqares = new ArrayList<>();
     AlertDialog alertDialog;
 
     static IResult mResultCallback;
@@ -1162,7 +1163,6 @@ public class MapsFragmentNew extends Fragment {
                                     Intent intent = new Intent(activity, DetailsActivity_aqarz.class);
                                     intent.putExtra("id_aqarz", homeModules_aqares.get(Integer.valueOf(Integer.valueOf(number))).getId() + "");
                                     System.out.println("id_aqarz" + homeModules_aqares.get(Integer.valueOf(Integer.valueOf(number))).getId());
-
 
                                     activity.startActivity(intent);
 

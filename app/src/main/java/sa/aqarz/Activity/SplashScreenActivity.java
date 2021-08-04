@@ -44,12 +44,12 @@ import sa.aqarz.api.VolleyService;
 
 public class SplashScreenActivity extends AppCompatActivity {
     IResult mResultCallback;
-
+    View parentLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        View parentLayout = findViewById(android.R.id.content);
+         parentLayout = findViewById(android.R.id.content);
 
 
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.splash_anim);

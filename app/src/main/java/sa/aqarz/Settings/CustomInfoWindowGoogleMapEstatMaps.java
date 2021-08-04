@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso;
 import com.willy.ratingbar.ScaleRatingBar;
 
 import sa.aqarz.Activity.DetailsActivity_aqarz;
+import sa.aqarz.Activity.DetailsNewAqarezActivity;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.R;
 
@@ -76,7 +77,7 @@ public class CustomInfoWindowGoogleMapEstatMaps implements GoogleMap.InfoWindowA
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DetailsActivity_aqarz.class);
+                Intent intent = new Intent(context, DetailsNewAqarezActivity.class);
 
                 System.out.println("id_aqarz" + homeModules_aqares.getId());
                 intent.putExtra("id_aqarz", homeModules_aqares.getId() + "");

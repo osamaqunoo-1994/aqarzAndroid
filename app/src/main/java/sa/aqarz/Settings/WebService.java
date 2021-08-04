@@ -111,6 +111,7 @@ public class WebService {
     public static String title_gloable = Domain + "title/global/";
     public static String add_neb_interest = Domain + "add/neb/interest";
     public static String check_employe = Domain + "check/employe";
+    public static String check_location_data = Domain + "check/location/data";
 //    public static String provider_code_send = Domain + "provider/code/send";
 
 
