@@ -92,8 +92,8 @@ public class RecyclerView_orders extends RecyclerView.Adapter<RecyclerView_order
     }
 
     public RecyclerView_orders(Context context, List<OrdersModules> alldata) {
-        this.alldata = alldata;
-        this.context = context;
+        RecyclerView_orders.alldata = alldata;
+        RecyclerView_orders.context = context;
     }
 
     public void addItemClickListener(ItemClickListener listener) {
@@ -129,7 +129,7 @@ public class RecyclerView_orders extends RecyclerView.Adapter<RecyclerView_order
 
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.get().load(alldata.get(position).getes()).into(holder.image_icon);
+//        Glide.with(context).load(alldata.get(position).getes()).into(holder.image_icon);
 ////
 //
 //        try {

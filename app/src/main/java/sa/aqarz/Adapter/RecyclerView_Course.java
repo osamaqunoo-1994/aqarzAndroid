@@ -117,7 +117,7 @@ public class RecyclerView_Course extends RecyclerView.Adapter<RecyclerView_Cours
         System.out.println("**********&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         holder.text.setText(alldata.get(position).getName() + "");
 
-//        Picasso.get().load(alldata.get(position).getIcon()).into(holder.icon);
+//        Glide.with(context).load(alldata.get(position).getIcon()).into(holder.icon);
         holder.icon.setVisibility(View.GONE);
 
         if (alldata.get(position).isChecked()) {

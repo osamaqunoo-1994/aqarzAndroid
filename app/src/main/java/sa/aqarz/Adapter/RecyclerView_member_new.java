@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -83,7 +84,7 @@ public class RecyclerView_member_new extends RecyclerView.Adapter<RecyclerView_m
     }
 
     public RecyclerView_member_new(Context context, List<SettingsModules.service_types> alldata) {
-        this.alldata = alldata;
+        RecyclerView_member_new.alldata = alldata;
         this.context = context;
     }
 
@@ -114,7 +115,7 @@ public class RecyclerView_member_new extends RecyclerView.Adapter<RecyclerView_m
 
         try {
 
-            Picasso.get().load(alldata.get(position).getIcon()+"").into(holder.icon);
+            Glide.with(context).load(alldata.get(position).getIcon()+"").into(holder.icon);
 
         } catch (Exception e) {
 

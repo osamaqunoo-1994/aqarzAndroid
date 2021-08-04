@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -433,7 +434,7 @@ public class OtherProfileActivity_s1 extends AppCompatActivity {
                                         visit_nu.setText(userModules.getCount_visit() + "");
 
                                         if (!userModules.getLogo().equals("null")) {
-                                            Picasso.get().load(userModules.getLogo()).into(profile);
+//                                            Glide.with(therProfileActivity.th).load(userModules.getLogo()).into(profile);
 
                                         }//591694624
 

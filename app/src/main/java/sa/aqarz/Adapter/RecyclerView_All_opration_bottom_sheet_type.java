@@ -79,7 +79,7 @@ public class RecyclerView_All_opration_bottom_sheet_type extends RecyclerView.Ad
     }
 
     public RecyclerView_All_opration_bottom_sheet_type(Context context, List<TypeModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_All_opration_bottom_sheet_type.alldata = alldata;
         this.context = context;
     }
 
@@ -107,7 +107,7 @@ public class RecyclerView_All_opration_bottom_sheet_type extends RecyclerView.Ad
         holder.text.setText(alldata.get(position).getName() + "");
 
         holder.image_in_type.setVisibility(View.GONE);
-//        Picasso.get().load(alldata.get(position).getIcon()).into(holder.image_in_type);
+//        Glide.with(context).load(alldata.get(position).getIcon()).into(holder.image_in_type);
 
         if (position == Postion_opend) {
 //            holder.image_in_type.setBackground(context.getResources().getDrawable(R.drawable.button_login));

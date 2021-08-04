@@ -74,8 +74,8 @@ public class RecyclerView_select_city extends RecyclerView.Adapter<RecyclerView_
     }
 
     public RecyclerView_select_city(Context context, List<CityModules> alldata) {
-        this.alldata = alldata;
-        this.context = context;
+        RecyclerView_select_city.alldata = alldata;
+        RecyclerView_select_city.context = context;
     }
 
     public void addItemClickListener(ItemClickListener listener) {
@@ -111,7 +111,7 @@ public class RecyclerView_select_city extends RecyclerView.Adapter<RecyclerView_
 
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.get().load(alldata.get(position).getes()).into(holder.image_icon);
+//        Glide.with(context).load(alldata.get(position).getes()).into(holder.image_icon);
 ////
 //
 //        try {

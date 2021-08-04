@@ -97,7 +97,7 @@ public class RecyclerView_orders_my_requstx_det extends RecyclerView.Adapter<Rec
     }
 
     public RecyclerView_orders_my_requstx_det(Context context, List<deferredInstallmentModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_orders_my_requstx_det.alldata = alldata;
         this.context = context;
     }
 
@@ -146,7 +146,7 @@ public class RecyclerView_orders_my_requstx_det extends RecyclerView.Adapter<Rec
 //
 //        System.out.println(alldata.get(position).getImage() + "");
         try {
-//            Picasso.get().load(alldata.get(position).est().getIcon()).into(holder.image_icon);
+//            Glide.with(context).load(alldata.get(position).est().getIcon()).into(holder.image_icon);
 
         } catch (Exception e) {
 

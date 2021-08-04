@@ -12,6 +12,7 @@ import android.widget.PopupWindow;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -102,7 +103,7 @@ public class RecyclerView_selectImage_url_image extends RecyclerView.Adapter<Rec
         holder.delect.setVisibility(View.VISIBLE);
 //        holder.omage.setImageBitmap(alldata.get(position).getSelectedImage());
 //        System.out.println(alldata.get(position).getImage() + "");
-        Picasso.get().load(alldata.get(position).getFile()).into(holder.omage);
+        Glide.with(context).load(alldata.get(position).getFile()).into(holder.omage);
 ////
 //
 //        try {

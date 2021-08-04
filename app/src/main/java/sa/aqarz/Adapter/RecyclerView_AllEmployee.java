@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -154,7 +155,7 @@ public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_
             holder.real_order.setText(alldata.get(position).getUser().getCount_request() + "");
             holder.market.setText(alldata.get(position).getUser().getCount_request() + "");
             holder.calling.setText(alldata.get(position).getUser().getCount_visit() + "");
-            Picasso.get().load(alldata.get(position).getUser().getLogo() + "").into(holder.image);
+            Glide.with(context).load(alldata.get(position).getUser().getLogo() + "").into(holder.image);
             holder.notEnabled.setVisibility(View.GONE);
             holder.Enabled.setVisibility(View.VISIBLE);
         } else {

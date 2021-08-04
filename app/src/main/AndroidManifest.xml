@@ -30,8 +30,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.check_login"
-            android:theme="@style/AppTheme.NoActionBar" ></activity>
+        <activity android:name=".Activity.DetailsNewAqarezActivity"></activity>
+        <activity
+            android:name=".Activity.check_login"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.InfoActivity"
             android:theme="@style/AppTheme.NoActionBar" />

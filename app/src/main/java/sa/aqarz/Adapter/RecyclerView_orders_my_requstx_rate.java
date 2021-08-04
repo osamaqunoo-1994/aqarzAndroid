@@ -95,7 +95,7 @@ public class RecyclerView_orders_my_requstx_rate extends RecyclerView.Adapter<Re
     }
 
     public RecyclerView_orders_my_requstx_rate(Context context, List<MyRateModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_orders_my_requstx_rate.alldata = alldata;
         this.context = context;
     }
 
@@ -144,7 +144,7 @@ public class RecyclerView_orders_my_requstx_rate extends RecyclerView.Adapter<Re
 //
 //        System.out.println(alldata.get(position).getImage() + "");
         try {
-//            Picasso.get().load(alldata.get(position).est().getIcon()).into(holder.image_icon);
+//            Glide.with(context).load(alldata.get(position).est().getIcon()).into(holder.image_icon);
 
         } catch (Exception e) {
 

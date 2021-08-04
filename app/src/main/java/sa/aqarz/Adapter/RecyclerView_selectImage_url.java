@@ -102,7 +102,7 @@ public class RecyclerView_selectImage_url extends RecyclerView.Adapter<RecyclerV
 //        holder.delect.setVisibility(View.VISIBLE);
 //        holder.omage.setImageBitmap(alldata.get(position).getSelectedImage());
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.get().load(alldata.get(position).getFile().toString()).into(holder.omage);
+//        Glide.with(context).load(alldata.get(position).getFile().toString()).into(holder.omage);
 ////
 //
 //        try {

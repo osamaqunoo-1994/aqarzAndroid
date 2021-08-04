@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -81,7 +82,7 @@ public class RecyclerView_All_type_in_fragment1 extends RecyclerView.Adapter<Rec
     }
 
     public RecyclerView_All_type_in_fragment1(Context context, List<TypeModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_All_type_in_fragment1.alldata = alldata;
         this.context = context;
     }
 
@@ -107,7 +108,15 @@ public class RecyclerView_All_type_in_fragment1 extends RecyclerView.Adapter<Rec
 //        }
 ////
         holder.text.setText(alldata.get(position).getName() + "");
-        Picasso.get().load(alldata.get(position).getIcon()).into(holder.image_in_type);
+
+
+        try{
+//            System.out.println("#$#$#$#"+alldata.get(position).getIcon());
+            Glide.with(context).load(alldata.get(position).getIcon()+"").into(holder.image_in_type);
+
+        }catch (Exception e){
+          e.printStackTrace();
+        }
 
 
         if (alldata.get(position).isIsselected()) {
@@ -189,12 +198,7 @@ public class RecyclerView_All_type_in_fragment1 extends RecyclerView.Adapter<Rec
 //                Postion_opend = position;
 
 
-                if (alldata.get(position).isIsselected()) {
-                    alldata.get(position).setIsselected(false);
-                } else {
-                    alldata.get(position).setIsselected(true);
-
-                }
+                alldata.get(position).setIsselected(!alldata.get(position).isIsselected());
 
 
                 if (mItemClickListener != null) {

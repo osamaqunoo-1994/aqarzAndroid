@@ -19,6 +19,7 @@ import android.widget.ProgressBar;
 import androidx.viewpager.widget.PagerAdapter;
 
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Picasso;
 import com.stfalcon.frescoimageviewer.ImageViewer;
@@ -68,7 +69,7 @@ public class home_viewPager_Adapter extends PagerAdapter {
 
 
         if (IMAGES.get(position).getType().equals("image")) {
-            Picasso.get().load(IMAGES.get(position).getImage_url() + "").into(image);
+            Glide.with(context).load(IMAGES.get(position).getImage_url() + "").into(image);
             imageLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

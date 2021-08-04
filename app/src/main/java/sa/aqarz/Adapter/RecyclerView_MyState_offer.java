@@ -17,6 +17,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -104,7 +105,7 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
     }
 
     public RecyclerView_MyState_offer(Context context, List<MyOfferModule> alldata) {
-        this.alldata = alldata;
+        RecyclerView_MyState_offer.alldata = alldata;
         this.context = context;
     }
 
@@ -155,7 +156,7 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
 ////
 //        System.out.println(alldata.get(position).getImage() + "");
         try {
-            Picasso.get().load(alldata.get(position).getEstate_attachment().get(0).getFile() + "").into(holder.image);
+            Glide.with(context).load(alldata.get(position).getEstate_attachment().get(0).getFile() + "").into(holder.image);
 
         } catch (Exception e) {
 
@@ -167,23 +168,23 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
             holder.rejecteds.setVisibility(View.GONE);
             holder.status.setVisibility(View.VISIBLE);
 
-        } else if (alldata.get(position).getStatus().toString().equals("active")) {
+        } else if (alldata.get(position).getStatus().equals("active")) {
             holder.contnue.setVisibility(View.VISIBLE);
             holder.rejecteds.setVisibility(View.GONE);
             holder.status.setVisibility(View.GONE);
 
-        } else if (alldata.get(position).getStatus().toString().equals("sending_code")) {
+        } else if (alldata.get(position).getStatus().equals("sending_code")) {
             holder.contnue.setVisibility(View.VISIBLE);
             holder.rejecteds.setVisibility(View.GONE);
             holder.status.setVisibility(View.GONE);
 
-        } else if (alldata.get(position).getStatus().toString().equals("rejected_customer ")) {
+        } else if (alldata.get(position).getStatus().equals("rejected_customer ")) {
             holder.rejecteds.setVisibility(View.VISIBLE);
             holder.contnue.setVisibility(View.GONE);
             holder.status.setVisibility(View.GONE);
 
             System.out.println("dkflfjlkfdlfkldfkldfkdlfk");
-        } else if (alldata.get(position).getStatus().toString().equals("accepted_customer")) {
+        } else if (alldata.get(position).getStatus().equals("accepted_customer")) {
             holder.contnue.setVisibility(View.VISIBLE);
             holder.rejecteds.setVisibility(View.GONE);
             holder.status.setVisibility(View.GONE);

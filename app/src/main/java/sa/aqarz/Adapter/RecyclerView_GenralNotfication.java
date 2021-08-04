@@ -137,7 +137,7 @@ public class RecyclerView_GenralNotfication extends RecyclerView.Adapter<Recycle
 //        }
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.get().load(alldata.get(position).getIcon()).into(holder.image_in_type);
+//        Glide.with(context).load(alldata.get(position).getIcon()).into(holder.image_in_type);
 ////
 //
 //        try {

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
 import com.squareup.picasso.Picasso;
@@ -18,7 +19,7 @@ import sa.aqarz.R;
 
 public class CustomInfoWindowGoogleMaptyp_2 implements GoogleMap.InfoWindowAdapter {
 
-    private Context context;
+    private final Context context;
     HomeModules_aqares homeModules_aqares;
 
     public CustomInfoWindowGoogleMaptyp_2(Context ctx, HomeModules_aqares homeModules_aqares) {
@@ -48,7 +49,7 @@ public class CustomInfoWindowGoogleMaptyp_2 implements GoogleMap.InfoWindowAdapt
         try {
 
             System.out.println("$%$%$%" + homeModules_aqares.getFirst_image());
-            Picasso.get().load(homeModules_aqares.getFirst_image() + "").into(image);
+            Glide.with(context).load(homeModules_aqares.getFirst_image() + "").into(image);
         } catch (Exception e) {
             e.printStackTrace();
         }

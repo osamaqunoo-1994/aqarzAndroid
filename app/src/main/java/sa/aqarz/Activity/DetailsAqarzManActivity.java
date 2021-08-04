@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -578,7 +579,7 @@ FloatingActionButton add_clint;
 //            member_list.setAdapter(new RecyclerView_member_profile(DetailsAqarzManActivity.this, Settings.GetUser().getMember_name()));
 
             if (!Settings.GetUser().getLogo().equals("null")) {
-                Picasso.get().load(Settings.GetUser().getLogo()).into(profile);
+                Glide.with(DetailsAqarzManActivity.this).load(Settings.GetUser().getLogo()).into(profile);
 
             }
 
@@ -854,7 +855,7 @@ FloatingActionButton add_clint;
 
         if (Settings.CheckIsCompleate()) {
 //            user_name.setText(Settings.GetUser().getName() + "");
-            Picasso.get().load(Settings.GetUser().getLogo()).into(profile);
+            Glide.with(DetailsAqarzManActivity.this).load(Settings.GetUser().getLogo()).into(profile);
 //            not_compleate.setVisibility(View.GONE);
 
         } else {

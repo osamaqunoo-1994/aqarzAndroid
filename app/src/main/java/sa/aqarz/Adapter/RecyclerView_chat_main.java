@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
@@ -166,15 +167,15 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
 //       holder.ratingbar.setStar(random);
         if (alldata.get(position).getReceiverPhoto() != null) {
             if (!alldata.get(position).getReceiverPhoto().equals("")) {
-                Picasso.get().load(alldata.get(position).getReceiverPhoto()).error(R.drawable.ic_user_un).into(holder.image_profile);
+                Glide.with(context).load(alldata.get(position).getReceiverPhoto()).error(R.drawable.ic_user_un).into(holder.image_profile);
 
             } else {
-                Picasso.get().load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(holder.image_profile);
+                Glide.with(context).load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(holder.image_profile);
 
             }
 
         } else {
-            Picasso.get().load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(holder.image_profile);
+            Glide.with(context).load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(holder.image_profile);
 
         }
 

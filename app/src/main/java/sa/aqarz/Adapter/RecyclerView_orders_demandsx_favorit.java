@@ -96,7 +96,7 @@ public class RecyclerView_orders_demandsx_favorit extends RecyclerView.Adapter<R
     }
 
     public RecyclerView_orders_demandsx_favorit(Context context, List<demandsModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_orders_demandsx_favorit.alldata = alldata;
         this.context = context;
     }
 
@@ -141,7 +141,7 @@ public class RecyclerView_orders_demandsx_favorit extends RecyclerView.Adapter<R
         }
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.get().load(alldata.get(position).getes()).into(holder.image_icon);
+//        Glide.with(context).load(alldata.get(position).getes()).into(holder.image_icon);
 ////
 //
 //        try {

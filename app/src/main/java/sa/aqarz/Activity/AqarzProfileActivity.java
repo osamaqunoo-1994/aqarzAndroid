@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -278,7 +279,7 @@ public class AqarzProfileActivity extends AppCompatActivity {
 
 
             if (!Settings.GetUser().getLogo().equals("null")) {
-                Picasso.get().load(Settings.GetUser().getLogo()).into(profile);
+                Glide.with(AqarzProfileActivity.this).load(Settings.GetUser().getLogo()).into(profile);
 
             }
 

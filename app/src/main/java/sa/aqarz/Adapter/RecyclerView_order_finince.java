@@ -95,7 +95,7 @@ public class RecyclerView_order_finince extends RecyclerView.Adapter<RecyclerVie
     }
 
     public RecyclerView_order_finince(Context context, List<financeModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_order_finince.alldata = alldata;
         this.context = context;
     }
 
@@ -147,7 +147,7 @@ public class RecyclerView_order_finince extends RecyclerView.Adapter<RecyclerVie
 //
 //        System.out.println(alldata.get(position).getImage() + "");
         try {
-//            Picasso.get().load(alldata.get(position).getEstate_type().getIcon()).into(holder.image_icon);
+//            Glide.with(context).load(alldata.get(position).getEstate_type().getIcon()).into(holder.image_icon);
 
         } catch (Exception e) {
 

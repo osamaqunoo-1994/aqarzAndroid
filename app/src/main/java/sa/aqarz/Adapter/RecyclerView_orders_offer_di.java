@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -104,7 +105,7 @@ public class RecyclerView_orders_offer_di extends RecyclerView.Adapter<RecyclerV
     }
 
     public RecyclerView_orders_offer_di(Context context, List<OfferRealStateModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_orders_offer_di.alldata = alldata;
         this.context = context;
     }
 
@@ -144,7 +145,7 @@ public class RecyclerView_orders_offer_di extends RecyclerView.Adapter<RecyclerV
 
         if (alldata.get(position).getEstate_attachment().size() != 0) {
 
-            Picasso.get().load(alldata.get(position).getEstate_attachment().get(0).getFile()).into(holder.image);
+            Glide.with(context).load(alldata.get(position).getEstate_attachment().get(0).getFile()).into(holder.image);
 
         }
 //        holder.name_estate.setText(a lldata.get(position).getEstateTypeName());
@@ -153,7 +154,7 @@ public class RecyclerView_orders_offer_di extends RecyclerView.Adapter<RecyclerV
 
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.get().load(alldata.get(position).getes()).into(holder.image_icon);
+//        Glide.with(context).load(alldata.get(position).getes()).into(holder.image_icon);
 ////
 //
 //        try {

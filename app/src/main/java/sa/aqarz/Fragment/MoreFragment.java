@@ -32,6 +32,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -534,7 +535,7 @@ public class MoreFragment extends Fragment {
 
                     if (Settings.CheckIsCompleate()) {
                         user_name.setText(Settings.GetUser().getName() + "");
-                        Picasso.get().load(Settings.GetUser().getLogo()).into(image_profile);
+                        Glide.with(getActivity()).load(Settings.GetUser().getLogo()).into(image_profile);
                         not_compleate.setVisibility(View.GONE);
 
                     } else {

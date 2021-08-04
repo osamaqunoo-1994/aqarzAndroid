@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -87,7 +88,7 @@ public class RecyclerView_MyState_selected extends RecyclerView.Adapter<Recycler
     }
 
     public RecyclerView_MyState_selected(Context context, List<HomeModules_aqares> alldata) {
-        this.alldata = alldata;
+        RecyclerView_MyState_selected.alldata = alldata;
         this.context = context;
     }
 
@@ -135,7 +136,7 @@ public class RecyclerView_MyState_selected extends RecyclerView.Adapter<Recycler
 //        }
 ////
 //        System.out.println(alldata.get(position).getImage() + "");
-        Picasso.get().load(alldata.get(position).getFirst_image()).into(holder.image);
+        Glide.with(context).load(alldata.get(position).getFirst_image()).into(holder.image);
 ////
 //
 //        try {

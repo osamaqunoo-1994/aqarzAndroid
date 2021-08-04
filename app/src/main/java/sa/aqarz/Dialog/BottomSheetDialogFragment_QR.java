@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.zxing.WriterException;
 import com.squareup.picasso.Picasso;
@@ -104,7 +105,7 @@ public class BottomSheetDialogFragment_QR extends BottomSheetDialogFragment {
         });
 
         if (!image_link.equals("null")) {
-            Picasso.get().load(image_link).into(profile);
+            Glide.with(getActivity()).load(image_link).into(profile);
 
         }
 

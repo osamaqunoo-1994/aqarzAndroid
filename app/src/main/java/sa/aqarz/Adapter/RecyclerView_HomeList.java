@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -103,7 +104,7 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
     }
 
     public RecyclerView_HomeList(Context context, List<HomeModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_HomeList.alldata = alldata;
         this.context = context;
     }
 
@@ -155,7 +156,7 @@ public class RecyclerView_HomeList extends RecyclerView.Adapter<RecyclerView_Hom
 
         }
 
-        Picasso.get().load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
+        Glide.with(context).load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
 
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);

@@ -114,7 +114,7 @@ public class RecyclerView_experince extends RecyclerView.Adapter<RecyclerView_ex
 ////
         holder.text.setText(alldata.get(position).getName() + "");
         holder.icon.setVisibility(View.GONE);
-//        Picasso.get().load(alldata.get(position).getIcon()).into(holder.icon);
+//        Glide.with(context).load(alldata.get(position).getIcon()).into(holder.icon);
 
         if (alldata.get(position).isChecked()) {
             holder.select.setBackground(context.getResources().getDrawable(R.drawable.circle_pr));

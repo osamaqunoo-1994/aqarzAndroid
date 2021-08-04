@@ -462,7 +462,7 @@ public class OtherProfileActivity extends AppCompatActivity {
 //                                        visit_nu.setText(userModules.getCount_visit() + "");
 
                                         if (userModules.getLogo() != null && !userModules.getLogo().equals("null")) {
-                                            Picasso.get().load(userModules.getLogo()).into(profile);
+                                            Glide.with(OtherProfileActivity.this).load(userModules.getLogo()).into(profile);
 
                                         }//591694624
 //                                        if (userModules.getUser_name() != null && !userModules.getUser_name().equals("null")) {

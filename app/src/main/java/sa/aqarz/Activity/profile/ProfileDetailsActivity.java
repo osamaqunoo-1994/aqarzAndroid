@@ -519,7 +519,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 //                                        visit_nu.setText(userModules.getCount_visit() + "");
 
 //                                        if (!userModules.getLogo().equals("null")) {
-//                                            Picasso.get().load(userModules.getLogo()).into(profile);
+//                                            Glide.with(context).load(userModules.getLogo()).into(profile);
 //
 //                                        }//591694624
 
@@ -897,7 +897,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 //                                        visit_nu.setText(userModules.getCount_visit() + "");
 
 //                                        if (!userModules.getLogo().equals("null")) {
-//                                            Picasso.get().load(userModules.getLogo()).into(profile);
+//                                            Glide.with(context).load(userModules.getLogo()).into(profile);
 //
 //                                        }//591694624
 

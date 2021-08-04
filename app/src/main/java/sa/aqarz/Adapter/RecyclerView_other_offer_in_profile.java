@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.hedgehog.ratingbar.RatingBar;
 import com.squareup.picasso.Picasso;
 
@@ -139,7 +140,7 @@ public class RecyclerView_other_offer_in_profile extends RecyclerView.Adapter<Re
     }
 
     public RecyclerView_other_offer_in_profile(Context context, List<HomeModules_aqares> alldata) {
-        this.alldata = alldata;
+        RecyclerView_other_offer_in_profile.alldata = alldata;
         this.context = context;
     }
 
@@ -179,7 +180,7 @@ public class RecyclerView_other_offer_in_profile extends RecyclerView.Adapter<Re
 //        holder.re_news.setVisibility(View.VISIBLE);
 //        holder.space.setVisibility(View.VISIBLE);
 
-        Picasso.get().load(alldata.get(position).getFirst_image() + "").into(holder.image);
+        Glide.with(context).load(alldata.get(position).getFirst_image() + "").into(holder.image);
         holder.price.setText(alldata.get(position).getTotalPrice());
         holder.type.setText(alldata.get(position).getEstate_type_name());
         holder.opration.setText(alldata.get(position).getOperationTypeName());
@@ -209,7 +210,7 @@ public class RecyclerView_other_offer_in_profile extends RecyclerView.Adapter<Re
 
 
         if (alldata.get(position).getEstate_type() != null) {
-            Picasso.get().load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
+            Glide.with(context).load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
 
         }
 

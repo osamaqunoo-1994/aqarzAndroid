@@ -84,7 +84,7 @@ public class RecyclerView_orders_demands extends RecyclerView.Adapter<RecyclerVi
     }
 
     public RecyclerView_orders_demands(Context context, List<demandsModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_orders_demands.alldata = alldata;
         this.context = context;
     }
 
@@ -120,7 +120,7 @@ public class RecyclerView_orders_demands extends RecyclerView.Adapter<RecyclerVi
 
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.get().load(alldata.get(position).getes()).into(holder.image_icon);
+//        Glide.with(context).load(alldata.get(position).getes()).into(holder.image_icon);
 ////
 //
 //        try {

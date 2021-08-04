@@ -114,7 +114,7 @@ public class RecyclerVie_member_course extends RecyclerView.Adapter<RecyclerVie_
 ////
         holder.text.setText(alldata.get(position).getName() + "");
 
-//        Picasso.get().load(alldata.get(position).getIcon()).into(holder.icon);
+//        Glide.with(context).load(alldata.get(position).getIcon()).into(holder.icon);
         holder.icon.setVisibility(View.GONE);
         if (alldata.get(position).isChecked()) {
             holder.select.setBackground(context.getResources().getDrawable(R.drawable.circle_pr));

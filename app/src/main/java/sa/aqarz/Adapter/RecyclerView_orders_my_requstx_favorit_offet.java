@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -99,7 +100,7 @@ public class RecyclerView_orders_my_requstx_favorit_offet extends RecyclerView.A
     }
 
     public RecyclerView_orders_my_requstx_favorit_offet(Context context, List<of_favorite> alldata) {
-        this.alldata = alldata;
+        RecyclerView_orders_my_requstx_favorit_offet.alldata = alldata;
         this.context = context;
     }
 
@@ -149,7 +150,7 @@ try{
 
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-    Picasso.get().load(alldata.get(position).getEstate().get(0).getFirst_image()).into(holder.image);
+    Glide.with(context).load(alldata.get(position).getEstate().get(0).getFirst_image()).into(holder.image);
 ////
 }catch (Exception e){
 

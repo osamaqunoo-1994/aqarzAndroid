@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -87,7 +88,7 @@ public class RecyclerView_AllClints extends RecyclerView.Adapter<RecyclerView_Al
     }
 
     public RecyclerView_AllClints(Context context, List<User> alldata) {
-        this.alldata = alldata;
+        RecyclerView_AllClints.alldata = alldata;
         this.context = context;
     }
 
@@ -138,7 +139,7 @@ public class RecyclerView_AllClints extends RecyclerView.Adapter<RecyclerView_Al
 ////
 //        System.out.println(alldata.get(position).getImage() + "");
         try {
-            Picasso.get().load(alldata.get(position).getLogo() + "").into(holder.profile);
+            Glide.with(context).load(alldata.get(position).getLogo() + "").into(holder.profile);
 
         } catch (Exception e) {
 

@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.squareup.picasso.Picasso;
 
@@ -40,7 +41,7 @@ ImageView image_icon;
         opration = v.findViewById(R.id.opration);
         image_icon = v.findViewById(R.id.image_icon);
         type = v.findViewById(R.id.type);
-        Picasso.get().load(Homemodules_object.getEstate_type().getIcon() + "").into(image_icon);
+        Glide.with(getActivity()).load(Homemodules_object.getEstate_type().getIcon() + "").into(image_icon);
 
         price.setText(Homemodules_object.getPriceFrom() + " - " + Homemodules_object.getPriceTo());
         type.setText(Homemodules_object.getEstateTypeName());

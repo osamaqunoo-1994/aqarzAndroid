@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -149,7 +150,7 @@ public class RecyclerView_samilar extends RecyclerView.Adapter<RecyclerView_sami
 //        holder.opration.setText(alldata.get(position).getEstate_type_name());
 
 
-        Picasso.get().load(alldata.get(position).getFirst_image() + "").into(holder.image);
+        Glide.with(context).load(alldata.get(position).getFirst_image() + "").into(holder.image);
         holder.price.setText(alldata.get(position).getTotalPrice());
         holder.type.setText(alldata.get(position).getEstate_type_name());
         holder.opration.setText(alldata.get(position).getOperationTypeName());
@@ -175,7 +176,7 @@ public class RecyclerView_samilar extends RecyclerView.Adapter<RecyclerView_sami
 
 
         if (alldata.get(position).getEstate_type() != null) {
-            Picasso.get().load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
+            Glide.with(context).load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
 
         }
 

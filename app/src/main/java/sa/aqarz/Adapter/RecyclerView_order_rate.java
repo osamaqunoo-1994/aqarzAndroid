@@ -97,7 +97,7 @@ public class RecyclerView_order_rate extends RecyclerView.Adapter<RecyclerView_o
     }
 
     public RecyclerView_order_rate(Context context, List<RateModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_order_rate.alldata = alldata;
         this.context = context;
     }
 
@@ -148,7 +148,7 @@ public class RecyclerView_order_rate extends RecyclerView.Adapter<RecyclerView_o
 //
 //        System.out.println(alldata.get(position).getImage() + "");
         try {
-//            Picasso.get().load(alldata.get(position).getEstate_type().getIcon()).into(holder.image_icon);
+//            Glide.with(context).load(alldata.get(position).getEstate_type().getIcon()).into(holder.image_icon);
 
         } catch (Exception e) {
 

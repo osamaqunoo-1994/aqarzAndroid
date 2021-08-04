@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -277,7 +278,7 @@ public class MyProfileActivity extends AppCompatActivity {
             visit_nu.setText(Settings.GetUser().getCount_visit() + "");
 
             if (!Settings.GetUser().getLogo().equals("null")) {
-                Picasso.get().load(Settings.GetUser().getLogo()).into(profile);
+                Glide.with(MyProfileActivity.this).load(Settings.GetUser().getLogo()).into(profile);
 
             }//591694624
 

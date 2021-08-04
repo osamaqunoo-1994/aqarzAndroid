@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -97,7 +98,7 @@ public class RecyclerView_HomeList_order extends RecyclerView.Adapter<RecyclerVi
     }
 
     public RecyclerView_HomeList_order(Context context, List<HomeModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_HomeList_order.alldata = alldata;
         this.context = context;
     }
 
@@ -137,7 +138,7 @@ public class RecyclerView_HomeList_order extends RecyclerView.Adapter<RecyclerVi
         holder.type.setText(alldata.get(position).getEstate_type_name());
         holder.opration.setText(alldata.get(position).getOperation_type_name());
 
-        Picasso.get().load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
+        Glide.with(context).load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
 
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);

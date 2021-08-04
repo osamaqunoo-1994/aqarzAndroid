@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -58,7 +59,7 @@ public class fullscreen_viewPager_Adapter extends PagerAdapter {
 
 
         if (IMAGES.get(position).getType().equals("image")) {
-            Picasso.get().load(IMAGES.get(position).getImage_url() + "").into(image);
+            Glide.with(context).load(IMAGES.get(position).getImage_url() + "").into(image);
             imageLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -114,7 +115,7 @@ public class fullscreen_viewPager_Adapter extends PagerAdapter {
 //
 //        Disc.setText(IMAGES.get(position).getDetails());
 ////
-//        Picasso.get().load(IMAGES.get(position) + "").into(image);
+//        Glide.with(context).load(IMAGES.get(position) + "").into(image);
 ////
 //        click.setOnClickListener(new View.OnClickListener() {
 //            @Override

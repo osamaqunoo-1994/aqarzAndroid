@@ -41,6 +41,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
@@ -624,7 +625,7 @@ public class MapsFragment extends Fragment {
                 if (Settings.GetUser().getLogo() == null) {
 
                 } else {
-                    Picasso.get().load(Settings.GetUser().getLogo()).error(R.drawable.ic_user_un).into(image_profile);
+                    Glide.with(getActivity()).load(Settings.GetUser().getLogo()).error(R.drawable.ic_user_un).into(image_profile);
 
                 }
 
@@ -661,7 +662,7 @@ public class MapsFragment extends Fragment {
                 if (Settings.GetUser().getLogo() == null) {
 
                 } else {
-                    Picasso.get().load(Settings.GetUser().getLogo()).error(R.drawable.ic_user_un).into(image_profile);
+                    Glide.with(getActivity()).load(Settings.GetUser().getLogo()).error(R.drawable.ic_user_un).into(image_profile);
 
                 }
 

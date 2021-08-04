@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -112,7 +113,7 @@ public class MyProfileActivityOld extends AppCompatActivity {
         service_text = findViewById(R.id.service_text);
 
 
-        mMapView = (MapView) findViewById(R.id.mapViewxx);
+        mMapView = findViewById(R.id.mapViewxx);
 
         mMapView.onCreate(savedInstanceState);
         mMapView.onResume(); // needed to get the map to display immediately
@@ -258,7 +259,7 @@ public class MyProfileActivityOld extends AppCompatActivity {
             visit_nu.setText(Settings.GetUser().getCount_visit() + "");
 
             if (!Settings.GetUser().getLogo().equals("null")) {
-                Picasso.get().load(Settings.GetUser().getLogo()).into(profile);
+                Glide.with(MyProfileActivityOld.this).load(Settings.GetUser().getLogo()).into(profile);
 
             }//591694624
 

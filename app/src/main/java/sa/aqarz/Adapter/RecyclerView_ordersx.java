@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
 
@@ -177,7 +178,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
         holder.Street_view.setText(alldata.get(position).getStreetViewRange() + "");
         holder.address.setText(alldata.get(position).getCityName() + " , " + alldata.get(position).getNeighborhoodName());
 
-        Picasso.get().load(alldata.get(position).getEstateTypeIcon()).into(holder.image_icon);
+        Glide.with(context).load(alldata.get(position).getEstateTypeIcon()).into(holder.image_icon);
 
         if (alldata.get(position).getHas_my_offer().equals("0")) {
             holder.new_offer.setVisibility(View.VISIBLE);
@@ -219,7 +220,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.get().load(alldata.get(position).getes()).into(holder.image_icon);
+//        Glide.with(context).load(alldata.get(position).getes()).into(holder.image_icon);
 ////
 //
 //        try {

@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -65,8 +66,8 @@ public class BottomSheetDialogFragment_DetailsAqares extends BottomSheetDialogFr
         dublex = v.findViewById(R.id.dublex);
         opration = v.findViewById(R.id.opration);
         type = v.findViewById(R.id.type);
-        Picasso.get().load(Homemodules_object.getFirst_image() + "").into(image);
-        Picasso.get().load(Homemodules_object.getEstate_type().getIcon() + "").into(image_icon);
+        Glide.with(getActivity()).load(Homemodules_object.getFirst_image() + "").into(image);
+        Glide.with(getActivity()).load(Homemodules_object.getEstate_type().getIcon() + "").into(image_icon);
         price.setText(Homemodules_object.getTotalPrice());
         type.setText(Homemodules_object.getEstate_type_name());
         opration.setText(Homemodules_object.getOperationTypeName());

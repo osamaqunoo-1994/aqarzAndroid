@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -112,7 +113,7 @@ public class RecyclerView_orders_my_requstx extends RecyclerView.Adapter<Recycle
     }
 
     public RecyclerView_orders_my_requstx(Context context, List<demandsModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_orders_my_requstx.alldata = alldata;
         this.context = context;
     }
 
@@ -164,7 +165,7 @@ public class RecyclerView_orders_my_requstx extends RecyclerView.Adapter<Recycle
 //
 //        System.out.println(alldata.get(position).getImage() + "");
         try {
-            Picasso.get().load(alldata.get(position).getEstate_type().getIcon()).into(holder.image_icon);
+            Glide.with(context).load(alldata.get(position).getEstate_type().getIcon()).into(holder.image_icon);
 
         } catch (Exception e) {
 

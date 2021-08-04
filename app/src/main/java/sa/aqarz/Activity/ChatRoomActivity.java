@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -103,17 +104,17 @@ public class ChatRoomActivity extends AppCompatActivity {
             String nameUser = getIntent().getStringExtra("nameUser");
             String imageUser = getIntent().getStringExtra("imageUser");
             name.setText(nameUser);
-            if (!imageUser.toString().equals("null")) {
-                if (!imageUser.toString().equals("")) {
-                    Picasso.get().load(imageUser).error(R.drawable.ic_user_un).into(profile);
+            if (!imageUser.equals("null")) {
+                if (!imageUser.equals("")) {
+                    Glide.with(ChatRoomActivity.this).load(imageUser).error(R.drawable.ic_user_un).into(profile);
 
                 } else {
-                    Picasso.get().load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(profile);
+                    Glide.with(ChatRoomActivity.this).load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(profile);
 
                 }
 
             } else {
-                Picasso.get().load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(profile);
+                Glide.with(ChatRoomActivity.this).load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(profile);
 
             }
 

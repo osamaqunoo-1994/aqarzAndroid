@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -85,7 +86,7 @@ public class RecyclerView_member_profile extends RecyclerView.Adapter<RecyclerVi
     }
 
     public RecyclerView_member_profile(Context context, List<SettingsModules.service_types> alldata) {
-        this.alldata = alldata;
+        RecyclerView_member_profile.alldata = alldata;
         this.context = context;
     }
 
@@ -114,7 +115,7 @@ public class RecyclerView_member_profile extends RecyclerView.Adapter<RecyclerVi
 ////
         holder.text.setText(alldata.get(position).getName() + "");
 
-        Picasso.get().load(alldata.get(position).getIcon()).into(holder.icon);
+        Glide.with(context).load(alldata.get(position).getIcon()).into(holder.icon);
 
         if (alldata.get(position).isChecked()) {
             holder.select.setBackground(context.getResources().getDrawable(R.drawable.circle_pr));

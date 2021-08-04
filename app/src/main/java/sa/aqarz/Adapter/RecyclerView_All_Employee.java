@@ -123,7 +123,7 @@ public class RecyclerView_All_Employee extends RecyclerView.Adapter<RecyclerView
 //        }
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.get().load(alldata.get(position).getIcon()).into(holder.image_in_type);
+//        Glide.with(context).load(alldata.get(position).getIcon()).into(holder.image_in_type);
 ////
 //
 //        try {

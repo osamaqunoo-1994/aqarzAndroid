@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -79,7 +80,7 @@ public class RecyclerView_All_type_in_fragment extends RecyclerView.Adapter<Recy
     }
 
     public RecyclerView_All_type_in_fragment(Context context, List<TypeModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_All_type_in_fragment.alldata = alldata;
         this.context = context;
     }
     public void addItemClickListener(ItemClickListener listener) {
@@ -105,7 +106,7 @@ public class RecyclerView_All_type_in_fragment extends RecyclerView.Adapter<Recy
 ////
         holder.text.setText(alldata.get(position).getName() + "");
 
-        Picasso.get().load(alldata.get(position).getIcon()).into(holder.image_in_type);
+        Glide.with(context).load(alldata.get(position).getIcon()).into(holder.image_in_type);
 
         if (position == Postion_opend) {
             holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));

@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -89,7 +90,7 @@ public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MySt
     }
 
     public RecyclerView_MyState(Context context, List<HomeModules_aqares> alldata) {
-        this.alldata = alldata;
+        RecyclerView_MyState.alldata = alldata;
         this.context = context;
     }
 
@@ -137,7 +138,7 @@ public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MySt
 //        }
 ////
 //        System.out.println(alldata.get(position).getImage() + "");
-        Picasso.get().load(alldata.get(position).getFirst_image()).into(holder.image);
+        Glide.with(context).load(alldata.get(position).getFirst_image()).into(holder.image);
 ////
 //
 //        try {
@@ -191,12 +192,7 @@ public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MySt
 //
 
 
-        if (alldata.get(position).getIs_selected()) {
-            holder.chechbox.setChecked(true);
-        } else {
-            holder.chechbox.setChecked(false);
-
-        }
+        holder.chechbox.setChecked(alldata.get(position).getIs_selected());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

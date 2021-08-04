@@ -118,7 +118,7 @@ public class RecyclerView_HomeList_estat_favorit extends RecyclerView.Adapter<Re
     }
 
     public RecyclerView_HomeList_estat_favorit(Context context, List<FavoritModules> alldata) {
-        this.alldata = alldata;
+        RecyclerView_HomeList_estat_favorit.alldata = alldata;
         this.context = context;
     }
 
@@ -156,7 +156,7 @@ public class RecyclerView_HomeList_estat_favorit extends RecyclerView.Adapter<Re
 
         holder.date_la.setVisibility(View.GONE);
         holder.new_offer.setVisibility(View.GONE);
-//        Picasso.get().load(alldata.get(position).get() + "").into(holder.image);
+//        Glide.with(context).load(alldata.get(position).get() + "").into(holder.image);
 //        holder.price.setText(alldata.get(position).getEstateTotalPrice());
         holder.space.setText(alldata.get(position).getEstateTotalArea());
 //        holder.opration.setText(alldata.get(position).getOperationTypeName());
@@ -184,7 +184,7 @@ public class RecyclerView_HomeList_estat_favorit extends RecyclerView.Adapter<Re
 
 
 //        if(alldata.get(position).getEstate_type()!=null){
-//            Picasso.get().load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
+//            Glide.with(context).load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
 //
 //        }
 

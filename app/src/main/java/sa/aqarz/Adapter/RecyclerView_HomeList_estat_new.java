@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.hedgehog.ratingbar.RatingBar;
 import com.squareup.picasso.Picasso;
 
@@ -134,7 +135,7 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
 //        holder.setIsRecyclable(false);
 
 
-        Picasso.get().load(alldata.get(position).getFirst_image() + "").into(holder.image);
+        Glide.with(context).load(alldata.get(position).getFirst_image() + "").into(holder.image);
         holder.price.setText(alldata.get(position).getTotalPrice());
         holder.type.setText(alldata.get(position).getEstate_type_name());
         holder.opration.setText(alldata.get(position).getOperationTypeName());
@@ -163,7 +164,7 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
 
 
         if (alldata.get(position).getEstate_type() != null) {
-            Picasso.get().load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
+            Glide.with(context).load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
 
         }
 
