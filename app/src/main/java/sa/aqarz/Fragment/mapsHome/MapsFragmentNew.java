@@ -96,7 +96,7 @@ public class MapsFragmentNew extends Fragment {
     MapsRepository mapsRepository;
 
     static MapsViewModel mapsViewModel;
-  public   static List<HomeModules_aqares> homeModules_aqares = new ArrayList<>();
+    public static List<HomeModules_aqares> homeModules_aqares = new ArrayList<>();
     AlertDialog alertDialog;
 
     static IResult mResultCallback;
@@ -303,9 +303,8 @@ public class MapsFragmentNew extends Fragment {
         favorit = v.findViewById(R.id.favorit);
 
 
-
-        if(Settings.checkLogin()){
-            if(Settings.CheckIsAccountAqarzMan()){
+        if (Settings.checkLogin()) {
+            if (Settings.CheckIsAccountAqarzMan()) {
                 RealStatr_order.setBackground(getActivity().getResources().getDrawable(R.drawable.button_1));
                 MarketOrder.setBackground(null);
                 OfferOrder.setBackground(null);
@@ -314,7 +313,7 @@ public class MapsFragmentNew extends Fragment {
                 MarketOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
                 OfferOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
                 type_selected = "Real";
-            }else{
+            } else {
 
                 MarketOrder.setBackground(getActivity().getResources().getDrawable(R.drawable.button_2));
                 RealStatr_order.setBackground(null);
@@ -327,7 +326,6 @@ public class MapsFragmentNew extends Fragment {
                 type_selected = "Market";
             }
         }
-
 
 
         LinearLayoutManager layoutMana
@@ -1161,6 +1159,7 @@ public class MapsFragmentNew extends Fragment {
                                 if (!marker.getTag().toString().equals("mylocation")) {
 
                                     Intent intent = new Intent(activity, DetailsActivity_aqarz.class);
+//                                    Intent intent = new Intent(activity, DetailsNewAqarezActivity.class);
                                     intent.putExtra("id_aqarz", homeModules_aqares.get(Integer.valueOf(Integer.valueOf(number))).getId() + "");
                                     System.out.println("id_aqarz" + homeModules_aqares.get(Integer.valueOf(Integer.valueOf(number))).getId());
 

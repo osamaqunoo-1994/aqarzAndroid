@@ -29,6 +29,9 @@ public static Activity activity;
 
 
 
+
+
+
         home_viewPager = findViewById(R.id.pager);
         home_viewPager.setAdapter(new detials_viewPager_Adapter(DetailsNewAqarezActivity.this, homeModules_aqares));
 
@@ -40,7 +43,7 @@ public static Activity activity;
             int i=Integer.valueOf(postion);
 
 
-            home_viewPager.setCurrentItem(i);
+//            home_viewPager.setCurrentItem(i);
 
 
 

@@ -19,7 +19,9 @@ import android.widget.TextView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -69,7 +71,7 @@ public class detials_viewPager_Adapter extends PagerAdapter {
     private final Context context;
 
     ViewPagerIndicator view_pager_indicator;
-    ViewPager home_viewPager;
+    RecyclerView home_viewPager;
     IResult mResultCallback;
     int oi = 0;
     public static Activity activity;
@@ -142,143 +144,407 @@ public class detials_viewPager_Adapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup view, final int position) {
-        View vieww = inflater.inflate(R.layout.layout_details_new, view, false);
-        home_viewPager = vieww.findViewById(R.id.home_viewPager);
-        view_pager_indicator = vieww.findViewById(R.id.view_pager_indicator);
-        operation_type_name = vieww.findViewById(R.id.operation_type_name);
-        estate_type_name = vieww.findViewById(R.id.estate_type_name);
-        price = vieww.findViewById(R.id.price);
-        address = vieww.findViewById(R.id.address);
-        name = vieww.findViewById(R.id.name);
-        note = vieww.findViewById(R.id.note);
-        call = vieww.findViewById(R.id.call);
-        favorit = vieww.findViewById(R.id.favorit);
-        profile = vieww.findViewById(R.id.profile);
-        link = vieww.findViewById(R.id.link);
-        chat = vieww.findViewById(R.id.chat);
-        rate_user = vieww.findViewById(R.id.rate_user);
-        tent = vieww.findViewById(R.id.tent);
-        rate = vieww.findViewById(R.id.rate);
-        finince = vieww.findViewById(R.id.finince);
-        rate_aqarez = vieww.findViewById(R.id.rate_aqarez);
-        rec_list_all = vieww.findViewById(R.id.rec_list_all);
-        list_coments = vieww.findViewById(R.id.list_coments);
-        back = vieww.findViewById(R.id.back);
-        report = vieww.findViewById(R.id.report);
-        simpleRatingBar = vieww.findViewById(R.id.simpleRatingBar);
-        rate_aqarez_t = vieww.findViewById(R.id.rate_aqarez_t);
+        View vieww = inflater.inflate(R.layout.layout_details_new_view, view, false);
 
 
-        type_ = vieww.findViewById(R.id.type_);
-        area = vieww.findViewById(R.id.area);
-        room = vieww.findViewById(R.id.room);
-        age = vieww.findViewById(R.id.age);
-        view_ = vieww.findViewById(R.id.view_);
-        metter_price = vieww.findViewById(R.id.metter_price);
-        bathroom = vieww.findViewById(R.id.bathroom);
-        purpose = vieww.findViewById(R.id.purpose);
-        name_owner = vieww.findViewById(R.id.name_owner);
-        last_update = vieww.findViewById(R.id.last_update);
-        ads_number = vieww.findViewById(R.id.ads_number);
-        views_nummm = vieww.findViewById(R.id.views_nummm);
-        comfort_rec = vieww.findViewById(R.id.comfort_rec);
-
-        comfort_rec.setLayoutManager(new GridLayoutManager(context, 2));
-        assert vieww != null;
+        try {
 
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            home_viewPager = vieww.findViewById(R.id.home_viewPager);
+            view_pager_indicator = vieww.findViewById(R.id.view_pager_indicator);
+            operation_type_name = vieww.findViewById(R.id.operation_type_name);
+            estate_type_name = vieww.findViewById(R.id.estate_type_name);
+            price = vieww.findViewById(R.id.price);
+            address = vieww.findViewById(R.id.address);
+            name = vieww.findViewById(R.id.name);
+            note = vieww.findViewById(R.id.note);
+            call = vieww.findViewById(R.id.call);
+            favorit = vieww.findViewById(R.id.favorit);
+            profile = vieww.findViewById(R.id.profile);
+            link = vieww.findViewById(R.id.link);
+            chat = vieww.findViewById(R.id.chat);
+            rate_user = vieww.findViewById(R.id.rate_user);
+            tent = vieww.findViewById(R.id.tent);
+            rate = vieww.findViewById(R.id.rate);
+            finince = vieww.findViewById(R.id.finince);
+            rate_aqarez = vieww.findViewById(R.id.rate_aqarez);
+            rec_list_all = vieww.findViewById(R.id.rec_list_all);
+            list_coments = vieww.findViewById(R.id.list_coments);
+            back = vieww.findViewById(R.id.back);
+            report = vieww.findViewById(R.id.report);
+            simpleRatingBar = vieww.findViewById(R.id.simpleRatingBar);
+            rate_aqarez_t = vieww.findViewById(R.id.rate_aqarez_t);
 
-                DetailsNewAqarezActivity.activity.finish();
 
-            }
-        });
+            type_ = vieww.findViewById(R.id.type_);
+            area = vieww.findViewById(R.id.area);
+            room = vieww.findViewById(R.id.room);
+            age = vieww.findViewById(R.id.age);
+            view_ = vieww.findViewById(R.id.view_);
+            metter_price = vieww.findViewById(R.id.metter_price);
+            bathroom = vieww.findViewById(R.id.bathroom);
+            purpose = vieww.findViewById(R.id.purpose);
+            name_owner = vieww.findViewById(R.id.name_owner);
+            last_update = vieww.findViewById(R.id.last_update);
+            ads_number = vieww.findViewById(R.id.ads_number);
+            views_nummm = vieww.findViewById(R.id.views_nummm);
+            comfort_rec = vieww.findViewById(R.id.comfort_rec);
 
-        LinearLayoutManager layoutManager1
-                = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        rec_list_all.setLayoutManager(layoutManager1);
-
-
-        LinearLayoutManager layoutManager1s
-                = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        list_coments.setLayoutManager(layoutManager1s);
-        report.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Intent intent = new Intent(context, ReportAqarezActivity.class);
-                intent.putExtra("id", id_or_aq + "");
-                context.startActivity(intent);
+            comfort_rec.setLayoutManager(new GridLayoutManager(context, 2));
+            assert vieww != null;
 
 
-            }
-        });
-        rate_aqarez.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BottomSheetDialogFragment_Rate bottomSheetDialogFragment_rate = new BottomSheetDialogFragment_Rate(id_or_aq + "");
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                bottomSheetDialogFragment_rate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+                    DetailsNewAqarezActivity.activity.finish();
 
-            }
-        });
+                }
+            });
 
-        rate_aqarez_t.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BottomSheetDialogFragment_Rate bottomSheetDialogFragment_rate = new BottomSheetDialogFragment_Rate(id_or_aq + "");
+            LinearLayoutManager layoutManager1
+                    = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+            rec_list_all.setLayoutManager(layoutManager1);
 
-                bottomSheetDialogFragment_rate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
 
-            }
-        });
-        favorit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            LinearLayoutManager layoutManager1s
+                    = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+            list_coments.setLayoutManager(layoutManager1s);
+            report.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                if (Settings.checkLogin()) {
-                    init_volley();
-                    WebService.loading((Activity) context, true);
 
-                    VolleyService mVolleyService = new VolleyService(mResultCallback, context);
-                    try {
-                        if (homeModules_aqares.getIn_fav().equals("1")) {
-                            favorit.setImageDrawable(context.getDrawable(R.drawable.ic_like));
-                            homeModules_aqares.setIn_fav("0");
-                        } else {
-                            favorit.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
+                    Intent intent = new Intent(context, ReportAqarezActivity.class);
+                    intent.putExtra("id", id_or_aq + "");
+                    context.startActivity(intent);
 
-                            homeModules_aqares.setIn_fav("1");
+
+                }
+            });
+            rate_aqarez.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    BottomSheetDialogFragment_Rate bottomSheetDialogFragment_rate = new BottomSheetDialogFragment_Rate(id_or_aq + "");
+
+                    bottomSheetDialogFragment_rate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+                }
+            });
+
+            rate_aqarez_t.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    BottomSheetDialogFragment_Rate bottomSheetDialogFragment_rate = new BottomSheetDialogFragment_Rate(id_or_aq + "");
+
+                    bottomSheetDialogFragment_rate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+                }
+            });
+            favorit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (Settings.checkLogin()) {
+                        init_volley();
+                        WebService.loading((Activity) context, true);
+
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+                        try {
+                            if (homeModules_aqares.getIn_fav().equals("1")) {
+                                favorit.setImageDrawable(context.getDrawable(R.drawable.ic_like));
+                                homeModules_aqares.setIn_fav("0");
+                            } else {
+                                favorit.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
+
+                                homeModules_aqares.setIn_fav("1");
+
+                            }
+                            JSONObject jsonObject = new JSONObject();
+                            jsonObject.put("type_id", "" + id_or_aq);
+
+                            jsonObject.put("type", "" + "offer");
+                            mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
+
+
+                        } catch (Exception e) {
 
                         }
-                        JSONObject jsonObject = new JSONObject();
-                        jsonObject.put("type_id", "" + id_or_aq);
-
-                        jsonObject.put("type", "" + "offer");
-                        mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
 
 
-                    } catch (Exception e) {
-
+                    } else {
+                        context.startActivity(new Intent(context, check_login.class));
                     }
 
 
+                }
+            });
+//        init_volley();
+//        WebService.loading((Activity) context, true);
+//
+//        VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+//        mVolleyService.getDataVolley("single_estat", WebService.single_estat + IMAGES.get(position).getId() + "/estate");
+
+
+            homeModules_aqares = IMAGES.get(position);
+
+            operation_type_name.setText(homeModules_aqares.getOperationTypeName());
+            estate_type_name.setText(homeModules_aqares.getEstate_type_name());
+            price.setText(homeModules_aqares.getTotalPrice());
+
+            if (homeModules_aqares.getCity_name() != null) {
+                address.setText(homeModules_aqares.getCity_name() + " - " + homeModules_aqares.getNeighborhood_name());
+
+            } else {
+                address.setText(homeModules_aqares.getAddress());
+
+            }
+
+//                            if (homeModules_aqares.getAddress() == null) {
+//
+//                            } else {
+//
+//                            }
+
+
+            name.setText(homeModules_aqares.getEstate_type_name() + "");
+            type_.setText(homeModules_aqares.getEstate_type_name() + "");
+            area.setText(homeModules_aqares.getTotalArea() + "");
+            room.setText(homeModules_aqares.getRoomsNumber() + "");
+            bathroom.setText(homeModules_aqares.getBathroomsNumber() + "");
+            purpose.setText(homeModules_aqares.getBathroomsNumber() + "");
+            name_owner.setText(homeModules_aqares.getOwnerName() + "");
+            link.setText(homeModules_aqares.getUser().getLink() + "");
+
+
+            if (homeModules_aqares.getNote() != null) {
+                if (!homeModules_aqares.getNote().equals("null")) {
+                    note.setText(homeModules_aqares.getNote() + "");
+
                 } else {
-                    context.startActivity(new Intent(context, check_login.class));
+                    note.setText("لا يوجد تفاصيل");
+
+                }
+            } else {
+                note.setText("لا يوجد تفاصيل");
+
+            }
+            if (homeModules_aqares.getEstateAge() != null) {
+
+                if (!homeModules_aqares.getEstateAge().toString().equals("null")) {
+                    age.setText(homeModules_aqares.getEstateAge() + "");
+
+                } else {
+                    age.setText("-");
+
+                }
+            } else {
+                age.setText("-");
+
+            }
+            if (homeModules_aqares.getInterface() != null) {
+
+                if (!homeModules_aqares.getInterface().equals("null")) {
+                    view_.setText(homeModules_aqares.getInterface() + "");
+
+                } else {
+                    view_.setText("-");
+
+                }
+            } else {
+                view_.setText("-");
+
+            }
+            if (homeModules_aqares.getMeterPrice() != null) {
+
+                if (!homeModules_aqares.getMeterPrice().equals("null")) {
+                    metter_price.setText(homeModules_aqares.getMeterPrice() + "");
+
+                } else {
+                    metter_price.setText("-");
+
+                }
+            } else {
+                metter_price.setText("-");
+
+            }
+            try {
+                if (homeModules_aqares.getUser() != null) {
+                    rate_user.setRating(Float.valueOf(homeModules_aqares.getUser().getRate()));
+
+                }
+            } catch (Exception e) {
+
+            }
+
+            if (homeModules_aqares.getRate() != null) {
+
+
+                if (homeModules_aqares.getRate().equals("0")) {
+                    rate_aqarez.setVisibility(View.VISIBLE);
+
+                } else {
+                    rate_aqarez.setVisibility(View.GONE);
+
                 }
 
 
+            } else {
+                rate_aqarez.setVisibility(View.VISIBLE);
+
             }
-        });
-        init_volley();
-        WebService.loading((Activity) context, true);
 
-        VolleyService mVolleyService = new VolleyService(mResultCallback, context);
-        mVolleyService.getDataVolley("single_estat", WebService.single_estat + IMAGES.get(position).getId() + "/estate");
+            try {
+                list_coments.setAdapter(new RecyclerView_coments(context, homeModules_aqares.getRates()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                simpleRatingBar.setRating(Float.valueOf(homeModules_aqares.getRate()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
+            profile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    Intent intent = new Intent(context, OtherProfileActivity.class);
+                    intent.putExtra("id", homeModules_aqares.getUserId() + "");
+                    context.startActivity(intent);
+//                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                }
+            });
+            chat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, ChatRoomActivity.class);
+                    intent.putExtra("user_id", homeModules_aqares.getUserId() + "");
+                    intent.putExtra("parent_id", "-1");
+                    intent.putExtra("nameUser", homeModules_aqares.getOwnerName() + "");
+                    intent.putExtra("imageUser", "");
+                    context.startActivity(intent);
+                }
+            });
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
+
+                Date date = format.parse(homeModules_aqares.getCreatedAt().substring(0, 19) + "");
+
+                String dateTime = dateFormat.format(date);
+                last_update.setText(dateTime + "");
+
+                System.out.println(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            if (homeModules_aqares.getIn_fav().equals("1")) {
+                favorit.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
+
+            } else {
+                favorit.setImageDrawable(context.getDrawable(R.drawable.ic_like));
+
+            }
+
+
+            try {
+
+//                            last_update.setText(homeModules_aqares.getCreatedAt() + "");
+                ads_number.setText(homeModules_aqares.getId() + "");
+                views_nummm.setText(homeModules_aqares.getSeen_count() + "");
+
+                call.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        try {
+                            String phone = "0" + homeModules_aqares.getOwnerMobile();
+                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                            context.startActivity(intent);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+//                            System.out.println("items_ViewPageritems_ViewPager" + homeModules_aqares.getEstate_file().size());
+
+
+            items_ViewPager.clear();
+
+            if (homeModules_aqares.getVideo() != null) {
+                if (!homeModules_aqares.getVideo().equals("null")) {
+                    items_ViewPager.add(new imagemodules(homeModules_aqares.getVideo() + "", "video"));
+                }
+            }
+            for (int i = 0; i < homeModules_aqares.getEstate_file().size(); i++) {
+                items_ViewPager.add(new imagemodules(homeModules_aqares.getEstate_file().get(i).getFile() + "", "image"));
+            }
+
+
+            LinearLayoutManager layoutManagersss
+                    = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+            home_viewPager.setLayoutManager(layoutManagersss);
+
+
+            try {
+//                SnapHelper snapHelper = new PagerSnapHelper();
+//                snapHelper.attachToRecyclerView(home_viewPager);
+                home_viewPager.setAdapter(new RecyclerVie_Images(context, items_ViewPager));
+//                view_pager_indicator.setupWithViewPager(home_viewPager);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+//            try {
+//                if (items_ViewPager.size() > 1) {
+//                    oi = 0;
+//
+//                    Handler handler = new Handler();
+//
+//                    Runnable runnable = new Runnable() {
+//                        public void run() {
+//
+//                            if (oi == items_ViewPager.size()) {
+//                                oi = 0;
+//                            }
+//
+//                            home_viewPager.setCurrentItem(oi);
+//                            oi++;
+//                            handler.postDelayed(this, 3000);
+//                        }
+//                    };
+//                    handler.postDelayed(runnable, 3000);
+//
+//                }
+//
+//            } catch (Exception e) {
+//
+//            }
+
+
+            RecyclerView_All_Comfort_in_details recyclerView_all_comfort_in_fragment = new RecyclerView_All_Comfort_in_details(context, homeModules_aqares.getComforts());//
+            comfort_rec.setAdapter(recyclerView_all_comfort_in_fragment);
+
+
+//                            init_volley();
+//                            VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+//                            mVolleyService.getDataVolley("smilier", WebService.smilier + "/" + id_or_aq + "/estate");//&request_type=pay
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         view.addView(vieww, 0);
 
@@ -514,34 +780,34 @@ public class detials_viewPager_Adapter extends PagerAdapter {
                                 items_ViewPager.add(new imagemodules(homeModules_aqares.getEstate_file().get(i).getFile() + "", "image"));
                             }
 
-                            home_viewPager.setAdapter(new home_viewPager_Adapter(context, items_ViewPager));
-                            view_pager_indicator.setupWithViewPager(home_viewPager);
-
-                            try {
-                                if (items_ViewPager.size() > 1) {
-                                    oi = 0;
-
-                                    Handler handler = new Handler();
-
-                                    Runnable runnable = new Runnable() {
-                                        public void run() {
-
-                                            if (oi == items_ViewPager.size()) {
-                                                oi = 0;
-                                            }
-
-                                            home_viewPager.setCurrentItem(oi);
-                                            oi++;
-                                            handler.postDelayed(this, 3000);
-                                        }
-                                    };
-                                    handler.postDelayed(runnable, 3000);
-
-                                }
-
-                            } catch (Exception e) {
-
-                            }
+//                            home_viewPager.setAdapter(new home_viewPager_Adapter(context, items_ViewPager));
+//                            view_pager_indicator.setupWithViewPager(home_viewPager);
+//
+//                            try {
+//                                if (items_ViewPager.size() > 1) {
+//                                    oi = 0;
+//
+//                                    Handler handler = new Handler();
+//
+//                                    Runnable runnable = new Runnable() {
+//                                        public void run() {
+//
+//                                            if (oi == items_ViewPager.size()) {
+//                                                oi = 0;
+//                                            }
+//
+//                                            home_viewPager.setCurrentItem(oi);
+//                                            oi++;
+//                                            handler.postDelayed(this, 3000);
+//                                        }
+//                                    };
+//                                    handler.postDelayed(runnable, 3000);
+//
+//                                }
+//
+//                            } catch (Exception e) {
+//
+//                            }
 
 
                             RecyclerView_All_Comfort_in_details recyclerView_all_comfort_in_fragment = new RecyclerView_All_Comfort_in_details(context, homeModules_aqares.getComforts());//

@@ -94,7 +94,7 @@ public class home_viewPager_Adapter extends PagerAdapter {
 
 //            long thumb = view.getLayoutPosition()*1000;
             try {
-              Bitmap  bitmap = retriveVideoFrameFromVideo(IMAGES.get(position).getImage_url()+"");
+                Bitmap bitmap = retriveVideoFrameFromVideo(IMAGES.get(position).getImage_url() + "");
                 if (bitmap != null) {
                     image.setImageBitmap(bitmap);
                 }

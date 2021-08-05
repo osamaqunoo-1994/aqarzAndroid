@@ -3,6 +3,8 @@ package sa.aqarz.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.Activity;
@@ -13,12 +15,20 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
@@ -35,17 +45,30 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.orhanobut.hawk.Hawk;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
+import sa.aqarz.Adapter.RecyclerView_city_side_menu;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares_orders;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Filtter;
+import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
+import sa.aqarz.Modules.CityModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
+import sa.aqarz.api.IResult;
+import sa.aqarz.api.VolleyService;
 
 public class SelectLocationActivity extends AppCompatActivity {
     private static GoogleMap googleMap;
@@ -56,6 +79,7 @@ public class SelectLocationActivity extends AppCompatActivity {
 
     String lat = "";
     String lang = "";
+    List<CityModules> cityModules_list_filtter = new ArrayList<>();
 
     EditText text_search;
     PlaceAutocompleteFragment placeAutoComplete;
@@ -64,6 +88,10 @@ public class SelectLocationActivity extends AppCompatActivity {
     Button select;
 
     ImageView back;
+    ImageView search_btn;
+    IResult mResultCallback;
+    RecyclerView allcity;
+    LinearLayout result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +100,11 @@ public class SelectLocationActivity extends AppCompatActivity {
 
         mMapView = findViewById(R.id.mapViewxx);
         text_search = findViewById(R.id.text_search);
+        result = findViewById(R.id.result);
+        allcity = findViewById(R.id.allcity);
         select = findViewById(R.id.select);
         back = findViewById(R.id.back);
+        search_btn = findViewById(R.id.search_btn);
 
 
         mMapView.onCreate(savedInstanceState);
@@ -84,24 +115,42 @@ public class SelectLocationActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-        try {
-
-            String lat=getIntent().getStringExtra("lat");
-            String lng=getIntent().getStringExtra("lan");
-
-            System.out.println("latlat"+lat+"lnglng"+lng);
-
-            LatLng sydney = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
-
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 10));
+        LinearLayoutManager layoutManager1
+                = new LinearLayoutManager(SelectLocationActivity.this, LinearLayoutManager.VERTICAL, false);
+        allcity.setLayoutManager(layoutManager1);
 
 
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                init_volley();
+                WebService.loading(SelectLocationActivity.this, true);
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, SelectLocationActivity.this);
+                mVolleyService.getDataVolley("cities_with_neb", WebService.cities_with_neb + "?name=" + text_search.getText().toString());//+ "&state_id=" + region_id_postion + "&city_id=" + city_id_postion
 
 
-        }catch (Exception e){
+            }
+        });
 
-        }
+        text_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+
+                    init_volley();
+                    WebService.loading(SelectLocationActivity.this, true);
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, SelectLocationActivity.this);
+                    mVolleyService.getDataVolley("cities_with_neb", WebService.cities_with_neb + "?name=" + text_search.getText().toString());//+ "&state_id=" + region_id_postion + "&city_id=" + city_id_postion
+
+
+                    return true;
+                }
+                return false;
+            }
+        });
 
 
         placeAutoComplete = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete);
@@ -161,6 +210,24 @@ public class SelectLocationActivity extends AppCompatActivity {
                 googleMap = mMap;
                 googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
                 googleMap.getUiSettings().setRotateGesturesEnabled(true);
+
+
+                try {
+
+                    String lat = getIntent().getStringExtra("lat");
+                    String lng = getIntent().getStringExtra("lan");
+
+                    System.out.println("latlat" + lat + "lnglng" + lng);
+
+                    LatLng sydney = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
+
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 10));
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
 
                 googleMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
                     @Override
@@ -224,7 +291,7 @@ public class SelectLocationActivity extends AppCompatActivity {
 //                                        String knownName = addresses.get(0).getFeatureName(); // Onl
 
 
-                                        text_search.setText(country + " - " + state);
+//                                        text_search.setText(country + " - " + state);
 
 
                                         if (country.equals("السعودية")) {
@@ -363,4 +430,122 @@ public class SelectLocationActivity extends AppCompatActivity {
         return my_location;
 
     }
+
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response.toString());
+                WebService.loading(SelectLocationActivity.this, false);
+//{"status":true,"code":200,"message":"User Profile","data"
+                try {
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+                        String data = response.getString("data");
+//                        String next_page_url = response.getString("next_page_url");
+                        JSONObject jsonObject = new JSONObject(data);
+
+                        if (requestType.equals("cities_with_neb")) {
+                            String datadata = jsonObject.getString("data");
+
+
+                            JSONArray jsonArray = new JSONArray(datadata);
+                            cityModules_list_filtter.clear();
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                Gson gson = new Gson();
+
+                                CityModules homeModules_aqares = gson.fromJson(mJson, CityModules.class);
+
+                                cityModules_list_filtter.add(homeModules_aqares);
+                            }
+
+                            RecyclerView_city_side_menu recyclerView_city_bootom_sheets = new RecyclerView_city_side_menu(SelectLocationActivity.this, cityModules_list_filtter);
+                            recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_side_menu.ItemClickListener() {
+                                @Override
+                                public void onItemClick(int i) {
+//                        cityModules_list = alldata;
+//                                    convert_city_to_filter();
+//                                    searh = false;
+
+//                                    text_search.setText();
+
+//                                    MapsFragmentNew.city_id_postion = cityModules_list_filtter.get(i).getId() + "";
+//                                    MapsFragmentNew.lat = cityModules_list_filtter.get(i).getLat() + "";
+//                                    MapsFragmentNew.lan = cityModules_list_filtter.get(i).getLan() + "";
+
+                                    LatLng sydney = new LatLng(Double.valueOf(cityModules_list_filtter.get(i).getLat()), Double.valueOf(cityModules_list_filtter.get(i).getLan()));
+
+                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 10));
+
+                                    text_search.setText(cityModules_list_filtter.get(i).getSearch_name());//+ "-" + cityModules_list_filtter.get(i).getCity().getName()
+                                    result.setVisibility(View.GONE);
+
+                                }
+                            });
+                            allcity.setAdapter(recyclerView_city_bootom_sheets);
+                            result.setVisibility(View.VISIBLE);
+
+                        }
+
+
+                    }
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+
+                WebService.loading(SelectLocationActivity.this, false);
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color(SelectLocationActivity.this, message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+                WebService.loading(SelectLocationActivity.this, false);
+
+
+            }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+                WebService.loading(SelectLocationActivity.this, false);
+
+                WebService.Make_Toast_color(SelectLocationActivity.this, error, "error");
+
+
+            }
+        };
+
+
+    }
+
+
 }

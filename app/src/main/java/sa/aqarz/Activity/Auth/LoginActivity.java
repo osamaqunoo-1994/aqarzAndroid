@@ -30,6 +30,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.RequestParams;
 import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONException;
@@ -170,7 +171,7 @@ public class LoginActivity extends AppCompatActivity {
                     VolleyService mVolleyService = new VolleyService(mResultCallback, LoginActivity.this);
 
 
-                    JSONObject sendObj = new JSONObject();
+                    RequestParams sendObj = new RequestParams();
 
                     try {
 
@@ -183,10 +184,10 @@ public class LoginActivity extends AppCompatActivity {
                         sendObj.put("device_token", refreshedToken);
                         sendObj.put("device_type", "android");
 
-                    } catch (JSONException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    mVolleyService.postDataVolley_without_token("Login", WebService.login, sendObj);
+                    mVolleyService.postDataasync_with_file("Login", WebService.login, sendObj);
                 }
 
             }

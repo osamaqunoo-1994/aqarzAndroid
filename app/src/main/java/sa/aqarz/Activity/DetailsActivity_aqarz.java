@@ -491,13 +491,13 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
 
                             name.setText(homeModules_aqares.getEstate_type_name() + "");
-                            note.setText(homeModules_aqares.getNote() + "");
+//                            note.setText(homeModules_aqares.getNote() + "");
                             type_.setText(homeModules_aqares.getEstate_type_name() + "");
                             area.setText(homeModules_aqares.getTotalArea() + "");
                             room.setText(homeModules_aqares.getRoomsNumber() + "");
-                            age.setText(homeModules_aqares.getEstateAge() + "");
-                            view_.setText(homeModules_aqares.getInterface() + "");
-                            metter_price.setText(homeModules_aqares.getMeterPrice() + "");
+//                            age.setText(homeModules_aqares.getEstateAge() + "");
+//                            view_.setText(homeModules_aqares.getInterface() + "");
+//                            metter_price.setText(homeModules_aqares.getMeterPrice() + "");
                             bathroom.setText(homeModules_aqares.getBathroomsNumber() + "");
                             purpose.setText(homeModules_aqares.getBathroomsNumber() + "");
                             name_owner.setText(homeModules_aqares.getOwnerName() + "");
@@ -513,6 +513,82 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
                             }
 
+                            if (homeModules_aqares.getNote() != null) {
+                                if (!homeModules_aqares.getNote().equals("null")) {
+                                    note.setText(homeModules_aqares.getNote() + "");
+
+                                } else {
+                                    note.setText("لا يوجد تفاصيل");
+
+                                }
+                            } else {
+                                note.setText("لا يوجد تفاصيل");
+
+                            }
+                            if (homeModules_aqares.getEstateAge() != null) {
+
+                                if (!homeModules_aqares.getEstateAge().toString().equals("null")) {
+                                    age.setText(homeModules_aqares.getEstateAge() + "");
+
+                                } else {
+                                    age.setText("-");
+
+                                }
+                            } else {
+                                age.setText("-");
+
+                            }
+                            if (homeModules_aqares.getInterface() != null) {
+
+                                if (!homeModules_aqares.getInterface().equals("null")) {
+                                    view_.setText(homeModules_aqares.getInterface() + "");
+
+                                } else {
+                                    view_.setText("-");
+
+                                }
+                            } else {
+                                view_.setText("-");
+
+                            }
+                            if (homeModules_aqares.getMeterPrice() != null) {
+
+                                if (!homeModules_aqares.getMeterPrice().equals("null")) {
+                                    metter_price.setText(homeModules_aqares.getMeterPrice() + "");
+
+                                } else {
+                                    metter_price.setText("-");
+
+                                }
+                            } else {
+                                metter_price.setText("-");
+
+                            }
+                            try {
+                                if (homeModules_aqares.getUser() != null) {
+                                    rate_user.setRating(Float.valueOf(homeModules_aqares.getUser().getRate()));
+
+                                }
+                            } catch (Exception e) {
+
+                            }
+
+                            if (homeModules_aqares.getRate() != null) {
+
+
+                                if (homeModules_aqares.getRate().equals("0")) {
+                                    rate_aqarez.setVisibility(View.VISIBLE);
+
+                                } else {
+                                    rate_aqarez.setVisibility(View.GONE);
+
+                                }
+
+
+                            } else {
+                                rate_aqarez.setVisibility(View.VISIBLE);
+
+                            }
                             if (homeModules_aqares.getRate() != null) {
 
 
