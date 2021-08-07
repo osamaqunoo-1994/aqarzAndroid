@@ -19,8 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
-import com.hedgehog.ratingbar.RatingBar;
 import com.squareup.picasso.Picasso;
+import com.willy.ratingbar.ScaleRatingBar;
 
 import org.json.JSONObject;
 
@@ -75,10 +75,11 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         TextView address;
         TextView date;
         TextView space;
+        TextView num_id;
         ImageView image_icon;
         ImageView add_favorite;
 
-        RatingBar rate;
+        ScaleRatingBar rate;
 
 
         public MyViewHolder(View view) {
@@ -111,6 +112,7 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
             date = view.findViewById(R.id.date);
             space = view.findViewById(R.id.space);
             rate = view.findViewById(R.id.rate);
+            num_id = view.findViewById(R.id.num_id);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
@@ -141,6 +143,7 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         holder.opration.setText(alldata.get(position).getOperationTypeName());
         holder.space.setText(alldata.get(position).getTotalArea() + "");
         holder.date.setText(alldata.get(position).getCreatedAt() + "");
+        holder.num_id.setText("#" + alldata.get(position).getId() + "");
 
         if (alldata.get(position).getCity_name() != null) {
             holder.address.setText(alldata.get(position).getCity_name() + " - " + alldata.get(position).getNeighborhood_name());
@@ -157,7 +160,7 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
 //        }
 
         try {
-            holder.rate.setStar(Float.valueOf(alldata.get(position).getRate() + ""));
+            holder.rate.setRating(Float.valueOf(alldata.get(position).getRate() + ""));
         } catch (Exception e) {
             e.printStackTrace();
         }

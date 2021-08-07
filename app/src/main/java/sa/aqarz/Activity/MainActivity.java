@@ -994,11 +994,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 //                te = "&estate_pay_type=" + type + "&price_from=" + Les_price.getText().toString() + "&price_to=" + Maximum_price.getText().toString() + "&area_from=" + Les_space.getText().toString() + "&area_from=" + Maximum_space.getText().toString();
+                drawer.closeDrawer(GravityCompat.START);
 
                 MapsFragmentNew.filter = te;
                 MapsFragmentNew.getAllEstate();
 
-                drawer.closeDrawer(GravityCompat.START);
 
 
             }

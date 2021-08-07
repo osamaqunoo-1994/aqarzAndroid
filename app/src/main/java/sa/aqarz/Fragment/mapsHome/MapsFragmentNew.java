@@ -659,12 +659,8 @@ public class MapsFragmentNew extends Fragment {
 
                     activity.startActivity(intent);
                 } else if (type_selected.equals("Market")) {
-
                     Intent intent = new Intent(activity, AllOrderActivity.class);
-
-
                     intent.putExtra("type", type_selected);
-
                     activity.startActivity(intent);
                 } else {
                     all_estate_size.setVisibility(View.GONE);

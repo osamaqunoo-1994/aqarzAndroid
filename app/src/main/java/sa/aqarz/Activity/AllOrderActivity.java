@@ -1,5 +1,6 @@
 package sa.aqarz.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
@@ -94,6 +95,7 @@ public class AllOrderActivity extends AppCompatActivity {
     static RecyclerView all_type;
     static RecyclerView allcity;
     static EditText search_citytext;
+    static String url = "";
 
     ProgressBar progress;
     static LinearLayout nodata_vis;
@@ -102,7 +104,7 @@ public class AllOrderActivity extends AppCompatActivity {
     LinearLayoutManager layoutManager;
     static LinearLayout filtter_city;
     static String offer_status = "";
-    static String type_requst = "today";
+    static String type_requst = "AllOrder";
     static String area_estate_id = "";
     static String estate_type_id = "";
     static String city_id = "";
@@ -144,6 +146,12 @@ public class AllOrderActivity extends AppCompatActivity {
     static EditText Les_space;
     static EditText Maximum_space;
 
+
+    static int page = 1;
+
+
+    static RecyclerView_ordersx recyclerView_ordersx;
+    static RecyclerView_orders_demandsx recyclerView_orders_demandsx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -224,7 +232,6 @@ public class AllOrderActivity extends AppCompatActivity {
         allcity.setLayoutManager(layoutManager1a);
 
 
-        AllResultRec.addOnScrollListener(recyclerViewOnScrollListener);
 
 //00
 //        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
@@ -248,6 +255,39 @@ public class AllOrderActivity extends AppCompatActivity {
         }
 
 
+        recyclerView_ordersx = new RecyclerView_ordersx(activity, ordersModules);
+        AllResultRec.setAdapter(recyclerView_ordersx);
+
+        AllResultRec.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (!recyclerView.canScrollVertically(1)) { //1 for down
+
+                    page = page + 1;
+
+
+                    System.out.println("liouiuyytryui");
+
+                    WebService.loading(activity, true);
+                    init_volley();
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
+                    if (type.equals("Real")) {
+
+
+                        mVolleyService.getDataVolley("fund_Request", url + "&page=" + page);
+
+                    } else {
+
+                        mVolleyService.getDataVolley("Market_Request", url + "&page=" + page);
+
+                    }
+
+                }
+            }
+        });
+
+
         change_type_bettwen_market_and_real();
         set_city_fillter();
         setdata();
@@ -255,35 +295,6 @@ public class AllOrderActivity extends AppCompatActivity {
         setTypeFilter();
     }
 
-    private final RecyclerView.OnScrollListener recyclerViewOnScrollListener = new RecyclerView.OnScrollListener() {
-        @Override
-        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-            super.onScrollStateChanged(recyclerView, newState);
-        }
-
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
-            int visibleItemCount = layoutManager.getChildCount();
-            int totalItemCount = layoutManager.getItemCount();
-            int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
-
-
-            System.out.println("visibleItemCount" + visibleItemCount);
-            System.out.println("firstVisibleItemPosition" + firstVisibleItemPosition);
-            System.out.println("totalItemCount" + totalItemCount);
-
-            if (isLoading) {
-
-                if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
-                        && firstVisibleItemPosition >= 0
-                        && totalItemCount >= 10) {
-                    System.out.println("*&*&*&*&*&*&*");
-
-                }
-            }
-        }
-    };
 
     public void setdata() {
         status_1.setVisibility(View.GONE);
@@ -305,12 +316,20 @@ public class AllOrderActivity extends AppCompatActivity {
                 market_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
                 Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
                 type = "Real";
-                setFiltter();
                 price_market.setVisibility(View.GONE);
                 price_fund.setVisibility(View.VISIBLE);
                 all_status_offer.setVisibility(View.VISIBLE);
                 area_market.setVisibility(View.GONE);
                 area_real.setVisibility(View.VISIBLE);
+
+                page = 1;
+
+                ordersModules.clear();
+                recyclerView_ordersx = new RecyclerView_ordersx(activity, ordersModules);
+                AllResultRec.setAdapter(recyclerView_ordersx);
+                setFiltter();
+
+
             }
         });
         market_order_layout.setOnClickListener(new View.OnClickListener() {
@@ -327,7 +346,6 @@ public class AllOrderActivity extends AppCompatActivity {
                 Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_IN);
 
                 type = "market";
-                setFiltter();
                 price_market.setVisibility(View.VISIBLE);
                 price_fund.setVisibility(View.GONE);
                 area_market.setVisibility(View.VISIBLE);
@@ -335,6 +353,15 @@ public class AllOrderActivity extends AppCompatActivity {
                 area_real.setVisibility(View.GONE);
                 area_real.setVisibility(View.GONE);
 
+                page = 1;
+
+                demandsModules_list.clear();
+
+                recyclerView_orders_demandsx = new RecyclerView_orders_demandsx(activity, demandsModules_list);
+
+                AllResultRec.setAdapter(recyclerView_orders_demandsx);
+
+                setFiltter();
 
             }
         });
@@ -410,122 +437,6 @@ public class AllOrderActivity extends AppCompatActivity {
         }
     }
 
-    public void change_type_bettwen_market_and_readfdl_fund() {
-
-        Real_Estate_order_layout.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("ResourceType")
-            @Override
-            public void onClick(View v) {
-                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
-                market_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
-                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
-                market_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
-                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
-                type = "Real";
-                setFiltter();
-                price_market.setVisibility(View.GONE);
-                price_fund.setVisibility(View.VISIBLE);
-                all_status_offer.setVisibility(View.VISIBLE);
-                area_market.setVisibility(View.GONE);
-                area_real.setVisibility(View.VISIBLE);
-            }
-        });
-        market_order_layout.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("ResourceType")
-            @Override
-            public void onClick(View v) {
-                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
-                market_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
-
-                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
-                market_order_text.setTextColor(getResources().getColor(R.color.white));
-
-
-                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_IN);
-
-                type = "market";
-                setFiltter();
-                price_market.setVisibility(View.VISIBLE);
-                price_fund.setVisibility(View.GONE);
-                area_market.setVisibility(View.VISIBLE);
-                all_status_offer.setVisibility(View.GONE);
-                area_real.setVisibility(View.GONE);
-                area_real.setVisibility(View.GONE);
-
-
-            }
-        });
-
-
-        try {
-            String types = getIntent().getStringExtra("type");
-
-
-            if (types.equals("main")) {
-                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
-                market_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
-                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
-                market_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
-                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
-                type = "Real";
-                setFiltter();
-                AllOrder_number.setText(Settings.getSettings().getAllRequestFund() + "");
-                today_number.setText(Settings.getSettings().getRequestFund() + "");
-                Myoffer_number.setText(Settings.getSettings().getMyRequestFundOffer() + "");
-
-                price_market.setVisibility(View.GONE);
-                price_fund.setVisibility(View.VISIBLE);
-                area_market.setVisibility(View.GONE);
-                area_real.setVisibility(View.VISIBLE);
-
-
-            } else if (types.equals("Real")) {
-                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
-                market_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
-                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.white));
-                market_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
-                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
-                type = "Real";
-                setFiltter();
-                AllOrder_number.setText(Settings.getSettings().getAllRequestFund() + "");
-                today_number.setText(Settings.getSettings().getRequestFund() + "");
-                Myoffer_number.setText(Settings.getSettings().getMyRequestFundOffer() + "");
-
-                price_market.setVisibility(View.GONE);
-                price_fund.setVisibility(View.VISIBLE);
-                area_market.setVisibility(View.GONE);
-                area_real.setVisibility(View.VISIBLE);
-
-                all_status_offer.setVisibility(View.VISIBLE);
-
-            } else {//Market
-                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.circle_w));
-                market_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
-
-                Real_Estate_order_text.setTextColor(getResources().getColor(R.color.colorPrimary));
-                market_order_text.setTextColor(getResources().getColor(R.color.white));
-
-
-                Real_Estate_order_image.setColorFilter(ContextCompat.getColor(AllOrderActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_IN);
-
-                type = "market";
-                setFiltter();
-                AllOrder_number.setText(Settings.getSettings().getAllRequest() + "");
-                today_number.setText(Settings.getSettings().getMarketDemands() + "");
-                Myoffer_number.setText(Settings.getSettings().getMyRequestOffer() + "");
-
-                price_market.setVisibility(View.VISIBLE);
-                price_fund.setVisibility(View.GONE);
-                area_market.setVisibility(View.VISIBLE);
-                area_real.setVisibility(View.GONE);
-                all_status_offer.setVisibility(View.GONE);
-
-            }
-        } catch (Exception e) {
-            setFiltter();
-
-        }
-    }
 
     public void action_button() {
 
@@ -667,6 +578,10 @@ public class AllOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setFiltter();
+
+                drawer.closeDrawer(GravityCompat.START);
+
+
             }
         });
         open_filtter.setOnClickListener(new View.OnClickListener() {
@@ -977,7 +892,6 @@ public class AllOrderActivity extends AppCompatActivity {
             }
         }
 
-        String url = "";
         if (type.equals("Real")) {
 
             url = WebService.fund_Request + "?" + type_requst_text + offer_status_text + search_text_s + price_id_text + area_estate_id_text + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
@@ -1065,8 +979,11 @@ public class AllOrderActivity extends AppCompatActivity {
 
                         String data_inside = jsonObject_data.getString("data");
                         JSONArray jsonArray = new JSONArray(data_inside);
-                        AllResultRec.setAdapter(null);
-                        ordersModules.clear();
+
+                        if (page == 1) {
+                            ordersModules.clear();
+
+                        }
 
                         for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -1081,10 +998,7 @@ public class AllOrderActivity extends AppCompatActivity {
 
 
                         }
-
-                        RecyclerView_ordersx recyclerView_ordersx = new RecyclerView_ordersx(activity, ordersModules);
-                        AllResultRec.setAdapter(recyclerView_ordersx);
-
+                        recyclerView_ordersx.Refr();
                         if (ordersModules.size() != 0) {
                             nodata_vis.setVisibility(View.GONE);
                             isLoading = true;
@@ -1113,9 +1027,11 @@ public class AllOrderActivity extends AppCompatActivity {
                         String data_inside = jsonObject_data.getString("data");
                         JSONArray jsonArray = new JSONArray(data_inside);
 //                        orders_rec.setAdapter(null);
-                        demandsModules_list.clear();
 
+                        if (page == 1) {
+                            demandsModules_list.clear();
 
+                        }
                         for (int i = 0; i < jsonArray.length(); i++) {
 
 
@@ -1129,9 +1045,7 @@ public class AllOrderActivity extends AppCompatActivity {
 
 
                         }
-
-                        AllResultRec.setAdapter(new RecyclerView_orders_demandsx(activity, demandsModules_list));
-
+                        recyclerView_orders_demandsx.Refr();
 
                         if (demandsModules_list.size() != 0) {
                             nodata_vis.setVisibility(View.GONE);
