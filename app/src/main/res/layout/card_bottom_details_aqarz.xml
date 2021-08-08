@@ -13,36 +13,19 @@
 
         android:layout_margin="5dp"
 
-        android:background="@drawable/background_b2"
+        android:background="@drawable/background_b2_selected"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="100dp"
-                android:layout_height="match_parent"
+                android:layout_height="120dp"
+                android:layout_margin="2dp"
                 app:cardCornerRadius="10dp">
 
                 <RelativeLayout
@@ -64,15 +47,21 @@
                     <TextView
                         android:id="@+id/opration"
                         android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        android:background="@drawable/button_login"
-                        android:gravity="center"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
+                        android:layout_height="22dp"
 
-                        android:text=""
+
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/button_login"
+                        android:fontFamily="@font/din_bold"
+                        android:gravity="center"
+                        android:paddingLeft="11dp"
+                        android:paddingRight="11dp"
+                        android:paddingBottom="1dp"
+                        android:text="شقة"
+
+
                         android:textColor="@color/white"
-                        android:textSize="11dp" />
+                        android:textSize="9dp" />
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
@@ -91,7 +80,9 @@
                 <LinearLayout
 
                     android:layout_width="match_parent"
-                    android:layout_height="32dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="10dp"
 
                     android:orientation="horizontal">
 
@@ -102,35 +93,40 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:id="@+id/id_estate"
+
+                        android:id="@+id/num_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/din_bold"
-                        android:text=""
-                        android:textColor="@color/black" />
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:fontFamily="@font/din_light"
+
+                        android:textColor="@color/black"
+                        android:textSize="10dp"
+                        android:textStyle="bold" />
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:background="@drawable/circle_filter"
-                        android:padding="9dp"
+                        android:padding="4dp"
                         android:src="@drawable/ic_un_hide" />
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="2dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:background="@drawable/circle_filter"
-                        android:padding="9dp"
+                        android:padding="4dp"
                         android:src="@drawable/ic_send_" />
 
                     <ImageView
                         android:id="@+id/add_favorite"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:background="@drawable/circle_filter"
-                        android:padding="9dp"
+                        android:padding="4dp"
                         android:src="@drawable/ic_like_l"
                         app:tint="#AAABB3" />
 
@@ -148,10 +144,10 @@
 
                     <ImageView
                         android:id="@+id/image_icon"
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_home11"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_tag"
                         app:tint="@color/colorPrimary" />
 
                     <TextView
@@ -173,18 +169,16 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:fontFamily="@font/din_bold"
-                        android:textColor="@color/black"
-
-
-                        android:textSize="12dp"
+                        android:fontFamily="@font/din_mediam"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="10dp"
                         android:textStyle="bold" />
 
 
                     <TextView
                         android:id="@+id/dublex"
                         android:layout_width="wrap_content"
-                        android:layout_height="32dp"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/button_login"
                         android:gravity="center"
                         android:paddingLeft="15dp"
@@ -194,20 +188,45 @@
                         android:visibility="gone" />
 
                     <com.hedgehog.ratingbar.RatingBar
-                        android:id="@+id/rate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_gravity="center"
+                        android:visibility="gone"
+                        app:clickable="false"
                         app:starEmpty="@drawable/ic_star__2_"
                         app:starFill="@drawable/ic_star__1_"
-                        hedgehog:clickable="true"
+                        hedgehog:clickable="false"
                         hedgehog:halfstart="false"
                         hedgehog:starCount="5"
                         hedgehog:starHalf="@mipmap/star_half"
                         hedgehog:starImageHeight="3dp"
                         hedgehog:starImagePadding="1"
-                        hedgehog:starImageWidth="3dp" />
+                        hedgehog:starImageWidth="3" />
+
+
+                    <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/rate"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:clickable="true"
+                        app:srb_clearRatingEnabled="true"
+                        app:srb_clickable="true"
+                        app:srb_drawableEmpty="@drawable/ic_star__2_"
+                        app:srb_drawableFilled="@drawable/ic_star__1_"
+                        app:srb_isIndicator="false"
+
+                        app:srb_minimumStars="1"
+
+                        app:srb_numStars="5"
+                        app:srb_rating="0"
+                        app:srb_scrollable="true"
+                        app:srb_starHeight="10dp"
+                        app:srb_starPadding="1dp"
+                        app:srb_starWidth="10dp"
+                        app:srb_stepSize="0.5"></com.willy.ratingbar.ScaleRatingBar>
 
 
                     <LinearLayout
@@ -223,13 +242,14 @@
                     android:layout_height="wrap_content"
 
                     android:gravity="center"
+
                     android:orientation="horizontal">
 
 
                     <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:padding="5dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:padding="3dp"
                         android:src="@drawable/ic_tag"
                         app:tint="@color/colorPrimary" />
 
@@ -239,10 +259,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:fontFamily="@font/din_bold"
+                        android:fontFamily="@font/din_light"
                         android:text="@string/n2"
                         android:textColor="@color/black"
-                        android:textSize="11dp"
+                        android:textSize="10dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -253,8 +273,8 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/din_light"
 
-                        android:textColor="@color/textColor"
-                        android:textSize="12dp" />
+                        android:textColor="@color/black"
+                        android:textSize="10dp" />
 
                     <TextView
 
@@ -264,8 +284,8 @@
 
                         android:fontFamily="@font/din_light"
                         android:text="@string/SAR"
-                        android:textColor="@color/textColor"
-                        android:textSize="12dp" />
+                        android:textColor="@color/black"
+                        android:textSize="9dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -284,9 +304,9 @@
 
 
                     <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:padding="5dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:padding="3dp"
                         android:src="@drawable/ic_group_location_group"
                         app:tint="@color/colorPrimary" />
 
@@ -298,8 +318,8 @@
                         android:layout_marginRight="5dp"
                         android:fontFamily="@font/din_light"
                         android:text="@string/n4"
-                        android:textColor="@color/textColor"
-                        android:textSize="11dp"
+                        android:textColor="@color/black"
+                        android:textSize="10dp"
                         android:visibility="gone" />
 
 
@@ -317,7 +337,7 @@
                             android:lines="1"
 
                             android:textColor="@color/textColor"
-                            android:textSize="11dp" />
+                            android:textSize="10dp" />
 
                     </HorizontalScrollView>
 
@@ -337,9 +357,9 @@
 
 
                     <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:padding="5dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:padding="3dp"
                         android:src="@drawable/ic_space"
                         app:tint="@color/colorPrimary" />
 
@@ -349,36 +369,36 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:fontFamily="@font/din_bold"
-                        android:text="@string/n4"
+                        android:fontFamily="@font/din_light"
+                        android:text="@string/n3"
                         android:textColor="@color/black"
-                        android:textSize="11dp"
-                        android:visibility="visible" />
+                        android:textSize="10dp"
+                        android:textStyle="bold" />
 
 
                     <TextView
                         android:id="@+id/space"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:fontFamily="@font/din_light"
                         android:lines="1"
 
-                        android:textColor="@color/textColor"
+                        android:textColor="@color/black"
                         android:textSize="12dp" />
 
                     <TextView
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+
+
                         android:fontFamily="@font/din_light"
                         android:lines="1"
                         android:text="@string/sequare"
-                        android:textColor="@color/textColor"
-                        android:textSize="11dp" />
+                        android:textColor="@color/black"
+                        android:textSize="9dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -390,6 +410,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -403,7 +425,7 @@
                         android:fontFamily="@font/din_light"
                         android:maxLength="10"
                         android:textColor="#AAABB3"
-                        android:textSize="11dp" />
+                        android:textSize="9dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -413,11 +435,11 @@
 
                     <ImageView
                         android:id="@+id/re_news"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
 
                         android:background="@drawable/circle_fill"
-                        android:padding="9dp"
+                        android:padding="5dp"
                         android:src="@drawable/ic_re_new"
 
                         android:visibility="gone"
@@ -425,24 +447,23 @@
 
                     <ImageView
                         android:id="@+id/edit"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginRight="3dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:background="@drawable/circle_ss"
-                        android:padding="9dp"
+                        android:padding="5dp"
                         android:src="@drawable/ic_edit_offer"
-
                         android:visibility="gone"
                         app:tint="@color/white" />
 
                     <ImageView
                         android:id="@+id/delete"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
 
                         android:background="@drawable/circle_red"
-                        android:padding="9dp"
+                        android:padding="5dp"
                         android:src="@drawable/ic_delete"
                         android:visibility="gone"
                         app:tint="@color/white" />

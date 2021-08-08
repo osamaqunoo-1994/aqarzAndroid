@@ -653,24 +653,16 @@ public class MapsFragmentNew extends Fragment {
 
 
                 if (type_selected.equals("Real")) {
-
-
                     Intent intent = new Intent(activity, AllOrderActivity.class);
                     intent.putExtra("type", type_selected);
-
-
                     intent.putExtra("id_city", city_serial_postion);
                     intent.putExtra("id_nib", "");
-
                     activity.startActivity(intent);
                 } else if (type_selected.equals("Market")) {
                     Intent intent = new Intent(activity, AllOrderActivity.class);
-
                     intent.putExtra("type", type_selected);
                     intent.putExtra("id_city", city_serial_postion);
                     intent.putExtra("id_nib", "");
-
-
                     activity.startActivity(intent);
                 } else {
                     all_estate_size.setVisibility(View.GONE);

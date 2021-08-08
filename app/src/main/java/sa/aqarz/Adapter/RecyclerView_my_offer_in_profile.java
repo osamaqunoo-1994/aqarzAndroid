@@ -22,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
 import com.hedgehog.ratingbar.RatingBar;
 import com.squareup.picasso.Picasso;
+import com.willy.ratingbar.ScaleRatingBar;
 
 import org.json.JSONObject;
 
@@ -97,7 +98,7 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
         ImageView image_icon;
         ImageView add_favorite;
 
-        RatingBar rate;
+        ScaleRatingBar rate;
 
         ImageView re_news;
         ImageView edit;
@@ -156,6 +157,7 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
+        try {
 
 
 //        holder.setIsRecyclable(false);
@@ -181,43 +183,43 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
 //
 //        holder.opration.setText(alldata.get(position).getEstate_type_name());
 
-        holder.delete.setVisibility(View.VISIBLE);
-        holder.re_news.setVisibility(View.VISIBLE);
-        holder.edit.setVisibility(View.VISIBLE);
+            holder.delete.setVisibility(View.VISIBLE);
+            holder.re_news.setVisibility(View.VISIBLE);
+            holder.edit.setVisibility(View.VISIBLE);
 
-        Glide.with(context).load(alldata.get(position).getFirst_image() + "").into(holder.image);
-        holder.price.setText(alldata.get(position).getTotalPrice());
-        holder.type.setText(alldata.get(position).getEstate_type_name());
-        holder.opration.setText(alldata.get(position).getOperationTypeName());
-        holder.space.setText(alldata.get(position).getTotalArea() + "");
-        holder.date.setText(alldata.get(position).getCreatedAt() + "");
+            Glide.with(context).load(alldata.get(position).getFirst_image() + "").into(holder.image);
+            holder.price.setText(alldata.get(position).getTotalPrice());
+            holder.type.setText(alldata.get(position).getEstate_type_name());
+            holder.opration.setText(alldata.get(position).getOperationTypeName());
+            holder.space.setText(alldata.get(position).getTotalArea() + "");
+            holder.date.setText(alldata.get(position).getCreatedAt() + "");
 
 
-        if (alldata.get(position).getAddress() == null) {
-            if (alldata.get(position).getCity_name() != null) {
-                holder.address.setText(alldata.get(position).getCity_name() + " - " + alldata.get(position).getNeighborhood_name());
+            if (alldata.get(position).getAddress() == null) {
+                if (alldata.get(position).getCity_name() != null) {
+                    holder.address.setText(alldata.get(position).getCity_name() + " - " + alldata.get(position).getNeighborhood_name());
+
+                }
+
+            } else {
+                holder.address.setText(alldata.get(position).getAddress());
 
             }
 
-        } else {
-            holder.address.setText(alldata.get(position).getAddress());
+            try {
+                holder.rate.setRating(Float.valueOf(alldata.get(position).getRate() + ""));
+            } catch (Exception e) {
 
-        }
-
-        try {
-            holder.rate.setStar(Float.valueOf(alldata.get(position).getRate() + ""));
-        } catch (Exception e) {
-
-        }
+            }
 //        holder.number_room.setText(alldata.get(position).getRoomsNumber());
 //        holder.number_bathroom.setText(alldata.get(position).getBathroomsNumber());
 //        holder.max_space.setText(alldata.get(position).getStreetView());
 
 
-        if (alldata.get(position).getEstate_type() != null) {
-            Glide.with(context).load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
+            if (alldata.get(position).getEstate_type() != null) {
+                Glide.with(context).load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
 
-        }
+            }
 
 
 //
@@ -240,7 +242,7 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
 //       holder.ratingbar.setStar(random);
 
 
-        //   wallet, dafter, receipt, payment
+            //   wallet, dafter, receipt, payment
 
 
 //            double v=Double.valueOf(alldata.get(position).getRate());
@@ -274,49 +276,49 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
 //            }
 //        });
 //
-        if (alldata.get(position).getIn_fav().equals("1")) {
-            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
+            if (alldata.get(position).getIn_fav().equals("1")) {
+                holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
 
-        } else {
-            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
-
-        }
-        holder.add_favorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (alldata.get(position).getIn_fav().equals("1")) {
-                    holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
-                    alldata.get(position).setIn_fav("0");
-                } else {
-                    holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
-                    alldata.get(position).setIn_fav("1");
-
-
-                }
-                init_volley();
-                WebService.loading((Activity) context, true);
-
-                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
-                try {
-
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("type_id", "" + alldata.get(position).getId());
-                    jsonObject.put("type", "" + "offer");//'request','offer','fund'
-                    mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
-
-
-                } catch (Exception e) {
-
-                }
+            } else {
+                holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
 
             }
-        });
+            holder.add_favorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    if (alldata.get(position).getIn_fav().equals("1")) {
+                        holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
+                        alldata.get(position).setIn_fav("0");
+                    } else {
+                        holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
+                        alldata.get(position).setIn_fav("1");
 
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                    }
+                    init_volley();
+                    WebService.loading((Activity) context, true);
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+                    try {
+
+                        JSONObject jsonObject = new JSONObject();
+                        jsonObject.put("type_id", "" + alldata.get(position).getId());
+                        jsonObject.put("type", "" + "offer");//'request','offer','fund'
+                        mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
+
+
+                    } catch (Exception e) {
+
+                    }
+
+                }
+            });
+
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
 
 //                Postion_opend = position;
@@ -324,62 +326,65 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
 
 //                RequestOrderActivity.set_fragment(position);
 
-                Intent intent = new Intent(context, DetailsActivity_aqarz.class);
-                intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
-                context.startActivity(intent);
+                    Intent intent = new Intent(context, DetailsActivity_aqarz.class);
+                    intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
+                    context.startActivity(intent);
 
 
-                if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(position);
-                }
+                    if (mItemClickListener != null) {
+                        mItemClickListener.onItemClick(position);
+                    }
 //
 
-            }
-        });
-        holder.re_news.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BottomSheetDialogFragmen_re_new_offer bottomSheetDialogFragmen_re_new_offer = new BottomSheetDialogFragmen_re_new_offer(alldata.get(position).getId() + "");
-                bottomSheetDialogFragmen_re_new_offer.addItemClickListener(new BottomSheetDialogFragmen_re_new_offer.ItemClickListener() {
-                    @Override
-                    public void onItemClick(int id_estat) {
+                }
+            });
+            holder.re_news.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    BottomSheetDialogFragmen_re_new_offer bottomSheetDialogFragmen_re_new_offer = new BottomSheetDialogFragmen_re_new_offer(alldata.get(position).getId() + "");
+                    bottomSheetDialogFragmen_re_new_offer.addItemClickListener(new BottomSheetDialogFragmen_re_new_offer.ItemClickListener() {
+                        @Override
+                        public void onItemClick(int id_estat) {
 
-                    }
-                });
-                bottomSheetDialogFragmen_re_new_offer.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+                        }
+                    });
+                    bottomSheetDialogFragmen_re_new_offer.show(((FragmentActivity) context).getSupportFragmentManager(), "");
 
-            }
-        });
-        holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Postion_delete = position;
-                BottomSheetDialogFragmen_delete_offer bottomSheetDialogFragmen_delete_offer = new BottomSheetDialogFragmen_delete_offer(alldata.get(position).getId() + "");
-                bottomSheetDialogFragmen_delete_offer.addItemClickListener(new BottomSheetDialogFragmen_delete_offer.ItemClickListener() {
-                    @Override
-                    public void onItemClick(int id_estate) {
+                }
+            });
+            holder.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Postion_delete = position;
+                    BottomSheetDialogFragmen_delete_offer bottomSheetDialogFragmen_delete_offer = new BottomSheetDialogFragmen_delete_offer(alldata.get(position).getId() + "");
+                    bottomSheetDialogFragmen_delete_offer.addItemClickListener(new BottomSheetDialogFragmen_delete_offer.ItemClickListener() {
+                        @Override
+                        public void onItemClick(int id_estate) {
 
-                        System.out.println("id_estate" + id_estate);
-                        alldata.remove(Postion_delete);
-                        Refr();
+                            System.out.println("id_estate" + id_estate);
+                            alldata.remove(Postion_delete);
+                            Refr();
 
-                    }
-                });
-                bottomSheetDialogFragmen_delete_offer.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+                        }
+                    });
+                    bottomSheetDialogFragmen_delete_offer.show(((FragmentActivity) context).getSupportFragmentManager(), "");
 
-            }
-        });
-        holder.edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, EditAqarsActivity.class);
-                intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
-                context.startActivity(intent);
+                }
+            });
+            holder.edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, EditAqarsActivity.class);
+                    intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
+                    context.startActivity(intent);
 
 
-            }
-        });
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
 
+        }
 
     }
 
