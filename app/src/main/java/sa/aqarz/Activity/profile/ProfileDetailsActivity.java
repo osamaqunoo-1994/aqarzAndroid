@@ -88,6 +88,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
     LinearLayout v3;
     LinearLayout all_offer;
     LinearLayout myintrest;
+    LinearLayout all_employee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +114,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         all_offer = findViewById(R.id.all_offer);
         v3 = findViewById(R.id.v3);
         myintrest = findViewById(R.id.myintrest);
+        all_employee = findViewById(R.id.all_employee);
 
         member_list = findViewById(R.id.member_list);
         editProfile = findViewById(R.id.editProfile);
@@ -133,6 +135,13 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         Courses.setLayoutManager(new GridLayoutManager(this, 3));
         list_service.setLayoutManager(new GridLayoutManager(this, 3));
 
+
+        if (Settings.GetUser().getIs_employee().equals("0")) {
+            all_employee.setVisibility(View.VISIBLE);
+        } else {
+            all_employee.setVisibility(View.GONE);
+
+        }
 //
 //        FlowLayoutManager flowLayoutManager = new FlowLayoutManager();
 //        flowLayoutManager.setAutoMeasureEnabled(true);
@@ -356,9 +365,8 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                                             .skipMemoryCache(true).into(profile);
 
 
-
-                                    if(userModules.getCount_call()!=null){
-                                        if(!userModules.getCount_call().equals("null")){
+                                    if (userModules.getCount_call() != null) {
+                                        if (!userModules.getCount_call().equals("null")) {
                                             phone.setText(userModules.getCount_call() + " " + getResources().getString(R.string.call));
 
                                         }
@@ -374,9 +382,8 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                                     preview.setText(userModules.getCount_preview_fund_offer() + "");
 
 
-
-                                    if(userModules.getCount_fund_pending_offer()!=null){
-                                        if(!userModules.getCount_fund_pending_offer().equals("null")){
+                                    if (userModules.getCount_fund_pending_offer() != null) {
+                                        if (!userModules.getCount_fund_pending_offer().equals("null")) {
                                             watiing.setText(userModules.getCount_fund_pending_offer() + "");
 
                                         }

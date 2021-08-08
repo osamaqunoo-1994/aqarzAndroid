@@ -127,6 +127,7 @@ public class MapsFragmentNew extends Fragment {
 
     public static String region_id_postion = "";
     public static String city_id_postion = "";
+    public static String city_serial_postion = "";
     ImageView favorit;
 
     public static String lat = "";
@@ -657,10 +658,19 @@ public class MapsFragmentNew extends Fragment {
                     Intent intent = new Intent(activity, AllOrderActivity.class);
                     intent.putExtra("type", type_selected);
 
+
+                    intent.putExtra("id_city", city_serial_postion);
+                    intent.putExtra("id_nib", "");
+
                     activity.startActivity(intent);
                 } else if (type_selected.equals("Market")) {
                     Intent intent = new Intent(activity, AllOrderActivity.class);
+
                     intent.putExtra("type", type_selected);
+                    intent.putExtra("id_city", city_serial_postion);
+                    intent.putExtra("id_nib", "");
+
+
                     activity.startActivity(intent);
                 } else {
                     all_estate_size.setVisibility(View.GONE);
@@ -1019,6 +1029,8 @@ public class MapsFragmentNew extends Fragment {
 
 
                         city_id_postion = number;
+
+                        city_serial_postion = city_location_list.get(Integer.valueOf(city_id_postion)).getSerial_city() + "";
                         Hawk.put("city_id_postion", city_id_postion + "");
 
 
@@ -1191,9 +1203,10 @@ public class MapsFragmentNew extends Fragment {
 //                Hawk.put("city_id_postion", "");
 
 
-                    intent.putExtra("id_city", city_id_postion + "");
+                    intent.putExtra("id_city", city_serial_postion);
 //                    System.out.println("id_nib" + homeModules_aqares.get(Integer.valueOf(Integer.valueOf(number))).getId());
                     intent.putExtra("type", type_selected);
+                    intent.putExtra("id_nib", locationNeighborhood_list.get(Integer.valueOf(number + "")).getNeighborhoodSerial() + "");
 
                     activity.startActivity(intent);
 
@@ -1754,6 +1767,7 @@ public class MapsFragmentNew extends Fragment {
 
                             } else if (type_selected.equals("Market")) {
                                 set_locationNeighborhoodMarket(allNeigbers.getData());
+
 
                             } else if (type_selected.equals("offer")) {
 

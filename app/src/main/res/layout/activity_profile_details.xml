@@ -258,11 +258,11 @@
 
                             <TextView
                                 android:id="@+id/phone"
-                                android:text="0"
-
                                 android:layout_width="wrap_content"
+
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="5dp" />
+                                android:layout_marginStart="5dp"
+                                android:text="0" />
 
                             <LinearLayout
                                 android:layout_width="10dp"
@@ -493,14 +493,16 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingRight="10dp"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
                     android:paddingLeft="10dp"
-                    android:layout_margin="10dp">
+                    android:paddingRight="10dp">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:gravity="center">
 
                         <LinearLayout
@@ -555,9 +557,10 @@
 
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
 
                         android:gravity="center">
 
@@ -613,10 +616,12 @@
 
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/all_employee"
+                        android:layout_width="100dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
 
-                        android:layout_weight="1"
                         android:gravity="center">
 
                         <LinearLayout
@@ -708,11 +713,11 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/member_list"
                     android:layout_width="match_parent"
-                    android:layout_marginRight="10dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
 
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp" />
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp" />
 
 
                 <LinearLayout
@@ -753,9 +758,9 @@
                     android:id="@+id/service_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp" />
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp" />
 
                 <LinearLayout
 
@@ -795,9 +800,9 @@
                     android:id="@+id/list_service"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp" />
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp" />
 
 
                 <LinearLayout
@@ -838,9 +843,9 @@
                     android:id="@+id/Courses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp" />
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp" />
 
 
             </LinearLayout>

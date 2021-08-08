@@ -107,6 +107,7 @@ public class AllOrderActivity extends AppCompatActivity {
     static String type_requst = "AllOrder";
     static String area_estate_id = "";
     static String estate_type_id = "";
+    static String neighborhood_id = "";
     static String city_id = "";
     static String price_id = "";
     public static boolean searh = true;
@@ -231,8 +232,38 @@ public class AllOrderActivity extends AppCompatActivity {
                 = new LinearLayoutManager(AllOrderActivity.this, LinearLayoutManager.VERTICAL, false);
         allcity.setLayoutManager(layoutManager1a);
 
+        neighborhood_id = "";
+        city_id = "";
+
+        try {
+
+            String id_city = getIntent().getStringExtra("id_city");
+
+            if (id_city != null) {
+                if (!id_city.equals("null")) {
+                    city_id = id_city;
+
+                }
+            }
+
+        } catch (Exception e) {
+
+        }
+        try {
+
+            String id_nib = getIntent().getStringExtra("id_nib");
 
 
+            if (id_nib != null) {
+                if (!id_nib.equals("null")) {
+                    neighborhood_id = id_nib;
+
+                }
+            }
+
+        } catch (Exception e) {
+
+        }
 //00
 //        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
 //            premium.setVisibility(View.VISIBLE);
@@ -846,6 +877,7 @@ public class AllOrderActivity extends AppCompatActivity {
         String price_id_text = "";
         String estate_type_id_text = "";
         String city_id_text = "";
+        String neighborhood_id_text = "";
 
 
         if (type_requst.equals("today")) {
@@ -886,6 +918,9 @@ public class AllOrderActivity extends AppCompatActivity {
         if (!estate_type_id.equals("")) {
             estate_type_id_text = "&estate_type_id=" + estate_type_id;
         }
+        if (!neighborhood_id.equals("")) {
+            neighborhood_id_text = "&neighborhood_id=" + neighborhood_id;
+        }
         if (city_id != null) {
             if (!city_id.equals("")) {
                 city_id_text = "&city_id=" + city_id;
@@ -894,7 +929,7 @@ public class AllOrderActivity extends AppCompatActivity {
 
         if (type.equals("Real")) {
 
-            url = WebService.fund_Request + "?" + type_requst_text + offer_status_text + search_text_s + price_id_text + area_estate_id_text + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
+            url = WebService.fund_Request + "?" + type_requst_text + neighborhood_id_text + offer_status_text + search_text_s + price_id_text + area_estate_id_text + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
             WebService.loading(activity, true);
 
             init_volley();
@@ -916,8 +951,8 @@ public class AllOrderActivity extends AppCompatActivity {
                 te = te + "&area_to=" + Maximum_space.getText().toString();
             }
 
-
-            url = WebService.market_demands + "?" + type_requst_text + search_text_s + te + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
+//neighborhood_id=&estate_type_id=&price_id=&area_estate_id=&today=&myOwn=&search=&page=1”
+            url = WebService.market_demands + "?" + type_requst_text + neighborhood_id_text + search_text_s + te + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
             WebService.loading(activity, true);
 
             init_volley();
