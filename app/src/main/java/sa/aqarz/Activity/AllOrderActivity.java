@@ -461,6 +461,13 @@ public class AllOrderActivity extends AppCompatActivity {
                 area_real.setVisibility(View.GONE);
                 all_status_offer.setVisibility(View.GONE);
 
+                demandsModules_list.clear();
+
+                recyclerView_orders_demandsx = new RecyclerView_orders_demandsx(activity, demandsModules_list);
+
+                AllResultRec.setAdapter(recyclerView_orders_demandsx);
+
+
             }
         } catch (Exception e) {
             setFiltter();
