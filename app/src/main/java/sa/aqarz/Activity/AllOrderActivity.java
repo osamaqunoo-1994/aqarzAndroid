@@ -215,7 +215,7 @@ public class AllOrderActivity extends AppCompatActivity {
         AllOrder_number = findViewById(R.id.AllOrder_number);
         searcha_btn = findViewById(R.id.searcha_btn);
 
-
+        page = 1;
         progress = findViewById(R.id.progress);
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -879,7 +879,7 @@ public class AllOrderActivity extends AppCompatActivity {
         String city_id_text = "";
         String neighborhood_id_text = "";
 
-
+        page = 1;
         if (type_requst.equals("today")) {
             offer_status_text = "";
             type_requst_text = "&today=1";
