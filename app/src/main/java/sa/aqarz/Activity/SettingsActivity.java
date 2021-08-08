@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +35,7 @@ public class SettingsActivity extends AppCompatActivity {
     TextView signup;
 
     ImageView back;
+    TextView version;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class SettingsActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         back = findViewById(R.id.back);
         signup = findViewById(R.id.signup);
+        version = findViewById(R.id.version);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,7 +178,22 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
         });
+        try {
+            PackageManager packageManager = getPackageManager();
+            PackageInfo packageInfo = null;
+            try {
+                packageInfo = packageManager.getPackageInfo(getPackageName(), 0);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+            String currentVersion = packageInfo.versionName;
 
+
+            version.setText(" اصدار التطبيق " + currentVersion);
+
+        } catch (Exception e) {
+
+        }
 
     }
 

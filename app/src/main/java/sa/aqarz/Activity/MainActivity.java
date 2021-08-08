@@ -492,14 +492,12 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayout market = popupView.findViewById(R.id.market);
 
 
-                if(Settings.CheckIsAccountAqarzMan()){
+                if (Settings.CheckIsAccountAqarzMan()) {
                     realState.setVisibility(View.VISIBLE);
-                }else
-                {
+                } else {
                     realState.setVisibility(View.GONE);
 
                 }
-
 
 
                 realState.setOnClickListener(new View.OnClickListener() {
@@ -783,6 +781,7 @@ public class MainActivity extends AppCompatActivity {
 
                         VolleyService mVolleyService = new VolleyService(mResultCallback, MainActivity.this);
                         mVolleyService.postDataVolley("check_employe", WebService.check_employe, jsonObject);
+                        alertDialog.dismiss();
 
                     }
                 });
@@ -804,6 +803,7 @@ public class MainActivity extends AppCompatActivity {
                         WebService.loading(MainActivity.this, true);
                         VolleyService mVolleyService = new VolleyService(mResultCallback, MainActivity.this);
                         mVolleyService.postDataVolley("check_employe", WebService.check_employe, jsonObject);
+                        alertDialog.dismiss();
 
                     }
                 });
@@ -998,7 +998,6 @@ public class MainActivity extends AppCompatActivity {
 
                 MapsFragmentNew.filter = te;
                 MapsFragmentNew.getAllEstate();
-
 
 
             }
@@ -1750,10 +1749,10 @@ public class MainActivity extends AppCompatActivity {
                     if (status) {
                         String data = response.getString("data");
 //                        String next_page_url = response.getString("next_page_url");
-                        JSONObject jsonObject = new JSONObject(data);
 
 
                         if (requestType.equals("user")) {
+                            JSONObject jsonObject = new JSONObject(data);
 
 
                             Hawk.put("user", data);
@@ -1768,6 +1767,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                         } else if (requestType.equals("cities_with_neb")) {
+                            JSONObject jsonObject = new JSONObject(data);
+
                             String datadata = jsonObject.getString("data");
 
                             JSONArray jsonArray = new JSONArray(datadata);
