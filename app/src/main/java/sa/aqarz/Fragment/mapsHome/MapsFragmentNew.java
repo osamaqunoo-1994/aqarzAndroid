@@ -72,6 +72,7 @@ import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.NotficationActvity;
 import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
 import sa.aqarz.Activity.OrderListActivity;
+import sa.aqarz.Activity.check_login;
 import sa.aqarz.Adapter.RecyclerView_All_type_in_fragment1;
 import sa.aqarz.Adapter.RecyclerView_GenralNotfication;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat_new;
@@ -551,20 +552,22 @@ public class MapsFragmentNew extends Fragment {
             public void onClick(View v) {
 
                 if (!Settings.checkLogin()) {
-                    new AlertDialog.Builder(getContext())
-                            .setMessage(getActivity().getResources().getString(R.string.you_are_not_login_please_login))
-                            .setCancelable(false)
-                            .setPositiveButton(getActivity().getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
+                    startActivity(new Intent(getActivity(), check_login.class));
 
-                                    Intent intent = new Intent(getContext(), LoginActivity.class);
-//                                intent.putExtra("from", "splash");
-                                    startActivity(intent);
-
-                                }
-                            })
-                            .setNegativeButton(getActivity().getResources().getString(R.string.no), null)
-                            .show();
+//                    new AlertDialog.Builder(getContext())
+//                            .setMessage(getActivity().getResources().getString(R.string.you_are_not_login_please_login))
+//                            .setCancelable(false)
+//                            .setPositiveButton(getActivity().getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//
+//                                    Intent intent = new Intent(getContext(), LoginActivity.class);
+////                                intent.putExtra("from", "splash");
+//                                    startActivity(intent);
+//
+//                                }
+//                            })
+//                            .setNegativeButton(getActivity().getResources().getString(R.string.no), null)
+//                            .show();
                 } else {
 
                     if (Settings.CheckIsCompleate()) {

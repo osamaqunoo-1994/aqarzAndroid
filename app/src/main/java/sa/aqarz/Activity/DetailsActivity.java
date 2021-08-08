@@ -136,21 +136,23 @@ public class DetailsActivity extends AppCompatActivity {
 
 
                 } else {
+                    startActivity(new Intent(DetailsActivity.this, check_login.class));
 
-                    new AlertDialog.Builder(DetailsActivity.this)
-                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
-                            .setCancelable(false)
-                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-
-                                    Intent intent = new Intent(DetailsActivity.this, LoginActivity.class);
-//                                intent.putExtra("from", "splash");
-                                    startActivity(intent);
-
-                                }
-                            })
-                            .setNegativeButton(getResources().getString(R.string.no), null)
-                            .show();
+//
+//                    new AlertDialog.Builder(DetailsActivity.this)
+//                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+//                            .setCancelable(false)
+//                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//
+//                                    Intent intent = new Intent(DetailsActivity.this, LoginActivity.class);
+////                                intent.putExtra("from", "splash");
+//                                    startActivity(intent);
+//
+//                                }
+//                            })
+//                            .setNegativeButton(getResources().getString(R.string.no), null)
+//                            .show();
                 }
 
 

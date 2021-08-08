@@ -52,6 +52,7 @@ import sa.aqarz.api.VolleyService;
 
 
 public class LoginActivity extends AppCompatActivity {
+
     EditText phone_ed;
     EditText password;
     TextView forget_pass;
@@ -63,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
     ImageView back;
     boolean is_show = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,11 +80,10 @@ public class LoginActivity extends AppCompatActivity {
                 yourView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             }
         }
-
-
     }
 
     public void init() {
+
         phone_ed = findViewById(R.id.phone_ed);
         password = findViewById(R.id.password);
         new_account = findViewById(R.id.new_account);
@@ -279,6 +280,7 @@ public class LoginActivity extends AppCompatActivity {
             public void notifyError(String requestType, VolleyError error) {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.getMessage());
+                WebService.loading(LoginActivity.this, false);
 
                 try {
 
@@ -295,7 +297,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.e("error response", response_data);
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
 
 
@@ -306,6 +308,22 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void notify_Async_Error(String requestType, String error) {
+                try {
+                    WebService.loading(LoginActivity.this, false);
+
+                    System.out.println(error);
+                    JSONObject jsonObject = new JSONObject(error);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color(LoginActivity.this, message, "error");
+
+                    Log.e("error response", requestType);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
         };

@@ -109,7 +109,7 @@ public class VolleyService {
                         System.out.println("responseBody" + errorResponse.toString());
 
 
-                        mResultCallback.notify_Async_Error(requestType, errorResponse.getString("message"));
+                        mResultCallback.notify_Async_Error(requestType,  errorResponse.toString());
 
                     } catch (Exception e) {
 

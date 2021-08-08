@@ -1544,21 +1544,22 @@ public class MainActivity extends AppCompatActivity {
 
 
                 } else {
+                    startActivity(new Intent(MainActivity.this, check_login.class));
 
-                    new AlertDialog.Builder(MainActivity.this)
-                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
-                            .setCancelable(false)
-                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-
-                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                                intent.putExtra("from", "splash");
-                                    startActivity(intent);
-
-                                }
-                            })
-                            .setNegativeButton(getResources().getString(R.string.no), null)
-                            .show();
+//                    new AlertDialog.Builder(MainActivity.this)
+//                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+//                            .setCancelable(false)
+//                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//
+//                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+////                                intent.putExtra("from", "splash");
+//                                    startActivity(intent);
+//
+//                                }
+//                            })
+//                            .setNegativeButton(getResources().getString(R.string.no), null)
+//                            .show();
                 }
 
 
@@ -1582,21 +1583,22 @@ public class MainActivity extends AppCompatActivity {
 
 
                 } else {
+                    startActivity(new Intent(MainActivity.this, check_login.class));
 
-                    new AlertDialog.Builder(MainActivity.this)
-                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
-                            .setCancelable(false)
-                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-
-                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                                intent.putExtra("from", "splash");
-                                    startActivity(intent);
-
-                                }
-                            })
-                            .setNegativeButton(getResources().getString(R.string.no), null)
-                            .show();
+//                    new AlertDialog.Builder(MainActivity.this)
+//                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+//                            .setCancelable(false)
+//                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//
+//                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+////                                intent.putExtra("from", "splash");
+//                                    startActivity(intent);
+//
+//                                }
+//                            })
+//                            .setNegativeButton(getResources().getString(R.string.no), null)
+//                            .show();
                 }
 
                 break;
@@ -1662,20 +1664,22 @@ public class MainActivity extends AppCompatActivity {
             //  fragmentTransaction.commit();
             fragmentTransaction.commitAllowingStateLoss();
         } else {
-            new AlertDialog.Builder(activity)
-                    .setMessage(activity.getResources().getString(R.string.you_are_not_login_please_login))
-                    .setCancelable(false)
-                    .setPositiveButton(activity.getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
+            activity.startActivity(new Intent(activity, check_login.class));
 
-                            Intent intent = new Intent(activity, LoginActivity.class);
-//                                intent.putExtra("from", "splash");
-                            activity.startActivity(intent);
-
-                        }
-                    })
-                    .setNegativeButton(activity.getResources().getString(R.string.no), null)
-                    .show();
+//            new AlertDialog.Builder(activity)
+//                    .setMessage(activity.getResources().getString(R.string.you_are_not_login_please_login))
+//                    .setCancelable(false)
+//                    .setPositiveButton(activity.getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int id) {
+//
+//                            Intent intent = new Intent(activity, LoginActivity.class);
+////                                intent.putExtra("from", "splash");
+//                            activity.startActivity(intent);
+//
+//                        }
+//                    })
+//                    .setNegativeButton(activity.getResources().getString(R.string.no), null)
+//                    .show();
         }
 
     }

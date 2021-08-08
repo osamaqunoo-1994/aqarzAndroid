@@ -175,8 +175,6 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
         });
 
 
-
-
         try {
 
             id_or_aq = getIntent().getStringExtra("id_aqarz");
@@ -385,21 +383,22 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
 
                 } else {
+                    startActivity(new Intent(DetailsActivity_aqarz.this, check_login.class));
 
-                    new AlertDialog.Builder(DetailsActivity_aqarz.this)
-                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
-                            .setCancelable(false)
-                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-
-                                    Intent intent = new Intent(DetailsActivity_aqarz.this, LoginActivity.class);
-//                                intent.putExtra("from", "splash");
-                                    startActivity(intent);
-
-                                }
-                            })
-                            .setNegativeButton(getResources().getString(R.string.no), null)
-                            .show();
+//                    new AlertDialog.Builder(DetailsActivity_aqarz.this)
+//                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+//                            .setCancelable(false)
+//                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//
+//                                    Intent intent = new Intent(DetailsActivity_aqarz.this, LoginActivity.class);
+////                                intent.putExtra("from", "splash");
+//                                    startActivity(intent);
+//
+//                                }
+//                            })
+//                            .setNegativeButton(getResources().getString(R.string.no), null)
+//                            .show();
                 }
 
 
