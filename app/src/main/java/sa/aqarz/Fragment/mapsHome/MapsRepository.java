@@ -46,6 +46,7 @@ public class MapsRepository {
 //        MapsViewModel.mutableLiveData.setValue(null);
 //        MapsViewModel.mutableLiveData.setValue(null);
 
+        WebService.loading(activity, true);
 
         mResultCallback = new IResult() {
             @Override
@@ -376,6 +377,7 @@ public class MapsRepository {
     }
 
     public void getEstatMaps(final String requestType, String url) {
+        WebService.loading(activity, true);
 
         mResultCallback = new IResult() {
             @Override
@@ -458,6 +460,7 @@ public class MapsRepository {
     }
 
     public void getEstatList(final String requestType, String url) {
+        WebService.loading(activity, true);
 
         mResultCallback = new IResult() {
             @Override

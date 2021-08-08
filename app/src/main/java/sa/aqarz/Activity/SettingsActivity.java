@@ -21,7 +21,6 @@ import sa.aqarz.Activity.Auth.NewSiginUpActivity;
 import sa.aqarz.Activity.Auth.RegisterActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_restPassword;
 import sa.aqarz.R;
-import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -143,32 +142,32 @@ public class SettingsActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
 
 
-                                if (Hawk.get("lang").toString().equals("ar")) {
-
-                                    Hawk.put("lang", "en");
-
-                                    LocaleUtils.setLocale(SettingsActivity.this, "en");
+//                                if (Hawk.get("lang").toString().equals("ar")) {
 //
-                                    finishAffinity();
-
-                                    Intent intent = new Intent(SettingsActivity.this, SplashScreenActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-
-
-                                } else {
-
-                                    Hawk.put("lang", "ar");
-
-                                    LocaleUtils.setLocale(SettingsActivity.this, "ar");
+//                                    Hawk.put("lang", "en");
 //
-                                    finishAffinity();
-
-                                    Intent intent = new Intent(SettingsActivity.this, SplashScreenActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-
-                                }
+//                                    LocaleUtils.setLocale(SettingsActivity.this, "en");
+////
+//                                    finishAffinity();
+//
+//                                    Intent intent = new Intent(SettingsActivity.this, SplashScreenActivity.class);
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                    startActivity(intent);
+//
+//
+//                                } else {
+//
+//                                    Hawk.put("lang", "ar");
+//
+//                                    LocaleUtils.setLocale(SettingsActivity.this, "ar");
+////
+//                                    finishAffinity();
+//
+//                                    Intent intent = new Intent(SettingsActivity.this, SplashScreenActivity.class);
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                    startActivity(intent);
+//
+//                                }
 
 
                             }

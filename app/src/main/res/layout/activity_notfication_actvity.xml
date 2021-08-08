@@ -100,9 +100,10 @@
                 android:layout_width="50dp"
                 android:layout_height="38dp"
                 android:layout_marginTop="12dp"
-                android:background="@drawable/shadow"
+                android:background="@drawable/button_login"
                 android:gravity="center"
 
+                android:textColor="@color/white"
                 android:text="@string/All_title_notfication"
                 android:textSize="12dp" />
 
@@ -172,6 +173,7 @@
 
 
                         <TextView
+                            android:id="@+id/req"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/circle_red"
@@ -180,7 +182,7 @@
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
                             android:paddingBottom="3dp"
-                            android:text="56"
+                            android:text="0"
                             android:textColor="@color/white"
 
                             android:textSize="11dp" />
@@ -195,6 +197,7 @@
                         android:gravity="end">
 
                         <TextView
+                            android:id="@+id/admin"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/circle_red"
@@ -203,7 +206,7 @@
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
                             android:paddingBottom="3dp"
-                            android:text="56"
+                            android:text="0"
                             android:textColor="@color/white"
 
                             android:textSize="11dp" />
@@ -217,6 +220,7 @@
                         android:gravity="end">
 
                         <TextView
+                            android:id="@+id/news"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/circle_red"
@@ -225,7 +229,7 @@
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
                             android:paddingBottom="3dp"
-                            android:text="56"
+                            android:text="0"
                             android:textColor="@color/white"
 
                             android:textSize="11dp" />

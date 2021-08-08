@@ -110,7 +110,6 @@ import sa.aqarz.Modules.select_typeModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Application;
 import sa.aqarz.Settings.ForceUpdateAsync;
-import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;

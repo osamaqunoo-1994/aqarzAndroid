@@ -54,7 +54,6 @@ import sa.aqarz.Activity.profile.OtherProfileActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_restPassword;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_QR;
 import sa.aqarz.R;
-import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 
 

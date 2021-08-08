@@ -81,7 +81,7 @@ public class InfoActivity extends AppCompatActivity {
 //                        setVideoId(matcher.group());
                             System.out.println("text_url" + text_url);
 //                        String[] separated = text_url.toString().split("/");
-
+                            text_url = "https://www.youtube.com/watch?v=TQd3vpZHQw4";
 //                        String video_id = separated[separated.length - 1];
                             String video_id = matcher.group() + "";
 

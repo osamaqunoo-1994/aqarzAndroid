@@ -64,7 +64,6 @@ import sa.aqarz.Modules.OprationModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.Modules.User;
 import sa.aqarz.R;
-import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;

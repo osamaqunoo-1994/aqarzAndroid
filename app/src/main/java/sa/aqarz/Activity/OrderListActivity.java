@@ -61,7 +61,6 @@ import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.Modules.financeModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Application;
-import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;

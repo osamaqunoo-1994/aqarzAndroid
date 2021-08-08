@@ -73,7 +73,6 @@ import sa.aqarz.Dialog.BottomSheetDialogFragment_QR;
 import sa.aqarz.Modules.OprationModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
-import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -437,32 +436,32 @@ public class MoreFragment extends Fragment {
                             public void onClick(DialogInterface dialog, int id) {
 
 
-                                if (Hawk.get("lang").toString().equals("ar")) {
-
-                                    Hawk.put("lang", "en");
-
-                                    LocaleUtils.setLocale(getContext(), "en");
+//                                if (Hawk.get("lang").toString().equals("ar")) {
 //
-                                    getActivity().finishAffinity();
-
-                                    Intent intent = new Intent(getContext(), SplashScreenActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-
-
-                                } else {
-
-                                    Hawk.put("lang", "ar");
-
-                                    LocaleUtils.setLocale(getContext(), "ar");
+//                                    Hawk.put("lang", "en");
 //
-                                    getActivity().finishAffinity();
-
-                                    Intent intent = new Intent(getContext(), SplashScreenActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-
-                                }
+//                                    LocaleUtils.setLocale(getContext(), "en");
+////
+//                                    getActivity().finishAffinity();
+//
+//                                    Intent intent = new Intent(getContext(), SplashScreenActivity.class);
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                    startActivity(intent);
+//
+//
+//                                } else {
+//
+//                                    Hawk.put("lang", "ar");
+//
+//                                    LocaleUtils.setLocale(getContext(), "ar");
+////
+//                                    getActivity().finishAffinity();
+//
+//                                    Intent intent = new Intent(getContext(), SplashScreenActivity.class);
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                    startActivity(intent);
+//
+//                                }
 
 
                             }

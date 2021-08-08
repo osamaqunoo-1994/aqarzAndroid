@@ -53,7 +53,6 @@ import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.R;
-import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -108,6 +107,7 @@ public class AllOrderActivity extends AppCompatActivity {
     static String area_estate_id = "";
     static String estate_type_id = "";
     static String neighborhood_id = "";
+    static String state_id = "";
     static String city_id = "";
     static String price_id = "";
     public static boolean searh = true;
@@ -257,6 +257,21 @@ public class AllOrderActivity extends AppCompatActivity {
             if (id_nib != null) {
                 if (!id_nib.equals("null")) {
                     neighborhood_id = id_nib;
+
+                }
+            }
+
+        } catch (Exception e) {
+
+        }
+        try {
+
+            String state_id_ = getIntent().getStringExtra("state_id");
+
+
+            if (state_id_ != null) {
+                if (!state_id_.equals("null")) {
+                    state_id = state_id_;
 
                 }
             }
@@ -885,6 +900,7 @@ public class AllOrderActivity extends AppCompatActivity {
         String estate_type_id_text = "";
         String city_id_text = "";
         String neighborhood_id_text = "";
+        String state_id_text = "";
 
         page = 1;
         if (type_requst.equals("today")) {
@@ -933,10 +949,15 @@ public class AllOrderActivity extends AppCompatActivity {
                 city_id_text = "&city_id=" + city_id;
             }
         }
+        if (state_id != null) {
+            if (!state_id.equals("")) {
+                state_id_text = "&state_id=" + state_id;
+            }
+        }
 
         if (type.equals("Real")) {
 
-            url = WebService.fund_Request + "?" + type_requst_text + neighborhood_id_text + offer_status_text + search_text_s + price_id_text + area_estate_id_text + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
+            url = WebService.fund_Request + "?" + type_requst_text +state_id_text+ neighborhood_id_text + offer_status_text + search_text_s + price_id_text + area_estate_id_text + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
             WebService.loading(activity, true);
 
             init_volley();
@@ -959,7 +980,7 @@ public class AllOrderActivity extends AppCompatActivity {
             }
 
 //neighborhood_id=&estate_type_id=&price_id=&area_estate_id=&today=&myOwn=&search=&page=1”
-            url = WebService.market_demands + "?" + type_requst_text + neighborhood_id_text + search_text_s + te + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
+            url = WebService.market_demands + "?" + type_requst_text +state_id_text+ neighborhood_id_text + search_text_s + te + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
             WebService.loading(activity, true);
 
             init_volley();

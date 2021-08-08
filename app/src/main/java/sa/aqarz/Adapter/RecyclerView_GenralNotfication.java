@@ -112,6 +112,24 @@ public class RecyclerView_GenralNotfication extends RecyclerView.Adapter<Recycle
         } else if (alldata.get(position).getType().equals("chat")) {
             holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_message_chat));
 
+        } else if (alldata.get(position).getType().equals("fund_request")) {
+            holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.logo_png));
+
+        } else if (alldata.get(position).getType().equals("fund_offer")) {
+            holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.logo_png));
+
+        } else if (alldata.get(position).getType().equals("offer")) {
+            holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.logo_png));
+
+        } else if (alldata.get(position).getType().equals("rate_offer")) {
+            holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.star_w));
+
+        } else if (alldata.get(position).getType().equals("rate_estate")) {
+            holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.star_w));
+
+        } else if (alldata.get(position).getType().equals("employee")) {
+            holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_user_menu));
+
         }
 
 

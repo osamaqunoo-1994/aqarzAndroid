@@ -36,7 +36,6 @@ import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Modules.User;
 import sa.aqarz.R;
 import sa.aqarz.Settings.ForceUpdateAsync;
-import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -117,13 +116,17 @@ public class SplashScreenActivity extends AppCompatActivity {
 //        }
 
         Locale locale = new Locale(Hawk.get("lang").toString());
+//        Locale.setDefault(locale);
+//        Configuration config = new Configuration();
+//        config.locale = locale;
+//        getBaseContext().getResources().updateConfiguration(config,
+//                getBaseContext().getResources().getDisplayMetrics());
+
         Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
-
-
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
 
 
 

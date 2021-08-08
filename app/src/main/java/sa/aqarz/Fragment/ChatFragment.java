@@ -56,7 +56,6 @@ import sa.aqarz.Modules.OfferRealStateModules;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.R;
-import sa.aqarz.Settings.LocaleUtils;
 import sa.aqarz.Settings.Settings;
 import de.hdodenhof.circleimageview.CircleImageView;
 import sa.aqarz.Settings.WebService;

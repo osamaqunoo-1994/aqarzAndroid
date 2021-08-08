@@ -51,6 +51,9 @@ public class NotficationActvity extends AppCompatActivity {
     TextView requested;
     TextView Administrativenotices;
     TextView news_;
+    TextView req;
+    TextView admin;
+    TextView news;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +67,11 @@ public class NotficationActvity extends AppCompatActivity {
         back = findViewById(R.id.back);
         all = findViewById(R.id.all);
         requested = findViewById(R.id.requested);
+        news = findViewById(R.id.news);
         Administrativenotices = findViewById(R.id.Administrativenotices);
         news_ = findViewById(R.id.news_);
+        req = findViewById(R.id.req);
+        admin = findViewById(R.id.admin);
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 //            if (back != null) {
@@ -77,6 +83,7 @@ public class NotficationActvity extends AppCompatActivity {
                 = new LinearLayoutManager(NotficationActvity.this, LinearLayoutManager.VERTICAL, false);
         notfication_list.setLayoutManager(layoutManager1);
 
+        WebService.loading(NotficationActvity.this, true);
 
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, NotficationActvity.this);
@@ -100,6 +107,7 @@ public class NotficationActvity extends AppCompatActivity {
 
                 news_.setBackground(null);
                 news_.setTextColor(getResources().getColor(R.color.black));
+                WebService.loading(NotficationActvity.this, true);
 
                 init_volley();
                 VolleyService mVolleyService = new VolleyService(mResultCallback, NotficationActvity.this);
@@ -128,11 +136,12 @@ public class NotficationActvity extends AppCompatActivity {
 
                 news_.setBackground(null);
                 news_.setTextColor(getResources().getColor(R.color.black));
+                WebService.loading(NotficationActvity.this, true);
 
                 init_volley();
                 VolleyService mVolleyService = new VolleyService(mResultCallback, NotficationActvity.this);
 //        nodata.setVisibility(View.VISIBLE);
-                mVolleyService.getDataVolley("notification", WebService.notification);
+                mVolleyService.getDataVolley("notification", WebService.notification + "?type=" + "chat,employee");
 
 //                mVolleyService.getDataVolley("my_msg", WebService.my_msg);
             }
@@ -155,11 +164,12 @@ public class NotficationActvity extends AppCompatActivity {
 
                 news_.setBackground(null);
                 news_.setTextColor(getResources().getColor(R.color.black));
+                WebService.loading(NotficationActvity.this, true);
 
                 init_volley();
                 VolleyService mVolleyService = new VolleyService(mResultCallback, NotficationActvity.this);
 //        nodata.setVisibility(View.VISIBLE);
-                mVolleyService.getDataVolley("notification", WebService.notification);
+                mVolleyService.getDataVolley("notification", WebService.notification + "?type=" + "request,fund_request,fund_offer,offer");
 
 //                mVolleyService.getDataVolley("my_msg", WebService.my_msg);
             }
@@ -182,11 +192,12 @@ public class NotficationActvity extends AppCompatActivity {
 
                 Administrativenotices.setBackground(null);
                 Administrativenotices.setTextColor(getResources().getColor(R.color.black));
+                WebService.loading(NotficationActvity.this, true);
 
                 init_volley();
                 VolleyService mVolleyService = new VolleyService(mResultCallback, NotficationActvity.this);
 //        nodata.setVisibility(View.VISIBLE);
-                mVolleyService.getDataVolley("notification", WebService.notification);
+                mVolleyService.getDataVolley("notification", WebService.notification + "?type=" + "rate_offer,rate_estate");
 
 //                mVolleyService.getDataVolley("my_msg", WebService.my_msg);
             }
@@ -247,8 +258,13 @@ public class NotficationActvity extends AppCompatActivity {
                         if (requestType.equals("notification")) {
                             System.out.println("lfkdlfkdlkf");
                             String data = response.getString("data");
+                            String follow_request = response.getString("follow_request");
+                            String mange_request = response.getString("mange_request");
+                            String news_report = response.getString("news_report");
 
-
+                            req.setText(follow_request + "");
+                            admin.setText(news_report + "");
+                            news.setText(mange_request + "");
                             JSONObject jsonObject = new JSONObject(data);
 
 
