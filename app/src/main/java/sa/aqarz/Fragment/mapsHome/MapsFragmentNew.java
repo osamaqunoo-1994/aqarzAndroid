@@ -100,6 +100,7 @@ public class MapsFragmentNew extends Fragment {
 
     static MapsViewModel mapsViewModel;
     public static List<HomeModules_aqares> homeModules_aqares = new ArrayList<>();
+    public static List<HomeModules_aqares> homeModules_aqares_list = new ArrayList<>();
     AlertDialog alertDialog;
 
     static IResult mResultCallback;
@@ -113,6 +114,9 @@ public class MapsFragmentNew extends Fragment {
     static List<CityLocation> city_location_list = new ArrayList<>();
     static List<Neighborhood> locationNeighborhood_list = new ArrayList<>();
     String style = "";
+
+
+    String url_list = "";
 
     static String urlEstat = "";
     List<TypeModules> type_list = new ArrayList<>();
@@ -538,7 +542,7 @@ public class MapsFragmentNew extends Fragment {
                     VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
 
-                    mVolleyService.getAsync("home_estate_custom_list_more", urlEstat + "&page=" + page);
+                    mVolleyService.getAsync("home_estate_custom_list_more", url_list + "&page=" + page);
 
 
                 }
@@ -588,14 +592,15 @@ public class MapsFragmentNew extends Fragment {
 
                     page = 1;
 
-                    recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_new(activity, homeModules_aqares);
-                    list_aqaers.setAdapter(recyclerView_homeList_estat_new);
+//                    recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_new(activity, homeModules_aqares_list);
+//                    list_aqaers.setAdapter(recyclerView_homeList_estat_new);
+
 
                     WebService.loading(activity, true);
                     init_volley();
                     VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-                    mVolleyService.getAsync("home_estate_custom_list_more", WebService.home_estate_custom_list + "?estate_type=" + type_filtter);
+                    mVolleyService.getAsync("home_estate_custom_list_more_1", url_list + "&estate_type=" + type_filtter);
 
 
                 } else {
@@ -749,25 +754,58 @@ public class MapsFragmentNew extends Fragment {
                     layout_list.setVisibility(View.VISIBLE);
                     change_list_to_map.setVisibility(View.VISIBLE);
 
+                    page = 1;
 
-                    if (homeModules_aqares.size() == 0) {
-                        page = 1;
+                    recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_new(activity, homeModules_aqares_list);
+                    list_aqaers.setAdapter(recyclerView_homeList_estat_new);
 
-                        recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_new(activity, homeModules_aqares);
-                        list_aqaers.setAdapter(recyclerView_homeList_estat_new);
+                    WebService.loading(activity, true);
+                    init_volley();
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-                        WebService.loading(activity, true);
-                        init_volley();
-                        VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
-
-                        mVolleyService.getAsync("home_estate_custom_list_more", WebService.home_estate_custom_list);
+                    String getId_region = "";
+                    String getSerial_city = "";
 
 
-                    } else {
-                        recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_new(activity, homeModules_aqares);
-                        list_aqaers.setAdapter(recyclerView_homeList_estat_new);
+                    try {
+                        if (!region_id_postion.equals("")) {
+                            if (regionModules_list != null) {
+                                if (regionModules_list.size() != 0) {
+                                    getId_region = "&state_id=" + regionModules_list.get(Integer.valueOf(region_id_postion + "")).getId() + "";
+
+                                }
+
+                            }
+
+                        }
+                        if (!city_id_postion.equals("")) {
+
+                            if (city_location_list != null) {
+                                if (city_location_list.size() != 0) {
+                                    getSerial_city = "&city_id=" + city_location_list.get(Integer.valueOf(city_id_postion + "")).getSerial_city() + "";
+
+                                }
+
+                            }
+
+                        }
+
+                    } catch (Exception e) {
 
                     }
+
+                    url_list = WebService.home_estate_custom_list + "?" + getId_region + getSerial_city;
+                    mVolleyService.getAsync("home_estate_custom_list_more_1", WebService.home_estate_custom_list + "?" + getId_region + getSerial_city);
+
+
+//                    if (homeModules_aqares.size() == 0) {
+//
+//
+//                    } else {
+//                        recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_new(activity, homeModules_aqares);
+//                        list_aqaers.setAdapter(recyclerView_homeList_estat_new);
+//
+//                    }
 
                 }
 
@@ -1899,6 +1937,27 @@ public class MapsFragmentNew extends Fragment {
 
                             homeModules_aqares.addAll(allNeigbers.getData().getData());
 
+
+                            recyclerView_homeList_estat_new.Refr();
+
+//                            set_locationEstate(allNeigbers.getData().getData());
+//                            all_estate_size.setVisibility(View.VISIBLE);
+
+
+                        } else if (requestType.equals("home_estate_custom_list_more_1")) {
+
+                            JsonParser parser = new JsonParser();
+                            JsonElement mJson = parser.parse(response.toString());
+
+                            Gson gson = new Gson();
+
+                            if (page == 1) {
+                                homeModules_aqares_list.clear();
+                            }
+
+                            AllEstate allNeigbers = gson.fromJson(mJson, AllEstate.class);
+
+                            homeModules_aqares_list.addAll(allNeigbers.getData().getData());
 
                             recyclerView_homeList_estat_new.Refr();
 
