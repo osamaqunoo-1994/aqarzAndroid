@@ -71,10 +71,12 @@ import sa.aqarz.Activity.FavoriteActivity;
 import sa.aqarz.Activity.InfoActivity;
 import sa.aqarz.Activity.Info_2_Activity;
 import sa.aqarz.Activity.MainActivity;
+import sa.aqarz.Activity.MyInterestsActivity;
 import sa.aqarz.Activity.NotficationActvity;
 import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
 import sa.aqarz.Activity.OrderListActivity;
 import sa.aqarz.Activity.check_login;
+import sa.aqarz.Activity.profile.ProfileDetailsActivity;
 import sa.aqarz.Adapter.RecyclerView_All_type_in_fragment1;
 import sa.aqarz.Adapter.RecyclerView_GenralNotfication;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat_new;
@@ -369,6 +371,7 @@ public class MapsFragmentNew extends Fragment {
         all_estate_size = v.findViewById(R.id.all_estate_size);
         layout_list = v.findViewById(R.id.layout_list);
         favorit = v.findViewById(R.id.favorit);
+        intrest = v.findViewById(R.id.intrest);
 
 
         if (Settings.checkLogin()) {
@@ -819,6 +822,17 @@ public class MapsFragmentNew extends Fragment {
                 System.out.println("!!LANG" + Hawk.get("lang").toString());
 
                 Intent intent = new Intent(getActivity(), Info_2_Activity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+        intrest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                System.out.println("!!LANG" + Hawk.get("lang").toString());
+                Intent intent = new Intent(getActivity(), MyInterestsActivity.class);
+
                 getActivity().startActivity(intent);
             }
         });

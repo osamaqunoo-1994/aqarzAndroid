@@ -153,29 +153,29 @@ public class SelectLocationActivity extends AppCompatActivity {
         });
 
 
-        placeAutoComplete = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete);
-        placeAutoComplete.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(Place place) {
-
-                Log.d("Maps", "Place selected: " + place.getName());
-//                LatLng sydney = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
+//        placeAutoComplete = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete);
+//        placeAutoComplete.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+//            @Override
+//            public void onPlaceSelected(Place place) {
 //
-//                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
-//                // Zoom in, animating the camera.
-//                googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-//                // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-//                googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
-
-
-            }
-
-            @Override
-            public void onError(Status status) {
-                Log.d("Maps", "An error occurred: " + status);
-            }
-        });
-
+//                Log.d("Maps", "Place selected: " + place.getName());
+////                LatLng sydney = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
+////
+////                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+////                // Zoom in, animating the camera.
+////                googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+////                // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+////                googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+//
+//
+//            }
+//
+//            @Override
+//            public void onError(Status status) {
+//                Log.d("Maps", "An error occurred: " + status);
+//            }
+//        });
+//
 
         select.setOnClickListener(new View.OnClickListener() {
             @Override
