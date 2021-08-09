@@ -17,6 +17,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -68,6 +69,7 @@ import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Activity.DetailsNewAqarezActivity;
 import sa.aqarz.Activity.FavoriteActivity;
 import sa.aqarz.Activity.InfoActivity;
+import sa.aqarz.Activity.Info_2_Activity;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.NotficationActvity;
 import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
@@ -119,7 +121,6 @@ public class MapsFragmentNew extends Fragment {
     static TextView MarketOrder;
     static TextView OfferOrder;
     static TextView all_estate_size;
-    ImageView notfication;
     ImageView get_location;
     static ImageView convert_map_to_list;
     static ImageView Info;
@@ -146,10 +147,11 @@ public class MapsFragmentNew extends Fragment {
     static Activity activity;
     static RelativeLayout layout_list;
     RecyclerView list_aqaers;
-    CardView notfication_layout;
+    ImageView notfication_layout;
     static boolean onclick_marker_aqarez = false;
 
     ImageView chmnage_map_style;
+    ImageView intrest;
     static String type_filtter = "";
 
 
@@ -193,6 +195,7 @@ public class MapsFragmentNew extends Fragment {
         favorit = v.findViewById(R.id.favorit);
         RealStatr_order = v.findViewById(R.id.RealStatr_order);
         chmnage_map_style = v.findViewById(R.id.chmnage_map_style);
+        intrest = v.findViewById(R.id.intrest);
 
         activity = getActivity();
         mapFragment =
@@ -248,7 +251,20 @@ public class MapsFragmentNew extends Fragment {
 
 
                 googleMap = googleMapc;
+                try {
+                    if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
+
+//                        requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+
+                    } else {
+
+                        googleMap.setMyLocationEnabled(true);
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 googleMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
                     @Override
                     public void onCameraChange(CameraPosition cameraPosition) {
@@ -259,7 +275,7 @@ public class MapsFragmentNew extends Fragment {
 
 //                        System.out.println("cameraPosition.zoom " + cameraPosition.zoom);
 
-                        if (cameraPosition.zoom <= 5.5) {
+                        if (cameraPosition.zoom <= 5) {
 
 
                             if (!region_id_postion.equals("")) {
@@ -337,7 +353,6 @@ public class MapsFragmentNew extends Fragment {
         RealStatr_order = v.findViewById(R.id.RealStatr_order);
         MarketOrder = v.findViewById(R.id.MarketOrder);
         OfferOrder = v.findViewById(R.id.OfferOrder);
-        notfication = v.findViewById(R.id.notfication);
         get_location = v.findViewById(R.id.get_location);
         TypeAqarez = v.findViewById(R.id.TypeAqarez);
         convert_map_to_list = v.findViewById(R.id.convert_map_to_list);
@@ -594,7 +609,7 @@ public class MapsFragmentNew extends Fragment {
         TypeAqarez.setAdapter(recyclerView_all_type_in_fragment);
 
 
-        notfication.setOnClickListener(new View.OnClickListener() {
+        notfication_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -638,38 +653,6 @@ public class MapsFragmentNew extends Fragment {
                     if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
 
-//                        LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                        final View popupView = layoutInflater.inflate(R.layout.alert_permission, null);
-//
-//
-//                        TextView cancle = popupView.findViewById(R.id.cancle);
-//                        TextView ok = popupView.findViewById(R.id.ok);
-//                        cancle.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                alertDialog.dismiss();
-//                            }
-//                        });
-//                        ok.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//
-//
-//                                alertDialog.dismiss();
-//
-//                            }
-//                        });
-//
-//                        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-//
-////            alertDialog_country =
-//                        builder.setView(popupView);
-//
-//
-//                        alertDialog = builder.show();
-//
-//                        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
                         requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
 
                     } else {
@@ -677,14 +660,12 @@ public class MapsFragmentNew extends Fragment {
 
                         LatLng mylocation = getLocation();
                         if (mylocation != null) {
-                            googleMap.addMarker(new MarkerOptions()
-                                    .position(mylocation)).setTag("mylocation");
-
+//                            googleMap.addMarker(new MarkerOptions()
+//                                    .position(mylocation)).setTag("mylocation");
+                            googleMap.setMyLocationEnabled(true);
                             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 6));
 
-
                         }
-
 
                     }
                 } catch (Exception e) {
@@ -705,7 +686,21 @@ public class MapsFragmentNew extends Fragment {
                 if (type_selected.equals("Real")) {
                     Intent intent = new Intent(activity, AllOrderActivity.class);
                     intent.putExtra("type", type_selected);
-                    intent.putExtra("id_city", city_serial_postion);
+
+                    if (Hawk.contains("city_id_postion")) {
+                        if (!Hawk.get("city_id_postion").toString().equals("")) {
+
+                            intent.putExtra("id_city", city_serial_postion);
+
+                        } else {
+                            intent.putExtra("id_city", "");
+
+                        }
+                    } else {
+                        intent.putExtra("id_city", "");
+
+                    }
+
                     intent.putExtra("id_nib", "");
                     if (regionModules_list.size() != 0) {
 
@@ -719,7 +714,20 @@ public class MapsFragmentNew extends Fragment {
                 } else if (type_selected.equals("Market")) {
                     Intent intent = new Intent(activity, AllOrderActivity.class);
                     intent.putExtra("type", type_selected);
-                    intent.putExtra("id_city", city_serial_postion);
+
+                    if (Hawk.contains("city_id_postion")) {
+                        if (!Hawk.get("city_id_postion").toString().equals("")) {
+
+                            intent.putExtra("id_city", city_serial_postion);
+
+                        } else {
+                            intent.putExtra("id_city", "");
+
+                        }
+                    } else {
+                        intent.putExtra("id_city", "");
+
+                    }
                     intent.putExtra("id_nib", "");
                     intent.putExtra("id_nib", "");
                     if (regionModules_list.size() != 0) {
@@ -733,6 +741,11 @@ public class MapsFragmentNew extends Fragment {
                 } else {
                     all_estate_size.setVisibility(View.GONE);
                     convert_map_to_list.setVisibility(View.GONE);
+                    Info.setVisibility(View.GONE);
+                    notfication_layout.setVisibility(View.GONE);
+                    intrest.setVisibility(View.GONE);
+                    chmnage_map_style.setVisibility(View.GONE);
+                    get_location.setVisibility(View.GONE);
                     layout_list.setVisibility(View.VISIBLE);
                     change_list_to_map.setVisibility(View.VISIBLE);
 
@@ -765,7 +778,9 @@ public class MapsFragmentNew extends Fragment {
             public void onClick(View v) {
 
 
-                Intent intent = new Intent(getActivity(), InfoActivity.class);
+                System.out.println("!!LANG" + Hawk.get("lang").toString());
+
+                Intent intent = new Intent(getActivity(), Info_2_Activity.class);
                 getActivity().startActivity(intent);
             }
         });
@@ -776,8 +791,17 @@ public class MapsFragmentNew extends Fragment {
 
 //                Un_change_layout();
                 layout_list.setVisibility(View.GONE);
-                convert_map_to_list.setVisibility(View.VISIBLE);
                 change_list_to_map.setVisibility(View.GONE);
+
+                convert_map_to_list.setVisibility(View.VISIBLE);
+
+
+                all_estate_size.setVisibility(View.GONE);
+                Info.setVisibility(View.VISIBLE);
+                notfication_layout.setVisibility(View.VISIBLE);
+                intrest.setVisibility(View.VISIBLE);
+                chmnage_map_style.setVisibility(View.VISIBLE);
+                get_location.setVisibility(View.VISIBLE);
 
 
             }
@@ -1044,13 +1068,14 @@ public class MapsFragmentNew extends Fragment {
         if (Settings.checkLogin()) {
 
             if (Settings.CheckIsAccountAqarzMan()) {
-                favorit.setVisibility(View.VISIBLE);
+//                favorit.setVisibility(View.VISIBLE);
+                intrest.setVisibility(View.VISIBLE);
                 notfication_layout.setVisibility(View.VISIBLE);
                 all_list_backround.setVisibility(View.VISIBLE);
                 RealStatr_order.setVisibility(View.VISIBLE);
             } else {
                 all_list_backround.setVisibility(View.VISIBLE);
-                favorit.setVisibility(View.VISIBLE);
+                intrest.setVisibility(View.GONE);
                 notfication_layout.setVisibility(View.VISIBLE);
                 RealStatr_order.setVisibility(View.GONE);
 
@@ -1058,7 +1083,8 @@ public class MapsFragmentNew extends Fragment {
 
         } else {
             all_list_backround.setVisibility(View.GONE);
-            favorit.setVisibility(View.GONE);
+//            favorit.setVisibility(View.GONE);
+            intrest.setVisibility(View.GONE);
             notfication_layout.setVisibility(View.GONE);
 
 

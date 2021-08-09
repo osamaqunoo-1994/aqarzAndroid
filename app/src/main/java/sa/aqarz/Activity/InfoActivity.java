@@ -2,6 +2,7 @@ package sa.aqarz.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -13,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.orhanobut.hawk.Hawk;
 import com.pierfrancescosoffritti.youtubeplayer.player.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayer;
 import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerInitListener;
@@ -21,6 +23,7 @@ import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerView;
 import java.net.HttpURLConnection;
 import java.net.Proxy;
 import java.net.URL;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,6 +40,7 @@ public class InfoActivity extends AppCompatActivity {
     VideoView videoView;
 
     ImageView back;
+    YouTubePlayer youTubePlayerMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +78,7 @@ public class InfoActivity extends AppCompatActivity {
 
                     try {
                         text_url = Settings.getSettings().getVideos().get(position).getVideo() + "";
+                        text_url = "https://www.youtube.com/watch?v=TQd3vpZHQw4";
 
                         Pattern compiledPattern = Pattern.compile("(?<=v=).*?(?=&|$)", Pattern.CASE_INSENSITIVE);
                         Matcher matcher = compiledPattern.matcher(text_url);
@@ -81,7 +86,6 @@ public class InfoActivity extends AppCompatActivity {
 //                        setVideoId(matcher.group());
                             System.out.println("text_url" + text_url);
 //                        String[] separated = text_url.toString().split("/");
-                            text_url = "https://www.youtube.com/watch?v=TQd3vpZHQw4";
 //                        String video_id = separated[separated.length - 1];
                             String video_id = matcher.group() + "";
 
@@ -89,6 +93,8 @@ public class InfoActivity extends AppCompatActivity {
                             youTubePlayerView.initialize(new YouTubePlayerInitListener() {
                                 @Override
                                 public void onInitSuccess(final YouTubePlayer initializedYouTubePlayer) {
+                                    youTubePlayerMain = initializedYouTubePlayer;
+
                                     initializedYouTubePlayer.addListener(new AbstractYouTubePlayerListener() {
                                         @Override
                                         public void onReady() {
@@ -149,6 +155,12 @@ public class InfoActivity extends AppCompatActivity {
             back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    if (youTubePlayerMain != null) {
+
+                        youTubePlayerMain.pause();
+                    }
+
                     finish();
                 }
             });
@@ -156,5 +168,12 @@ public class InfoActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (youTubePlayerMain != null) {
+            youTubePlayerMain.pause();
+        }
 
+        super.onBackPressed();
+    }
 }

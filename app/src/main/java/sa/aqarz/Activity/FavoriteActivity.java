@@ -30,19 +30,24 @@ import java.util.List;
 
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat_favorit;
+import sa.aqarz.Adapter.RecyclerView_HomeList_estat_new;
+import sa.aqarz.Adapter.RecyclerView_HomeList_estat_new_favorite;
 import sa.aqarz.Adapter.RecyclerView_orders_demandsx;
 import sa.aqarz.Adapter.RecyclerView_orders_demandsx_favorit;
+import sa.aqarz.Adapter.RecyclerView_orders_demandsx_favorits_2;
 import sa.aqarz.Adapter.RecyclerView_orders_my_requst;
 import sa.aqarz.Adapter.RecyclerView_orders_my_requstx;
 import sa.aqarz.Adapter.RecyclerView_orders_my_requstx_favorit;
 import sa.aqarz.Adapter.RecyclerView_orders_my_requstx_favorit_offet;
 import sa.aqarz.Adapter.RecyclerView_orders_offer_di;
 import sa.aqarz.Adapter.RecyclerView_ordersx;
+import sa.aqarz.Adapter.RecyclerView_ordersx_favorite;
 import sa.aqarz.Modules.FavoritModules;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.OfferRealStateModules;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.Modules.demandsModules;
+import sa.aqarz.Modules.fund_favorite;
 import sa.aqarz.Modules.mod_favorite;
 import sa.aqarz.Modules.of_favorite;
 import sa.aqarz.R;
@@ -65,7 +70,7 @@ public class FavoriteActivity extends AppCompatActivity {
 
     RecyclerView alldate;
     IResult mResultCallback;
-    List<demandsModules> demandsModules_list = new ArrayList<>();
+    List<fund_favorite> demandsModules_list = new ArrayList<>();
     List<mod_favorite> mod_favorites_ = new ArrayList<>();
     List<of_favorite> of_favorites = new ArrayList<>();
 
@@ -92,14 +97,12 @@ public class FavoriteActivity extends AppCompatActivity {
         alldate = findViewById(R.id.alldate);
 
 
-
-        if(Settings.CheckIsAccountAqarzMan()){
+        if (Settings.CheckIsAccountAqarzMan()) {
             Real_Estate_order_text.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             Real_Estate_order_text.setVisibility(View.GONE);
 
         }
-
 
 
         LinearLayoutManager layoutManager1
@@ -228,38 +231,41 @@ public class FavoriteActivity extends AppCompatActivity {
 //                        alldate.setAdapter(null);
 
                         demandsModules_list.clear();
-                        alldate.setAdapter(new RecyclerView_orders_demandsx_favorit(FavoriteActivity.this, demandsModules_list));
-                        System.out.println("ooooooooooooooooooooo");
-                        String message = response.getString("message");
+//                        alldate.setAdapter(new RecyclerView_orders_demandsx_favorit(FavoriteActivity.this, demandsModules_list));
+//                        String message = response.getString("message");
                         if (requestType.equals("my_favorite_fund")) {
 
                             String data = response.getString("data");
                             JSONArray jsonArray = new JSONArray(data);
-                            String first = jsonArray.get(0).toString();
-                            JSONObject jsonObjectdata = new JSONObject(first);
-
-                            String fund = jsonObjectdata.getString("fund");
-
-                            JSONArray jsonArray_fund = new JSONArray(fund);
+//                            String first = jsonArray.get(0).toString();
+//                            JSONObject jsonObjectdata = new JSONObject(first);
+//
+//                            String fund = jsonObjectdata.getString("fund");
+//
+//                            JSONArray jsonArray_fund = new JSONArray(fund);
                             demandsModules_list.clear();
-                            for (int i = 0; i < jsonArray_fund.length(); i++) {
+                            for (int i = 0; i < jsonArray.length(); i++) {
 
                                 try {
 
                                     JsonParser parser = new JsonParser();
-                                    JsonElement mJson = parser.parse(jsonArray_fund.getString(i));
+                                    JsonElement mJson = parser.parse(jsonArray.getString(i));
 
                                     Gson gson = new Gson();
 
-                                    demandsModules ordersModulesm = gson.fromJson(mJson, demandsModules.class);
-                                    demandsModules_list.add(ordersModulesm);
+                                    fund_favorite fund_favorite = gson.fromJson(mJson, fund_favorite.class);
+
+                                    if (fund_favorite.getEstate().size() != 0) {
+                                        demandsModules_list.add(fund_favorite);
+
+                                    }
 
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
 
                             }
-                            alldate.setAdapter(new RecyclerView_orders_demandsx_favorit(FavoriteActivity.this, demandsModules_list));
+                            alldate.setAdapter(new RecyclerView_ordersx_favorite(FavoriteActivity.this, demandsModules_list));
 
 
                             if (demandsModules_list.size() == 0) {
@@ -297,7 +303,16 @@ public class FavoriteActivity extends AppCompatActivity {
                                 }
 //                                alldate.setAdapter(new RecyclerView_orders_demandsx(FavoriteActivity.this, demandsModules_list));
                             }
-                            alldate.setAdapter(new RecyclerView_orders_my_requstx_favorit_offet(FavoriteActivity.this, of_favorites));
+
+                            try {
+                                RecyclerView_HomeList_estat_new_favorite recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_new_favorite(FavoriteActivity.this, of_favorites);
+                                alldate.setAdapter(recyclerView_homeList_estat_new);
+
+                            } catch (Exception e) {
+
+                            }
+
+//                            alldate.setAdapter(new RecyclerView_orders_my_requstx_favorit_offet(FavoriteActivity.this, of_favorites));
                             if (of_favorites.size() == 0) {
                                 nodata_vis.setVisibility(View.VISIBLE);
                             } else {
@@ -332,7 +347,12 @@ public class FavoriteActivity extends AppCompatActivity {
 //                                alldate.setAdapter(new RecyclerView_orders_demandsx(FavoriteActivity.this, demandsModules_list));
 
                             }
-                            alldate.setAdapter(new RecyclerView_orders_my_requstx_favorit(FavoriteActivity.this, mod_favorites_));
+                            RecyclerView_orders_demandsx_favorits_2 recyclerView_orders_demandsx = new RecyclerView_orders_demandsx_favorits_2(FavoriteActivity.this, mod_favorites_);
+
+                            alldate.setAdapter(recyclerView_orders_demandsx);
+
+
+//                            alldate.setAdapter(new RecyclerView_orders_my_requstx_favorit(FavoriteActivity.this, mod_favorites_));
                             if (mod_favorites_.size() == 0) {
                                 nodata_vis.setVisibility(View.VISIBLE);
                             } else {

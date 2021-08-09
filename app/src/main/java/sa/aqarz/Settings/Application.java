@@ -1,10 +1,13 @@
 package sa.aqarz.Settings;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.view.View;
 
 import com.google.gson.Gson;
@@ -58,21 +61,50 @@ public class Application extends android.app.Application {
 ////            Hawk.put("lang", LocaleUtils.getLanguage(this));
 //            Hawk.put("lang", "ar");
 
+        if (!Hawk.contains("langas")) {
+            Hawk.put("lang", "ar");
+            Hawk.put("langas", "ar");
+            System.out.println("(*(*(*(*(*");
+        }
 
         if (Hawk.contains("lang")) {
-            Hawk.put("lang", "ar");
+
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
 
         } else {
+
             Hawk.put("lang", "ar");
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+
+
         }
+
+//        if (Hawk.contains("lang")) {
+//            Hawk.put("lang", "ar");
 //
-        Locale locale = new Locale(Hawk.get("lang").toString());
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
+//        } else {
+//            Hawk.put("lang", "ar");
 //        }
+////
+//        Locale locale = new Locale(Hawk.get("lang").toString());
+//        Locale.setDefault(locale);
+//        Configuration config = new Configuration();
+//        config.locale = locale;
+//        getBaseContext().getResources().updateConfiguration(config,
+//                getBaseContext().getResources().getDisplayMetrics());
+////        }
 
 
         try {
@@ -120,5 +152,6 @@ public class Application extends android.app.Application {
 
         return currentVersion;
     }
+
 
 }

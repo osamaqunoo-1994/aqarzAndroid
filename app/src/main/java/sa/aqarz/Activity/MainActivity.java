@@ -94,6 +94,7 @@ import sa.aqarz.Adapter.RecyclerView_city_side_menu;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Filtter;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Service;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_add_aqarez;
 import sa.aqarz.Fragment.ChatFragment;
 import sa.aqarz.Fragment.MapsFragment;
 import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
@@ -218,6 +219,13 @@ public class MainActivity extends AppCompatActivity {
 
     static LinearLayout filtter_city;
     static LinearLayout allfilter;
+    static LinearLayout add_aqares_and_order_and_estate;
+    ImageView close_add;
+
+
+    LinearLayout addAqares;
+    LinearLayout RequstAqars;
+    LinearLayout rent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -227,7 +235,12 @@ public class MainActivity extends AppCompatActivity {
 
         first_time_open_app = true;
         first_time_ = true;
+        addAqares = findViewById(R.id.addAqares);
+        RequstAqars = findViewById(R.id.RequstAqars);
+        rent = findViewById(R.id.rent);
+        close_add = findViewById(R.id.close_add);
         add_service_aqarez = findViewById(R.id.add_service_aqarez);
+        add_aqares_and_order_and_estate = findViewById(R.id.add_aqares_and_order_and_estate);
         filtter_city = findViewById(R.id.filtter_city);
         allfilter = findViewById(R.id.allfilter);
         search_text = findViewById(R.id.search_text);
@@ -296,20 +309,20 @@ public class MainActivity extends AppCompatActivity {
         myFab.setColorFilter(Color.WHITE);
 
 
-        if (Hawk.contains("lang")) {
-            Hawk.put("lang", "ar");
-
-        } else {
-            Hawk.put("lang", "ar");
-        }
+//        if (Hawk.contains("lang")) {
+//            Hawk.put("lang", "ar");
 //
-        Locale locale = new Locale(Hawk.get("lang").toString());
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
+//        } else {
+//            Hawk.put("lang", "ar");
 //        }
+////
+//        Locale locale = new Locale(Hawk.get("lang").toString());
+//        Locale.setDefault(locale);
+//        Configuration config = new Configuration();
+//        config.locale = locale;
+//        getBaseContext().getResources().updateConfiguration(config,
+//                getBaseContext().getResources().getDisplayMetrics());
+////        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary, this.getTheme()));
@@ -405,25 +418,67 @@ public class MainActivity extends AppCompatActivity {
 //                            .show();
                 } else {
 
+                    add_aqares_and_order_and_estate.setVisibility(View.VISIBLE);
+                    gray_layout.setVisibility(View.VISIBLE);
+                    gray_layout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            gray_layout.setVisibility(View.GONE);
+                            add_aqares_and_order_and_estate.setVisibility(View.GONE);
+
+                        }
+                    });
+                    close_add.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            gray_layout.setVisibility(View.GONE);
+                            add_aqares_and_order_and_estate.setVisibility(View.GONE);
+
+                        }
+                    });
+//                    addAqares.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//
+//                        }
+//                    });
+//                    RequstAqars.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//
+//                        }
+//                    });
+//                    rent.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//
+//                        }
+//                    });
+
 
 //
-
-
-                    LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    final View popupView = layoutInflater.inflate(R.layout.addaqarez, null);
-
-
-                    LinearLayout addAqares = popupView.findViewById(R.id.addAqares);
-                    LinearLayout RequstAqars = popupView.findViewById(R.id.RequstAqars);
-                    ImageView close = popupView.findViewById(R.id.close);
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//                    BottomSheetDialogFragment_add_aqarez bottomSheetDialogFragment_add_aqarez = new BottomSheetDialogFragment_add_aqarez("");
+//                    bottomSheetDialogFragment_add_aqarez.show(getSupportFragmentManager(), "");
+//
+//
+//                    LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                    final View popupView = layoutInflater.inflate(R.layout.addaqarez, null);
+//
+//
+//                    LinearLayout addAqares = popupView.findViewById(R.id.addAqares);
+//                    LinearLayout RequstAqars = popupView.findViewById(R.id.RequstAqars);
+//                    ImageView close = popupView.findViewById(R.id.close);
+//                    final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     addAqares.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(MainActivity.this, AddAqarsActivity.class);
                             intent.putExtra("id", "");
                             startActivity(intent);
-                            alertDialog.dismiss();
+                            gray_layout.setVisibility(View.GONE);
+                            add_aqares_and_order_and_estate.setVisibility(View.GONE);
+
+//                            alertDialog.dismiss();
                         }
                     });
                     RequstAqars.setOnClickListener(new View.OnClickListener() {
@@ -432,24 +487,54 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, AqarzOrActivity.class);
                             intent.putExtra("id", "");
                             startActivity(intent);
-                            alertDialog.dismiss();
+                            gray_layout.setVisibility(View.GONE);
+                            add_aqares_and_order_and_estate.setVisibility(View.GONE);
+
+//                            alertDialog.dismiss();
                         }
                     });
-                    close.setOnClickListener(new View.OnClickListener() {
+                    rent.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            alertDialog.dismiss();
+                            if (Settings.checkLogin()) {
+//
+//
+                                if (Hawk.contains("rent_layout")) {
+
+                                    Intent intent = new Intent(MainActivity.this, RentActivity.class);
+                                    intent.putExtra("id", "");
+                                    startActivity(intent);
+                                } else {
+                                    Hawk.put("rent_layout", "rent_layout");
+                                    Intent intent = new Intent(MainActivity.this, RentShowActivity.class);
+                                    intent.putExtra("id", "");
+                                    startActivity(intent);
+                                }
+
+                            } else {
+                                startActivity(new Intent(MainActivity.this, check_login.class));
+                            }
+                            gray_layout.setVisibility(View.GONE);
+                            add_aqares_and_order_and_estate.setVisibility(View.GONE);
+
+//                            alertDialog.dismiss();
                         }
                     });
-
-//            alertDialog_country =
-                    builder.setView(popupView);
-
-
-                    alertDialog = builder.show();
-                    alertDialog.getWindow().setGravity(Gravity.BOTTOM);
-
-                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//                    close.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+////                            alertDialog.dismiss();
+//                        }
+//                    });
+//
+////            alertDialog_country =
+//                    builder.setView(popupView);
+//
+//
+//                    alertDialog = builder.show();
+//                    alertDialog.getWindow().setGravity(Gravity.BOTTOM);
+//
+//                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 }
 
 
@@ -477,157 +562,181 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-                LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View popupView = layoutInflater.inflate(R.layout.bottom_sheets_service, null);
-
-
-                LinearLayout rent_layout = popupView.findViewById(R.id.rent_layout);
-                LinearLayout realState = popupView.findViewById(R.id.realState);
-                LinearLayout settings = popupView.findViewById(R.id.settings);
-                LinearLayout contact_us = popupView.findViewById(R.id.contact_us);
-                LinearLayout Technical_support = popupView.findViewById(R.id.Technical_support);
-                LinearLayout MOreAqarezMan = popupView.findViewById(R.id.MOreAqarezMan);
-                LinearLayout market = popupView.findViewById(R.id.market);
+                if (Settings.checkLogin()) {
+                    Intent intent = new Intent(MainActivity.this, FavoriteActivity.class);
+//                                intent.putExtra("from", "splash");
+                    startActivity(intent);
 
 
-                if (Settings.CheckIsAccountAqarzMan()) {
-                    realState.setVisibility(View.VISIBLE);
                 } else {
-                    realState.setVisibility(View.GONE);
+                    startActivity(new Intent(MainActivity.this, check_login.class));
 
+//                    new AlertDialog.Builder(MainActivity.this)
+//                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
+//                            .setCancelable(false)
+//                            .setPositiveButton(getResources().getString(R.string.Go_to_login), new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//
+//                                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+////                                intent.putExtra("from", "splash");
+//                                    startActivity(intent);
+//
+//                                }
+//                            })
+//                            .setNegativeButton(getResources().getString(R.string.no), null)
+//                            .show();
                 }
 
-
-                realState.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        if (Settings.checkLogin()) {
-
-
-//                            Intent intent = new Intent(MainActivity.this, OrderListActivity.class);
-                            Intent intent = new Intent(MainActivity.this, AllOrderActivity.class);
-                            intent.putExtra("type", "Real");
-                            startActivity(intent);
-//                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-
-                        } else {
-                            startActivity(new Intent(MainActivity.this, check_login.class));
-                        }
-
-                    }
-                });
-                market.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (Settings.checkLogin()) {
-
-
-//                            Intent intent = new Intent(MainActivity.this, OrderListActivity.class);
-                            Intent intent = new Intent(MainActivity.this, AllOrderActivity.class);
-                            intent.putExtra("type", "market");
-                            startActivity(intent);
-//                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-
-                        } else {
-                            startActivity(new Intent(MainActivity.this, check_login.class));
-                        }
-
-//                            Intent intent = new Intent(MainActivity.this, OrderListActivity.class);
-
-//                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-
-                    }
-                });
-                contact_us.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(MainActivity.this, ContactUsActivity.class);
-//                                intent.putExtra("from", "splash");
-                        startActivity(intent);
-//                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-
-                    }
-                });
-                settings.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        alertDialog.dismiss();
-                        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-//                                intent.putExtra("from", "splash");
-                        startActivity(intent);
-//                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-
-                    }
-                });
-                Technical_support.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-
-
-                            Intent sendIntent = new Intent("android.intent.action.MAIN");
-                            sendIntent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
-                            sendIntent.setAction(Intent.ACTION_SEND);
-                            sendIntent.setType("text/plain");
-                            sendIntent.putExtra(Intent.EXTRA_TEXT, "");
-                            sendIntent.putExtra("jid", "966532576667" + "@s.whatsapp.net");
-                            sendIntent.setPackage("com.whatsapp");
-                            startActivity(sendIntent);
-                        } catch (Exception e) {
-                            Toast.makeText(MainActivity.this, "Error/n" + e.toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-                MOreAqarezMan.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-
-                        Intent intent = new Intent(MainActivity.this, AllclintActivity.class);
-//                                intent.putExtra("from", "splash");
-                        startActivity(intent);
-
-                    }
-                });
-                rent_layout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        if (Settings.checkLogin()) {
-
-
-                            if (Hawk.contains("rent_layout")) {
-
-                                Intent intent = new Intent(MainActivity.this, RentActivity.class);
-                                intent.putExtra("id", "");
-                                startActivity(intent);
-                            } else {
-                                Hawk.put("rent_layout", "rent_layout");
-                                Intent intent = new Intent(MainActivity.this, RentShowActivity.class);
-                                intent.putExtra("id", "");
-                                startActivity(intent);
-                            }
-
-                        } else {
-                            startActivity(new Intent(MainActivity.this, check_login.class));
-                        }
-
-
-                    }
-                });
-
-
-                final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-
-//            alertDialog_country =
-                builder.setView(popupView);
-
-
-                alertDialog = builder.show();
-
-                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//                LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                final View popupView = layoutInflater.inflate(R.layout.bottom_sheets_service, null);
+//
+//
+//                LinearLayout rent_layout = popupView.findViewById(R.id.rent_layout);
+//                LinearLayout realState = popupView.findViewById(R.id.realState);
+//                LinearLayout settings = popupView.findViewById(R.id.settings);
+//                LinearLayout contact_us = popupView.findViewById(R.id.contact_us);
+//                LinearLayout Technical_support = popupView.findViewById(R.id.Technical_support);
+//                LinearLayout MOreAqarezMan = popupView.findViewById(R.id.MOreAqarezMan);
+//                LinearLayout market = popupView.findViewById(R.id.market);
+//
+//
+//                if (Settings.CheckIsAccountAqarzMan()) {
+//                    realState.setVisibility(View.VISIBLE);
+//                } else {
+//                    realState.setVisibility(View.GONE);
+//
+//                }
+//
+//
+//                realState.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        if (Settings.checkLogin()) {
+//
+//
+////                            Intent intent = new Intent(MainActivity.this, OrderListActivity.class);
+//                            Intent intent = new Intent(MainActivity.this, AllOrderActivity.class);
+//                            intent.putExtra("type", "Real");
+//                            startActivity(intent);
+////                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//
+//                        } else {
+//                            startActivity(new Intent(MainActivity.this, check_login.class));
+//                        }
+//
+//                    }
+//                });
+//                market.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if (Settings.checkLogin()) {
+//
+//
+////                            Intent intent = new Intent(MainActivity.this, OrderListActivity.class);
+//                            Intent intent = new Intent(MainActivity.this, AllOrderActivity.class);
+//                            intent.putExtra("type", "market");
+//                            startActivity(intent);
+////                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//
+//                        } else {
+//                            startActivity(new Intent(MainActivity.this, check_login.class));
+//                        }
+//
+////                            Intent intent = new Intent(MainActivity.this, OrderListActivity.class);
+//
+////                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//
+//                    }
+//                });
+//                contact_us.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intent = new Intent(MainActivity.this, ContactUsActivity.class);
+////                                intent.putExtra("from", "splash");
+//                        startActivity(intent);
+////                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//
+//                    }
+//                });
+//                settings.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        alertDialog.dismiss();
+//                        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+////                                intent.putExtra("from", "splash");
+//                        startActivity(intent);
+////                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//
+//                    }
+//                });
+//                Technical_support.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        try {
+//
+//
+//                            Intent sendIntent = new Intent("android.intent.action.MAIN");
+//                            sendIntent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
+//                            sendIntent.setAction(Intent.ACTION_SEND);
+//                            sendIntent.setType("text/plain");
+//                            sendIntent.putExtra(Intent.EXTRA_TEXT, "");
+//                            sendIntent.putExtra("jid", "966532576667" + "@s.whatsapp.net");
+//                            sendIntent.setPackage("com.whatsapp");
+//                            startActivity(sendIntent);
+//                        } catch (Exception e) {
+//                            Toast.makeText(MainActivity.this, "Error/n" + e.toString(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
+//                MOreAqarezMan.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//
+//                        Intent intent = new Intent(MainActivity.this, AllclintActivity.class);
+////                                intent.putExtra("from", "splash");
+//                        startActivity(intent);
+//
+//                    }
+//                });
+//                rent_layout.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        if (Settings.checkLogin()) {
+//
+//
+//                            if (Hawk.contains("rent_layout")) {
+//
+//                                Intent intent = new Intent(MainActivity.this, RentActivity.class);
+//                                intent.putExtra("id", "");
+//                                startActivity(intent);
+//                            } else {
+//                                Hawk.put("rent_layout", "rent_layout");
+//                                Intent intent = new Intent(MainActivity.this, RentShowActivity.class);
+//                                intent.putExtra("id", "");
+//                                startActivity(intent);
+//                            }
+//
+//                        } else {
+//                            startActivity(new Intent(MainActivity.this, check_login.class));
+//                        }
+//
+//
+//                    }
+//                });
+//
+//
+//                final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//
+////            alertDialog_country =
+//                builder.setView(popupView);
+//
+//
+//                alertDialog = builder.show();
+//
+//                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
 
 //                new AlertDialog.Builder(MainActivity.this)
@@ -898,9 +1007,21 @@ public class MainActivity extends AppCompatActivity {
         selsct_type_all.setLayoutManager(layoutManagerm);
 
 
-        oprationModules_list.add(new select_typeModules(1, getResources().getString(R.string.mn1)));
-        oprationModules_list.add(new select_typeModules(2, getResources().getString(R.string.mn2)));
-        oprationModules_list.add(new select_typeModules(3, getResources().getString(R.string.mn3)));
+        oprationModules_list.add(new
+
+                select_typeModules(1, getResources().
+
+                getString(R.string.mn1)));
+        oprationModules_list.add(new
+
+                select_typeModules(2, getResources().
+
+                getString(R.string.mn2)));
+        oprationModules_list.add(new
+
+                select_typeModules(3, getResources().
+
+                getString(R.string.mn3)));
 //        oprationModules_list.add(new select_typeModules(1, getContext().getResources().getString(R.string.Investment)));
 
         RecyclerView_bottomSheet_type recyclerView_bottomSheet_type = new RecyclerView_bottomSheet_type(MainActivity.this, oprationModules_list);
@@ -1009,7 +1130,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 ///------------------------------------------------------------------------------------------------------
-        type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
+        type_list = Settings.getSettings().
+
+                getEstate_types().
+
+                getOriginal().
+
+                getData();
 
         LinearLayoutManager layoutManagerw
                 = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
@@ -1026,6 +1153,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         filtter_acion();
+
     }
 
     public void filtter_acion() {
@@ -1501,6 +1629,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
 
 
+
+         if (Hawk.contains("lang")) {
+
+
+             System.out.println("dfldkfdlfkldkfd");
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+        } else {
+             System.out.println("dfldkfdlfkldkfd");
+
+            Hawk.put("lang", "ar");
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+
+        }
+
+
         if (!first_time_) {
             forceUpdate();
         } else {
@@ -1509,6 +1664,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onResume();
     }
+
 
     public void goToFragment(int fragmentIndex) {
         fragmentManager = getSupportFragmentManager();

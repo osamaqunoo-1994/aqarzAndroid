@@ -125,140 +125,140 @@ public class RecyclerView_orders_my_requstx_favorit extends RecyclerView.Adapter
 //            }
 //        }
 //
-
-
-        holder.price.setText(alldata.get(position).getRequest().get(0).getPrice_from() + " - " + alldata.get(position).getRequest().get(0).getPrice_to());
-//        holder.view_type.setText(alldata.get(position).getDirEstate());
-        holder.space.setText(alldata.get(position).getRequest().get(0).getArea_from() + " - " + alldata.get(position).getRequest().get(0).getArea_to());
-
-
-//        System.out.println(alldata.get(position).getAreaFrom() + " - " + alldata.get(position).getAreaTo());
-        holder.name_estate.setText(alldata.get(position).getRequest().get(0).getEstate_type_name());
-
-
-        if (alldata.get(position).getRequest().get(0).getAddress() != null) {
-            holder.address.setText(alldata.get(position).getRequest().get(0).getAddress());
-
-        } else {
-            if (alldata.get(position).getRequest().get(0).getCity_name() != null) {
-                holder.address.setText(alldata.get(position).getRequest().get(0).getCity_name() + " , " + alldata.get(position).getRequest().get(0).getNeighborhood_name());
-
-            }
-
-        }
-
-
-//
-//        System.out.println(alldata.get(position).getImage() + "");
-//        Glide.with(context).load(alldata.get(position).getRequest().get(0).getEstate_type().getIcon()).into(holder.image_icon);
-////
-//
-//        try {
 //
 //
-////
-//        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.image);
-//        holder.price.setText(alldata.get(position).getPrice()+" "+context.getResources().getString(R.string.SAR));
-//        holder.title.setText(alldata.get(position).getTitle()+"");
-//        holder.description.setText(alldata.get(position).getDetails()+"");
-//////
-//
-//        int random = ThreadLocalRandom.current().nextInt(1, 5);
-//       holder.ratingbar.setStar(random);
-
-
-        //   wallet, dafter, receipt, payment
-
-
-//            double v=Double.valueOf(alldata.get(position).getRate());
+//        holder.price.setText(alldata.get(position).getRequest().get(0).getPrice_from() + " - " + alldata.get(position).getRequest().get(0).getPrice_to());
+////        holder.view_type.setText(alldata.get(position).getDirEstate());
+//        holder.space.setText(alldata.get(position).getRequest().get(0).getArea_from() + " - " + alldata.get(position).getRequest().get(0).getArea_to());
 //
 //
+////        System.out.println(alldata.get(position).getAreaFrom() + " - " + alldata.get(position).getAreaTo());
+//        holder.name_estate.setText(alldata.get(position).getRequest().get(0).getEstate_type_name());
 //
-//            holder.simpleRatingBar.setRating((float) v);
 //
+//        if (alldata.get(position).getRequest().get(0).getAddress() != null) {
+//            holder.address.setText(alldata.get(position).getRequest().get(0).getAddress());
 //
-//        }catch (Exception e){
+//        } else {
+//            if (alldata.get(position).getRequest().get(0).getCity_name() != null) {
+//                holder.address.setText(alldata.get(position).getRequest().get(0).getCity_name() + " , " + alldata.get(position).getRequest().get(0).getNeighborhood_name());
+//
+//            }
 //
 //        }
 //
 //
-//        holder.image_user.setOnClickListener(new View.OnClickListener() {
+////
+////        System.out.println(alldata.get(position).getImage() + "");
+////        Glide.with(context).load(alldata.get(position).getRequest().get(0).getEstate_type().getIcon()).into(holder.image_icon);
+//////
+////
+////        try {
+////
+////
+//////
+////        System.out.println(alldata.get(position).getImage() + "");
+////        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.image);
+////        holder.price.setText(alldata.get(position).getPrice()+" "+context.getResources().getString(R.string.SAR));
+////        holder.title.setText(alldata.get(position).getTitle()+"");
+////        holder.description.setText(alldata.get(position).getDetails()+"");
+////////
+////
+////        int random = ThreadLocalRandom.current().nextInt(1, 5);
+////       holder.ratingbar.setStar(random);
+//
+//
+//        //   wallet, dafter, receipt, payment
+//
+//
+////            double v=Double.valueOf(alldata.get(position).getRate());
+////
+////
+////
+////            holder.simpleRatingBar.setRating((float) v);
+////
+////
+////        }catch (Exception e){
+////
+////        }
+////
+////
+////        holder.image_user.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View view) {
+//////                if (alldata.get(position).getType().equals("user")) {
+//////                    Intent intent = new Intent(context, ProfileTravilingActivity.class);
+//////                    intent.putExtra("id_user", alldata.get(position).getId() + "");
+//////                    intent.putExtra("type", "other_frinds");
+//////
+//////                    context.startActivity(intent);
+//////                } else {
+//////                    Intent intent = new Intent(context, ProfileTourGuidActivity.class);
+//////                    intent.putExtra("id_user", alldata.get(position).getId() + "");
+//////                    intent.putExtra("type", "other_frinds");
+//////
+//////                    context.startActivity(intent);
+//////                }
+////            }
+////        });
+////
+//
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-////                if (alldata.get(position).getType().equals("user")) {
-////                    Intent intent = new Intent(context, ProfileTravilingActivity.class);
-////                    intent.putExtra("id_user", alldata.get(position).getId() + "");
-////                    intent.putExtra("type", "other_frinds");
+//
+//
+////                Postion_opend = position;
+////                Refr();
+//
+////                RequestOrderActivity.set_fragment(position);
+//
+//
+//                if (mItemClickListener != null) {
+//                    mItemClickListener.onItemClick(position);
+//                }
 ////
-////                    context.startActivity(intent);
-////                } else {
-////                    Intent intent = new Intent(context, ProfileTourGuidActivity.class);
-////                    intent.putExtra("id_user", alldata.get(position).getId() + "");
-////                    intent.putExtra("type", "other_frinds");
-////
-////                    context.startActivity(intent);
-////                }
+//
 //            }
 //        });
+//        if (alldata.get(position).getRequest().get(0).getIn_fav().equals("1")) {
+//            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
 //
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-//                Postion_opend = position;
-//                Refr();
-
-//                RequestOrderActivity.set_fragment(position);
-
-
-                if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(position);
-                }
+//        } else {
+//            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
 //
-
-            }
-        });
-        if (alldata.get(position).getRequest().get(0).getIn_fav().equals("1")) {
-            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
-
-        } else {
-            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
-
-        }
-        holder.add_favorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (alldata.get(position).getRequest().get(0).getIn_fav().equals("1")) {
-                    holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
-                    alldata.get(position).getRequest().get(0).setIn_fav("0");
-                } else {
-                    holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
-                    alldata.get(position).getRequest().get(0).setIn_fav("1");
-
-
-                }
-                init_volley();
-                WebService.loading((Activity) context, true);
-
-                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
-                try {
-
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("type_id", "" + alldata.get(position).getId());
-                    jsonObject.put("type", "" + "request");
-                    mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
-
-
-                } catch (Exception e) {
-
-                }
-
-            }
-        });
+//        }
+//        holder.add_favorite.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                if (alldata.get(position).getRequest().get(0).getIn_fav().equals("1")) {
+//                    holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
+//                    alldata.get(position).getRequest().get(0).setIn_fav("0");
+//                } else {
+//                    holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
+//                    alldata.get(position).getRequest().get(0).setIn_fav("1");
+//
+//
+//                }
+//                init_volley();
+//                WebService.loading((Activity) context, true);
+//
+//                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+//                try {
+//
+//                    JSONObject jsonObject = new JSONObject();
+//                    jsonObject.put("type_id", "" + alldata.get(position).getId());
+//                    jsonObject.put("type", "" + "request");
+//                    mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
+//
+//
+//                } catch (Exception e) {
+//
+//                }
+//
+//            }
+//        });
 
 
     }

@@ -5,23 +5,22 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class mod_favorite {
+public class fund_favorite {
 
 
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("request")
+    @SerializedName("fund")
     @Expose
-    private List<demandsModules> request;
+    private List<OrdersModules> fund;
 
 
+    public Integer getId() {
+        return id;
+    }
 
-public Integer getId() {
-    return id;
-}
-
-    public List<demandsModules> getRequest() {
-        return request;
+    public List<OrdersModules> getEstate() {
+        return fund;
     }
 }

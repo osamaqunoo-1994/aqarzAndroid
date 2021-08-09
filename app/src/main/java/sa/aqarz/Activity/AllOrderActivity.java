@@ -232,6 +232,7 @@ public class AllOrderActivity extends AppCompatActivity {
                 = new LinearLayoutManager(AllOrderActivity.this, LinearLayoutManager.VERTICAL, false);
         allcity.setLayoutManager(layoutManager1a);
 
+        page=1;
         neighborhood_id = "";
         city_id = "";
 
@@ -242,7 +243,6 @@ public class AllOrderActivity extends AppCompatActivity {
             if (id_city != null) {
                 if (!id_city.equals("null")) {
                     city_id = id_city;
-
                 }
             }
 

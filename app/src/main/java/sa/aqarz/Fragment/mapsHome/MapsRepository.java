@@ -213,6 +213,7 @@ public class MapsRepository {
     }
 
     public void getCity(String state_id) {
+        WebService.loading(activity, true);
 
         mResultCallback = new IResult() {
             @Override
@@ -295,6 +296,7 @@ public class MapsRepository {
     }
 
     public void getCity2(String state_id) {
+        WebService.loading(activity, true);
 
         mResultCallback = new IResult() {
             @Override

@@ -168,19 +168,19 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         WebService.loading(ProfileDetailsActivity.this, true);
 
 
-        if (Hawk.contains("lang")) {
-            Hawk.put("lang", "ar");
-
-        } else {
-            Hawk.put("lang", "ar");
-        }
+//        if (Hawk.contains("lang")) {
+//            Hawk.put("lang", "ar");
 //
-        Locale locale = new Locale(Hawk.get("lang").toString());
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
+//        } else {
+//            Hawk.put("lang", "ar");
+//        }
+////
+//        Locale locale = new Locale(Hawk.get("lang").toString());
+//        Locale.setDefault(locale);
+//        Configuration config = new Configuration();
+//        config.locale = locale;
+//        getBaseContext().getResources().updateConfiguration(config,
+//                getBaseContext().getResources().getDisplayMetrics());
 //        }
         init_volley();
 
