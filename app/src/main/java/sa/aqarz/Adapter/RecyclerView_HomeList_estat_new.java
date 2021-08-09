@@ -78,7 +78,8 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         TextView num_id;
         ImageView image_icon;
         ImageView add_favorite;
-
+        ImageView share;
+        ImageView hide;
         ScaleRatingBar rate;
 
 
@@ -116,7 +117,8 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
 //            ratingbar = view.findViewById(R.id.ratingbar);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
-
+            share = view.findViewById(R.id.share);
+            hide = view.findViewById(R.id.hide);
         }
     }
 
@@ -234,7 +236,45 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
 
             }
         });
+        holder.share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+
+//                Postion_opend = position;
+//                Refr();
+
+//                RequestOrderActivity.set_fragment(position);
+
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "https://aqarz.sa/estate/" + alldata.get(position).getId() + "/show");
+                sendIntent.setType("text/plain");
+
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                context.startActivity(shareIntent);
+
+            }
+        });
+
+        holder.hide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+//                Postion_opend = position;
+//                Refr();
+
+//                RequestOrderActivity.set_fragment(position);
+
+                init_volley();
+                WebService.loading((Activity) context, true);
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+                mVolleyService.getDataVolley("hide", WebService.hide +"/"+ alldata.get(position).getId() + "/estate");
+
+            }
+        });
 
     }
 
@@ -284,6 +324,10 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
                         String data = response.getString("data");
 //                        String message = response.getString("message");
                         String message = response.getString("message");
+                        if (requestType.equals("hide")) {
+                            WebService.Make_Toast_color((Activity) context, message, "success");
+
+                        }
 
 
 //                        WebService.Make_Toast_color((Activity) context, message, "success");

@@ -114,6 +114,9 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
     ScaleRatingBar simpleRatingBar;
     ScaleRatingBar rate_user;
 
+    ImageView hide;
+    ImageView share;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -164,6 +167,8 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
         ads_number = findViewById(R.id.ads_number);
         views_nummm = findViewById(R.id.views_nummm);
         comfort_rec = findViewById(R.id.comfort_rec);
+        hide = findViewById(R.id.hide);
+        share = findViewById(R.id.share);
 
         comfort_rec.setLayoutManager(new GridLayoutManager(this, 2));
 
@@ -321,6 +326,30 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
 
             }
         });
+        hide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                init_volley();
+                WebService.loading(DetailsActivity_aqarz.this, true);
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsActivity_aqarz.this);
+                mVolleyService.getDataVolley("hide", WebService.hide +"/"+ id_or_aq + "/estate");
+
+            }
+        });
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "https://aqarz.sa/estate/" + id_or_aq + "/show");
+                sendIntent.setType("text/plain");
+
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                startActivity(shareIntent);
+
+            }
+        });
 
 
 //        type_RecyclerView = findViewById(R.id.type_RecyclerView);
@@ -422,7 +451,7 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String data = response.getString("data");
-//                        String message = response.getString("message");
+                        String message = response.getString("message");
 
 
                         if (requestType.equals("smilier")) {
@@ -459,6 +488,11 @@ public class DetailsActivity_aqarz extends AppCompatActivity {
                         } else if (requestType.equals("favorite")) {
 
 //                            WebService.Make_Toast_color(DetailsActivity_aqarz.this, message, "error");
+
+
+                        } else if (requestType.equals("hide")) {
+
+                            WebService.Make_Toast_color(DetailsActivity_aqarz.this, message, "error");
 
 
                         } else {

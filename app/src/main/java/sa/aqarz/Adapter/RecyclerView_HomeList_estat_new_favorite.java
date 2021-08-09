@@ -78,6 +78,8 @@ public class RecyclerView_HomeList_estat_new_favorite extends RecyclerView.Adapt
         TextView num_id;
         ImageView image_icon;
         ImageView add_favorite;
+        ImageView share;
+        ImageView hide;
 
         ScaleRatingBar rate;
 
@@ -113,6 +115,8 @@ public class RecyclerView_HomeList_estat_new_favorite extends RecyclerView.Adapt
             space = view.findViewById(R.id.space);
             rate = view.findViewById(R.id.rate);
             num_id = view.findViewById(R.id.num_id);
+            share = view.findViewById(R.id.share);
+            hide = view.findViewById(R.id.hide);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
@@ -234,6 +238,53 @@ public class RecyclerView_HomeList_estat_new_favorite extends RecyclerView.Adapt
 
             }
         });
+        holder.share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+//                Postion_opend = position;
+//                Refr();
+
+//                RequestOrderActivity.set_fragment(position);
+                try {
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "https://aqarz.sa/estate/" + alldata.get(position).getEstate().get(0).getId() + "/show");
+                    sendIntent.setType("text/plain");
+
+                    Intent shareIntent = Intent.createChooser(sendIntent, null);
+                    context.startActivity(shareIntent);
+                } catch (Exception e) {
+
+                }
+
+
+            }
+        });
+
+        holder.hide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+//                Postion_opend = position;
+//                Refr();
+
+//                RequestOrderActivity.set_fragment(position);
+                try {
+                    init_volley();
+                    WebService.loading((Activity) context, true);
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+                    mVolleyService.getDataVolley("hide", WebService.hide +"/"+ alldata.get(position).getEstate().get(0).getId() + "/estate");
+
+                } catch (Exception e) {
+
+                }
+
+            }
+        });
 
 
     }
@@ -285,8 +336,10 @@ public class RecyclerView_HomeList_estat_new_favorite extends RecyclerView.Adapt
 //                        String message = response.getString("message");
                         String message = response.getString("message");
 
+                        if (requestType.equals("hide")) {
+                            WebService.Make_Toast_color((Activity) context, message, "success");
 
-//                        WebService.Make_Toast_color((Activity) context, message, "success");
+                        }
 
 
                     }

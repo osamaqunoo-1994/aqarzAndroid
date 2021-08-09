@@ -62,6 +62,7 @@ public class WebService {
     public static String estate_Request = Domain + "estate/Request";
     public static String single_estat = Domain + "single/";
     public static String my_estate = Domain + "my/estate";
+    public static String hide = Domain + "hide";
     public static String user_estate = Domain + "user";
     public static String send_offer_fund_Request = Domain + "send/offer/fund/Request";
     public static String send_customer_offer_status = Domain + "send/customer/offer/status";
