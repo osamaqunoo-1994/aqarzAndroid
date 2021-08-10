@@ -54,7 +54,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.splash_anim);
         findViewById(R.id.snack_ly).startAnimation(myanim);
 
-
         if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) { // lower api
             View v = this.getWindow().getDecorView();
             v.setSystemUiVisibility(View.GONE);

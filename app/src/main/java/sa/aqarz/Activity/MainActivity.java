@@ -179,12 +179,10 @@ public class MainActivity extends AppCompatActivity {
     List<select_typeModules> oprationModules_list = new ArrayList<>();
     List<TypeModules> type_list = new ArrayList<>();
 
-
     String type = "";
     String opration_select = "";
 
     TextView filtter_btn;
-
 
     TextView min_area, max_area;
 
@@ -198,9 +196,7 @@ public class MainActivity extends AppCompatActivity {
     TextView room_4;
     TextView room_5;
 
-
     EditText Les_price, Maximum_price, Les_space, Maximum_space;
-
 
     NavigationView navigationView_;
 
@@ -212,16 +208,13 @@ public class MainActivity extends AppCompatActivity {
     TextView cancle_fillter;
     TextView search_filtter;
 
-
     EditText aqarez_name_edt;
     EditText search_text;
-
 
     static LinearLayout filtter_city;
     static LinearLayout allfilter;
     static LinearLayout add_aqares_and_order_and_estate;
     ImageView close_add;
-
 
     LinearLayout addAqares;
     LinearLayout RequstAqars;
@@ -1359,207 +1352,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //jsj
-    public void filtter_acion_filter_market() {
-
-
-        LinearLayoutManager layoutManager1
-                = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false);
-        allcity.setLayoutManager(layoutManager1);
-
-
-        if (Application.AllCity.size() != 0) {
-
-            cityModules_list = Application.AllCity;
-
-        }
-        search_text.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-
-
-                    filtter_city.setVisibility(View.VISIBLE);
-                    allfilter.setVisibility(View.GONE);
-                    init_volley();
-                    WebService.loading(MainActivity.this, true);
-
-                    String region_id_postion = "";
-                    if (MapsFragmentNew.region_id_postion != null) {
-                        region_id_postion = MapsFragmentNew.region_id_postion + "";
-                    }
-                    String city_id_postion = "";
-                    if (MapsFragmentNew.city_id_postion != null) {
-                        city_id_postion = MapsFragmentNew.city_id_postion + "";
-                    }
-
-
-                    VolleyService mVolleyService = new VolleyService(mResultCallback, MainActivity.this);
-                    mVolleyService.getDataVolley("cities_with_neb", WebService.cities_with_neb + "?name=" + search_text.getText().toString());//+ "&state_id=" + region_id_postion + "&city_id=" + city_id_postion
-
-
-                    return true;
-                }
-                return false;
-            }
-        });
-        search_text.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-                if (s.length() != 0) {
-
-                }
-
-            }
-        });
-
-
-        room_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                room_1.setBackground(getResources().getDrawable(R.drawable.button_login));
-                room_2.setBackground(null);
-                room_3.setBackground(null);
-                room_4.setBackground(null);
-                room_5.setBackground(null);
-
-
-                room_1.setTextColor(getResources().getColor(R.color.white));
-                room_2.setTextColor(getResources().getColor(R.color.textColor));
-                room_3.setTextColor(getResources().getColor(R.color.textColor));
-                room_4.setTextColor(getResources().getColor(R.color.textColor));
-                room_5.setTextColor(getResources().getColor(R.color.textColor));
-                num_room = "1";
-            }
-        });
-        room_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                room_2.setBackground(getResources().getDrawable(R.drawable.button_login));
-                room_1.setBackground(null);
-                room_3.setBackground(null);
-                room_4.setBackground(null);
-                room_5.setBackground(null);
-
-
-                room_2.setTextColor(getResources().getColor(R.color.white));
-                room_1.setTextColor(getResources().getColor(R.color.textColor));
-                room_3.setTextColor(getResources().getColor(R.color.textColor));
-                room_4.setTextColor(getResources().getColor(R.color.textColor));
-                room_5.setTextColor(getResources().getColor(R.color.textColor));
-                num_room = "2";
-
-            }
-        });
-        room_3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                room_3.setBackground(getResources().getDrawable(R.drawable.button_login));
-                room_2.setBackground(null);
-                room_1.setBackground(null);
-                room_4.setBackground(null);
-                room_5.setBackground(null);
-
-
-                room_3.setTextColor(getResources().getColor(R.color.white));
-                room_2.setTextColor(getResources().getColor(R.color.textColor));
-                room_1.setTextColor(getResources().getColor(R.color.textColor));
-                room_4.setTextColor(getResources().getColor(R.color.textColor));
-                room_5.setTextColor(getResources().getColor(R.color.textColor));
-                num_room = "3";
-
-            }
-        });
-        room_4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                room_4.setBackground(getResources().getDrawable(R.drawable.button_login));
-                room_2.setBackground(null);
-                room_3.setBackground(null);
-                room_1.setBackground(null);
-                room_5.setBackground(null);
-
-
-                room_4.setTextColor(getResources().getColor(R.color.white));
-                room_2.setTextColor(getResources().getColor(R.color.textColor));
-                room_3.setTextColor(getResources().getColor(R.color.textColor));
-                room_1.setTextColor(getResources().getColor(R.color.textColor));
-                room_5.setTextColor(getResources().getColor(R.color.textColor));
-                num_room = "4";
-
-            }
-        });
-        room_5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                room_5.setBackground(getResources().getDrawable(R.drawable.button_login));
-                room_2.setBackground(null);
-                room_3.setBackground(null);
-                room_4.setBackground(null);
-                room_1.setBackground(null);
-
-
-                room_5.setTextColor(getResources().getColor(R.color.white));
-                room_2.setTextColor(getResources().getColor(R.color.textColor));
-                room_3.setTextColor(getResources().getColor(R.color.textColor));
-                room_4.setTextColor(getResources().getColor(R.color.textColor));
-                room_1.setTextColor(getResources().getColor(R.color.textColor));
-                num_room = "5";
-
-            }
-        });
-
-        search_filtter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawer.closeDrawer(GravityCompat.START);
-
-
-                try {
-
-
-                    Intent intent = new Intent(MainActivity.this, AllclintActivity.class);
-                    intent.putExtra("search_text", aqarez_name_edt.getText().toString() + "");
-                    startActivity(intent);
-
-
-//                    MapsFragmentNew.get_all_estate_list_filttter_();
-
-                } catch (Exception e) {
-
-                }
-            }
-        });
-        aqarez_name_edt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-
-                    Intent intent = new Intent(MainActivity.this, AllclintActivity.class);
-                    intent.putExtra("search_text", aqarez_name_edt.getText().toString() + "");
-                    startActivity(intent);
-
-                    return true;
-                }
-                return false;
-            }
-        });
-    }
 
 
     public static void convert_city_to_filter() {
@@ -1629,11 +1421,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
 
 
+        if (Hawk.contains("lang")) {
 
-         if (Hawk.contains("lang")) {
 
-
-             System.out.println("dfldkfdlfkldkfd");
+            System.out.println("dfldkfdlfkldkfd");
 
             Locale locale = new Locale(Hawk.get("lang").toString());
             Locale.setDefault(locale);
@@ -1642,7 +1433,31 @@ public class MainActivity extends AppCompatActivity {
             getBaseContext().getResources().updateConfiguration(config,
                     getBaseContext().getResources().getDisplayMetrics());
         } else {
-             System.out.println("dfldkfdlfkldkfd");
+            System.out.println("dfldkfdlfkldkfd");
+
+            Hawk.put("lang", "ar");
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+
+        }
+        if (Hawk.contains("lang")) {
+
+
+            System.out.println("dfldkfdlfkldkfd");
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+        } else {
+            System.out.println("dfldkfdlfkldkfd");
 
             Hawk.put("lang", "ar");
 

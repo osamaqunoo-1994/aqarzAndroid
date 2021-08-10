@@ -92,6 +92,28 @@ public class Info_2_Activity extends AppCompatActivity {
                     getBaseContext().getResources().getDisplayMetrics());
 
         }
+        if (Hawk.contains("lang")) {
+
+
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+        } else {
+
+            Hawk.put("lang", "ar");
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+
+        }
 
         try {
             String[] Type = new String[Settings.getSettings().getVideos().size()];
@@ -108,7 +130,7 @@ public class Info_2_Activity extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     try {
                         text_url = Settings.getSettings().getVideos().get(position).getVideo() + "";
-                        text_url = "https://www.youtube.com/watch?v=TQd3vpZHQw4";
+//                        text_url = "https://www.youtube.com/watch?v=TQd3vpZHQw4";
 
 
                         if (Hawk.contains("lang")) {

@@ -111,6 +111,7 @@ public class AqarzOrActivity extends AppCompatActivity {
 //        Id_eastate = getArguments().getString("Id_eastate");
 
         mMapView = findViewById(R.id.mapViewxx);
+        mMapView = findViewById(R.id.mapViewxx);
 
         mMapView.onCreate(savedInstanceState);
 
@@ -166,11 +167,45 @@ public class AqarzOrActivity extends AppCompatActivity {
                     public void onItemClick(int id_city, String city_naem) {
                         city_id = id_city + "";
                         city_l.setText(city_naem);
+
+
+                        lat = "0.0";
+                        lng = "0.0";
+                        nib_id = "";
+                        nibors.setText("");
                         bottomSheetDialogFragment_selectCity.dismiss();
+
                     }
                 });
 
                 bottomSheetDialogFragment_selectCity.show(getSupportFragmentManager(), "");
+
+            }
+        });
+        nibors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (city_l.getText().toString().equals("")) {
+
+                } else {
+
+                    bottomSheetDialogFragment_selectNeighborhoods = new BottomSheetDialogFragment_SelectNeighborhoods(city_id);
+                    bottomSheetDialogFragment_selectNeighborhoods.addItemClickListener(new BottomSheetDialogFragment_SelectNeighborhoods.ItemClickListener() {
+                        @Override
+                        public void onItemClick(int id_city, String city_naem, String lat_, String lng_) {
+                            lat = lat_;
+                            lng = lng_;
+                            nib_id = id_city + "";
+                            nibors.setText(city_naem);
+                            bottomSheetDialogFragment_selectNeighborhoods.dismiss();
+
+                        }
+                    });
+
+                    bottomSheetDialogFragment_selectNeighborhoods.show(getSupportFragmentManager(), "");
+
+                }
+
 
             }
         });
@@ -224,6 +259,11 @@ public class AqarzOrActivity extends AppCompatActivity {
                             } else {
 
                                 Intent intent = new Intent(AqarzOrActivity.this, SelectLocationActivity.class);
+
+
+                                intent.putExtra("lat", lat + "");
+                                intent.putExtra("lan", lng + "");
+                                intent.putExtra("address", nibors.getText().toString() + "");
                                 startActivityForResult(intent, 11);
 
 //
@@ -256,31 +296,7 @@ public class AqarzOrActivity extends AppCompatActivity {
 
         //---------------------------------------------------------------------------------------------
 //---
-        nibors.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (city_l.getText().toString().equals("")) {
 
-                } else {
-
-                    bottomSheetDialogFragment_selectNeighborhoods = new BottomSheetDialogFragment_SelectNeighborhoods(city_id);
-                    bottomSheetDialogFragment_selectNeighborhoods.addItemClickListener(new BottomSheetDialogFragment_SelectNeighborhoods.ItemClickListener() {
-                        @Override
-                        public void onItemClick(int id_city, String city_naem,String lat,String lng) {
-                            nib_id = id_city + "";
-                            nibors.setText(city_naem);
-                            bottomSheetDialogFragment_selectNeighborhoods.dismiss();
-
-                        }
-                    });
-
-                    bottomSheetDialogFragment_selectNeighborhoods.show(getSupportFragmentManager(), "");
-
-                }
-
-
-            }
-        });
         ///------------------------------------------------------------------------------------------------------
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
 
@@ -357,42 +373,46 @@ public class AqarzOrActivity extends AppCompatActivity {
                                     lat = getLocation().latitude + "";
                                     lng = getLocation().longitude + "";
 
-                                    WebService.loading(AqarzOrActivity.this, true);
 
                                     VolleyService mVolleyService = new VolleyService(mResultCallback, AqarzOrActivity.this);
 
 
                                     JSONObject sendObj = new JSONObject();
 
-                                    try {
+                                    if (!nib_id.equals("")) {
+                                        try {
+                                            WebService.loading(AqarzOrActivity.this, true);
 
 
-                                        sendObj.put("operation_type_id", "2");//form operation list api in setting
-                                        sendObj.put("request_type", "1");//form estate type list api in setting
-                                        sendObj.put("estate_type_id", opration_select);
+                                            sendObj.put("operation_type_id", "2");//form operation list api in setting
+                                            sendObj.put("request_type", "1");//form estate type list api in setting
+                                            sendObj.put("estate_type_id", opration_select);
 
 
-                                        sendObj.put("area_from", Les_space.getText().toString());
-                                        sendObj.put("area_to", Maximum_space.getText().toString());
-                                        sendObj.put("lat", lat);
-                                        sendObj.put("lan", lng);
-                                        sendObj.put("price_from", Les_price.getText().toString());
-                                        sendObj.put("price_to", Maximum_price.getText().toString());
-                                        sendObj.put("room_numbers", room_number);
-                                        sendObj.put("owner_name", Communication_Officer.getText().toString());
-                                        sendObj.put("owner_mobile", Communication_number.getText().toString());
-                                        sendObj.put("display_owner_mobile", "1");
-                                        sendObj.put("address", Address);
-                                        sendObj.put("city_id", city_id + "");
-                                        sendObj.put("neighborhood_id", nib_id + "");
-                                        sendObj.put("note", description.getText().toString());
+                                            sendObj.put("area_from", Les_space.getText().toString());
+                                            sendObj.put("area_to", Maximum_space.getText().toString());
+                                            sendObj.put("lat", lat);
+                                            sendObj.put("lan", lng);
+                                            sendObj.put("price_from", Les_price.getText().toString());
+                                            sendObj.put("price_to", Maximum_price.getText().toString());
+                                            sendObj.put("room_numbers", room_number);
+                                            sendObj.put("owner_name", Communication_Officer.getText().toString());
+                                            sendObj.put("owner_mobile", Communication_number.getText().toString());
+                                            sendObj.put("display_owner_mobile", "1");
+                                            sendObj.put("address", Address);
+                                            sendObj.put("city_id", city_id + "");
+                                            sendObj.put("neighborhood_id", nib_id + "");
+                                            sendObj.put("note", description.getText().toString());
 
 
-                                        System.out.println(sendObj.toString());
-                                        mVolleyService.postDataVolley("estate_Request", WebService.estate_Request, sendObj);
+                                            System.out.println(sendObj.toString());
+                                            mVolleyService.postDataVolley("estate_Request", WebService.estate_Request, sendObj);
 
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    } else {
+
                                     }
 
 
@@ -403,42 +423,45 @@ public class AqarzOrActivity extends AppCompatActivity {
 
                 } else {
 
-                    WebService.loading(AqarzOrActivity.this, true);
 
                     VolleyService mVolleyService = new VolleyService(mResultCallback, AqarzOrActivity.this);
 
 
                     JSONObject sendObj = new JSONObject();
+                    if (!nib_id.equals("")) {
 
-                    try {
+                        try {
+                            WebService.loading(AqarzOrActivity.this, true);
 
-                        sendObj.put("operation_type_id", "2");//form operation list api in setting
-                        sendObj.put("request_type", "1");//form estate type list api in setting
-                        sendObj.put("estate_type_id", opration_select);
+                            sendObj.put("operation_type_id", "2");//form operation list api in setting
+                            sendObj.put("request_type", "1");//form estate type list api in setting
+                            sendObj.put("estate_type_id", opration_select);
 
-                        sendObj.put("area_from", Les_space.getText().toString());
-                        sendObj.put("area_to", Maximum_space.getText().toString());
-                        sendObj.put("lat", lat);
-                        sendObj.put("lan", lng);
-                        sendObj.put("city_id", city_id + "");
+                            sendObj.put("area_from", Les_space.getText().toString());
+                            sendObj.put("area_to", Maximum_space.getText().toString());
+                            sendObj.put("lat", lat);
+                            sendObj.put("lan", lng);
+                            sendObj.put("city_id", city_id + "");
 //                        sendObj.put("neighborhood_id", nib_id + "");
-                        sendObj.put("price_from", Les_price.getText().toString());
-                        sendObj.put("price_to", Maximum_price.getText().toString());
-                        sendObj.put("room_numbers", room_number);
-                        sendObj.put("owner_name", Communication_Officer.getText().toString());
-                        sendObj.put("owner_mobile", Communication_number.getText().toString());
-                        sendObj.put("display_owner_mobile", "1");
-                        sendObj.put("address", Address);
-                        sendObj.put("note", description.getText().toString());
+                            sendObj.put("price_from", Les_price.getText().toString());
+                            sendObj.put("price_to", Maximum_price.getText().toString());
+                            sendObj.put("room_numbers", room_number);
+                            sendObj.put("owner_name", Communication_Officer.getText().toString());
+                            sendObj.put("owner_mobile", Communication_number.getText().toString());
+                            sendObj.put("display_owner_mobile", "1");
+                            sendObj.put("address", Address);
+                            sendObj.put("note", description.getText().toString());
 
 
-                        System.out.println(sendObj.toString());
-                        mVolleyService.postDataVolley("estate_Request", WebService.estate_Request, sendObj);
+                            System.out.println(sendObj.toString());
+                            mVolleyService.postDataVolley("estate_Request", WebService.estate_Request, sendObj);
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+
                     }
-
 
                 }
 
@@ -632,7 +655,6 @@ public class AqarzOrActivity extends AppCompatActivity {
     }
 
     public LatLng getLocation() {
-
 
 
         return Settings.getLocation(AqarzOrActivity.this);

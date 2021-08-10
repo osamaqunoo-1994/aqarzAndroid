@@ -232,7 +232,7 @@ public class AllOrderActivity extends AppCompatActivity {
                 = new LinearLayoutManager(AllOrderActivity.this, LinearLayoutManager.VERTICAL, false);
         allcity.setLayoutManager(layoutManager1a);
 
-        page=1;
+        page = 1;
         neighborhood_id = "";
         city_id = "";
 
@@ -300,7 +300,7 @@ public class AllOrderActivity extends AppCompatActivity {
 
         }
 
-
+        ordersModules.clear();
         recyclerView_ordersx = new RecyclerView_ordersx(activity, ordersModules);
         AllResultRec.setAdapter(recyclerView_ordersx);
 
@@ -957,7 +957,7 @@ public class AllOrderActivity extends AppCompatActivity {
 
         if (type.equals("Real")) {
 
-            url = WebService.fund_Request + "?" + type_requst_text +state_id_text+ neighborhood_id_text + offer_status_text + search_text_s + price_id_text + area_estate_id_text + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
+            url = WebService.fund_Request + "?" + type_requst_text + state_id_text + neighborhood_id_text + offer_status_text + search_text_s + price_id_text + area_estate_id_text + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
             WebService.loading(activity, true);
 
             init_volley();
@@ -980,7 +980,7 @@ public class AllOrderActivity extends AppCompatActivity {
             }
 
 //neighborhood_id=&estate_type_id=&price_id=&area_estate_id=&today=&myOwn=&search=&page=1”
-            url = WebService.market_demands + "?" + type_requst_text +state_id_text+ neighborhood_id_text + search_text_s + te + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
+            url = WebService.market_demands + "?" + type_requst_text + state_id_text + neighborhood_id_text + search_text_s + te + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
             WebService.loading(activity, true);
 
             init_volley();

@@ -29,6 +29,7 @@ import java.util.List;
 import sa.aqarz.Activity.AqarzProfileActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat;
+import sa.aqarz.Adapter.RecyclerView_HomeList_estat_other;
 import sa.aqarz.Adapter.RecyclerView_List_estat_profile;
 import sa.aqarz.Adapter.RecyclerView_List_estat_profile_other;
 import sa.aqarz.Adapter.RecyclerView_clints_new;
@@ -49,6 +50,7 @@ public class MyOffersActivity extends AppCompatActivity {
     LinearLayout nodata_vis;
     FloatingActionButton add_offer;
     RecyclerView_my_offer_in_profile recyclerView_my_offer_in_profile;
+    RecyclerView_HomeList_estat_other recyclerView_homeList_estat_other;
 
 
     int page = 1;
@@ -105,6 +107,12 @@ public class MyOffersActivity extends AppCompatActivity {
                 });
 
             } else {
+
+                recyclerView_homeList_estat_other = new RecyclerView_HomeList_estat_other(MyOffersActivity.this, homeModules);
+
+                myoffer.setAdapter(recyclerView_homeList_estat_other);
+
+
                 init_volley();
                 VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
 
@@ -198,8 +206,11 @@ public class MyOffersActivity extends AppCompatActivity {
                             JSONArray jsonArray = new JSONArray(data);
 
 
-                            homeModules.clear();
-                            myoffer.setAdapter(null);
+                            if (page == 1) {
+                                homeModules.clear();
+//                                myoffer.setAdapter(null);
+                            }
+
 
                             for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -219,7 +230,7 @@ public class MyOffersActivity extends AppCompatActivity {
 
                             }
 
-                            recyclerView_my_offer_in_profile.Refr();
+                            recyclerView_homeList_estat_other.Refr();
 
 
                             if (homeModules.size() == 0) {

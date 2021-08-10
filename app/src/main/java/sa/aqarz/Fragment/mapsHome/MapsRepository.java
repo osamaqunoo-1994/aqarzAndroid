@@ -142,6 +142,7 @@ public class MapsRepository {
 //                WebService.loading(activity, false);
                 try {
 
+                    WebService.loading(activity, false);
 
                     JsonParser parser = new JsonParser();
                     JsonElement mJson = parser.parse(response.toString());
@@ -161,7 +162,6 @@ public class MapsRepository {
                     String data = response.getString("data");
                     Hawk.put("FF", data);
 
-                    WebService.loading(activity, false);
 
                 } catch (Exception e) {
 
@@ -212,7 +212,7 @@ public class MapsRepository {
 
     }
 
-    public void getCity(String state_id) {
+    public void getCity(String state_id, String type) {
         WebService.loading(activity, true);
 
         mResultCallback = new IResult() {
@@ -291,7 +291,16 @@ public class MapsRepository {
             }
         };
         mVolleyService = new VolleyService(mResultCallback, activity);
-        mVolleyService.getAsync("cities", WebService.cities + "?state_id=" + state_id + "&is_all=0");//&request_type=pay
+        if (type.equals("Market")) {
+            mVolleyService.getAsync("cities", WebService.cities + "?state_id=" + state_id + "&is_all=2");//طلبات السوق
+
+        } else if (type.equals("offer")) {
+            mVolleyService.getAsync("cities", WebService.cities + "?state_id=" + state_id + "&is_all=3");//العقارات
+
+        } else {
+            mVolleyService.getAsync("cities", WebService.cities + "?state_id=" + state_id + "&is_all=0");//طلبات الصندوق
+
+        }
 
     }
 

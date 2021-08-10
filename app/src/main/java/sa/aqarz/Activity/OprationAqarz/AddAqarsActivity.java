@@ -223,7 +223,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     Switch switch_more_detials;
     LinearLayout all_more_detila;
-    TextView nibors;
+  public static   TextView nibors;
     LinearLayout Lounges_lay;
     LinearLayout room_lay;
     LinearLayout Bathrooms_lay;
@@ -430,7 +430,14 @@ public class AddAqarsActivity extends AppCompatActivity {
                     public void onItemClick(int id_city, String city_naem) {
                         city_id = id_city + "";
                         city_l.setText(city_naem);
+
+
+                        lat = "0.0";
+                        lng = "0.0";
+                        nib_id = "";
+                        nibors.setText("");
                         bottomSheetDialogFragment_selectCity.dismiss();
+
                     }
                 });
 
@@ -743,6 +750,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
                                 intent.putExtra("lat", lat + "");
                                 intent.putExtra("lan", lng + "");
+                                intent.putExtra("address", nibors.getText().toString() + "");
                                 startActivityForResult(intent, 11);
 
 

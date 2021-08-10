@@ -134,7 +134,50 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_interests);
 
+        if (Hawk.contains("lang")) {
 
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+        } else {
+
+            Hawk.put("lang", "ar");
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+
+        }
+
+
+        if (Hawk.contains("lang")) {
+
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+        } else {
+
+            Hawk.put("lang", "ar");
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+
+        }
         all_city = findViewById(R.id.all_city);
         back = findViewById(R.id.back);
         open_city_list = findViewById(R.id.open_city_list);
@@ -148,6 +191,49 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (Hawk.contains("lang")) {
+
+
+                    Locale locale = new Locale(Hawk.get("lang").toString());
+                    Locale.setDefault(locale);
+                    Configuration config = new Configuration();
+                    config.locale = locale;
+                    getBaseContext().getResources().updateConfiguration(config,
+                            getBaseContext().getResources().getDisplayMetrics());
+                } else {
+
+                    Hawk.put("lang", "ar");
+
+                    Locale locale = new Locale(Hawk.get("lang").toString());
+                    Locale.setDefault(locale);
+                    Configuration config = new Configuration();
+                    config.locale = locale;
+                    getBaseContext().getResources().updateConfiguration(config,
+                            getBaseContext().getResources().getDisplayMetrics());
+
+                }
+                if (Hawk.contains("lang")) {
+
+
+                    Locale locale = new Locale(Hawk.get("lang").toString());
+                    Locale.setDefault(locale);
+                    Configuration config = new Configuration();
+                    config.locale = locale;
+                    getBaseContext().getResources().updateConfiguration(config,
+                            getBaseContext().getResources().getDisplayMetrics());
+                } else {
+
+                    Hawk.put("lang", "ar");
+
+                    Locale locale = new Locale(Hawk.get("lang").toString());
+                    Locale.setDefault(locale);
+                    Configuration config = new Configuration();
+                    config.locale = locale;
+                    getBaseContext().getResources().updateConfiguration(config,
+                            getBaseContext().getResources().getDisplayMetrics());
+
+                }
+
                 finish();
             }
         });
@@ -187,7 +273,7 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(37.35, -122.2);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions().position(sydney).title(""));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -971,5 +1057,52 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
         protected int getColor(int clusterSize) {
             return Color.BLUE;// Return any color you want here. You can base it on clusterSize.
         }
+    }
+
+    @Override
+    protected void onResume() {
+        if (Hawk.contains("lang")) {
+
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+        } else {
+
+            Hawk.put("lang", "ar");
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+
+        }
+        if (Hawk.contains("lang")) {
+
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+        } else {
+
+            Hawk.put("lang", "ar");
+
+            Locale locale = new Locale(Hawk.get("lang").toString());
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+
+        }
+        super.onResume();
     }
 }

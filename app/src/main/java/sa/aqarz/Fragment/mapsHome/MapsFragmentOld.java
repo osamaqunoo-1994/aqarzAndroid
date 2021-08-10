@@ -562,7 +562,7 @@ public class MapsFragmentOld extends Fragment {
 
                             }
                         });
-                        mapsViewModel.getCity(activity, regionModules_list.get(Integer.valueOf(number)).getId() + "");
+                        mapsViewModel.getCity(activity, regionModules_list.get(Integer.valueOf(number)).getId() + "",type_selected);
 
 
                     } catch (Exception e) {

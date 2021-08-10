@@ -159,6 +159,10 @@ public class MapsFragmentNew extends Fragment {
     ImageView chmnage_map_style;
     ImageView intrest;
     static String type_filtter = "";
+    static TextView error_market;
+    static TextView error_fund;
+
+    static boolean first_time = true;
 
 
     private final OnMapReadyCallback callback = new OnMapReadyCallback() {
@@ -176,13 +180,16 @@ public class MapsFragmentNew extends Fragment {
         @Override
         public void onMapReady(GoogleMap googleMap1) {
             googleMap = googleMap1;
-            LatLng sydney = new LatLng(24.527282, 44.007305);
+//            LatLng sydney = new LatLng(24.527282, 44.007305);
 //            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
 //            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            LatLng sydney = new LatLng(24.527282, 44.007305);
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
+
             on_click_maps_marker();
 
 
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
+//            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
 
         }
     };
@@ -202,6 +209,9 @@ public class MapsFragmentNew extends Fragment {
         RealStatr_order = v.findViewById(R.id.RealStatr_order);
         chmnage_map_style = v.findViewById(R.id.chmnage_map_style);
         intrest = v.findViewById(R.id.intrest);
+        error_market = v.findViewById(R.id.error_market);
+        error_fund = v.findViewById(R.id.error_fund);
+
 
         activity = getActivity();
         mapFragment =
@@ -220,6 +230,8 @@ public class MapsFragmentNew extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         activity = getActivity();
 
+
+        first_time = true;
         mapFragment =
                 (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if (mapFragment != null) {
@@ -281,24 +293,30 @@ public class MapsFragmentNew extends Fragment {
 
 //                        System.out.println("cameraPosition.zoom " + cameraPosition.zoom);
 
-                        if (cameraPosition.zoom <= 5) {
 
+                        System.out.println("%^^%$#$%^&^%$#");
 
-                            if (!region_id_postion.equals("")) {
+                        System.out.println("cameraPosition.zoom" + cameraPosition.zoom);
 
-                                LatLng sydney = new LatLng(24.527282, 44.007305);
-                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
+                        if (cameraPosition.zoom <= 4) {
 
-                                region_id_postion = "";
-                                Hawk.put("region_id_postion", "");
+                            if (!first_time) {
 
-                                city_id_postion = "";
-                                Hawk.put("city_id_postion", "");
+                                if (!region_id_postion.equals("")) {
+
+                                    LatLng sydney = new LatLng(24.527282, 44.007305);
+                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 4));
+
+                                    region_id_postion = "";
+                                    Hawk.put("region_id_postion", "");
+
+                                    city_id_postion = "";
+                                    Hawk.put("city_id_postion", "");
 //                set_locationRegions();
-                                check_lastsenareo();
+                                    check_lastsenareo();
 
+                                }
                             }
-
                         } else {
                             if (!region_id_postion.equals("") && !city_id_postion.equals("") && type_selected.equals("offer")) {
 
@@ -318,6 +336,10 @@ public class MapsFragmentNew extends Fragment {
                                 lan1 = cameraPosition.target.longitude + "";
 
 
+                                Hawk.put("lat1", lat1);
+                                Hawk.put("lan1", lan1);
+
+
                                 System.out.println("lan:" + lan + " lat:" + lat);
 
 
@@ -334,11 +356,16 @@ public class MapsFragmentNew extends Fragment {
                             }
                         }
 
-
                     }
+
                 });
-                mapsViewModel = new MapsViewModel();
-                mapsRepository = new MapsRepository(getActivity(), false);
+                mapsViewModel = new
+
+                        MapsViewModel();
+
+                mapsRepository = new
+
+                        MapsRepository(getActivity(), false);
 
                 init(view);
 
@@ -404,6 +431,16 @@ public class MapsFragmentNew extends Fragment {
         list_aqaers.setLayoutManager(layoutMana);
 
 
+        if (Hawk.contains("lat1")) {
+
+
+            lat1 = Hawk.get("lat1").toString();
+            lan1 = Hawk.get("lan1").toString();
+
+
+        }
+
+
         check_lastsenareo();
 
 
@@ -421,8 +458,8 @@ public class MapsFragmentNew extends Fragment {
                 MarketOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
                 OfferOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
                 type_selected = "Real";
-                LatLng sydney = new LatLng(24.527282, 44.007305);
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
+//                LatLng sydney = new LatLng(24.527282, 44.007305);
+//                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
 //                region_id_postion = "";
 //                Hawk.put("region_id_postion", "");
 //
@@ -436,8 +473,8 @@ public class MapsFragmentNew extends Fragment {
         cityMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LatLng sydney = new LatLng(24.527282, 44.007305);
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
+//                LatLng sydney = new LatLng(24.527282, 44.007305);
+//                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
 
                 region_id_postion = "";
                 Hawk.put("region_id_postion", "");
@@ -462,8 +499,8 @@ public class MapsFragmentNew extends Fragment {
                 RealStatr_order.setTextColor(getActivity().getResources().getColor(R.color.textColor));
                 OfferOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
                 type_selected = "Market";
-                LatLng sydney = new LatLng(24.527282, 44.007305);
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
+//                LatLng sydney = new LatLng(24.527282, 44.007305);
+//                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
 //                region_id_postion = "";
 //                Hawk.put("region_id_postion", "");
 //
@@ -495,8 +532,8 @@ public class MapsFragmentNew extends Fragment {
                 MarketOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
                 RealStatr_order.setTextColor(getActivity().getResources().getColor(R.color.textColor));
                 type_selected = "offer";
-                LatLng sydney = new LatLng(24.527282, 44.007305);
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
+//                LatLng sydney = new LatLng(24.527282, 44.007305);
+//                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
 //                region_id_postion = "";
 //                city_id_postion = "";
 //                Hawk.put("region_id_postion", "");
@@ -525,8 +562,8 @@ public class MapsFragmentNew extends Fragment {
 
                 MainActivity.first_time_open_app = false;
                 WebService.loading(getActivity(), false);
-
-                set_locationRegions();
+                check_lastsenareo();
+//                set_locationRegions();
 
             }
         });
@@ -586,7 +623,6 @@ public class MapsFragmentNew extends Fragment {
                             type_filtter = type_filtter + "," + typeModules.get(i).getId();
 
                         }
-
                     }
                 }
 
@@ -862,13 +898,208 @@ public class MapsFragmentNew extends Fragment {
 
     }
 
+
     public static void check_lastsenareo() {
+
+
+        all_estate_size.setVisibility(View.GONE);
+        error_market.setVisibility(View.GONE);
+        error_fund.setVisibility(View.GONE);
+        if (Settings.checkLogin()) {
+
+
+            if (regionModules_list.size() == 0) {
+                mapsViewModel.getRegoins_without(activity);
+            } else {
+
+                check_Region();
+            }
+
+        } else {
+            all_list_backround.setVisibility(View.GONE);
+            if (regionModules_list.size() == 0) {
+                mapsViewModel.getRegoins_without(activity);
+            } else {
+
+                type_selected = "offer";
+
+                set_locationRegions();
+
+            }
+        }
+
+    }
+
+    public static void check_Region() {
+        if (Hawk.contains("region_id_postion")) {
+
+            if (Hawk.get("region_id_postion").toString().equals("")) {
+
+                if (regionModules_list.size() == 0) {
+                    mapsViewModel.getRegoins(activity);
+
+                } else {
+
+                    WebService.loading(activity, false);
+                    lat = 26.196634 + "";
+                    lan = 43.813666 + "";
+
+                    LatLng sydney = new LatLng(Double.valueOf(lat + ""), Double.valueOf(lan + ""));
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
+
+                    set_locationRegions();
+
+
+                }
+            } else {
+
+                region_id_postion = Hawk.get("region_id_postion").toString();
+
+                check_city();
+            }
+
+
+        } else {
+            if (regionModules_list.size() == 0) {
+
+                mapsViewModel.getRegoins(activity);
+
+            } else {
+                set_locationRegions();
+            }
+        }
+    }
+
+    public static void check_city() {
+
+
+        if (Hawk.contains("city_id_postion")) {
+            if (Hawk.get("city_id_postion").toString().equals("")) {
+                WebService.loading(activity, true);
+
+
+                try {
+                    lat = "" + regionModules_list.get(Integer.valueOf(region_id_postion)).getCenter().getCoordinates().get(1);
+                    lan = "" + regionModules_list.get(Integer.valueOf(region_id_postion)).getCenter().getCoordinates().get(0);
+
+                } catch (Exception e) {
+                    lat = 24.768516 + "";
+                    lan = 46.691505 + "";
+                }
+
+                LatLng sydney = new LatLng(Double.valueOf(lat + ""), Double.valueOf(lan + ""));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 8));
+
+
+                mapsViewModel.getCity_list().observe((LifecycleOwner) activity, new Observer<List<CityLocation>>() {
+                    @Override
+                    public void onChanged(List<CityLocation> cityLocations) {
+
+                        if (cityLocations != null) {
+                            set_locationCity(cityLocations);
+                        }
+                        WebService.loading(activity, false);
+
+                    }
+                });
+                mapsViewModel.getCity(activity, regionModules_list.get(Integer.valueOf(region_id_postion)).getId() + "", type_selected);
+
+            } else {
+
+                city_id_postion = Hawk.get("city_id_postion").toString();
+                check_nib();
+            }
+        } else {
+            WebService.loading(activity, true);
+
+            mapsViewModel.getCity_list().observe((LifecycleOwner) activity, new Observer<List<CityLocation>>() {
+                @Override
+                public void onChanged(List<CityLocation> cityLocations) {
+
+                    if (cityLocations != null) {
+                        set_locationCity(cityLocations);
+                    }
+                    WebService.loading(activity, false);
+
+
+                }
+            });
+            mapsViewModel.getCity(activity, regionModules_list.get(Integer.valueOf(region_id_postion)).getId() + "", type_selected);
+
+        }
+    }
+
+    public static void check_nib() {
+
+        System.out.println("^%^%^%%%");
+
+        try {
+            lat = "" + city_location_list.get(Integer.valueOf(city_id_postion)).getLat();
+            lan = "" + city_location_list.get(Integer.valueOf(city_id_postion)).getLan();
+
+        } catch (Exception e) {
+            lat = 24.768516 + "";
+            lan = 46.691505 + "";
+        }
+
+
+        LatLng sydney = new LatLng(Double.valueOf(lat + ""), Double.valueOf(lan + ""));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 9));
+
+
+        if (city_location_list.size() == 0) {
+
+            mapsViewModel.getCity2(activity, regionModules_list.get(Integer.valueOf(region_id_postion)).getId() + "");
+
+        } else {
+
+            if (type_selected.equals("Real")) {
+
+                WebService.loading(activity, true);
+                init_volley();
+                VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
+                mVolleyService.getAsync("neighborhoods", WebService.neighborhoods + "/" + city_location_list.get(Integer.valueOf(city_id_postion)).getSerial_city() + "/list?is_all=0");
+
+            } else if (type_selected.equals("Market")) {
+
+                WebService.loading(activity, true);
+                init_volley();
+                VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
+
+                mVolleyService.getAsync("neighborhoods", WebService.neighborhoods + "/" + city_location_list.get(Integer.valueOf(city_id_postion)).getSerial_city() + "/list?is_all=2");
+
+            } else if (type_selected.equals("offer")) {
+
+                is_first_time = false;
+
+                getAllEstate();
+
+
+            }
+
+
+        }
+
+    }
+
+
+    public static void check_lastsenareoss() {
 
 
         all_estate_size.setVisibility(View.GONE);
 
 
         if (Settings.checkLogin()) {
+
+
+            if (Hawk.contains("lat1")) {
+
+
+                LatLng sydney = new LatLng(Double.valueOf(lat1 + ""), Double.valueOf(lan1 + ""));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 12));
+
+
+            }
 
             if (regionModules_list.size() == 0) {
 
@@ -907,7 +1138,7 @@ public class MapsFragmentNew extends Fragment {
 
                                 } catch (Exception e) {
                                     lat = 24.768516 + "";
-                                    lat = 46.691505 + "";
+                                    lan = 46.691505 + "";
                                 }
                                 try {
 
@@ -938,7 +1169,7 @@ public class MapsFragmentNew extends Fragment {
 
                                         }
                                     });
-                                    mapsViewModel.getCity(activity, regionModules_list.get(Integer.valueOf(region_id_postion)).getId() + "");
+                                    mapsViewModel.getCity(activity, regionModules_list.get(Integer.valueOf(region_id_postion)).getId() + "", type_selected);
 
 
                                 } catch (Exception e) {
@@ -964,7 +1195,7 @@ public class MapsFragmentNew extends Fragment {
 
                                     } catch (Exception e) {
                                         lat = 24.768516 + "";
-                                        lat = 46.691505 + "";
+                                        lan = 46.691505 + "";
                                     }
                                     try {
 
@@ -973,6 +1204,9 @@ public class MapsFragmentNew extends Fragment {
 
 //                            lat = "" + city_location_list.get(Integer.valueOf(city_id_postion)).getLat();
 //                            lan = "" + city_location_list.get(Integer.valueOf(city_id_postion)).getLan();
+//                                        LatLng sydney = new LatLng(Double.valueOf(lat1 + ""), Double.valueOf(lan1 + ""));
+//                                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 9));
+
                                         if (type_selected.equals("Real")) {
 
 
@@ -1011,8 +1245,6 @@ public class MapsFragmentNew extends Fragment {
                                         } else if (type_selected.equals("offer")) {
 
                                             is_first_time = false;
-                                            LatLng sydney = new LatLng(Double.valueOf(lat1 + ""), Double.valueOf(lan1 + ""));
-                                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 8));
 
                                             getAllEstate();
 
@@ -1040,7 +1272,7 @@ public class MapsFragmentNew extends Fragment {
 
                             } catch (Exception e) {
                                 lat = 24.768516 + "";
-                                lat = 46.691505 + "";
+                                lan = 46.691505 + "";
                             }
                             try {
                                 System.out.println("#@$@#@@#@@@");
@@ -1072,7 +1304,7 @@ public class MapsFragmentNew extends Fragment {
 
                                     }
                                 });
-                                mapsViewModel.getCity(activity, regionModules_list.get(Integer.valueOf(region_id_postion)).getId() + "");
+                                mapsViewModel.getCity(activity, regionModules_list.get(Integer.valueOf(region_id_postion)).getId() + "", type_selected);
 
 
                             } catch (Exception e) {
@@ -1126,7 +1358,7 @@ public class MapsFragmentNew extends Fragment {
                 all_list_backround.setVisibility(View.VISIBLE);
                 RealStatr_order.setVisibility(View.VISIBLE);
             } else {
-                all_list_backround.setVisibility(View.VISIBLE);
+                all_list_backround.setVisibility(View.GONE);
                 intrest.setVisibility(View.GONE);
                 notfication_layout.setVisibility(View.VISIBLE);
                 RealStatr_order.setVisibility(View.GONE);
@@ -1241,7 +1473,7 @@ public class MapsFragmentNew extends Fragment {
                         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 
-                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 6));
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 8));
                         // Zoom in, animating the camera.
                         googleMap.animateCamera(CameraUpdateFactory.zoomIn());
 //                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
@@ -1264,7 +1496,7 @@ public class MapsFragmentNew extends Fragment {
 
                             }
                         });
-                        mapsViewModel.getCity(activity, regionModules_list.get(Integer.valueOf(number)).getId() + "");
+                        mapsViewModel.getCity(activity, regionModules_list.get(Integer.valueOf(number)).getId() + "", type_selected);
 
 
                     } catch (Exception e) {
@@ -1381,6 +1613,24 @@ public class MapsFragmentNew extends Fragment {
 
     public static void set_locationCity(List<CityLocation> locationCity) {
 
+
+        if (locationCity.size() == 0) {
+
+            if (type_selected.equals("Market")) {
+                error_market.setVisibility(View.VISIBLE);
+
+            } else if (type_selected.equals("Real")) {
+                error_fund.setVisibility(View.VISIBLE);
+
+            }
+
+        } else {
+            error_market.setVisibility(View.GONE);
+            error_fund.setVisibility(View.GONE);
+
+        }
+
+
         if (googleMap != null) {
             googleMap.clear();
             city_location_list.clear();
@@ -1419,9 +1669,26 @@ public class MapsFragmentNew extends Fragment {
                 }
             });
         }
+        first_time = false;
+
     }
 
     public static void set_locationNeighborhood(List<Neighborhood> locationNeighborhood) {
+        if (locationNeighborhood.size() == 0) {
+
+            if (type_selected.equals("Market")) {
+                error_market.setVisibility(View.VISIBLE);
+
+            } else if (type_selected.equals("Real")) {
+                error_fund.setVisibility(View.VISIBLE);
+
+            }
+
+        } else {
+            error_market.setVisibility(View.GONE);
+            error_fund.setVisibility(View.GONE);
+
+        }
 
         if (googleMap != null) {
             googleMap.clear();
@@ -1462,10 +1729,27 @@ public class MapsFragmentNew extends Fragment {
                 }
             });
         }
+        first_time = false;
+
     }
 
-    public static void set_locationNeighborhoodMarket(List<Neighborhood> locationNeighborhood) {
+    public static void set_locationNeighborhoodMarket
+            (List<Neighborhood> locationNeighborhood) {
+        if (locationNeighborhood.size() == 0) {
 
+            if (type_selected.equals("Market")) {
+                error_market.setVisibility(View.VISIBLE);
+
+            } else if (type_selected.equals("Real")) {
+                error_fund.setVisibility(View.VISIBLE);
+
+            }
+
+        } else {
+            error_market.setVisibility(View.GONE);
+            error_fund.setVisibility(View.GONE);
+
+        }
         if (googleMap != null) {
             googleMap.clear();
             locationNeighborhood_list.clear();
@@ -1505,6 +1789,8 @@ public class MapsFragmentNew extends Fragment {
                 }
             });
         }
+        first_time = false;
+
     }
 
     public static void set_locationRegions() {
@@ -1548,7 +1834,7 @@ public class MapsFragmentNew extends Fragment {
             });
         }
 
-
+        first_time = false;
     }
 
     public static String get_price_and_return_price(String pricsS) {
@@ -1785,7 +2071,8 @@ public class MapsFragmentNew extends Fragment {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
 
 
         try {
@@ -1861,7 +2148,7 @@ public class MapsFragmentNew extends Fragment {
             distance = "150";
 
         } else if (zoom < 5) {
-            distance = "300";
+            distance = "200";
 
         }
 
@@ -1884,7 +2171,6 @@ public class MapsFragmentNew extends Fragment {
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + response);
-                WebService.loading(activity, false);
 //{"status":true,"code":200,"message":"User Profile","data"
                 try {
                     boolean status = response.getBoolean("status");
@@ -1997,6 +2283,7 @@ public class MapsFragmentNew extends Fragment {
                     e.printStackTrace();
                 }
 
+                WebService.loading(activity, false);
 
             }
 

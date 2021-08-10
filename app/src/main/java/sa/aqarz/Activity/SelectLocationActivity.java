@@ -1,5 +1,7 @@
 package sa.aqarz.Activity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -12,6 +14,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -214,22 +217,67 @@ public class SelectLocationActivity extends AppCompatActivity {
 
                 try {
 
+
+
                     String lat = getIntent().getStringExtra("lat");
                     String lng = getIntent().getStringExtra("lan");
 
-                    System.out.println("latlat" + lat + "lnglng" + lng);
-
-                    LatLng sydney = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
-
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 10));
 
 
+                    if (lat.equals("0.0")) {
+
+                        lat = "24.527282";
+                        lng = "44.007305";
+
+                        LatLng sydney = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
+
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
+
+                    } else {
+
+                        LatLng sydney = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
+
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 8));
+
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
+                try{
+                    String address = getIntent().getStringExtra("address");
 
+
+                    if(address!=null){
+                        text_search.setText(address + "");
+
+                    }
+
+
+                }catch (Exception e){
+
+                }
+
+
+                if (ActivityCompat.checkSelfPermission(SelectLocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(SelectLocationActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+                    }
+
+                } else {
+                    googleMap.setMyLocationEnabled(true);
+
+                }
                 googleMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void onCameraChange(CameraPosition cameraPosition) {
 
@@ -237,100 +285,13 @@ public class SelectLocationActivity extends AppCompatActivity {
 //                        googleMap.addMarker(new MarkerOptions()
 //                                .position(latLng)).setTag("mylocation");
 
+
                         lat = cameraPosition.target.latitude + "";
                         lang = cameraPosition.target.longitude + "";
 
 
-                        geocoder = new Geocoder(SelectLocationActivity.this, Locale.getDefault());
-
-                        try {
-
-                            WebService.loading(SelectLocationActivity.this, true);
-
-                            final Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-
-                                    try {
-                                        WebService.loading(SelectLocationActivity.this, false);
-
-
-                                        addresses = geocoder.getFromLocation(cameraPosition.target.latitude, cameraPosition.target.longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-//                                        String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-//                                        String city = addresses.get(0).getLocality();
-                                        String state = addresses.get(0).getAdminArea();
-                                        String country = addresses.get(0).getCountryName();
-
-//
-//                                        try {
-//                                            List<Address> addresses = geocoder.getFromLocationName(
-//                                                    "السعودية", 5);
-//                                            PolylineOptions polylineOptions = new PolylineOptions();
-//
-//                                            for (int i = 0; i < addresses.size(); i++) {
-//
-//                                                System.out.println("**&&^%%%" + addresses.get(i).getLatitude() + "--" + addresses.get(i).getLongitude());
-//                                                polylineOptions.add(new LatLng(addresses.get(i).getLatitude(), addresses.get(i).getLongitude()));
-//
-//
-//                                            }
-//
-//                                            Polyline polyline = googleMap.addPolyline(polylineOptions);
-//
-//
-//                                            if (addresses.size() > 0) {
-//                                                Log.d("TAG", "ADRESSE " + addresses.get(0) + ",LAT :" + addresses.get(0).getLatitude() + ", LONG :" + addresses.get(0).getLongitude());
-//                                            }
-//                                        } catch (IOException e) {
-//                                            e.printStackTrace();
-//                                        }
-
-                                        System.out.println("countrycountry" + country);
-//                                        String postalCode = addresses.get(0).getPostalCode();
-//                                        String knownName = addresses.get(0).getFeatureName(); // Onl
-
-
-//                                        text_search.setText(country + " - " + state);
-
-
-                                        if (country.equals("السعودية")) {
-
-                                            select.setVisibility(View.VISIBLE);
-
-                                        } else {
-                                            select.setVisibility(View.INVISIBLE);
-
-                                        }
-
-
-                                    } catch (Exception e) {
-
-                                    }
-
-                                }
-                            }, 500); // After 1 seconds
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-
-                    }
-                });
-                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-                    @Override
-                    public void onMapClick(LatLng latLng) {
-//                        googleMap.clear();
-//                        googleMap.addMarker(new MarkerOptions()
-//                                .position(latLng)).setTag("mylocation");
-//
-//                        lat = latLng.latitude + "";
-//                        lang = latLng.longitude + "";
-//
-//
 //                        geocoder = new Geocoder(SelectLocationActivity.this, Locale.getDefault());
-//
+
 //                        try {
 //
 //                            WebService.loading(SelectLocationActivity.this, true);
@@ -344,26 +305,60 @@ public class SelectLocationActivity extends AppCompatActivity {
 //                                        WebService.loading(SelectLocationActivity.this, false);
 //
 //
-//                                        addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+//                                        addresses = geocoder.getFromLocation(cameraPosition.target.latitude, cameraPosition.target.longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
 ////                                        String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
 ////                                        String city = addresses.get(0).getLocality();
 //                                        String state = addresses.get(0).getAdminArea();
 //                                        String country = addresses.get(0).getCountryName();
-////                                        String postalCode = addresses.get(0).getPostalCode();
-////                                        String knownName = addresses.get(0).getFeatureName(); // Onl
+//
+////
+////                                        try {
+////                                            List<Address> addresses = geocoder.getFromLocationName(
+////                                                    "السعودية", 5);
+////                                            PolylineOptions polylineOptions = new PolylineOptions();
+////
+////                                            for (int i = 0; i < addresses.size(); i++) {
+////
+////                                                System.out.println("**&&^%%%" + addresses.get(i).getLatitude() + "--" + addresses.get(i).getLongitude());
+////                                                polylineOptions.add(new LatLng(addresses.get(i).getLatitude(), addresses.get(i).getLongitude()));
+////
+////
+////                                            }
+////
+////                                            Polyline polyline = googleMap.addPolyline(polylineOptions);
+////
+////
+////                                            if (addresses.size() > 0) {
+////                                                Log.d("TAG", "ADRESSE " + addresses.get(0) + ",LAT :" + addresses.get(0).getLatitude() + ", LONG :" + addresses.get(0).getLongitude());
+////                                            }
+////                                        } catch (IOException e) {
+////                                            e.printStackTrace();
+////                                        }
+//
+////                                        System.out.println("countrycountry" + country);
+//////                                        String postalCode = addresses.get(0).getPostalCode();
+//////                                        String knownName = addresses.get(0).getFeatureName(); // Onl
+////
+////
+//////                                        text_search.setText(country + " - " + state);
+////
+////
+////                                        if (country.equals("السعودية")) {
+////
+////                                            select.setVisibility(View.VISIBLE);
+////
+////                                        } else {
+////                                            select.setVisibility(View.INVISIBLE);
+////
+////                                        }
 //
 //
-//                                        text_search.setText(country + " - " + state);
 //                                    } catch (Exception e) {
 //
 //                                    }
 //
 //                                }
 //                            }, 500); // After 1 seconds
-//
-//
-//                            //    state country
-//
 //
 //                        } catch (Exception e) {
 //                            e.printStackTrace();
@@ -373,42 +368,22 @@ public class SelectLocationActivity extends AppCompatActivity {
                     }
                 });
 
-                LatLng mylocation = getLocation_sau();
-                if (mylocation != null) {
-//                            googleMap.addMarker(new MarkerOptions()
-//                                    .position(mylocation)).setTag("mylocation");
+//                LatLng mylocation = getLocation_sau();
+//                if (mylocation != null) {
 //
-//                            ;
-                    CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
-                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+////                    CameraPosition cameraPosition = new CameraPosition.Builder().target(mylocation).zoom(4).build();
+////                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+//
+//
+//                }
 
 
-//                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 40));
-//                            // Zoom in, animating the camera.
-//                            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-                    // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-//                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
-                }
-
-
-                if (ActivityCompat.checkSelfPermission(SelectLocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(SelectLocationActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-
-                    return;
-                }
-                googleMap.setMyLocationEnabled(true);
-                View locationButton = ((View) mMapView.findViewById(Integer.parseInt("1")).getParent()).findViewById(Integer.parseInt("2"));
-                RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams) locationButton.getLayoutParams();
-// position on right bottom
-                rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
-                rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
-                rlp.setMargins(0, 180, 180, 0);
+//                View locationButton = ((View) mMapView.findViewById(Integer.parseInt("1")).getParent()).findViewById(Integer.parseInt("2"));
+//                RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams) locationButton.getLayoutParams();
+//// position on right bottom
+//                rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
+//                rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+//                rlp.setMargins(0, 180, 180, 0);
 
 
             }
@@ -481,9 +456,7 @@ public class SelectLocationActivity extends AppCompatActivity {
 //                                    MapsFragmentNew.lan = cityModules_list_filtter.get(i).getLan() + "";
 
                                     LatLng sydney = new LatLng(Double.valueOf(cityModules_list_filtter.get(i).getLat()), Double.valueOf(cityModules_list_filtter.get(i).getLan()));
-
                                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 10));
-
                                     text_search.setText(cityModules_list_filtter.get(i).getSearch_name());//+ "-" + cityModules_list_filtter.get(i).getCity().getName()
                                     result.setVisibility(View.GONE);
 

@@ -274,19 +274,17 @@ public class OtherProfileActivity extends AppCompatActivity {
                                     userModules = gson.fromJson(mJson, User.class);
 
 
-                                    System.out.println("userModulesuserModules" + userModules.getService_name().size());
-
-                                    myoffer_layout.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            Intent intent = new Intent(OtherProfileActivity.this, MyOffersActivity.class);
-//              intent.putExtra("from", "splash");
-                                            intent.putExtra("id_user", userModules.getId() + "");
-
-                                            startActivity(intent);
-//                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-                                        }
-                                    });
+//                                    myoffer_layout.setOnClickListener(new View.OnClickListener() {
+//                                        @Override
+//                                        public void onClick(View v) {
+//                                            Intent intent = new Intent(OtherProfileActivity.this, MyOffersActivity.class);
+////              intent.putExtra("from", "splash");
+//                                            intent.putExtra("id_user", userModules.getId() + "");
+//
+//                                            startActivity(intent);
+////                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                                        }
+//                                    });
 
                                     RecyclerVie_member_service service_l = new RecyclerVie_member_service(OtherProfileActivity.this, userModules.getMember_name());
 
@@ -457,8 +455,8 @@ public class OtherProfileActivity extends AppCompatActivity {
 
 
                                         Clints.setText(userModules.getCount_emp() + "");
-                                        request_nu.setText(userModules.getCount_request() + "");
-                                        MyOffer.setText(userModules.getCount_fund_offer() + "");
+                                        request_nu.setText(userModules.getCount_estate() + "");
+                                        MyOffer.setText(userModules.getCount_offer() + "");
 //                                        visit_nu.setText(userModules.getCount_visit() + "");
 
                                         if (userModules.getLogo() != null && !userModules.getLogo().equals("null")) {

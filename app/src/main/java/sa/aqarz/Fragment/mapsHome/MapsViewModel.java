@@ -34,9 +34,9 @@ public class MapsViewModel extends ViewModel {
         mapsRepository.getOpration2();
     }
 
-    public void getCity(Activity activity,String state_id) {
+    public void getCity(Activity activity,String state_id,String type) {
         mapsRepository = new MapsRepository(activity,true);
-        mapsRepository.getCity( state_id);
+        mapsRepository.getCity( state_id,type);
     }
     public void getCity2(Activity activity,String state_id) {
         mapsRepository = new MapsRepository(activity,true);
