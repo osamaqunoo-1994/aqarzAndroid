@@ -35,8 +35,8 @@
                         android:id="@+id/back"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:padding="13dp"
-                        android:src="@drawable/ic_back"
+                        android:padding="11dp"
+                        android:src="@drawable/ic_group_6000"
 
                         app:tint="@color/white" />
 
@@ -51,11 +51,14 @@
                         android:textSize="17dp" />
 
                     <ImageView
+                        android:id="@+id/qr_code"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:padding="13dp"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_qr_code"
 
                         app:tint="@color/white" />
+
 
                 </LinearLayout>
 
@@ -103,49 +106,44 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_centerInParent="true"
+                            android:elevation="10dp"
+
                             android:src="@color/white"
                             app:civ_border_color="@color/colorPrimary"
-                            app:civ_border_width="2dp" />
+                            app:civ_border_width="0dp" />
 
                     </RelativeLayout>
 
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="25dp">
+                        android:layout_margin="10dp">
+
+                        <ImageView
+                            android:id="@+id/editProfile"
+                            android:layout_width="30dp"
+
+                            android:layout_height="30dp"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_edit"
+                            app:tint="@color/colorPrimary" />
 
                         <LinearLayout
-                            android:id="@+id/editProfile"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:id="@+id/settings"
+
+                            android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/ic_rectangle_1563"
-                            android:gravity="center">
+                            android:padding="5dp"
+                            android:src="@drawable/ic_menu_more_settings"
+                            app:tint="@color/colorPrimary" />
 
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
-                                android:src="@drawable/ic_edit"
-                                app:tint="@color/colorPrimary" />
+                    </LinearLayout>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="5dp"
-                                android:layout_marginBottom="3dp"
-                                android:text="@string/EditProfile"
-                                android:textColor="@color/colorPrimary" />
-
-
-                        </LinearLayout>
-
-
-                    </androidx.cardview.widget.CardView>
                 </RelativeLayout>
 
                 <LinearLayout
@@ -153,20 +151,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal">
-
-                    <LinearLayout
-
-                        android:layout_width="42dp"
-
-                        android:layout_height="42dp"
-
-                        android:gravity="center"
-
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp">
-
-
-                    </LinearLayout>
 
 
                     <LinearLayout
@@ -181,7 +165,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:gravity="center">
 
 
@@ -190,9 +174,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/din_bold"
-
                                 android:textColor="#424446"
-                                android:textSize="17dp" />
+
+                                android:textSize="17dp"
+                                android:textStyle="bold" />
 
                             <ImageView
                                 android:id="@+id/cirtificad"
@@ -210,7 +195,7 @@
                             android:id="@+id/is_real_state"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
+android:visibility="gone"
                             android:gravity="center">
 
 
@@ -248,38 +233,43 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:gravity="center"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:visibility="visible">
 
                             <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
+                                android:layout_width="11dp"
+                                android:layout_height="11dp"
                                 android:padding="1dp"
                                 android:src="@drawable/ic_phone" />
 
                             <TextView
                                 android:id="@+id/phone"
                                 android:layout_width="wrap_content"
-
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
-                                android:text="0" />
+
+                                android:text="0"
+                                android:textSize="10dp"
+                                android:textStyle="bold" />
 
                             <LinearLayout
                                 android:layout_width="10dp"
                                 android:layout_height="10dp" />
 
                             <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
                                 android:src="@drawable/ic_viewww"
                                 app:tint="#959A9C" />
 
                             <TextView
                                 android:id="@+id/view"
-
                                 android:layout_width="wrap_content"
+
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="5dp" />
+                                android:layout_marginStart="5dp"
+                                android:textSize="10dp"
+                                android:textStyle="bold" />
 
 
                         </LinearLayout>
@@ -313,43 +303,191 @@
 
                     </LinearLayout>
 
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Bio"
+                        android:textColor="#5A6368"
+                        android:textSize="15dp"
+
+                        android:textStyle="bold" />
+
                     <LinearLayout
-                        android:id="@+id/qr_code"
-
-                        android:layout_width="42dp"
-
-                        android:layout_height="42dp"
-                        android:background="@drawable/button_login"
-                        android:gravity="center"
-
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp">
-
-                        <ImageView
-                            android:layout_width="20dp"
-
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:padding="3dp"
-                            android:src="@drawable/ic_qr_code"
-                            app:tint="@color/white" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/bio"
                             android:layout_width="wrap_content"
+
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="2dp"
-                            android:text="@string/share_account"
-                            android:textColor="@color/white"
-                            android:textSize="12dp"
-                            android:visibility="gone" />
+                            android:textColor="#AAABB3"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp">
+
+
+                    <LinearLayout
+                        android:id="@+id/myoffer_layout"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+
+                        <TextView
+                            android:id="@+id/request_nu"
+
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/v4"
+                            android:gravity="center"
+                            android:paddingBottom="4dp"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/back_new_profile"
+                            android:fontFamily="@font/muli_bold"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:paddingLeft="2dp"
+                            android:paddingTop="1dp"
+                            android:paddingRight="2dp"
+                            android:paddingBottom="1dp"
+                            android:text="@string/aqarez_titele_profile"
+                            android:textColor="@color/color_text2"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/all_offer"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+
+                        <TextView
+                            android:id="@+id/MyOffer"
+
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/v4"
+                            android:gravity="center"
+                            android:paddingBottom="4dp"
+                            android:text="0"
+                            android:textColor="@color/white"
+
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/back_new_profile"
+                            android:fontFamily="@font/muli_bold"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:paddingLeft="1dp"
+                            android:paddingTop="2dp"
+                            android:paddingRight="1dp"
+                            android:paddingBottom="2dp"
+                            android:text="@string/offer_titele_profile"
+                            android:textColor="@color/color_text2"
+
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/clints"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+
+                        <TextView
+                            android:id="@+id/Clints"
+
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/v4"
+                            android:gravity="center"
+                            android:paddingBottom="4dp"
+                            android:text="0"
+                            android:textColor="@color/white"
+
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/back_new_profile"
+                            android:fontFamily="@font/muli_bold"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:paddingLeft="1dp"
+                            android:paddingTop="1dp"
+                            android:paddingRight="1dp"
+                            android:paddingBottom="1dp"
+                            android:text="@string/Clints"
+                            android:textColor="@color/color_text2"
+
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -359,12 +497,157 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="15dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp">
 
 
                     <LinearLayout
                         android:id="@+id/v1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+
+                        <TextView
+                            android:id="@+id/watiing"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/v1"
+                            android:gravity="center"
+                            android:paddingBottom="4dp"
+                            android:text="0"
+
+                            android:textColor="@color/white"
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/back_new_profile"
+                            android:fontFamily="@font/muli_bold"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:paddingLeft="2dp"
+                            android:paddingTop="2dp"
+                            android:paddingRight="2dp"
+                            android:paddingBottom="2dp"
+                            android:text="@string/btn_order_wating"
+                            android:textColor="@color/color_text2"
+                            android:textSize="10dp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/v2"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+
+                        <TextView
+                            android:id="@+id/preview"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/v2"
+                            android:gravity="center"
+                            android:paddingBottom="4dp"
+                            android:text="0"
+                            android:textColor="@color/white"
+
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/back_new_profile"
+                            android:fontFamily="@font/muli_bold"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:paddingLeft="1dp"
+                            android:paddingTop="2dp"
+                            android:paddingRight="1dp"
+                            android:paddingBottom="2dp"
+                            android:text="@string/btn_order_preview"
+                            android:textColor="@color/color_text2"
+
+                            android:textSize="10dp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/v3"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+
+                        <TextView
+                            android:id="@+id/accetpt"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/v3"
+                            android:gravity="center"
+                            android:paddingBottom="4dp"
+                            android:text="0"
+                            android:textColor="@color/white"
+
+                            android:textSize="15dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/back_new_profile"
+                            android:fontFamily="@font/muli_bold"
+                            android:gravity="center"
+                            android:lines="1"
+                            android:paddingLeft="1dp"
+                            android:paddingTop="2dp"
+                            android:paddingRight="1dp"
+                            android:paddingBottom="2dp"
+                            android:text="@string/btn_order_accept"
+                            android:textColor="@color/color_text2"
+
+                            android:textSize="10dp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="15dp"
+                    android:visibility="gone">
+
+
+                    <LinearLayout
 
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -382,7 +665,6 @@
 
 
                         <TextView
-                            android:id="@+id/watiing"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
@@ -398,7 +680,6 @@
                         android:layout_height="wrap_content" />
 
                     <LinearLayout
-                        android:id="@+id/v2"
 
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -416,7 +697,6 @@
                             android:textSize="12dp" />
 
                         <TextView
-                            android:id="@+id/preview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
@@ -433,7 +713,6 @@
                         android:layout_height="wrap_content" />
 
                     <LinearLayout
-                        android:id="@+id/v3"
 
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -452,7 +731,6 @@
 
 
                         <TextView
-                            android:id="@+id/accetpt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
@@ -464,39 +742,16 @@
 
                 </LinearLayout>
 
-
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:orientation="vertical">
 
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/Bio"
-                        android:textColor="#5A6368"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/bio"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="#AAABB3"
-                        android:textSize="13dp" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:gravity="center"
                     android:paddingLeft="10dp"
-                    android:paddingRight="10dp">
+
+                    android:paddingRight="10dp"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="100dp"
@@ -506,7 +761,6 @@
                         android:gravity="center">
 
                         <LinearLayout
-                            android:id="@+id/myoffer_layout"
 
                             android:layout_width="100dp"
                             android:layout_height="80dp"
@@ -516,7 +770,6 @@
 
 
                             <TextView
-                                android:id="@+id/request_nu"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/muli_semi_bold"
@@ -565,7 +818,6 @@
                         android:gravity="center">
 
                         <LinearLayout
-                            android:id="@+id/all_offer"
                             android:layout_width="100dp"
                             android:layout_height="80dp"
                             android:background="@drawable/back_new_profile"
@@ -574,7 +826,6 @@
 
 
                             <TextView
-                                android:id="@+id/MyOffer"
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -600,7 +851,7 @@
 
                                 <TextView
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="24dp"
                                     android:layout_marginLeft="2dp"
                                     android:layout_marginRight="2dp"
                                     android:layout_marginBottom="2dp"
@@ -625,7 +876,6 @@
                         android:gravity="center">
 
                         <LinearLayout
-                            android:id="@+id/clints"
                             android:layout_width="100dp"
                             android:layout_height="80dp"
                             android:background="@drawable/back_new_profile"
@@ -634,7 +884,6 @@
 
 
                             <TextView
-                                android:id="@+id/Clints"
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -678,16 +927,20 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/memberships"
 
 
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="25dp"
                     android:layout_marginRight="15dp"
-
+                    android:background="@drawable/border"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="5dp"
+
+                    android:paddingBottom="5dp">
 
 
                     <ImageView
@@ -695,6 +948,7 @@
                         android:layout_height="35dp"
                         android:padding="5dp"
                         android:src="@drawable/ic_member_sa"
+                        android:visibility="gone"
 
                         />
 
@@ -706,8 +960,24 @@
                         android:layout_marginBottom="5dp"
                         android:text="@string/aw3x"
                         android:textColor="#5A6368"
+
                         android:textSize="16dp"
                         android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/memberships_i"
+
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_arrow_down_x" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -715,23 +985,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-
                     android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp" />
 
+                    android:layout_marginRight="10dp"
+                    android:visibility="gone" />
 
                 <LinearLayout
 
-
-                    android:layout_width="wrap_content"
+                    android:id="@+id/service"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
-
                     android:layout_marginRight="15dp"
-
+                    android:background="@drawable/border"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="5dp"
+
+                    android:paddingBottom="5dp">
 
 
                     <ImageView
@@ -739,6 +1011,7 @@
                         android:layout_height="35dp"
                         android:padding="5dp"
                         android:src="@drawable/ic_service"
+                        android:visibility="gone"
 
                         />
 
@@ -752,7 +1025,23 @@
                         android:textColor="#5A6368"
                         android:textSize="16dp"
                         android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/service_i"
+
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_arrow_down_x" />
                 </LinearLayout>
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/service_list"
@@ -760,20 +1049,25 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginRight="10dp"
+                    android:visibility="gone" />
+
 
                 <LinearLayout
 
+                    android:id="@+id/experience"
 
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
-
                     android:layout_marginRight="15dp"
-
+                    android:background="@drawable/border"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="5dp"
+
+                    android:paddingBottom="5dp">
 
 
                     <ImageView
@@ -781,6 +1075,7 @@
                         android:layout_height="35dp"
                         android:padding="5dp"
                         android:src="@drawable/ic_gexp"
+                        android:visibility="gone"
 
                         />
 
@@ -794,7 +1089,23 @@
                         android:textColor="#5A6368"
                         android:textSize="16dp"
                         android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/experience_i"
+
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_arrow_down_x" />
                 </LinearLayout>
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/list_service"
@@ -802,21 +1113,23 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp" />
-
+                    android:layout_marginRight="10dp"
+                    android:visibility="gone" />
 
                 <LinearLayout
+                    android:id="@+id/Coursesxx"
 
-
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
-
                     android:layout_marginRight="15dp"
-
+                    android:background="@drawable/border"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="5dp"
+
+                    android:paddingBottom="5dp">
 
 
                     <ImageView
@@ -824,6 +1137,7 @@
                         android:layout_height="35dp"
                         android:padding="5dp"
                         android:src="@drawable/ic_cour"
+                        android:visibility="gone"
 
                         />
 
@@ -837,7 +1151,23 @@
                         android:textColor="#5A6368"
                         android:textSize="16dp"
                         android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/Coursesxx_i"
+
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_arrow_down_x" />
                 </LinearLayout>
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/Courses"
@@ -845,7 +1175,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginRight="10dp"
+                    android:visibility="gone" />
 
 
             </LinearLayout>
@@ -863,7 +1194,8 @@
             android:layout_margin="10dp"
             android:background="@drawable/circle_fill"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
 
             <ImageView

@@ -35,6 +35,7 @@ import sa.aqarz.Activity.Auth.EditProfileActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.Employee.DetailsEmployeeActivity;
 import sa.aqarz.Activity.MyInterestsActivity;
+import sa.aqarz.Activity.SettingsActivity;
 import sa.aqarz.Adapter.RecyclerVie_member_service;
 import sa.aqarz.Adapter.RecyclerVie_member_service_m;
 import sa.aqarz.Adapter.RecyclerView_Course;
@@ -63,7 +64,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
     public static User userModules;
 
     CircleImageView profile;
-    LinearLayout qr_code;
+    ImageView qr_code;
     ImageView cirtificad;
 
 
@@ -75,7 +76,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
     String id;
     IResult mResultCallback;
     LinearLayout myoffer_layout;
-    LinearLayout editProfile;
+    ImageView editProfile;
     TextView bio;
     TextView phone;
     TextView view;
@@ -90,11 +91,32 @@ public class ProfileDetailsActivity extends AppCompatActivity {
     LinearLayout myintrest;
     LinearLayout all_employee;
 
+    LinearLayout memberships;
+    LinearLayout service;
+    LinearLayout experience;
+    LinearLayout Coursesxx;
+
+    ImageView memberships_i;
+    ImageView service_i;
+    ImageView experience_i;
+    ImageView Coursesxx_i;
+
+    ImageView settings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_details);
         phone = findViewById(R.id.phone);
+        memberships_i = findViewById(R.id.memberships_i);
+        service_i = findViewById(R.id.service_i);
+        experience_i = findViewById(R.id.experience_i);
+        Coursesxx_i = findViewById(R.id.Coursesxx_i);
+        settings = findViewById(R.id.settings);
+        memberships = findViewById(R.id.memberships);
+        service = findViewById(R.id.service);
+        experience = findViewById(R.id.experience);
+        Coursesxx = findViewById(R.id.Coursesxx);
         view = findViewById(R.id.view);
         cirtificad = findViewById(R.id.cirtificad);
         Clints = findViewById(R.id.Clints);
@@ -237,6 +259,79 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+
+        memberships.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (member_list.getVisibility() == View.VISIBLE) {
+                    member_list.setVisibility(View.GONE);
+                    memberships_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_x));
+                } else {
+                    member_list.setVisibility(View.VISIBLE);
+                    memberships_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up_x));
+
+                }
+
+            }
+        });
+
+        service.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (memssr_list.getVisibility() == View.VISIBLE) {
+                    memssr_list.setVisibility(View.GONE);
+                    service_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_x));
+
+                } else {
+                    memssr_list.setVisibility(View.VISIBLE);
+                    service_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up_x));
+
+                }
+            }
+        });
+
+        experience.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (list_service.getVisibility() == View.VISIBLE) {
+                    list_service.setVisibility(View.GONE);
+                    experience_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_x));
+
+                } else {
+                    list_service.setVisibility(View.VISIBLE);
+                    experience_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up_x));
+
+                }
+            }
+        });
+
+        Coursesxx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Courses.getVisibility() == View.VISIBLE) {
+                    Courses.setVisibility(View.GONE);
+                    Coursesxx_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_x));
+
+                } else {
+                    Courses.setVisibility(View.VISIBLE);
+                    Coursesxx_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up_x));
+
+                }
+            }
+        });
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileDetailsActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     public void init_volley() {
@@ -308,7 +403,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                                         public void onClick(View v) {
                                             Intent intent = new Intent(ProfileDetailsActivity.this, AllOrder_filtterActivity.class);
 //              intent.putExtra("from", "splash");
-                                            intent.putExtra("type", "preview");
+                                            intent.putExtra("type", "sending_code");////preview
 
                                             startActivity(intent);
 //                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
@@ -524,7 +619,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                                         if (userModules.getIs_pay() != null) {
                                             if (userModules.getIs_pay().equals("1")) {
 
-                                                is_real_state.setVisibility(View.VISIBLE);
+                                                is_real_state.setVisibility(View.GONE);
 
                                             } else {
                                                 is_real_state.setVisibility(View.GONE);

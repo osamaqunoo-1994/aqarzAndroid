@@ -72,6 +72,7 @@ import sa.aqarz.Activity.InfoActivity;
 import sa.aqarz.Activity.Info_2_Activity;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.MyInterestsActivity;
+import sa.aqarz.Activity.MyOrderUserActivity;
 import sa.aqarz.Activity.NotficationActvity;
 import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
 import sa.aqarz.Activity.OrderListActivity;
@@ -158,6 +159,7 @@ public class MapsFragmentNew extends Fragment {
 
     ImageView chmnage_map_style;
     ImageView intrest;
+    ImageView my_order;
     static String type_filtter = "";
     static TextView error_market;
     static TextView error_fund;
@@ -211,6 +213,7 @@ public class MapsFragmentNew extends Fragment {
         intrest = v.findViewById(R.id.intrest);
         error_market = v.findViewById(R.id.error_market);
         error_fund = v.findViewById(R.id.error_fund);
+        my_order = v.findViewById(R.id.my_order);
 
 
         activity = getActivity();
@@ -894,7 +897,14 @@ public class MapsFragmentNew extends Fragment {
 
             }
         });
+        my_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                startActivity(new Intent(getActivity(), MyOrderUserActivity.class));
+
+            }
+        });
 
     }
 
@@ -1357,11 +1367,13 @@ public class MapsFragmentNew extends Fragment {
                 notfication_layout.setVisibility(View.VISIBLE);
                 all_list_backround.setVisibility(View.VISIBLE);
                 RealStatr_order.setVisibility(View.VISIBLE);
+                my_order.setVisibility(View.GONE);
             } else {
                 all_list_backround.setVisibility(View.GONE);
                 intrest.setVisibility(View.GONE);
                 notfication_layout.setVisibility(View.VISIBLE);
                 RealStatr_order.setVisibility(View.GONE);
+                my_order.setVisibility(View.VISIBLE);
 
             }
 
@@ -1369,6 +1381,8 @@ public class MapsFragmentNew extends Fragment {
             all_list_backround.setVisibility(View.GONE);
 //            favorit.setVisibility(View.GONE);
             intrest.setVisibility(View.GONE);
+            my_order.setVisibility(View.GONE);
+
             notfication_layout.setVisibility(View.GONE);
 
 

@@ -3,7 +3,7 @@
     <color name="colorPrimary">#5840BB</color>
     <color name="colorPrimaryDark">#5840BB</color>
     <color name="colorAccent">#13D6D5</color>
-    <color name="editTextBackground">#E0E0E0</color>
+    <color name="editTextBackground">#F7F7F7</color>
     <color name="red_btn_bg_color">#DD6B55</color>
     <color name="error">#fc4141</color>
     <color name="cookie_success">#35B273 </color>
@@ -28,6 +28,8 @@
     <color name="color_un_active">#AAABB3</color>
     <color name="color_brimarys">#705840BB</color>
     <color name="color_list_back">#F5F5F5</color>
+    <color name="color_text">#28ABE3</color>
+    <color name="color_text2">#5A6368</color>
 
 
 

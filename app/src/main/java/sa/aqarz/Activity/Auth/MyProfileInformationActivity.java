@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
+import sa.aqarz.Activity.SettingsActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
@@ -71,7 +72,13 @@ public class MyProfileInformationActivity extends AppCompatActivity {
     CheckBox are_you_aqarez;
 
 
-    String type="user";
+    String type = "user";
+    String aqarezman_yes_no = "user";
+
+
+    TextView yes;
+    TextView no;
+ImageView settings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,6 +106,9 @@ public class MyProfileInformationActivity extends AppCompatActivity {
         edit_image = findViewById(R.id.edit_image);
         image_profile = findViewById(R.id.image_profile);
         are_you_aqarez = findViewById(R.id.are_you_aqarez);
+        yes = findViewById(R.id.yes);
+        no = findViewById(R.id.no);
+        settings = findViewById(R.id.settings);
 
 
         try {
@@ -112,7 +122,34 @@ public class MyProfileInformationActivity extends AppCompatActivity {
 
         }
 
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                aqarezman_yes_no = "provider";
+                yes.setBackground(getResources().getDrawable(R.drawable.button_login));
 
+                yes.setTextColor(getResources().getColor(R.color.white));
+
+
+                no.setBackground(null);
+
+                no.setTextColor(getResources().getColor(R.color.textColor));
+            }
+        });
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                aqarezman_yes_no = "user";
+                no.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                no.setTextColor(getResources().getColor(R.color.white));
+
+
+                yes.setBackground(null);
+
+                yes.setTextColor(getResources().getColor(R.color.textColor));
+            }
+        });
         are_you_aqarez.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -205,7 +242,7 @@ public class MyProfileInformationActivity extends AppCompatActivity {
 
                         sendObj.put("name", name_ed.getText().toString());
                         sendObj.put("email", email_ed.getText().toString());
-                        sendObj.put("type", type);
+                        sendObj.put("type", aqarezman_yes_no);
 //                        sendObj.put("mobile", phone_ed.getText().toString());
 
 
@@ -221,7 +258,12 @@ public class MyProfileInformationActivity extends AppCompatActivity {
 
             }
         });
-
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyProfileInformationActivity.this, SettingsActivity.class));
+            }
+        });
 
     }
 
@@ -328,7 +370,7 @@ public class MyProfileInformationActivity extends AppCompatActivity {
 //            Uri uri = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, images.get(0).getId()+"");
 
 
-            String filePath = images.get(0).getPath().toString();
+            String filePath = images.get(0).getPath();
             Bitmap selectedImagea = BitmapFactory.decodeFile(filePath);
 
             image_profile.setImageBitmap(selectedImagea);

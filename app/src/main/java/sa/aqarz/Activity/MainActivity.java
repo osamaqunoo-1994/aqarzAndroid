@@ -411,24 +411,35 @@ public class MainActivity extends AppCompatActivity {
 //                            .show();
                 } else {
 
-                    add_aqares_and_order_and_estate.setVisibility(View.VISIBLE);
-                    gray_layout.setVisibility(View.VISIBLE);
-                    gray_layout.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            gray_layout.setVisibility(View.GONE);
-                            add_aqares_and_order_and_estate.setVisibility(View.GONE);
+                    if (Settings.CheckIsAccountAqarzMan()) {
 
-                        }
-                    });
-                    close_add.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            gray_layout.setVisibility(View.GONE);
-                            add_aqares_and_order_and_estate.setVisibility(View.GONE);
+                        add_aqares_and_order_and_estate.setVisibility(View.VISIBLE);
+                        gray_layout.setVisibility(View.VISIBLE);
+                        gray_layout.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                gray_layout.setVisibility(View.GONE);
+                                add_aqares_and_order_and_estate.setVisibility(View.GONE);
 
-                        }
-                    });
+                            }
+                        });
+                        close_add.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                gray_layout.setVisibility(View.GONE);
+                                add_aqares_and_order_and_estate.setVisibility(View.GONE);
+
+                            }
+                        });
+                    } else {
+//                        startActivity(new Intent(MainActivity.this, MyOrderUserActivity.class));
+                        Intent intent = new Intent(MainActivity.this, AqarzOrActivity.class);
+                        intent.putExtra("id", "");
+                        startActivity(intent);
+                        gray_layout.setVisibility(View.GONE);
+                        add_aqares_and_order_and_estate.setVisibility(View.GONE);
+                    }
+
 //                    addAqares.setOnClickListener(new View.OnClickListener() {
 //                        @Override
 //                        public void onClick(View v) {
