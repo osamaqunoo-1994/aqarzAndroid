@@ -279,6 +279,21 @@ public class AllOrderActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+        try {
+
+            String type_estate = getIntent().getStringExtra("type_estate");
+
+
+            if (type_estate != null) {
+                if (!type_estate.equals("null")) {
+                    estate_type_id = type_estate;
+
+                }
+            }
+
+        } catch (Exception e) {
+
+        }
 //00
 //        if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
 //            premium.setVisibility(View.VISIBLE);

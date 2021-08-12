@@ -733,6 +733,7 @@ public class MapsFragmentNew extends Fragment {
                 if (type_selected.equals("Real")) {
                     Intent intent = new Intent(activity, AllOrderActivity.class);
                     intent.putExtra("type", type_selected);
+                    intent.putExtra("type_estate", type_filtter);
 
                     if (Hawk.contains("city_id_postion")) {
                         if (!Hawk.get("city_id_postion").toString().equals("")) {
@@ -749,6 +750,7 @@ public class MapsFragmentNew extends Fragment {
                     }
 
                     intent.putExtra("id_nib", "");
+
                     if (regionModules_list.size() != 0) {
 
                         if (!region_id_postion.equals("")) {
@@ -761,6 +763,7 @@ public class MapsFragmentNew extends Fragment {
                 } else if (type_selected.equals("Market")) {
                     Intent intent = new Intent(activity, AllOrderActivity.class);
                     intent.putExtra("type", type_selected);
+                    intent.putExtra("type_estate", type_filtter);
 
                     if (Hawk.contains("city_id_postion")) {
                         if (!Hawk.get("city_id_postion").toString().equals("")) {
@@ -1586,6 +1589,8 @@ public class MapsFragmentNew extends Fragment {
 
 
                     intent.putExtra("id_city", city_serial_postion);
+                    intent.putExtra("type_estate", type_filtter);
+
 //                    System.out.println("id_nib" + homeModules_aqares.get(Integer.valueOf(Integer.valueOf(number))).getId());
                     intent.putExtra("type", type_selected);
                     intent.putExtra("id_nib", locationNeighborhood_list.get(Integer.valueOf(number + "")).getNeighborhoodSerial() + "");
