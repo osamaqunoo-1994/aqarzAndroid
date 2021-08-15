@@ -1481,13 +1481,17 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        try {
 
-        if (!first_time_) {
-            forceUpdate();
-        } else {
+            if (!first_time_) {
+                forceUpdate();
+            } else {
+
+            }
+
+        } catch (Exception e) {
 
         }
-
         super.onResume();
     }
 
@@ -1705,18 +1709,23 @@ public class MainActivity extends AppCompatActivity {
 
     // check version on play store and force update
     public void forceUpdate() {
-        first_time_ = false;
-        PackageManager packageManager = this.getPackageManager();
-        PackageInfo packageInfo = null;
         try {
-            packageInfo = packageManager.getPackageInfo(getPackageName(), 0);
-        } catch (PackageManager.NameNotFoundException e) {
+            first_time_ = false;
+            PackageManager packageManager = this.getPackageManager();
+            PackageInfo packageInfo = null;
+            try {
+                packageInfo = packageManager.getPackageInfo(getPackageName(), 0);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+            String currentVersion = packageInfo.versionName;
+
+            System.out.println("currentVersion" + currentVersion);
+            new ForceUpdateAsync(currentVersion, MainActivity.this).execute();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        String currentVersion = packageInfo.versionName;
 
-        System.out.println("currentVersion" + currentVersion);
-        new ForceUpdateAsync(currentVersion, MainActivity.this).execute();
     }
 
     public void init_volley() {
