@@ -992,6 +992,58 @@ Two working days to complete your order</string>
     <string name="lof_ofpfs">Login</string>
     <string name="change_to_aqarz">Do you want to change your account to Aqarz man?</string>
     <string name="Update">Update</string>
+    <string name="step_1_location">location</string>
+    <string name="step_2_Details">Details Aqar</string>
+    <string name="step_3_Details">Details of indoor and outdoor</string>
+    <string name="step_4_Advertiser">Advertiser information</string>
 
+    <string name="Region_add">Region<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="city_add">Region<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Neighborhood_add">Neighborhood<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Typeproperty_add">Type of property use<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="bedrooms_add">Bedrooms<font color="#DD4131"><sup>*</sup></font></string>
+    <string name="area_add">Area<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Stret_add">Street</string>
+    <string name="land_number_add">land number</string>
+    <string name="number_units_add">number of units</string>
+    <string name="turn_number_add">turn number</string>
+    <string name="unit_number_add">unit number</string>
+    <string name="residential_add">Residential</string>
+    <string name="board_add">board</string>
+    <string name="hall_Add">hall</string>
+    <string name="sleep_add">sleep</string>
+    <string name="W_C_add">W.C</string>
+    <string name="commercial_add">Commercial</string>
+    <string name="Artificial_add">Artificial</string>
+
+
+    <string name="rom_add">Room type<font color="#DD4131"><sup>*</sup></font></string>
+    <string name="interface_add">interface<font color="#DD4131"><sup>*</sup></font></string>
+
+
+    <string name="lengths_add">lengths and width aqarz<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="streetwidthadd">Street width<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Date_of_construction_add">Date of construction (age of the property)<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="sale_price_add">Sale price<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Are_there_disputes_add">Are there disputes over the property?<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="there_mortgage_add">Is there a mortgage or restriction that prevents or limits the disposal or use of the property?<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="rights_Add">Are there rights and obligations on the property that is not trusted in the property document?<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Information_add">Information that may affect the property, whether in reducing its value or affecting the targets decision to advertise<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Warranties_duration_add">Warranties and their duration<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="it_conform_add">Does it conform to the Saudi Building Code<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Other_add">Other<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="number_lifts_add">number of lifts</string>
+    <string name="Number_parking_add">Number of parking</string>
+    <string name="Available_indoor_facilities_add">Available indoor facilities</string>
+
+    <string name="Advertiser_side_add">Advertisers side<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Advertiser_adjective_add">Advertiser adjective<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="individual_add">individual</string>
+    <string name="facility_add">facility</string>
+    <string name="owner_add">owner</string>
+    <string name="authorized_add">authorized</string>
+    <string name="Approval_request_add">Approval of the request</string>
+    <string name="owner_name_add">owner name<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Mobile_add">Mobile<font color="#AAABB3"><sup>*</sup></font></string>
 
 </resources>

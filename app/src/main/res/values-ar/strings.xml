@@ -1016,4 +1016,55 @@
 
     <string name="Profile">الحساب</string>
 
+
+
+    <string name="change_to_aqarz">هل تريد تغيير الحساب لعقاري?</string>
+    <string name="Update">تعديل</string>
+    <string name="step_1_location">الموقع الجغرافي</string>
+    <string name="step_2_Details">تفاصيل العقار</string>
+    <string name="step_3_Details">تفاصيل المرافق الداخلية الخارجيه</string>
+    <string name="step_4_Advertiser">معلومات المعلن</string>
+
+
+
+
+    <string name="Region_add">المنطقه<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="city_add">المدينة<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Neighborhood_add">الحي<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Typeproperty_add">نوع استخدام العقار<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="bedrooms_add">غرف النوم<font color="#DD4131"><sup>*</sup></font></string>
+    <string name="area_add">المساعه<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Stret_add">الشارع</string>
+    <string name="land_number_add">رقم الارض</string>
+    <string name="number_units_add">عدد الوحدات</string>
+    <string name="turn_number_add">رقم الدور</string>
+    <string name="unit_number_add">رقم الوحده</string>
+    <string name="residential_add">سكني</string>
+    <string name="board_add">مجلس</string>
+    <string name="hall_Add">صالة</string>
+    <string name="sleep_add">نوم</string>
+    <string name="W_C_add">دورة مياه</string>
+    <string name="commercial_add">تجاري</string>
+    <string name="Artificial_add">صناعي</string>
+
+
+    <string name="rom_add">نوع الغرف<font color="#DD4131"><sup>*</sup></font></string>
+    <string name="interface_add">الواجهه<font color="#DD4131"><sup>*</sup></font></string>
+
+
+
+    <string name="lengths_add">حدود وأطوال العقار<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="streetwidthadd">عرض الشارع<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Date_of_construction_add">تاريخ البناء (عمر العقار)<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="sale_price_add">سعر البيع<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Are_there_disputes_add">هل يوجد نزاعات على العقار؟<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="there_mortgage_add">هل يوجد الرهن أو القيد الذي يمنع او يحد من التصرف او الانتفاع من العقار؟<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="rights_Add">هل يوجد حقوق والتزامات على العقار الغير موثوقة في وثيقة العقار؟<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Information_add">المعلومات التي قد تؤثر على العقار سواء في خفض قيمته او التأثير على قرار المستهدف بالإعلان</string>
+    <string name="Warranties_duration_add">الضمانات ومدتها<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="it_conform_add">هل مطابق لكود البناء السعودي؟<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Other_add">غير ذلك<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="number_lifts_add">عدد المصاعد</string>
+    <string name="Number_parking_add">عدد المواقف</string>
+
 </resources>

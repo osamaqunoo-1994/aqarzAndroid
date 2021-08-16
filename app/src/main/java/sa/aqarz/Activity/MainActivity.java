@@ -74,6 +74,7 @@ import java.util.Locale;
 import java.util.Set;
 
 import io.sentry.Sentry;
+import sa.aqarz.Activity.AddAqarz.AddAqarzActivity;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
@@ -476,7 +477,7 @@ public class MainActivity extends AppCompatActivity {
                     addAqares.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(MainActivity.this, AddAqarsActivity.class);
+                            Intent intent = new Intent(MainActivity.this, AddAqarzActivity.class);
                             intent.putExtra("id", "");
                             startActivity(intent);
                             gray_layout.setVisibility(View.GONE);
