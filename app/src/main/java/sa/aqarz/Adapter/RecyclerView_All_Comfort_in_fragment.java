@@ -195,9 +195,6 @@ public class RecyclerView_All_Comfort_in_fragment extends RecyclerView.Adapter<R
 //
 
 
-                if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(position);
-                }
 
                 if (alldata.get(position).get_is_selected()) {
                     alldata.get(position).setIs_selected(false);
@@ -218,6 +215,9 @@ public class RecyclerView_All_Comfort_in_fragment extends RecyclerView.Adapter<R
 
                     holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
 
+                }
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(position);
                 }
 
 

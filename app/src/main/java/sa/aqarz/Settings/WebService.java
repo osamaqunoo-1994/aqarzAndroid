@@ -270,5 +270,23 @@ public class WebService {
         }
 
     }
+    public static void Make_Toast_color_info(Activity activity, String message, String type) {
+
+        Alerter.create(activity)
+                .setText(message)
+                .setIcon(R.drawable.ic_danger)
+                .setBackgroundColorRes(R.color.yalow)
+                .enableInfiniteDuration(false)
+                .setDuration(1500)
+
+                .enableVibration(true)
+                .setExitAnimation(R.anim.alerter_slide_out_to_top)
+
+                .show();
+
+
+
+
+    }
 
 }

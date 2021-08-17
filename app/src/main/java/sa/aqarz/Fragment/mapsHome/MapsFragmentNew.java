@@ -297,13 +297,13 @@ public class MapsFragmentNew extends Fragment {
 //                        System.out.println("cameraPosition.zoom " + cameraPosition.zoom);
 
 
-                        System.out.println("%^^%$#$%^&^%$#");
 
                         System.out.println("cameraPosition.zoom" + cameraPosition.zoom);
 
-                        if (cameraPosition.zoom <= 4) {
+                        if (cameraPosition.zoom <= 4.5) {
 
                             if (!first_time) {
+                                System.out.println("%^^%$#$%^&^%$#");
 
                                 if (!region_id_postion.equals("")) {
 
@@ -317,6 +317,8 @@ public class MapsFragmentNew extends Fragment {
                                     Hawk.put("city_id_postion", "");
 //                set_locationRegions();
                                     check_lastsenareo();
+
+                                }else{
 
                                 }
                             }
@@ -967,7 +969,7 @@ public class MapsFragmentNew extends Fragment {
             } else {
 
                 region_id_postion = Hawk.get("region_id_postion").toString();
-
+                first_time=false;
                 check_city();
             }
 
@@ -1089,6 +1091,7 @@ public class MapsFragmentNew extends Fragment {
 
 
             }
+
 
 
         }

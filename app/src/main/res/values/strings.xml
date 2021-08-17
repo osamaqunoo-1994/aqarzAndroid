@@ -998,7 +998,7 @@ Two working days to complete your order</string>
     <string name="step_4_Advertiser">Advertiser information</string>
 
     <string name="Region_add">Region<font color="#AAABB3"><sup>*</sup></font></string>
-    <string name="city_add">Region<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="city_add">city<font color="#AAABB3"><sup>*</sup></font></string>
     <string name="Neighborhood_add">Neighborhood<font color="#AAABB3"><sup>*</sup></font></string>
     <string name="Typeproperty_add">Type of property use<font color="#AAABB3"><sup>*</sup></font></string>
     <string name="bedrooms_add">Bedrooms<font color="#DD4131"><sup>*</sup></font></string>
@@ -1031,10 +1031,11 @@ Two working days to complete your order</string>
     <string name="Information_add">Information that may affect the property, whether in reducing its value or affecting the targets decision to advertise<font color="#AAABB3"><sup>*</sup></font></string>
     <string name="Warranties_duration_add">Warranties and their duration<font color="#AAABB3"><sup>*</sup></font></string>
     <string name="it_conform_add">Does it conform to the Saudi Building Code<font color="#AAABB3"><sup>*</sup></font></string>
-    <string name="Other_add">Other<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Other_add">Other</string>
     <string name="number_lifts_add">number of lifts</string>
     <string name="Number_parking_add">Number of parking</string>
     <string name="Available_indoor_facilities_add">Available indoor facilities</string>
+    <string name="Available_outdoor_facilities_add">Available outdoor facilities</string>
 
     <string name="Advertiser_side_add">Advertisers side<font color="#AAABB3"><sup>*</sup></font></string>
     <string name="Advertiser_adjective_add">Advertiser adjective<font color="#AAABB3"><sup>*</sup></font></string>
@@ -1045,5 +1046,24 @@ Two working days to complete your order</string>
     <string name="Approval_request_add">Approval of the request</string>
     <string name="owner_name_add">owner name<font color="#AAABB3"><sup>*</sup></font></string>
     <string name="Mobile_add">Mobile<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="Add_region_add">Add region<font color="#AAABB3"><sup>*</sup></font></string>
+
+
+
+
+
+//errors
+
+    <string name="select_area">Select Area before city</string>
+    <string name="select_city">Select City before Neighborhood</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

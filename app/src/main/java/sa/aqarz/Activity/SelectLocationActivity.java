@@ -218,14 +218,20 @@ public class SelectLocationActivity extends AppCompatActivity {
                 try {
 
 
-
                     String lat = getIntent().getStringExtra("lat");
                     String lng = getIntent().getStringExtra("lan");
 
 
-
                     if (lat.equals("0.0")) {
 
+                        lat = "24.527282";
+                        lng = "44.007305";
+
+                        LatLng sydney = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
+
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
+
+                    } else if (lat.equals("")) {
                         lat = "24.527282";
                         lng = "44.007305";
 
@@ -244,17 +250,17 @@ public class SelectLocationActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                try{
+                try {
                     String address = getIntent().getStringExtra("address");
 
 
-                    if(address!=null){
+                    if (address != null) {
                         text_search.setText(address + "");
 
                     }
 
 
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
 

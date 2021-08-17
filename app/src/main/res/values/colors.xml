@@ -35,5 +35,8 @@
 
     <color name="c1">#00A5A5</color>
     <color name="c2">#F06717</color>
+    <color name="yalow">#eac34a</color>
+    <color name="te_selected">#888686</color>
+    <color name="te_unselected">#CECECE</color>
 
 </resources>

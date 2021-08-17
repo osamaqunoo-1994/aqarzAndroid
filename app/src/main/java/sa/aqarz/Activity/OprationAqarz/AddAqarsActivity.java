@@ -223,7 +223,7 @@ public class AddAqarsActivity extends AppCompatActivity {
 
     Switch switch_more_detials;
     LinearLayout all_more_detila;
-  public static   TextView nibors;
+    public static TextView nibors;
     LinearLayout Lounges_lay;
     LinearLayout room_lay;
     LinearLayout Bathrooms_lay;

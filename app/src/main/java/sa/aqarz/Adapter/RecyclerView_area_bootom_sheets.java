@@ -6,38 +6,31 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import sa.aqarz.Activity.AddAqarz.AddAqarzActivity;
-import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
-import sa.aqarz.Modules.SelectImageModules;
-import sa.aqarz.Modules.TypeModules;
+import sa.aqarz.Modules.CityModules;
+import sa.aqarz.Modules.RegionModules;
 import sa.aqarz.R;
 
 
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_selectImage extends RecyclerView.Adapter<RecyclerView_selectImage.MyViewHolder> {
-    public static List<SelectImageModules> alldata = new ArrayList<SelectImageModules>();
-    static int Postion_opend = 0;
+public class RecyclerView_area_bootom_sheets extends RecyclerView.Adapter<RecyclerView_area_bootom_sheets.MyViewHolder> {
+    public static List<RegionModules> alldata = new ArrayList<RegionModules>();
+    static int Postion_opend = -1;
 
 
     static AlertDialog alertDialog;
-    private ItemClickListener mItemClickListener;
 
+    private ItemClickListener mItemClickListener;
 
     /**
      * View holder class
@@ -60,25 +53,23 @@ public class RecyclerView_selectImage extends RecyclerView.Adapter<RecyclerView_
 //        ProgressBar progress;
 //        LinearLayout add_to_my;
 
-        ImageView omage;
-        ImageView delect;
 
+        TextView text;
 
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
 
 
-            omage = view.findViewById(R.id.omage);
-            delect = view.findViewById(R.id.delect);
+            text = view.findViewById(R.id.text);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
     }
 
-    public RecyclerView_selectImage(Context context, List<SelectImageModules> alldata) {
-        RecyclerView_selectImage.alldata = alldata;
+    public RecyclerView_area_bootom_sheets(Context context, List<RegionModules> alldata) {
+        RecyclerView_area_bootom_sheets.alldata = alldata;
         this.context = context;
     }
 
@@ -105,8 +96,6 @@ public class RecyclerView_selectImage extends RecyclerView.Adapter<RecyclerView_
 ////
 //
 //
-
-        holder.omage.setImageBitmap(alldata.get(position).getSelectedImage());
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
 ////
@@ -125,9 +114,26 @@ public class RecyclerView_selectImage extends RecyclerView.Adapter<RecyclerView_
 //        int random = ThreadLocalRandom.current().nextInt(1, 5);
 //       holder.ratingbar.setStar(random);
 
-
+        holder.text.setText(alldata.get(position).getName() + "");
         //   wallet, dafter, receipt, payment
 
+//
+//        holder.text.setText(alldata.get(position).getName() + "");
+//
+//        if (position == Postion_opend) {
+//            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));
+//
+//            holder.text.setTextColor(context.getResources().getColor(R.color.white));
+//
+//
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
+//
+//        } else {
+//            holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
+//            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.search_background));
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
+//
+//        }
 
 //            double v=Double.valueOf(alldata.get(position).getRate());
 //
@@ -161,60 +167,24 @@ public class RecyclerView_selectImage extends RecyclerView.Adapter<RecyclerView_
 //        });
 //
 
-
-        holder.omage.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
-                LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-                View mView = li.inflate(R.layout.open_image, null);
-                ImageView imagedd = mView.findViewById(R.id.imagedd);
-
-                imagedd.setImageBitmap(alldata.get(position).getSelectedImage());
+            public void onClick(View view) {
 
 
-                mBuilder.setView(mView);
-                AlertDialog mDialog = mBuilder.create();
-                mDialog.show();
-
-
-            }
-        });
-        holder.delect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                alldata.remove(position);
-
-                try {
-                    AddAqarzActivity.selectIamgeList.remove(position);
-                    AddAqarzActivity.addAqarezObject.setSelectIamgeList(AddAqarzActivity.selectIamgeList);
-                    Refr();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(position);
                 }
+                Postion_opend = position;
 
+//                RequestOrderActivity.set_fragment(position);
+
+
+                Refr();
+//
 
             }
         });
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//
-//                Postion_opend = position;
-//                Refr();
-//
-////                RequestOrderActivity.set_fragment(position);
-//
-//
-//                if (mItemClickListener != null) {
-//                    mItemClickListener.onItemClick(position);
-//                }
-////
-//
-//            }
-//        });
 
 
     }
@@ -235,7 +205,7 @@ public class RecyclerView_selectImage extends RecyclerView.Adapter<RecyclerView_
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_image_select, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_city, parent, false);
 
 
         // Fresco.initialize(context);
@@ -243,6 +213,7 @@ public class RecyclerView_selectImage extends RecyclerView.Adapter<RecyclerView_
 
         return new MyViewHolder(v);
     }
+
 
     //Define your Interface method here
     public interface ItemClickListener {
