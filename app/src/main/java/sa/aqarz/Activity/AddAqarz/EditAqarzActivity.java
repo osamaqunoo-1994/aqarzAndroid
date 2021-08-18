@@ -1,14 +1,5 @@
 package sa.aqarz.Activity.AddAqarz;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
@@ -30,12 +21,20 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
@@ -58,9 +57,6 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.nguyenhoanglam.imagepicker.model.Image;
 import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
-import com.xiaofeng.flowlayoutmanager.FlowLayoutManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -76,16 +72,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
-import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
+import sa.aqarz.Activity.OprationAqarz.EditAqarsActivity;
 import sa.aqarz.Activity.SelectLocationActivity;
 import sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
-import sa.aqarz.Adapter.RecyclerView_All_opration_bottom_sheet;
 import sa.aqarz.Adapter.RecyclerView_selectImage;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectArea;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectNeighborhoods;
 import sa.aqarz.Modules.AddAqarezObject;
 import sa.aqarz.Modules.ComfortModules;
+import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.SelectImageModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
@@ -94,9 +90,7 @@ import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
 
-import static sa.aqarz.Activity.OprationAqarz.AddAqarsActivity.createThumbnail;
-
-public class AddAqarzActivity extends AppCompatActivity {
+public class EditAqarzActivity extends AppCompatActivity {
 
 
     LinearLayout step_1;
@@ -263,7 +257,7 @@ public class AddAqarzActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_aqarz);
+        setContentView(R.layout.activity_edit_aqarz);
         addAqarezObject = new AddAqarezObject();
         mMapView = findViewById(R.id.mapViewxx);
 
@@ -289,8 +283,6 @@ public class AddAqarzActivity extends AppCompatActivity {
         city_l = findViewById(R.id.city_l);
         nibors = findViewById(R.id.nibors);
         street = findViewById(R.id.street);
-
-
         all_details = findViewById(R.id.all_details);
 
 
@@ -404,6 +396,22 @@ public class AddAqarzActivity extends AppCompatActivity {
         comfort_();
         owner_info();
         approval();
+
+
+        try {
+            String id_or_aq = getIntent().getStringExtra("id_aqarz");
+            init_volley();
+            WebService.loading(EditAqarzActivity.this, true);
+
+            VolleyService mVolleyService = new VolleyService(mResultCallback, EditAqarzActivity.this);
+            mVolleyService.getDataVolley("single_estat", WebService.single_estat + 1831 + "/estate");
+
+
+        } catch (Exception e) {
+
+        }
+
+
         ///------------------------------------------------------------------------------------------------------
 
 
@@ -421,9 +429,9 @@ public class AddAqarzActivity extends AppCompatActivity {
                 step_3_text.setTextColor(getResources().getColor(R.color.te_unselected));
                 step_4_text.setTextColor(getResources().getColor(R.color.te_unselected));
 
-                step_2_lay.setVisibility(View.GONE);
-                step_4_lay.setVisibility(View.GONE);
-                step_3_lay.setVisibility(View.GONE);
+//                step_2_lay.setVisibility(View.GONE);
+//                step_4_lay.setVisibility(View.GONE);
+//                step_3_lay.setVisibility(View.GONE);
 
 
                 if (step_1_lay.getVisibility() == View.VISIBLE) {
@@ -445,43 +453,43 @@ public class AddAqarzActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (addAqarezObject.getState_id().equals("") |
-                        addAqarezObject.getCity_id().equals("") |
-                        addAqarezObject.getNeighborhood_id().equals("") |
-                        addAqarezObject.getLan().equals("")) {
-                    WebService.Make_Toast_color_info(AddAqarzActivity.this, "عليك تعبئة الحقول المطلوبه اعلى", "error");
+//                if (addAqarezObject.getState_id().equals("") |
+//                        addAqarezObject.getCity_id().equals("") |
+//                        addAqarezObject.getNeighborhood_id().equals("") |
+//                        addAqarezObject.getLan().equals("")) {
+//                    WebService.Make_Toast_color_info(EditAqarzActivity.this, "عليك تعبئة الحقول المطلوبه اعلى", "error");
+//
+//                } else {
+                step_1_text.setTextColor(getResources().getColor(R.color.te_unselected));
+                step_2_text.setTextColor(getResources().getColor(R.color.te_unselected));
+                step_3_text.setTextColor(getResources().getColor(R.color.te_unselected));
+                step_4_text.setTextColor(getResources().getColor(R.color.te_unselected));
+
+//                step_1_lay.setVisibility(View.GONE);
+//                step_4_lay.setVisibility(View.GONE);
+//                step_3_lay.setVisibility(View.GONE);
+
+                step_1.setBackground(getResources().getDrawable(R.drawable.border));
+                step_3.setBackground(getResources().getDrawable(R.drawable.border));
+                step_4.setBackground(getResources().getDrawable(R.drawable.border));
+
+
+                if (step_2_lay.getVisibility() == View.VISIBLE) {
+                    step_2_lay.setVisibility(View.GONE);
+                    step_2.setBackground(getResources().getDrawable(R.drawable.border));
+                    step_2_text.setTextColor(getResources().getColor(R.color.te_unselected));
 
                 } else {
-                    step_1_text.setTextColor(getResources().getColor(R.color.te_unselected));
-                    step_2_text.setTextColor(getResources().getColor(R.color.te_unselected));
-                    step_3_text.setTextColor(getResources().getColor(R.color.te_unselected));
-                    step_4_text.setTextColor(getResources().getColor(R.color.te_unselected));
+                    step_2_lay.setVisibility(View.VISIBLE);
+                    step_2_text.setTextColor(getResources().getColor(R.color.te_selected));
 
-                    step_1_lay.setVisibility(View.GONE);
-                    step_4_lay.setVisibility(View.GONE);
-                    step_3_lay.setVisibility(View.GONE);
+                    step_2.setBackground(getResources().getDrawable(R.drawable.border_selected));
 
-                    step_1.setBackground(getResources().getDrawable(R.drawable.border));
-                    step_3.setBackground(getResources().getDrawable(R.drawable.border));
-                    step_4.setBackground(getResources().getDrawable(R.drawable.border));
-
-
-                    if (step_2_lay.getVisibility() == View.VISIBLE) {
-                        step_2_lay.setVisibility(View.GONE);
-                        step_2.setBackground(getResources().getDrawable(R.drawable.border));
-                        step_2_text.setTextColor(getResources().getColor(R.color.te_unselected));
-
-                    } else {
-                        step_2_lay.setVisibility(View.VISIBLE);
-                        step_2_text.setTextColor(getResources().getColor(R.color.te_selected));
-
-                        step_2.setBackground(getResources().getDrawable(R.drawable.border_selected));
-
-                    }
                 }
-
-
             }
+
+
+//            }
         });
 
         step_3.setOnClickListener(new View.OnClickListener() {
@@ -489,97 +497,97 @@ public class AddAqarzActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (addAqarezObject.getState_id().equals("") |
-                        addAqarezObject.getCity_id().equals("") |
-                        addAqarezObject.getNeighborhood_id().equals("") |
-                        addAqarezObject.getLan().equals("") |
-                        area_text.getText().toString().equals("") |
-                        lengths_add_text.getText().toString().equals("") |
-                        streetwidthadd_text.getText().toString().equals("") |
-                        Date_of_construction_text.getText().toString().equals("") |
-                        sale_price_text.getText().toString().equals("") |
-                        Warranties_duration_txt.getText().toString().equals("")
-                ) {
+//                if (addAqarezObject.getState_id().equals("") |
+//                        addAqarezObject.getCity_id().equals("") |
+//                        addAqarezObject.getNeighborhood_id().equals("") |
+//                        addAqarezObject.getLan().equals("") |
+//                        area_text.getText().toString().equals("") |
+//                        lengths_add_text.getText().toString().equals("") |
+//                        streetwidthadd_text.getText().toString().equals("") |
+//                        Date_of_construction_text.getText().toString().equals("") |
+//                        sale_price_text.getText().toString().equals("") |
+//                        Warranties_duration_txt.getText().toString().equals("")
+//                ) {
+//
+//                    WebService.Make_Toast_color_info(EditAqarzActivity.this, "عليك تعبئة الحقول المطلوبه اعلى", "error");
+//
+//                } else {
+                step_1_text.setTextColor(getResources().getColor(R.color.te_unselected));
+                step_2_text.setTextColor(getResources().getColor(R.color.te_unselected));
+                step_3_text.setTextColor(getResources().getColor(R.color.te_unselected));
+                step_4_text.setTextColor(getResources().getColor(R.color.te_unselected));
 
-                    WebService.Make_Toast_color_info(AddAqarzActivity.this, "عليك تعبئة الحقول المطلوبه اعلى", "error");
+//                step_1_lay.setVisibility(View.GONE);
+//                step_4_lay.setVisibility(View.GONE);
+//                step_2_lay.setVisibility(View.GONE);
+
+                step_1.setBackground(getResources().getDrawable(R.drawable.border));
+                step_2.setBackground(getResources().getDrawable(R.drawable.border));
+                step_4.setBackground(getResources().getDrawable(R.drawable.border));
+
+                if (step_3_lay.getVisibility() == View.VISIBLE) {
+                    step_3_lay.setVisibility(View.GONE);
+                    step_3.setBackground(getResources().getDrawable(R.drawable.border));
+                    step_3_text.setTextColor(getResources().getColor(R.color.te_unselected));
 
                 } else {
-                    step_1_text.setTextColor(getResources().getColor(R.color.te_unselected));
-                    step_2_text.setTextColor(getResources().getColor(R.color.te_unselected));
-                    step_3_text.setTextColor(getResources().getColor(R.color.te_unselected));
-                    step_4_text.setTextColor(getResources().getColor(R.color.te_unselected));
+                    step_3_text.setTextColor(getResources().getColor(R.color.te_selected));
 
-                    step_1_lay.setVisibility(View.GONE);
-                    step_4_lay.setVisibility(View.GONE);
-                    step_2_lay.setVisibility(View.GONE);
+                    step_3_lay.setVisibility(View.VISIBLE);
+                    step_3.setBackground(getResources().getDrawable(R.drawable.border_selected));
 
-                    step_1.setBackground(getResources().getDrawable(R.drawable.border));
-                    step_2.setBackground(getResources().getDrawable(R.drawable.border));
-                    step_4.setBackground(getResources().getDrawable(R.drawable.border));
-
-                    if (step_3_lay.getVisibility() == View.VISIBLE) {
-                        step_3_lay.setVisibility(View.GONE);
-                        step_3.setBackground(getResources().getDrawable(R.drawable.border));
-                        step_3_text.setTextColor(getResources().getColor(R.color.te_unselected));
-
-                    } else {
-                        step_3_text.setTextColor(getResources().getColor(R.color.te_selected));
-
-                        step_3_lay.setVisibility(View.VISIBLE);
-                        step_3.setBackground(getResources().getDrawable(R.drawable.border_selected));
-
-                    }
                 }
-
             }
+
+            //}
         });
 
         step_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (addAqarezObject.getState_id().equals("") |
-                        addAqarezObject.getCity_id().equals("") |
-                        addAqarezObject.getNeighborhood_id().equals("") |
-                        addAqarezObject.getLan().equals("") |
-                        area_text.getText().toString().equals("") |
-                        lengths_add_text.getText().toString().equals("") |
-                        streetwidthadd_text.getText().toString().equals("") |
-                        Date_of_construction_text.getText().toString().equals("") |
-                        sale_price_text.getText().toString().equals("") |
-                        Warranties_duration_txt.getText().toString().equals("")
-                ) {
+//                if (addAqarezObject.getState_id().equals("") |
+//                        addAqarezObject.getCity_id().equals("") |
+//                        addAqarezObject.getNeighborhood_id().equals("") |
+//                        addAqarezObject.getLan().equals("") |
+//                        area_text.getText().toString().equals("") |
+//                        lengths_add_text.getText().toString().equals("") |
+//                        streetwidthadd_text.getText().toString().equals("") |
+//                        Date_of_construction_text.getText().toString().equals("") |
+//                        sale_price_text.getText().toString().equals("") |
+//                        Warranties_duration_txt.getText().toString().equals("")
+//                ) {
+//
+//                    WebService.Make_Toast_color_info(EditAqarzActivity.this, "عليك تعبئة الحقول المطلوبه اعلى", "error");
+//
+//                } else {
+                step_1_text.setTextColor(getResources().getColor(R.color.te_unselected));
+                step_2_text.setTextColor(getResources().getColor(R.color.te_unselected));
+                step_3_text.setTextColor(getResources().getColor(R.color.te_unselected));
+                step_4_text.setTextColor(getResources().getColor(R.color.te_unselected));
 
-                    WebService.Make_Toast_color_info(AddAqarzActivity.this, "عليك تعبئة الحقول المطلوبه اعلى", "error");
+//                    step_1_lay.setVisibility(View.GONE);
+//                    step_3_lay.setVisibility(View.GONE);
+//                    step_2_lay.setVisibility(View.GONE);
 
-                } else {
-                    step_1_text.setTextColor(getResources().getColor(R.color.te_unselected));
-                    step_2_text.setTextColor(getResources().getColor(R.color.te_unselected));
-                    step_3_text.setTextColor(getResources().getColor(R.color.te_unselected));
+                step_1.setBackground(getResources().getDrawable(R.drawable.border));
+                step_2.setBackground(getResources().getDrawable(R.drawable.border));
+                step_3.setBackground(getResources().getDrawable(R.drawable.border));
+
+
+                if (step_4_lay.getVisibility() == View.VISIBLE) {
+                    step_4_lay.setVisibility(View.GONE);
+                    step_4.setBackground(getResources().getDrawable(R.drawable.border));
                     step_4_text.setTextColor(getResources().getColor(R.color.te_unselected));
 
-                    step_1_lay.setVisibility(View.GONE);
-                    step_3_lay.setVisibility(View.GONE);
-                    step_2_lay.setVisibility(View.GONE);
+                } else {
+                    step_4_text.setTextColor(getResources().getColor(R.color.te_selected));
 
-                    step_1.setBackground(getResources().getDrawable(R.drawable.border));
-                    step_2.setBackground(getResources().getDrawable(R.drawable.border));
-                    step_3.setBackground(getResources().getDrawable(R.drawable.border));
+                    step_4_lay.setVisibility(View.VISIBLE);
+                    step_4.setBackground(getResources().getDrawable(R.drawable.border_selected));
 
-
-                    if (step_4_lay.getVisibility() == View.VISIBLE) {
-                        step_4_lay.setVisibility(View.GONE);
-                        step_4.setBackground(getResources().getDrawable(R.drawable.border));
-                        step_4_text.setTextColor(getResources().getColor(R.color.te_unselected));
-
-                    } else {
-                        step_4_text.setTextColor(getResources().getColor(R.color.te_selected));
-
-                        step_4_lay.setVisibility(View.VISIBLE);
-                        step_4.setBackground(getResources().getDrawable(R.drawable.border_selected));
-
-                    }
                 }
             }
+//            }
         });
 
 
@@ -587,10 +595,10 @@ public class AddAqarzActivity extends AppCompatActivity {
         opration_list = Settings.getSettings().getEstate_types().getOriginal().getData();
 
         LinearLayoutManager layoutManagerw
-                = new LinearLayoutManager(AddAqarzActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                = new LinearLayoutManager(EditAqarzActivity.this, LinearLayoutManager.HORIZONTAL, false);
         opration_RecyclerView.setLayoutManager(layoutManagerw);
 
-        RecyclerView_All_opration recyclerView_all_opration = new RecyclerView_All_opration(AddAqarzActivity.this, opration_list);
+        RecyclerView_All_opration recyclerView_all_opration = new RecyclerView_All_opration(EditAqarzActivity.this, opration_list);
         recyclerView_all_opration.addItemClickListener(new RecyclerView_All_opration.ItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -657,6 +665,7 @@ public class AddAqarzActivity extends AppCompatActivity {
 
 
                 }
+
 
             }
         });
@@ -897,7 +906,7 @@ public class AddAqarzActivity extends AppCompatActivity {
             }
         });
         try {
-            MapsInitializer.initialize(AddAqarzActivity.this.getApplicationContext());
+            MapsInitializer.initialize(EditAqarzActivity.this.getApplicationContext());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -914,19 +923,19 @@ public class AddAqarzActivity extends AppCompatActivity {
                     @Override
                     public void onMapClick(LatLng latLng) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            if (ContextCompat.checkSelfPermission(AddAqarzActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            if (ContextCompat.checkSelfPermission(EditAqarzActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
 
                                 // No explanation needed, we can request the permission.
 
-                                ActivityCompat.requestPermissions(AddAqarzActivity.this,
+                                ActivityCompat.requestPermissions(EditAqarzActivity.this,
                                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                                         1212);
 
                             } else {
 
 
-                                Intent intent = new Intent(AddAqarzActivity.this, SelectLocationActivity.class);
+                                Intent intent = new Intent(EditAqarzActivity.this, SelectLocationActivity.class);
                                 intent.putExtra("lat", addAqarezObject.getLat() + "");
                                 intent.putExtra("lan", addAqarezObject.getLan() + "");
                                 intent.putExtra("address", nibors.getText().toString() + "");
@@ -943,8 +952,8 @@ public class AddAqarzActivity extends AppCompatActivity {
 
             }
         });
-        Places.initialize(AddAqarzActivity.this, "AIzaSyA6E2L_Feqp6HMD85eQ1RP06WnykHJj7Mc");
-        placesClient = Places.createClient(AddAqarzActivity.this);
+        Places.initialize(EditAqarzActivity.this, "AIzaSyA6E2L_Feqp6HMD85eQ1RP06WnykHJj7Mc");
+        placesClient = Places.createClient(EditAqarzActivity.this);
 
 
     }
@@ -952,7 +961,7 @@ public class AddAqarzActivity extends AppCompatActivity {
     public void select_image_and_video() {
 
         LinearLayoutManager layoutManagem
-                = new LinearLayoutManager(AddAqarzActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                = new LinearLayoutManager(EditAqarzActivity.this, LinearLayoutManager.HORIZONTAL, false);
         images_RecyclerView.setLayoutManager(layoutManagem);
 
 
@@ -964,12 +973,12 @@ public class AddAqarzActivity extends AppCompatActivity {
 
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (ContextCompat.checkSelfPermission(AddAqarzActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(EditAqarzActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
 
                         // No explanation needed, we can request the permission.
 
-                        ActivityCompat.requestPermissions(AddAqarzActivity.this,
+                        ActivityCompat.requestPermissions(EditAqarzActivity.this,
                                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                                 111);
 
@@ -989,11 +998,11 @@ public class AddAqarzActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (ContextCompat.checkSelfPermission(AddAqarzActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(EditAqarzActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
                         // No explanation needed, we can request the permission.
 
-                        ActivityCompat.requestPermissions(AddAqarzActivity.this,
+                        ActivityCompat.requestPermissions(EditAqarzActivity.this,
                                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                                 1451);
 
@@ -1643,11 +1652,11 @@ public class AddAqarzActivity extends AppCompatActivity {
 
         //-----------------------------------------------------------------------------------------
         init_volley();
-        VolleyService mVolleyService = new VolleyService(mResultCallback, AddAqarzActivity.this);
+        VolleyService mVolleyService = new VolleyService(mResultCallback, EditAqarzActivity.this);
 
         mVolleyService.getDataVolley("comfort", WebService.comfort);
 
-        WebService.loading(AddAqarzActivity.this, false);
+        WebService.loading(EditAqarzActivity.this, false);
 
 
         lifts_plus.setOnClickListener(new View.OnClickListener() {
@@ -1863,7 +1872,7 @@ public class AddAqarzActivity extends AppCompatActivity {
                         addAqarezObject.getAdvertiser_side().equals("") |
                         addAqarezObject.getAdvertiser_character().equals("")
                 ) {
-                    WebService.Make_Toast_color_info(AddAqarzActivity.this, "عليك تعبئة الحقول المطلوبه اعلى", "error");
+                    WebService.Make_Toast_color_info(EditAqarzActivity.this, "عليك تعبئة الحقول المطلوبه اعلى", "error");
 
 
                 } else {
@@ -2063,7 +2072,7 @@ public class AddAqarzActivity extends AppCompatActivity {
 
                     addAqarezObject.setLat("" + lat_);
                     addAqarezObject.setLan("" + lang_);
-                    Toast.makeText(AddAqarzActivity.this, "You selected the place: " + address_, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditAqarzActivity.this, "You selected the place: " + address_, Toast.LENGTH_SHORT).show();
 //
                     LatLng sydney = new LatLng(Double.valueOf(addAqarezObject.getLat()), Double.valueOf(addAqarezObject.getLan()));
                     googleMap.addMarker(new MarkerOptions()
@@ -2096,7 +2105,7 @@ public class AddAqarzActivity extends AppCompatActivity {
                     selectIamgeList.add(new SelectImageModules("1", selectedImagea));
                 }
                 addAqarezObject.setSelectIamgeList(selectIamgeList);
-                images_RecyclerView.setAdapter(new RecyclerView_selectImage(AddAqarzActivity.this, selectIamgeList));
+                images_RecyclerView.setAdapter(new RecyclerView_selectImage(EditAqarzActivity.this, selectIamgeList));
 
 
             }
@@ -2114,9 +2123,9 @@ public class AddAqarzActivity extends AppCompatActivity {
 
                     addAqarezObject.setVideo(getFile(getApplicationContext(), selectedImageUri));
 
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
-                        select_video.setImageBitmap(createThumbnail(AddAqarzActivity.this, addAqarezObject.getVideo().getPath() + ""));
+                        select_video.setImageBitmap(createThumbnail(EditAqarzActivity.this, addAqarezObject.getVideo().getPath() + ""));
 
                     } else {
                         select_video.setImageBitmap(ThumbnailUtils.createVideoThumbnail(addAqarezObject.getVideo().getPath(), MediaStore.Video.Thumbnails.FULL_SCREEN_KIND));
@@ -2134,9 +2143,9 @@ public class AddAqarzActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == 1212) {
-            if (ContextCompat.checkSelfPermission(AddAqarzActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(EditAqarzActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             } else {
-                Intent intent = new Intent(AddAqarzActivity.this, SelectLocationActivity.class);
+                Intent intent = new Intent(EditAqarzActivity.this, SelectLocationActivity.class);
                 intent.putExtra("lat", addAqarezObject.getLat() + "");
                 intent.putExtra("lan", addAqarezObject.getLan() + "");
                 intent.putExtra("address", nibors.getText().toString() + "");
@@ -2146,7 +2155,7 @@ public class AddAqarzActivity extends AppCompatActivity {
 
         }
         if (requestCode == 111) {
-            if (ContextCompat.checkSelfPermission(AddAqarzActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(EditAqarzActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             } else {
 
 
@@ -2166,7 +2175,7 @@ public class AddAqarzActivity extends AppCompatActivity {
             }
         }
         if (requestCode == 1451) {
-            if (ContextCompat.checkSelfPermission(AddAqarzActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(EditAqarzActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
 
             } else {
@@ -2188,9 +2197,9 @@ public class AddAqarzActivity extends AppCompatActivity {
         if (permission == 111) {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (ContextCompat.checkSelfPermission(AddAqarzActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(EditAqarzActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
-                    ActivityCompat.requestPermissions(AddAqarzActivity.this,
+                    ActivityCompat.requestPermissions(EditAqarzActivity.this,
                             new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                             permission);
 
@@ -2312,9 +2321,87 @@ public class AddAqarzActivity extends AppCompatActivity {
 
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + response);
-                WebService.loading(AddAqarzActivity.this, false);
+                WebService.loading(EditAqarzActivity.this, false);
 //{"status":true,"code":200,"message":"User Profile","data"
                 if (requestType.equals("SendOrder")) {
+
+
+                } else if (requestType.equals("single_estat")) {
+
+                    try {
+                        String data = response.getString("data");
+
+                        JsonParser parser = new JsonParser();
+                        JsonElement mJson = parser.parse(data);
+
+                        Gson gson = new Gson();
+
+                        HomeModules_aqares homeModules_aqares = gson.fromJson(mJson, HomeModules_aqares.class);
+
+
+//                        state.setText(homeModules_aqares.get);
+
+
+                        addAqarezObject.setState_id(homeModules_aqares.getState_id() + "");
+                        addAqarezObject.setCity_id(homeModules_aqares.getCity_id() + "");
+                        addAqarezObject.setNeighborhood_id(homeModules_aqares.getNeighborhood_id() + "");
+
+                        city_l.setText(homeModules_aqares.getCity_name() + "");
+                        nibors.setText(homeModules_aqares.getNeighborhood_name() + "");
+
+                        if (homeModules_aqares.getStreet_name() != null & !homeModules_aqares.getStreet_name().equals("null")) {
+                            street.setText(homeModules_aqares.getStreet_name() + "");
+
+                        }
+                        addAqarezObject.setLat(homeModules_aqares.getLat());
+                        addAqarezObject.setLan(homeModules_aqares.getLan());
+                        try {
+                            LatLng sydney = new LatLng(Double.valueOf(addAqarezObject.getLat()), Double.valueOf(addAqarezObject.getLan()));
+                            googleMap.addMarker(new MarkerOptions()
+                                    .position(sydney)
+                                    .title("Marker"));
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+                            // Zoom in, animating the camera.
+                            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+                            // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 3000, null);
+
+                            addAqarezObject.setAddress(homeModules_aqares.getNeighborhood_name() + "");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        area_text.setText(homeModules_aqares.getTotalArea() + "");
+                        if (homeModules_aqares.getPaceNumber() != null & !homeModules_aqares.getPaceNumber().equals("null")) {
+                            land_number_text.setText(homeModules_aqares.getPaceNumber() + "");
+                        }
+                        if (homeModules_aqares.getUnit_counter() != null & !homeModules_aqares.getUnit_counter().equals("null")) {
+                            number_units_text.setText(homeModules_aqares.getUnit_counter() + "");
+                        }
+
+                        if (homeModules_aqares.getFloorNumber() != null & !homeModules_aqares.getFloorNumber().equals("null")) {
+                            turn_number_text.setText(homeModules_aqares.getFloorNumber() + "");
+                        }
+                        if (homeModules_aqares.getUnit_number() != null & !homeModules_aqares.getUnit_number().equals("null")) {
+                            unit_number_text.setText(homeModules_aqares.getUnit_number() + "");
+                        }
+                        if (homeModules_aqares.getEstate_dimensions() != null & !homeModules_aqares.getEstate_dimensions().equals("null")) {
+                            lengths_add_text.setText(homeModules_aqares.getEstate_dimensions() + "");
+                        }
+                        if (homeModules_aqares.getStreetView() != null & !homeModules_aqares.getStreetView().equals("null")) {
+                            streetwidthadd_text.setText(homeModules_aqares.getStreetView() + "");
+                        }
+
+
+
+
+
+
+
+
+                    } catch (Exception e) {
+
+                    }
 
 
                 } else {
@@ -2342,9 +2429,9 @@ public class AddAqarzActivity extends AppCompatActivity {
                             }
 
 
-                            comfort_RecyclerView.setLayoutManager(new GridLayoutManager(AddAqarzActivity.this, 3));
+                            comfort_RecyclerView.setLayoutManager(new GridLayoutManager(EditAqarzActivity.this, 3));
 
-                            RecyclerView_All_Comfort_in_fragment recyclerView_all_comfort_in_fragment = new RecyclerView_All_Comfort_in_fragment(AddAqarzActivity.this, comfortModules);
+                            RecyclerView_All_Comfort_in_fragment recyclerView_all_comfort_in_fragment = new RecyclerView_All_Comfort_in_fragment(EditAqarzActivity.this, comfortModules);
 
                             recyclerView_all_comfort_in_fragment.addItemClickListener(new RecyclerView_All_Comfort_in_fragment.ItemClickListener() {
                                 @Override
@@ -2364,7 +2451,7 @@ public class AddAqarzActivity extends AppCompatActivity {
                         } else {
                             String message = response.getString("message");
 
-                            WebService.Make_Toast_color(AddAqarzActivity.this, message, "error");
+                            WebService.Make_Toast_color(EditAqarzActivity.this, message, "error");
                         }
 
 
@@ -2392,8 +2479,8 @@ public class AddAqarzActivity extends AppCompatActivity {
                 }
 
 
-                WebService.loading(AddAqarzActivity.this, false);
-                WebService.Make_Toast_color(AddAqarzActivity.this, error.getMessage(), "error");
+                WebService.loading(EditAqarzActivity.this, false);
+                WebService.Make_Toast_color(EditAqarzActivity.this, error.getMessage(), "error");
 
 
             }
@@ -2412,7 +2499,7 @@ public class AddAqarzActivity extends AppCompatActivity {
 
         AsyncHttpClient client = new AsyncHttpClient();
         String BASE_URL = WebService.addestate;
-        WebService.loading(AddAqarzActivity.this, true);
+        WebService.loading(EditAqarzActivity.this, true);
 
 
         final int DEFAULT_TIMEOUT = 50 * 1000;
@@ -2423,11 +2510,11 @@ public class AddAqarzActivity extends AppCompatActivity {
         client.post(BASE_URL, requestParams, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject responseBody) {
-                WebService.loading(AddAqarzActivity.this, false);
+                WebService.loading(EditAqarzActivity.this, false);
 
 
                 try {
-                    WebService.loading(AddAqarzActivity.this, false);
+                    WebService.loading(EditAqarzActivity.this, false);
 
                     String status = responseBody.getString("status");
 //
@@ -2435,13 +2522,13 @@ public class AddAqarzActivity extends AppCompatActivity {
 
                     if (status.equals("true")) {
 
-                        WebService.loading(AddAqarzActivity.this, false);
+                        WebService.loading(EditAqarzActivity.this, false);
 
 
 //
                         try {
 
-                            BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(AddAqarzActivity.this);
+                            BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(EditAqarzActivity.this);
                             View parentView = getLayoutInflater().inflate(R.layout.success_message, null);
                             Button close = parentView.findViewById(R.id.close);
                             close.setOnClickListener(new View.OnClickListener() {
@@ -2462,7 +2549,7 @@ public class AddAqarzActivity extends AppCompatActivity {
                     } else {
 
 
-                        WebService.Make_Toast(AddAqarzActivity.this, message);
+                        WebService.Make_Toast(EditAqarzActivity.this, message);
                     }
 
                 } catch (JSONException e) {
@@ -2479,10 +2566,10 @@ public class AddAqarzActivity extends AppCompatActivity {
 
 
                 System.out.println("responseString" + responseString);
-                WebService.loading(AddAqarzActivity.this, false);
+                WebService.loading(EditAqarzActivity.this, false);
 
 
-                WebService.loading(AddAqarzActivity.this, false);
+                WebService.loading(EditAqarzActivity.this, false);
 
             }
 
@@ -2493,7 +2580,7 @@ public class AddAqarzActivity extends AppCompatActivity {
                 try {
                     System.out.println("responseString" + errorResponse.toString());
 
-                    WebService.loading(AddAqarzActivity.this, false);
+                    WebService.loading(EditAqarzActivity.this, false);
 
                 } catch (Exception e) {
 

@@ -11,6 +11,9 @@ public class HomeModules_aqares {
     @SerializedName("id")
     @Expose
     private Integer id;
+    @SerializedName("state_id")
+    @Expose
+    private Integer state_id;
     @SerializedName("operation_type_id")
     @Expose
     private Integer operationTypeId;
@@ -32,11 +35,18 @@ public class HomeModules_aqares {
     @SerializedName("neighborhood_id")
     @Expose
     private String neighborhood_id;
+    @SerializedName("street_name")
+    @Expose
+    private String street_name;
 
 
     @SerializedName("pace_number")
     @Expose
     private String paceNumber;
+
+    @SerializedName("unit_number")
+    @Expose
+    private String unit_number;
     @SerializedName("planned_number")
     @Expose
     private String plannedNumber;
@@ -100,6 +110,9 @@ public class HomeModules_aqares {
     @SerializedName("interface")
     @Expose
     private String _interface;
+    @SerializedName("neighborhood_name_web")
+    @Expose
+    private String neighborhood_name_web;
     @SerializedName("social_status")
     @Expose
     private String socialStatus;
@@ -162,6 +175,12 @@ public class HomeModules_aqares {
     @SerializedName("seen_count")
     @Expose
     private String seen_count;
+    @SerializedName("unit_counter")
+    @Expose
+    private String unit_counter;
+    @SerializedName("estate_dimensions")
+    @Expose
+    private String estate_dimensions;
     @SerializedName("estate_type")
     @Expose
     private estate_type estate_type;
@@ -218,12 +237,24 @@ public class HomeModules_aqares {
         return is_selected;
     }
 
+    public Integer getState_id() {
+        return state_id;
+    }
+
+    public String getEstate_dimensions() {
+        return estate_dimensions;
+    }
+
     public String getSeen_count() {
         return seen_count;
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public String getUnit_counter() {
+        return unit_counter;
     }
 
     public List<HomeModules_aqares.estate_file> getPlanned_file() {
@@ -258,6 +289,10 @@ public class HomeModules_aqares {
         return _interface;
     }
 
+    public String getNeighborhood_name_web() {
+        return neighborhood_name_web;
+    }
+
     public List<HomeModules_aqares.estate_file> getEstate_file() {
         return estate_file;
     }
@@ -268,6 +303,10 @@ public class HomeModules_aqares {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getUnit_number() {
+        return unit_number;
     }
 
     public Integer getEstateTypeId() {
@@ -408,6 +447,10 @@ public class HomeModules_aqares {
 
     public Integer getBoardsNumber() {
         return boardsNumber;
+    }
+
+    public String getStreet_name() {
+        return street_name;
     }
 
     public void setBoardsNumber(Integer boardsNumber) {

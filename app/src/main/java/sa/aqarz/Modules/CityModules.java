@@ -15,6 +15,9 @@ public class CityModules {
     @SerializedName("name_ar")
     @Expose
     private String name_ar;
+    @SerializedName("neighborhood_serial")
+    @Expose
+    private String neighborhood_serial;
     @SerializedName("search_name")
     @Expose
     private String search_name;
@@ -62,6 +65,10 @@ public class CityModules {
 
     public String getLan() {
         return lan;
+    }
+
+    public String getNeighborhood_serial() {
+        return neighborhood_serial;
     }
 
     public String getSearch_name() {

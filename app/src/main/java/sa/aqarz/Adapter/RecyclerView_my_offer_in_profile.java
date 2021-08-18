@@ -30,6 +30,7 @@ import java.sql.Ref;
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Activity.AddAqarz.EditAqarzActivity;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Activity.OprationAqarz.EditAqarsActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
@@ -374,7 +375,8 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
             holder.edit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, EditAqarsActivity.class);
+//                    Intent intent = new Intent(context, EditAqarsActivity.class);
+                    Intent intent = new Intent(context, EditAqarzActivity.class);
                     intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
                     context.startActivity(intent);
 

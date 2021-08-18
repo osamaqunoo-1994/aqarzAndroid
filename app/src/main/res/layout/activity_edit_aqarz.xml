@@ -219,7 +219,7 @@
                     android:layout_marginEnd="15dp"
                     android:orientation="vertical"
                     android:paddingTop="15dp"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
 
                     <LinearLayout
@@ -317,7 +317,6 @@
                             android:layout_height="42dp"
                             android:layout_weight="1"
                             android:background="@drawable/back_edittext_add_aqarz"
-android:textStyle="bold"
                             android:gravity="center_vertical"
                             android:hint="@string/Stret_add"
                             android:inputType="text"
@@ -326,7 +325,8 @@ android:textStyle="bold"
                             android:text=""
                             android:textColor="@color/black"
                             android:textColorHint="@color/hint_color"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -576,16 +576,16 @@ android:textStyle="bold"
                             android:layout_weight="1"
                             android:background="@drawable/back_edittext_add_aqarz"
                             android:gravity="center_vertical"
-                            android:textStyle="bold"
-
                             android:hint="@string/area_add"
+
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
                             android:textColor="@color/black"
                             android:textColorHint="@color/hint_color"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -605,16 +605,16 @@ android:textStyle="bold"
                             android:layout_weight="1"
                             android:background="@drawable/back_edittext_add_aqarz"
                             android:gravity="center_vertical"
-                            android:textStyle="bold"
-
                             android:hint="@string/land_number_add"
+
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
                             android:textColor="@color/black"
                             android:textColorHint="@color/hint_color"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -634,16 +634,16 @@ android:textStyle="bold"
                             android:layout_weight="1"
                             android:background="@drawable/back_edittext_add_aqarz"
                             android:gravity="center_vertical"
-                            android:textStyle="bold"
-
                             android:hint="@string/number_units_add"
+
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
                             android:textColor="@color/black"
                             android:textColorHint="@color/hint_color"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -663,16 +663,16 @@ android:textStyle="bold"
                             android:layout_weight="1"
                             android:background="@drawable/back_edittext_add_aqarz"
                             android:gravity="center_vertical"
-                            android:textStyle="bold"
-
                             android:hint="@string/turn_number_add"
+
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
                             android:textColor="@color/black"
                             android:textColorHint="@color/hint_color"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -692,16 +692,16 @@ android:textStyle="bold"
                             android:layout_weight="1"
                             android:background="@drawable/back_edittext_add_aqarz"
                             android:gravity="center_vertical"
-                            android:textStyle="bold"
-
                             android:hint="@string/unit_number_add"
+
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
                             android:textColor="@color/black"
                             android:textColorHint="@color/hint_color"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -709,6 +709,7 @@ android:textStyle="bold"
 
                     <LinearLayout
                         android:id="@+id/all_details"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -1286,16 +1287,16 @@ android:textStyle="bold"
                             android:layout_weight="1"
                             android:background="@drawable/back_edittext_add_aqarz"
                             android:gravity="center_vertical"
-                            android:textStyle="bold"
-
                             android:hint="@string/lengths_add"
+
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
                             android:textColor="@color/black"
                             android:textColorHint="@color/hint_color"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -1316,16 +1317,16 @@ android:textStyle="bold"
                             android:layout_weight="1"
                             android:background="@drawable/back_edittext_add_aqarz"
                             android:gravity="center_vertical"
-                            android:textStyle="bold"
-
                             android:hint="@string/streetwidthadd"
+
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
                             android:textColor="@color/black"
                             android:textColorHint="@color/hint_color"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -1336,26 +1337,6 @@ android:textStyle="bold"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:paddingBottom="5dp">
-
-
-                        <EditText
-                            android:id="@+id/Date_of_construction_text"
-                            android:layout_width="match_parent"
-                            android:layout_height="42dp"
-                            android:layout_weight="1"
-
-                            android:background="@drawable/back_edittext_add_aqarz"
-                            android:gravity="center_vertical"
-                            android:textStyle="bold"
-
-                            android:hint="@string/Date_of_construction_add"
-                            android:inputType="number"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:text=""
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/hint_color"
-                            android:textSize="@dimen/_10sdp" />
 
 
                     </LinearLayout>
@@ -1374,9 +1355,8 @@ android:textStyle="bold"
                             android:layout_height="42dp"
                             android:layout_weight="1"
                             android:background="@drawable/back_edittext_add_aqarz"
-                            android:textStyle="bold"
-
                             android:gravity="center_vertical"
+
                             android:hint="@string/sale_price_add"
                             android:inputType="number"
                             android:paddingLeft="10dp"
@@ -1384,7 +1364,8 @@ android:textStyle="bold"
                             android:text=""
                             android:textColor="@color/black"
                             android:textColorHint="@color/hint_color"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -1592,9 +1573,8 @@ android:textStyle="bold"
                             android:layout_height="42dp"
                             android:layout_weight="1"
                             android:background="@drawable/back_edittext_add_aqarz"
-                            android:textStyle="bold"
-
                             android:gravity="center_vertical"
+
                             android:hint="@string/Warranties_duration_add"
                             android:inputType="text"
                             android:paddingLeft="10dp"
@@ -1602,7 +1582,8 @@ android:textStyle="bold"
                             android:text=""
                             android:textColor="@color/black"
                             android:textColorHint="@color/hint_color"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -1678,9 +1659,8 @@ android:textStyle="bold"
                             android:layout_height="42dp"
                             android:layout_weight="1"
                             android:background="@drawable/back_edittext_add_aqarz"
-                            android:textStyle="bold"
-
                             android:gravity="center_vertical"
+
                             android:hint="@string/Other_add"
                             android:inputType="number"
                             android:paddingLeft="10dp"
@@ -1688,13 +1668,32 @@ android:textStyle="bold"
                             android:text=""
                             android:textColor="@color/black"
                             android:textColorHint="@color/hint_color"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
 
                 </LinearLayout>
 
+
+                <EditText
+                    android:id="@+id/Date_of_construction_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/back_edittext_add_aqarz"
+                    android:gravity="center_vertical"
+                    android:hint="@string/Date_of_construction_add"
+
+                    android:inputType="number"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:id="@+id/step_3"
@@ -1759,7 +1758,7 @@ android:textStyle="bold"
                     android:layout_marginEnd="15dp"
                     android:orientation="vertical"
                     android:paddingTop="15dp"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
 
                     <TextView
@@ -2002,7 +2001,7 @@ android:textStyle="bold"
                     android:layout_marginEnd="15dp"
                     android:orientation="vertical"
                     android:paddingTop="15dp"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -2121,9 +2120,8 @@ android:textStyle="bold"
                             android:layout_height="42dp"
                             android:layout_weight="1"
                             android:background="@drawable/back_edittext_add_aqarz"
-                            android:textStyle="bold"
-
                             android:gravity="center_vertical"
+
                             android:hint="@string/owner_name_add"
                             android:inputType="text"
                             android:paddingLeft="10dp"
@@ -2131,7 +2129,8 @@ android:textStyle="bold"
                             android:text=""
                             android:textColor="@color/black"
                             android:textColorHint="@color/hint_color"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>
@@ -2150,16 +2149,16 @@ android:textStyle="bold"
                             android:layout_height="42dp"
                             android:layout_weight="1"
                             android:background="@drawable/back_edittext_add_aqarz"
-                            android:textStyle="bold"
-
                             android:gravity="center_vertical"
+
                             android:hint="@string/Mobile_add"
                             android:inputType="number"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:textColor="@color/black"
                             android:textColorHint="@color/hint_color"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
 
 
                     </LinearLayout>

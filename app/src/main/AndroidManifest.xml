@@ -30,7 +30,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.AddAqarz.AddAqarzActivity"
+        <activity
+            android:name=".Activity.AddAqarz.AddAqarzActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Activity.AddAqarz.EditAqarzActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Activity.MyOrderUserActivity"

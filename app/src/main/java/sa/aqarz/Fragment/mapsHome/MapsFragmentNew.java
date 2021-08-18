@@ -297,7 +297,6 @@ public class MapsFragmentNew extends Fragment {
 //                        System.out.println("cameraPosition.zoom " + cameraPosition.zoom);
 
 
-
                         System.out.println("cameraPosition.zoom" + cameraPosition.zoom);
 
                         if (cameraPosition.zoom <= 4.5) {
@@ -318,7 +317,7 @@ public class MapsFragmentNew extends Fragment {
 //                set_locationRegions();
                                     check_lastsenareo();
 
-                                }else{
+                                } else {
 
                                 }
                             }
@@ -472,6 +471,18 @@ public class MapsFragmentNew extends Fragment {
 //                Hawk.put("city_id_postion", "");
                 check_lastsenareo();
 
+                layout_list.setVisibility(View.GONE);
+                change_list_to_map.setVisibility(View.GONE);
+
+                convert_map_to_list.setVisibility(View.VISIBLE);
+
+
+                all_estate_size.setVisibility(View.GONE);
+                Info.setVisibility(View.VISIBLE);
+                notfication_layout.setVisibility(View.VISIBLE);
+                intrest.setVisibility(View.VISIBLE);
+                chmnage_map_style.setVisibility(View.VISIBLE);
+                get_location.setVisibility(View.VISIBLE);
 //                set_locationRegions();
             }
         });
@@ -504,6 +515,19 @@ public class MapsFragmentNew extends Fragment {
                 RealStatr_order.setTextColor(getActivity().getResources().getColor(R.color.textColor));
                 OfferOrder.setTextColor(getActivity().getResources().getColor(R.color.textColor));
                 type_selected = "Market";
+
+                layout_list.setVisibility(View.GONE);
+                change_list_to_map.setVisibility(View.GONE);
+
+                convert_map_to_list.setVisibility(View.VISIBLE);
+
+
+                all_estate_size.setVisibility(View.GONE);
+                Info.setVisibility(View.VISIBLE);
+                notfication_layout.setVisibility(View.VISIBLE);
+                intrest.setVisibility(View.VISIBLE);
+                chmnage_map_style.setVisibility(View.VISIBLE);
+                get_location.setVisibility(View.VISIBLE);
 //                LatLng sydney = new LatLng(24.527282, 44.007305);
 //                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
 //                region_id_postion = "";
@@ -969,7 +993,7 @@ public class MapsFragmentNew extends Fragment {
             } else {
 
                 region_id_postion = Hawk.get("region_id_postion").toString();
-                first_time=false;
+                first_time = false;
                 check_city();
             }
 
@@ -1091,7 +1115,6 @@ public class MapsFragmentNew extends Fragment {
 
 
             }
-
 
 
         }
