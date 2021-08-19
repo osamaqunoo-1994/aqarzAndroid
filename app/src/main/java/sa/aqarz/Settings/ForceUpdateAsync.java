@@ -61,19 +61,33 @@ public class ForceUpdateAsync extends AsyncTask<String, String, JSONObject> {
     @Override
     protected void onPostExecute(JSONObject jsonObject) {
         if (latestVersion != null) {
-            if (!currentVersion.equalsIgnoreCase(latestVersion)) {
-//                 Toast.makeText(context,"update is available.",Toast.LENGTH_LONG).show();
+
+
+            if(value(currentVersion)< value(latestVersion)){
                 showForceUpdateDialog();
 
-//                if(!(context instanceof MainActivity)) {
-//                    if(!((Activity)context).isFinishing()){
-//                    }
-//                }
             }
+//            if (!currentVersion.equalsIgnoreCase(latestVersion)) {
+////                 Toast.makeText(context,"update is available.",Toast.LENGTH_LONG).show();
+//                showForceUpdateDialog();
+//
+////                if(!(context instanceof MainActivity)) {
+////                    if(!((Activity)context).isFinishing()){
+////                    }
+////                }
+//            }
         }
         super.onPostExecute(jsonObject);
     }
-
+    private long value(String string) {
+        string = string.trim();
+        if (string.contains(".")) {
+            final int index = string.lastIndexOf(".");
+            return value(string.substring(0, index)) * 100 + value(string.substring(index + 1));
+        } else {
+            return Long.valueOf(string);
+        }
+    }
     public void showForceUpdateDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(new ContextThemeWrapper(context,
                 R.style.AppTheme));

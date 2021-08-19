@@ -38,6 +38,9 @@ public class HomeModules_aqares {
     @SerializedName("street_name")
     @Expose
     private String street_name;
+    @SerializedName("advertiser_side")
+    @Expose
+    private String advertiser_side;
 
 
     @SerializedName("pace_number")
@@ -74,6 +77,9 @@ public class HomeModules_aqares {
     @SerializedName("meter_price")
     @Expose
     private String meterPrice;
+    @SerializedName("advertiser_character")
+    @Expose
+    private String advertiser_character;
     @SerializedName("owner_name")
     @Expose
     private String ownerName;
@@ -202,6 +208,9 @@ public class HomeModules_aqares {
     @Expose
     private List<rates> rates;
 
+    public String getAdvertiser_character() {
+        return advertiser_character;
+    }
 
     public String getAddress() {
         return address;
@@ -247,6 +256,10 @@ public class HomeModules_aqares {
 
     public String getSeen_count() {
         return seen_count;
+    }
+
+    public String getAdvertiser_side() {
+        return advertiser_side;
     }
 
     public Integer getId() {

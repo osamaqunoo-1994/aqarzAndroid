@@ -25,6 +25,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,6 +33,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -67,6 +69,7 @@ import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +95,7 @@ import sa.aqarz.Adapter.RecyclerView_bottomSheet_type;
 import sa.aqarz.Adapter.RecyclerView_city_bootom_sheets;
 import sa.aqarz.Adapter.RecyclerView_city_bootom_sheets_multi;
 import sa.aqarz.Adapter.RecyclerView_city_side_menu;
+import sa.aqarz.BuildConfig;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Filtter;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Service;
@@ -1727,6 +1731,59 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+    public void showForceUpdateDialog(String latestVersion) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(new ContextThemeWrapper(activity,
+                R.style.AppTheme));
+
+        alertDialogBuilder.setTitle(activity.getString(R.string.youAreNotUpdatedTitle));
+        alertDialogBuilder.setMessage(activity.getString(R.string.youAreNotUpdatedMessage) + " " + latestVersion + activity.getString(R.string.youAreNotUpdatedMessage1));
+        alertDialogBuilder.setCancelable(false);
+        alertDialogBuilder.setPositiveButton(R.string.update, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + activity.getPackageName())));
+
+            }
+        });
+        alertDialogBuilder.show();
+    }
+
+    private void forceUpdatex() {
+        try {
+            String curVersion = activity.getPackageManager().getPackageInfo(BuildConfig.APPLICATION_ID, 0).versionName;
+            String newVersion = curVersion;
+            newVersion = Jsoup.connect("https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "&hl=en")
+                    .timeout(30000)
+                    .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
+                    .referrer("http://www.google.com")
+                    .get()
+                    .select("div[itemprop=softwareVersion]")
+                    .first()
+                    .ownText();
+
+
+//            return (value(curVersion) < value(newVersion)) ? true : false;
+            if ((value(curVersion) < value(newVersion))) {
+                showForceUpdateDialog(newVersion + "");
+            } else {
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+//            return false;
+        }
+    }
+
+    private long value(String string) {
+        string = string.trim();
+        if (string.contains(".")) {
+            final int index = string.lastIndexOf(".");
+            return value(string.substring(0, index)) * 100 + value(string.substring(index + 1));
+        } else {
+            return Long.valueOf(string);
+        }
     }
 
     public void init_volley() {

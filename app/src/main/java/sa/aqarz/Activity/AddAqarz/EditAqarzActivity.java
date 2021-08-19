@@ -76,6 +76,7 @@ import sa.aqarz.Activity.OprationAqarz.EditAqarsActivity;
 import sa.aqarz.Activity.SelectLocationActivity;
 import sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
 import sa.aqarz.Adapter.RecyclerView_selectImage;
+import sa.aqarz.Adapter.RecyclerView_selectImage_url_image;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectArea;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectNeighborhoods;
@@ -253,6 +254,7 @@ public class EditAqarzActivity extends AppCompatActivity {
     ///------------------------------------------------------------------------------------------------------
 
     LinearLayout all_details;
+    RecyclerView images_RecyclerView_url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -384,6 +386,7 @@ public class EditAqarzActivity extends AppCompatActivity {
         mobile_edt = findViewById(R.id.mobile_edt);
         owner_edt = findViewById(R.id.owner_edt);
         approval = findViewById(R.id.approval);
+        images_RecyclerView_url = findViewById(R.id.images_RecyclerView_url);
 
 
         select_opration_type();
@@ -397,6 +400,10 @@ public class EditAqarzActivity extends AppCompatActivity {
         owner_info();
         approval();
 
+
+        LinearLayoutManager layoutManagems
+                = new LinearLayoutManager(EditAqarzActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        images_RecyclerView_url.setLayoutManager(layoutManagems);
 
         try {
             String id_or_aq = getIntent().getStringExtra("id_aqarz");
@@ -2349,7 +2356,7 @@ public class EditAqarzActivity extends AppCompatActivity {
                         city_l.setText(homeModules_aqares.getCity_name() + "");
                         nibors.setText(homeModules_aqares.getNeighborhood_name() + "");
 
-                        if (homeModules_aqares.getStreet_name() != null & !homeModules_aqares.getStreet_name().equals("null")) {
+                        if (homeModules_aqares.getStreet_name() != null && !homeModules_aqares.getStreet_name().equals("null")) {
                             street.setText(homeModules_aqares.getStreet_name() + "");
 
                         }
@@ -2372,35 +2379,103 @@ public class EditAqarzActivity extends AppCompatActivity {
                         }
 
                         area_text.setText(homeModules_aqares.getTotalArea() + "");
-                        if (homeModules_aqares.getPaceNumber() != null & !homeModules_aqares.getPaceNumber().equals("null")) {
+                        if (homeModules_aqares.getPaceNumber() != null && !homeModules_aqares.getPaceNumber().equals("null")) {
                             land_number_text.setText(homeModules_aqares.getPaceNumber() + "");
                         }
-                        if (homeModules_aqares.getUnit_counter() != null & !homeModules_aqares.getUnit_counter().equals("null")) {
+                        if (homeModules_aqares.getUnit_counter() != null && !homeModules_aqares.getUnit_counter().equals("null")) {
                             number_units_text.setText(homeModules_aqares.getUnit_counter() + "");
                         }
 
-                        if (homeModules_aqares.getFloorNumber() != null & !homeModules_aqares.getFloorNumber().equals("null")) {
+                        if (homeModules_aqares.getFloorNumber() != null && !homeModules_aqares.getFloorNumber().equals("null")) {
                             turn_number_text.setText(homeModules_aqares.getFloorNumber() + "");
                         }
-                        if (homeModules_aqares.getUnit_number() != null & !homeModules_aqares.getUnit_number().equals("null")) {
+                        if (homeModules_aqares.getUnit_number() != null && !homeModules_aqares.getUnit_number().equals("null")) {
                             unit_number_text.setText(homeModules_aqares.getUnit_number() + "");
                         }
-                        if (homeModules_aqares.getEstate_dimensions() != null & !homeModules_aqares.getEstate_dimensions().equals("null")) {
+                        if (homeModules_aqares.getEstate_dimensions() != null && !homeModules_aqares.getEstate_dimensions().equals("null")) {
                             lengths_add_text.setText(homeModules_aqares.getEstate_dimensions() + "");
                         }
-                        if (homeModules_aqares.getStreetView() != null & !homeModules_aqares.getStreetView().equals("null")) {
+                        if (homeModules_aqares.getStreetView() != null && !homeModules_aqares.getStreetView().equals("null")) {
                             streetwidthadd_text.setText(homeModules_aqares.getStreetView() + "");
                         }
+                        if (homeModules_aqares.getTotalPrice() != null && !homeModules_aqares.getTotalPrice().equals("null")) {
+                            sale_price_text.setText(homeModules_aqares.getTotalPrice() + "");
+                        }
+                        if (homeModules_aqares.getOwnerMobile() != null && !homeModules_aqares.getOwnerMobile().equals("null")) {
+                            mobile_edt.setText(homeModules_aqares.getOwnerMobile() + "");
+                        }
+
+                        if (homeModules_aqares.getOwnerName() != null && !homeModules_aqares.getOwnerName().equals("null")) {
+                            owner_edt.setText(homeModules_aqares.getOwnerName() + "");
+                        }
+
+                        if (homeModules_aqares.getAdvertiser_side().equals("individual")) {
+
+                            addAqarezObject.setAdvertiser_side("individual");
+                            individual_txt.setBackground(getResources().getDrawable(R.drawable.button_login));
+                            individual_txt.setTextColor(getResources().getColor(R.color.white));
+                            facility_txt.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
+                            facility_txt.setTextColor(getResources().getColor(R.color.black));
+
+                        } else {
+                            addAqarezObject.setAdvertiser_side("facility");
+                            facility_txt.setBackground(getResources().getDrawable(R.drawable.button_login));
+                            facility_txt.setTextColor(getResources().getColor(R.color.white));
+                            individual_txt.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
+                            individual_txt.setTextColor(getResources().getColor(R.color.black));
 
 
+                        }
+
+                        if (homeModules_aqares.getAdvertiser_character().equals("onwer")) {
+
+                            addAqarezObject.setAdvertiser_character("onwer");
+                            owner_txt.setBackground(getResources().getDrawable(R.drawable.button_login));
+                            owner_txt.setTextColor(getResources().getColor(R.color.white));
+                            authorized_txt.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
+                            authorized_txt.setTextColor(getResources().getColor(R.color.black));
 
 
+                        } else {
+                            addAqarezObject.setAdvertiser_character("authorized");
+                            authorized_txt.setBackground(getResources().getDrawable(R.drawable.button_login));
+                            authorized_txt.setTextColor(getResources().getColor(R.color.white));
+                            owner_txt.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
+                            owner_txt.setTextColor(getResources().getColor(R.color.black));
 
 
+                        }
 
+//                                    images_RecyclerView_url.setAdapter(new RecyclerView_selectImage_url(EditAqarsActivity.this, homeModules_aqares.getEstate_file()));
+                        RecyclerView_selectImage_url_image recyclerView_selectImage_url_image = new RecyclerView_selectImage_url_image(EditAqarzActivity.this, homeModules_aqares.getEstate_file());
+
+                        recyclerView_selectImage_url_image.addItemClickListener(new RecyclerView_selectImage_url_image.ItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+                                //-----------------------------------------------------------------------------------------
+                                init_volley();
+                                VolleyService mVolleyService = new VolleyService(mResultCallback, EditAqarzActivity.this);
+
+
+                                JSONObject jsonObject = new JSONObject();
+                                try {
+                                    jsonObject.put("image_id", position + "");
+                                } catch (Exception e) {
+
+                                }
+
+                                mVolleyService.postDataVolley("deleteImg_estate", WebService.deleteImg_estate, jsonObject);
+
+                                WebService.loading(EditAqarzActivity.this, false);
+
+                            }
+                        });
+
+
+                        images_RecyclerView_url.setAdapter(recyclerView_selectImage_url_image);
 
                     } catch (Exception e) {
-
+                        e.printStackTrace();
                     }
 
 
