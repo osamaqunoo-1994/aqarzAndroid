@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewAqarz.Fragments.HomeMapFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="5dp"
+
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/back_search_home"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/seach_hint"
+                        android:textSize="13dp" />
+
+                    <LinearLayout
+                        android:layout_width="10dp"
+                        android:layout_height="match_parent" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:padding="9dp"
+                        android:src="@drawable/ic__search_home_icon" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content" />
+
+                <RelativeLayout
+                    android:layout_width="45dp"
+                    android:layout_height="45dp">
+
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_notifications_home" />
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/circle_red" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/all_type_aqarz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="90dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="41dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/back_search_home"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="41dp"
+                            android:layout_height="41dp"
+                            android:padding="11dp"
+                            android:src="@drawable/ic_saudi_arabia_x"
+                            app:tint="#585755" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#EEEEF0" />
+
+                        <ImageView
+                            android:layout_width="41dp"
+                            android:layout_height="41dp"
+                            android:padding="11dp"
+                            android:src="@drawable/ic_location"
+                            app:tint="#585755" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#EEEEF0" />
+
+                        <ImageView
+                            android:layout_width="41dp"
+                            android:layout_height="41dp"
+                            android:padding="11dp"
+                            android:src="@drawable/ic_change_style"
+                            app:tint="#585755" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="41dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/back_search_home">
+
+                        <ImageView
+                            android:layout_width="41dp"
+                            android:layout_height="41dp"
+                            android:padding="12dp"
+                            android:src="@drawable/ic_list_ch"
+
+                            app:tint="#585755" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="41dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@drawable/back_search_home">
+
+                    <ImageView
+                        android:layout_width="41dp"
+                        android:layout_height="41dp"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_filter_home"
+
+                        app:tint="#585755" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@color/white" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</fragment>

@@ -1049,23 +1049,13 @@ Two working days to complete your order</string>
     <string name="Add_region_add">Add region<font color="#AAABB3"><sup>*</sup></font></string>
 
 
-
-
-
-//errors
+    //errors
 
     <string name="select_area">Select Area before city</string>
     <string name="select_city">Select City before Neighborhood</string>
     <string name="fac_">مفضلتي</string>
     <string name="fac_2">مناطقي المفضلة</string>
 
-
-
-
-
-
-
-
-
+    <string name="seach_hint">اسم المدينة/الحي</string>
 
 </resources>

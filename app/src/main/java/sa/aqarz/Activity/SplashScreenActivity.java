@@ -34,6 +34,7 @@ import java.util.Set;
 
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Modules.User;
+import sa.aqarz.NewAqarz.MainAqarzActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.ForceUpdateAsync;
 import sa.aqarz.Settings.Settings;
@@ -44,11 +45,12 @@ import sa.aqarz.api.VolleyService;
 public class SplashScreenActivity extends AppCompatActivity {
     IResult mResultCallback;
     View parentLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-         parentLayout = findViewById(android.R.id.content);
+        parentLayout = findViewById(android.R.id.content);
 
 
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.splash_anim);
@@ -108,8 +110,6 @@ public class SplashScreenActivity extends AppCompatActivity {
             config.locale = locale;
             getBaseContext().getResources().updateConfiguration(config,
                     getBaseContext().getResources().getDisplayMetrics());
-
-
 
 
         }
@@ -192,7 +192,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                             public void run() {
 
 
-                                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                                Intent intent = new Intent(SplashScreenActivity.this, MainAqarzActivity.class);
 //              intent.putExtra("from", "splash");
                                 startActivity(intent);
 //                                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
