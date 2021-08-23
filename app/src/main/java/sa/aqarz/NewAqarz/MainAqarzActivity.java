@@ -63,9 +63,6 @@ public class MainAqarzActivity extends AppCompatActivity {
     public static Activity activity;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +119,18 @@ public class MainAqarzActivity extends AppCompatActivity {
     }
 
     public void set_contanier_fragments() {
+        click_tab = "home";
+        text_1.setTextColor(getResources().getColor(R.color.colorPrimary));
+        text_2.setTextColor(getResources().getColor(R.color.color_un_active));
+        text_3.setTextColor(getResources().getColor(R.color.color_un_active));
+        text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+        text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+
+        image_1.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
+        image_2.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+        image_3.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+        image_4.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container, new HomeMapFragment());
         //  fragmentTransaction.commit();
@@ -133,7 +142,6 @@ public class MainAqarzActivity extends AppCompatActivity {
         lay_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                click_tab = "home";
                 text_1.setTextColor(getResources().getColor(R.color.colorPrimary));
                 text_2.setTextColor(getResources().getColor(R.color.color_un_active));
                 text_3.setTextColor(getResources().getColor(R.color.color_un_active));
@@ -145,6 +153,13 @@ public class MainAqarzActivity extends AppCompatActivity {
                 image_3.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
                 image_4.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 
+
+                if (click_tab.equals("home")) {
+
+                } else {
+                    click_tab = "home";
+                    set_contanier_fragments();
+                }
 
             }
         });

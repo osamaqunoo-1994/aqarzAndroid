@@ -428,7 +428,7 @@ android:textStyle="bold"
                     android:orientation="vertical"
 
                     android:paddingTop="15dp"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
 
                     <TextView

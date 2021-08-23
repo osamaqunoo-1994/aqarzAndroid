@@ -68,6 +68,7 @@
 
 
                     <ImageView
+                        android:id="@+id/notfication"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:padding="7dp"
@@ -123,6 +124,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/convert_to_region"
                             android:layout_width="41dp"
                             android:layout_height="41dp"
                             android:padding="11dp"
@@ -135,6 +137,7 @@
                             android:background="#EEEEF0" />
 
                         <ImageView
+                            android:id="@+id/my_location"
                             android:layout_width="41dp"
                             android:layout_height="41dp"
                             android:padding="11dp"
@@ -147,6 +150,7 @@
                             android:background="#EEEEF0" />
 
                         <ImageView
+                            android:id="@+id/convert_map_style"
                             android:layout_width="41dp"
                             android:layout_height="41dp"
                             android:padding="11dp"
@@ -163,6 +167,7 @@
                         android:background="@drawable/back_search_home">
 
                         <ImageView
+                            android:id="@+id/convert_to_list"
                             android:layout_width="41dp"
                             android:layout_height="41dp"
                             android:padding="12dp"
@@ -182,17 +187,16 @@
                 <LinearLayout
                     android:layout_width="41dp"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/back_search_home">
 
                     <ImageView
+                        android:id="@+id/fillter"
                         android:layout_width="41dp"
                         android:layout_height="41dp"
                         android:padding="12dp"
                         android:src="@drawable/ic_filter_home"
-
                         app:tint="#585755" />
 
 
@@ -202,14 +206,24 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/allEstate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:background="@color/white" />
+                />
 
 
         </LinearLayout>
+
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:visibility="gone" />
 
 
     </RelativeLayout>

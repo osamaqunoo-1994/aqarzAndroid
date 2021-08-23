@@ -183,24 +183,30 @@ public class SplashScreenActivity extends AppCompatActivity {
                     if (status) {
                         String data = response.getString("data");
 
+                        if (requestType.equals("Settings")) {
 
-                        Hawk.put("settings", data);
-
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
+                            Hawk.put("settings", data);
 
 
-                                Intent intent = new Intent(SplashScreenActivity.this, MainAqarzActivity.class);
+                            init_volley();
+                            VolleyService mVolleyService = new VolleyService(mResultCallback, SplashScreenActivity.this);
+
+                            mVolleyService.getDataVolley("regions", WebService.regions);
+
+
+                        } else if (requestType.equals("regions")) {
+
+
+                            Hawk.put("regions", response.toString());
+
+                            Intent intent = new Intent(SplashScreenActivity.this, MainAqarzActivity.class);
 //              intent.putExtra("from", "splash");
-                                startActivity(intent);
+                            startActivity(intent);
 //                                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-                                finish();
+                            finish();
 
+                        }
 
-                            }
-                        }, 10); // After 1 seconds
 
                     } else {
 

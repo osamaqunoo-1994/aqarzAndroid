@@ -889,9 +889,9 @@ Two working days to complete your order</string>
     <string name="cancleFiltter">Cancle Filtter</string>
 
 
-    <string name="mn1">شراء</string>
-    <string name="mn2">إيجار</string>
-    <string name="mn3">استثمار</string>
+    <string name="mn1">Purchase</string>
+    <string name="mn2">rent</string>
+    <string name="mn3">investment</string>
     <string name="title_dialog">Service Aqarez</string>
     <string name="request_aqarez">Request Aqarez</string>
     <string name="Enterthenameyouwanttosearch">Enter the name you want to search</string>
@@ -1057,5 +1057,9 @@ Two working days to complete your order</string>
     <string name="fac_2">مناطقي المفضلة</string>
 
     <string name="seach_hint">اسم المدينة/الحي</string>
+    <string name="searchabout">Search about</string>
+    <string name="AqarzManAqarzMan">Aqarz Man</string>
+    <string name="AqarzMaqarzSearcganAqarzMan">Aqarz</string>
+    <string name="type_viewww">Type</string>
 
 </resources>

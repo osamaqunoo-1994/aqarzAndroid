@@ -14,11 +14,17 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.orhanobut.hawk.Hawk;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import sa.aqarz.Activity.AqarzProfileActivity;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.DetailsAqarzManActivity;
 import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
+import sa.aqarz.Fragment.mapsHome.MapsViewModel;
+import sa.aqarz.Modules.AllRegionList;
+import sa.aqarz.Modules.RegionModules;
 import sa.aqarz.Modules.SettingsModules;
 import sa.aqarz.Modules.User;
 import sa.aqarz.R;
@@ -41,6 +47,29 @@ public class Settings {
         } else {
             SettingsModules userModules = new SettingsModules();
             return userModules;
+
+        }
+
+
+    }
+
+    public static List<RegionModules> getRegions() {
+
+
+        if (Hawk.contains("regions")) {
+            try {
+                JsonParser parser = new JsonParser();
+                JsonElement mJson = parser.parse(Hawk.get("regions").toString());
+                Gson gson = new Gson();
+                AllRegionList All = gson.fromJson(mJson, AllRegionList.class);
+                return All.getData();
+            } catch (Exception e) {
+                List<RegionModules> regionModules = new ArrayList<>();
+                return regionModules;
+            }
+        } else {
+            List<RegionModules> regionModules = new ArrayList<>();
+            return regionModules;
 
         }
 

@@ -421,7 +421,7 @@
                             android:id="@+id/image_2"
                             android:layout_width="22dp"
                             android:layout_height="22dp"
-                            android:src="@drawable/ic_menu__ss"
+                            android:src="@drawable/ic_orders"
 
                             app:tint="#aaabb3" />
 
@@ -540,7 +540,7 @@
             android:id="@+id/fab"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:src="@drawable/ic_plus"
+            android:src="@drawable/logo_png"
             android:tint="@color/white"
             android:visibility="visible"
             app:backgroundTint="@color/colorPrimary"
