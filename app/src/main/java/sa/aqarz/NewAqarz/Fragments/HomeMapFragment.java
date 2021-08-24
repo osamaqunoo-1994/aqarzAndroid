@@ -76,7 +76,7 @@ import sa.aqarz.api.VolleyService;
 
 public class HomeMapFragment extends Fragment {
     RecyclerView all_type_aqarz;
-    RecyclerView allEstate;
+    static RecyclerView allEstate;
     List<TypeModules> type_list = new ArrayList<>();
     ImageView convert_to_region;
     ImageView my_location;
@@ -92,21 +92,24 @@ public class HomeMapFragment extends Fragment {
     static List<RegionModules> regionModules_list = new ArrayList<>();
     static Activity activity;
 
-    IResult mResultCallback;
+    static IResult mResultCallback;
     public static List<HomeModules_aqares> homeModules_aqares = new ArrayList<>();
 
     static String lat = "26.196634";
     static String lan = "43.813666";
     static String type_filtter = "";
     static String region_id_postion = "";
-    ProgressBar loading;
+    static ProgressBar loading;
     static RecyclerView_HomeList_estat_map recyclerView_homeList_estat_new;
 
-    Marker marker_selected;
+    static Marker marker_selected;
     int last_postion_marker = 0;
 
     LinearLayoutManager layoutManager;
     public static List<Marker> marker_list = new ArrayList<Marker>();
+
+
+    public static boolean is_first = true;
 
 
     private final OnMapReadyCallback callback = new OnMapReadyCallback() {
@@ -142,7 +145,9 @@ public class HomeMapFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home_map, container, false);
+        is_first = true;
         setup_type_(view);
+
 
         activity = getActivity();
         mapFragment =
@@ -410,31 +415,35 @@ public class HomeMapFragment extends Fragment {
 //                        lan = cameraPosition.target.longitude + "";
 
 
-                        if (Hawk.contains("LastPostionLat")) {
-
-                            if (!Hawk.get("LastPostionLat").toString().equals("")) {
-                                double distance = distance(Double.valueOf(lat), Double.valueOf(lan), cameraPosition.target.latitude, cameraPosition.target.longitude);
-
-                                System.out.println("distance" + distance);
-                                if (distance < 20) {
-
-
-                                } else {
-
-                                    lat = "" + cameraPosition.target.latitude;
-                                    lan = "" + cameraPosition.target.longitude;
-
-                                    Hawk.put("LastPostionLat", lat);
-                                    Hawk.put("LastPostionLan", lan);
-
-                                    get_Estate_from_api();
-                                }
-                            }
+                        if (is_first) {
 
                         } else {
+                            if (Hawk.contains("LastPostionLat")) {
+
+                                if (!Hawk.get("LastPostionLat").toString().equals("")) {
+                                    double distance = distance(Double.valueOf(lat), Double.valueOf(lan), cameraPosition.target.latitude, cameraPosition.target.longitude);
+
+                                    System.out.println("distance" + distance);
+                                    if (distance < 20) {
+
+
+                                    } else {
+
+                                        lat = "" + cameraPosition.target.latitude;
+                                        lan = "" + cameraPosition.target.longitude;
+
+                                        Hawk.put("LastPostionLat", lat);
+                                        Hawk.put("LastPostionLan", lan);
+
+                                        get_Estate_from_api();
+                                    }
+                                }
+
+                            } else {
+
+                            }
 
                         }
-
                     }
 
                 });
@@ -566,7 +575,7 @@ public class HomeMapFragment extends Fragment {
         return returnedBitmap;
     }
 
-    public void on_click_maps_marker() {
+    public static void on_click_maps_marker() {
 
 
         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -701,7 +710,7 @@ public class HomeMapFragment extends Fragment {
         });
     }
 
-    public void get_Estate_from_api() {
+    public static void get_Estate_from_api() {
         loading.setVisibility(View.VISIBLE);
         String lat_lan = "&lan=" + lan + "&lat=" + lat;
         String distance = "50";
@@ -718,6 +727,7 @@ public class HomeMapFragment extends Fragment {
 //
 //        }
 
+
         String type_filtter_ = "";
         if (!type_filtter.equals("")) {
             type_filtter_ = "&estate_type=" + type_filtter;
@@ -725,7 +735,7 @@ public class HomeMapFragment extends Fragment {
 
 
         init_volley();
-        VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+        VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
         mVolleyService.getAsync("home_estate_custom_list", WebService.home_estate_custom_list + "?" + lat_lan + "&distance=" + distance + type_filtter_);
 //        urlEstat = WebService.home_estate_custom_list + "?" + filter + lat_lan + "&distance=" + distance + getId_region + getSerial_city;
@@ -733,16 +743,17 @@ public class HomeMapFragment extends Fragment {
 
     }
 
-    public void init_volley() {
+    public static void init_volley() {
 
         mResultCallback = new IResult() {
             @Override
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + response);
-                WebService.loading(getActivity(), false);
+                WebService.loading(activity, false);
                 loading.setVisibility(View.GONE);
 
+                is_first = false;
 //{"status":true,"code":200,"message":"User Profile","data"
                 try {
                     boolean status = response.getBoolean("status");
@@ -769,7 +780,7 @@ public class HomeMapFragment extends Fragment {
 //                            all_estate_size.setText(allNeigbers.getData().getTo() + " " + activity.getResources().getString(R.string.From_t) + " " + allNeigbers.getData().getTotal() + " " + activity.getResources().getString(R.string.advertisementsx));
 
 
-                            recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_map(getContext(), homeModules_aqares);
+                            recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_map(activity, homeModules_aqares);
                             recyclerView_homeList_estat_new.addItemClickListener(new RecyclerView_HomeList_estat_map.ItemClickListener() {
                                 @Override
                                 public void onItemClick(int position) {
@@ -822,7 +833,7 @@ public class HomeMapFragment extends Fragment {
                     String message = jsonObject.getString("message");
 
 
-                    WebService.Make_Toast_color(getActivity(), message, "error");
+                    WebService.Make_Toast_color(activity, message, "error");
 
                     Log.e("error response", response_data);
 
@@ -843,10 +854,10 @@ public class HomeMapFragment extends Fragment {
 
     }
 
-    MarkerOptions marker_add;
-    Marker amarker;
+    static MarkerOptions marker_add;
+    static Marker amarker;
 
-    public void set_locationEstate(List<HomeModules_aqares> homeModules_aqaresz) {
+    public static void set_locationEstate(List<HomeModules_aqares> homeModules_aqaresz) {
         marker_list.clear();
 
 

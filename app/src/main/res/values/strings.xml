@@ -1062,4 +1062,9 @@ Two working days to complete your order</string>
     <string name="AqarzMaqarzSearcganAqarzMan">Aqarz</string>
     <string name="type_viewww">Type</string>
 
+    <string name="name_aqarz_fitter">Name Aqarz Man</string>
+    <string name="name_aqarz_fitter_tit">Enter the name of the property you want to search for</string>
+    <string name="name_aqarz_fitter_tit2">Or you can search by QR code</string>
+    <string name="click_heare">Press here</string>
+
 </resources>

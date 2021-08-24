@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,7 +28,9 @@ import sa.aqarz.Activity.OprationNew.RentShowActivity;
 import sa.aqarz.Activity.check_login;
 import sa.aqarz.Fragment.MapsFragment;
 import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
+import sa.aqarz.Modules.Object_filtter;
 import sa.aqarz.NewAqarz.Fragments.HomeMapFragment;
+import sa.aqarz.NewAqarz.Fragments.OrderFragment;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
 
@@ -61,6 +64,7 @@ public class MainAqarzActivity extends AppCompatActivity {
     private static FragmentTransaction fragmentTransaction;
     private static FragmentManager fragmentManager;
     public static Activity activity;
+    public static Object_filtter object_filtter = new Object_filtter();
 
 
     @Override
@@ -100,9 +104,15 @@ public class MainAqarzActivity extends AppCompatActivity {
         myFab.setColorFilter(Color.WHITE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary, this.getTheme()));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.white, this.getTheme()));
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.white));
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (myFab != null) {
+                myFab.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            }
         }
 
         fragmentManager = getSupportFragmentManager();
@@ -179,6 +189,11 @@ public class MainAqarzActivity extends AppCompatActivity {
                 image_3.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
                 image_4.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 
+
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, new OrderFragment());
+                //  fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
             }
         });
         lay_3.setOnClickListener(new View.OnClickListener() {

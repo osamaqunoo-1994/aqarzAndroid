@@ -1096,5 +1096,8 @@
     <string name="AqarzMaqarzSearcganAqarzMan">عقار</string>
 
     <string name="type_viewww">نوع العرض</string>
-
+    <string name="name_aqarz_fitter">ادخل اسم العقاري</string>
+    <string name="name_aqarz_fitter_tit">أدخل بإسم العقاري المراد البحث عنه</string>
+    <string name="name_aqarz_fitter_tit2">أو بإمكانك البحث عن طريق كود QR</string>
+    <string name="click_heare">اضغط هنا</string>
 </resources>
