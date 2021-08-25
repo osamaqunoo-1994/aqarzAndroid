@@ -1100,4 +1100,11 @@
     <string name="name_aqarz_fitter_tit">أدخل بإسم العقاري المراد البحث عنه</string>
     <string name="name_aqarz_fitter_tit2">أو بإمكانك البحث عن طريق كود QR</string>
     <string name="click_heare">اضغط هنا</string>
+    <string name="Aqarz_titne_list">العروض</string>
+
+    <string name="order_by_ff">ترتيب حسب:</string>
+    <string name="date_se">التاريخ</string>
+    <string name="rate_se">التقييم</string>
+    <string name="BathrommNumber">عدد الحمامات</string>
+    <string name="rommNumber">عدد الغرف</string>
 </resources>

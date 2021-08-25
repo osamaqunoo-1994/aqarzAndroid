@@ -29,6 +29,7 @@ import sa.aqarz.Activity.check_login;
 import sa.aqarz.Fragment.MapsFragment;
 import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
 import sa.aqarz.Modules.Object_filtter;
+import sa.aqarz.NewAqarz.Fragments.ChatFragment;
 import sa.aqarz.NewAqarz.Fragments.HomeMapFragment;
 import sa.aqarz.NewAqarz.Fragments.OrderFragment;
 import sa.aqarz.R;
@@ -192,6 +193,7 @@ public class MainAqarzActivity extends AppCompatActivity {
 
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.container, new OrderFragment());
+                fragmentTransaction.addToBackStack(null);
                 //  fragmentTransaction.commit();
                 fragmentTransaction.commitAllowingStateLoss();
             }
@@ -211,7 +213,11 @@ public class MainAqarzActivity extends AppCompatActivity {
                 image_2.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
                 image_3.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
                 image_4.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, new ChatFragment());
+                fragmentTransaction.addToBackStack(null);
+                //  fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
             }
         });
         lay_4.setOnClickListener(new View.OnClickListener() {

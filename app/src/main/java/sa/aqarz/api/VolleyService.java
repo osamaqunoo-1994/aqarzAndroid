@@ -75,6 +75,45 @@ public class VolleyService {
 
         }
     }
+    public void postDataVolley_test(final String requestType, String url, JSONObject sendObj) {
+        try {
+            RequestQueue queue = Volley.newRequestQueue(mContext);
+
+            System.out.println("urlurl " + url);
+
+            JsonObjectRequest jsonObj = new JsonObjectRequest(url, sendObj, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    if (mResultCallback != null)
+                        mResultCallback.notifySuccess(requestType, response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    if (mResultCallback != null)
+                        mResultCallback.notifyError(requestType, error);
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+
+
+
+                    Map<String, String> heder = new HashMap<String, String>();
+                    heder.put("api_token", "42151e531b993eda93ddcda4a2f5ac7ba365aba7949b0e51c97db0c6ae78419a");
+
+                    return heder;
+                }
+
+            };
+
+
+            queue.add(jsonObj);
+
+        } catch (Exception e) {
+
+        }
+    }
 
     public void postDataasync_with_file(final String requestType, String url, RequestParams requestParams) {
         try {
@@ -109,7 +148,7 @@ public class VolleyService {
                         System.out.println("responseBody" + errorResponse.toString());
 
 
-                        mResultCallback.notify_Async_Error(requestType,  errorResponse.toString());
+                        mResultCallback.notify_Async_Error(requestType, errorResponse.toString());
 
                     } catch (Exception e) {
 
@@ -206,6 +245,7 @@ public class VolleyService {
 
         }
     }
+
 
     public void getAsync(final String requestType, String url) {
         try {

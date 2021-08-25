@@ -36,8 +36,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".NewAqarz.FillterActivity"
+            android:name=".NewAqarz.ListAqarzActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".NewAqarz.FillterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -335,12 +338,9 @@
 
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat" />
-
-        <meta-data
-            android:name="io.sentry.dsn"
-            android:value="https://c2448ed54fb547118a318abb11d49058@o555534.ingest.sentry.io/5685741" />
-
+            android:theme="@style/Base.Theme.AppCompat" /> <!-- <meta-data -->
+        <!-- android:name="io.sentry.dsn" -->
+        <!-- android:value="https://c2448ed54fb547118a318abb11d49058@o555534.ingest.sentry.io/5685741" /> -->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

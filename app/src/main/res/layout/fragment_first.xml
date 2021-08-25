@@ -50,10 +50,11 @@
                     android:id="@+id/all_order_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="4dp"
                     android:fontFamily="@font/din_bold"
                     android:gravity="center"
-                    android:text="(55)"
+                    android:text="(0)"
                     android:textSize="10dp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -82,10 +83,11 @@
                     android:id="@+id/order_day_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="4dp"
                     android:fontFamily="@font/din_bold"
                     android:gravity="center"
-                    android:text="(55)"
+                    android:text="(0)"
                     android:textSize="10dp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -114,10 +116,11 @@
                     android:id="@+id/MyOffer_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="4dp"
                     android:fontFamily="@font/din_bold"
                     android:gravity="center"
-                    android:text="(55)"
+                    android:text="(0)"
                     android:textSize="10dp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -160,11 +163,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/border_fillter"
+            android:background="@drawable/border_filltercirc"
 
             android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/search_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -178,6 +182,7 @@
             </EditText>
 
             <ImageView
+                android:id="@+id/search_btn"
                 android:layout_width="32dp"
                 android:layout_height="40dp"
                 android:padding="10dp"
@@ -187,9 +192,10 @@
         <LinearLayout
             android:id="@+id/all_status_offer"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="37dp"
             android:layout_marginStart="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/status_1"
@@ -204,7 +210,7 @@
                 android:paddingRight="5dp"
                 android:text="@string/asas1"
                 android:textColor="@color/black"
-                android:textSize="10dp" />
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/status_2"
@@ -219,7 +225,7 @@
                 android:paddingRight="5dp"
                 android:text="@string/asas2"
                 android:textColor="@color/black"
-                android:textSize="10dp" />
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/status_3"
@@ -234,11 +240,54 @@
                 android:paddingRight="5dp"
                 android:text="@string/asas3"
                 android:textColor="@color/black"
-                android:textSize="10dp" />
+                android:textSize="12dp" />
 
         </LinearLayout>
 
 
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/AllResultRec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+
+    <LinearLayout
+        android:id="@+id/nodata_vis"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            android:alpha=".3"
+            android:src="@drawable/ic_no_data" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="@string/nodata"
+            android:textColor="@color/textColor2" />
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

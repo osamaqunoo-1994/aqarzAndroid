@@ -12,24 +12,21 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import sa.aqarz.Modules.ComfortModules;
+import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
 
 
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_comfort_fillter extends RecyclerView.Adapter<RecyclerView_comfort_fillter.MyViewHolder> {
-    public static List<ComfortModules> alldata = new ArrayList<ComfortModules>();
-    static int Postion_opend = -1;
+public class RecyclerView_All_type_in_home_List extends RecyclerView.Adapter<RecyclerView_All_type_in_home_List.MyViewHolder> {
+    public static List<TypeModules> alldata = new ArrayList<TypeModules>();
+    static int Postion_opend = 0;
 
 
     static AlertDialog alertDialog;
@@ -47,15 +44,7 @@ public class RecyclerView_comfort_fillter extends RecyclerView.Adapter<RecyclerV
         this.notifyDataSetChanged();
     }
 
-
     public void RefreshData() {
-        this.notifyDataSetChanged();
-    }
-
-    public void add_more_date(List<ComfortModules> alldata) {
-
-        RecyclerView_comfort_fillter.alldata = alldata;
-
         this.notifyDataSetChanged();
     }
 
@@ -72,6 +61,7 @@ public class RecyclerView_comfort_fillter extends RecyclerView.Adapter<RecyclerV
         LinearLayout back_ground;
         TextView text;
         ImageView image_in_type;
+        ImageView selected;
 
         public MyViewHolder(View view) {
             super(view);
@@ -81,13 +71,14 @@ public class RecyclerView_comfort_fillter extends RecyclerView.Adapter<RecyclerV
             back_ground = view.findViewById(R.id.back_ground);
             text = view.findViewById(R.id.text);
             image_in_type = view.findViewById(R.id.image_in_type);
+            selected = view.findViewById(R.id.selected);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
     }
 
-    public RecyclerView_comfort_fillter(Context context, List<ComfortModules> alldata) {
-        RecyclerView_comfort_fillter.alldata = alldata;
+    public RecyclerView_All_type_in_home_List(Context context, List<TypeModules> alldata) {
+        RecyclerView_All_type_in_home_List.alldata = alldata;
         this.context = context;
     }
 
@@ -114,21 +105,30 @@ public class RecyclerView_comfort_fillter extends RecyclerView.Adapter<RecyclerV
 ////
         holder.text.setText(alldata.get(position).getName() + "");
 
-        Glide.with(context).load(alldata.get(position).getIcon()).into(holder.image_in_type);
+        holder.image_in_type.setVisibility(View.GONE);
 
-        if (alldata.get(position).get_is_selected()) {
-            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.border_fillter_fill));
+//        try {
+////            System.out.println("#$#$#$#"+alldata.get(position).getIcon());
+//            Glide.with(context).load(alldata.get(position).getIcon() + "").into(holder.image_in_type);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+
+        if (alldata.get(position).isIsselected()) {
+            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.back_search_home_selected));
 
             holder.text.setTextColor(context.getResources().getColor(R.color.white));
 
-
-            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
-
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+//            holder.selected.setVisibility(View.VISIBLE);
         } else {
-            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.border_fillter));
+            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.back_search_home));
 
-            holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
-            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
+            holder.text.setTextColor(context.getResources().getColor(R.color.color_filter));
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.color_filter), android.graphics.PorterDuff.Mode.SRC_IN);
+//            holder.selected.setVisibility(View.GONE);
 
         }
 //
@@ -192,31 +192,15 @@ public class RecyclerView_comfort_fillter extends RecyclerView.Adapter<RecyclerV
 
 //
 
+//                Postion_opend = position;
 
-                //                    holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.border_fillter));
-                //
-                //                    holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
-                //                    holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
-                //
-                //                    holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.border_fillter_fill));
-                //
-                //                    holder.text.setTextColor(context.getResources().getColor(R.color.white));
-                //
-                //
-                //                    holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
-                alldata.get(position).setIs_selected(!alldata.get(position).get_is_selected());
+
+                alldata.get(position).setIsselected(!alldata.get(position).isIsselected());
+
+
                 if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(position);
+                    mItemClickListener.onItemClick(alldata);
                 }
-
-
-//
-//                if (alldata.get(position).get_is_selected()) {
-//
-//                } else {
-//
-//                }
-
                 Refr();
 
             }
@@ -241,7 +225,7 @@ public class RecyclerView_comfort_fillter extends RecyclerView.Adapter<RecyclerV
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_comfor_fillter, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_type_map_home, parent, false);
 
 
         // Fresco.initialize(context);
@@ -252,6 +236,6 @@ public class RecyclerView_comfort_fillter extends RecyclerView.Adapter<RecyclerV
 
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(List<TypeModules> typeModules);
     }
 }

@@ -1066,5 +1066,11 @@ Two working days to complete your order</string>
     <string name="name_aqarz_fitter_tit">Enter the name of the property you want to search for</string>
     <string name="name_aqarz_fitter_tit2">Or you can search by QR code</string>
     <string name="click_heare">Press here</string>
+    <string name="Aqarz_titne_list">Aqarz</string>
+    <string name="order_by_ff">Order By:</string>
+    <string name="date_se">Date</string>
+    <string name="rate_se">Rate</string>
+    <string name="BathrommNumber">Bathroom Number</string>
+    <string name="rommNumber">Room Number</string>
 
 </resources>

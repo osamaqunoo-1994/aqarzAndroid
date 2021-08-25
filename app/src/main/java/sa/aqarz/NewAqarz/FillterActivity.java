@@ -405,7 +405,18 @@ public class FillterActivity extends AppCompatActivity {
             }
         });
 
-        type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
+        if (MainAqarzActivity.object_filtter.getType_list() != null) {
+            if (MainAqarzActivity.object_filtter.getType_list().size() != 0) {
+                type_list = MainAqarzActivity.object_filtter.getType_list();
+            } else {
+                type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
+            }
+
+
+        } else {
+            type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
+
+        }
         RecyclerView_All_type_fillter recyclerView_all_type_in_fragment = new RecyclerView_All_type_fillter(FillterActivity.this, type_list);
         recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_fillter.ItemClickListener() {
             @Override
@@ -1195,7 +1206,7 @@ public class FillterActivity extends AppCompatActivity {
                                 public void onItemClick(int position) {
 
 
-                                    comfortModules.get(position).setIs_selected(!comfortModules.get(position).get_is_selected());
+//                                    comfortModules.get(position).setIs_selected(!comfortModules.get(position).get_is_selected());
 //                                    addAqarezObject.setComfortModules(comfortModules);
 
                                 }

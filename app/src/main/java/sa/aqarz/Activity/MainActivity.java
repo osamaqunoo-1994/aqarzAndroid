@@ -76,7 +76,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import io.sentry.Sentry;
 import sa.aqarz.Activity.AddAqarz.AddAqarzActivity;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;

@@ -1,16 +1,45 @@
 package sa.aqarz.NewAqarz.Fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import sa.aqarz.Activity.AllOrderActivity;
+import sa.aqarz.Adapter.RecyclerView_city_side_menu;
+import sa.aqarz.Adapter.RecyclerView_ordersx;
+import sa.aqarz.Modules.CityModules;
+import sa.aqarz.Modules.OrdersModules;
+import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.R;
+import sa.aqarz.Settings.WebService;
+import sa.aqarz.api.IResult;
+import sa.aqarz.api.VolleyService;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,28 +59,39 @@ public class FirstFragment extends Fragment {
 
     boolean isVisibleToUser;
 
+    static IResult mResultCallback;
 
     LinearLayout all_order_lay;
     LinearLayout order_day_lay;
     LinearLayout MyOffer_lay;
+    static String type_requst = "AllOrder";
+    static String offer_status = "";
 
 
     TextView all_order;
-    TextView all_order_num;
+    static TextView all_order_num;
     TextView order_day;
-    TextView order_day_num;
+    static TextView order_day_num;
     TextView MyOffer;
-    TextView MyOffer_num;
-
+    static TextView MyOffer_num;
+    EditText search_text;
     TextView status_1;
     TextView status_2;
     TextView status_3;
-
+    static LinearLayout nodata_vis;
 
     String type_order = "";
-
+    static int page = 1;
+    static String url = "";
+    static RecyclerView AllResultRec;
+    public static boolean isLoading = false;
 
     LinearLayout all_status_offer;
+    static List<OrdersModules> ordersModules = new ArrayList<>();
+    static RecyclerView_ordersx recyclerView_ordersx;
+    ImageView search_btn;
+    ProgressBar progress;
+    public static Activity activity;
 
     public FirstFragment() {
         // Required empty public constructor
@@ -89,11 +129,15 @@ public class FirstFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_first, container, false);
+        activity = getActivity();
 
-
+        nodata_vis = view.findViewById(R.id.nodata_vis);
         all_order_lay = view.findViewById(R.id.all_order_lay);
         order_day_lay = view.findViewById(R.id.order_day_lay);
         MyOffer_lay = view.findViewById(R.id.MyOffer_lay);
+        progress = view.findViewById(R.id.progress);
+        search_text = view.findViewById(R.id.search_text);
+        search_btn = view.findViewById(R.id.search_btn);
 
 
         all_order = view.findViewById(R.id.all_order);
@@ -106,6 +150,7 @@ public class FirstFragment extends Fragment {
         status_1 = view.findViewById(R.id.status_1);
         status_2 = view.findViewById(R.id.status_2);
         status_3 = view.findViewById(R.id.status_3);
+        AllResultRec = view.findViewById(R.id.AllResultRec);
 
         all_status_offer = view.findViewById(R.id.all_status_offer);
 
@@ -113,10 +158,91 @@ public class FirstFragment extends Fragment {
 //        if (isVisibleToUser) {
 //            System.out.println("*************************************");
 //        }
+        setiup();
         onclick();
+        get_data();
+
 
         return view;
 
+    }
+
+    public void setiup() {
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        AllResultRec.setLayoutManager(layoutManager);
+
+        ordersModules.clear();
+        recyclerView_ordersx = new RecyclerView_ordersx(getContext(), ordersModules);
+        AllResultRec.setAdapter(recyclerView_ordersx);
+        AllResultRec.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (!recyclerView.canScrollVertically(1)) { //1 for down
+
+                    page = page + 1;
+
+
+                    WebService.loading(activity, true);
+                    init_volley();
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
+                    mVolleyService.getDataVolley("fund_Request", url + "&page=" + page);
+
+                }
+            }
+        });
+
+
+    }
+
+    public void get_data() {
+
+
+        String offer_status_text = "";
+        String type_requst_text = "";
+        String search_text_s = "";
+        String area_estate_id_text = "";
+        String price_id_text = "";
+        String estate_type_id_text = "";
+        String city_id_text = "";
+        String neighborhood_id_text = "";
+        String state_id_text = "";
+
+        page = 1;
+        if (type_requst.equals("today")) {
+            offer_status_text = "";
+            type_requst_text = "&today=1";
+        } else if (type_requst.equals("Myoffer")) {
+
+            type_requst_text = "&myOwn=1";
+
+            if (offer_status.equals("customer_accepted")) {
+                offer_status_text = "&offer_status=customer_accepted";
+
+            } else if (offer_status.equals("sending_code")) {
+                offer_status_text = "&offer_status=sending_code";
+
+            } else if (offer_status.equals("new")) {
+                offer_status_text = "&offer_status=new";
+            }
+
+
+        } else if (type_requst.equals("AllOrder")) {
+            offer_status_text = "";
+            type_requst_text = "";
+
+        }
+        if (!search_text.getText().toString().equals("")) {
+            search_text_s = "&search=" + search_text.getText();
+        }
+        url = WebService.fund_Request + "?" + type_requst_text + state_id_text + neighborhood_id_text + offer_status_text + search_text_s + price_id_text + area_estate_id_text + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
+
+        WebService.loading(getActivity(), true);
+
+        init_volley();
+        VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+        mVolleyService.getDataVolley("fund_Request", url);
     }
 
     public void setUserVisibleHint(boolean isVisibleToUsers) {
@@ -153,6 +279,11 @@ public class FirstFragment extends Fragment {
                 order_day_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                 MyOffer_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter));
 
+
+                all_status_offer.setVisibility(View.GONE);
+                type_requst = "AllOrder";
+
+                get_data();
             }
         });
         order_day_lay.setOnClickListener(new View.OnClickListener() {
@@ -169,6 +300,12 @@ public class FirstFragment extends Fragment {
                 all_order_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                 order_day_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
                 MyOffer_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+
+
+                all_status_offer.setVisibility(View.GONE);
+                type_requst = "today";
+
+                get_data();
 
             }
         });
@@ -187,9 +324,14 @@ public class FirstFragment extends Fragment {
                 order_day_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                 MyOffer_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
 
+
+                all_status_offer.setVisibility(View.VISIBLE);
+                type_requst = "Myoffer";
+
+                get_data();
+
             }
         });
-
 
         status_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,6 +347,7 @@ public class FirstFragment extends Fragment {
                     status_2.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                     status_3.setBackground(getResources().getDrawable(R.drawable.border_fillter));
 
+                    offer_status = "";
 
                 } else {
                     status_1.setTextColor(getResources().getColor(R.color.white));
@@ -212,11 +355,13 @@ public class FirstFragment extends Fragment {
                     status_3.setTextColor(getResources().getColor(R.color.te_unselected));
 
 
-                    status_1.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
+                    status_1.setBackground(getResources().getDrawable(R.drawable.border_fillter_1));
                     status_2.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                     status_3.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+                    offer_status = "customer_accepted";
 
                 }
+                get_data();
 
             }
         });
@@ -234,6 +379,7 @@ public class FirstFragment extends Fragment {
                     status_2.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                     status_3.setBackground(getResources().getDrawable(R.drawable.border_fillter));
 
+                    offer_status = "";
 
                 } else {
                     status_1.setTextColor(getResources().getColor(R.color.te_unselected));
@@ -242,10 +388,12 @@ public class FirstFragment extends Fragment {
 
 
                     status_1.setBackground(getResources().getDrawable(R.drawable.border_fillter));
-                    status_2.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
+                    status_2.setBackground(getResources().getDrawable(R.drawable.border_fillter_2));
                     status_3.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+                    offer_status = "sending_code";
 
                 }
+                get_data();
 
             }
         });
@@ -263,6 +411,7 @@ public class FirstFragment extends Fragment {
                     status_2.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                     status_3.setBackground(getResources().getDrawable(R.drawable.border_fillter));
 
+                    offer_status = "";
 
                 } else {
                     status_1.setTextColor(getResources().getColor(R.color.te_unselected));
@@ -272,14 +421,148 @@ public class FirstFragment extends Fragment {
 
                     status_1.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                     status_2.setBackground(getResources().getDrawable(R.drawable.border_fillter));
-                    status_3.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
+                    status_3.setBackground(getResources().getDrawable(R.drawable.border_fillter_3));
+                    offer_status = "new";
 
                 }
+                get_data();
 
             }
         });
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+
+                get_data();
+            }
+        });
     }
 
+    public static void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response);
+                WebService.loading(activity, false);
+
+//                type_requst = "" + requestType;
+
+
+//{"status":true,"code":200,"message":"User Profile","data"
+//allRequestFund":6165,"RequestFund":18,"myRequestFundOffer":4727
+
+
+                try {
+
+
+                    if (requestType.equals("fund_Request")) {
+                        String allRequestFund = response.getString("allRequestFund");
+                        all_order_num.setText("(" + allRequestFund + ")");
+
+                        String RequestFund = response.getString("RequestFund");
+                        order_day_num.setText("(" + RequestFund + ")");
+
+                        String myRequestFundOffer = response.getString("myRequestFundOffer");
+                        MyOffer_num.setText("(" + myRequestFundOffer + ")");
+
+
+                        String data = response.getString("data");
+
+                        JSONObject jsonObject_data = new JSONObject(data);
+
+                        String data_inside = jsonObject_data.getString("data");
+                        JSONArray jsonArray = new JSONArray(data_inside);
+
+                        if (page == 1) {
+                            ordersModules.clear();
+
+                        }
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                            JsonParser parser = new JsonParser();
+                            JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                            Gson gson = new Gson();
+
+                            OrdersModules ordersModulesm = gson.fromJson(mJson, OrdersModules.class);
+                            ordersModules.add(ordersModulesm);
+
+
+                        }
+                        recyclerView_ordersx.Refr();
+                        if (ordersModules.size() != 0) {
+                            nodata_vis.setVisibility(View.GONE);
+                            isLoading = true;
+                        } else {
+                            nodata_vis.setVisibility(View.VISIBLE);
+                            isLoading = false;
+
+                        }
+
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.getMessage());
+                WebService.loading(activity, false);
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    if (requestType.equals("my_request")) {
+//                        nodata_vis.setVisibility(View.VISIBLE);
+
+                    } else if (requestType.equals("market_demands")) {
+//                        nodata_vis.setVisibility(View.VISIBLE);
+
+                    } else {
+                        WebService.Make_Toast_color(activity, message, "error");
+
+                    }
+
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+
+            }
+
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+                WebService.loading(activity, false);
+
+            }
+
+
+        };
+
+
+    }
 
 }

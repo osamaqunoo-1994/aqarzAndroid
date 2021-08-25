@@ -13,7 +13,6 @@ import com.tapadoo.alerter.Alerter;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.sentry.protocol.App;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.R;
 

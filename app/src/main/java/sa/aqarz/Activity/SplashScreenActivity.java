@@ -8,6 +8,11 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.media.AudioFormat;
+import android.media.AudioManager;
+import android.media.AudioTrack;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,6 +29,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.loopj.android.http.RequestParams;
 import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONObject;
@@ -133,7 +139,22 @@ public class SplashScreenActivity extends AppCompatActivity {
         VolleyService mVolleyService = new VolleyService(mResultCallback, SplashScreenActivity.this);
 
         mVolleyService.getDataVolley("Settings", WebService.settings);
-
+////
+//        try {
+//
+//            JSONObject requestParams = new JSONObject();
+//
+//            requestParams.put("name", "test2");
+//            requestParams.put("services", "21|25");
+//            requestParams.put("latitude", "26");
+//            requestParams.put("longitude", "46");
+//
+//            mVolleyService.postDataVolley_test("Settings3232", "http://estreeh.techno2030.com/api/v1/user/update", requestParams);
+//
+//        } catch (Exception e) {
+//
+//        }
+//
 
         if (!isInternetAvailable()) {
 

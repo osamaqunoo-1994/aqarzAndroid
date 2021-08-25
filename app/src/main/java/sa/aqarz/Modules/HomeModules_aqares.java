@@ -171,7 +171,6 @@ public class HomeModules_aqares {
     @Expose
     private String operationTypeName;
 
-
     @SerializedName("operation_type")
     @Expose
     private operation_type operation_type;

@@ -22,10 +22,15 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -45,6 +50,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.orhanobut.hawk.Hawk;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -52,20 +58,25 @@ import java.util.List;
 
 import sa.aqarz.Activity.AllOrderActivity;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
+import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.NotficationActvity;
 import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Adapter.RecyclerView_All_type_in_fragment1;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat_new;
+import sa.aqarz.Adapter.RecyclerView_city_side_menu;
+import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
 import sa.aqarz.Fragment.mapsHome.MapsRepository;
 import sa.aqarz.Fragment.mapsHome.MapsViewModel;
 import sa.aqarz.Modules.AllEstate;
 import sa.aqarz.Modules.CityLocation;
+import sa.aqarz.Modules.CityModules;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.RegionModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.NewAqarz.Adapter.RecyclerView_All_type_in_home_fragment;
 import sa.aqarz.NewAqarz.Adapter.RecyclerView_HomeList_estat_map;
 import sa.aqarz.NewAqarz.FillterActivity;
+import sa.aqarz.NewAqarz.ListAqarzActivity;
 import sa.aqarz.NewAqarz.MainAqarzActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.CustomInfoWindowGoogleMapEstatMaps;
@@ -83,6 +94,7 @@ public class HomeMapFragment extends Fragment {
     ImageView convert_map_style;
     ImageView convert_to_list;
     ImageView fillter;
+    static ProgressBar loading_city;
     ImageView notfication;
     static SupportMapFragment mapFragment;
     static GoogleMap googleMap;
@@ -104,14 +116,15 @@ public class HomeMapFragment extends Fragment {
 
     static Marker marker_selected;
     int last_postion_marker = 0;
-
+    static PopupWindow popUp;
     LinearLayoutManager layoutManager;
     public static List<Marker> marker_list = new ArrayList<Marker>();
-
-
+    ImageView search_nib;
+    static EditText search_text;
     public static boolean is_first = true;
+    static List<CityModules> cityModules_list_filtter = new ArrayList<>();
 
-
+    static RecyclerView all_city;
     private final OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -170,6 +183,8 @@ public class HomeMapFragment extends Fragment {
         loading = v.findViewById(R.id.loading);
         allEstate = v.findViewById(R.id.allEstate);
         notfication = v.findViewById(R.id.notfication);
+        search_nib = v.findViewById(R.id.search_nib);
+        search_text = v.findViewById(R.id.search_text);
 
         //LastPostionLat
         //LastPostionLan
@@ -188,6 +203,10 @@ public class HomeMapFragment extends Fragment {
 
 
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
+
+
+        MainAqarzActivity.object_filtter.setType_list(type_list);
+
         RecyclerView_All_type_in_home_fragment recyclerView_all_type_in_fragment = new RecyclerView_All_type_in_home_fragment(getContext(), type_list);
         recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_in_home_fragment.ItemClickListener() {
             @Override
@@ -205,6 +224,7 @@ public class HomeMapFragment extends Fragment {
                         }
                     }
                 }
+                MainAqarzActivity.object_filtter.setType_list(typeModules);
 
                 if (Hawk.contains("LastPostionLat")) {
 
@@ -311,6 +331,10 @@ public class HomeMapFragment extends Fragment {
         convert_to_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ListAqarzActivity.class);
+                intent.putExtra("type_filtter", type_filtter);
+                startActivity(intent);
+
 
             }
         });
@@ -327,6 +351,50 @@ public class HomeMapFragment extends Fragment {
             public void onClick(View v) {
 
                 startActivity(new Intent(getActivity(), NotficationActvity.class));
+
+            }
+        });
+
+        search_nib.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                final View mView = LayoutInflater.from(getContext()).inflate(R.layout.drop_down_layout_city_and_nib, null, false);
+                popUp = new PopupWindow(mView, LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT, false);
+
+                all_city = mView.findViewById(R.id.all_city);
+                loading_city = mView.findViewById(R.id.loading_city);
+
+                LinearLayoutManager layoutManager1
+                        = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                all_city.setLayoutManager(layoutManager1);
+
+
+                init_volley();
+
+//                String region_id_postion = "";
+//                if (MapsFragmentNew.region_id_postion != null) {
+//                    region_id_postion = MapsFragmentNew.region_id_postion + "";
+//                }
+//                String city_id_postion = "";
+//                if (MapsFragmentNew.city_id_postion != null) {
+//                    city_id_postion = MapsFragmentNew.city_id_postion + "";
+//                }
+
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+                mVolleyService.getDataVolley("cities_with_neb", WebService.cities_with_neb + "?name=" + search_text.getText().toString());//+ "&state_id=" + region_id_postion + "&city_id=" + city_id_postion
+
+
+                popUp.setTouchable(true);
+                popUp.setFocusable(true);
+                popUp.setOutsideTouchable(true);
+
+                //Solution
+                popUp.showAsDropDown(search_nib);
+
 
             }
         });
@@ -802,7 +870,85 @@ public class HomeMapFragment extends Fragment {
                             allEstate.setAdapter(recyclerView_homeList_estat_new);
 
 
+                        } else if (requestType.equals("cities_with_neb")) {
+                            JSONObject jsonObject = new JSONObject(data);
+
+                            String datadata = jsonObject.getString("data");
+
+                            JSONArray jsonArray = new JSONArray(datadata);
+                            cityModules_list_filtter.clear();
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                Gson gson = new Gson();
+
+                                CityModules homeModules_aqares = gson.fromJson(mJson, CityModules.class);
+
+                                cityModules_list_filtter.add(homeModules_aqares);
+                            }
+
+
+//                            if (cityModules_list_filtter.size() == 0) {
+//
+//
+//                                nodata.setVisibility(View.VISIBLE);
+//                            } else {
+//                                nodata.setVisibility(View.GONE);
+//
+//                            }
+
+                            RecyclerView_city_side_menu recyclerView_city_bootom_sheets = new RecyclerView_city_side_menu(activity, cityModules_list_filtter);
+                            recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_side_menu.ItemClickListener() {
+                                @Override
+                                public void onItemClick(int i) {
+//                        cityModules_list = alldata;
+//                                    convert_city_to_filter();
+//                                    searh = false;
+
+//                                    MapsFragmentNew.city_id_postion = cityModules_list_filtter.get(i).getId() + "";
+//                                    MapsFragmentNew.lat = cityModules_list_filtter.get(i).getLat() + "";
+//                                    MapsFragmentNew.lan = cityModules_list_filtter.get(i).getLan() + "";
+
+                                    lat = "" + cityModules_list_filtter.get(i).getLat();
+                                    lan = "" + cityModules_list_filtter.get(i).getLan();
+
+
+                                    Hawk.put("LastPostionLat", lat);
+                                    Hawk.put("LastPostionLan", lan);
+
+                                    LatLng my_location = new LatLng(Double.valueOf(lat), Double.valueOf(lan));
+                                    CameraPosition cameraPosition = new CameraPosition.Builder().target(my_location).zoom(4).build();
+                                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 8));
+                                    // Zoom in, animating the camera.
+                                    googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+//                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
+                                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(9), 3000, null);
+                                    popUp.dismiss();
+
+                                    get_Estate_from_api();
+                                    search_text.setText(cityModules_list_filtter.get(i).getSearch_name());//+ "-" + cityModules_list_filtter.get(i).getCity().getName()
+
+                                }
+                            });
+
+                            try {
+                                loading_city.setVisibility(View.GONE);
+
+
+                                if (all_city != null) {
+                                    all_city.setAdapter(recyclerView_city_bootom_sheets);
+
+                                }
+                            } catch (Exception e) {
+
+                            }
+
+
                         }
+
 
                     } else {
 

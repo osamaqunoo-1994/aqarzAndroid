@@ -32,6 +32,16 @@ public class Object_filtter {
 
     String date = "";
 
+    List<TypeModules> type_list = new ArrayList<>();
+
+
+    public List<TypeModules> getType_list() {
+        return type_list;
+    }
+
+    public void setType_list(List<TypeModules> type_list) {
+        this.type_list = type_list;
+    }
 
     public String getDate() {
         return date;
