@@ -1073,4 +1073,11 @@ Two working days to complete your order</string>
     <string name="BathrommNumber">Bathroom Number</string>
     <string name="rommNumber">Room Number</string>
 
+
+
+    <string name="Profile_tilte">Profile</string>
+    <string name="AqarzAndOffer">Aqarz</string>
+    <string name="AqarzAndOffer2">Offer (request)</string>
+    <string name="MyEmplyeeee">Employee</string>
+
 </resources>

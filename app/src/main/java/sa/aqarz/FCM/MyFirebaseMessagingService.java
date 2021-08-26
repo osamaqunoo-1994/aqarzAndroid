@@ -166,5 +166,70 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
         notificationManager.notify(2, builder.build());
     }
+    private void showNotificationa(String title, String body, String type) {
+
+
+        try {
+
+
+            Intent broadCastIntent = new Intent();
+            broadCastIntent.setAction("com.ojastec.broadcastreceiverdemo");
+            sendBroadcast(broadCastIntent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Intent intent;
+        intent = new Intent(this, SplashScreenActivity.class);
+
+//        if (type != null) {
+//            if (type.equals("message")) {
+//                intent.putExtra("typex", "message");
+//
+//            } else if (type.equals("new_order")) {
+//                intent.putExtra("typex", "new_order");
+//
+//            } else {
+//                intent.putExtra("typex", "xxx");
+//
+//            }
+//        }
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        int color = getResources().getColor(R.color.colorPrimary);
+        long[] v = {500, 1000};
+        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                PendingIntent.FLAG_ONE_SHOT);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "default")
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle(title)
+                .setContentText(body)
+                .setSound(defaultSoundUri)
+
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setContentIntent(pendingIntent);
+        Log.d("Hay11", "DCM11");
+
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Log.d("Hay12", "DCM12");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            builder.setChannelId("com.myApp");
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    "com.myApp",
+                    "My App",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            if (notificationManager != null) {
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
+        notificationManager.notify(2, builder.build());
+    }
 }
 

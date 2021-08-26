@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
+import androidx.viewpager.widget.ViewPager;
 
 import android.app.Activity;
 import android.content.Context;
@@ -75,6 +76,7 @@ import sa.aqarz.Modules.RegionModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.NewAqarz.Adapter.RecyclerView_All_type_in_home_fragment;
 import sa.aqarz.NewAqarz.Adapter.RecyclerView_HomeList_estat_map;
+import sa.aqarz.NewAqarz.Adapter.ViewPager_Adapter_estate_home_map;
 import sa.aqarz.NewAqarz.FillterActivity;
 import sa.aqarz.NewAqarz.ListAqarzActivity;
 import sa.aqarz.NewAqarz.MainAqarzActivity;
@@ -87,7 +89,7 @@ import sa.aqarz.api.VolleyService;
 
 public class HomeMapFragment extends Fragment {
     RecyclerView all_type_aqarz;
-    static RecyclerView allEstate;
+    static ViewPager allEstate_view_pager;
     List<TypeModules> type_list = new ArrayList<>();
     ImageView convert_to_region;
     ImageView my_location;
@@ -113,9 +115,10 @@ public class HomeMapFragment extends Fragment {
     static String region_id_postion = "";
     static ProgressBar loading;
     static RecyclerView_HomeList_estat_map recyclerView_homeList_estat_new;
+    static boolean onclick_marker_aqarez = false;
 
     static Marker marker_selected;
-    int last_postion_marker = 0;
+    static int last_postion_marker = 0;
     static PopupWindow popUp;
     LinearLayoutManager layoutManager;
     public static List<Marker> marker_list = new ArrayList<Marker>();
@@ -140,7 +143,6 @@ public class HomeMapFragment extends Fragment {
         public void onMapReady(GoogleMap googleMapx) {
             googleMap = googleMapx;
             async_map();
-            set_map_marker();
             LatLng sydney = new LatLng(-34, 151);
             googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
@@ -181,7 +183,7 @@ public class HomeMapFragment extends Fragment {
         convert_to_list = v.findViewById(R.id.convert_to_list);
         fillter = v.findViewById(R.id.fillter);
         loading = v.findViewById(R.id.loading);
-        allEstate = v.findViewById(R.id.allEstate);
+        allEstate_view_pager = v.findViewById(R.id.allEstate_view_pager);
         notfication = v.findViewById(R.id.notfication);
         search_nib = v.findViewById(R.id.search_nib);
         search_text = v.findViewById(R.id.search_text);
@@ -193,13 +195,6 @@ public class HomeMapFragment extends Fragment {
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         all_type_aqarz.setLayoutManager(layoutManager1);
-
-
-        layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        allEstate.setLayoutManager(layoutManager);
-
-        SnapHelper snapHelper = new PagerSnapHelper();
-        snapHelper.attachToRecyclerView(allEstate);
 
 
         type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
@@ -224,11 +219,14 @@ public class HomeMapFragment extends Fragment {
                         }
                     }
                 }
+
+
                 MainAqarzActivity.object_filtter.setType_list(typeModules);
 
                 if (Hawk.contains("LastPostionLat")) {
 
                     if (!Hawk.get("LastPostionLat").toString().equals("")) {
+
                         get_Estate_from_api();
 
                     }
@@ -274,9 +272,12 @@ public class HomeMapFragment extends Fragment {
 
 
                 homeModules_aqares.clear();
-                recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_map(getContext(), homeModules_aqares);
-                allEstate.setAdapter(recyclerView_homeList_estat_new);
-
+//                recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_map(getContext(), homeModules_aqares);
+//                allEstate.setAdapter(recyclerView_homeList_estat_new);
+//                allEstate_view_pager
+                ViewPager_Adapter_estate_home_map viewPager_adapter_estate_home_map = new ViewPager_Adapter_estate_home_map(activity, homeModules_aqares);
+                allEstate_view_pager.setAdapter(viewPager_adapter_estate_home_map);
+                allEstate_view_pager.setVisibility(View.GONE);
 
                 lat = 26.196634 + "";
                 lan = 43.813666 + "";
@@ -341,7 +342,9 @@ public class HomeMapFragment extends Fragment {
         fillter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), FillterActivity.class));
+                Intent  intent=new Intent(getActivity(), FillterActivity.class);
+                intent.putExtra("from","home");
+                startActivity(intent);
 
             }
         });
@@ -497,13 +500,24 @@ public class HomeMapFragment extends Fragment {
 
                                     } else {
 
-                                        lat = "" + cameraPosition.target.latitude;
-                                        lan = "" + cameraPosition.target.longitude;
+                                        if (onclick_marker_aqarez) {
 
-                                        Hawk.put("LastPostionLat", lat);
-                                        Hawk.put("LastPostionLan", lan);
+                                            onclick_marker_aqarez = false;
 
-                                        get_Estate_from_api();
+                                        } else {
+                                            onclick_marker_aqarez = false;
+
+                                            lat = "" + cameraPosition.target.latitude;
+                                            lan = "" + cameraPosition.target.longitude;
+
+                                            Hawk.put("LastPostionLat", lat);
+                                            Hawk.put("LastPostionLan", lan);
+
+
+                                            get_Estate_from_api();
+                                        }
+
+
                                     }
                                 }
 
@@ -693,24 +707,13 @@ public class HomeMapFragment extends Fragment {
                     String[] separated = marker.getTag().toString().split("/");
 
                     String number = separated[1]; // this will contain " they taste good"
+                    onclick_marker_aqarez = true;
 
-
+                    last_postion_marker = Integer.valueOf(number);
                     try {
                         if (marker_selected != null) {
                             marker_selected.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewEstate_galf(get_price_and_return_price(homeModules_aqares.get(Integer.valueOf(number)).getTotalPrice() + ""), "")));
-
                         }
-
-//                        if (marker_list != null) {
-//                            if (marker_list.size() != 0) {
-//
-//                                System.out.println("89898989");
-//
-//                                marker_list.get(last_postion_marker).setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewEstate_galf(get_price_and_return_price(homeModules_aqares.get(Integer.valueOf(last_postion_marker)).getTotalPrice() + ""), "")));
-//
-//                            }
-//
-//                        }
 
                         marker_selected = marker;
                         marker.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewEstate_green(get_price_and_return_price(homeModules_aqares.get(Integer.valueOf(number)).getTotalPrice() + ""), "")));
@@ -720,11 +723,9 @@ public class HomeMapFragment extends Fragment {
                     }
 
                     try {
-                        if (recyclerView_homeList_estat_new != null) {
 
-                            if (homeModules_aqares.size() > Integer.valueOf(number)) {
-                                allEstate.scrollToPosition(Integer.valueOf(number));
-                            }
+                        if (homeModules_aqares.size() > Integer.valueOf(number)) {
+                            allEstate_view_pager.setCurrentItem(Integer.valueOf(number));
                         }
 
                     } catch (Exception e) {
@@ -847,29 +848,42 @@ public class HomeMapFragment extends Fragment {
 //                            all_estate_size.setVisibility(View.VISIBLE);
 //                            all_estate_size.setText(allNeigbers.getData().getTo() + " " + activity.getResources().getString(R.string.From_t) + " " + allNeigbers.getData().getTotal() + " " + activity.getResources().getString(R.string.advertisementsx));
 
+                            allEstate_view_pager.setVisibility(View.VISIBLE);
+                            ViewPager_Adapter_estate_home_map viewPager_adapter_estate_home_map = new ViewPager_Adapter_estate_home_map(activity, homeModules_aqares);
+                            allEstate_view_pager.setAdapter(viewPager_adapter_estate_home_map);
 
-                            recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_map(activity, homeModules_aqares);
-                            recyclerView_homeList_estat_new.addItemClickListener(new RecyclerView_HomeList_estat_map.ItemClickListener() {
+                            allEstate_view_pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                                 @Override
-                                public void onItemClick(int position) {
+                                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+                                }
+
+                                @Override
+                                public void onPageSelected(int position) {
 
                                     try {
+                                        if (marker_selected != null) {
+                                            marker_selected.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewEstate_galf(get_price_and_return_price(homeModules_aqares.get(last_postion_marker).getTotalPrice() + ""), "")));
 
-//                                        marker_list.get(last_postion_marker).setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewEstate_galf(get_price_and_return_price(homeModules_aqares.get(Integer.valueOf(position)).getTotalPrice() + ""), "")));
-//                                        last_postion_marker = position;
-//                                        marker_list.get(position).setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewEstate_green(get_price_and_return_price(homeModules_aqares.get(Integer.valueOf(position)).getTotalPrice() + ""), "")));
+                                        }
+
+                                        marker_selected = marker_list.get(position);
+                                        last_postion_marker = position;
+                                        marker_selected.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewEstate_green(get_price_and_return_price(homeModules_aqares.get(Integer.valueOf(position)).getTotalPrice() + ""), "")));
+
 
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
+                                }
 
+                                @Override
+                                public void onPageScrollStateChanged(int state) {
 
                                 }
                             });
-                            allEstate.setAdapter(recyclerView_homeList_estat_new);
 
-
+//                            allEstate_view_pager
                         } else if (requestType.equals("cities_with_neb")) {
                             JSONObject jsonObject = new JSONObject(data);
 
@@ -1045,6 +1059,7 @@ public class HomeMapFragment extends Fragment {
 
 
                 }
+                marker_list.add(amarker);
 
             }
         } else {
@@ -1088,12 +1103,12 @@ public class HomeMapFragment extends Fragment {
 
 
                         }
+                        marker_list.add(amarker);
 
                     }
                 }
             });
         }
-        marker_list.add(amarker);
 
     }
 
@@ -1186,4 +1201,23 @@ public class HomeMapFragment extends Fragment {
         return price;
     }
 
+    @Override
+    public void onResume() {
+        if (Settings.checkLogin()) {
+            notfication.setVisibility(View.VISIBLE);
+
+            if (Settings.CheckIsAccountAqarzMan()) {
+
+            } else {
+
+
+            }
+
+        } else {
+            notfication.setVisibility(View.INVISIBLE);
+
+
+        }
+        super.onResume();
+    }
 }

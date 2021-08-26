@@ -45,6 +45,7 @@
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
                         android:hint="@string/seach_hint"
+                        android:lines="1"
                         android:textSize="13dp" />
 
                     <LinearLayout
@@ -208,13 +209,22 @@
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/allEstate"
+
+            <com.booking.rtlviewpager.RtlViewPager
+                android:id="@+id/allEstate_view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                />
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="7dp"
+
+                android:visibility="gone"
+
+                >
+
+
+            </com.booking.rtlviewpager.RtlViewPager>
 
 
         </LinearLayout>

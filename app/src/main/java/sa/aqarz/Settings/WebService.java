@@ -24,7 +24,7 @@ public class WebService {
     //    public static String Domain = "http://aqarz.heliohost.org/api/";
 //    public static String Domain = "https://aqarz.sa/api/";
     public static String Domain = "https://apibeta.aqarz.sa/api/";
-
+    static String v_code = "v2";
 
     public static String login = Domain + "login";
     public static String register = Domain + "register";
@@ -120,7 +120,7 @@ public class WebService {
         client.addHeader("Accept", "application/json");
         client.addHeader("Auth-Role", "user");
         client.addHeader("Accept-Language", Hawk.get("lang").toString());
-        client.addHeader("v", "v2");
+        client.addHeader("v", v_code);
         System.out.println("app_v" + Application.getversionName());
         client.addHeader("app_v", Application.getversionName());
 
@@ -142,7 +142,7 @@ public class WebService {
         Map<String, String> heder = new HashMap<String, String>();
         heder.put("Accept", "application/json");
         heder.put("Accept-Language", Hawk.get("lang").toString());
-        heder.put("v", "v2");
+        heder.put("v", v_code);
         System.out.println("app_v" + Application.getversionName());
         heder.put("app_v", Application.getversionName());
 
@@ -162,7 +162,7 @@ public class WebService {
         Map<String, String> heder = new HashMap<String, String>();
         heder.put("Accept", "application/json");
         heder.put("Accept-Language", Hawk.get("lang").toString());
-        heder.put("v", "v2");
+        heder.put("v", v_code);
         System.out.println("app_v" + Application.getversionName());
         heder.put("app_v", Application.getversionName());
 
@@ -269,6 +269,7 @@ public class WebService {
         }
 
     }
+
     public static void Make_Toast_color_info(Activity activity, String message, String type) {
 
         Alerter.create(activity)
@@ -282,8 +283,6 @@ public class WebService {
                 .setExitAnimation(R.anim.alerter_slide_out_to_top)
 
                 .show();
-
-
 
 
     }

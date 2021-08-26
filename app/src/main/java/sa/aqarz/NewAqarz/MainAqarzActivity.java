@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,8 +33,10 @@ import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
 import sa.aqarz.Modules.Object_filtter;
 import sa.aqarz.NewAqarz.Fragments.ChatFragment;
 import sa.aqarz.NewAqarz.Fragments.HomeMapFragment;
+import sa.aqarz.NewAqarz.Fragments.MoreFragment;
 import sa.aqarz.NewAqarz.Fragments.OrderFragment;
 import sa.aqarz.R;
+import sa.aqarz.Settings.ForceUpdateAsync;
 import sa.aqarz.Settings.Settings;
 
 public class MainAqarzActivity extends AppCompatActivity {
@@ -50,6 +54,7 @@ public class MainAqarzActivity extends AppCompatActivity {
     public static LinearLayout lay_1, lay_2, lay_3, lay_4, lay_s;
     FloatingActionButton myFab;
 
+    public static boolean first_time_ = false;
 
     String click_tab = "home";
 
@@ -72,7 +77,8 @@ public class MainAqarzActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_aqarz);
-
+        first_time_ = true;
+        activity = this;
         add_aqares_and_order_and_estate = findViewById(R.id.add_aqares_and_order_and_estate);
         gray_layout = findViewById(R.id.gray_layout);
         addAqares = findViewById(R.id.addAqares);
@@ -127,6 +133,12 @@ public class MainAqarzActivity extends AppCompatActivity {
         on_click_bottom_action();
         set_contanier_fragments();
 
+        try {
+            forceUpdate();
+
+        } catch (Exception e) {
+
+        }
     }
 
     public void set_contanier_fragments() {
@@ -177,64 +189,90 @@ public class MainAqarzActivity extends AppCompatActivity {
         lay_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                click_tab = "order";
 
-                text_1.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_2.setTextColor(getResources().getColor(R.color.colorPrimary));
-                text_3.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_4.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+                if (!Settings.checkLogin()) {
+                    startActivity(new Intent(MainAqarzActivity.this, check_login.class));
 
-                image_1.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                image_2.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                image_3.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                image_4.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                } else {
+                    click_tab = "order";
+
+                    text_1.setTextColor(getResources().getColor(R.color.color_un_active));
+                    text_2.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    text_3.setTextColor(getResources().getColor(R.color.color_un_active));
+                    text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+                    text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+
+                    image_1.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                    image_2.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                    image_3.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                    image_4.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                    click_tab = "order";
+
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.container, new OrderFragment());
+                    fragmentTransaction.addToBackStack(null);
+                    //  fragmentTransaction.commit();
+                    fragmentTransaction.commitAllowingStateLoss();
 
 
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, new OrderFragment());
-                fragmentTransaction.addToBackStack(null);
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
+                }
+
             }
         });
         lay_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                click_tab = "chat";
+                if (!Settings.checkLogin()) {
+                    startActivity(new Intent(MainAqarzActivity.this, check_login.class));
 
-                text_1.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_2.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_3.setTextColor(getResources().getColor(R.color.colorPrimary));
-                text_4.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+                } else {
+                    click_tab = "chat";
 
-                image_1.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                image_2.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                image_3.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                image_4.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, new ChatFragment());
-                fragmentTransaction.addToBackStack(null);
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
+                    text_1.setTextColor(getResources().getColor(R.color.color_un_active));
+                    text_2.setTextColor(getResources().getColor(R.color.color_un_active));
+                    text_3.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+                    text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+
+                    image_1.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                    image_2.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                    image_3.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                    image_4.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.container, new ChatFragment());
+                    fragmentTransaction.addToBackStack(null);
+                    //  fragmentTransaction.commit();
+                    fragmentTransaction.commitAllowingStateLoss();
+                }
+
             }
         });
         lay_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                click_tab = "profile";
+                if (!Settings.checkLogin()) {
+                    startActivity(new Intent(MainAqarzActivity.this, check_login.class));
 
-                text_1.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_2.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_3.setTextColor(getResources().getColor(R.color.color_un_active));
-                text_4.setTextColor(getResources().getColor(R.color.colorPrimary));
-                text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+                } else {
+                    click_tab = "profile";
 
-                image_1.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                image_2.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                image_3.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                image_4.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                    text_1.setTextColor(getResources().getColor(R.color.color_un_active));
+                    text_2.setTextColor(getResources().getColor(R.color.color_un_active));
+                    text_3.setTextColor(getResources().getColor(R.color.color_un_active));
+                    text_4.setTextColor(getResources().getColor(R.color.colorPrimary));
+                    text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+
+                    image_1.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                    image_2.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                    image_3.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                    image_4.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
+
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.container, new MoreFragment());
+                    fragmentTransaction.addToBackStack(null);
+                    //  fragmentTransaction.commit();
+                    fragmentTransaction.commitAllowingStateLoss();
+                }
 
             }
         });
@@ -335,4 +373,25 @@ public class MainAqarzActivity extends AppCompatActivity {
         });
 
     }
+
+    public void forceUpdate() {
+        try {
+            first_time_ = false;
+            PackageManager packageManager = this.getPackageManager();
+            PackageInfo packageInfo = null;
+            try {
+                packageInfo = packageManager.getPackageInfo(getPackageName(), 0);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+            String currentVersion = packageInfo.versionName;
+
+            System.out.println("currentVersion" + currentVersion);
+            new ForceUpdateAsync(currentVersion, MainAqarzActivity.this).execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

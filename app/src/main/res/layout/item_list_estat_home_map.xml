@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:hedgehog="http://schemas.android.com/tools"
-    android:layout_width="350dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
 
@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_margin="5dp"
 
         android:background="@drawable/back_search_home"
         android:orientation="vertical">
@@ -369,6 +368,73 @@
                         android:layout_weight="1" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical">
+
+
+                    <ImageView
+                        android:layout_width="10dp"
+
+                        android:layout_height="10dp"
+                        android:layout_marginStart="5dp"
+
+                        android:src="@drawable/ic_group_bathroom" />
+
+                    <TextView
+                        android:id="@+id/bathroom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/din_bold"
+                        android:text="0"
+                        android:textColor="@color/te_unselected"
+                        android:textSize="9dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/din_bold"
+                        android:text="@string/Bathrooms"
+                        android:textColor="@color/te_unselected"
+
+                        android:textSize="9dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/ic_room_ic"
+                        app:tint="#4F39A8" />
+
+                    <TextView
+                        android:id="@+id/room"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/din_bold"
+                        android:text="0"
+                        android:textColor="@color/te_unselected"
+                        android:textSize="9dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/din_bold"
+                        android:text="@string/room"
+                        android:textColor="@color/te_unselected"
+
+                        android:textSize="9dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

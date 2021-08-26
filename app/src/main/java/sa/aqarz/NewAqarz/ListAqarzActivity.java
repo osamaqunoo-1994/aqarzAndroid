@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,17 +47,20 @@ public class ListAqarzActivity extends AppCompatActivity {
     RecyclerView all_type_aqarz;
     RecyclerView Allaqarz;
     List<TypeModules> type_list = new ArrayList<>();
-    RecyclerView_HomeList_estat_new recyclerView_homeList_estat_new;
+    static RecyclerView_HomeList_estat_new recyclerView_homeList_estat_new;
     public static List<HomeModules_aqares> homeModules_aqares_list = new ArrayList<>();
-    IResult mResultCallback;
+    static IResult mResultCallback;
 
-    int page = 1;
+    static int page = 1;
     ImageView back;
-    String type_filtter = "";
+    static String type_filtter = "";
     String type_filter_order = "";
-    String url_list = "";
-    ProgressBar loading;
+    static String url_list = "";
+    static ProgressBar loading;
     TextView order_by;
+    ImageView filtter;
+
+    public static Activity activity;
 
 
     @Override
@@ -64,7 +69,10 @@ public class ListAqarzActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_aqarz);
         back = findViewById(R.id.back);
         order_by = findViewById(R.id.order_by);
+        filtter = findViewById(R.id.filtter);
 
+
+        activity = this;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.white, this.getTheme()));
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -164,7 +172,15 @@ public class ListAqarzActivity extends AppCompatActivity {
                 }
             }
         });
+        filtter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListAqarzActivity.this, FillterActivity.class);
+                intent.putExtra("from", "list");
 
+                startActivity(intent);
+            }
+        });
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -331,7 +347,7 @@ public class ListAqarzActivity extends AppCompatActivity {
     }
 
 
-    public void get_data() {
+    public static void get_data() {
 
 
         page = 1;
@@ -341,16 +357,16 @@ public class ListAqarzActivity extends AppCompatActivity {
         }
 
 
-        WebService.loading(ListAqarzActivity.this, true);
+        WebService.loading(activity, true);
         init_volley();
-        VolleyService mVolleyService = new VolleyService(mResultCallback, ListAqarzActivity.this);
+        VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
         url_list = WebService.home_estate_custom_list + "?" + type_filtter_;
         mVolleyService.getAsync("home_estate_custom_list_more_1", url_list);
 
     }
 
 
-    public void init_volley() {
+    public static void init_volley() {
 
 
         mResultCallback = new IResult() {
@@ -388,7 +404,7 @@ public class ListAqarzActivity extends AppCompatActivity {
 
                         } else {
                             String message = response.getString("message");
-                            WebService.Make_Toast_color(ListAqarzActivity.this, message, "success");
+                            WebService.Make_Toast_color(activity, message, "success");
 
                         }
 
@@ -396,7 +412,7 @@ public class ListAqarzActivity extends AppCompatActivity {
                     } else {
                         String message = response.getString("message");
 
-                        WebService.Make_Toast_color(ListAqarzActivity.this, message, "error");
+                        WebService.Make_Toast_color(activity, message, "error");
                     }
 
 
@@ -404,7 +420,7 @@ public class ListAqarzActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                WebService.loading(ListAqarzActivity.this, false);
+                WebService.loading(activity, false);
 
             }
 
@@ -425,7 +441,7 @@ public class ListAqarzActivity extends AppCompatActivity {
                     String message = jsonObject.getString("message");
 
 
-                    WebService.Make_Toast_color(ListAqarzActivity.this, message, "error");
+                    WebService.Make_Toast_color(activity, message, "error");
 
                     Log.e("error response", response_data);
 
@@ -434,7 +450,7 @@ public class ListAqarzActivity extends AppCompatActivity {
                 }
 
 
-                WebService.loading(ListAqarzActivity.this, false);
+                WebService.loading(activity, false);
 
 
             }

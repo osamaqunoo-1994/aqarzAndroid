@@ -76,6 +76,8 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         TextView date;
         TextView space;
         TextView num_id;
+        TextView bathroom;
+        TextView room;
         ImageView image_icon;
         ImageView add_favorite;
         ImageView share;
@@ -114,6 +116,8 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
             space = view.findViewById(R.id.space);
             rate = view.findViewById(R.id.rate);
             num_id = view.findViewById(R.id.num_id);
+            bathroom = view.findViewById(R.id.bathroom);
+            room = view.findViewById(R.id.room);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
@@ -146,6 +150,8 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         holder.space.setText(alldata.get(position).getTotalArea() + "");
         holder.date.setText(alldata.get(position).getCreatedAt() + "");
         holder.num_id.setText("#" + alldata.get(position).getId() + "");
+        holder.bathroom.setText(alldata.get(position).getBathroomsNumber() + "");
+        holder.room.setText(alldata.get(position).getRoomsNumber() + "");
 
         if (alldata.get(position).getCity_name() != null) {
             holder.address.setText(alldata.get(position).getCity_name() + " - " + alldata.get(position).getNeighborhood_name());
@@ -271,7 +277,7 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
                 WebService.loading((Activity) context, true);
 
                 VolleyService mVolleyService = new VolleyService(mResultCallback, context);
-                mVolleyService.getDataVolley("hide", WebService.hide +"/"+ alldata.get(position).getId() + "/estate");
+                mVolleyService.getDataVolley("hide", WebService.hide + "/" + alldata.get(position).getId() + "/estate");
 
             }
         });

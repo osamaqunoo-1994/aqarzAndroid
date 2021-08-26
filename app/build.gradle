@@ -123,6 +123,8 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     compile 'com.github.ome450901:SimpleRatingBar:1.5.1'
     implementation 'com.github.PierfrancescoSoffritti:AndroidYouTubePlayer:7.0.1'
+//    implementation 'com.dision.android:rtlviewpager:1.0.3'
+    implementation 'com.booking:rtlviewpager:1.0.1'
 
 }
 

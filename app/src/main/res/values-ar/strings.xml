@@ -1107,4 +1107,24 @@
     <string name="rate_se">التقييم</string>
     <string name="BathrommNumber">عدد الحمامات</string>
     <string name="rommNumber">عدد الغرف</string>
+
+
+
+
+
+
+
+
+    <string name="Profile_tilte">حسابي</string>
+
+
+    <string name="AqarzAndOffer">عقاراتي</string>
+    <string name="MyEmplyeeee">أداء الموظفين</string>
+
+    <string name="AqarzAndOffer2">عروضي (الطلبات)</string>
+
+
+
+
+
 </resources>

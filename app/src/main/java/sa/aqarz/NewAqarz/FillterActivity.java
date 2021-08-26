@@ -507,10 +507,10 @@ public class FillterActivity extends AppCompatActivity {
                 MainAqarzActivity.object_filtter.setNumber_parking(number_parking);
                 MainAqarzActivity.object_filtter.setNumber_lifts(number_lifts);
 
-                if (from.equals("map")) {
+                if (from.equals("home")) {
                     HomeMapFragment.get_Estate_from_api();
                 } else {
-
+                    ListAqarzActivity.get_data();
                 }
                 finish();
 
