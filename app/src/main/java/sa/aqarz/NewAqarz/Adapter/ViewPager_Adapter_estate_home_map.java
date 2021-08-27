@@ -158,8 +158,8 @@ public class ViewPager_Adapter_estate_home_map extends PagerAdapter {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        bathroom.setText(alldata.get(position).getBathroomsNumber() + "");
-        room.setText(alldata.get(position).getRoomsNumber() + "");
+//        bathroom.setText(alldata.get(position).getBathroomsNumber() + "");
+//        room.setText(alldata.get(position).getRoomsNumber() + "");
 
 
 //        if (alldata.get(position).getEstate_type() != null) {
