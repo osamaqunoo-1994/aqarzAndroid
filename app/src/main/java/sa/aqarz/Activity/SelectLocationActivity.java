@@ -96,6 +96,12 @@ public class SelectLocationActivity extends AppCompatActivity {
     RecyclerView allcity;
     LinearLayout result;
 
+
+    LinearLayout selected;
+    LinearLayout select_location;
+    TextView text_t;
+    ImageView closr_tecxt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +114,10 @@ public class SelectLocationActivity extends AppCompatActivity {
         select = findViewById(R.id.select);
         back = findViewById(R.id.back);
         search_btn = findViewById(R.id.search_btn);
+        selected = findViewById(R.id.selected);
+        text_t = findViewById(R.id.text_t);
+        closr_tecxt = findViewById(R.id.closr_tecxt);
+        select_location = findViewById(R.id.select_location);
 
 
         mMapView.onCreate(savedInstanceState);
@@ -249,6 +259,30 @@ public class SelectLocationActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                select_location.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (ActivityCompat.checkSelfPermission(SelectLocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(SelectLocationActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            // TODO: Consider calling
+                            //    ActivityCompat#requestPermissions
+                            // here to request the missing permissions, and then overriding
+                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                            //
+                            //                                          int[] grantResults)
+                            // to handle the case where the user grants the permission. See the documentation
+                            // for ActivityCompat#requestPermissions for more details.
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+                            }
+
+                        } else {
+                            googleMap.setMyLocationEnabled(true);
+
+                        }
+
+                    }
+                });
 
                 try {
                     String address = getIntent().getStringExtra("address");
@@ -461,6 +495,9 @@ public class SelectLocationActivity extends AppCompatActivity {
 //                                    MapsFragmentNew.lat = cityModules_list_filtter.get(i).getLat() + "";
 //                                    MapsFragmentNew.lan = cityModules_list_filtter.get(i).getLan() + "";
 
+                                    selected.setVisibility(View.VISIBLE);
+                                    text_t.setText(cityModules_list_filtter.get(i).getSearch_name() + "");
+
                                     LatLng sydney = new LatLng(Double.valueOf(cityModules_list_filtter.get(i).getLat()), Double.valueOf(cityModules_list_filtter.get(i).getLan()));
                                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 10));
                                     text_search.setText(cityModules_list_filtter.get(i).getSearch_name());//+ "-" + cityModules_list_filtter.get(i).getCity().getName()
@@ -470,6 +507,14 @@ public class SelectLocationActivity extends AppCompatActivity {
                             });
                             allcity.setAdapter(recyclerView_city_bootom_sheets);
                             result.setVisibility(View.VISIBLE);
+                            closr_tecxt.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    selected.setVisibility(View.GONE);
+                                    text_t.setText("");
+
+                                }
+                            });
 
                         }
 

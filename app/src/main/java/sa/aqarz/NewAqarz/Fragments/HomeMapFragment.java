@@ -61,6 +61,7 @@ import sa.aqarz.Activity.AllOrderActivity;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.NotficationActvity;
+import sa.aqarz.Activity.SelectLocationActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Adapter.RecyclerView_All_type_in_fragment1;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat_new;
@@ -326,6 +327,7 @@ public class HomeMapFragment extends Fragment {
                 }
             });
         } catch (Exception e) {
+            e.printStackTrace();
 
         }
 
@@ -342,8 +344,8 @@ public class HomeMapFragment extends Fragment {
         fillter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent  intent=new Intent(getActivity(), FillterActivity.class);
-                intent.putExtra("from","home");
+                Intent intent = new Intent(getActivity(), FillterActivity.class);
+                intent.putExtra("from", "home");
                 startActivity(intent);
 
             }
@@ -401,7 +403,53 @@ public class HomeMapFragment extends Fragment {
 
             }
         });
+        search_text.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 
+
+                    final View mView = LayoutInflater.from(getContext()).inflate(R.layout.drop_down_layout_city_and_nib, null, false);
+                    popUp = new PopupWindow(mView, LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT, false);
+
+                    all_city = mView.findViewById(R.id.all_city);
+                    loading_city = mView.findViewById(R.id.loading_city);
+
+                    LinearLayoutManager layoutManager1
+                            = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                    all_city.setLayoutManager(layoutManager1);
+
+
+                    init_volley();
+
+//                String region_id_postion = "";
+//                if (MapsFragmentNew.region_id_postion != null) {
+//                    region_id_postion = MapsFragmentNew.region_id_postion + "";
+//                }
+//                String city_id_postion = "";
+//                if (MapsFragmentNew.city_id_postion != null) {
+//                    city_id_postion = MapsFragmentNew.city_id_postion + "";
+//                }
+
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+                    mVolleyService.getDataVolley("cities_with_neb", WebService.cities_with_neb + "?name=" + search_text.getText().toString());//+ "&state_id=" + region_id_postion + "&city_id=" + city_id_postion
+
+
+                    popUp.setTouchable(true);
+                    popUp.setFocusable(true);
+                    popUp.setOutsideTouchable(true);
+
+                    //Solution
+                    popUp.showAsDropDown(search_nib);
+
+
+                    return true;
+                }
+                return false;
+            }
+        });
 
     }
 
@@ -697,6 +745,7 @@ public class HomeMapFragment extends Fragment {
                         get_Estate_from_api();
 
                     } catch (Exception e) {
+                        e.printStackTrace();
 
                     }
 
@@ -957,6 +1006,7 @@ public class HomeMapFragment extends Fragment {
 
                                 }
                             } catch (Exception e) {
+                                e.printStackTrace();
 
                             }
 
@@ -970,6 +1020,7 @@ public class HomeMapFragment extends Fragment {
 
 
                 } catch (Exception e) {
+                    e.printStackTrace();
 
                 }
 
@@ -998,6 +1049,7 @@ public class HomeMapFragment extends Fragment {
                     Log.e("error response", response_data);
 
                 } catch (Exception e) {
+                    e.printStackTrace();
 
                 }
 

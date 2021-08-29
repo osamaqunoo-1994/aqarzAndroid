@@ -31,6 +31,7 @@ import sa.aqarz.Activity.check_login;
 import sa.aqarz.Fragment.MapsFragment;
 import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
 import sa.aqarz.Modules.Object_filtter;
+import sa.aqarz.NewAqarz.AqqAqarz.AddAqarzStepsActivity;
 import sa.aqarz.NewAqarz.Fragments.ChatFragment;
 import sa.aqarz.NewAqarz.Fragments.HomeMapFragment;
 import sa.aqarz.NewAqarz.Fragments.MoreFragment;
@@ -318,7 +319,8 @@ public class MainAqarzActivity extends AppCompatActivity {
                     addAqares.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(MainAqarzActivity.this, AddAqarzActivity.class);
+//                            Intent intent = new Intent(MainAqarzActivity.this, AddAqarzActivity.class);
+                            Intent intent = new Intent(MainAqarzActivity.this, AddAqarzStepsActivity.class);
                             intent.putExtra("id", "");
                             startActivity(intent);
                             gray_layout.setVisibility(View.GONE);

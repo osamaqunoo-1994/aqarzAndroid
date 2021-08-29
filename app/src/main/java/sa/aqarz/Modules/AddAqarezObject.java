@@ -12,8 +12,8 @@ public class AddAqarezObject {
     String city_id = "";
     String neighborhood_id = "";
     String street_name = "";
-    String lat = "";
-    String lan = "";
+    String lat = "0.0";
+    String lan = "0.0";
     String address = "";
     String advertiser_side = "";
     String operation_type_id = "";

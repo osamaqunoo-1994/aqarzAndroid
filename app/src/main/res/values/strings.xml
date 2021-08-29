@@ -96,6 +96,7 @@ new password</string>
     <string name="Information_Aqar">Information Aqar</string>
     <string name="About_Aqar">About  Aqar</string>
     <string name="AqarType">Aqar Type</string>
+    <string name="AqarTypeselect">select Aqar Type</string>
 
 
     <string name="yaer">year</string>
@@ -1074,10 +1075,18 @@ Two working days to complete your order</string>
     <string name="rommNumber">Room Number</string>
 
 
-
     <string name="Profile_tilte">Profile</string>
     <string name="AqarzAndOffer">Aqarz</string>
     <string name="AqarzAndOffer2">Offer (request)</string>
     <string name="MyEmplyeeee">Employee</string>
+
+    <string name="SelectImagesxx">Add Images</string>
+    <string name="SelectVideoxx">Add Video</string>
+    <string name="title2">Add Images</string>
+    <string name="title3">Select Location Aqarz</string>
+    <string name="title5">Add My Location</string>
+    <string name="title6">Details Aqarz</string>
+    <string name="title7">More Details Aqarz</string>
+    <string name="Approval_request">Approval Request</string>
 
 </resources>

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -70,6 +71,7 @@ public class SelectNewLocationActivity extends AppCompatActivity {
     Button select;
 
     ImageView back;
+    LinearLayout selected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,7 @@ public class SelectNewLocationActivity extends AppCompatActivity {
         text_search = findViewById(R.id.text_search);
         select = findViewById(R.id.select);
         back = findViewById(R.id.back);
+        selected = findViewById(R.id.selected);
 
 
         mMapView.onCreate(savedInstanceState);

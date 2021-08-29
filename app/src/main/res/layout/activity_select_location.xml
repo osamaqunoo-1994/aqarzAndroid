@@ -46,10 +46,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_group_location_group" />
+
+
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_margin="8dp"
 
                 android:orientation="vertical">
 
@@ -57,36 +71,142 @@
                 <LinearLayout
                     android:layout_width="match_parent"
 
-                    android:layout_height="42dp"
-                    android:background="@drawable/edit_text_background_new_design"
+                    android:layout_height="138dp"
+                    android:background="@drawable/back_search_home"
+                    android:orientation="vertical"
                     android:visibility="visible">
 
-
-                    <ImageView
-                        android:id="@+id/search_btn"
-                        android:layout_width="42dp"
-                        android:layout_height="42dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_search" />
-
-                    <EditText
-                        android:id="@+id/text_search"
+                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:imeOptions="actionSearch"
-                        android:inputType="text"
-                        android:textSize="13dp" />
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:fontFamily="@font/din_bold"
+                        android:gravity="center"
+                        android:text="@string/Select_Location"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/search_background">
+
+                        <ImageView
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_location_ss"
+                            app:tint="@color/te_unselected" />
+
+                        <EditText
+                            android:id="@+id/text_search"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:imeOptions="actionSearch"
+                            android:inputType="text"
+                            android:lines="1"
+                            android:textSize="13dp" />
+
+                        <ImageView
+                            android:id="@+id/search_btn"
+
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_search"
+                            app:tint="@color/colorPrimary" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/selected"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/back_search_homeccc"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/text_t"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp" />
+
+                            <ImageView
+                                android:id="@+id/closr_tecxt"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:src="@drawable/ic_close_black_24dp" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+
+                        <LinearLayout
+                            android:id="@+id/select_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/back_search_home_selected"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <ImageView
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:src="@drawable/ic_plus" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="@string/title5"
+                                android:textColor="@color/white"
+                                android:textSize="13dp" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
+
 
                 <LinearLayout
                     android:id="@+id/result"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:background="@drawable/edit_text_background_new_design"
+                    android:background="@drawable/back_search_home"
 
                     android:padding="15dp"
 
@@ -99,6 +219,17 @@
 
 
                 </LinearLayout>
+
+
+                <Button
+                    android:id="@+id/select"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/back_search_home_selected"
+                    android:text="@string/Select_Location"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 
@@ -118,29 +249,6 @@
                     android:layout_height="match_parent"
 
                     />
-
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/select"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="20dp"
-                android:background="@drawable/button_login"
-                android:text="@string/Select_Location"
-                android:textColor="@color/white" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:layout_centerInParent="true">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_group_location_group" />
 
 
             </LinearLayout>

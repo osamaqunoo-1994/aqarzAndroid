@@ -87,6 +87,7 @@
 
     <string name="Information_Aqar">بيانات العقار</string>
     <string name="AqarType">نوع العقار</string>
+    <string name="AqarTypeselect">حدد نوع العقار</string>
 
 
     <string name="yaer">سنة</string>
@@ -1124,7 +1125,14 @@
     <string name="AqarzAndOffer2">عروضي (الطلبات)</string>
 
 
+    <string name="SelectImagesxx">اضافة صورة</string>
+    <string name="SelectVideoxx">اضافة فيديو</string>
 
-
+    <string name="title2">ارفاق صورة</string>
+    <string name="title3">حدد موقع العقار</string>
+    <string name="title5">اضف المنطقة الحالية</string>
+    <string name="title6">تفاصيل العقار</string>
+    <string name="title7">اكمل تفاصيل العقار</string>
+    <string name="Approval_request">اعتماد الطلب</string>
 
 </resources>

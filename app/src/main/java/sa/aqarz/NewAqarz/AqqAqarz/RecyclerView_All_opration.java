@@ -1,4 +1,4 @@
-package sa.aqarz.Adapter;
+package sa.aqarz.NewAqarz.AqqAqarz;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -6,22 +6,16 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import sa.aqarz.Modules.ComfortModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
 
@@ -29,8 +23,8 @@ import sa.aqarz.R;
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_All_Comfort_in_fragment extends RecyclerView.Adapter<RecyclerView_All_Comfort_in_fragment.MyViewHolder> {
-    public static List<ComfortModules> alldata = new ArrayList<ComfortModules>();
+public class RecyclerView_All_opration extends RecyclerView.Adapter<RecyclerView_All_opration.MyViewHolder> {
+    public static List<TypeModules> alldata = new ArrayList<TypeModules>();
     static int Postion_opend = -1;
 
 
@@ -49,15 +43,7 @@ public class RecyclerView_All_Comfort_in_fragment extends RecyclerView.Adapter<R
         this.notifyDataSetChanged();
     }
 
-
     public void RefreshData() {
-        this.notifyDataSetChanged();
-    }
-
-    public void add_more_date(List<ComfortModules> alldata) {
-
-        RecyclerView_All_Comfort_in_fragment.alldata = alldata;
-
         this.notifyDataSetChanged();
     }
 
@@ -73,7 +59,6 @@ public class RecyclerView_All_Comfort_in_fragment extends RecyclerView.Adapter<R
 
         LinearLayout back_ground;
         TextView text;
-        ImageView image_in_type;
 
         public MyViewHolder(View view) {
             super(view);
@@ -82,14 +67,13 @@ public class RecyclerView_All_Comfort_in_fragment extends RecyclerView.Adapter<R
 
             back_ground = view.findViewById(R.id.back_ground);
             text = view.findViewById(R.id.text);
-            image_in_type = view.findViewById(R.id.image_in_type);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
     }
 
-    public RecyclerView_All_Comfort_in_fragment(Context context, List<ComfortModules> alldata) {
-        RecyclerView_All_Comfort_in_fragment.alldata = alldata;
+    public RecyclerView_All_opration(Context context, List<TypeModules> alldata) {
+        RecyclerView_All_opration.alldata = alldata;
         this.context = context;
     }
 
@@ -116,26 +100,21 @@ public class RecyclerView_All_Comfort_in_fragment extends RecyclerView.Adapter<R
 ////
         holder.text.setText(alldata.get(position).getName() + "");
 
-        Glide.with(context).load(alldata.get(position).getIcon()).into(holder.image_in_type);
 
-        if (alldata.get(position).get_is_selected()) {
+        if (position == Postion_opend) {
             holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.back_search_home_selected));
 
             holder.text.setTextColor(context.getResources().getColor(R.color.white));
 
 
-            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
-
         } else {
             holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.back_search_homecc));
 
-            holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
-            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
+            holder.text.setTextColor(context.getResources().getColor(R.color.color_filter));
 
         }
 //
 //        System.out.println(alldata.get(position).getImage() + "");
-//        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
 ////
 //
 //        try {
@@ -194,39 +173,10 @@ public class RecyclerView_All_Comfort_in_fragment extends RecyclerView.Adapter<R
 
 //
 
-
-                if (alldata.get(position).get_is_selected()) {
-                    alldata.get(position).setIs_selected(false);
-                    alldata.get(position).setIs_selected(true);
-                    holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.mash));
-
-                    holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
-                    holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
-
-                } else {
-                    System.out.println("klklkl" + alldata.get(position).get_is_selected());
-
-
-                    holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));
-
-                    holder.text.setTextColor(context.getResources().getColor(R.color.white));
-
-
-                    holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
-
-                }
                 if (mItemClickListener != null) {
                     mItemClickListener.onItemClick(position);
                 }
-
-
-//
-//                if (alldata.get(position).get_is_selected()) {
-//
-//                } else {
-//
-//                }
-
+                Postion_opend = position;
                 Refr();
 
             }
@@ -251,7 +201,7 @@ public class RecyclerView_All_Comfort_in_fragment extends RecyclerView.Adapter<R
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_comfort, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_opration_add_aqarz_2, parent, false);
 
 
         // Fresco.initialize(context);
