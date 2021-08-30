@@ -30,6 +30,7 @@ import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.Auth.NewSiginUpActivity;
 import sa.aqarz.Activity.ContactUsActivity;
 import sa.aqarz.Activity.Employee.DetailsEmployeeActivity;
+import sa.aqarz.Activity.MyOrderActivity;
 import sa.aqarz.Activity.SettingsActivity;
 import sa.aqarz.Activity.TermsActivity;
 import sa.aqarz.Activity.profile.AllclintActivity;
@@ -38,6 +39,7 @@ import sa.aqarz.Activity.profile.ProfileDetailsActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_restPassword;
 import sa.aqarz.Modules.AllEmployee;
 import sa.aqarz.NewAqarz.MainAqarzActivity;
+import sa.aqarz.NewAqarz.MyOrderRequstActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
 
@@ -173,20 +175,18 @@ public class MoreFragment extends Fragment {
         aqarz_offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(getActivity(), MyOffersActivity.class);
-//              intent.putExtra("from", "splash");
-                intent.putExtra("id_user", "--");
-
-                startActivity(intent);
+                MainAqarzActivity.type_order_main = "Shopping";
+                MainAqarzActivity.type_type_order_main = "Myoffer";
+                MainAqarzActivity.set_contanier_fragments_order();
             }
         });
         offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AllOrder_filtterActivity.class);
+                Intent intent = new Intent(getActivity(), MyOffersActivity.class);
 //              intent.putExtra("from", "splash");
                 intent.putExtra("type", "all");
+                intent.putExtra("id_user", "--");
 
                 startActivity(intent);
 
@@ -203,7 +203,8 @@ public class MoreFragment extends Fragment {
         my_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getActivity(), MyOrderRequstActivity.class);
+                startActivity(intent);
 
             }
         });

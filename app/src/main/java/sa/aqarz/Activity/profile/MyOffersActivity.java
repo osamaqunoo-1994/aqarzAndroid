@@ -29,6 +29,7 @@ import java.util.List;
 import sa.aqarz.Activity.AqarzProfileActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat;
+import sa.aqarz.Adapter.RecyclerView_HomeList_estat_new;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat_other;
 import sa.aqarz.Adapter.RecyclerView_List_estat_profile;
 import sa.aqarz.Adapter.RecyclerView_List_estat_profile_other;
@@ -37,6 +38,7 @@ import sa.aqarz.Adapter.RecyclerView_my_offer_in_profile;
 import sa.aqarz.Adapter.RecyclerView_other_offer_in_profile;
 import sa.aqarz.Modules.Clints;
 import sa.aqarz.Modules.HomeModules_aqares;
+import sa.aqarz.NewAqarz.Adapter.RecyclerView_HomeList_estat_new_my;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -49,8 +51,9 @@ public class MyOffersActivity extends AppCompatActivity {
     ImageView back;
     LinearLayout nodata_vis;
     FloatingActionButton add_offer;
-    RecyclerView_my_offer_in_profile recyclerView_my_offer_in_profile;
+    //    RecyclerView_my_offer_in_profile recyclerView_my_offer_in_profile;
     RecyclerView_HomeList_estat_other recyclerView_homeList_estat_other;
+    static RecyclerView_HomeList_estat_new_my recyclerView_homeList_estat_new;
 
 
     int page = 1;
@@ -72,9 +75,9 @@ public class MyOffersActivity extends AppCompatActivity {
         myoffer.setLayoutManager(layoutManager1);
 
 
-        recyclerView_my_offer_in_profile = new RecyclerView_my_offer_in_profile(MyOffersActivity.this, homeModules);
+        recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_new_my(MyOffersActivity.this, homeModules);
 
-        myoffer.setAdapter(recyclerView_my_offer_in_profile);
+        myoffer.setAdapter(recyclerView_homeList_estat_new);
 
 
         init_volley();
@@ -187,7 +190,7 @@ public class MyOffersActivity extends AppCompatActivity {
 
                             }
 
-                            recyclerView_my_offer_in_profile.Refr();
+                            recyclerView_homeList_estat_new.Refr();
 
 //                            myoffer.setAdapter(new RecyclerView_my_offer_in_profile(MyOffersActivity.this, homeModules));
                             if (homeModules.size() == 0) {

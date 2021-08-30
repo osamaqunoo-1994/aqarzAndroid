@@ -90,10 +90,17 @@ public class SettingsModules {
     @SerializedName("course_types")
     @Expose
     private List<service_types> course_types;
+    @SerializedName("regine")
+    @Expose
+    private List<RegionModules> regine;
     @SerializedName("videos")
     @Expose
     private List<videos> videos;
 
+
+    public List<RegionModules> getRegine() {
+        return regine;
+    }
 
     public List<SettingsModules.service_types> getMember_types() {
         return member_types;

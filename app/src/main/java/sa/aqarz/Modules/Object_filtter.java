@@ -12,6 +12,7 @@ public class Object_filtter {
     String max_price = "";
     String less_space = "";
     String max_space = "";
+    String estate_pay_type = "";
 
     int number_Lounges = 0;
     int number_room = 0;
@@ -34,6 +35,22 @@ public class Object_filtter {
 
     List<TypeModules> type_list = new ArrayList<>();
 
+
+    public boolean isEast_selected() {
+        return east_selected;
+    }
+
+    public boolean isNorth_selected() {
+        return north_selected;
+    }
+
+    public boolean isSouth_selected() {
+        return south_selected;
+    }
+
+    public boolean isWest_selected() {
+        return west_selected;
+    }
 
     public List<TypeModules> getType_list() {
         return type_list;
@@ -61,6 +78,14 @@ public class Object_filtter {
 
     public List<ComfortModules> getComfortModules() {
         return comfortModules;
+    }
+
+    public String getEstate_pay_type() {
+        return estate_pay_type;
+    }
+
+    public void setEstate_pay_type(String estate_pay_type) {
+        this.estate_pay_type = estate_pay_type;
     }
 
     public void setComfortModules(List<ComfortModules> comfortModules) {

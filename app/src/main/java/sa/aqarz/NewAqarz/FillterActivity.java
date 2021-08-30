@@ -154,6 +154,7 @@ public class FillterActivity extends AppCompatActivity {
 
     Button search_filtter;
     String from = "";
+    TextView clearfiltter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -234,10 +235,26 @@ public class FillterActivity extends AppCompatActivity {
         parking_plus = findViewById(R.id.parking_plus);
         parking_mins = findViewById(R.id.parking_mins);
         parking_txt = findViewById(R.id.parking_txt);
+        clearfiltter = findViewById(R.id.clearfiltter);
 
 
         try {
             from = getIntent().getStringExtra("from");
+
+        } catch (Exception e) {
+
+        }
+
+
+        try {
+
+
+            Maximum_price.setText(MainAqarzActivity.object_filtter.getMax_price() + "");
+            Les_price.setText(MainAqarzActivity.object_filtter.getLess_price() + "");
+            Maximum_space.setText(MainAqarzActivity.object_filtter.getMax_space() + "");
+            Les_space.setText(MainAqarzActivity.object_filtter.getLess_space() + "");
+            Date_of_construction_text.setText(MainAqarzActivity.object_filtter.getDate() + "");
+
 
         } catch (Exception e) {
 
@@ -304,6 +321,55 @@ public class FillterActivity extends AppCompatActivity {
                 finish();
             }
         });
+        if (MainAqarzActivity.object_filtter.getEstate_pay_type().equals("")) {
+            type = "";
+            purchase.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+            rent.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+            investment.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+
+            purchase.setTextColor(getResources().getColor(R.color.textColor));
+            rent.setTextColor(getResources().getColor(R.color.textColor));
+            investment.setTextColor(getResources().getColor(R.color.textColor));
+
+        } else {
+            if (MainAqarzActivity.object_filtter.getEstate_pay_type().equals("is_pay")) {
+                type = "purchase";
+
+                purchase.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
+                rent.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+                investment.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+
+                purchase.setTextColor(getResources().getColor(R.color.white));
+                rent.setTextColor(getResources().getColor(R.color.textColor));
+                investment.setTextColor(getResources().getColor(R.color.textColor));
+
+            } else if (MainAqarzActivity.object_filtter.getEstate_pay_type().equals("is_rent")) {
+                type = "rent";
+
+                purchase.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+                rent.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
+                investment.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+
+
+                purchase.setTextColor(getResources().getColor(R.color.textColor));
+                rent.setTextColor(getResources().getColor(R.color.white));
+                investment.setTextColor(getResources().getColor(R.color.textColor));
+
+            } else if (MainAqarzActivity.object_filtter.getEstate_pay_type().equals("is_pay")) {
+                type = "investment";
+
+                purchase.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+                rent.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+                investment.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
+
+                purchase.setTextColor(getResources().getColor(R.color.textColor));
+                rent.setTextColor(getResources().getColor(R.color.textColor));
+                investment.setTextColor(getResources().getColor(R.color.white));
+
+            }
+
+        }
+
 
         purchase.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -320,7 +386,7 @@ public class FillterActivity extends AppCompatActivity {
                     purchase.setTextColor(getResources().getColor(R.color.textColor));
                     rent.setTextColor(getResources().getColor(R.color.textColor));
                     investment.setTextColor(getResources().getColor(R.color.textColor));
-
+                    MainAqarzActivity.object_filtter.setEstate_pay_type("");
 
                 } else {
                     type = "purchase";
@@ -332,6 +398,7 @@ public class FillterActivity extends AppCompatActivity {
                     purchase.setTextColor(getResources().getColor(R.color.white));
                     rent.setTextColor(getResources().getColor(R.color.textColor));
                     investment.setTextColor(getResources().getColor(R.color.textColor));
+                    MainAqarzActivity.object_filtter.setEstate_pay_type("is_pay");
 
                 }
 
@@ -354,6 +421,7 @@ public class FillterActivity extends AppCompatActivity {
                     purchase.setTextColor(getResources().getColor(R.color.textColor));
                     rent.setTextColor(getResources().getColor(R.color.textColor));
                     investment.setTextColor(getResources().getColor(R.color.textColor));
+                    MainAqarzActivity.object_filtter.setEstate_pay_type("");
 
                 } else {
                     type = "rent";
@@ -366,6 +434,7 @@ public class FillterActivity extends AppCompatActivity {
                     purchase.setTextColor(getResources().getColor(R.color.textColor));
                     rent.setTextColor(getResources().getColor(R.color.white));
                     investment.setTextColor(getResources().getColor(R.color.textColor));
+                    MainAqarzActivity.object_filtter.setEstate_pay_type("is_rent");
 
                 }
 
@@ -387,6 +456,7 @@ public class FillterActivity extends AppCompatActivity {
                     purchase.setTextColor(getResources().getColor(R.color.textColor));
                     rent.setTextColor(getResources().getColor(R.color.textColor));
                     investment.setTextColor(getResources().getColor(R.color.textColor));
+                    MainAqarzActivity.object_filtter.setEstate_pay_type("");
 
                 } else {
                     type = "investment";
@@ -399,6 +469,7 @@ public class FillterActivity extends AppCompatActivity {
                     rent.setTextColor(getResources().getColor(R.color.textColor));
                     investment.setTextColor(getResources().getColor(R.color.white));
 
+                    MainAqarzActivity.object_filtter.setEstate_pay_type("is_pay");
 
                 }
 
@@ -417,6 +488,9 @@ public class FillterActivity extends AppCompatActivity {
             type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
 
         }
+
+        type_filtter = MainAqarzActivity.object_filtter.getType_aqarz() + "";
+
         RecyclerView_All_type_fillter recyclerView_all_type_in_fragment = new RecyclerView_All_type_fillter(FillterActivity.this, type_list);
         recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_fillter.ItemClickListener() {
             @Override
@@ -434,6 +508,8 @@ public class FillterActivity extends AppCompatActivity {
                         }
                     }
                 }
+                MainAqarzActivity.object_filtter.setType_aqarz(type_filtter);
+                MainAqarzActivity.object_filtter.setType_list(typeModules);
 
 
             }
@@ -506,6 +582,50 @@ public class FillterActivity extends AppCompatActivity {
 
                 MainAqarzActivity.object_filtter.setNumber_parking(number_parking);
                 MainAqarzActivity.object_filtter.setNumber_lifts(number_lifts);
+                Hawk.put("filtter","yes");
+
+                if (from.equals("home")) {
+                    HomeMapFragment.get_Estate_from_api();
+                } else {
+                    ListAqarzActivity.get_data();
+                }
+                finish();
+
+
+            }
+        });
+        clearfiltter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                MainAqarzActivity.object_filtter.setDate("");
+                MainAqarzActivity.object_filtter.setType_aqarz_view("");
+                MainAqarzActivity.object_filtter.setType_aqarz("");
+                MainAqarzActivity.object_filtter.setComfortModules(comfortModules);
+                MainAqarzActivity.object_filtter.setLess_price("");
+                MainAqarzActivity.object_filtter.setMax_price("");
+                MainAqarzActivity.object_filtter.setLess_space("");
+                MainAqarzActivity.object_filtter.setMax_space("");
+
+                MainAqarzActivity.object_filtter.setEast_selected(false);
+                MainAqarzActivity.object_filtter.setWest_selected(false);
+                MainAqarzActivity.object_filtter.setNorth_selected(false);
+                MainAqarzActivity.object_filtter.setSouth_selected(false);
+
+
+                MainAqarzActivity.object_filtter.setNumber_Lounges(0);
+                MainAqarzActivity.object_filtter.setNumber_room(0);
+                MainAqarzActivity.object_filtter.setNumber_Bathrooms(0);
+                MainAqarzActivity.object_filtter.setNumber_Boards_plus(0);
+                MainAqarzActivity.object_filtter.setNumber_Kitchens_plus(0);
+                MainAqarzActivity.object_filtter.setNumber_Dining_rooms(0);
+
+
+                MainAqarzActivity.object_filtter.setNumber_parking(0);
+                MainAqarzActivity.object_filtter.setNumber_lifts(0);
+
+                Hawk.put("filtter","no");
 
                 if (from.equals("home")) {
                     HomeMapFragment.get_Estate_from_api();
@@ -521,6 +641,17 @@ public class FillterActivity extends AppCompatActivity {
     }
 
     public void action_plus_mins() {
+
+        if (MainAqarzActivity.object_filtter.getNumber_Lounges() != 0) {
+
+            number_Lounges = MainAqarzActivity.object_filtter.getNumber_Lounges();
+            Lounges_number.setText(number_Lounges + "");
+
+            Lounges_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+            Lounges_number.setTextColor(getResources().getColor(R.color.white));
+        }
+
+
         Lounges_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -589,7 +720,14 @@ public class FillterActivity extends AppCompatActivity {
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
 
+        if (MainAqarzActivity.object_filtter.getNumber_room() != 0) {
 
+            number_room = MainAqarzActivity.object_filtter.getNumber_room();
+            room_text.setText(number_room + "");
+
+            room_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+            room_text.setTextColor(getResources().getColor(R.color.white));
+        }
         room_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -659,7 +797,16 @@ public class FillterActivity extends AppCompatActivity {
             }
         });
 
+//-------------------------------------------------------------------------------------------------
 
+        if (MainAqarzActivity.object_filtter.getNumber_Bathrooms() != 0) {
+
+            number_Bathrooms = MainAqarzActivity.object_filtter.getNumber_Bathrooms();
+            Bathrooms_text.setText(number_Bathrooms + "");
+
+            Bathrooms_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+            Bathrooms_text.setTextColor(getResources().getColor(R.color.white));
+        }
         Bathrooms_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -729,7 +876,14 @@ public class FillterActivity extends AppCompatActivity {
 
             }
         });
+        if (MainAqarzActivity.object_filtter.getNumber_Boards_plus() != 0) {
 
+            number_Boards_plus = MainAqarzActivity.object_filtter.getNumber_Boards_plus();
+            Boards_text.setText(number_Boards_plus + "");
+
+            Boards_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+            Boards_text.setTextColor(getResources().getColor(R.color.white));
+        }
         Boards_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -804,7 +958,14 @@ public class FillterActivity extends AppCompatActivity {
 
 //-------------------------------------------------------------------------------------------------
 
+        if (MainAqarzActivity.object_filtter.getNumber_Kitchens_plus() != 0) {
 
+            number_Kitchens_plus = MainAqarzActivity.object_filtter.getNumber_Kitchens_plus();
+            Kitchens_text.setText(number_Kitchens_plus + "");
+
+            Kitchens_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+            Kitchens_text.setTextColor(getResources().getColor(R.color.white));
+        }
         Kitchens_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -879,7 +1040,14 @@ public class FillterActivity extends AppCompatActivity {
 
 //-------------------------------------------------------------------------------------------------
 
+        if (MainAqarzActivity.object_filtter.getNumber_Dining_rooms() != 0) {
 
+            number_Dining_rooms = MainAqarzActivity.object_filtter.getNumber_Dining_rooms();
+            Dining_text.setText(number_Dining_rooms + "");
+
+            Dining_rooms_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+            Dining_text.setTextColor(getResources().getColor(R.color.white));
+        }
         Dining_rooms_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -947,6 +1115,15 @@ public class FillterActivity extends AppCompatActivity {
 
             }
         });
+
+        if (MainAqarzActivity.object_filtter.getNumber_lifts() != 0) {
+
+            number_lifts = MainAqarzActivity.object_filtter.getNumber_lifts();
+            lifts_txt.setText(number_lifts + "");
+
+            lifts_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+            lifts_txt.setTextColor(getResources().getColor(R.color.white));
+        }
         lifts_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1011,6 +1188,14 @@ public class FillterActivity extends AppCompatActivity {
             }
         });
 
+        if (MainAqarzActivity.object_filtter.getNumber_parking() != 0) {
+
+            number_parking = MainAqarzActivity.object_filtter.getNumber_parking();
+            parking_txt.setText(number_parking + "");
+
+            parking_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+            parking_txt.setTextColor(getResources().getColor(R.color.white));
+        }
 
         parking_plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1081,7 +1266,36 @@ public class FillterActivity extends AppCompatActivity {
 
     public void select_view() {
 
+        try {
+            if (MainAqarzActivity.object_filtter.isEast_selected()) {
+                east_selected = true;
+                east.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
+                east.setTextColor(getResources().getColor(R.color.white));
 
+            }
+            if (MainAqarzActivity.object_filtter.isNorth_selected()) {
+                north_selected = true;
+                north.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
+                north.setTextColor(getResources().getColor(R.color.white));
+
+            }
+            if (MainAqarzActivity.object_filtter.isSouth_selected()) {
+                south_selected = true;
+                south.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
+                south.setTextColor(getResources().getColor(R.color.white));
+
+            }
+            if (MainAqarzActivity.object_filtter.isWest_selected()) {
+                west_selected = true;
+                west.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
+                west.setTextColor(getResources().getColor(R.color.white));
+
+
+            }
+
+        } catch (Exception e) {
+
+        }
         north.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -53,6 +53,9 @@ public class HomeModules_aqares {
     @SerializedName("planned_number")
     @Expose
     private String plannedNumber;
+    @SerializedName("full_address")
+    @Expose
+    private String full_address;
     @SerializedName("total_area")
     @Expose
     private String totalArea;
@@ -220,6 +223,10 @@ public class HomeModules_aqares {
     }
 
     boolean is_selected = false;
+
+    public String getFull_address() {
+        return full_address;
+    }
 
     public List<HomeModules_aqares.rates> getRates() {
         return rates;

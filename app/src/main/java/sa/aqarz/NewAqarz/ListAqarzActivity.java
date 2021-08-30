@@ -62,7 +62,8 @@ public class ListAqarzActivity extends AppCompatActivity {
 
     public static Activity activity;
 
-
+    static TextView nodata;
+ImageView fill_filtter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +71,8 @@ public class ListAqarzActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         order_by = findViewById(R.id.order_by);
         filtter = findViewById(R.id.filtter);
+        nodata = findViewById(R.id.nodata);
+        fill_filtter = findViewById(R.id.fill_filtter);
 
 
         activity = this;
@@ -139,6 +142,10 @@ public class ListAqarzActivity extends AppCompatActivity {
                     }
                 }
 //
+
+                MainAqarzActivity.object_filtter.setType_aqarz(type_filtter);
+                MainAqarzActivity.object_filtter.setType_list(typeModules);
+
                 get_data();
 
 
@@ -351,20 +358,118 @@ public class ListAqarzActivity extends AppCompatActivity {
 
 
         page = 1;
+
+        String estate_pay_type = "";
+
+        if (!MainAqarzActivity.object_filtter.getEstate_pay_type().equals("")) {
+            estate_pay_type = "&estate_pay_type=" + MainAqarzActivity.object_filtter.getEstate_pay_type();
+        }
+
+        String price_to = "";
+
+        if (!MainAqarzActivity.object_filtter.getMax_price().equals("")) {
+            price_to = "&price_to=" + MainAqarzActivity.object_filtter.getMax_price();
+        }
+
+
+        String price_from = "";
+
+        if (!MainAqarzActivity.object_filtter.getLess_price().equals("")) {
+            price_from = "&price_from=" + MainAqarzActivity.object_filtter.getLess_price();
+        }
+
+
+        String area_from = "";
+
+        if (!MainAqarzActivity.object_filtter.getLess_space().equals("")) {
+            area_from = "&area_from=" + MainAqarzActivity.object_filtter.getLess_space();
+        }
+        String area_to = "";
+
+        if (!MainAqarzActivity.object_filtter.getMax_space().equals("")) {
+            area_to = "&area_to=" + MainAqarzActivity.object_filtter.getMax_space();
+        }
+
+
+        String room = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_room() != 0) {
+            room = "&room=" + MainAqarzActivity.object_filtter.getNumber_room();
+        }
+        String lounges_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_Lounges() != 0) {
+            lounges_number = "&lounges_number=" + MainAqarzActivity.object_filtter.getNumber_Lounges();
+        }
+        String bathrooms_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_Bathrooms() != 0) {
+            bathrooms_number = "&bathrooms_number=" + MainAqarzActivity.object_filtter.getNumber_Bathrooms();
+        }
+        String dining_rooms_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_Dining_rooms() != 0) {
+            dining_rooms_number = "&dining_rooms_number=" + MainAqarzActivity.object_filtter.getNumber_Dining_rooms();
+        }
+
+        String boards_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_Boards_plus() != 0) {
+            boards_number = "&boards_number=" + MainAqarzActivity.object_filtter.getNumber_Boards_plus();
+        }
+
+        String elevators_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_lifts() != 0) {
+            elevators_number = "&elevators_number=" + MainAqarzActivity.object_filtter.getNumber_lifts();
+        }
+        String kitchen_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_Kitchens_plus() != 0) {
+            kitchen_number = "&kitchen_number=" + MainAqarzActivity.object_filtter.getNumber_Kitchens_plus();
+        }
+        String estate_age = "";
+
+        if (!MainAqarzActivity.object_filtter.getDate().equals("")) {
+            estate_age = "&estate_age=" + MainAqarzActivity.object_filtter.getDate();
+        }
+
+
+//        String type_filtter_ = "";
+//        if (!type_filtter.equals("")) {
+//            type_filtter_ = "&estate_type=" + type_filtter;
+//        }
         String type_filtter_ = "";
-        if (!type_filtter.equals("")) {
-            type_filtter_ = "&estate_type=" + type_filtter;
+        if (!MainAqarzActivity.object_filtter.getType_aqarz().equals("")) {
+            type_filtter_ = "&estate_type=" + MainAqarzActivity.object_filtter.getType_aqarz();
         }
 
 
         WebService.loading(activity, true);
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
-        url_list = WebService.home_estate_custom_list + "?" + type_filtter_;
+
+        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
+
+//        url_list = WebService.home_estate_custom_list + "?" + type_filtter_;
         mVolleyService.getAsync("home_estate_custom_list_more_1", url_list);
 
     }
 
+    @Override
+    protected void onResume() {
+
+        if (Hawk.contains("filtter")) {
+            if (Hawk.get("filtter").toString().equals("yes")) {
+                fill_filtter.setVisibility(View.VISIBLE);
+            } else {
+                fill_filtter.setVisibility(View.GONE);
+
+            }
+
+        }
+        super.onResume();
+    }
 
     public static void init_volley() {
 
@@ -398,6 +503,12 @@ public class ListAqarzActivity extends AppCompatActivity {
 
                             recyclerView_homeList_estat_new.Refr();
 
+                            if (homeModules_aqares_list.size() == 0) {
+                                nodata.setVisibility(View.VISIBLE);
+                            } else {
+                                nodata.setVisibility(View.GONE);
+
+                            }
 //                            set_locationEstate(allNeigbers.getData().getData());
 //                            all_estate_size.setVisibility(View.VISIBLE);
 

@@ -893,7 +893,7 @@
     <string name="cancleFiltter">الغاء التحديد</string>
 
 
-    <string name="mn1">شراء</string>
+    <string name="mn1">بيع</string>
     <string name="mn2">إيجار</string>
     <string name="mn3">استثمار</string>
     <string name="title_dialog">الخدمات العقاريه</string>
@@ -937,8 +937,6 @@
     <string name="employee__4">عدد عروض السوق</string>
 
 
-
-
     <string name="adde_employee">اضافة موظف</string>
     <string name="Successfully">بنجاح</string>
     <string name="Bio">نبذه عن</string>
@@ -972,24 +970,15 @@
     <string name="advertisementsx">عقار, قرب اكتر لجميع العقارات</string>
 
 
-
-
-
-
     <string name="check_permission">تحقق من الإذن</string>
     <string name="Allow_access_device_">السماح بالوصول إلى موقع هذا الجهاز لمعرفه العروض القريبة منك</string>
 
     <string name="Selectvideo">اضف فيديو</string>
 
 
-
-
     <string name="title_activity_my_interests">الخريطه</string>
     <string name="my_interests">اهتماماتي</string>
     <string name="EmployeeTitle">متابعه اداء الموظفين</string>
-
-
-
 
 
     <string name="btn_order_wating">طلبات قيد الانتظار</string>
@@ -1018,15 +1007,12 @@
     <string name="Profile">الحساب</string>
 
 
-
     <string name="change_to_aqarz">هل تريد تغيير الحساب لعقاري?</string>
     <string name="Update">تعديل</string>
     <string name="step_1_location">الموقع الجغرافي</string>
     <string name="step_2_Details">تفاصيل العقار</string>
     <string name="step_3_Details">تفاصيل المرافق الداخلية الخارجيه</string>
     <string name="step_4_Advertiser">معلومات المعلن</string>
-
-
 
 
     <string name="Region_add">المنطقه<font color="#AAABB3"><sup>*</sup></font></string>
@@ -1053,7 +1039,6 @@
     <string name="interface_add">الواجهه<font color="#DD4131"><sup>*</sup></font></string>
 
 
-
     <string name="lengths_add">حدود وأطوال العقار<font color="#AAABB3"><sup>*</sup></font></string>
     <string name="streetwidthadd">عرض الشارع<font color="#AAABB3"><sup>*</sup></font></string>
     <string name="Date_of_construction_add">تاريخ البناء (عمر العقار)<font color="#AAABB3"><sup>*</sup></font></string>
@@ -1067,8 +1052,6 @@
     <string name="Other_add">غير ذلك</string>
     <string name="number_lifts_add">عدد المصاعد</string>
     <string name="Number_parking_add">عدد المواقف</string>
-
-
 
 
     <string name="Available_indoor_facilities_add">المرافق الداخلية المتوفرة</string>
@@ -1108,12 +1091,6 @@
     <string name="rate_se">التقييم</string>
     <string name="BathrommNumber">عدد الحمامات</string>
     <string name="rommNumber">عدد الغرف</string>
-
-
-
-
-
-
 
 
     <string name="Profile_tilte">حسابي</string>

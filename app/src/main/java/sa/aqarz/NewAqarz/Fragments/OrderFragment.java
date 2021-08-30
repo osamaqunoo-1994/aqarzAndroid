@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.orhanobut.hawk.Hawk;
 
 import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
+import sa.aqarz.NewAqarz.MainAqarzActivity;
 import sa.aqarz.R;
 
 /**
@@ -96,12 +97,56 @@ public class OrderFragment extends Fragment {
 //        if (Hawk.get("lang").toString().equals("ar")) {
 //            vpPager.setCurrentItem(1);
 //        }
-        fragmentManager = getActivity().getSupportFragmentManager();
 
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container_fragment, new FirstFragment());
-        //  fragmentTransaction.commit();
-        fragmentTransaction.commitAllowingStateLoss();
+        if (!MainAqarzActivity.type_order_main.equals("")) {
+            if (MainAqarzActivity.type_order_main.equals("real")) {
+                MainAqarzActivity.type_order_main = "real";
+                Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
+                Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
+
+
+                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
+
+                fragmentManager = getActivity().getSupportFragmentManager();
+
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container_fragment, new FirstFragment());
+                //  fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
+            } else {
+                MainAqarzActivity.type_order_main = "Shopping";
+
+                Shoppingrequest.setTextColor(getResources().getColor(R.color.colorPrimary));
+                Real_Estate_orders.setTextColor(getResources().getColor(R.color.te_unselected));
+
+                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
+                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
+                fragmentManager = getActivity().getSupportFragmentManager();
+
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container_fragment, new SecandFragment());
+                //  fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
+            }
+        } else {
+            MainAqarzActivity.type_order_main = "real";
+            Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
+            Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
+
+
+            Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
+
+            fragmentManager = getActivity().getSupportFragmentManager();
+
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_fragment, new FirstFragment());
+            //  fragmentTransaction.commit();
+            fragmentTransaction.commitAllowingStateLoss();
+
+        }
 
 
         Real_Estate_orders.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +154,7 @@ public class OrderFragment extends Fragment {
             public void onClick(View v) {
 
 //                vpPager.setCurrentItem(1);
-
+                MainAqarzActivity.type_order_main = "real";
                 Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
                 Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
 
@@ -130,6 +175,7 @@ public class OrderFragment extends Fragment {
             @Override
             public void onClick(View v) {
 //                vpPager.setCurrentItem(0);
+                MainAqarzActivity.type_order_main = "Shopping";
 
                 Shoppingrequest.setTextColor(getResources().getColor(R.color.colorPrimary));
                 Real_Estate_orders.setTextColor(getResources().getColor(R.color.te_unselected));

@@ -34,6 +34,7 @@ import sa.aqarz.Adapter.RecyclerView_orders_demandsx;
 import sa.aqarz.Adapter.RecyclerView_ordersx;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.Modules.demandsModules;
+import sa.aqarz.NewAqarz.MainAqarzActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -131,6 +132,10 @@ public class SecandFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_secand, container, false);
         activity = getActivity();
 
+
+        if (!MainAqarzActivity.type_type_order_main.equals("")) {
+            type_requst = MainAqarzActivity.type_type_order_main;
+        }
         nodata_vis = view.findViewById(R.id.nodata_vis);
         all_order_lay = view.findViewById(R.id.all_order_lay);
         order_day_lay = view.findViewById(R.id.order_day_lay);
@@ -269,6 +274,59 @@ public class SecandFragment extends Fragment {
         order_day_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter));
         MyOffer_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter));
 
+        if (type_requst.equals("AllOrder")) {
+            all_order.setTextColor(getResources().getColor(R.color.white));
+            all_order_num.setTextColor(getResources().getColor(R.color.white));
+            order_day.setTextColor(getResources().getColor(R.color.te_unselected));
+            order_day_num.setTextColor(getResources().getColor(R.color.te_unselected));
+            MyOffer.setTextColor(getResources().getColor(R.color.te_unselected));
+            MyOffer_num.setTextColor(getResources().getColor(R.color.te_unselected));
+
+
+            all_order_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
+            order_day_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+            MyOffer_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+
+
+            all_status_offer.setVisibility(View.GONE);
+            type_requst = "AllOrder";
+            MainAqarzActivity.type_type_order_main = type_requst;
+        } else if (type_requst.equals("today")) {
+            all_order.setTextColor(getResources().getColor(R.color.te_unselected));
+            all_order_num.setTextColor(getResources().getColor(R.color.te_unselected));
+            order_day.setTextColor(getResources().getColor(R.color.white));
+            order_day_num.setTextColor(getResources().getColor(R.color.white));
+            MyOffer.setTextColor(getResources().getColor(R.color.te_unselected));
+            MyOffer_num.setTextColor(getResources().getColor(R.color.te_unselected));
+
+
+            all_order_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+            order_day_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
+            MyOffer_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+
+
+            all_status_offer.setVisibility(View.GONE);
+            type_requst = "today";
+            MainAqarzActivity.type_type_order_main = type_requst;
+        } else if (type_requst.equals("Myoffer")) {
+            all_order.setTextColor(getResources().getColor(R.color.te_unselected));
+            all_order_num.setTextColor(getResources().getColor(R.color.te_unselected));
+            order_day.setTextColor(getResources().getColor(R.color.te_unselected));
+            order_day_num.setTextColor(getResources().getColor(R.color.te_unselected));
+            MyOffer.setTextColor(getResources().getColor(R.color.white));
+            MyOffer_num.setTextColor(getResources().getColor(R.color.white));
+
+
+            all_order_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+            order_day_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter));
+            MyOffer_lay.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
+
+
+            all_status_offer.setVisibility(View.VISIBLE);
+            type_requst = "Myoffer";
+            MainAqarzActivity.type_type_order_main = type_requst;
+        }
+
 
         all_order_lay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -288,6 +346,7 @@ public class SecandFragment extends Fragment {
 
                 all_status_offer.setVisibility(View.GONE);
                 type_requst = "AllOrder";
+                MainAqarzActivity.type_type_order_main = type_requst;
 
                 get_data();
             }
@@ -310,6 +369,7 @@ public class SecandFragment extends Fragment {
 
                 all_status_offer.setVisibility(View.GONE);
                 type_requst = "today";
+                MainAqarzActivity.type_type_order_main = type_requst;
 
                 get_data();
 
@@ -333,6 +393,7 @@ public class SecandFragment extends Fragment {
 
                 all_status_offer.setVisibility(View.VISIBLE);
                 type_requst = "Myoffer";
+                MainAqarzActivity.type_type_order_main = type_requst;
 
                 get_data();
 

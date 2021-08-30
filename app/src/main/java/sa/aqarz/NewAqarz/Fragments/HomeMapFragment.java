@@ -127,7 +127,7 @@ public class HomeMapFragment extends Fragment {
     static EditText search_text;
     public static boolean is_first = true;
     static List<CityModules> cityModules_list_filtter = new ArrayList<>();
-
+    ImageView fill_filtter;
     static RecyclerView all_city;
     private final OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -188,11 +188,21 @@ public class HomeMapFragment extends Fragment {
         notfication = v.findViewById(R.id.notfication);
         search_nib = v.findViewById(R.id.search_nib);
         search_text = v.findViewById(R.id.search_text);
+        fill_filtter = v.findViewById(R.id.fill_filtter);
 
         //LastPostionLat
         //LastPostionLan
 
 
+        if (Hawk.contains("filtter")) {
+            if (Hawk.get("filtter").toString().equals("yes")) {
+                fill_filtter.setVisibility(View.VISIBLE);
+            } else {
+                fill_filtter.setVisibility(View.GONE);
+
+            }
+
+        }
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         all_type_aqarz.setLayoutManager(layoutManager1);
@@ -222,6 +232,7 @@ public class HomeMapFragment extends Fragment {
                 }
 
 
+                MainAqarzActivity.object_filtter.setType_aqarz(type_filtter);
                 MainAqarzActivity.object_filtter.setType_list(typeModules);
 
                 if (Hawk.contains("LastPostionLat")) {
@@ -846,16 +857,98 @@ public class HomeMapFragment extends Fragment {
 //        }
 
 
+//estate_pay_type
+
+//state_id
+//
+//bedroom_number
+
+        String estate_pay_type = "";
+
+        if (!MainAqarzActivity.object_filtter.getEstate_pay_type().equals("")) {
+            estate_pay_type = "&estate_pay_type=" + MainAqarzActivity.object_filtter.getEstate_pay_type();
+        }
+
+        String price_to = "";
+
+        if (!MainAqarzActivity.object_filtter.getMax_price().equals("")) {
+            price_to = "&price_to=" + MainAqarzActivity.object_filtter.getMax_price();
+        }
+
+
+        String price_from = "";
+
+        if (!MainAqarzActivity.object_filtter.getLess_price().equals("")) {
+            price_from = "&price_from=" + MainAqarzActivity.object_filtter.getLess_price();
+        }
+
+
+        String area_from = "";
+
+        if (!MainAqarzActivity.object_filtter.getLess_space().equals("")) {
+            area_from = "&area_from=" + MainAqarzActivity.object_filtter.getLess_space();
+        }
+        String area_to = "";
+
+        if (!MainAqarzActivity.object_filtter.getMax_space().equals("")) {
+            area_to = "&area_to=" + MainAqarzActivity.object_filtter.getMax_space();
+        }
+
+
+        String room = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_room() != 0) {
+            room = "&room=" + MainAqarzActivity.object_filtter.getNumber_room();
+        }
+        String lounges_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_Lounges() != 0) {
+            lounges_number = "&lounges_number=" + MainAqarzActivity.object_filtter.getNumber_Lounges();
+        }
+        String bathrooms_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_Bathrooms() != 0) {
+            bathrooms_number = "&bathrooms_number=" + MainAqarzActivity.object_filtter.getNumber_Bathrooms();
+        }
+        String dining_rooms_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_Dining_rooms() != 0) {
+            dining_rooms_number = "&dining_rooms_number=" + MainAqarzActivity.object_filtter.getNumber_Dining_rooms();
+        }
+
+        String boards_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_Boards_plus() != 0) {
+            boards_number = "&boards_number=" + MainAqarzActivity.object_filtter.getNumber_Boards_plus();
+        }
+
+        String elevators_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_lifts() != 0) {
+            elevators_number = "&elevators_number=" + MainAqarzActivity.object_filtter.getNumber_lifts();
+        }
+        String kitchen_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_Kitchens_plus() != 0) {
+            kitchen_number = "&kitchen_number=" + MainAqarzActivity.object_filtter.getNumber_Kitchens_plus();
+        }
+        String estate_age = "";
+
+        if (!MainAqarzActivity.object_filtter.getDate().equals("")) {
+            estate_age = "&estate_age=" + MainAqarzActivity.object_filtter.getDate();
+        }
+
+
         String type_filtter_ = "";
-        if (!type_filtter.equals("")) {
-            type_filtter_ = "&estate_type=" + type_filtter;
+        if (!MainAqarzActivity.object_filtter.getType_aqarz().equals("")) {
+            type_filtter_ = "&estate_type=" + MainAqarzActivity.object_filtter.getType_aqarz();
         }
 
 
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-        mVolleyService.getAsync("home_estate_custom_list", WebService.home_estate_custom_list + "?" + lat_lan + "&distance=" + distance + type_filtter_);
+        mVolleyService.getAsync("home_estate_custom_list", WebService.home_estate_custom_list + "?" + lat_lan + "&distance=" + distance + type_filtter_ + elevators_number + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type);
 //        urlEstat = WebService.home_estate_custom_list + "?" + filter + lat_lan + "&distance=" + distance + getId_region + getSerial_city;
 
 
@@ -897,10 +990,16 @@ public class HomeMapFragment extends Fragment {
 //                            all_estate_size.setVisibility(View.VISIBLE);
 //                            all_estate_size.setText(allNeigbers.getData().getTo() + " " + activity.getResources().getString(R.string.From_t) + " " + allNeigbers.getData().getTotal() + " " + activity.getResources().getString(R.string.advertisementsx));
 
-                            allEstate_view_pager.setVisibility(View.VISIBLE);
+//                            allEstate_view_pager.setVisibility(View.VISIBLE);
                             ViewPager_Adapter_estate_home_map viewPager_adapter_estate_home_map = new ViewPager_Adapter_estate_home_map(activity, homeModules_aqares);
                             allEstate_view_pager.setAdapter(viewPager_adapter_estate_home_map);
 
+                            if (homeModules_aqares.size() == 0) {
+                                allEstate_view_pager.setVisibility(View.GONE);
+                            } else {
+                                allEstate_view_pager.setVisibility(View.VISIBLE);
+
+                            }
                             allEstate_view_pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                                 @Override
                                 public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -1255,6 +1354,74 @@ public class HomeMapFragment extends Fragment {
 
     @Override
     public void onResume() {
+
+        if (Hawk.contains("filtter")) {
+            if (Hawk.get("filtter").toString().equals("yes")) {
+                fill_filtter.setVisibility(View.VISIBLE);
+            } else {
+                fill_filtter.setVisibility(View.GONE);
+
+            }
+
+        }
+
+
+        if (MainAqarzActivity.object_filtter.getType_list() != null) {
+            if (MainAqarzActivity.object_filtter.getType_list().size() != 0) {
+                type_list = MainAqarzActivity.object_filtter.getType_list();
+            } else {
+                type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
+            }
+
+
+        } else {
+            type_list = Settings.getSettings().getEstate_types().getOriginal().getData();
+
+        }
+
+        MainAqarzActivity.object_filtter.setType_list(type_list);
+
+        RecyclerView_All_type_in_home_fragment recyclerView_all_type_in_fragment = new RecyclerView_All_type_in_home_fragment(getContext(), type_list);
+        recyclerView_all_type_in_fragment.addItemClickListener(new RecyclerView_All_type_in_home_fragment.ItemClickListener() {
+            @Override
+            public void onItemClick(List<TypeModules> typeModules) {
+                type_filtter = "";
+
+                for (int i = 0; i < typeModules.size(); i++) {
+                    if (typeModules.get(i).isIsselected()) {
+
+                        if (type_filtter.equals("")) {
+                            type_filtter = "" + typeModules.get(i).getId();
+                        } else {
+                            type_filtter = type_filtter + "," + typeModules.get(i).getId();
+
+                        }
+                    }
+                }
+
+
+                MainAqarzActivity.object_filtter.setType_aqarz(type_filtter);
+                MainAqarzActivity.object_filtter.setType_list(typeModules);
+
+                if (Hawk.contains("LastPostionLat")) {
+
+                    if (!Hawk.get("LastPostionLat").toString().equals("")) {
+
+                        get_Estate_from_api();
+
+                    }
+
+                } else {
+
+                }
+
+
+            }
+        });
+        all_type_aqarz.setAdapter(recyclerView_all_type_in_fragment);
+        get_Estate_from_api();
+
+
         if (Settings.checkLogin()) {
             notfication.setVisibility(View.VISIBLE);
 
@@ -1272,4 +1439,5 @@ public class HomeMapFragment extends Fragment {
         }
         super.onResume();
     }
+
 }

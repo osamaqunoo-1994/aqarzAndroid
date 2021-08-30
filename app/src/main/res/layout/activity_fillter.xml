@@ -1095,6 +1095,14 @@
                         android:textColor="@color/white" />
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/clearfiltter"
+                    android:layout_width="match_parent"
+                    android:text="@string/cancleFiltter"
+                    android:gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:layout_height="wrap_content"/>
+
 
             </LinearLayout>
 
@@ -1189,8 +1197,8 @@
                         android:background="#585755"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:text="@string/click_heare"
                         android:paddingBottom="3dp"
+                        android:text="@string/click_heare"
                         android:textColor="@color/white"
                         android:textSize="13dp" />
 

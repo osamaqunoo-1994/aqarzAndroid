@@ -1,4 +1,4 @@
-package sa.aqarz.Adapter;
+package sa.aqarz.NewAqarz.Adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -14,12 +14,12 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
 import com.willy.ratingbar.ScaleRatingBar;
 
 import org.json.JSONObject;
@@ -27,7 +27,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Activity.AddAqarz.EditAqarzActivity;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
+import sa.aqarz.Dialog.BottomSheetDialogFragmen_delete_offer;
+import sa.aqarz.Dialog.BottomSheetDialogFragmen_re_new_offer;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
@@ -38,9 +41,10 @@ import sa.aqarz.api.VolleyService;
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<RecyclerView_HomeList_estat_new.MyViewHolder> {
+public class RecyclerView_HomeList_estat_new_my extends RecyclerView.Adapter<RecyclerView_HomeList_estat_new_my.MyViewHolder> {
     public static List<HomeModules_aqares> alldata = new ArrayList<HomeModules_aqares>();
     static int Postion_opend = 0;
+    static int Postion_delete = -1;
 
     IResult mResultCallback;
 
@@ -85,6 +89,10 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         ScaleRatingBar rate;
 
 
+        ImageView re_news;
+        ImageView edit;
+        ImageView delete;
+
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
@@ -103,7 +111,9 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
 //            max_space = view.findViewById(R.id.max_space);
 //            viesw = view.findViewById(R.id.viesw);
 
-
+            re_news = view.findViewById(R.id.re_news);
+            edit = view.findViewById(R.id.edit);
+            delete = view.findViewById(R.id.delete);
             add_favorite = view.findViewById(R.id.add_favorite);
             image_icon = view.findViewById(R.id.image_icon);
             image = view.findViewById(R.id.image);
@@ -126,8 +136,8 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         }
     }
 
-    public RecyclerView_HomeList_estat_new(Context context, List<HomeModules_aqares> alldata) {
-        RecyclerView_HomeList_estat_new.alldata = alldata;
+    public RecyclerView_HomeList_estat_new_my(Context context, List<HomeModules_aqares> alldata) {
+        RecyclerView_HomeList_estat_new_my.alldata = alldata;
         this.context = context;
     }
 
@@ -152,6 +162,16 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         holder.num_id.setText("#" + alldata.get(position).getId() + "");
 //        holder.bathroom.setText(alldata.get(position).getBathroomsNumber() + "");
 //        holder.room.setText(alldata.get(position).getRoomsNumber() + "");
+
+        holder.delete.setVisibility(View.VISIBLE);
+        holder.re_news.setVisibility(View.VISIBLE);
+        holder.edit.setVisibility(View.VISIBLE);
+
+
+        holder.share.setVisibility(View.VISIBLE);
+        holder.hide.setVisibility(View.VISIBLE);
+        holder.add_favorite.setVisibility(View.VISIBLE);
+
         holder.address.setText(alldata.get(position).getFull_address() + "");
 
 //        if (alldata.get(position).getCity_name() != null) {
@@ -281,6 +301,50 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
 
             }
         });
+        holder.re_news.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetDialogFragmen_re_new_offer bottomSheetDialogFragmen_re_new_offer = new BottomSheetDialogFragmen_re_new_offer(alldata.get(position).getId() + "");
+                bottomSheetDialogFragmen_re_new_offer.addItemClickListener(new BottomSheetDialogFragmen_re_new_offer.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_estat) {
+
+                    }
+                });
+                bottomSheetDialogFragmen_re_new_offer.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+            }
+        });
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Postion_delete = position;
+                BottomSheetDialogFragmen_delete_offer bottomSheetDialogFragmen_delete_offer = new BottomSheetDialogFragmen_delete_offer(alldata.get(position).getId() + "");
+                bottomSheetDialogFragmen_delete_offer.addItemClickListener(new BottomSheetDialogFragmen_delete_offer.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_estate) {
+
+                        System.out.println("id_estate" + id_estate);
+                        alldata.remove(Postion_delete);
+                        Refr();
+
+                    }
+                });
+                bottomSheetDialogFragmen_delete_offer.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+            }
+        });
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                    Intent intent = new Intent(context, EditAqarsActivity.class);
+                Intent intent = new Intent(context, EditAqarzActivity.class);
+                intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
+                context.startActivity(intent);
+
+
+            }
+        });
 
     }
 
@@ -364,6 +428,16 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
                     String message = jsonObject.getString("message");
 
 
+                    if (requestType.equals("delete")) {
+
+                        alldata.remove(Postion_delete);
+                        Refr();
+
+                    } else if (requestType.equals("make_up")) {
+
+
+                    }
+//                        Str
                     WebService.Make_Toast_color((Activity) context, message, "error");
 
                     Log.e("error response", response_data);

@@ -99,7 +99,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="45dp"
 
                 android:layout_height="45dp"
@@ -113,9 +113,14 @@
                     android:padding="11dp"
                     android:src="@drawable/ic_filter_home"
                     app:tint="@color/te_unselected" />
+                <ImageView
+                    android:id="@+id/fill_filtter"
+                    android:layout_width="7dp"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/circle_red"
+                    android:layout_height="7dp" />
 
-
-            </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -135,6 +140,18 @@
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_margin="10dp" />
+
+        <TextView
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:text="@string/nodata"
+            android:textColor="@color/black"
+            android:fontFamily="@font/din_bold"
+            android:textStyle="bold"
+            android:textSize="19dp"
+            android:id="@+id/nodata"
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 

@@ -12,17 +12,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+
         android:background="@drawable/back_search_home"
+
+        android:gravity="center"
         android:orientation="vertical">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
@@ -55,7 +56,7 @@
 
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="5dp"
-                        android:background="@color/colorPrimary"
+                        android:background="@drawable/back_search_home_selected"
                         android:fontFamily="@font/din_bold"
                         android:gravity="center"
                         android:paddingLeft="7dp"
@@ -370,7 +371,6 @@
                         android:layout_weight="1" />
                 </LinearLayout>
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -379,10 +379,10 @@
 
 
                     <ImageView
-                        android:layout_width="10dp"
+                        android:layout_width="15dp"
 
-                        android:layout_height="10dp"
-                        android:layout_marginStart="5dp"
+                        android:layout_height="15dp"
+                        android:layout_marginStart="4dp"
 
                         android:src="@drawable/ic_group_bathroom" />
 
@@ -394,7 +394,7 @@
                         android:fontFamily="@font/din_bold"
                         android:text="0"
                         android:textColor="@color/te_unselected"
-                        android:textSize="9dp"
+                        android:textSize="11dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -405,12 +405,12 @@
                         android:text="@string/Bathrooms"
                         android:textColor="@color/te_unselected"
 
-                        android:textSize="9dp"
+                        android:textSize="11dp"
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:layout_width="10dp"
-                        android:layout_height="10dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_marginStart="15dp"
                         android:src="@drawable/ic_room_ic"
                         app:tint="#4F39A8" />
@@ -423,7 +423,7 @@
                         android:fontFamily="@font/din_bold"
                         android:text="0"
                         android:textColor="@color/te_unselected"
-                        android:textSize="9dp"
+                        android:textSize="11dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -434,17 +434,17 @@
                         android:text="@string/room"
                         android:textColor="@color/te_unselected"
 
-                        android:textSize="9dp"
+                        android:textSize="11dp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
                     android:layout_marginTop="5dp"
+                    android:layout_marginBottom="3dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -478,6 +478,17 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/din_bold"
+                        android:maxLength="10"
+                        android:textColor="#AAABB3"
+                        android:textSize="9dp"
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/re_news"
@@ -527,17 +538,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
-                    <TextView
-                        android:id="@+id/date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:fontFamily="@font/din_bold"
-                        android:maxLength="10"
-                        android:textColor="#AAABB3"
-                        android:textSize="9dp"
-                        android:textStyle="bold" />
+
                 </LinearLayout>
 
 

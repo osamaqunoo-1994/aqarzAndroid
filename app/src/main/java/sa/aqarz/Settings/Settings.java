@@ -56,22 +56,23 @@ public class Settings {
     public static List<RegionModules> getRegions() {
 
 
-        if (Hawk.contains("regions")) {
-            try {
-                JsonParser parser = new JsonParser();
-                JsonElement mJson = parser.parse(Hawk.get("regions").toString());
-                Gson gson = new Gson();
-                AllRegionList All = gson.fromJson(mJson, AllRegionList.class);
-                return All.getData();
-            } catch (Exception e) {
-                List<RegionModules> regionModules = new ArrayList<>();
-                return regionModules;
-            }
-        } else {
-            List<RegionModules> regionModules = new ArrayList<>();
-            return regionModules;
-
-        }
+        return Settings.getSettings().getRegine();
+//        if (Hawk.contains("regions")) {
+//            try {
+//                JsonParser parser = new JsonParser();
+//                JsonElement mJson = parser.parse(Hawk.get("regions").toString());
+//                Gson gson = new Gson();
+//                AllRegionList All = gson.fromJson(mJson, AllRegionList.class);
+//                return All.getData();
+//            } catch (Exception e) {
+//                List<RegionModules> regionModules = new ArrayList<>();
+//                return regionModules;
+//            }
+//        } else {
+//            List<RegionModules> regionModules = new ArrayList<>();
+//            return regionModules;
+//
+//        }
 
 
     }

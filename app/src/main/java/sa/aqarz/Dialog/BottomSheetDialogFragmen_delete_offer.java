@@ -60,6 +60,9 @@ public class BottomSheetDialogFragmen_delete_offer extends BottomSheetDialogFrag
                 VolleyService mVolleyServicex = new VolleyService(mResultCallback, getContext());
                 mVolleyServicex.postDataVolley("delete", WebService.delete + "/" + estate_id + "/estate", new JSONObject());
 
+                if(mItemClickListener!=null){
+                    mItemClickListener.onItemClick(0);
+                }
 //                init_volley();
 //                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 //
@@ -171,7 +174,7 @@ public class BottomSheetDialogFragmen_delete_offer extends BottomSheetDialogFrag
             public void notifyError(String requestType, VolleyError error) {
                 Log.d("TAG", "Volley requester " + requestType);
 
-                WebService.loading((Activity) getActivity(), false);
+                WebService.loading(getActivity(), false);
 
                 try {
 
@@ -183,7 +186,7 @@ public class BottomSheetDialogFragmen_delete_offer extends BottomSheetDialogFrag
                     String message = jsonObject.getString("message");
 
 
-                    WebService.Make_Toast_color((Activity) getActivity(), message, "error");
+                    WebService.Make_Toast_color(getActivity(), message, "error");
 
                     Log.e("error response", response_data);
 
@@ -191,16 +194,16 @@ public class BottomSheetDialogFragmen_delete_offer extends BottomSheetDialogFrag
 
                 }
 
-                WebService.loading((Activity) getActivity(), false);
+                WebService.loading(getActivity(), false);
 
 
             }
 
             @Override
             public void notify_Async_Error(String requestType, String error) {
-                WebService.loading((Activity) getActivity(), false);
+                WebService.loading(getActivity(), false);
 
-                WebService.Make_Toast_color((Activity) getActivity(), error, "error");
+                WebService.Make_Toast_color(getActivity(), error, "error");
 
 
             }

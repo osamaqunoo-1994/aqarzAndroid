@@ -57,7 +57,7 @@ public class MainAqarzActivity extends AppCompatActivity {
 
     public static boolean first_time_ = false;
 
-    String click_tab = "home";
+    static String click_tab = "home";
 
     static LinearLayout add_aqares_and_order_and_estate;
     LinearLayout gray_layout;
@@ -66,6 +66,10 @@ public class MainAqarzActivity extends AppCompatActivity {
     LinearLayout rent;
 
     ImageView close_add;
+
+
+    public static String type_order_main = "";
+    public static String type_type_order_main = "";
 
 
     private static FragmentTransaction fragmentTransaction;
@@ -107,6 +111,10 @@ public class MainAqarzActivity extends AppCompatActivity {
         lay_s = findViewById(R.id.lay_s);
 
 
+
+        Hawk.put("filtter","no");
+
+
         myFab = findViewById(R.id.fab);
 
         myFab.setColorFilter(Color.WHITE);
@@ -142,6 +150,7 @@ public class MainAqarzActivity extends AppCompatActivity {
         }
     }
 
+
     public void set_contanier_fragments() {
         click_tab = "home";
         text_1.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -159,6 +168,30 @@ public class MainAqarzActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.container, new HomeMapFragment());
         //  fragmentTransaction.commit();
         fragmentTransaction.commitAllowingStateLoss();
+
+    }
+
+    public static void set_contanier_fragments_order() {
+        click_tab = "order";
+
+        text_1.setTextColor(activity.getResources().getColor(R.color.color_un_active));
+        text_2.setTextColor(activity.getResources().getColor(R.color.colorPrimary));
+        text_3.setTextColor(activity.getResources().getColor(R.color.color_un_active));
+        text_4.setTextColor(activity.getResources().getColor(R.color.color_un_active));
+        text_s.setTextColor(activity.getResources().getColor(R.color.color_un_active));
+
+        image_1.setColorFilter(ContextCompat.getColor(activity, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+        image_2.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
+        image_3.setColorFilter(ContextCompat.getColor(activity, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+        image_4.setColorFilter(ContextCompat.getColor(activity, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+        click_tab = "order";
+
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container, new OrderFragment());
+        fragmentTransaction.addToBackStack(null);
+        //  fragmentTransaction.commit();
+        fragmentTransaction.commitAllowingStateLoss();
+
 
     }
 
@@ -190,6 +223,8 @@ public class MainAqarzActivity extends AppCompatActivity {
         lay_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                MainAqarzActivity.type_order_main = "real";
 
                 if (!Settings.checkLogin()) {
                     startActivity(new Intent(MainAqarzActivity.this, check_login.class));

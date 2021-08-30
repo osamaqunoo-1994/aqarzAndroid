@@ -166,10 +166,10 @@
                             android:visibility="visible">
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
                                 android:background="@drawable/circle_fill"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:src="@drawable/ic_orders"
                                 app:tint="@color/white" />
 
@@ -226,10 +226,10 @@
                             android:paddingRight="15dp">
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
                                 android:background="@drawable/circle_fill_as"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:src="@drawable/ic_aq_of"
                                 app:tint="@color/white" />
 
@@ -285,10 +285,10 @@
                             android:paddingRight="15dp">
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
                                 android:background="@drawable/circle_fill_c"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:src="@drawable/ic_orders"
                                 app:tint="@color/white" />
 
@@ -345,10 +345,10 @@
 
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
                                 android:background="@drawable/circle_fill_b"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:src="@drawable/ic_employee__more"
                                 app:tint="@color/white" />
 
@@ -424,10 +424,10 @@
                             android:visibility="visible">
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
                                 android:background="@drawable/circle_fill_sq"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:src="@drawable/ic_more_aqarez_man"
                                 app:tint="@color/white" />
 
@@ -483,10 +483,10 @@
                             android:paddingRight="15dp">
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
                                 android:background="@drawable/circle_fill_c"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:src="@drawable/ic_terms_and_conditions_new"
                                 app:tint="@color/white" />
 
@@ -544,10 +544,10 @@
 
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
                                 android:background="@drawable/circle_fill_g"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:src="@drawable/ic_whatsapp"
                                 app:tint="@color/white" />
 
@@ -605,10 +605,10 @@
 
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
                                 android:background="@drawable/circle_fill_wa"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:src="@drawable/ic_send_2"
                                 app:tint="@color/white" />
 
@@ -684,10 +684,10 @@
 
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
                                 android:background="@drawable/circle_fill_gr"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:src="@drawable/ic_edit_more"
                                 app:tint="@color/white" />
 
@@ -744,10 +744,10 @@
 
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
                                 android:background="@drawable/circle_fill_y"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:src="@drawable/ic_lock_password"
                                 app:tint="@color/white" />
 
@@ -801,10 +801,10 @@
                             android:paddingRight="15dp">
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
                                 android:background="@drawable/circle_fill_b"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:src="@drawable/ic_translator_language"
                                 app:tint="@color/white" />
 
@@ -880,10 +880,10 @@
 
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
                                 android:background="@drawable/circle_red"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:src="@drawable/ic_logout_new"
                                 app:tint="@color/white" />
 

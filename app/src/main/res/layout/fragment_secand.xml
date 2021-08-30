@@ -174,6 +174,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:hint="@string/search"
+                android:lines="1"
                 android:paddingStart="10dp"
                 android:textSize="11dp"
                 android:textStyle="bold">
@@ -198,19 +199,20 @@
             android:visibility="gone">
 
             <TextView
-                android:id="@+id/status_1"
+                android:id="@+id/status_3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
 
                 android:background="@drawable/border_fillter"
-
                 android:fontFamily="@font/din_light"
                 android:gravity="center"
+
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:text="@string/asas1"
+                android:text="@string/asas3"
                 android:textColor="@color/black"
                 android:textSize="10dp" />
+
 
             <TextView
                 android:id="@+id/status_2"
@@ -228,17 +230,17 @@
                 android:textSize="10dp" />
 
             <TextView
-                android:id="@+id/status_3"
+                android:id="@+id/status_1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
 
                 android:background="@drawable/border_fillter"
+
                 android:fontFamily="@font/din_light"
                 android:gravity="center"
-
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:text="@string/asas3"
+                android:text="@string/asas1"
                 android:textColor="@color/black"
                 android:textSize="10dp" />
 
