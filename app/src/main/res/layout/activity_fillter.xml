@@ -1098,10 +1098,10 @@
                 <TextView
                     android:id="@+id/clearfiltter"
                     android:layout_width="match_parent"
-                    android:text="@string/cancleFiltter"
-                    android:gravity="center"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
-                    android:layout_height="wrap_content"/>
+                    android:gravity="center"
+                    android:text="@string/cancleFiltter" />
 
 
             </LinearLayout>
@@ -1145,7 +1145,7 @@
                         android:gravity="center_vertical"
                         android:hint="@string/name_aqarz_fitter"
 
-                        android:inputType="number"
+                        android:inputType="text"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:text=""

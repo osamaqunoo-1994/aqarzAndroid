@@ -1,4 +1,4 @@
-package sa.aqarz.Adapter;
+package sa.aqarz.NewAqarz.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -16,20 +17,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import sa.aqarz.Modules.price_range;
+import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
 
 
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_area_range extends RecyclerView.Adapter<RecyclerView_area_range.MyViewHolder> {
-    public static List<price_range> alldata = new ArrayList<price_range>();
-    static int Postion_opend = -1;
+public class RecyclerView_All_type_fillter_order extends RecyclerView.Adapter<RecyclerView_All_type_fillter_order.MyViewHolder> {
+    public static List<TypeModules> alldata = new ArrayList<TypeModules>();
+    static int Postion_opend = 0;
 
-    private ItemClickListener mItemClickListener;
 
     static AlertDialog alertDialog;
+    private ItemClickListener mItemClickListener;
 
 
     /**
@@ -53,25 +54,31 @@ public class RecyclerView_area_range extends RecyclerView.Adapter<RecyclerView_a
 //        ProgressBar progress;
 //        LinearLayout add_to_my;
 
-        LinearLayout back_ground;
 
+        //        LinearLayout answer_layout;
+        //  public FrameLayout frame;
+
+        LinearLayout back_ground;
         TextView text;
+        ImageView image_in_type;
+        ImageView selected;
 
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
 
 
-            text = view.findViewById(R.id.text);
             back_ground = view.findViewById(R.id.back_ground);
-//            ratingbar = view.findViewById(R.id.ratingbar);
+            text = view.findViewById(R.id.text);
+            image_in_type = view.findViewById(R.id.image_in_type);
+            selected = view.findViewById(R.id.selected);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
     }
 
-    public RecyclerView_area_range(Context context, List<price_range> alldata) {
-        RecyclerView_area_range.alldata = alldata;
+    public RecyclerView_All_type_fillter_order(Context context, List<TypeModules> alldata) {
+        RecyclerView_All_type_fillter_order.alldata = alldata;
         this.context = context;
     }
 
@@ -96,7 +103,34 @@ public class RecyclerView_area_range extends RecyclerView.Adapter<RecyclerView_a
 //            }
 //        }
 ////
+        holder.text.setText(alldata.get(position).getName() + "");
+
+        holder.image_in_type.setVisibility(View.GONE);
+
+//        try {
+////            System.out.println("#$#$#$#"+alldata.get(position).getIcon());
+//            Glide.with(context).load(alldata.get(position).getIcon() + "").into(holder.image_in_type);
 //
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+
+        if (alldata.get(position).isIsselected()) {
+            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.border_fillter_fill));
+
+            holder.text.setTextColor(context.getResources().getColor(R.color.white));
+
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+//            holder.selected.setVisibility(View.VISIBLE);
+        } else {
+            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.border_fillter));
+
+            holder.text.setTextColor(context.getResources().getColor(R.color.color_filter));
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.color_filter), android.graphics.PorterDuff.Mode.SRC_IN);
+//            holder.selected.setVisibility(View.GONE);
+
+        }
 //
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
@@ -116,41 +150,9 @@ public class RecyclerView_area_range extends RecyclerView.Adapter<RecyclerView_a
 //        int random = ThreadLocalRandom.current().nextInt(1, 5);
 //       holder.ratingbar.setStar(random);
 
-        holder.text.setText(alldata.get(position).getArea_range() + "");
+
         //   wallet, dafter, receipt, payment
 
-        if (Postion_opend==position) {
-            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.border_fillter_fill));
-
-            holder.text.setTextColor(context.getResources().getColor(R.color.white));
-
-//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
-//            holder.selected.setVisibility(View.VISIBLE);
-        } else {
-            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.border_fillter));
-
-            holder.text.setTextColor(context.getResources().getColor(R.color.color_filter));
-//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.color_filter), android.graphics.PorterDuff.Mode.SRC_IN);
-//            holder.selected.setVisibility(View.GONE);
-
-        }
-//
-//        holder.text.setText(alldata.get(position).getName() + "");
-//
-//        if (position == Postion_opend) {
-//            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));
-//
-//            holder.text.setTextColor(context.getResources().getColor(R.color.white));
-//
-//
-//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
-//
-//        } else {
-//            holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
-//            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.search_background));
-//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
-//
-//        }
 
 //            double v=Double.valueOf(alldata.get(position).getRate());
 //
@@ -188,18 +190,18 @@ public class RecyclerView_area_range extends RecyclerView.Adapter<RecyclerView_a
             @Override
             public void onClick(View view) {
 
+//
 
-                Postion_opend = position;
+//                Postion_opend = position;
 
-//                RequestOrderActivity.set_fragment(position);
+
+                alldata.get(position).setIsselected(!alldata.get(position).isIsselected());
 
 
                 if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(position);
+                    mItemClickListener.onItemClick(alldata);
                 }
-
                 Refr();
-//
 
             }
         });
@@ -223,7 +225,7 @@ public class RecyclerView_area_range extends RecyclerView.Adapter<RecyclerView_a
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_range, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_type_map_fillter, parent, false);
 
 
         // Fresco.initialize(context);
@@ -234,6 +236,6 @@ public class RecyclerView_area_range extends RecyclerView.Adapter<RecyclerView_a
 
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(List<TypeModules> typeModules);
     }
 }

@@ -150,8 +150,23 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         holder.space.setText(alldata.get(position).getTotalArea() + "");
         holder.date.setText(alldata.get(position).getCreatedAt() + "");
         holder.num_id.setText("#" + alldata.get(position).getId() + "");
-//        holder.bathroom.setText(alldata.get(position).getBathroomsNumber() + "");
-//        holder.room.setText(alldata.get(position).getRoomsNumber() + "");
+        try {
+
+            if (alldata.get(position).getBathroomsNumber() != null) {
+                if (!alldata.get(position).getBathroomsNumber().toString().equals("null")) {
+                    holder.bathroom.setText(alldata.get(position).getBathroomsNumber() + "");
+
+                }
+            }
+            if (alldata.get(position).getRoomsNumber() != null) {
+                if (!alldata.get(position).getRoomsNumber().toString().equals("null")) {
+                    holder.room.setText(alldata.get(position).getRoomsNumber() + "");
+
+                }
+            }
+        } catch (Exception e) {
+
+        }
         holder.address.setText(alldata.get(position).getFull_address() + "");
 
 //        if (alldata.get(position).getCity_name() != null) {

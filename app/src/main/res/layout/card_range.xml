@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/back_ground"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+
+        android:background="@drawable/border_fillter"
+        android:gravity="center"
+        android:paddingLeft="5dp"
+
+        android:paddingRight="5dp">
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/image_in_type"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/ic_test_test"
+
+                    android:visibility="gone"
+                    app:tint="#AAABB3" />
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/muli_bold"
+                    android:gravity="center"
+
+                    android:lines="1"
+                    android:text="تقسيط تاجير"
+                    android:textColor="#AAABB3"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/selected"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/ic_selectedq"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

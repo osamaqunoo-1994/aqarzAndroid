@@ -140,7 +140,18 @@ public class ViewPager_Adapter_estate_home_map extends PagerAdapter {
         num_id.setText("#" + alldata.get(position).getId() + "");
 
         address.setText(alldata.get(position).getFull_address() + "");
+        try {
+            if (!alldata.get(position).getBathroomsNumber().toString().equals("null")) {
+                bathroom.setText(alldata.get(position).getBathroomsNumber() + "");
 
+            }
+            if (!alldata.get(position).getRoomsNumber().toString().equals("null")) {
+                room.setText(alldata.get(position).getRoomsNumber() + "");
+
+            }
+        } catch (Exception e) {
+
+        }
 //        if (alldata.get(position).getCity_name() != null) {
 //            address.setText(alldata.get(position).getCity_name() + " - " + alldata.get(position).getNeighborhood_name());
 //

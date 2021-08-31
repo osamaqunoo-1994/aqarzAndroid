@@ -23,6 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.hawk.Hawk;
 
 import sa.aqarz.Activity.AddAqarz.AddAqarzActivity;
+import sa.aqarz.Activity.AllOrderActivity;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
 import sa.aqarz.Activity.OprationNew.RentActivity;
@@ -30,6 +31,7 @@ import sa.aqarz.Activity.OprationNew.RentShowActivity;
 import sa.aqarz.Activity.check_login;
 import sa.aqarz.Fragment.MapsFragment;
 import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
+import sa.aqarz.Modules.ObjectFiltterOrder;
 import sa.aqarz.Modules.Object_filtter;
 import sa.aqarz.NewAqarz.AqqAqarz.AddAqarzStepsActivity;
 import sa.aqarz.NewAqarz.Fragments.ChatFragment;
@@ -76,6 +78,7 @@ public class MainAqarzActivity extends AppCompatActivity {
     private static FragmentManager fragmentManager;
     public static Activity activity;
     public static Object_filtter object_filtter = new Object_filtter();
+    public static ObjectFiltterOrder objectFiltterOrder = new ObjectFiltterOrder();
 
 
     @Override
@@ -111,8 +114,8 @@ public class MainAqarzActivity extends AppCompatActivity {
         lay_s = findViewById(R.id.lay_s);
 
 
-
-        Hawk.put("filtter","no");
+        Hawk.put("filtter", "no");
+        Hawk.put("fillterorder", "no");
 
 
         myFab = findViewById(R.id.fab);
@@ -223,6 +226,10 @@ public class MainAqarzActivity extends AppCompatActivity {
         lay_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+//                startActivity(new Intent(MainAqarzActivity.this, AllOrderActivity.class));
+
 
                 MainAqarzActivity.type_order_main = "real";
 

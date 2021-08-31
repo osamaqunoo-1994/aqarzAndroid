@@ -291,6 +291,9 @@ public class FillterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                lay1.setVisibility(View.VISIBLE);
+                lay2.setVisibility(View.GONE);
+
                 aqarez_lay.setTextColor(getResources().getColor(R.color.colorPrimary));
                 aqarezman_lay.setTextColor(getResources().getColor(R.color.te_unselected));
 
@@ -304,6 +307,10 @@ public class FillterActivity extends AppCompatActivity {
         aqarezman_lay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                lay1.setVisibility(View.GONE);
+                lay2.setVisibility(View.VISIBLE);
+
                 aqarezman_lay.setTextColor(getResources().getColor(R.color.colorPrimary));
                 aqarez_lay.setTextColor(getResources().getColor(R.color.te_unselected));
 
@@ -582,7 +589,7 @@ public class FillterActivity extends AppCompatActivity {
 
                 MainAqarzActivity.object_filtter.setNumber_parking(number_parking);
                 MainAqarzActivity.object_filtter.setNumber_lifts(number_lifts);
-                Hawk.put("filtter","yes");
+                Hawk.put("filtter", "yes");
 
                 if (from.equals("home")) {
                     HomeMapFragment.get_Estate_from_api();
@@ -625,7 +632,7 @@ public class FillterActivity extends AppCompatActivity {
                 MainAqarzActivity.object_filtter.setNumber_parking(0);
                 MainAqarzActivity.object_filtter.setNumber_lifts(0);
 
-                Hawk.put("filtter","no");
+                Hawk.put("filtter", "no");
 
                 if (from.equals("home")) {
                     HomeMapFragment.get_Estate_from_api();

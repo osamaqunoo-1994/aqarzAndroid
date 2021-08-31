@@ -39,6 +39,9 @@ public class CityModules {
     @SerializedName("state_id")
     @Expose
     private String state_id;
+    @SerializedName("city_id")
+    @Expose
+    private String city_id;
     @SerializedName("status")
     @Expose
     private String status;
@@ -105,6 +108,10 @@ public class CityModules {
 
     public String getLatitude() {
         return latitude;
+    }
+
+    public String getCity_id() {
+        return city_id;
     }
 
     public String getStatus() {

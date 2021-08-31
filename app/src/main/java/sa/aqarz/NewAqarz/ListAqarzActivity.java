@@ -63,7 +63,18 @@ public class ListAqarzActivity extends AppCompatActivity {
     public static Activity activity;
 
     static TextView nodata;
-ImageView fill_filtter;
+    ImageView fill_filtter;
+
+
+    static String order_by_price = "0";
+    static String order_by_area = "0";
+    static String order_by_date = "0";
+    static String order_by_rate = "0";
+    static String order_by_bathrooms_number = "0";
+    static String order_by_rooms_number = "0";
+
+    ImageView clear_fi_by;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +84,7 @@ ImageView fill_filtter;
         filtter = findViewById(R.id.filtter);
         nodata = findViewById(R.id.nodata);
         fill_filtter = findViewById(R.id.fill_filtter);
+        clear_fi_by = findViewById(R.id.clear_fi_by);
 
 
         activity = this;
@@ -87,6 +99,15 @@ ImageView fill_filtter;
                 back.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             }
         }
+
+
+        order_by_price = "0";
+        order_by_area = "0";
+        order_by_date = "0";
+        order_by_rate = "0";
+        order_by_bathrooms_number = "0";
+        order_by_rooms_number = "0";
+
 
         init();
     }
@@ -215,6 +236,7 @@ ImageView fill_filtter;
                     s4.setBackground(null);
                     s5.setBackground(null);
                     s6.setBackground(null);
+
                 } else if (type_filter_order.equals("s2")) {
                     s2.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
                     s1.setBackground(null);
@@ -263,6 +285,15 @@ ImageView fill_filtter;
                         s5.setBackground(null);
                         s6.setBackground(null);
                         popUp.dismiss();
+                        order_by_price = "1";
+                        order_by_area = "0";
+                        order_by_date = "0";
+                        order_by_rate = "0";
+                        order_by_bathrooms_number = "0";
+                        order_by_rooms_number = "0";
+                        get_data();
+                        clear_fi_by.setVisibility(View.VISIBLE);
+                        order_by.setText(getResources().getString(R.string.p8));
 
                     }
                 });
@@ -278,6 +309,15 @@ ImageView fill_filtter;
                         s5.setBackground(null);
                         s6.setBackground(null);
                         popUp.dismiss();
+                        order_by_price = "0";
+                        order_by_area = "1";
+                        order_by_date = "0";
+                        order_by_rate = "0";
+                        order_by_bathrooms_number = "0";
+                        order_by_rooms_number = "0";
+                        get_data();
+                        clear_fi_by.setVisibility(View.VISIBLE);
+                        order_by.setText(getResources().getString(R.string.p5));
 
                     }
                 });
@@ -293,6 +333,15 @@ ImageView fill_filtter;
                         s5.setBackground(null);
                         s6.setBackground(null);
                         popUp.dismiss();
+                        order_by_price = "0";
+                        order_by_area = "0";
+                        order_by_date = "1";
+                        order_by_rate = "0";
+                        order_by_bathrooms_number = "0";
+                        order_by_rooms_number = "0";
+                        get_data();
+                        clear_fi_by.setVisibility(View.VISIBLE);
+                        order_by.setText(getResources().getString(R.string.date_se));
 
                     }
                 });
@@ -308,6 +357,15 @@ ImageView fill_filtter;
                         s5.setBackground(null);
                         s6.setBackground(null);
                         popUp.dismiss();
+                        order_by_price = "0";
+                        order_by_area = "0";
+                        order_by_date = "0";
+                        order_by_rate = "1";
+                        order_by_bathrooms_number = "0";
+                        order_by_rooms_number = "0";
+                        get_data();
+                        clear_fi_by.setVisibility(View.VISIBLE);
+                        order_by.setText(getResources().getString(R.string.rate_se));
 
                     }
                 });
@@ -323,6 +381,15 @@ ImageView fill_filtter;
                         s1.setBackground(null);
                         s6.setBackground(null);
                         popUp.dismiss();
+                        order_by_price = "0";
+                        order_by_area = "0";
+                        order_by_date = "0";
+                        order_by_rate = "0";
+                        order_by_bathrooms_number = "1";
+                        order_by_rooms_number = "0";
+                        get_data();
+                        clear_fi_by.setVisibility(View.VISIBLE);
+                        order_by.setText(getResources().getString(R.string.BathrommNumber));
 
                     }
                 });
@@ -338,6 +405,16 @@ ImageView fill_filtter;
                         s5.setBackground(null);
                         s1.setBackground(null);
                         popUp.dismiss();
+                        order_by_price = "0";
+                        order_by_area = "0";
+                        order_by_date = "0";
+                        order_by_rate = "0";
+                        order_by_bathrooms_number = "0";
+                        order_by_rooms_number = "1";
+                        get_data();
+                        clear_fi_by.setVisibility(View.VISIBLE);
+                        order_by.setText(getResources().getString(R.string.rommNumber));
+
                     }
                 });
 
@@ -348,6 +425,25 @@ ImageView fill_filtter;
 
                 //Solution
                 popUp.showAsDropDown(order_by);
+            }
+        });
+
+        clear_fi_by.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clear_fi_by.setVisibility(View.GONE);
+                order_by_price = "0";
+                order_by_area = "0";
+                order_by_date = "0";
+                order_by_rate = "0";
+                order_by_bathrooms_number = "0";
+                order_by_rooms_number = "0";
+                order_by.setText("");
+
+                type_filter_order = "";
+
+                get_data();
+
             }
         });
         get_data();
@@ -445,11 +541,19 @@ ImageView fill_filtter;
         }
 
 
+        String fil_by = "&" + "order_by_price=" + order_by_price
+                + "&order_by_area=" + order_by_area
+                + "&order_by_date=" + order_by_date
+                + "&order_by_rate=" + order_by_rate
+                + "&order_by_bathrooms_number=" + order_by_bathrooms_number
+                + "&order_by_rooms_number=" + order_by_rooms_number;
+
+
         WebService.loading(activity, true);
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
+        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + fil_by + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
 
 //        url_list = WebService.home_estate_custom_list + "?" + type_filtter_;
         mVolleyService.getAsync("home_estate_custom_list_more_1", url_list);

@@ -6,6 +6,7 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -53,6 +54,7 @@ public class RecyclerView_price_range extends RecyclerView.Adapter<RecyclerView_
 //        ProgressBar progress;
 //        LinearLayout add_to_my;
 
+        LinearLayout back_ground;
 
         TextView text;
 
@@ -62,6 +64,7 @@ public class RecyclerView_price_range extends RecyclerView.Adapter<RecyclerView_
 
 
             text = view.findViewById(R.id.text);
+            back_ground = view.findViewById(R.id.back_ground);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
@@ -116,7 +119,21 @@ public class RecyclerView_price_range extends RecyclerView.Adapter<RecyclerView_
 
         holder.text.setText(alldata.get(position).getEstatePriceRange() + "");
         //   wallet, dafter, receipt, payment
+        if (Postion_opend == position) {
+            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.border_fillter_fill));
 
+            holder.text.setTextColor(context.getResources().getColor(R.color.white));
+
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+//            holder.selected.setVisibility(View.VISIBLE);
+        } else {
+            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.border_fillter));
+
+            holder.text.setTextColor(context.getResources().getColor(R.color.color_filter));
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.color_filter), android.graphics.PorterDuff.Mode.SRC_IN);
+//            holder.selected.setVisibility(View.GONE);
+
+        }
 //
 //        holder.text.setText(alldata.get(position).getName() + "");
 //
@@ -206,7 +223,7 @@ public class RecyclerView_price_range extends RecyclerView.Adapter<RecyclerView_
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_city, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_range, parent, false);
 
 
         // Fresco.initialize(context);

@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -36,6 +37,7 @@ import sa.aqarz.Adapter.RecyclerView_ordersx;
 import sa.aqarz.Modules.CityModules;
 import sa.aqarz.Modules.OrdersModules;
 import sa.aqarz.Modules.demandsModules;
+import sa.aqarz.NewAqarz.BottomDialog.BottomSheetDialogFragment_Filtter;
 import sa.aqarz.NewAqarz.MainAqarzActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
@@ -93,6 +95,9 @@ public class FirstFragment extends Fragment {
     ImageView search_btn;
     ProgressBar progress;
     public static Activity activity;
+    ImageView fillter;
+    ImageView fill_filtter;
+    BottomSheetDialogFragment_Filtter bottomSheetDialogFragment_filtter;
 
     public FirstFragment() {
         // Required empty public constructor
@@ -142,6 +147,8 @@ public class FirstFragment extends Fragment {
         progress = view.findViewById(R.id.progress);
         search_text = view.findViewById(R.id.search_text);
         search_btn = view.findViewById(R.id.search_btn);
+        fillter = view.findViewById(R.id.fillter);
+        fill_filtter = view.findViewById(R.id.fill_filtter);
 
 
         all_order = view.findViewById(R.id.all_order);
@@ -196,7 +203,25 @@ public class FirstFragment extends Fragment {
                 }
             }
         });
+        fillter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                MainAqarzActivity.objectFiltterOrder.setTypelayout("Real");
+
+
+                bottomSheetDialogFragment_filtter = new BottomSheetDialogFragment_Filtter("");
+                bottomSheetDialogFragment_filtter.addItemClickListener(new BottomSheetDialogFragment_Filtter.ItemClickListener() {
+                    @Override
+                    public void onItemClick(String filter) {
+                        bottomSheetDialogFragment_filtter.dismiss();
+
+                        get_data();
+                    }
+                });
+                bottomSheetDialogFragment_filtter.show(getChildFragmentManager(), "");
+            }
+        });
 
     }
 
@@ -212,6 +237,36 @@ public class FirstFragment extends Fragment {
         String city_id_text = "";
         String neighborhood_id_text = "";
         String state_id_text = "";
+
+
+        if (!search_text.getText().toString().equals("")) {
+            search_text_s = "&search=" + search_text.getText();
+        }
+        if (!MainAqarzActivity.objectFiltterOrder.getId_price().equals("")) {
+            price_id_text = "&price_id=" + MainAqarzActivity.objectFiltterOrder.getId_price();
+        }
+
+        if (!MainAqarzActivity.objectFiltterOrder.getId_space().equals("")) {
+            area_estate_id_text = "&area_estate_id=" + MainAqarzActivity.objectFiltterOrder.getId_space();
+        }
+
+        if (!MainAqarzActivity.objectFiltterOrder.getType_filtter().equals("")) {
+            estate_type_id_text = "&estate_type_id=" + MainAqarzActivity.objectFiltterOrder.getType_filtter();
+        }
+        if (!MainAqarzActivity.objectFiltterOrder.getId_nib().equals("")) {
+            neighborhood_id_text = "&neighborhood_id=" + MainAqarzActivity.objectFiltterOrder.getId_nib();
+        }
+        if (MainAqarzActivity.objectFiltterOrder.getId_city() != null) {
+            if (!MainAqarzActivity.objectFiltterOrder.getId_city().equals("")) {
+                city_id_text = "&city_id=" + MainAqarzActivity.objectFiltterOrder.getId_city();
+            }
+        }
+        if (MainAqarzActivity.objectFiltterOrder.getId_state() != null) {
+            if (!MainAqarzActivity.objectFiltterOrder.getId_state().equals("")) {
+                state_id_text = "&state_id=" + MainAqarzActivity.objectFiltterOrder.getId_state();
+            }
+        }
+
 
         page = 1;
         if (type_requst.equals("today")) {
@@ -626,4 +681,21 @@ public class FirstFragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+
+
+        if (Hawk.contains("fillterorder")) {
+            if (Hawk.get("fillterorder").toString().equals("yes")) {
+                fill_filtter.setVisibility(View.VISIBLE);
+            } else {
+                fill_filtter.setVisibility(View.GONE);
+
+            }
+
+        }
+
+
+        super.onResume();
+    }
 }

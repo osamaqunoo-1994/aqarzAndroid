@@ -101,6 +101,7 @@ public class OrderFragment extends Fragment {
         if (!MainAqarzActivity.type_order_main.equals("")) {
             if (MainAqarzActivity.type_order_main.equals("real")) {
                 MainAqarzActivity.type_order_main = "real";
+                MainAqarzActivity.objectFiltterOrder.setTypelayout("Real");
                 Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
                 Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
 
@@ -116,6 +117,7 @@ public class OrderFragment extends Fragment {
                 fragmentTransaction.commitAllowingStateLoss();
             } else {
                 MainAqarzActivity.type_order_main = "Shopping";
+                MainAqarzActivity.objectFiltterOrder.setTypelayout("Market");
 
                 Shoppingrequest.setTextColor(getResources().getColor(R.color.colorPrimary));
                 Real_Estate_orders.setTextColor(getResources().getColor(R.color.te_unselected));
@@ -132,6 +134,8 @@ public class OrderFragment extends Fragment {
             }
         } else {
             MainAqarzActivity.type_order_main = "real";
+            MainAqarzActivity.objectFiltterOrder.setTypelayout("Real");
+
             Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
             Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
 
@@ -155,6 +159,8 @@ public class OrderFragment extends Fragment {
 
 //                vpPager.setCurrentItem(1);
                 MainAqarzActivity.type_order_main = "real";
+                MainAqarzActivity.objectFiltterOrder.setTypelayout("Real");
+
                 Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
                 Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
 
@@ -176,6 +182,7 @@ public class OrderFragment extends Fragment {
             public void onClick(View v) {
 //                vpPager.setCurrentItem(0);
                 MainAqarzActivity.type_order_main = "Shopping";
+                MainAqarzActivity.objectFiltterOrder.setTypelayout("Market");
 
                 Shoppingrequest.setTextColor(getResources().getColor(R.color.colorPrimary));
                 Real_Estate_orders.setTextColor(getResources().getColor(R.color.te_unselected));
