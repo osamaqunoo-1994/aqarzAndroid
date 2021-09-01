@@ -3,31 +3,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:hedgehog="http://schemas.android.com/tools"
     android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="110dp"
-            android:layout_height="120dp"
-            android:layout_margin="10dp"
-
+            android:layout_width="105dp"
+            android:layout_height="125dp"
+            android:layout_margin="2dp"
             app:cardCornerRadius="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <ProgressBar
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_centerInParent="true" />
 
                 <ImageView
                     android:id="@+id/image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"></ImageView>
+                    android:scaleType="centerCrop" />
+
+
+                <TextView
+                    android:id="@+id/opration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="19dp"
+
+                    android:layout_marginStart="5dp"
+
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/back_search_home_selected"
+                    android:fontFamily="@font/din_bold"
+                    android:gravity="center"
+                    android:paddingLeft="7dp"
+                    android:paddingRight="7dp"
+                    android:paddingBottom="1dp"
+                    android:text="شقة"
+
+
+                    android:textColor="@color/white"
+                    android:textSize="10dp" />
+
 
                 <TextView
                     android:id="@+id/sale"
@@ -47,107 +75,141 @@
                     android:visibility="gone" />
             </RelativeLayout>
 
-
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_weight="1"
             android:orientation="vertical">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp">
+                android:layout_marginTop="7dp"
+
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:id="@+id/image_icon"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:padding="3dp"
+                    android:src="@drawable/ic_tag"
+                    android:visibility="gone"
+                    app:tint="@color/colorPrimary" />
 
                 <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:fontFamily="@font/din_light"
                     android:text="@string/n1"
                     android:textColor="@color/textColor"
-                    android:textSize="12dp"
+                    android:textSize="11dp"
                     android:visibility="gone" />
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/type"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
 
+                    android:fontFamily="@font/din_bold"
+
+
+                    android:text="فيلا"
+                    android:textColor="@color/black"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/dublex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_login"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
 
-                    <ImageView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:src="@drawable/ic_home_id_id" />
+                <com.hedgehog.ratingbar.RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    app:clickable="false"
+                    app:starEmpty="@drawable/ic_star__2_"
+                    app:starFill="@drawable/ic_star__1_"
+                    hedgehog:clickable="false"
+                    hedgehog:halfstart="false"
+                    hedgehog:starCount="5"
+                    hedgehog:starHalf="@mipmap/star_half"
+                    hedgehog:starImageHeight="3dp"
+                    hedgehog:starImagePadding="1"
+                    hedgehog:starImageWidth="3" />
+
+                <TextView
+                    android:id="@+id/space"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+
+                    android:fontFamily="@font/din_light"
+                    android:lines="1"
+                    android:text="200"
+                    android:textColor="#AAABB3"
+                    android:textSize="13dp" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="5dp"
 
 
-                    <TextView
-                        android:id="@+id/opration"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-
-                        android:fontFamily="@font/din_bold"
-                        android:text="Vila "
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="14dp" />
-
-                    <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/simpleRatingBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        app:srb_clearRatingEnabled="true"
-                        app:srb_clickable="true"
-                        app:srb_drawableEmpty="@drawable/ic_rate_s"
-                        app:srb_drawableFilled="@drawable/ic_rate_fill"
-                        app:srb_isIndicator="false"
-                        app:srb_minimumStars="1"
-                        app:srb_numStars="5"
-                        app:srb_rating="2"
-                        app:srb_scrollable="true"
-                        app:srb_starHeight="15dp"
-                        app:srb_starPadding="3dp"
-                        app:srb_starWidth="15dp"
-                        app:srb_stepSize="0.5"></com.willy.ratingbar.ScaleRatingBar>
-
-                </LinearLayout>
+                    android:fontFamily="@font/din_light"
+                    android:lines="1"
+                    android:text="@string/sequare"
+                    android:textColor="#AAABB3"
+                    android:textSize="9dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <TextView
-                    android:id="@+id/id_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
 
-                    android:fontFamily="@font/din_bold"
-                    android:text=" "
-                    android:textColor="@color/black"
-                    android:textSize="14dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:gravity="center">
+
+                android:gravity="center"
+
+                android:orientation="horizontal">
+
 
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-
-                    android:src="@drawable/ic_tag" />
+                    android:padding="3dp"
+                    android:src="@drawable/ic_tag"
+                    android:visibility="gone"
+                    app:tint="@color/colorPrimary" />
 
                 <TextView
 
@@ -157,48 +219,59 @@
                     android:layout_marginRight="5dp"
                     android:fontFamily="@font/din_light"
                     android:text="@string/n2"
-                    android:textColor="@color/textColor"
-                    android:textSize="12dp" />
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/price"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/din_bold"
-                    android:text="17,000"
 
-                    android:textSize="13dp" />
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/din_bold"
+                    android:text="13000"
+                    android:textColor="@color/colorPrimary"
+
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
 
                 <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/din_bold"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="3dp"
+
+
+                    android:fontFamily="@font/din_light"
                     android:text="@string/SAR"
-
-                    android:textSize="13dp" />
-
+                    android:textColor="@color/black"
+                    android:textSize="8dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
+
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:gravity="center">
+
+                android:gravity="center"
+                android:orientation="horizontal">
+
 
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-
-                    android:src="@drawable/ic_group_location_group" />
+                    android:layout_marginStart="2dp"
+                    android:src="@drawable/ic_group_location_group"
+                    app:tint="@color/colorPrimary" />
 
                 <TextView
 
@@ -206,29 +279,160 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="@font/din_light"
+                    android:fontFamily="@font/din_bold"
                     android:text="@string/n4"
-                    android:textColor="@color/textColor"
-                    android:textSize="12dp"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
                     android:visibility="gone" />
 
-                <TextView
-                    android:id="@+id/address"
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/din_bold"
-                    android:lines="1"
-                    android:text="الروابي, الخبر المنطقة الشرقية"
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    android:textSize="13dp" />
+                    <TextView
+                        android:id="@+id/address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/din_bold"
+
+                        android:lines="1"
+                        android:text="الروابي، الخبر ، المنطقة الشرقية"
+
+                        android:textColor="@color/textColor"
+                        android:textSize="12dp" />
+
+                </HorizontalScrollView>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical">
+
+
+                <ImageView
+                    android:layout_width="15dp"
+
+                    android:layout_height="15dp"
+                    android:layout_marginStart="4dp"
+
+                    android:src="@drawable/ic_group_bathroom" />
+
+                <TextView
+                    android:id="@+id/bathroom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/din_bold"
+                    android:text="0"
+                    android:textColor="@color/te_unselected"
+                    android:textSize="11dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/din_bold"
+                    android:text="@string/Bathrooms"
+                    android:textColor="@color/te_unselected"
+
+                    android:textSize="11dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginStart="15dp"
+                    android:src="@drawable/ic_room_ic"
+                    app:tint="#4F39A8" />
+
+                <TextView
+                    android:id="@+id/room"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/din_bold"
+                    android:text="0"
+                    android:textColor="@color/te_unselected"
+                    android:textSize="11dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/din_bold"
+                    android:text="@string/room"
+                    android:textColor="@color/te_unselected"
+
+                    android:textSize="11dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="3dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+
+
+                <ImageView
+                    android:id="@+id/re_news"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+
+                    android:background="@drawable/circle_fill"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_re_new"
+
+                    android:visibility="gone"
+                    app:tint="@color/white" />
+
+                <ImageView
+                    android:id="@+id/edit"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/circle_ss"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_edit_offer"
+
+                    android:visibility="gone"
+                    app:tint="@color/white" />
+
+                <ImageView
+                    android:id="@+id/delete"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+
+                    android:background="@drawable/circle_red"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_delete"
+                    android:visibility="gone"
+                    app:tint="@color/white" />
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -244,6 +448,30 @@
                     android:visibility="gone"
 
                     app:tint="#00d2cb" />
+
+                <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/rate"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:clickable="true"
+                    app:srb_clearRatingEnabled="true"
+                    app:srb_clickable="true"
+                    app:srb_drawableEmpty="@drawable/ic_star__2_"
+                    app:srb_drawableFilled="@drawable/ic_star__1_"
+                    app:srb_isIndicator="false"
+
+                    app:srb_minimumStars="1"
+
+                    app:srb_numStars="5"
+                    app:srb_rating="0"
+                    app:srb_scrollable="true"
+                    app:srb_starHeight="12dp"
+                    app:srb_starPadding="1dp"
+                    app:srb_starWidth="12dp"
+                    app:srb_stepSize="0.5"></com.willy.ratingbar.ScaleRatingBar>
 
 
                 <TextView

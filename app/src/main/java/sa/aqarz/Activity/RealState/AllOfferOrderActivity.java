@@ -177,78 +177,78 @@ public class AllOfferOrderActivity extends AppCompatActivity {
             }
         });
 
-
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-
-                if (!Hawk.contains("showCaseView_all_my_states")) {
-
-                    Hawk.put("showCaseView_all_my_state", "showCaseView_all_my_state");
-
-
-                    materialShowcaseView = new MaterialShowcaseView.Builder(AllOfferOrderActivity.this)
-                            .setTitleText(getResources().getString(R.string.title_all_my_state))
-                            .setContentText(getResources().getString(R.string.description_all_my_state))
-                            .setContentTextColor(getResources().getColor(R.color.white))
-
-                            .setDismissText(getResources().getString(R.string.Nextt)) // Optional. When used can only dismiss the showcase by clicking on the dismiss button and target isn't pressable.
-//                            .setTarget(title)
-
-
-//                            .setBackgroundColor(getResources().getColor(R.color.color_brimarys))
-                            .setDelay(300) // Optional. But starting animations immediately in onCreate can make the choppy
-                            .show();
-
-                    materialShowcaseView.addListener(new ShowcaseListener() {
-                        @Override
-                        public void onShowcaseDisplayed(MaterialShowcaseView materialShowcaseView) {
-
-                        }
-
-                        @Override
-                        public void onShowcaseDismissed(MaterialShowcaseView materialShowcaseView) {
-
-                        }
-
-                        @Override
-                        public void onShowcaseSkipped(MaterialShowcaseView materialShowcaseView) {
-
-                        }
-
-                        @Override
-                        public void onTargetPressed(MaterialShowcaseView materialShowcaseView) {
-
-                        }
-                    });
-
-
 //
-//                    showCaseView = new ShowcaseView.Builder(AllOfferOrderActivity.this)
-//                            .setTarget(new ViewTarget(R.id.title, AllOfferOrderActivity.this))
+//        final Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
 //
-//                            .setContentTitle(getResources().getString(R.string.title_all_my_state))
+//
+//                if (!Hawk.contains("showCaseView_all_my_states")) {
+//
+//                    Hawk.put("showCaseView_all_my_state", "showCaseView_all_my_state");
+//
+//
+//                    materialShowcaseView = new MaterialShowcaseView.Builder(AllOfferOrderActivity.this)
+//                            .setTitleText(getResources().getString(R.string.title_all_my_state))
 //                            .setContentText(getResources().getString(R.string.description_all_my_state))
+//                            .setContentTextColor(getResources().getColor(R.color.white))
 //
-//                            .setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                    showCaseView.hide();
-//                                }
-//                            })
+//                            .setDismissText(getResources().getString(R.string.Nextt)) // Optional. When used can only dismiss the showcase by clicking on the dismiss button and target isn't pressable.
+////                            .setTarget(title)
 //
 //
-//                            .setStyle(R.style.CustomShowcaseTheme2)
-//                            .build();
-
-
-                }
-
-
-            }
-        }, 100); // After 1 seconds
+////                            .setBackgroundColor(getResources().getColor(R.color.color_brimarys))
+//                            .setDelay(300) // Optional. But starting animations immediately in onCreate can make the choppy
+//                            .show();
+//
+//                    materialShowcaseView.addListener(new ShowcaseListener() {
+//                        @Override
+//                        public void onShowcaseDisplayed(MaterialShowcaseView materialShowcaseView) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onShowcaseDismissed(MaterialShowcaseView materialShowcaseView) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onShowcaseSkipped(MaterialShowcaseView materialShowcaseView) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onTargetPressed(MaterialShowcaseView materialShowcaseView) {
+//
+//                        }
+//                    });
+//
+//
+////
+////                    showCaseView = new ShowcaseView.Builder(AllOfferOrderActivity.this)
+////                            .setTarget(new ViewTarget(R.id.title, AllOfferOrderActivity.this))
+////
+////                            .setContentTitle(getResources().getString(R.string.title_all_my_state))
+////                            .setContentText(getResources().getString(R.string.description_all_my_state))
+////
+////                            .setOnClickListener(new View.OnClickListener() {
+////                                @Override
+////                                public void onClick(View v) {
+////                                    showCaseView.hide();
+////                                }
+////                            })
+////
+////
+////                            .setStyle(R.style.CustomShowcaseTheme2)
+////                            .build();
+//
+//
+//                }
+//
+//
+//            }
+//        }, 100); // After 1 seconds
     }
 
     //Define your Interface method here

@@ -83,6 +83,7 @@ public class MoreFragment extends Fragment {
     TextView order;
     TextView employee_num;
     TextView aqarz_offer_num;
+    TextView offer_num;
 
     public MoreFragment() {
         // Required empty public constructor
@@ -123,6 +124,7 @@ public class MoreFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_more2, container, false);
         logout = view.findViewById(R.id.logout);
+        offer_num = view.findViewById(R.id.offer_num);
         aqarz_offer_num = view.findViewById(R.id.aqarz_offer_num);
         employee_num = view.findViewById(R.id.employee_num);
         order = view.findViewById(R.id.order);
@@ -158,8 +160,12 @@ public class MoreFragment extends Fragment {
             }
 
             employee_num.setText("(" + Settings.GetUser().getCount_emp() + ")");
-            order.setText("(0)");
-            aqarz_offer_num.setText("(0)");
+            order.setText("(" + Settings.GetUser().getCount_request() + ")");
+            offer_num.setText("(" + Settings.GetUser().getCount_estate() + ")");
+            int allo = Integer.valueOf(Settings.GetUser().getCount_fund_offer() + "") + Integer.valueOf(Settings.GetUser().getCount_offer() + "");
+            aqarz_offer_num.setText("(" + allo + ")");
+//            order.setText("(0)");
+//            aqarz_offer_num.setText("(0)");
 
 
             rate.setRating(Float.valueOf(Settings.GetUser().getRate() + ""));

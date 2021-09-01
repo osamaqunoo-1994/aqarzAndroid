@@ -99,14 +99,15 @@ public class RecyclerView_MyState_selected extends RecyclerView.Adapter<Recycler
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
+        try {
 
 
 //        holder.setIsRecyclable(false);
 //        holder.title.setText(alldata.get(position).getName());
-        holder.price.setText(alldata.get(position).getTotalPrice());
-        holder.opration.setText(alldata.get(position).getEstate_type_name());
-        holder.address.setText(alldata.get(position).getCity_name());
-        holder.date.setText(alldata.get(position).getCreatedAt());
+            holder.price.setText(alldata.get(position).getTotalPrice());
+            holder.opration.setText(alldata.get(position).getEstate_type_name());
+            holder.address.setText(alldata.get(position).getCity_name());
+            holder.date.setText(alldata.get(position).getCreatedAt());
 //        if (alldata.get(position).getRate() != null) {
 //            if (!alldata.get(position).getRate().equals("null")) {
 //
@@ -136,7 +137,7 @@ public class RecyclerView_MyState_selected extends RecyclerView.Adapter<Recycler
 //        }
 ////
 //        System.out.println(alldata.get(position).getImage() + "");
-        Glide.with(context).load(alldata.get(position).getFirst_image()).into(holder.image);
+            Glide.with(context).load(alldata.get(position).getFirst_image()).into(holder.image);
 ////
 //
 //        try {
@@ -154,7 +155,7 @@ public class RecyclerView_MyState_selected extends RecyclerView.Adapter<Recycler
 //       holder.ratingbar.setStar(random);
 
 
-        //   wallet, dafter, receipt, payment
+            //   wallet, dafter, receipt, payment
 
 
 //            double v=Double.valueOf(alldata.get(position).getRate());
@@ -190,43 +191,45 @@ public class RecyclerView_MyState_selected extends RecyclerView.Adapter<Recycler
 //
 
 
-        if (alldata.get(position).getIs_selected()) {
-            holder.chechbox.setChecked(true);
-            holder.back_s.setBackground(context.getResources().getDrawable(R.drawable.background_selected_affer_s));
-        } else {
-            holder.chechbox.setChecked(false);
-            holder.back_s.setBackground(context.getResources().getDrawable(R.drawable.background_selected_affer));
-
-        }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-//
-//
-
-
-                if (alldata.get(position).getIs_selected()) {
-                    holder.chechbox.setChecked(false);
-                    alldata.get(position).setIs_selected(false);
-                    holder.back_s.setBackground(context.getResources().getDrawable(R.drawable.background_selected_affer));
-
-                } else {
-                    holder.chechbox.setChecked(true);
-                    alldata.get(position).setIs_selected(true);
-                    holder.back_s.setBackground(context.getResources().getDrawable(R.drawable.background_selected_affer_s));
-
-                }
-                if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(alldata);
-                }
-//                Postion_opend = position;
-                Refr();
+            if (alldata.get(position).getIs_selected()) {
+                holder.chechbox.setChecked(true);
+                holder.back_s.setBackground(context.getResources().getDrawable(R.drawable.background_selected_affer_s));
+            } else {
+                holder.chechbox.setChecked(false);
+                holder.back_s.setBackground(context.getResources().getDrawable(R.drawable.background_selected_affer));
 
             }
-        });
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+//
+//
 
 
+                    if (alldata.get(position).getIs_selected()) {
+                        holder.chechbox.setChecked(false);
+                        alldata.get(position).setIs_selected(false);
+                        holder.back_s.setBackground(context.getResources().getDrawable(R.drawable.background_selected_affer));
+
+                    } else {
+                        holder.chechbox.setChecked(true);
+                        alldata.get(position).setIs_selected(true);
+                        holder.back_s.setBackground(context.getResources().getDrawable(R.drawable.background_selected_affer_s));
+
+                    }
+                    if (mItemClickListener != null) {
+                        mItemClickListener.onItemClick(alldata);
+                    }
+//                Postion_opend = position;
+                    Refr();
+
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     static PopupWindow popupWindow;

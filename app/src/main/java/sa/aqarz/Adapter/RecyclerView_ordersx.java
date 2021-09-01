@@ -317,25 +317,25 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                 if (Settings.CheckIsCompleate()) {
 
 
-                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
-
-//                        bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getUuid() + "");
-//                        bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
-
-
-                        MainActivity.ordersModules = alldata.get(position);
-                        Intent intent = new Intent(context, AllOfferOrderActivity.class);
-                        intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
-                        intent.putExtra("id", alldata.get(position).getId() + "");
-                        context.startActivity(intent);
+                    MainActivity.ordersModules = alldata.get(position);
+                    Intent intent = new Intent(context, AllOfferOrderActivity.class);
+                    intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
+                    intent.putExtra("id", alldata.get(position).getId() + "");
+                    context.startActivity(intent);
 //                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
-
-                    } else {
-                        show_dialog();
+//                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
 //
-
-                    }
+////                        bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getUuid() + "");
+////                        bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+//
+//
+//
+//                    } else {
+//                        show_dialog();
+////
+//
+//                    }
                 } else {
                     Settings.Dialog_not_compleate((Activity) context);
 
@@ -349,25 +349,25 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
             public void onClick(View view) {
 
                 if (Settings.CheckIsCompleate()) {
+                    MainActivity.ordersModules = alldata.get(position);
 
-
-                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
-
-//                        bottomSheetDialogFragment_offerEstate = new BottomSheetDialogFragment_OfferEstate(alldata.get(position).getUuid() + "");
-//                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
-                        MainActivity.ordersModules = alldata.get(position);
-
-                        Intent intent = new Intent(context, MyOfferOrderActivity.class);
-                        intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
-                        intent.putExtra("id", alldata.get(position).getId() + "");
-                        context.startActivity(intent);
+                    Intent intent = new Intent(context, MyOfferOrderActivity.class);
+                    intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
+                    intent.putExtra("id", alldata.get(position).getId() + "");
+                    context.startActivity(intent);
 //                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
-                    } else {
-                        show_dialog();
-//
 
-                    }
+//                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
+//
+////                        bottomSheetDialogFragment_offerEstate = new BottomSheetDialogFragment_OfferEstate(alldata.get(position).getUuid() + "");
+////                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+//
+//                    } else {
+//                        show_dialog();
+////
+//
+//                    }
                 } else {
                     Settings.Dialog_not_compleate((Activity) context);
 
@@ -383,23 +383,23 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                 if (Settings.CheckIsCompleate()) {
 
 
-                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
-
 //                        bottomSheetDialogFragment_offerEstate = new BottomSheetDialogFragment_OfferEstate(alldata.get(position).getUuid() + "");
 //                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
-                        MainActivity.ordersModules = alldata.get(position);
+                    MainActivity.ordersModules = alldata.get(position);
 
-                        Intent intent = new Intent(context, MyOfferOrderActivity.class);
-                        intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
-                        intent.putExtra("id", alldata.get(position).getId() + "");
-                        context.startActivity(intent);
+                    Intent intent = new Intent(context, MyOfferOrderActivity.class);
+                    intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
+                    intent.putExtra("id", alldata.get(position).getId() + "");
+                    context.startActivity(intent);
 //                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
-                    } else {
-                        show_dialog();
+//                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
 //
-
-                    }
+//                    } else {
+//                        show_dialog();
+////
+//
+//                    }
                 } else {
                     Settings.Dialog_not_compleate((Activity) context);
 
@@ -415,23 +415,23 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                 if (Settings.CheckIsCompleate()) {
 
 
-                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
-
 //                        bottomSheetDialogFragment_offerEstate = new BottomSheetDialogFragment_OfferEstate(alldata.get(position).getUuid() + "");
 //                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
-                        MainActivity.ordersModules = alldata.get(position);
+                    MainActivity.ordersModules = alldata.get(position);
 
-                        Intent intent = new Intent(context, MyOfferOrderActivity.class);
-                        intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
-                        intent.putExtra("id", alldata.get(position).getId() + "");
-                        context.startActivity(intent);
+                    Intent intent = new Intent(context, MyOfferOrderActivity.class);
+                    intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
+                    intent.putExtra("id", alldata.get(position).getId() + "");
+                    context.startActivity(intent);
 //                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-
-                    } else {
-                        show_dialog();
 //
-
-                    }
+//                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
+//
+//                    } else {
+//                        show_dialog();
+////
+//
+//                    }
                 } else {
                     Settings.Dialog_not_compleate((Activity) context);
 
