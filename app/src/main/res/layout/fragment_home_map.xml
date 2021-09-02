@@ -55,6 +55,14 @@
                         android:layout_height="match_parent" />
 
                     <ImageView
+                        android:id="@+id/clear_city"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:visibility="gone"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_close_black_24dp" />
+
+                    <ImageView
                         android:id="@+id/search_nib"
                         android:layout_width="35dp"
                         android:layout_height="35dp"

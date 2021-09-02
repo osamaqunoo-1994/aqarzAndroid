@@ -129,6 +129,7 @@ public class HomeMapFragment extends Fragment {
     static List<CityModules> cityModules_list_filtter = new ArrayList<>();
     ImageView fill_filtter;
     static RecyclerView all_city;
+    static ImageView clear_city;
     private final OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -144,9 +145,9 @@ public class HomeMapFragment extends Fragment {
         public void onMapReady(GoogleMap googleMapx) {
             googleMap = googleMapx;
             async_map();
-            LatLng sydney = new LatLng(-34, 151);
-            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//            LatLng sydney = new LatLng(-34, 151);
+//            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+//            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
 
         }
@@ -189,6 +190,7 @@ public class HomeMapFragment extends Fragment {
         search_nib = v.findViewById(R.id.search_nib);
         search_text = v.findViewById(R.id.search_text);
         fill_filtter = v.findViewById(R.id.fill_filtter);
+        clear_city = v.findViewById(R.id.clear_city);
 
         //LastPostionLat
         //LastPostionLan
@@ -964,7 +966,6 @@ public class HomeMapFragment extends Fragment {
                 WebService.loading(activity, false);
                 loading.setVisibility(View.GONE);
 
-                is_first = false;
 //{"status":true,"code":200,"message":"User Profile","data"
                 try {
                     boolean status = response.getBoolean("status");
@@ -975,6 +976,8 @@ public class HomeMapFragment extends Fragment {
 
 
                         } else if (requestType.equals("home_estate_custom_list")) {
+
+                            is_first = false;
 
                             JsonParser parser = new JsonParser();
                             JsonElement mJson = parser.parse(response.toString());
@@ -1014,10 +1017,24 @@ public class HomeMapFragment extends Fragment {
                                             marker_selected.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewEstate_galf(get_price_and_return_price(homeModules_aqares.get(last_postion_marker).getTotalPrice() + ""), "")));
 
                                         }
+                                        onclick_marker_aqarez = true;
+
 
                                         marker_selected = marker_list.get(position);
                                         last_postion_marker = position;
                                         marker_selected.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewEstate_green(get_price_and_return_price(homeModules_aqares.get(Integer.valueOf(position)).getTotalPrice() + ""), "")));
+
+
+                                        LatLng my_location = new LatLng(Double.valueOf(homeModules_aqares.get(Integer.valueOf(position)).getLat()), Double.valueOf(homeModules_aqares.get(Integer.valueOf(position)).getLan()));
+                                        CameraPosition cameraPosition = new CameraPosition.Builder().target(my_location).zoom(4).build();
+                                        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+                                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 10));
+                                        // Zoom in, animating the camera.
+//                                        googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+//                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
+//                                        googleMap.animateCamera(CameraUpdateFactory.zoomTo(9), 3000, null);
+//                                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 12.0f));
 
 
                                     } catch (Exception e) {
@@ -1076,7 +1093,7 @@ public class HomeMapFragment extends Fragment {
                                     lat = "" + cityModules_list_filtter.get(i).getLat();
                                     lan = "" + cityModules_list_filtter.get(i).getLan();
 
-
+                                    clear_city.setVisibility(View.VISIBLE);
                                     Hawk.put("LastPostionLat", lat);
                                     Hawk.put("LastPostionLan", lan);
 
@@ -1095,7 +1112,16 @@ public class HomeMapFragment extends Fragment {
 
                                 }
                             });
+                            clear_city.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
 
+                                    search_text.setText("");//+ "-" + cityModules_list_filtter.get(i).getCity().getName()
+
+                                    clear_city.setVisibility(View.GONE);
+
+                                }
+                            });
                             try {
                                 loading_city.setVisibility(View.GONE);
 
@@ -1419,7 +1445,13 @@ public class HomeMapFragment extends Fragment {
             }
         });
         all_type_aqarz.setAdapter(recyclerView_all_type_in_fragment);
-        get_Estate_from_api();
+
+        if (is_first) {
+
+        } else {
+            get_Estate_from_api();
+
+        }
 
 
         if (Settings.checkLogin()) {
