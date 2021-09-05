@@ -1,5 +1,6 @@
 package sa.aqarz.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,6 +55,10 @@ public class NotficationActvity extends AppCompatActivity {
     TextView req;
     TextView admin;
     TextView news;
+    int page = 1;
+
+    String url = "";
+    RecyclerView_GenralNotfication recyclerView_genralNotfication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,12 +88,41 @@ public class NotficationActvity extends AppCompatActivity {
                 = new LinearLayoutManager(NotficationActvity.this, LinearLayoutManager.VERTICAL, false);
         notfication_list.setLayoutManager(layoutManager1);
 
+
+        recyclerView_genralNotfication = new RecyclerView_GenralNotfication(NotficationActvity.this, notficationModules);
+
+
+        notfication_list.setAdapter(recyclerView_genralNotfication);
+
+
         WebService.loading(NotficationActvity.this, true);
 
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, NotficationActvity.this);
 //        nodata.setVisibility(View.VISIBLE);
+
+        url = WebService.notification;
         mVolleyService.getDataVolley("notification", WebService.notification);
+
+
+        notfication_list.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (!recyclerView.canScrollVertically(1)) { //1 for down
+
+                    page = page + 1;
+
+
+                    WebService.loading(NotficationActvity.this, true);
+                    init_volley();
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, NotficationActvity.this);
+                    mVolleyService.getDataVolley("notification", url + "?page=" + page);
+
+                }
+            }
+        });
+
 
         all.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,11 +143,12 @@ public class NotficationActvity extends AppCompatActivity {
                 news_.setTextColor(getResources().getColor(R.color.black));
                 WebService.loading(NotficationActvity.this, true);
 
+                page = 1;
                 init_volley();
                 VolleyService mVolleyService = new VolleyService(mResultCallback, NotficationActvity.this);
 //        nodata.setVisibility(View.VISIBLE);
                 mVolleyService.getDataVolley("notification", WebService.notification);
-
+                url = WebService.notification;
 //                mVolleyService.getDataVolley("my_msg", WebService.my_msg);
             }
         });
@@ -137,12 +172,13 @@ public class NotficationActvity extends AppCompatActivity {
                 news_.setBackground(null);
                 news_.setTextColor(getResources().getColor(R.color.black));
                 WebService.loading(NotficationActvity.this, true);
+                page = 1;
 
                 init_volley();
                 VolleyService mVolleyService = new VolleyService(mResultCallback, NotficationActvity.this);
 //        nodata.setVisibility(View.VISIBLE);
                 mVolleyService.getDataVolley("notification", WebService.notification + "?type=" + "chat,employee");
-
+                url = WebService.notification + "?type=" + "chat,employee";
 //                mVolleyService.getDataVolley("my_msg", WebService.my_msg);
             }
         });
@@ -165,11 +201,13 @@ public class NotficationActvity extends AppCompatActivity {
                 news_.setBackground(null);
                 news_.setTextColor(getResources().getColor(R.color.black));
                 WebService.loading(NotficationActvity.this, true);
+                page = 1;
 
                 init_volley();
                 VolleyService mVolleyService = new VolleyService(mResultCallback, NotficationActvity.this);
 //        nodata.setVisibility(View.VISIBLE);
                 mVolleyService.getDataVolley("notification", WebService.notification + "?type=" + "request,fund_request,fund_offer,offer");
+                url = WebService.notification + "?type=" + "request,fund_request,fund_offer,offer";
 
 //                mVolleyService.getDataVolley("my_msg", WebService.my_msg);
             }
@@ -193,11 +231,13 @@ public class NotficationActvity extends AppCompatActivity {
                 Administrativenotices.setBackground(null);
                 Administrativenotices.setTextColor(getResources().getColor(R.color.black));
                 WebService.loading(NotficationActvity.this, true);
+                page = 1;
 
                 init_volley();
                 VolleyService mVolleyService = new VolleyService(mResultCallback, NotficationActvity.this);
 //        nodata.setVisibility(View.VISIBLE);
                 mVolleyService.getDataVolley("notification", WebService.notification + "?type=" + "rate_offer,rate_estate");
+                url = WebService.notification + "?type=" + "rate_offer,rate_estate";
 
 //                mVolleyService.getDataVolley("my_msg", WebService.my_msg);
             }
@@ -272,8 +312,12 @@ public class NotficationActvity extends AppCompatActivity {
 
 
                             JSONArray jsonArray = new JSONArray(datax);
-                            notfication_list.setAdapter(null);
-                            notficationModules.clear();
+
+                            if (page == 1) {
+                                notficationModules.clear();
+
+                            }
+
                             for (int i = 0; i < jsonArray.length(); i++) {
 
                                 JsonParser parser = new JsonParser();
@@ -287,16 +331,16 @@ public class NotficationActvity extends AppCompatActivity {
 
 
                             }
+                            if (page == 1) {
+                                if (notficationModules.size() != 0) {
+                                    nodata.setVisibility(View.GONE);
+                                } else {
+                                    nodata.setVisibility(View.VISIBLE);
 
-                            notfication_list.setAdapter(new RecyclerView_GenralNotfication(NotficationActvity.this, notficationModules));
-
-
-                            if (notficationModules.size() != 0) {
-                                nodata.setVisibility(View.GONE);
-                            } else {
-                                nodata.setVisibility(View.VISIBLE);
-
+                                }
                             }
+
+                            recyclerView_genralNotfication.Refr();
 
 
                         }

@@ -73,6 +73,7 @@ public class ViewPager_Adapter_estate_home_map extends PagerAdapter {
     public static Activity activity;
 
     //
+
     ImageView image;
     TextView price;
     TextView type;
@@ -243,6 +244,29 @@ public class ViewPager_Adapter_estate_home_map extends PagerAdapter {
 
             }
         });
+        vieww.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+//                Postion_opend = position;
+//                Refr();
+
+//                RequestOrderActivity.set_fragment(position);
+
+                Intent intent = new Intent(context, DetailsActivity_aqarz.class);
+                intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
+                context.startActivity(intent);
+
+
+//                if (mItemClickListener != null) {
+//                    mItemClickListener.onItemClick(position);
+//                }
+//
+
+            }
+        });
+
 //        share.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {

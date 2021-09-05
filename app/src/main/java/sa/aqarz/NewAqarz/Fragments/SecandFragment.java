@@ -247,6 +247,10 @@ public class SecandFragment extends Fragment {
         String search_text_s = "";
         String area_estate_id_text = "";
         String price_id_text = "";
+        String price_from = "";
+        String price_to = "";
+        String area_to = "";
+        String area_from = "";
         String estate_type_id_text = "";
         String city_id_text = "";
         String neighborhood_id_text = "";
@@ -256,12 +260,25 @@ public class SecandFragment extends Fragment {
         if (!search_text.getText().toString().equals("")) {
             search_text_s = "&search=" + search_text.getText();
         }
-        if (!MainAqarzActivity.objectFiltterOrder.getId_price().equals("")) {
-            price_id_text = "&price_id=" + MainAqarzActivity.objectFiltterOrder.getId_price();
+//        if (!MainAqarzActivity.objectFiltterOrder.getId_price().equals("")) {
+//            price_id_text = "&price_id=" + MainAqarzActivity.objectFiltterOrder.getId_price();
+//        }
+        if (!MainAqarzActivity.objectFiltterOrder.getMax_price().equals("")) {
+            price_from = "&price_from=" + MainAqarzActivity.objectFiltterOrder.getMax_price();
         }
 
-        if (!MainAqarzActivity.objectFiltterOrder.getId_space().equals("")) {
-            area_estate_id_text = "&area_estate_id=" + MainAqarzActivity.objectFiltterOrder.getId_space();
+        if (!MainAqarzActivity.objectFiltterOrder.getLess_price().equals("")) {
+            price_to = "&price_to=" + MainAqarzActivity.objectFiltterOrder.getLess_price();
+        }
+
+//        if (!MainAqarzActivity.objectFiltterOrder.getId_space().equals("")) {
+//            area_estate_id_text = "&area_estate_id=" + MainAqarzActivity.objectFiltterOrder.getId_space();
+//        }
+        if (!MainAqarzActivity.objectFiltterOrder.getMax_space().equals("")) {
+            area_from = "&area_from=" + MainAqarzActivity.objectFiltterOrder.getMax_space();
+        }
+        if (!MainAqarzActivity.objectFiltterOrder.getLess_space().equals("")) {
+            area_to = "&area_to=" + MainAqarzActivity.objectFiltterOrder.getLess_space();
         }
 
         if (!MainAqarzActivity.objectFiltterOrder.getType_filtter().equals("")) {
@@ -308,7 +325,7 @@ public class SecandFragment extends Fragment {
         if (!search_text.getText().toString().equals("")) {
             search_text_s = "&search=" + search_text.getText();
         }
-        url = WebService.market_demands + "?" + type_requst_text + state_id_text + neighborhood_id_text + search_text_s + area_estate_id_text + price_id_text + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
+        url = WebService.market_demands + "?" + type_requst_text + state_id_text + area_from + area_to + price_from + price_to + neighborhood_id_text + search_text_s + area_estate_id_text + price_id_text + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
         WebService.loading(activity, true);
 
         init_volley();

@@ -38,6 +38,7 @@ import sa.aqarz.NewAqarz.Fragments.ChatFragment;
 import sa.aqarz.NewAqarz.Fragments.HomeMapFragment;
 import sa.aqarz.NewAqarz.Fragments.MoreFragment;
 import sa.aqarz.NewAqarz.Fragments.OrderFragment;
+import sa.aqarz.NewAqarz.Fragments.OrderUserFragment;
 import sa.aqarz.R;
 import sa.aqarz.Settings.ForceUpdateAsync;
 import sa.aqarz.Settings.Settings;
@@ -223,6 +224,8 @@ public class MainAqarzActivity extends AppCompatActivity {
 
             }
         });
+
+
         lay_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -251,11 +254,23 @@ public class MainAqarzActivity extends AppCompatActivity {
                     image_4.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
                     click_tab = "order";
 
-                    fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container, new OrderFragment());
-                    fragmentTransaction.addToBackStack(null);
-                    //  fragmentTransaction.commit();
-                    fragmentTransaction.commitAllowingStateLoss();
+
+                    if (Settings.CheckIsAccountAqarzMan()) {
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.container, new OrderFragment());
+                        fragmentTransaction.addToBackStack(null);
+                        //  fragmentTransaction.commit();
+                        fragmentTransaction.commitAllowingStateLoss();
+                    } else {
+
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.container, new OrderUserFragment());
+                        fragmentTransaction.addToBackStack(null);
+                        //  fragmentTransaction.commit();
+                        fragmentTransaction.commitAllowingStateLoss();
+
+
+                    }
 
 
                 }
@@ -323,12 +338,7 @@ public class MainAqarzActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-                if (!Settings.checkLogin()) {
-                    startActivity(new Intent(MainAqarzActivity.this, check_login.class));
-
-                } else {
-
+                if (Settings.checkLogin()) {
                     if (Settings.CheckIsAccountAqarzMan()) {
 
                         add_aqares_and_order_and_estate.setVisibility(View.VISIBLE);
@@ -357,60 +367,90 @@ public class MainAqarzActivity extends AppCompatActivity {
                         gray_layout.setVisibility(View.GONE);
                         add_aqares_and_order_and_estate.setVisibility(View.GONE);
                     }
-
-                    addAqares.setOnClickListener(new View.OnClickListener() {
+                } else {
+                    add_aqares_and_order_and_estate.setVisibility(View.VISIBLE);
+                    gray_layout.setVisibility(View.VISIBLE);
+                    gray_layout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            gray_layout.setVisibility(View.GONE);
+                            add_aqares_and_order_and_estate.setVisibility(View.GONE);
+
+                        }
+                    });
+                    close_add.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            gray_layout.setVisibility(View.GONE);
+                            add_aqares_and_order_and_estate.setVisibility(View.GONE);
+
+                        }
+                    });
+                }
+                addAqares.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (!Settings.checkLogin()) {
+                            startActivity(new Intent(MainAqarzActivity.this, check_login.class));
+
+                        } else {
+
 //                            Intent intent = new Intent(MainAqarzActivity.this, AddAqarzActivity.class);
                             Intent intent = new Intent(MainAqarzActivity.this, AddAqarzStepsActivity.class);
                             intent.putExtra("id", "");
                             startActivity(intent);
                             gray_layout.setVisibility(View.GONE);
                             add_aqares_and_order_and_estate.setVisibility(View.GONE);
-
-//                            alertDialog.dismiss();
                         }
-                    });
-                    RequstAqars.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+//                            alertDialog.dismiss();
+                    }
+                });
+                RequstAqars.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (!Settings.checkLogin()) {
+                            startActivity(new Intent(MainAqarzActivity.this, check_login.class));
+
+                        } else {
+
                             Intent intent = new Intent(MainAqarzActivity.this, AqarzOrActivity.class);
                             intent.putExtra("id", "");
                             startActivity(intent);
                             gray_layout.setVisibility(View.GONE);
                             add_aqares_and_order_and_estate.setVisibility(View.GONE);
-
-//                            alertDialog.dismiss();
                         }
-                    });
-                    rent.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (Settings.checkLogin()) {
+//                            alertDialog.dismiss();
+                    }
+                });
+                rent.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (Settings.checkLogin()) {
 //
 //
-                                if (Hawk.contains("rent_layout")) {
+                            if (Hawk.contains("rent_layout")) {
 
-                                    Intent intent = new Intent(MainAqarzActivity.this, RentActivity.class);
-                                    intent.putExtra("id", "");
-                                    startActivity(intent);
-                                } else {
-                                    Hawk.put("rent_layout", "rent_layout");
-                                    Intent intent = new Intent(MainAqarzActivity.this, RentShowActivity.class);
-                                    intent.putExtra("id", "");
-                                    startActivity(intent);
-                                }
-
+                                Intent intent = new Intent(MainAqarzActivity.this, RentActivity.class);
+                                intent.putExtra("id", "");
+                                startActivity(intent);
                             } else {
-                                startActivity(new Intent(MainAqarzActivity.this, check_login.class));
+                                Hawk.put("rent_layout", "rent_layout");
+                                Intent intent = new Intent(MainAqarzActivity.this, RentShowActivity.class);
+                                intent.putExtra("id", "");
+                                startActivity(intent);
                             }
                             gray_layout.setVisibility(View.GONE);
                             add_aqares_and_order_and_estate.setVisibility(View.GONE);
 
+                        } else {
+                            startActivity(new Intent(MainAqarzActivity.this, check_login.class));
                         }
-                    });
 
-                }
+                    }
+                });
 
 
             }
@@ -438,4 +478,21 @@ public class MainAqarzActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    protected void onResume() {
+        if (!Settings.checkLogin()) {
+
+            text_2.setText(getResources().getString(R.string.MyOrder));
+        } else {
+            if (Settings.CheckIsAccountAqarzMan()) {
+                text_2.setText(getResources().getString(R.string.orders));
+
+            } else {
+                text_2.setText(getResources().getString(R.string.MyOrder));
+
+            }
+        }
+        super.onResume();
+    }
 }

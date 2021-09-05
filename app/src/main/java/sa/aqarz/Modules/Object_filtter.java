@@ -13,6 +13,7 @@ public class Object_filtter {
     String less_space = "";
     String max_space = "";
     String estate_pay_type = "";
+    String id_state = "";
 
     int number_Lounges = 0;
     int number_room = 0;
@@ -62,6 +63,14 @@ public class Object_filtter {
 
     public String getDate() {
         return date;
+    }
+
+    public String getId_state() {
+        return id_state;
+    }
+
+    public void setId_state(String id_state) {
+        this.id_state = id_state;
     }
 
     public int getNumber_Bathrooms() {

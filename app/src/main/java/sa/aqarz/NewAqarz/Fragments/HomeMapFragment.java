@@ -467,6 +467,14 @@ public class HomeMapFragment extends Fragment {
     }
 
     public void set_map_marker() {
+
+        if(Hawk.contains("region_id_postion")){
+            MainAqarzActivity.object_filtter.setId_state(region_id_postion);
+
+        }
+
+
+
         if (Hawk.contains("LastPostionLat")) {
 
 
@@ -735,6 +743,10 @@ public class HomeMapFragment extends Fragment {
                         String[] separated = marker.getTag().toString().split("/");
                         String number = separated[1]; // this will contain " they taste good"
                         region_id_postion = number;
+
+                        MainAqarzActivity.object_filtter.setId_state(region_id_postion);
+
+
                         Hawk.put("region_id_postion", region_id_postion + "");
 
                         lat = "" + regionModules_list.get(Integer.valueOf(region_id_postion)).getCenter().getCoordinates().get(1);
