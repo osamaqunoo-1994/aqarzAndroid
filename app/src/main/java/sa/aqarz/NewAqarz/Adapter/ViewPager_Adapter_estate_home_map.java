@@ -41,6 +41,7 @@ import java.util.Locale;
 
 import sa.aqarz.Activity.ChatRoomActivity;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
+import sa.aqarz.Activity.DetailsAqarzManActivity;
 import sa.aqarz.Activity.DetailsNewAqarezActivity;
 import sa.aqarz.Activity.ReportAqarezActivity;
 import sa.aqarz.Activity.check_login;
@@ -53,6 +54,7 @@ import sa.aqarz.Dialog.BottomSheetDialogFragment_Rate;
 import sa.aqarz.Modules.ComfortModules;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.imagemodules;
+import sa.aqarz.NewAqarz.DetaislAqarzActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
@@ -232,7 +234,8 @@ public class ViewPager_Adapter_estate_home_map extends PagerAdapter {
 
 //                RequestOrderActivity.set_fragment(position);
 
-                Intent intent = new Intent(context, DetailsActivity_aqarz.class);
+//                Intent intent = new Intent(context, DetailsActivity_aqarz.class);
+                Intent intent = new Intent(context, DetaislAqarzActivity.class);
                 intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
                 context.startActivity(intent);
 
@@ -254,7 +257,7 @@ public class ViewPager_Adapter_estate_home_map extends PagerAdapter {
 
 //                RequestOrderActivity.set_fragment(position);
 
-                Intent intent = new Intent(context, DetailsActivity_aqarz.class);
+                Intent intent = new Intent(context, DetaislAqarzActivity.class);
                 intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
                 context.startActivity(intent);
 

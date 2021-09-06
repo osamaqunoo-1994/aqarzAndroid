@@ -210,6 +210,8 @@
     <string name="Boards">المجالس</string>
     <string name="Kitchens">مطبخ</string>
     <string name="Dining_rooms">غرف الطعام</string>
+    <string name="whyx">الغرض</string>
+    <string name="year">سنة</string>
 
 
     <string name="deluxe">فاخر</string>
@@ -1111,5 +1113,10 @@
     <string name="title6">تفاصيل العقار</string>
     <string name="title7">اكمل تفاصيل العقار</string>
     <string name="Approval_request">اعتماد الطلب</string>
+    <string name="rate_details">تقييم</string>
+    <string name="whatsup">واتساب</string>
+    <string name="action_settings">الاعدادات</string>
+    <string name="Report_the_property">الابلاغ عن العقار</string>
+    <string name="today">Today</string>
 
 </resources>

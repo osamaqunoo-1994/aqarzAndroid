@@ -36,8 +36,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".NewAqarz.DetaislAqarzActivity"
+            android:label="@string/title_activity_detaisl_aqarz"
+            android:theme="@style/AppTheme.NoActionBar1"></activity>
+        <activity
             android:name=".NewAqarz.MyOrderRequstActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NewAqarz.AqqAqarz.AddAqarzStepsActivity"
             android:theme="@style/AppTheme.NoActionBar" />

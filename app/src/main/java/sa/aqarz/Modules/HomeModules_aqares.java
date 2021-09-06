@@ -38,6 +38,9 @@ public class HomeModules_aqares {
     @SerializedName("street_name")
     @Expose
     private String street_name;
+    @SerializedName("estate_use_type")
+    @Expose
+    private String estate_use_type;
     @SerializedName("advertiser_side")
     @Expose
     private String advertiser_side;
@@ -374,6 +377,10 @@ public class HomeModules_aqares {
 
     public void setTotalArea(String totalArea) {
         this.totalArea = totalArea;
+    }
+
+    public String getEstate_use_type() {
+        return estate_use_type;
     }
 
     public Integer getEstateAge() {
