@@ -65,6 +65,9 @@
     <string name="Favorites">المفضلة</string>
     <string name="Done">تم</string>
 
+    <string name="title_1_login">أهلا وسهلا بك في <font color="#5840BB"> تطبيق عقارز </font></string>
+    <string name="title_2_login">أدخل رقم الهاتف لتسجيل الدخول أو إنشاء حساب جديد</string>
+    <string name="title_3_login">أدخل كلمة المرور</string>
 
     <string name="fillallfileds">الرجاء تعبئه كافة الحقول</string>
 

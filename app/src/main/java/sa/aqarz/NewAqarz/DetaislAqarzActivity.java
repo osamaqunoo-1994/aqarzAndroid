@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +27,7 @@ import com.willy.ratingbar.ScaleRatingBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -120,7 +123,6 @@ public class DetaislAqarzActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detaisl_aqarz);
 
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
         activity = this;
@@ -142,6 +144,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                     toolbar.setTitleTextColor(getResources().getColor(R.color.black));
 
                 } else {
+
 
                     System.out.println("&&&&&&&&&&&&&&&&&&&&&&");
 

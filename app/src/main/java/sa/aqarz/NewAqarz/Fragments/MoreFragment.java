@@ -30,6 +30,7 @@ import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.Auth.NewSiginUpActivity;
 import sa.aqarz.Activity.ContactUsActivity;
 import sa.aqarz.Activity.Employee.DetailsEmployeeActivity;
+import sa.aqarz.Activity.FavoriteActivity;
 import sa.aqarz.Activity.MyOrderActivity;
 import sa.aqarz.Activity.SettingsActivity;
 import sa.aqarz.Activity.TermsActivity;
@@ -73,6 +74,7 @@ public class MoreFragment extends Fragment {
     LinearLayout my_order;
     LinearLayout offer;
     LinearLayout myAccount;
+    LinearLayout favorit;
 
 
     TextView name;
@@ -140,6 +142,7 @@ public class MoreFragment extends Fragment {
         my_order = view.findViewById(R.id.my_order);
         offer = view.findViewById(R.id.offer);
         myAccount = view.findViewById(R.id.myAccount);
+        favorit = view.findViewById(R.id.favorit);
 
         name = view.findViewById(R.id.name);
         rate = view.findViewById(R.id.rate);
@@ -190,6 +193,18 @@ public class MoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MyOffersActivity.class);
+//              intent.putExtra("from", "splash");
+                intent.putExtra("type", "all");
+                intent.putExtra("id_user", "--");
+
+                startActivity(intent);
+
+            }
+        });
+        favorit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), FavoriteActivity.class);
 //              intent.putExtra("from", "splash");
                 intent.putExtra("type", "all");
                 intent.putExtra("id_user", "--");
