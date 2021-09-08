@@ -107,6 +107,13 @@ public class ProfileDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_details);
+
+
+        init();
+    }
+
+
+    public void init() {
         phone = findViewById(R.id.phone);
         memberships_i = findViewById(R.id.memberships_i);
         service_i = findViewById(R.id.service_i);
@@ -152,18 +159,6 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         watiing = findViewById(R.id.watiing);
 
 
-        member_list.setLayoutManager(new GridLayoutManager(this, 3));
-        memssr_list.setLayoutManager(new GridLayoutManager(this, 3));
-        Courses.setLayoutManager(new GridLayoutManager(this, 3));
-        list_service.setLayoutManager(new GridLayoutManager(this, 3));
-
-
-        if (Settings.GetUser().getIs_employee().equals("0")) {
-            all_employee.setVisibility(View.VISIBLE);
-        } else {
-            all_employee.setVisibility(View.GONE);
-
-        }
 //
 //        FlowLayoutManager flowLayoutManager = new FlowLayoutManager();
 //        flowLayoutManager.setAutoMeasureEnabled(true);
@@ -187,7 +182,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 //        list_service.setLayoutManager(flowLayoutservice);
 
 
-        WebService.loading(ProfileDetailsActivity.this, true);
+//        WebService.loading(ProfileDetailsActivity.this, true);
 
 
 //        if (Hawk.contains("lang")) {
@@ -204,132 +199,8 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 //        getBaseContext().getResources().updateConfiguration(config,
 //                getBaseContext().getResources().getDisplayMetrics());
 //        }
-        init_volley();
 
-
-        try {
-            id = getIntent().getStringExtra("id");
-            VolleyService mVolleyService = new VolleyService(mResultCallback, ProfileDetailsActivity.this);
-
-//            mVolleyService.getDataVolley("user", WebService.user + id + "");
-            mVolleyService.getDataVolley("user", WebService.my_profile + "");
-
-        } catch (Exception e) {
-
-        }
-        clints.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProfileDetailsActivity.this, DetailsEmployeeActivity.class);
-                startActivity(intent);
-            }
-        });
-        editProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (Settings.CheckIsAccountAqarzMan()) {
-                    Intent intent = new Intent(ProfileDetailsActivity.this, EditProfileActivity.class);
-//              intent.putExtra("from", "splash");
-                    startActivity(intent);
-//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-                } else {
-                    Intent intent = new Intent(ProfileDetailsActivity.this, MyProfileInformationActivity.class);
-//              intent.putExtra("from", "splash");
-                    startActivity(intent);
-//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-                }
-
-            }
-        });
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        myintrest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Intent intent = new Intent(ProfileDetailsActivity.this, MyInterestsActivity.class);
-                startActivity(intent);
-
-
-            }
-        });
-
-
-
-
-        memberships.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (member_list.getVisibility() == View.VISIBLE) {
-                    member_list.setVisibility(View.GONE);
-                    memberships_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_x));
-                } else {
-                    member_list.setVisibility(View.VISIBLE);
-                    memberships_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up_x));
-
-                }
-
-            }
-        });
-
-        service.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (memssr_list.getVisibility() == View.VISIBLE) {
-                    memssr_list.setVisibility(View.GONE);
-                    service_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_x));
-
-                } else {
-                    memssr_list.setVisibility(View.VISIBLE);
-                    service_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up_x));
-
-                }
-            }
-        });
-
-        experience.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (list_service.getVisibility() == View.VISIBLE) {
-                    list_service.setVisibility(View.GONE);
-                    experience_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_x));
-
-                } else {
-                    list_service.setVisibility(View.VISIBLE);
-                    experience_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up_x));
-
-                }
-            }
-        });
-
-        Coursesxx.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Courses.getVisibility() == View.VISIBLE) {
-                    Courses.setVisibility(View.GONE);
-                    Coursesxx_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_x));
-
-                } else {
-                    Courses.setVisibility(View.VISIBLE);
-                    Coursesxx_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up_x));
-
-                }
-            }
-        });
-
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProfileDetailsActivity.this, SettingsActivity.class);
-                startActivity(intent);
-            }
-        });
+        get_profile();
 
 
     }
@@ -370,6 +241,20 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 
                                     Gson gson = new Gson();
                                     userModules = gson.fromJson(mJson, User.class);
+
+
+                                    member_list.setLayoutManager(new GridLayoutManager(ProfileDetailsActivity.this, 3));
+                                    memssr_list.setLayoutManager(new GridLayoutManager(ProfileDetailsActivity.this, 3));
+                                    Courses.setLayoutManager(new GridLayoutManager(ProfileDetailsActivity.this, 3));
+                                    list_service.setLayoutManager(new GridLayoutManager(ProfileDetailsActivity.this, 3));
+
+
+                                    if (Settings.GetUser().getIs_employee().equals("0")) {
+                                        all_employee.setVisibility(View.VISIBLE);
+                                    } else {
+                                        all_employee.setVisibility(View.GONE);
+
+                                    }
 
 
                                     System.out.println("userModulesuserModules" + userModules.getService_name().size());
@@ -484,7 +369,117 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                                         }
 
                                     }
+                                    clints.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(ProfileDetailsActivity.this, DetailsEmployeeActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                    editProfile.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
 
+                                            if (Settings.CheckIsAccountAqarzMan()) {
+                                                Intent intent = new Intent(ProfileDetailsActivity.this, EditProfileActivity.class);
+//              intent.putExtra("from", "splash");
+                                                startActivity(intent);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                            } else {
+                                                Intent intent = new Intent(ProfileDetailsActivity.this, MyProfileInformationActivity.class);
+//              intent.putExtra("from", "splash");
+                                                startActivity(intent);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                            }
+
+                                        }
+                                    });
+                                    back.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            finish();
+                                        }
+                                    });
+                                    myintrest.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+
+
+                                            Intent intent = new Intent(ProfileDetailsActivity.this, MyInterestsActivity.class);
+                                            startActivity(intent);
+
+
+                                        }
+                                    });
+
+
+                                    memberships.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            if (member_list.getVisibility() == View.VISIBLE) {
+                                                member_list.setVisibility(View.GONE);
+                                                memberships_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_x));
+                                            } else {
+                                                member_list.setVisibility(View.VISIBLE);
+                                                memberships_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up_x));
+
+                                            }
+
+                                        }
+                                    });
+
+                                    service.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            if (memssr_list.getVisibility() == View.VISIBLE) {
+                                                memssr_list.setVisibility(View.GONE);
+                                                service_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_x));
+
+                                            } else {
+                                                memssr_list.setVisibility(View.VISIBLE);
+                                                service_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up_x));
+
+                                            }
+                                        }
+                                    });
+
+                                    experience.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            if (list_service.getVisibility() == View.VISIBLE) {
+                                                list_service.setVisibility(View.GONE);
+                                                experience_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_x));
+
+                                            } else {
+                                                list_service.setVisibility(View.VISIBLE);
+                                                experience_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up_x));
+
+                                            }
+                                        }
+                                    });
+
+                                    Coursesxx.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            if (Courses.getVisibility() == View.VISIBLE) {
+                                                Courses.setVisibility(View.GONE);
+                                                Coursesxx_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_x));
+
+                                            } else {
+                                                Courses.setVisibility(View.VISIBLE);
+                                                Coursesxx_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up_x));
+
+                                            }
+                                        }
+                                    });
+
+                                    settings.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(ProfileDetailsActivity.this, SettingsActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    });
 //                                mobile_icon.setOnClickListener(new View.OnClickListener() {
 //                                    @Override
 //                                    public void onClick(View v) {
@@ -596,13 +591,25 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                                         }
                                     });
                                     try {
-                                        if (!userModules.getName().equals("null")) {
-                                            name.setText(userModules.getName());
+                                        if (Settings.GetUser().getName() != null) {
+                                            if (Settings.GetUser().getName().equals("null")) {
+                                                name.setText(getResources().getString(R.string.NewMember) + "");
 
+                                            } else {
+                                                name.setText(Settings.GetUser().getName() + "");
+
+                                            }
                                         } else {
-                                            name.setText("-------");
+                                            name.setText(getResources().getString(R.string.NewMember) + "");
 
                                         }
+//                                        if (!userModules.getName().equals("null")) {
+//                                            name.setText(userModules.getName());
+//
+//                                        } else {
+//                                            name.setText("-------");
+//
+//                                        }
                                         if (!userModules.getUser_name().equals("null")) {
                                             link.setText("@" + userModules.getUser_name());
 
@@ -727,6 +734,436 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 
     }
 
+    public void get_profile() {
+        userModules = Settings.GetUser();
+
+
+        member_list.setLayoutManager(new GridLayoutManager(ProfileDetailsActivity.this, 3));
+        memssr_list.setLayoutManager(new GridLayoutManager(ProfileDetailsActivity.this, 3));
+        Courses.setLayoutManager(new GridLayoutManager(ProfileDetailsActivity.this, 3));
+        list_service.setLayoutManager(new GridLayoutManager(ProfileDetailsActivity.this, 3));
+
+
+        if (Settings.GetUser().getIs_employee().equals("0")) {
+            all_employee.setVisibility(View.VISIBLE);
+        } else {
+            all_employee.setVisibility(View.GONE);
+
+        }
+
+
+        System.out.println("userModulesuserModules" + userModules.getService_name().size());
+
+        myoffer_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileDetailsActivity.this, MyOffersActivity.class);
+//              intent.putExtra("from", "splash");
+                intent.putExtra("id_user", "--");
+
+                startActivity(intent);
+//                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
+
+        v1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileDetailsActivity.this, AllOrder_filtterActivity.class);
+//              intent.putExtra("from", "splash");
+                intent.putExtra("type", "watiing");
+
+                startActivity(intent);
+//                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
+
+        v2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileDetailsActivity.this, AllOrder_filtterActivity.class);
+//              intent.putExtra("from", "splash");
+                intent.putExtra("type", "sending_code");////preview
+
+                startActivity(intent);
+//                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
+
+        v3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileDetailsActivity.this, AllOrder_filtterActivity.class);
+//              intent.putExtra("from", "splash");
+                intent.putExtra("type", "accetpt");
+
+                startActivity(intent);
+//                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
+        all_offer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileDetailsActivity.this, AllOrder_filtterActivity.class);
+//              intent.putExtra("from", "splash");
+                intent.putExtra("type", "all");
+
+                startActivity(intent);
+//                                            overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
+
+        RecyclerVie_member_service service_l = new RecyclerVie_member_service(ProfileDetailsActivity.this, userModules.getMember_name());
+
+
+        member_list.setAdapter(service_l);
+
+        RecyclerVie_member_service_m member_l = new RecyclerVie_member_service_m(ProfileDetailsActivity.this, userModules.getService_name());
+
+
+        memssr_list.setAdapter(member_l);
+
+
+        Courses.setAdapter(new RecyclerView_Course(ProfileDetailsActivity.this, userModules.getCourse_name()));
+
+
+        list_service.setAdapter(new RecyclerView_experince(ProfileDetailsActivity.this, userModules.getExperience_name()));
+
+        System.out.println("^%^%^%" + userModules.getService_name().size());
+        System.out.println("getCourse_name" + userModules.getCourse_name().size());
+        System.out.println("getExperience_name" + userModules.getExperience_name().size());
+
+        if (userModules.getBio() != null) {
+            bio.setText(userModules.getBio() + "");
+        }
+        Glide.with(ProfileDetailsActivity.this).load(userModules.getLogo() + "").error(getResources().getDrawable(R.drawable.ic_user_un)).diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true).into(profile);
+
+
+        if (userModules.getCount_call() != null) {
+            if (!userModules.getCount_call().equals("null")) {
+                phone.setText(userModules.getCount_call() + " " + getResources().getString(R.string.call));
+
+            }
+
+        }
+        view.setText(userModules.getCount_visit() + " " + getResources().getString(R.string.view_co));
+
+        Clints.setText(userModules.getCount_emp() + "");
+        request_nu.setText(userModules.getCount_estate() + "");
+        MyOffer.setText(userModules.getCount_fund_offer() + "");
+
+        accetpt.setText(userModules.getCount_accept_fund_offer() + "");
+        preview.setText(userModules.getCount_preview_fund_offer() + "");
+
+
+        if (userModules.getCount_fund_pending_offer() != null) {
+            if (!userModules.getCount_fund_pending_offer().equals("null")) {
+                watiing.setText(userModules.getCount_fund_pending_offer() + "");
+
+            }
+
+        }
+        clints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileDetailsActivity.this, DetailsEmployeeActivity.class);
+                startActivity(intent);
+            }
+        });
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (Settings.CheckIsAccountAqarzMan()) {
+                    Intent intent = new Intent(ProfileDetailsActivity.this, EditProfileActivity.class);
+//              intent.putExtra("from", "splash");
+                    startActivity(intent);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                } else {
+                    Intent intent = new Intent(ProfileDetailsActivity.this, MyProfileInformationActivity.class);
+//              intent.putExtra("from", "splash");
+                    startActivity(intent);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                }
+
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        myintrest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(ProfileDetailsActivity.this, MyInterestsActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
+
+
+        memberships.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (member_list.getVisibility() == View.VISIBLE) {
+                    member_list.setVisibility(View.GONE);
+                    memberships_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_x));
+                } else {
+                    member_list.setVisibility(View.VISIBLE);
+                    memberships_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up_x));
+
+                }
+
+            }
+        });
+
+        service.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (memssr_list.getVisibility() == View.VISIBLE) {
+                    memssr_list.setVisibility(View.GONE);
+                    service_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_x));
+
+                } else {
+                    memssr_list.setVisibility(View.VISIBLE);
+                    service_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up_x));
+
+                }
+            }
+        });
+
+        experience.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (list_service.getVisibility() == View.VISIBLE) {
+                    list_service.setVisibility(View.GONE);
+                    experience_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_x));
+
+                } else {
+                    list_service.setVisibility(View.VISIBLE);
+                    experience_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up_x));
+
+                }
+            }
+        });
+
+        Coursesxx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Courses.getVisibility() == View.VISIBLE) {
+                    Courses.setVisibility(View.GONE);
+                    Coursesxx_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down_x));
+
+                } else {
+                    Courses.setVisibility(View.VISIBLE);
+                    Coursesxx_i.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up_x));
+
+                }
+            }
+        });
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileDetailsActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+//                                mobile_icon.setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View v) {
+//                                        try {
+//                                            String phone = "0" + userModules.getMobile();
+//                                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+//                                            startActivity(intent);
+//                                        } catch (Exception e) {
+//                                            e.printStackTrace();
+//                                        }
+//
+//                                    }
+//                                });
+
+//                                    chat.setOnClickListener(new View.OnClickListener() {
+//                                        @Override
+//                                        public void onClick(View v) {
+//                                            Intent intent = new Intent(OtherProfileActivity.this, ChatRoomActivity.class);
+//                                            intent.putExtra("user_id", userModules.getId() + "");
+//                                            intent.putExtra("parent_id", "-1");
+//                                            intent.putExtra("nameUser", userModules.getName() + "");
+//                                            intent.putExtra("imageUser", userModules.getLogo() + "");
+//                                            startActivity(intent);
+//                                        }
+//                                    });
+//                                    location.setOnClickListener(new View.OnClickListener() {
+//                                        @Override
+//                                        public void onClick(View v) {
+//
+//
+//                                            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+//                                                    Uri.parse("http://maps.google.com/maps?saddr=" + userModules.getLat() + "," + userModules.getLan() + "&daddr=" + Settings.GetUser().getLat() + "," + Settings.GetUser().getLan()));
+//                                            startActivity(intent);
+//                                        }
+//                                    });
+
+//                                    call.setOnClickListener(new View.OnClickListener() {
+//                                        @Override
+//                                        public void onClick(View v) {
+//
+//                                            try {
+//                                                String phone = "0" + userModules.getMobile();
+//                                                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+//                                                startActivity(intent);
+//
+//
+//                                                VolleyService mVolleyService = new VolleyService(mResultCallback, OtherProfileActivity.this);
+//
+//                                                mVolleyService.getDataVolley("count_call", WebService.count_call + "/" + id + "/call");
+//
+//
+//                                            } catch (Exception e) {
+//                                                e.printStackTrace();
+//                                            }
+//
+//                                        }
+//                                    });
+//                                    mobile.setOnClickListener(new View.OnClickListener() {
+//                                        @Override
+//                                        public void onClick(View v) {
+//
+//                                            try {
+//                                                String phone = "0" + userModules.getMobile();
+//                                                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+//                                                startActivity(intent);
+//                                            } catch (Exception e) {
+//                                                e.printStackTrace();
+//                                            }
+//
+//                                        }
+//                                    });
+//                                mobile_icon.setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View v) {
+//                                        try {
+//                                            String phone = "0" + userModules.getMobile();
+//                                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+//                                            startActivity(intent);
+//                                        } catch (Exception e) {
+//                                            e.printStackTrace();
+//                                        }
+//
+//                                    }
+//                                });
+        try {
+            if (userModules.getIs_certified() != null) {
+                if (userModules.getIs_certified().equals("1")) {
+
+                    cirtificad.setVisibility(View.VISIBLE);
+
+                } else {
+                    cirtificad.setVisibility(View.GONE);
+                }
+            } else {
+                cirtificad.setVisibility(View.GONE);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        qr_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                BottomSheetDialogFragment_QR bottomSheetDialogFragment_qr = new BottomSheetDialogFragment_QR(userModules.getLink() + "", userModules.getLogo() + "");
+                bottomSheetDialogFragment_qr.show(getSupportFragmentManager(), "");
+
+            }
+        });
+        try {
+            if (Settings.GetUser().getName() != null) {
+                if (Settings.GetUser().getName().equals("null")) {
+                    name.setText(getResources().getString(R.string.NewMember) + "");
+
+                } else {
+                    name.setText(Settings.GetUser().getName() + "");
+
+                }
+            } else {
+                name.setText(getResources().getString(R.string.NewMember) + "");
+
+            }
+//                                        if (!userModules.getName().equals("null")) {
+//                                            name.setText(userModules.getName());
+//
+//                                        } else {
+//                                            name.setText("-------");
+//
+//                                        }
+            if (!userModules.getUser_name().equals("null")) {
+                link.setText("@" + userModules.getUser_name());
+
+            } else {
+                link.setText("");
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+
+
+            if (userModules.getIs_pay() != null) {
+                if (userModules.getIs_pay().equals("1")) {
+
+                    is_real_state.setVisibility(View.GONE);
+
+                } else {
+                    is_real_state.setVisibility(View.GONE);
+                }
+            } else {
+                is_real_state.setVisibility(View.GONE);
+
+            }
+
+            if (userModules.getMobile() != null) {
+                mobile.setText("0" + userModules.getMobile() + "");
+
+            }
+
+//                                        visit_nu.setText(userModules.getCount_visit() + "");
+
+//                                        if (!userModules.getLogo().equals("null")) {
+//                                            Glide.with(context).load(userModules.getLogo()).into(profile);
+//
+//                                        }//591694624
+
+
+        } catch (Exception e) {
+
+        }
+
+        init_volley();
+
+
+        try {
+            id = getIntent().getStringExtra("id");
+            VolleyService mVolleyService = new VolleyService(mResultCallback, ProfileDetailsActivity.this);
+
+//            mVolleyService.getDataVolley("user", WebService.user + id + "");
+            mVolleyService.getDataVolley("user", WebService.my_profile + "");
+
+        } catch (Exception e) {
+
+        }
+
+
+    }
 
     @Override
     protected void onResume() {

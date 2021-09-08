@@ -71,9 +71,10 @@ public class ConfirmationActivity extends AppCompatActivity {
         try {
 
             mobilex = getIntent().getStringExtra("mobile");
+            mobile.setText(mobilex + "");
+
             codex = getIntent().getStringExtra("code");
 
-            mobile.setText(mobilex + "");
         } catch (Exception e) {
 
         }
@@ -285,18 +286,18 @@ public class ConfirmationActivity extends AppCompatActivity {
 
 
                     System.out.println(code2 + "++++++" + codex);
-                    if (code2.equals(codex)) {
+//                    if (code2.equals(codex)) {
 
-                        Intent intent = new Intent(ConfirmationActivity.this, NewConfirmationActivity.class);
+                        Intent intent = new Intent(ConfirmationActivity.this, ChoseTypeActivity.class);
                         intent.putExtra("mobile", mobilex);
                         intent.putExtra("code", codex);
                         startActivity(intent);
 //                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                         finish();
-                    } else {
-                        WebService.Make_Toast_color(ConfirmationActivity.this, getResources().getString(R.string.The_code_is_wrong), "error");
-
-                    }
+//                    } else {
+//                        WebService.Make_Toast_color(ConfirmationActivity.this, getResources().getString(R.string.The_code_is_wrong), "error");
+//
+//                    }
                 }
 
 

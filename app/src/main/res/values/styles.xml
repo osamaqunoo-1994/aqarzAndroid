@@ -118,7 +118,7 @@
 
     <style name="AppTheme.PrimaryButton" parent="Widget.AppCompat.Button">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/move_button</item>
+        <item name="android:background">@drawable/button_login1</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="enforceMaterialTheme">true</item>
         <item name="enforceTextAppearance">true</item>

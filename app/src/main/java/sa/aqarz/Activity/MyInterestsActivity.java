@@ -104,11 +104,9 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
 
     private static GoogleMap mMap;
     static IResult mResultCallback;
-    static SupportMapFragment mapFragment;
     private FusedLocationProviderClient fusedLocationClient;
     private List<AlLNebModules.neb> all_neb = new ArrayList<>();
     private final List<AlLNebModules.neb> all_nebSelected = new ArrayList<>();
-    private ClusterManager<MyItem> clusterManager;
     RecyclerView all_city;
     LinearLayout open_city_list;
     LinearLayout list_liner_city;
@@ -128,6 +126,7 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
 
     Button send_to_server;
     ImageView back;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -241,6 +240,7 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+
 //        if (Hawk.contains("lang")) {
 //            Hawk.put("lang", "ar");
 //
@@ -290,15 +290,36 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(MyInterestsActivity.this, LinearLayoutManager.VERTICAL, false);
         all_city.setLayoutManager(layoutManager1);
-        init_volley();
+//        init_volley();
+//
+//        try {
+//            VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
+////            mVolleyService.getDataVolley("user", WebService.user + id + "");
+//            mVolleyService.getDataVolley("title_global_cities", WebService.title_global_cities + "");
+//        } catch (Exception e) {
+//
+//        }
+
 
         try {
-            VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
+            String getCityId = getIntent().getStringExtra("getCityId");
+
+            init_volley();
+            WebService.loading(MyInterestsActivity.this, true);
+
+            try {
+                VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
 //            mVolleyService.getDataVolley("user", WebService.user + id + "");
-            mVolleyService.getDataVolley("title_global_cities", WebService.title_global_cities + "");
+                mVolleyService.getDataVolley("title_gloable", WebService.title_gloable + getCityId + "/neb");
+
+            } catch (Exception e) {
+
+            }
         } catch (Exception e) {
 
         }
+
+
         allneb.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView_select_neb = new RecyclerView_select_neb(MyInterestsActivity.this, all_nebSelected);
         recyclerView_select_neb.addItemClickListener(new RecyclerView_select_neb.ItemClickListener() {

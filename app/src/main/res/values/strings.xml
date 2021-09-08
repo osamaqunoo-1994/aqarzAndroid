@@ -28,7 +28,7 @@
     <string name="hint_email_address">Enter your email address</string>
     <string name="phone_number">Phone Number</string>
 
-    <string name="forgot_your_password">Do you Forgot your password?</string>
+    <string name="forgot_your_password">Forgot password</string>
     <string name="forgot_password_desc">Enter your registered email or mobile to send  password </string>
     <string name="send_code">Send Verification Code</string>
     <string name="new_account">New Account</string>
@@ -1009,13 +1009,6 @@ Two working days to complete your order</string>
     <string name="title_3_login">Add Password</string>
 
 
-
-
-
-
-
-
-
     <string name="Stret_add">Street</string>
     <string name="land_number_add">land number</string>
     <string name="number_units_add">number of units</string>
@@ -1066,8 +1059,8 @@ Two working days to complete your order</string>
 
     <string name="select_area">Select Area before city</string>
     <string name="select_city">Select City before Neighborhood</string>
-    <string name="fac_">مفضلتي</string>
-    <string name="fac_2">مناطقي المفضلة</string>
+    <string name="fac_">Favorites</string>
+    <string name="fac_2">My favorite areas</string>
 
     <string name="seach_hint">city/nib</string>
     <string name="searchabout">Search about</string>
@@ -1200,5 +1193,13 @@ Two working days to complete your order</string>
 
     <string name="today">Today</string>
     <string name="Map">Map</string>
+    <string name="Areyou">Are you ?</string>
+    <string name="Aqarzman_">Aqarz Man</string>
+    <string name="user">User</string>
+    <string name="select_type">Select Type ?</string>
+    <string name="NewMember">New User</string>
+    <string name="AddNewCity">أضف مدينة جديدة</string>
+    <string name="select_cityx">Select City</string>
+
 
 </resources>

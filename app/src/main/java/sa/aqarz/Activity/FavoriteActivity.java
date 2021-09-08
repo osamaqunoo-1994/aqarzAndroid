@@ -1,11 +1,14 @@
 package sa.aqarz.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
@@ -28,6 +32,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Activity.Auth.ChoseTypeActivity;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat_favorit;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat_new;
@@ -50,6 +55,7 @@ import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.Modules.fund_favorite;
 import sa.aqarz.Modules.mod_favorite;
 import sa.aqarz.Modules.of_favorite;
+import sa.aqarz.NewAqarz.SelectFavCityActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
@@ -77,6 +83,14 @@ public class FavoriteActivity extends AppCompatActivity {
     ImageView back;
 
     LinearLayout nodata_vis;
+    LinearLayout layout_ffavorit;
+
+    TextView my_fav;
+    TextView araa_fav;
+
+    RelativeLayout fav_rel;
+    LinearLayout area_lay;
+    CardView add_interst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,9 +100,16 @@ public class FavoriteActivity extends AppCompatActivity {
         Real_Estate_order_layout = findViewById(R.id.Real_Estate_order_layout);
         Shopping_request_layout = findViewById(R.id.Shopping_request_layout);
         my_order_layout = findViewById(R.id.my_order_layout);
+        add_interst = findViewById(R.id.add_interst);
+
 
         back = findViewById(R.id.back);
         nodata_vis = findViewById(R.id.nodata_vis);
+        araa_fav = findViewById(R.id.araa_fav);
+        my_fav = findViewById(R.id.my_fav);
+        layout_ffavorit = findViewById(R.id.layout_ffavorit);
+        fav_rel = findViewById(R.id.fav_rel);
+        area_lay = findViewById(R.id.area_lay);
 
 
         my_order_text = findViewById(R.id.my_order_text);
@@ -104,6 +125,37 @@ public class FavoriteActivity extends AppCompatActivity {
 
         }
 
+        my_fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                my_fav.setBackground(getResources().getDrawable(R.drawable.button_login1));
+                araa_fav.setBackground(getResources().getDrawable(R.drawable.button_loginc));
+
+                my_fav.setTextColor(getResources().getColor(R.color.white));
+                araa_fav.setTextColor(getResources().getColor(R.color.textColor));
+
+                layout_ffavorit.setVisibility(View.VISIBLE);
+                fav_rel.setVisibility(View.VISIBLE);
+                area_lay.setVisibility(View.GONE);
+
+            }
+        });
+        araa_fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                my_fav.setBackground(getResources().getDrawable(R.drawable.button_loginc));
+                araa_fav.setBackground(getResources().getDrawable(R.drawable.button_login1));
+
+                my_fav.setTextColor(getResources().getColor(R.color.textColor));
+                araa_fav.setTextColor(getResources().getColor(R.color.white));
+
+                layout_ffavorit.setVisibility(View.GONE);
+                fav_rel.setVisibility(View.GONE);
+                area_lay.setVisibility(View.VISIBLE);
+
+            }
+        });
+
 
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(FavoriteActivity.this, LinearLayoutManager.VERTICAL, false);
@@ -113,6 +165,12 @@ public class FavoriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        add_interst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FavoriteActivity.this, SelectFavCityActivity.class));
             }
         });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////

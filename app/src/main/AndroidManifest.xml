@@ -35,10 +35,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".NewAqarz.MainActivity"></activity>
+        <activity android:name=".NewAqarz.IntrestedActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".NewAqarz.SelectFavCityActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NewAqarz.DetaislAqarzActivity"
             android:label="@string/title_activity_detaisl_aqarz"
-            android:theme="@style/AppTheme.NoActionBar1"></activity>
+            android:theme="@style/AppTheme.NoActionBar1" />
         <activity
             android:name=".NewAqarz.MyOrderRequstActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -313,6 +319,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.Auth.NewConfirmationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.Auth.ChoseTypeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.Auth.LoginActivity"

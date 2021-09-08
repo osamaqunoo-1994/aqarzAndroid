@@ -469,12 +469,72 @@
 
 
                         </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/all_area"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:background="@drawable/back_more_de"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingLeft="15dp"
+
+                            android:paddingRight="15dp"
+                            android:visibility="visible">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/circle_fill_as"
+                                android:padding="8dp"
+                                android:src="@drawable/ic_location_ss"
+                                app:tint="@color/white" />
+
+                            <LinearLayout
+                                android:layout_width="10dp"
+
+                                android:layout_height="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/din_regular"
+                                android:text="@string/fac_2"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp" />
+
+                            <LinearLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:text=""
+                                android:textColor="@color/blue"
+                                android:textSize="@dimen/_11sdp" />
+
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:padding="6dp"
+                                android:src="@drawable/ic_left_arrow" />
+
+
+                        </LinearLayout>
+
                         <LinearLayout
                             android:id="@+id/all_aqarez_man"
 
                             android:layout_width="match_parent"
                             android:layout_height="55dp"
-                            android:layout_marginTop="10dp"
                             android:background="@drawable/back_more_de"
                             android:gravity="center"
                             android:orientation="horizontal"

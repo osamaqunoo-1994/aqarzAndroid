@@ -460,6 +460,11 @@ public class ListAqarzActivity extends AppCompatActivity {
         if (!MainAqarzActivity.object_filtter.getEstate_pay_type().equals("")) {
             estate_pay_type = "&estate_pay_type=" + MainAqarzActivity.object_filtter.getEstate_pay_type();
         }
+        String state_id = "";
+
+        if (!MainAqarzActivity.object_filtter.getId_state().equals("")) {
+            state_id = "&state_id=" + MainAqarzActivity.object_filtter.getId_state();
+        }
 
         String price_to = "";
 
@@ -540,20 +545,20 @@ public class ListAqarzActivity extends AppCompatActivity {
             type_filtter_ = "&estate_type=" + MainAqarzActivity.object_filtter.getType_aqarz();
         }
 
-
-        String fil_by = "&" + "order_by_price=" + order_by_price
-                + "&order_by_area=" + order_by_area
-                + "&order_by_date=" + order_by_date
-                + "&order_by_rate=" + order_by_rate
-                + "&order_by_bathrooms_number=" + order_by_bathrooms_number
-                + "&order_by_rooms_number=" + order_by_rooms_number;
+//
+//        String fil_by = "&" + "order_by_price=" + order_by_price
+//                + "&order_by_area=" + order_by_area
+//                + "&order_by_date=" + order_by_date
+//                + "&order_by_rate=" + order_by_rate
+//                + "&order_by_bathrooms_number=" + order_by_bathrooms_number
+//                + "&order_by_rooms_number=" + order_by_rooms_number;
 
 
         WebService.loading(activity, true);
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + fil_by + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
+        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + state_id + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
 
 //        url_list = WebService.home_estate_custom_list + "?" + type_filtter_;
         mVolleyService.getAsync("home_estate_custom_list_more_1", url_list);

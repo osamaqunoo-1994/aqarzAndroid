@@ -69,6 +69,7 @@ public class WebService {
     public static String provider_code_send = Domain + "provider/code/send";
     public static String rate_estate = Domain + "rate/estate";
     public static String verify = Domain + "verify";
+    public static String verifyNew = Domain + "verifyNew";
     public static String reset_password = Domain + "reset/password";
     public static String upgrade = Domain + "upgrade";
     public static String my_request = Domain + "my/request";

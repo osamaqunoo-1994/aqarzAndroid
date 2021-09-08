@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -56,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText password;
     TextView forget_pass;
     TextView new_account;
+    TextView title_passeord;
     AppCompatButton Login;
 
     IResult mResultCallback;
@@ -64,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
     ImageView back;
     boolean is_show = false;
 
+    CardView pass_layout_card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +93,8 @@ public class LoginActivity extends AppCompatActivity {
         forget_pass = findViewById(R.id.forget_pass);
         pass_checkbox = findViewById(R.id.pass_checkbox);
         back = findViewById(R.id.back);
+        pass_layout_card = findViewById(R.id.pass_layout_card);
+        title_passeord = findViewById(R.id.title_passeord);
 
 
 //
@@ -161,8 +166,8 @@ public class LoginActivity extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (phone_ed.getText().toString().equals("") |
-                        password.getText().toString().equals("")) {
+                if (phone_ed.getText().toString().equals("")
+                ) {
                     WebService.Make_Toast_color(LoginActivity.this, getResources().getString(R.string.fillallfileds) + "", "error");
 
                 } else {
@@ -175,6 +180,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     try {
 
+                        sendObj.put("country_code", "+966");
                         sendObj.put("username", phone_ed.getText().toString());
                         sendObj.put("password", password.getText().toString());
                         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
@@ -245,22 +251,70 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     boolean status = response.getBoolean("status");
                     if (status) {
-                        String data = response.getString("data");
-
-                        Hawk.put("user", data);
-                        JsonParser parser = new JsonParser();
-                        JsonElement mJson = parser.parse(data);
-
-                        Gson gson = new Gson();
-                        User userModules = gson.fromJson(mJson, User.class);
-
-                        Hawk.put("api_token", "token " + userModules.getApi_token() + "");
 
 
-                        String message = response.getString("message");
-                        WebService.Make_Toast_color(LoginActivity.this, message, "success");
-                        finish();
+                        if (password.getText().toString().equals("")) {
 
+                            String data = response.getString("data");
+                            JSONObject jsonObject = new JSONObject(data);
+
+//                            boolean statue = jsonObject.getBoolean("statue");
+                            String code = jsonObject.getString("code");
+
+                            if (code == null) {
+
+                                pass_layout_card.setVisibility(View.VISIBLE);
+                                forget_pass.setVisibility(View.VISIBLE);
+                                title_passeord.setVisibility(View.VISIBLE);
+                                Login.setText(getResources().getString(R.string.login));
+
+                            } else {
+
+                                if (code.equals("null")) {
+
+                                    pass_layout_card.setVisibility(View.VISIBLE);
+                                    forget_pass.setVisibility(View.VISIBLE);
+                                    title_passeord.setVisibility(View.VISIBLE);
+                                    Login.setText(getResources().getString(R.string.login));
+
+
+                                } else {
+
+
+                                    Intent intent = new Intent(LoginActivity.this, ConfirmationActivity.class);
+                                    intent.putExtra("mobile", phone_ed.getText().toString());
+                                    intent.putExtra("code", code);
+//                                intent.putExtra("from", "splash");
+                                    startActivity(intent);
+//                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                    finish();
+
+
+                                }
+
+
+                            }
+
+
+                        } else {
+
+
+                            String data = response.getString("data");
+
+                            Hawk.put("user", data);
+                            JsonParser parser = new JsonParser();
+                            JsonElement mJson = parser.parse(data);
+
+                            Gson gson = new Gson();
+                            User userModules = gson.fromJson(mJson, User.class);
+
+                            Hawk.put("api_token", "token " + userModules.getApi_token() + "");
+
+
+                            String message = response.getString("message");
+                            WebService.Make_Toast_color(LoginActivity.this, message, "success");
+                            finish();
+                        }
                     } else {
                         String message = response.getString("message");
 

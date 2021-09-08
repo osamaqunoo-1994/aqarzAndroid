@@ -39,6 +39,7 @@ import sa.aqarz.Activity.profile.MyOffersActivity;
 import sa.aqarz.Activity.profile.ProfileDetailsActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_restPassword;
 import sa.aqarz.Modules.AllEmployee;
+import sa.aqarz.NewAqarz.IntrestedActivity;
 import sa.aqarz.NewAqarz.MainAqarzActivity;
 import sa.aqarz.NewAqarz.MyOrderRequstActivity;
 import sa.aqarz.R;
@@ -75,6 +76,7 @@ public class MoreFragment extends Fragment {
     LinearLayout offer;
     LinearLayout myAccount;
     LinearLayout favorit;
+    LinearLayout all_area;
 
 
     TextView name;
@@ -143,6 +145,7 @@ public class MoreFragment extends Fragment {
         offer = view.findViewById(R.id.offer);
         myAccount = view.findViewById(R.id.myAccount);
         favorit = view.findViewById(R.id.favorit);
+        all_area = view.findViewById(R.id.all_area);
 
         name = view.findViewById(R.id.name);
         rate = view.findViewById(R.id.rate);
@@ -151,7 +154,21 @@ public class MoreFragment extends Fragment {
 
 
         try {
-            name.setText(Settings.GetUser().getName() + "");
+
+
+            if (Settings.GetUser().getName() != null) {
+                if (Settings.GetUser().getName().equals("null")) {
+                    name.setText(getResources().getString(R.string.NewMember) + "");
+
+                } else {
+                    name.setText(Settings.GetUser().getName() + "");
+
+                }
+            } else {
+                name.setText(getResources().getString(R.string.NewMember) + "");
+
+            }
+
             Glide.with(getActivity()).load(Settings.GetUser().getLogo() + "").error(getResources().getDrawable(R.drawable.ic_user_un)).diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true).into(iamge);
 
@@ -205,6 +222,18 @@ public class MoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), FavoriteActivity.class);
+//              intent.putExtra("from", "splash");
+                intent.putExtra("type", "all");
+                intent.putExtra("id_user", "--");
+
+                startActivity(intent);
+
+            }
+        });
+        all_area.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), IntrestedActivity.class);
 //              intent.putExtra("from", "splash");
                 intent.putExtra("type", "all");
                 intent.putExtra("id_user", "--");
@@ -278,7 +307,7 @@ public class MoreFragment extends Fragment {
                                 Hawk.put("user", "");
                                 Hawk.put("api_token", "");
 //                Hawk.put("user", "");
-                                MainAqarzActivity.activity.finish();
+                                MainAqarzActivity.set_contanier_fragments();
 
 //                                check_user_login();
 

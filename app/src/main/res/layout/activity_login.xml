@@ -41,11 +41,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/din_light"
+                    android:fontFamily="@font/din_bold"
                     android:gravity="center"
                     android:text="@string/sign_in"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_15sdp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
 
                 <ImageView
 
@@ -62,7 +63,7 @@
                 android:layout_width="100dp"
                 android:layout_height="130dp"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/ic_logo_move" />
+                android:src="@drawable/logo_login" />
 
             <TextView
 
@@ -172,6 +173,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
+                    android:id="@+id/title_passeord"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -179,14 +181,17 @@
                     android:text="@string/title_3_login"
                     android:textColor="@color/black"
                     android:textSize="14dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/pass_layout_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="5dp"
+
+                    android:visibility="gone"
                     app:cardBackgroundColor="#F7F7F7"
                     app:cardCornerRadius="5dp">
 
@@ -254,11 +259,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:fontFamily="@font/din_bold"
                     android:paddingLeft="@dimen/_44sdp"
                     android:paddingRight="@dimen/_44sdp"
-                    android:text="@string/login"
-                    android:textColor="@android:color/white" />
+                    android:text="@string/Next_btn"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -271,12 +278,15 @@
                         android:layout_height="wrap_content"
                         android:background="?selectableItemBackground"
                         android:gravity="end|center_vertical"
-                        android:paddingTop="@dimen/_3sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:fontFamily="@font/din_bold"
+                        android:textStyle="bold"
                         android:paddingBottom="@dimen/_6sdp"
                         android:text="@string/forgot_your_password"
-
                         android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/_10sdp" />
+
+                        android:textSize="@dimen/_10sdp"
+                        android:visibility="gone" />
 
 
                 </LinearLayout>

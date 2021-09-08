@@ -23,7 +23,7 @@
     <string name="sign_up">حساب جديد </string>
     <string name="don_t_have_an_account">ليس لديك حساب ؟</string>
     <string name="hint_email_address">أدخل البريد الإلكتروني ؟</string>
-    <string name="forgot_your_password">هل نسيت كلمة المرور ؟</string>
+    <string name="forgot_your_password">نسيت كلمة المرور</string>
     <string name="forgot_password_desc">أدخل بريدك الإلكتروني المسجل لإرسال رابط إعادة تعيين كلمة المرور</string>
     <string name="send_code"> إعادة ارسال الكود</string>
     <string name="new_account">حساب جديد  </string>
@@ -1120,6 +1120,15 @@
     <string name="whatsup">واتساب</string>
     <string name="action_settings">الاعدادات</string>
     <string name="Report_the_property">الابلاغ عن العقار</string>
-    <string name="today">Today</string>
+    <string name="today">يومي</string>
+    <string name="Areyou">هل انت ؟</string>
+
+
+
+    <string name="Map">الخريطه</string>
+    <string name="Aqarzman_">عقاري</string>
+    <string name="user">باحث عن عقار</string>
+    <string name="select_type">اختار نوع الحساب؟</string>
+    <string name="NewMember">مستخدم جديد</string>
 
 </resources>

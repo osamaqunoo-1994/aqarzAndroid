@@ -155,18 +155,18 @@ public class MainAqarzActivity extends AppCompatActivity {
     }
 
 
-    public void set_contanier_fragments() {
+    public static void set_contanier_fragments() {
         click_tab = "home";
-        text_1.setTextColor(getResources().getColor(R.color.colorPrimary));
-        text_2.setTextColor(getResources().getColor(R.color.color_un_active));
-        text_3.setTextColor(getResources().getColor(R.color.color_un_active));
-        text_4.setTextColor(getResources().getColor(R.color.color_un_active));
-        text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+        text_1.setTextColor(activity.getResources().getColor(R.color.colorPrimary));
+        text_2.setTextColor(activity.getResources().getColor(R.color.color_un_active));
+        text_3.setTextColor(activity.getResources().getColor(R.color.color_un_active));
+        text_4.setTextColor(activity.getResources().getColor(R.color.color_un_active));
+        text_s.setTextColor(activity.getResources().getColor(R.color.color_un_active));
 
-        image_1.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
-        image_2.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-        image_3.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-        image_4.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+        image_1.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
+        image_2.setColorFilter(ContextCompat.getColor(activity, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+        image_3.setColorFilter(ContextCompat.getColor(activity, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+        image_4.setColorFilter(ContextCompat.getColor(activity, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
 
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container, new HomeMapFragment());
