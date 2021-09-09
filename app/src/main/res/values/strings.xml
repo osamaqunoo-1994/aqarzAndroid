@@ -452,7 +452,7 @@ Your request and reply in the fastest time</string>
     <string name="PasswordnadConfirmnotmatch">Confirm Password does not match</string>
     <string name="done_ok_done">You must complete your account information to subscribe</string>
     <string name="terms_title">Usage Agreement</string>
-    <string name="linkShare">Link Share</string>
+    <string name="linkShare">Profild Link</string>
     <string name="from_from">From</string>
 
 
@@ -473,7 +473,7 @@ Your request and reply in the fastest time</string>
     <string name="TimeRemmember">Time Remmember</string>
     <string name="MyOFFERFOR">My offers on order number </string>
     <string name="MyOFFERFOR_title">Offer accepted by the Fund on Application No. </string>
-    <string name="MOreAqarezMan">most Aqarez Man</string>
+    <string name="MOreAqarezMan">Most Active Brokers</string>
     <string name="contune">Continue </string>
     <string name="OrderDetialss">Request data </string>
     <string name="OrderstatusDetialss">Order Status </string>
@@ -518,9 +518,9 @@ Your request and reply in the fastest time</string>
     <string name="ten_yeares">mor than 10 years</string>
     <string name="AreYouAqarezman">Are You Aqarez man</string>
     <string name="have_employee">are have clints in office?</string>
-    <string name="name_office">Name Ofice</string>
+    <string name="name_office">Office Name</string>
     <string name="reqname_office">Name Ofice Requierd</string>
-    <string name="name_cli">name Owner</string>
+    <string name="name_cli">Owner Name</string>
     <string name="user_name_req">Link it required</string>
 
     <string name="rate_text">Rate you?</string>
@@ -686,8 +686,8 @@ Two working days to complete your order</string>
 
 
     <string name="fav_1">Offers</string>
-    <string name="fav_2">Orders</string>
-    <string name="fav_3">Real State</string>
+    <string name="fav_2">Souq Orders</string>
+    <string name="fav_3">Real State Fund</string>
     <string name="copy_url">Share Url</string>
     <string name="my_location_on_map">MY Location on map</string>
     <string name="fdf">Evaluation ... by qualified evaluators from the Saudi Authority for Accredited Valuers</string>
@@ -1079,9 +1079,11 @@ Two working days to complete your order</string>
     <string name="BathrommNumber">Bathroom Number</string>
     <string name="rommNumber">Room Number</string>
 
+    <string name="orprice_by_ff">price</string>
+    <string name="orderarea_by_ff">area</string>
 
     <string name="Profile_tilte">Profile</string>
-    <string name="AqarzAndOffer">Aqarz</string>
+    <string name="AqarzAndOffer">properties</string>
     <string name="AqarzAndOffer2">Offer (request)</string>
     <string name="MyEmplyeeee">Employee</string>
 

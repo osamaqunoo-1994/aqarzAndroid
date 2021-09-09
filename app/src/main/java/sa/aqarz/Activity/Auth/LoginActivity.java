@@ -204,7 +204,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
-//              intent.putExtra("from", "splash");
+              intent.putExtra("mobile", phone_ed.getText().toString());
                 startActivity(intent);
 //                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 

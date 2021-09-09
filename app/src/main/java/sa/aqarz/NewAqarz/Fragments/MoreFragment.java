@@ -3,6 +3,8 @@ package sa.aqarz.NewAqarz.Fragments;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.media.Image;
 import android.os.Bundle;
 
@@ -22,6 +24,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.orhanobut.hawk.Hawk;
 import com.willy.ratingbar.ScaleRatingBar;
 
+import java.util.Locale;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import sa.aqarz.Activity.AllOrder_filtterActivity;
 import sa.aqarz.Activity.Auth.EditProfileActivity;
@@ -33,6 +37,7 @@ import sa.aqarz.Activity.Employee.DetailsEmployeeActivity;
 import sa.aqarz.Activity.FavoriteActivity;
 import sa.aqarz.Activity.MyOrderActivity;
 import sa.aqarz.Activity.SettingsActivity;
+import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Activity.TermsActivity;
 import sa.aqarz.Activity.profile.AllclintActivity;
 import sa.aqarz.Activity.profile.MyOffersActivity;
@@ -395,32 +400,44 @@ public class MoreFragment extends Fragment {
                             public void onClick(DialogInterface dialog, int id) {
 
 
-//                                if (Hawk.get("lang").toString().equals("ar")) {
-//
-//                                    Hawk.put("lang", "en");
-//
+                                if (Hawk.get("lang").toString().equals("ar")) {
+
+                                    Hawk.put("lang", "en");
+
+                                    Locale locale = new Locale("en");
+                                    Locale.setDefault(locale);
+                                    Resources resources = getResources();
+                                    Configuration config = resources.getConfiguration();
+                                    config.setLocale(locale);
+                                    resources.updateConfiguration(config, resources.getDisplayMetrics());
+
+
 //                                    LocaleUtils.setLocale(SettingsActivity.this, "en");
 ////
 //                                    finishAffinity();
-//
-//                                    Intent intent = new Intent(SettingsActivity.this, SplashScreenActivity.class);
-//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                    startActivity(intent);
-//
-//
-//                                } else {
-//
-//                                    Hawk.put("lang", "ar");
-//
-//                                    LocaleUtils.setLocale(SettingsActivity.this, "ar");
-////
-//                                    finishAffinity();
-//
-//                                    Intent intent = new Intent(SettingsActivity.this, SplashScreenActivity.class);
-//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                    startActivity(intent);
-//
-//                                }
+
+                                    Intent intent = new Intent(getContext(), SplashScreenActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+
+
+                                } else {
+
+                                    Hawk.put("lang", "ar");
+
+                                    Locale locale = new Locale("ar");
+                                    Locale.setDefault(locale);
+                                    Resources resources = getResources();
+                                    Configuration config = resources.getConfiguration();
+                                    config.setLocale(locale);
+                                    resources.updateConfiguration(config, resources.getDisplayMetrics());
+
+
+                                    Intent intent = new Intent(getContext(), SplashScreenActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+
+                                }
 
 
                             }

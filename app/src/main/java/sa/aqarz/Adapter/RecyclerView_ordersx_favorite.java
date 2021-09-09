@@ -224,7 +224,32 @@ public class RecyclerView_ordersx_favorite extends RecyclerView.Adapter<Recycler
                 }
             }
 
+        } catch (Exception e) {
 
+        }
+        try {
+
+
+            holder.more_details.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    BottomSheetDialogFragment_details_real_state bottomSheetDialogFragment_details_real_state = new BottomSheetDialogFragment_details_real_state(alldata.get(position).getEstate().get(0));
+                    bottomSheetDialogFragment_details_real_state.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+//                Postion_opend = position;
+//                Refr();
+
+//                RequestOrderActivity.set_fragment(position);
+
+
+//                if (mItemClickListener != null) {
+//                    mItemClickListener.onItemClick(position);
+//                }
+////
+
+                }
+            });
 //
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Glide.with(context).load(alldata.get(position).getes()).into(holder.image_icon);
@@ -279,26 +304,6 @@ public class RecyclerView_ordersx_favorite extends RecyclerView.Adapter<Recycler
 //        });
 //
 
-            holder.more_details.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    BottomSheetDialogFragment_details_real_state bottomSheetDialogFragment_details_real_state = new BottomSheetDialogFragment_details_real_state(alldata.get(position).getEstate().get(0));
-                    bottomSheetDialogFragment_details_real_state.show(((FragmentActivity) context).getSupportFragmentManager(), "");
-
-//                Postion_opend = position;
-//                Refr();
-
-//                RequestOrderActivity.set_fragment(position);
-
-
-//                if (mItemClickListener != null) {
-//                    mItemClickListener.onItemClick(position);
-//                }
-////
-
-                }
-            });
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

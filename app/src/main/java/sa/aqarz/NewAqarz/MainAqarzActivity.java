@@ -24,6 +24,7 @@ import com.orhanobut.hawk.Hawk;
 
 import sa.aqarz.Activity.AddAqarz.AddAqarzActivity;
 import sa.aqarz.Activity.AllOrderActivity;
+import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
 import sa.aqarz.Activity.OprationNew.RentActivity;
@@ -237,7 +238,8 @@ public class MainAqarzActivity extends AppCompatActivity {
                 MainAqarzActivity.type_order_main = "real";
 
                 if (!Settings.checkLogin()) {
-                    startActivity(new Intent(MainAqarzActivity.this, check_login.class));
+                    startActivity(new Intent(MainAqarzActivity.this, LoginActivity.class));
+//                    startActivity(new Intent(MainAqarzActivity.this, check_login.class));
 
                 } else {
                     click_tab = "order";
@@ -281,7 +283,9 @@ public class MainAqarzActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!Settings.checkLogin()) {
-                    startActivity(new Intent(MainAqarzActivity.this, check_login.class));
+                    startActivity(new Intent(MainAqarzActivity.this, LoginActivity.class));
+
+//                    startActivity(new Intent(MainAqarzActivity.this, check_login.class));
 
                 } else {
                     click_tab = "chat";
@@ -309,7 +313,9 @@ public class MainAqarzActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!Settings.checkLogin()) {
-                    startActivity(new Intent(MainAqarzActivity.this, check_login.class));
+                    startActivity(new Intent(MainAqarzActivity.this, LoginActivity.class));
+
+//                    startActivity(new Intent(MainAqarzActivity.this, check_login.class));
 
                 } else {
                     click_tab = "profile";
@@ -392,7 +398,9 @@ public class MainAqarzActivity extends AppCompatActivity {
                     public void onClick(View v) {
 
                         if (!Settings.checkLogin()) {
-                            startActivity(new Intent(MainAqarzActivity.this, check_login.class));
+                            startActivity(new Intent(MainAqarzActivity.this, LoginActivity.class));
+
+//                            startActivity(new Intent(MainAqarzActivity.this, check_login.class));
 
                         } else {
 
@@ -411,7 +419,8 @@ public class MainAqarzActivity extends AppCompatActivity {
                     public void onClick(View v) {
 
                         if (!Settings.checkLogin()) {
-                            startActivity(new Intent(MainAqarzActivity.this, check_login.class));
+//                            startActivity(new Intent(MainAqarzActivity.this, check_login.class));
+                            startActivity(new Intent(MainAqarzActivity.this, LoginActivity.class));
 
                         } else {
 
@@ -446,7 +455,9 @@ public class MainAqarzActivity extends AppCompatActivity {
                             add_aqares_and_order_and_estate.setVisibility(View.GONE);
 
                         } else {
-                            startActivity(new Intent(MainAqarzActivity.this, check_login.class));
+                            startActivity(new Intent(MainAqarzActivity.this, LoginActivity.class));
+
+//                            startActivity(new Intent(MainAqarzActivity.this, check_login.class));
                         }
 
                     }

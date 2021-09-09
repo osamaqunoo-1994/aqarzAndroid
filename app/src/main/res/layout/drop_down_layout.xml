@@ -27,7 +27,7 @@
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:text="@string/p8"
+                android:text="@string/orprice_by_ff"
                 android:textColor="@color/textColor2"
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -41,7 +41,7 @@
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:text="@string/p5"
+                android:text="@string/orderarea_by_ff"
                 android:textColor="@color/textColor2"
                 android:textSize="14dp"
                 android:textStyle="bold" />

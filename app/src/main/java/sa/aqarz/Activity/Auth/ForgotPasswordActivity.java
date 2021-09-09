@@ -41,6 +41,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
+
+
         init_volley();
         init();
 
@@ -59,6 +61,15 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         email_ed = findViewById(R.id.email_ed);
         send = findViewById(R.id.send);
         back = findViewById(R.id.back);
+
+
+        try {
+            String mobile = getIntent().getStringExtra("mobile");
+            email_ed.setText(mobile + "");
+        } catch (Exception e) {
+
+        }
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +100,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
 
                         System.out.println(sendObj.toString());
-                        mVolleyService.postDataVolley_without_token("forget*********password", WebService.forget_password1,sendObj);
+                        mVolleyService.postDataVolley_without_token("forget*********password", WebService.forget_password1, sendObj);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -120,7 +131,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
                         String data = response.getString("data");
 
-                        JSONObject jsonObject=new JSONObject(data);
+                        JSONObject jsonObject = new JSONObject(data);
                         String code = jsonObject.getString("code");
 
 //                        Hawk.put("user", data);

@@ -185,6 +185,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
                 android:background="@android:color/transparent"
                 android:hint="@string/search"
                 android:lines="1"

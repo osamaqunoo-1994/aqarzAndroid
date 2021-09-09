@@ -43,18 +43,55 @@ public class BottomSheetDialogFragment_details_real_state extends BottomSheetDia
         p11 = v.findViewById(R.id.p11);
 
         try {
-            p1.setText(ordersModuless.getId() + "");
-            p2.setText(ordersModuless.getRoomsNumberId() + "");
-            p3.setText(ordersModuless.getEstateTypeName() + "");
-            p4.setText(ordersModuless.getStatus() + "");
-            p5.setText(ordersModuless.getAreaEstateRange() + "");
-            p6.setText(ordersModuless.getId() + "");
-            p7.setText(ordersModuless.getStreetViewRange() + "");
-            p8.setText(ordersModuless.getEstatePriceRange() + "");
-            p9.setText(ordersModuless.getCityName() + "--" + ordersModuless.getNeighborhoodId() + "");
-            p10.setText(ordersModuless.getCityName() + "");
-            p11.setText(ordersModuless.getNeighborhoodId() + "");
-            uuid.setText(ordersModuless.getUuid() + "");
+
+            if (ordersModuless.getId() != null && !ordersModuless.getId().toString().equals("null")) {
+                p1.setText(ordersModuless.getId() + "");
+
+            }
+            if (ordersModuless.getRoomsNumberId() != null && !ordersModuless.getRoomsNumberId().toString().equals("null")) {
+                p2.setText(ordersModuless.getRoomsNumberId() + "");
+
+            }
+            if (ordersModuless.getEstateTypeName() != null && !ordersModuless.getEstateTypeName().equals("null")) {
+                p3.setText(ordersModuless.getEstateTypeName() + "");
+
+            }
+            if (ordersModuless.getStatus() != null && !ordersModuless.getStatus().equals("null")) {
+                p4.setText(ordersModuless.getStatus() + "");
+
+            }
+            if (ordersModuless.getAreaEstateRange() != null && !ordersModuless.getAreaEstateRange().toString().equals("null")) {
+                p5.setText(ordersModuless.getAreaEstateRange() + "");
+
+            }
+            if (ordersModuless.getId() != null && !ordersModuless.getId().toString().equals("null")) {
+                p6.setText(ordersModuless.getId() + "");
+
+            }
+            if (ordersModuless.getStreetViewRange() != null || !ordersModuless.getStreetViewRange().equals("null")) {
+                p7.setText(ordersModuless.getStreetViewRange() + "");
+
+            }
+            if (ordersModuless.getEstatePriceRange() != null || !ordersModuless.getEstatePriceRange().equals("null")) {
+                p8.setText(ordersModuless.getEstatePriceRange() + "");
+
+            }
+            if (ordersModuless.getCityName() != null || !ordersModuless.getCityName().equals("null")) {
+                p9.setText(ordersModuless.getCityName() + "," + ordersModuless.getNeighborhoodId() + "");
+
+            }
+            if (ordersModuless.getCityName() != null || !ordersModuless.getCityName().equals("null")) {
+                p10.setText(ordersModuless.getCityName() + "");
+
+            }
+            if (ordersModuless.getNeighborhoodId() != null || !ordersModuless.getNeighborhoodId().toString().equals("null")) {
+                p11.setText(ordersModuless.getNeighborhoodId() + "");
+
+            }
+            if (ordersModuless.getUuid() != null || !ordersModuless.getUuid().equals("null")) {
+                uuid.setText(ordersModuless.getUuid() + "");
+
+            }
 
         } catch (Exception e) {
 

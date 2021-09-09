@@ -104,7 +104,7 @@
 
                 <TextView
                     android:id="@+id/p1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
                     android:layout_weight="1"
@@ -113,6 +113,7 @@
                     android:textColor="@color/black"
 
                     android:textSize="13dp" />
+
 
                 <ImageView
                     android:layout_width="20dp"

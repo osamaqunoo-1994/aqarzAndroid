@@ -173,45 +173,51 @@ public class RecyclerView_HomeList_estat_other extends RecyclerView.Adapter<Recy
         }
 
 
-        if (alldata.get(position).getIn_fav().equals("1")) {
-            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
 
-        } else {
-            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
+        try{
+            if (alldata.get(position).getIn_fav().equals("1")) {
+                holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
 
-        }
-        holder.add_favorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (alldata.get(position).getIn_fav().equals("1")) {
-                    holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
-                    alldata.get(position).setIn_fav("0");
-                } else {
-                    holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
-                    alldata.get(position).setIn_fav("1");
-
-
-                }
-                init_volley();
-                WebService.loading((Activity) context, true);
-
-                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
-                try {
-
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("type_id", "" + alldata.get(position).getId());
-                    jsonObject.put("type", "" + "offer");//'request','offer','fund'
-                    mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
-
-
-                } catch (Exception e) {
-
-                }
+            } else {
+                holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
 
             }
-        });
+            holder.add_favorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
+                    if (alldata.get(position).getIn_fav().equals("1")) {
+                        holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
+                        alldata.get(position).setIn_fav("0");
+                    } else {
+                        holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
+                        alldata.get(position).setIn_fav("1");
+
+
+                    }
+                    init_volley();
+                    WebService.loading((Activity) context, true);
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+                    try {
+
+                        JSONObject jsonObject = new JSONObject();
+                        jsonObject.put("type_id", "" + alldata.get(position).getId());
+                        jsonObject.put("type", "" + "offer");//'request','offer','fund'
+                        mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
+
+
+                    } catch (Exception e) {
+
+                    }
+
+                }
+            });
+
+
+        }catch (Exception e){
+
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

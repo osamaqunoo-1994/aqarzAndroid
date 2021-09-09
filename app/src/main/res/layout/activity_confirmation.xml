@@ -129,7 +129,8 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:layoutDirection="ltr">
 
                 <EditText
                     android:id="@+id/a1"
@@ -217,15 +218,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textStyle="bold"
-                android:fontFamily="@font/din_bold"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:layout_marginRight="20dp"
+                android:fontFamily="@font/din_bold"
                 android:paddingLeft="@dimen/_44sdp"
                 android:paddingRight="@dimen/_44sdp"
                 android:text="@string/contuie"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
 
 
             <TextView

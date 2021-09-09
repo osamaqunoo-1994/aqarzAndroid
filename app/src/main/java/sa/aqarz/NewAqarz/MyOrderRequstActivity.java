@@ -46,6 +46,7 @@ import sa.aqarz.Modules.RateModules;
 import sa.aqarz.Modules.deferredInstallmentModules;
 import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.Modules.financeModules;
+import sa.aqarz.NewAqarz.Adapter.RecyclerView_mu_souq_order;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -58,7 +59,7 @@ public class MyOrderRequstActivity extends AppCompatActivity {
     RecyclerView orders_rec;
     List<demandsModules> MyRequst = new ArrayList<>();
     LinearLayout nodata_vis;
-    static RecyclerView_orders_demandsx recyclerView_orders_demandsx;
+    static RecyclerView_mu_souq_order recyclerView_orders_demandsx;
     int page = 1;
 
     @Override
@@ -77,7 +78,7 @@ public class MyOrderRequstActivity extends AppCompatActivity {
 
         MyRequst.clear();
 
-        recyclerView_orders_demandsx = new RecyclerView_orders_demandsx(MyOrderRequstActivity.this, MyRequst);
+        recyclerView_orders_demandsx = new RecyclerView_mu_souq_order(MyOrderRequstActivity.this, MyRequst);
 
         orders_rec.setAdapter(recyclerView_orders_demandsx);
 
@@ -86,7 +87,12 @@ public class MyOrderRequstActivity extends AppCompatActivity {
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, MyOrderRequstActivity.this);
         mVolleyService.getDataVolley("my_request", WebService.my_request);
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public void init_volley() {

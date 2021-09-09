@@ -113,7 +113,7 @@
                     android:layout_height="35dp"
 
 
-                    android:background="@drawable/button_login"
+                    android:background="@drawable/button_login1"
                     android:gravity="center"
                     android:paddingLeft="@dimen/_5sdp"
                     android:paddingRight="@dimen/_5sdp">
@@ -131,16 +131,17 @@
 
                     <TextView
                         android:id="@+id/my_order_text"
-
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:fontFamily="@font/din_bold"
                         android:gravity="center"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:text="@string/fav_1"
-
                         android:textColor="@color/white"
-                        android:textSize="12dp" />
+
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
@@ -170,19 +171,22 @@
                     android:layout_height="35dp"
 
 
-                    android:background="@drawable/mash">
+                    android:background="@drawable/button_loginc">
 
                     <TextView
                         android:id="@+id/Shopping_request_text"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+
+                        android:fontFamily="@font/din_bold"
                         android:gravity="center"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
-
-
                         android:text="@string/fav_2"
-                        android:textSize="12dp" />
+
+
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
@@ -212,7 +216,7 @@
                     android:layout_height="35dp"
 
 
-                    android:background="@drawable/mash"
+                    android:background="@drawable/button_loginc"
 
                     android:gravity="center"
                     android:orientation="horizontal">
@@ -237,11 +241,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:fontFamily="@font/din_bold"
                         android:gravity="center"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:text="@string/fav_3"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="10dp"

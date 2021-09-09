@@ -190,9 +190,9 @@ public class FavoriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                my_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
-                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.mash));
-                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
+                my_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login1));
+                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.button_loginc));
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.button_loginc));
 
 
                 my_order_text.setTextColor(getResources().getColor(R.color.white));
@@ -217,9 +217,9 @@ public class FavoriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                my_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
-                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
-                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
+                my_order_layout.setBackground(getResources().getDrawable(R.drawable.button_loginc));
+                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.button_login1));
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.button_loginc));
 
 
                 my_order_text.setTextColor(getResources().getColor(R.color.black));
@@ -245,9 +245,9 @@ public class FavoriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                my_order_layout.setBackground(getResources().getDrawable(R.drawable.mash));
-                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.mash));
-                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login));
+                my_order_layout.setBackground(getResources().getDrawable(R.drawable.button_loginc));
+                Shopping_request_layout.setBackground(getResources().getDrawable(R.drawable.button_loginc));
+                Real_Estate_order_layout.setBackground(getResources().getDrawable(R.drawable.button_login1));
 
 
                 my_order_text.setTextColor(getResources().getColor(R.color.black));

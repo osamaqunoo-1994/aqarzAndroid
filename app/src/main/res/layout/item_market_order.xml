@@ -129,6 +129,7 @@
                         android:textSize="14dp" />
 
                     <ImageView
+                        android:id="@+id/hide"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:background="@drawable/circle_filter"
@@ -136,6 +137,7 @@
                         android:src="@drawable/ic_un_hide" />
 
                     <ImageView
+                        android:id="@+id/share"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="2dp"

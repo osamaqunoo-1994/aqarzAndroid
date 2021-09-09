@@ -500,8 +500,8 @@
 
 
     <string name="fav_1">العروض</string>
-    <string name="fav_2">الطلبات</string>
-    <string name="fav_3">الصندوق العقاري</string>
+    <string name="fav_2">طلبات السوق</string>
+    <string name="fav_3">طلبات الصندوق العقاري</string>
 
 
     <string name="metterSeqour">متر مربع</string>
@@ -1091,11 +1091,13 @@
     <string name="click_heare">اضغط هنا</string>
     <string name="Aqarz_titne_list">العروض</string>
 
+    <string name="orprice_by_ff">السعر(من الاعلى للاقل سعرا)</string>
+    <string name="orderarea_by_ff">المساحه(من الاكتر للاقل مساحة)</string>
     <string name="order_by_ff">ترتيب حسب:</string>
-    <string name="date_se">التاريخ</string>
-    <string name="rate_se">التقييم</string>
-    <string name="BathrommNumber">عدد الحمامات</string>
-    <string name="rommNumber">عدد الغرف</string>
+    <string name="date_se">التاريخ(من الاحدث للاقدم) </string>
+    <string name="rate_se">التقييم(من الاعلى للاقل)</string>
+    <string name="BathrommNumber">عدد الحمامات(من الاكتر للاقل عددا)</string>
+    <string name="rommNumber">عدد الغرف(من الاكتر للاقل عددا)</string>
 
 
     <string name="Profile_tilte">حسابي</string>

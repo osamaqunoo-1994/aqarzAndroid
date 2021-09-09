@@ -63,6 +63,7 @@ public class RecyclerView_GenralNotfication extends RecyclerView.Adapter<Recycle
 
         TextView title;
         TextView des;
+        TextView date;
         ImageView image;
 
         public MyViewHolder(View view) {
@@ -72,6 +73,7 @@ public class RecyclerView_GenralNotfication extends RecyclerView.Adapter<Recycle
 
 //            back_ground = view.findViewById(R.id.back_ground);
             title = view.findViewById(R.id.title);
+            date = view.findViewById(R.id.date);
             des = view.findViewById(R.id.des);
             image = view.findViewById(R.id.image);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
@@ -94,7 +96,12 @@ public class RecyclerView_GenralNotfication extends RecyclerView.Adapter<Recycle
 
 
 //        holder.setIsRecyclable(false);
-        holder.title.setText(alldata.get(position).getType());
+        if (alldata.get(position).getType().equals("request")) {
+            holder.title.setText("طلب");
+        } else {
+            holder.title.setText(alldata.get(position).getType());
+
+        }
         holder.des.setText(alldata.get(position).getTitle());
 //        if (alldata.get(position).getRate() != null) {
 //            if (!alldata.get(position).getRate().equals("null")) {
@@ -104,7 +111,7 @@ public class RecyclerView_GenralNotfication extends RecyclerView.Adapter<Recycle
 //
 //            }
 
-
+        holder.date.setText(alldata.get(position).getCreatedAt() + "");
         if (alldata.get(position).getType().equals("request")) {
 
             holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.logo_png));

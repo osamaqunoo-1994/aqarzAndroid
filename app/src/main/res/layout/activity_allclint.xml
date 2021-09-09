@@ -33,7 +33,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/din_bold"
                 android:gravity="center"
-                android:text="@string/allclintsshate"
+                android:text="@string/MOreAqarezMan"
                 android:textColor="@color/white"
                 android:textSize="17dp" />
 
@@ -44,12 +44,13 @@
 
 
         </LinearLayout>
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/allclints"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/allclints"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 

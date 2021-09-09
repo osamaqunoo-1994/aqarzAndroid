@@ -55,6 +55,7 @@ import java.util.List;
 import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.ChatRoomActivity;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Activity.ReportAqarezActivity;
@@ -668,12 +669,19 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                             chat.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Intent intent = new Intent(DetaislAqarzActivity.this, ChatRoomActivity.class);
-                                    intent.putExtra("user_id", homeModules_aqares.getUserId() + "");
-                                    intent.putExtra("parent_id", "-1");
-                                    intent.putExtra("nameUser", homeModules_aqares.getOwnerName() + "");
-                                    intent.putExtra("imageUser", "");
-                                    startActivity(intent);
+                                    if (!Settings.checkLogin()) {
+
+
+                                        startActivity(new Intent(DetaislAqarzActivity.this, LoginActivity.class));
+
+                                    } else {
+                                        Intent intent = new Intent(DetaislAqarzActivity.this, ChatRoomActivity.class);
+                                        intent.putExtra("user_id", homeModules_aqares.getUserId() + "");
+                                        intent.putExtra("parent_id", "-1");
+                                        intent.putExtra("nameUser", homeModules_aqares.getOwnerName() + "");
+                                        intent.putExtra("imageUser", "");
+                                        startActivity(intent);
+                                    }
                                 }
                             });
                             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
