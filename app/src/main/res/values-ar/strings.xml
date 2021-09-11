@@ -62,7 +62,7 @@
     <string name="Please_Login_or_Register">قم بتسجيل الدخول أو إنشاء حساب </string>
     <string name="Personal_Details">عرض ملفك الشخصي</string>
     <string name="Logout">تسجيل خروج</string>
-    <string name="Favorites">المفضلة</string>
+    <string name="Favorites">مفضلتي</string>
     <string name="Done">تم</string>
 
     <string name="title_1_login">أهلا وسهلا بك في <font color="#5840BB"> تطبيق عقارز </font></string>
@@ -1135,4 +1135,8 @@
     <string name="Congratulatioon">!مبروك</string>
     <string name="Congratulatioon1">تم اكمال</string>
     <string name="Congratulatioon2">من حسابك الشخصي</string>
+    <string name="ratetitle">التقييم</string>
+    <string name="ra_title">التقييم والمراجعة</string>
+    <string name="rate_man">مقيّم</string>
+
 </resources>

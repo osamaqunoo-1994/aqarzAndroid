@@ -1206,5 +1206,11 @@ Two working days to complete your order</string>
     <string name="Congratulatioon1">Completed</string>
     <string name="Congratulatioon2">From your personal Account</string>
 
+    <string name="ratetitle">Rate</string>
+    <string name="ra_title">Rating and review</string>
+    <string name="rate_man">total</string>
+    <string name="rate_ask">What is your rate?</string>
+    <string name="write_take">write a comment..</string>
+    <string name="Customer_Reviews">Customer Reviews</string>
 
 </resources>

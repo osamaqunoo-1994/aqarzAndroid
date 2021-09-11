@@ -1015,6 +1015,7 @@
                                 android:textStyle="bold" />
 
                             <LinearLayout
+                                android:id="@+id/rate_"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center">

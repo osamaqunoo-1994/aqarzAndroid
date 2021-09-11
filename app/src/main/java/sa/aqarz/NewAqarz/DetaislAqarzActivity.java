@@ -113,6 +113,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
     LinearLayout call;
     LinearLayout chat;
     LinearLayout whatsapp;
+    LinearLayout rate_;
     ImageView map_location;
 
     @Override
@@ -179,6 +180,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
     public void init() {
 
+        rate_ = findViewById(R.id.rate_);
         rec_list_all = findViewById(R.id.rec_list_all);
         home_viewPager = findViewById(R.id.home_viewPager);
         view_pager_indicator = findViewById(R.id.view_pager_indicator);
@@ -212,7 +214,12 @@ public class DetaislAqarzActivity extends AppCompatActivity {
         whatsapp = findViewById(R.id.whatsapp);
         map_location = findViewById(R.id.map_location);
 
-
+        rate_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DetaislAqarzActivity.this, RateDetailsActivity.class));
+            }
+        });
         try {
 
             id_or_aq = getIntent().getStringExtra("id_aqarz");

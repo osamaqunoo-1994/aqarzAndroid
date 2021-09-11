@@ -94,6 +94,11 @@ public class MoreFragment extends Fragment {
     TextView aqarz_offer_num;
     TextView offer_num;
 
+
+    LinearLayout st_100;
+    LinearLayout st_25;
+    LinearLayout st_00;
+
     public MoreFragment() {
         // Required empty public constructor
     }
@@ -132,6 +137,9 @@ public class MoreFragment extends Fragment {
 
 
         View view = inflater.inflate(R.layout.fragment_more2, container, false);
+        st_100 = view.findViewById(R.id.st_100);
+        st_25 = view.findViewById(R.id.st_25);
+        st_00 = view.findViewById(R.id.st_00);
         logout = view.findViewById(R.id.logout);
         offer_num = view.findViewById(R.id.offer_num);
         aqarz_offer_num = view.findViewById(R.id.aqarz_offer_num);
@@ -167,6 +175,14 @@ public class MoreFragment extends Fragment {
 
                 } else {
                     name.setText(Settings.GetUser().getName() + "");
+
+//
+//                    if(Settings.GetUser().ge){
+//
+//                    }
+
+
+
 
                 }
             } else {

@@ -99,6 +99,7 @@ public class HomeMapFragment extends Fragment {
     ImageView fillter;
     static ProgressBar loading_city;
     ImageView notfication;
+    ImageView notfication_dote;
     static SupportMapFragment mapFragment;
     static GoogleMap googleMap;
     String style = "";
@@ -187,6 +188,7 @@ public class HomeMapFragment extends Fragment {
         loading = v.findViewById(R.id.loading);
         allEstate_view_pager = v.findViewById(R.id.allEstate_view_pager);
         notfication = v.findViewById(R.id.notfication);
+        notfication_dote = v.findViewById(R.id.notfication_dote);
         search_nib = v.findViewById(R.id.search_nib);
         search_text = v.findViewById(R.id.search_text);
         fill_filtter = v.findViewById(R.id.fill_filtter);
@@ -468,11 +470,10 @@ public class HomeMapFragment extends Fragment {
 
     public void set_map_marker() {
 
-        if(Hawk.contains("region_id_postion")){
+        if (Hawk.contains("region_id_postion")) {
             MainAqarzActivity.object_filtter.setId_state(region_id_postion);
 
         }
-
 
 
         if (Hawk.contains("LastPostionLat")) {
@@ -1468,6 +1469,7 @@ public class HomeMapFragment extends Fragment {
 
         if (Settings.checkLogin()) {
             notfication.setVisibility(View.VISIBLE);
+            notfication_dote.setVisibility(View.VISIBLE);
 
             if (Settings.CheckIsAccountAqarzMan()) {
 
@@ -1478,6 +1480,7 @@ public class HomeMapFragment extends Fragment {
 
         } else {
             notfication.setVisibility(View.INVISIBLE);
+            notfication_dote.setVisibility(View.INVISIBLE);
 
 
         }

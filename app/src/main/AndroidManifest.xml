@@ -35,9 +35,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".NewAqarz.MainActivity"></activity>
-        <activity android:name=".NewAqarz.IntrestedActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".NewAqarz.RateDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".NewAqarz.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".NewAqarz.IntrestedActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NewAqarz.SelectFavCityActivity"
             android:theme="@style/AppTheme.NoActionBar" />
