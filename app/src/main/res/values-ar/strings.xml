@@ -1132,5 +1132,7 @@
     <string name="user">باحث عن عقار</string>
     <string name="select_type">اختار نوع الحساب؟</string>
     <string name="NewMember">مستخدم جديد</string>
-
+    <string name="Congratulatioon">!مبروك</string>
+    <string name="Congratulatioon1">تم اكمال</string>
+    <string name="Congratulatioon2">من حسابك الشخصي</string>
 </resources>
