@@ -53,6 +53,7 @@ import sa.aqarz.Modules.CityLocation;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.RegionModules;
 import sa.aqarz.Modules.TypeModules;
+import sa.aqarz.NewAqarz.DetaislAqarzActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.CustomInfoWindowGoogleMapEstatMaps;
 import sa.aqarz.Settings.Settings;
@@ -585,7 +586,7 @@ public class MapsFragmentOld extends Fragment {
                             public void onInfoWindowClick(Marker marker) {
                                 if (!marker.getTag().toString().equals("mylocation")) {
 
-                                    Intent intent = new Intent(activity, DetailsActivity_aqarz.class);
+                                    Intent intent = new Intent(activity, DetaislAqarzActivity.class);
                                     intent.putExtra("id_aqarz", homeModules_aqares.get(Integer.valueOf(Integer.valueOf(number))).getId() + "");
                                     System.out.println("id_aqarz" + homeModules_aqares.get(Integer.valueOf(Integer.valueOf(number))).getId());
 

@@ -458,7 +458,17 @@ public class ListAqarzActivity extends AppCompatActivity {
         String estate_pay_type = "";
 
         if (!MainAqarzActivity.object_filtter.getEstate_pay_type().equals("")) {
-            estate_pay_type = "&estate_pay_type=" + MainAqarzActivity.object_filtter.getEstate_pay_type();
+
+            if (MainAqarzActivity.object_filtter.getEstate_pay_type().equals("is_pay")) {
+                estate_pay_type = "&operation_type_id=" + 1;
+
+            } else if (MainAqarzActivity.object_filtter.getEstate_pay_type().equals("is_rent")) {
+                estate_pay_type = "&operation_type_id=" + 2;
+
+            } else {
+                estate_pay_type = "&operation_type_id=" + 3;
+
+            }
         }
         String state_id = "";
 
@@ -558,7 +568,7 @@ public class ListAqarzActivity extends AppCompatActivity {
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + fil_by+state_id + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
+        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + fil_by + state_id + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
 
 //        url_list = WebService.home_estate_custom_list + "?" + type_filtter_;
         mVolleyService.getAsync("home_estate_custom_list_more_1", url_list);
@@ -594,6 +604,7 @@ public class ListAqarzActivity extends AppCompatActivity {
 
                     boolean status = response.getBoolean("status");
                     if (status) {
+                        WebService.loading(activity, false);
 
                         if (requestType.equals("home_estate_custom_list_more_1")) {
 
@@ -640,7 +651,6 @@ public class ListAqarzActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                WebService.loading(activity, false);
 
             }
 

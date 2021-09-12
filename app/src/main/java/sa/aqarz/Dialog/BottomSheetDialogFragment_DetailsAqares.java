@@ -37,6 +37,7 @@ import sa.aqarz.Adapter.RecyclerView_city_bootom_sheets;
 import sa.aqarz.Modules.CityModules;
 import sa.aqarz.Modules.HomeModules;
 import sa.aqarz.Modules.HomeModules_aqares;
+import sa.aqarz.NewAqarz.DetaislAqarzActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -87,7 +88,7 @@ public class BottomSheetDialogFragment_DetailsAqares extends BottomSheetDialogFr
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), DetailsActivity_aqarz.class);
+                Intent intent = new Intent(getContext(), DetaislAqarzActivity.class);
                 intent.putExtra("id_aqarz", Homemodules_object.getId() + "");
                 startActivity(intent);
 //                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);

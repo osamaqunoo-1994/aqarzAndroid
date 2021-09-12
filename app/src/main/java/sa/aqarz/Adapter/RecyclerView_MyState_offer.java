@@ -29,6 +29,7 @@ import sa.aqarz.Dialog.BottomSheetDialogFragment_status;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_status_cancle;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.MyOfferModule;
+import sa.aqarz.NewAqarz.DetaislAqarzActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Application;
 
@@ -124,6 +125,11 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
         holder.opration.setText(alldata.get(position).getEstate_type_name() + "");
         holder.address.setText(alldata.get(position).getEstateCity() + " , "+alldata.get(position).getEstateNeighborhood()+"");
         holder.sale.setText(alldata.get(position).getSale_type_name() + "");
+        try{
+
+        }catch (Exception e){
+
+        }
         holder.id_number.setText(" # " + alldata.get(position).getId() + "");
 //        holder.date.setText(alldata.get(position).getesta());
 //        if (alldata.get(position).getRate() != null) {
@@ -292,7 +298,7 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
 //                    context.startActivity(intent);
 //
 //                }
-                Intent intent = new Intent(context, DetailsActivity_aqarz.class);
+                Intent intent = new Intent(context, DetaislAqarzActivity.class);//DetaislAqarzActivity
                 intent.putExtra("id_aqarz", alldata.get(position).getEstateId() + "");
                 context.startActivity(intent);
 

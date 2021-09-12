@@ -28,6 +28,7 @@ import java.util.List;
 
 import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Modules.HomeModules_aqares;
+import sa.aqarz.NewAqarz.DetaislAqarzActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -296,7 +297,7 @@ holder.statust.setVisibility(View.GONE);
 
 //                RequestOrderActivity.set_fragment(position);
 
-                Intent intent = new Intent(context, DetailsActivity_aqarz.class);
+                Intent intent = new Intent(context, DetaislAqarzActivity.class);
                 intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
                 context.startActivity(intent);
 

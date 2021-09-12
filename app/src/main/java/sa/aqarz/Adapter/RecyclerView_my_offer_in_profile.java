@@ -37,6 +37,7 @@ import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_delete_offer;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_re_new_offer;
 import sa.aqarz.Modules.HomeModules_aqares;
+import sa.aqarz.NewAqarz.DetaislAqarzActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -327,7 +328,7 @@ public class RecyclerView_my_offer_in_profile extends RecyclerView.Adapter<Recyc
 
 //                RequestOrderActivity.set_fragment(position);
 
-                    Intent intent = new Intent(context, DetailsActivity_aqarz.class);
+                    Intent intent = new Intent(context, DetaislAqarzActivity.class);
                     intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
                     context.startActivity(intent);
 

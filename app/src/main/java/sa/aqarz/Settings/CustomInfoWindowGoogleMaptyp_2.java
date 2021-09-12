@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Modules.HomeModules_aqares;
+import sa.aqarz.NewAqarz.DetaislAqarzActivity;
 import sa.aqarz.R;
 
 public class CustomInfoWindowGoogleMaptyp_2 implements GoogleMap.InfoWindowAdapter {
@@ -56,7 +57,7 @@ public class CustomInfoWindowGoogleMaptyp_2 implements GoogleMap.InfoWindowAdapt
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DetailsActivity_aqarz.class);
+                Intent intent = new Intent(context, DetaislAqarzActivity.class);
                 intent.putExtra("id", homeModules_aqares.getId() + "");
                 context.startActivity(intent);
             }

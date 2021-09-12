@@ -28,6 +28,7 @@ import java.util.List;
 
 import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Modules.HomeModules_aqares;
+import sa.aqarz.NewAqarz.DetaislAqarzActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -229,7 +230,7 @@ public class RecyclerView_HomeList_estat_other extends RecyclerView.Adapter<Recy
 
 //                RequestOrderActivity.set_fragment(position);
 
-                Intent intent = new Intent(context, DetailsActivity_aqarz.class);
+                Intent intent = new Intent(context, DetaislAqarzActivity.class);
                 intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
                 context.startActivity(intent);
 

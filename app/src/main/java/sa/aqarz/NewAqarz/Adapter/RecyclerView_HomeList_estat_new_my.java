@@ -28,11 +28,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sa.aqarz.Activity.AddAqarz.EditAqarzActivity;
+import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_delete_offer;
 import sa.aqarz.Dialog.BottomSheetDialogFragmen_re_new_offer;
 import sa.aqarz.Modules.HomeModules_aqares;
+import sa.aqarz.NewAqarz.DetaislAqarzActivity;
 import sa.aqarz.R;
+import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
@@ -250,7 +253,7 @@ public class RecyclerView_HomeList_estat_new_my extends RecyclerView.Adapter<Rec
 
 //                RequestOrderActivity.set_fragment(position);
 
-                Intent intent = new Intent(context, DetailsActivity_aqarz.class);
+                Intent intent = new Intent(context, DetaislAqarzActivity.class);
                 intent.putExtra("id_aqarz", alldata.get(position).getId() + "");
                 context.startActivity(intent);
 
@@ -293,11 +296,17 @@ public class RecyclerView_HomeList_estat_new_my extends RecyclerView.Adapter<Rec
 
 //                RequestOrderActivity.set_fragment(position);
 
-                init_volley();
-                WebService.loading((Activity) context, true);
+                if (Settings.checkLogin()) {
+                    init_volley();
+                    WebService.loading((Activity) context, true);
 
-                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
-                mVolleyService.getDataVolley("hide", WebService.hide + "/" + alldata.get(position).getId() + "/estate");
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+                    mVolleyService.getDataVolley("hide", WebService.hide + "/" + alldata.get(position).getId() + "/estate");
+
+                } else {
+                    context.startActivity(new Intent(context, LoginActivity.class));
+                }
+
 
             }
         });
