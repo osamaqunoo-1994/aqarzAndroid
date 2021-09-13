@@ -399,6 +399,8 @@ Your request and reply in the fastest time</string>
     <string name="m5">أخرى</string>
     <string name="gender">Gender</string>
     <string name="K">K</string>
+    <string name="K2">K</string>
+
     <string name="Million">M</string>
 
     <string name="you_are_not_incompleat">your profile incomplete, please complete.</string>
@@ -1203,6 +1205,7 @@ Two working days to complete your order</string>
     <string name="AddNewCity">أضف مدينة جديدة</string>
     <string name="select_cityx">Select City</string>
     <string name="Congratulatioon">Congratulations!</string>
+    <string name="Congratulatioon11">Complete your profile..</string>
     <string name="Congratulatioon1">Completed</string>
     <string name="Congratulatioon2">From your personal Account</string>
 
@@ -1212,5 +1215,16 @@ Two working days to complete your order</string>
     <string name="rate_ask">What is your rate?</string>
     <string name="write_take">write a comment..</string>
     <string name="Customer_Reviews">Customer Reviews</string>
+    <string name="noCustomer_Reviews">No Customer Reviews</string>
+    <string name="awaw1">Most prcie</string>
+    <string name="awaw2">lowest price</string>
+    <string name="awaw3">Most Recent</string>
+    <string name="awaw4">Top Rated</string>
+
+
+
+    <string name="addNib">Add</string>
+
+
 
 </resources>

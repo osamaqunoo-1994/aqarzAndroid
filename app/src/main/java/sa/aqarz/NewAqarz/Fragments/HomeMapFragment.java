@@ -77,7 +77,7 @@ import sa.aqarz.Modules.RegionModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.NewAqarz.Adapter.RecyclerView_All_type_in_home_fragment;
 import sa.aqarz.NewAqarz.Adapter.RecyclerView_HomeList_estat_map;
-import sa.aqarz.NewAqarz.Adapter.ViewPager_Adapter_estate_home_map;
+import sa.aqarz.NewAqarz.Adapter.ViewPager_Adapter_estate_home_map1;
 import sa.aqarz.NewAqarz.FillterActivity;
 import sa.aqarz.NewAqarz.ListAqarzActivity;
 import sa.aqarz.NewAqarz.MainAqarzActivity;
@@ -291,7 +291,7 @@ public class HomeMapFragment extends Fragment {
 //                recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_map(getContext(), homeModules_aqares);
 //                allEstate.setAdapter(recyclerView_homeList_estat_new);
 //                allEstate_view_pager
-                ViewPager_Adapter_estate_home_map viewPager_adapter_estate_home_map = new ViewPager_Adapter_estate_home_map(activity, homeModules_aqares);
+                ViewPager_Adapter_estate_home_map1 viewPager_adapter_estate_home_map = new ViewPager_Adapter_estate_home_map1(activity, homeModules_aqares);
                 allEstate_view_pager.setAdapter(viewPager_adapter_estate_home_map);
                 allEstate_view_pager.setVisibility(View.GONE);
 
@@ -1007,7 +1007,7 @@ public class HomeMapFragment extends Fragment {
 //                            all_estate_size.setText(allNeigbers.getData().getTo() + " " + activity.getResources().getString(R.string.From_t) + " " + allNeigbers.getData().getTotal() + " " + activity.getResources().getString(R.string.advertisementsx));
 
 //                            allEstate_view_pager.setVisibility(View.VISIBLE);
-                            ViewPager_Adapter_estate_home_map viewPager_adapter_estate_home_map = new ViewPager_Adapter_estate_home_map(activity, homeModules_aqares);
+                            ViewPager_Adapter_estate_home_map1 viewPager_adapter_estate_home_map = new ViewPager_Adapter_estate_home_map1(activity, homeModules_aqares);
                             allEstate_view_pager.setAdapter(viewPager_adapter_estate_home_map);
 
                             if (homeModules_aqares.size() == 0) {
@@ -1374,10 +1374,11 @@ public class HomeMapFragment extends Fragment {
         int prices = price_int;
 
 
-        if (price_int < 1000) {
+        if (price_int < 10000) {
+            prices = price_int / 1000;
 
-            price = prices + "";
-        } else if (price_int > 1000 && price_int < 999999) {
+            price = prices + activity.getResources().getString(R.string.K2);
+        } else if (price_int > 10000 && price_int < 999999) {
             prices = price_int / 1000;
 
             price = prices + activity.getResources().getString(R.string.K);

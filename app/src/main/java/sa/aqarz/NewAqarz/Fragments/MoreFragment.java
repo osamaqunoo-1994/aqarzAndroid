@@ -93,6 +93,7 @@ public class MoreFragment extends Fragment {
     TextView employee_num;
     TextView aqarz_offer_num;
     TextView offer_num;
+    TextView rang_profile;
 
 
     LinearLayout st_100;
@@ -159,6 +160,7 @@ public class MoreFragment extends Fragment {
         myAccount = view.findViewById(R.id.myAccount);
         favorit = view.findViewById(R.id.favorit);
         all_area = view.findViewById(R.id.all_area);
+        rang_profile = view.findViewById(R.id.rang_profile);
 
         name = view.findViewById(R.id.name);
         rate = view.findViewById(R.id.rate);
@@ -173,6 +175,7 @@ public class MoreFragment extends Fragment {
                 if (Settings.GetUser().getName().equals("null")) {
                     name.setText(getResources().getString(R.string.NewMember) + "");
 
+
                 } else {
                     name.setText(Settings.GetUser().getName() + "");
 
@@ -182,12 +185,26 @@ public class MoreFragment extends Fragment {
 //                    }
 
 
-
-
                 }
             } else {
                 name.setText(getResources().getString(R.string.NewMember) + "");
 
+            }
+
+
+            if (Settings.GetUser().getProfile_percentage() == 0) {
+                st_100.setVisibility(View.GONE);
+                st_25.setVisibility(View.GONE);
+                st_00.setVisibility(View.VISIBLE);
+            } else if (Settings.GetUser().getProfile_percentage() < 100) {
+                rang_profile.setText(Settings.GetUser().getProfile_percentage() + " % ");
+                st_100.setVisibility(View.GONE);
+                st_25.setVisibility(View.VISIBLE);
+                st_00.setVisibility(View.GONE);
+            } else if (Settings.GetUser().getProfile_percentage() == 100) {
+                st_100.setVisibility(View.VISIBLE);
+                st_25.setVisibility(View.GONE);
+                st_00.setVisibility(View.GONE);
             }
 
             Glide.with(getActivity()).load(Settings.GetUser().getLogo() + "").error(getResources().getDrawable(R.drawable.ic_user_un)).diskCacheStrategy(DiskCacheStrategy.NONE)

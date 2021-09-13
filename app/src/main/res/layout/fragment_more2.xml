@@ -289,7 +289,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/din_bold"
-                                android:text="@string/Congratulatioon"
+                                android:text="@string/Congratulatioon11"
                                 android:textColor="@color/white"
                                 android:textSize="14dp"
                                 android:textStyle="bold" />
@@ -311,6 +311,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/rang_profile"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="5dp"
@@ -396,7 +397,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/din_bold"
-                                android:text="@string/Congratulatioon"
+                                android:text="@string/Congratulatioon11"
                                 android:textColor="@color/white"
                                 android:textSize="14dp"
                                 android:textStyle="bold" />

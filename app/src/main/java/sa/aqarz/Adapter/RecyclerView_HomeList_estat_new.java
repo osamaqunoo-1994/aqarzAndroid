@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,14 +12,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.squareup.picasso.Picasso;
 import com.willy.ratingbar.ScaleRatingBar;
 
@@ -83,7 +90,9 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         ImageView add_favorite;
         ImageView share;
         ImageView hide;
+        ImageView noimage;
         ScaleRatingBar rate;
+        ProgressBar pr_1;
 
 
         public MyViewHolder(View view) {
@@ -106,6 +115,8 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
 
 
             add_favorite = view.findViewById(R.id.add_favorite);
+            pr_1 = view.findViewById(R.id.pr_1);
+            noimage = view.findViewById(R.id.noimage);
             image_icon = view.findViewById(R.id.image_icon);
             image = view.findViewById(R.id.image);
             price = view.findViewById(R.id.price);
@@ -190,9 +201,27 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         }
 
 
-        if (alldata.get(position).getEstate_type() != null) {
-            Glide.with(context).load(alldata.get(position).getEstate_type().getIcon() + "").into(holder.image_icon);
+        System.out.println("alldata.get(position).getFirst_image()" + alldata.get(position).getFirst_image());
+        if (alldata.get(position).getFirst_image() != null) {
 
+            if (alldata.get(position).getFirst_image().equals("null")) {
+                System.out.println("))))))))s)))))))");
+
+//                holder.image_icon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_logo_move));
+                holder.noimage.setVisibility(View.VISIBLE);
+                holder.pr_1.setVisibility(View.GONE);
+            } else {
+                holder.noimage.setVisibility(View.GONE);
+                holder.pr_1.setVisibility(View.GONE);
+                Glide.with(context).load(alldata.get(position).getFirst_image() + "").error(context.getResources().getDrawable(R.drawable.logo_login)).into(holder.image_icon);
+            }
+
+
+        } else {
+            System.out.println("))))))x)))))))))");
+            holder.noimage.setVisibility(View.VISIBLE);
+            holder.pr_1.setVisibility(View.GONE);
+//            holder.image_icon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_logo_move));
         }
 
 

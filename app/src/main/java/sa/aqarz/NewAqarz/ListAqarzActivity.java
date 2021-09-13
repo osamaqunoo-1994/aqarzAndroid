@@ -101,7 +101,7 @@ public class ListAqarzActivity extends AppCompatActivity {
         }
 
 
-        order_by_price = "0";
+        order_by_price = "";
         order_by_area = "0";
         order_by_date = "0";
         order_by_rate = "0";
@@ -285,7 +285,7 @@ public class ListAqarzActivity extends AppCompatActivity {
                         s5.setBackground(null);
                         s6.setBackground(null);
                         popUp.dismiss();
-                        order_by_price = "1";
+                        order_by_price = "price_desc";
                         order_by_area = "0";
                         order_by_date = "0";
                         order_by_rate = "0";
@@ -293,7 +293,7 @@ public class ListAqarzActivity extends AppCompatActivity {
                         order_by_rooms_number = "0";
                         get_data();
                         clear_fi_by.setVisibility(View.VISIBLE);
-                        order_by.setText(getResources().getString(R.string.p8));
+                        order_by.setText(getResources().getString(R.string.awaw1));
 
                     }
                 });
@@ -309,7 +309,7 @@ public class ListAqarzActivity extends AppCompatActivity {
                         s5.setBackground(null);
                         s6.setBackground(null);
                         popUp.dismiss();
-                        order_by_price = "0";
+                        order_by_price = "price_asc";
                         order_by_area = "1";
                         order_by_date = "0";
                         order_by_rate = "0";
@@ -317,7 +317,7 @@ public class ListAqarzActivity extends AppCompatActivity {
                         order_by_rooms_number = "0";
                         get_data();
                         clear_fi_by.setVisibility(View.VISIBLE);
-                        order_by.setText(getResources().getString(R.string.p5));
+                        order_by.setText(getResources().getString(R.string.awaw2));
 
                     }
                 });
@@ -333,7 +333,7 @@ public class ListAqarzActivity extends AppCompatActivity {
                         s5.setBackground(null);
                         s6.setBackground(null);
                         popUp.dismiss();
-                        order_by_price = "0";
+                        order_by_price = "date";
                         order_by_area = "0";
                         order_by_date = "1";
                         order_by_rate = "0";
@@ -341,7 +341,7 @@ public class ListAqarzActivity extends AppCompatActivity {
                         order_by_rooms_number = "0";
                         get_data();
                         clear_fi_by.setVisibility(View.VISIBLE);
-                        order_by.setText(getResources().getString(R.string.date_se));
+                        order_by.setText(getResources().getString(R.string.awaw3));
 
                     }
                 });
@@ -357,7 +357,7 @@ public class ListAqarzActivity extends AppCompatActivity {
                         s5.setBackground(null);
                         s6.setBackground(null);
                         popUp.dismiss();
-                        order_by_price = "0";
+                        order_by_price = "rate";
                         order_by_area = "0";
                         order_by_date = "0";
                         order_by_rate = "1";
@@ -365,7 +365,7 @@ public class ListAqarzActivity extends AppCompatActivity {
                         order_by_rooms_number = "0";
                         get_data();
                         clear_fi_by.setVisibility(View.VISIBLE);
-                        order_by.setText(getResources().getString(R.string.rate_se));
+                        order_by.setText(getResources().getString(R.string.awaw4));
 
                     }
                 });
@@ -556,12 +556,12 @@ public class ListAqarzActivity extends AppCompatActivity {
         }
 
 //
-        String fil_by = "&" + "order_by_price=" + order_by_price
-                + "&order_by_area=" + order_by_area
-                + "&order_by_date=" + order_by_date
-                + "&order_by_rate=" + order_by_rate
-                + "&order_by_bathrooms_number=" + order_by_bathrooms_number
-                + "&order_by_rooms_number=" + order_by_rooms_number;
+        String fil_by = "&" + "order_by=" + order_by_price;
+//                + "&order_by_area=" + order_by_area
+//                + "&order_by_date=" + order_by_date
+//                + "&order_by_rate=" + order_by_rate
+//                + "&order_by_bathrooms_number=" + order_by_bathrooms_number
+//                + "&order_by_rooms_number=" + order_by_rooms_number;
 
 
         WebService.loading(activity, true);

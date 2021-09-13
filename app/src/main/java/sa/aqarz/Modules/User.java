@@ -123,6 +123,9 @@ public class User {
     @SerializedName("count_fund_pending_offer")
     @Expose
     private String count_fund_pending_offer;
+    @SerializedName("profile_percentage")
+    @Expose
+    private int profile_percentage;
 
 
 
@@ -169,6 +172,9 @@ public class User {
         return count_estate;
     }
 
+    public int getProfile_percentage() {
+        return profile_percentage;
+    }
 
     public String getIs_employee() {
         return is_employee;

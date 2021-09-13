@@ -27,7 +27,7 @@
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:text="@string/orprice_by_ff"
+                android:text="@string/awaw1"
                 android:textColor="@color/textColor2"
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -41,7 +41,7 @@
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:text="@string/orderarea_by_ff"
+                android:text="@string/awaw2"
                 android:textColor="@color/textColor2"
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -55,7 +55,7 @@
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:text="@string/date_se"
+                android:text="@string/awaw3"
                 android:textColor="@color/textColor2"
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -68,7 +68,7 @@
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:text="@string/rate_se"
+                android:text="@string/awaw4"
                 android:textColor="@color/textColor2"
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -79,6 +79,7 @@
                 android:layout_height="45dp"
                 android:fontFamily="@font/din_bold"
                 android:gravity="center_vertical"
+                android:visibility="gone"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:text="@string/BathrommNumber"
@@ -87,6 +88,8 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:visibility="gone"
+
                 android:id="@+id/s6"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"

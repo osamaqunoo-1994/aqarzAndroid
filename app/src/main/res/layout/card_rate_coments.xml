@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent">
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:background="@drawable/border_fillter_edit"
         android:layout_height="wrap_content">
 
 
@@ -16,29 +16,78 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="10dp"
-            android:background="@drawable/circle_fill"
-            android:padding="12dp"
-            android:src="@drawable/ic_user_name"
-            app:tint="@color/white" />
+            android:src="@drawable/ic_pro_icon" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="7dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center">
 
                 <TextView
 
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/din_bold"
+                    android:textColor="@color/black"
                     android:textSize="15dp"
                     android:textStyle="bold" />
+
+                <com.willy.ratingbar.ScaleRatingBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/rate_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="7dp"
+                    app:srb_clearRatingEnabled="false"
+                    app:srb_clickable="false"
+                    app:srb_drawableEmpty="@drawable/star_rate_un"
+                    app:srb_drawableFilled="@drawable/star_rate"
+                    app:srb_isIndicator="false"
+                    app:srb_minimumStars="0"
+                    app:srb_numStars="5"
+                    app:srb_rating="0"
+
+                    app:srb_scrollable="false"
+                    app:srb_starHeight="12dp"
+                    app:srb_starPadding="1dp"
+                    app:srb_starWidth="12dp"
+                    app:srb_stepSize="0.5"></com.willy.ratingbar.ScaleRatingBar>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/din_bold"
+                        android:text="5/"
+                        android:textSize="13dp"
+
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/rate_me"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/din_bold"
+                        android:text="0"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -56,6 +105,8 @@
                     android:layout_width="wrap_content"
 
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/din_bold"
+                    android:textColor="#8E909F"
                     android:textSize="13dp"
 
 
@@ -72,4 +123,12 @@
 
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:background="#E0E0E0" />
 </LinearLayout>

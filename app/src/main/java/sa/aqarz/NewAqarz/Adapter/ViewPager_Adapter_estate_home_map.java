@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
@@ -27,6 +28,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.hedgehog.ratingbar.RatingBar;
+import com.squareup.picasso.Picasso;
 import com.willy.ratingbar.ScaleRatingBar;
 
 import org.json.JSONArray;
@@ -89,9 +91,11 @@ public class ViewPager_Adapter_estate_home_map extends PagerAdapter {
     ImageView add_favorite;
     ImageView share;
     ImageView hide;
+    ImageView noimage1;
     TextView bathroom;
     TextView room;
     ScaleRatingBar rate;
+    ProgressBar pr_1;
     public static final ArrayList<imagemodules> items_ViewPager = new ArrayList<imagemodules>();
 //
 //    RecyclerView type_RecyclerView;
@@ -116,7 +120,7 @@ public class ViewPager_Adapter_estate_home_map extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup view, final int position) {
-        View vieww = inflater.inflate(R.layout.item_list_estat_home_map, view, false);
+        View vieww = inflater.inflate(R.layout.item_list_estat_home_map1, view, false);
 
         image = vieww.findViewById(R.id.image);
         price = vieww.findViewById(R.id.price);
@@ -134,6 +138,8 @@ public class ViewPager_Adapter_estate_home_map extends PagerAdapter {
         rate = vieww.findViewById(R.id.rate);
         bathroom = view.findViewById(R.id.bathroom);
         room = view.findViewById(R.id.room);
+        noimage1 = view.findViewById(R.id.noimage1);
+        pr_1 = view.findViewById(R.id.pr_1);
 
         price.setText(alldata.get(position).getTotalPrice());
         type.setText(alldata.get(position).getEstate_type_name());
@@ -182,7 +188,27 @@ public class ViewPager_Adapter_estate_home_map extends PagerAdapter {
 //            Glide.with(context).load(alldata.get(position).getEstate_type().getIcon() + "").into(image_icon);
 //
 //        }
-        Glide.with(context).load(alldata.get(position).getFirst_image() + "").into(image);
+        Picasso.get().load(alldata.get(position).getFirst_image() + "").error(context.getResources().getDrawable(R.drawable.logo_login)).into(image_icon);
+
+//        if (alldata.get(position).getFirst_image() != null) {
+//
+//            if (alldata.get(position).getFirst_image().toString().equals("null")) {
+//
+////                holder.image_icon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_logo_move));
+////                noimage1.setVisibility(View.VISIBLE);
+//                pr_1.setVisibility(View.GONE);
+//            } else {
+////                noimage1.setVisibility(View.GONE);
+//                pr_1.setVisibility(View.GONE);
+//                Glide.with(context).load(alldata.get(position).getFirst_image() + "").error(context.getResources().getDrawable(R.drawable.logo_login)).into(image_icon);
+//            }
+//
+//
+//        } else {
+////            noimage1.setVisibility(View.VISIBLE);
+//            pr_1.setVisibility(View.GONE);
+////            holder.image_icon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_logo_move));
+//        }
 
 
 //        if (alldata.get(position).getIn_fav().equals("1")) {

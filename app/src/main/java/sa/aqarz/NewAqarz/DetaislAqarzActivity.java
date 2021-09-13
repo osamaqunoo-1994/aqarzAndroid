@@ -28,6 +28,7 @@ import com.willy.ratingbar.ScaleRatingBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -115,6 +116,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
     LinearLayout whatsapp;
     LinearLayout rate_;
     ImageView map_location;
+    RecyclerView all_comfort;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,6 +200,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
         last_update = findViewById(R.id.last_update);
         ads_number = findViewById(R.id.ads_number);
         views_nummm = findViewById(R.id.views_nummm);
+        all_comfort = findViewById(R.id.all_comfort);
 
         bathroom = findViewById(R.id.bathroom);
         room = findViewById(R.id.room);
@@ -214,12 +217,8 @@ public class DetaislAqarzActivity extends AppCompatActivity {
         whatsapp = findViewById(R.id.whatsapp);
         map_location = findViewById(R.id.map_location);
 
-        rate_.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(DetaislAqarzActivity.this, RateDetailsActivity.class));
-            }
-        });
+        all_comfort.setLayoutManager(new GridLayoutManager(this, 2));
+
         try {
 
             id_or_aq = getIntent().getStringExtra("id_aqarz");
@@ -286,6 +285,16 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
             }
         }
+        rate_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent inte = new Intent(DetaislAqarzActivity.this, RateDetailsActivity.class);
+                inte.putExtra("id_or_aq", id_or_aq);
+                startActivity(inte);
+
+
+            }
+        });
         report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -401,7 +410,6 @@ public class DetaislAqarzActivity extends AppCompatActivity {
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + response.toString());
-                WebService.loading(DetaislAqarzActivity.this, false);
 //{"status":true,"code":200,"message":"User Profile","data"
                 try {
                     boolean status = response.getBoolean("status");
@@ -572,6 +580,8 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                                 age.setText("-");
 
                             }
+                            WebService.loading(DetaislAqarzActivity.this, false);
+
 //                            if (homeModules_aqares.getInterface() != null) {
 //
 //                                if (!homeModules_aqares.getInterface().equals("null")) {
@@ -818,8 +828,8 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                             }
 
 
-//                            RecyclerView_All_Comfort_in_details recyclerView_all_comfort_in_fragment = new RecyclerView_All_Comfort_in_details(DetailsActivity_aqarz.this, homeModules_aqares.getComforts());//
-//                            comfort_rec.setAdapter(recyclerView_all_comfort_in_fragment);
+                            RecyclerView_All_Comfort_in_details recyclerView_all_comfort_in_fragment = new RecyclerView_All_Comfort_in_details(DetaislAqarzActivity.this, homeModules_aqares.getComforts());//
+                            all_comfort.setAdapter(recyclerView_all_comfort_in_fragment);
 
 
                             init_volley();
@@ -836,6 +846,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                         WebService.Make_Toast_color(DetaislAqarzActivity.this, message, "error");
                     }
 
+                    WebService.loading(DetaislAqarzActivity.this, false);
 
                 } catch (Exception e) {
                     e.printStackTrace();

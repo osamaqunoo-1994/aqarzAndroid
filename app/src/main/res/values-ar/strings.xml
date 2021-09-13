@@ -426,6 +426,7 @@
     <string name="m5">أخرى</string>
     <string name="gender">الحالة الاجتماعيه</string>
     <string name="K">الف</string>
+    <string name="K2">آلاف</string>
     <string name="Million">مليون</string>
 
 
@@ -1126,7 +1127,6 @@
     <string name="Areyou">هل انت ؟</string>
 
 
-
     <string name="Map">الخريطه</string>
     <string name="Aqarzman_">عقاري</string>
     <string name="user">باحث عن عقار</string>
@@ -1138,5 +1138,20 @@
     <string name="ratetitle">التقييم</string>
     <string name="ra_title">التقييم والمراجعة</string>
     <string name="rate_man">مقيّم</string>
+
+
+    <string name="rate_ask">ما هو تقييمك للعقار ؟</string>
+    <string name="write_take">كتابة تعليق</string>
+    <string name="Customer_Reviews">آراء العملاء</string>
+    <string name="noCustomer_Reviews">لا يوجد آراء</string>
+
+
+    <string name="awaw1">الأعلى سعرا</string>
+    <string name="awaw2">الاقل سعرا</string>
+    <string name="awaw3">الاحدث</string>
+    <string name="awaw4">الاعلى تقييما</string>
+
+    <string name="Congratulatioon11">اكمل ملفك الشخصي</string>
+    <string name="addNib">اضف احياء</string>
 
 </resources>
