@@ -38,7 +38,7 @@
     <string name="reset">إعادة تعيين</string>
     <string name="enter_verification">قم بادخال رمز التفعيل الذي وصل على هاتفك المحمول.</string>
     <string name="home">الرئيسية</string>
-    <string name="orders">الطلبات</string>
+    <string name="orders">إدارة الطلبات</string>
     <string name="subscriptions">الاشتراكات</string>
     <string name="messages">مراسلة</string>
     <string name="search">بحث</string>
@@ -1153,5 +1153,18 @@
 
     <string name="Congratulatioon11">اكمل ملفك الشخصي</string>
     <string name="addNib">اضف احياء</string>
+
+
+    <string name="AddAqarzA">اضافة اعلان تجاري</string>
+
+    <string name="AddAqarzA1">قم بتسويق عقارك في خطوات بسيطة</string>
+
+
+
+    <string name="AddorderA">إدارة طلباتي</string>
+    <string name="AddorderA1">إضافة ومتابعة طلباتك العقارية أو خدمة تقسيط الإيجار</string>
+    <string name="Request_property">طلب عقار</string>
+    <string name="rent_installment">تقسيط التاجير</string>
+
 
 </resources>

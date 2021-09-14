@@ -68,6 +68,7 @@ public class MainAqarzActivity extends AppCompatActivity {
     LinearLayout addAqares;
     LinearLayout RequstAqars;
     LinearLayout rent;
+    LinearLayout my_order;
 
     ImageView close_add;
 
@@ -94,6 +95,7 @@ public class MainAqarzActivity extends AppCompatActivity {
         addAqares = findViewById(R.id.addAqares);
         RequstAqars = findViewById(R.id.RequstAqars);
         rent = findViewById(R.id.rent);
+        my_order = findViewById(R.id.my_order);
         close_add = findViewById(R.id.close_add);
 
 
@@ -407,6 +409,28 @@ public class MainAqarzActivity extends AppCompatActivity {
 //                            Intent intent = new Intent(MainAqarzActivity.this, AddAqarzActivity.class);
                             Intent intent = new Intent(MainAqarzActivity.this, AddAqarzStepsActivity.class);
                             intent.putExtra("id", "");
+                            startActivity(intent);
+                            gray_layout.setVisibility(View.GONE);
+                            add_aqares_and_order_and_estate.setVisibility(View.GONE);
+                        }
+//                            alertDialog.dismiss();
+                    }
+                });
+                my_order.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (!Settings.checkLogin()) {
+                            startActivity(new Intent(MainAqarzActivity.this, LoginActivity.class));
+
+//                            startActivity(new Intent(MainAqarzActivity.this, check_login.class));
+
+                        } else {
+
+//                            Intent intent = new Intent(MainAqarzActivity.this, AddAqarzActivity.class);
+                            Intent intent = new Intent(MainAqarzActivity.this, MyOrderRequstActivity.class);
+                            intent.putExtra("id", "");
+                            intent.putExtra("from", "home");
                             startActivity(intent);
                             gray_layout.setVisibility(View.GONE);
                             add_aqares_and_order_and_estate.setVisibility(View.GONE);

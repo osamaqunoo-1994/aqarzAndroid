@@ -32,6 +32,7 @@ public class RentShowActivity extends AppCompatActivity {
                     Intent intent = new Intent(RentShowActivity.this, RentActivity.class);
                     intent.putExtra("id", "");
                     startActivity(intent);
+                    finish();
 
                 } else {
                     id = 1;

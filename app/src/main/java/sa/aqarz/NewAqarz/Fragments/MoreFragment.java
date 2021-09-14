@@ -292,6 +292,8 @@ public class MoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MyOrderRequstActivity.class);
+                intent.putExtra("from", "more");
+
                 startActivity(intent);
 
             }

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,7 +32,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.MyOrderActivity;
+import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
+import sa.aqarz.Activity.OprationNew.RentActivity;
+import sa.aqarz.Activity.OprationNew.RentShowActivity;
 import sa.aqarz.Adapter.RecyclerView_order_finince;
 import sa.aqarz.Adapter.RecyclerView_order_rate;
 import sa.aqarz.Adapter.RecyclerView_orders_demandsx;
@@ -61,6 +67,8 @@ public class MyOrderRequstActivity extends AppCompatActivity {
     LinearLayout nodata_vis;
     static RecyclerView_mu_souq_order recyclerView_orders_demandsx;
     int page = 1;
+    LinearLayout Request_property;
+    LinearLayout rent_installment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +77,49 @@ public class MyOrderRequstActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         orders_rec = findViewById(R.id.orders_rec);
         nodata_vis = findViewById(R.id.nodata_vis);
+        rent_installment = findViewById(R.id.rent_installment);
+        Request_property = findViewById(R.id.Request_property);
         page = 1;
 
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         orders_rec.setLayoutManager(layoutManager1);
+
+
+        try {
+            String from = getIntent().getStringExtra("from");//more,home
+
+
+        } catch (Exception e) {
+
+        }
+
+        rent_installment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MyOrderRequstActivity.this, AqarzOrActivity.class);
+                intent.putExtra("id", "");
+                startActivity(intent);
+            }
+        });
+        Request_property.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (Hawk.contains("rent_layout")) {
+
+                    Intent intent = new Intent(MyOrderRequstActivity.this, RentActivity.class);
+                    intent.putExtra("id", "");
+                    startActivity(intent);
+                } else {
+                    Hawk.put("rent_layout", "rent_layout");
+                    Intent intent = new Intent(MyOrderRequstActivity.this, RentShowActivity.class);
+                    intent.putExtra("id", "");
+                    startActivity(intent);
+                }
+            }
+        });
 
 
         MyRequst.clear();

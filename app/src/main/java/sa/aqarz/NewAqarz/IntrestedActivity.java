@@ -42,7 +42,7 @@ public class IntrestedActivity extends AppCompatActivity {
 
 
     List<AllCityModules.City> dataCities = new ArrayList<>();
-
+    RecyclerView_Intrester recyclerView_intrester;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,14 +72,14 @@ public class IntrestedActivity extends AppCompatActivity {
         });
 
 
+        recyclerView_intrester = new RecyclerView_Intrester(IntrestedActivity.this, dataCities);
+        all_arya_list.setAdapter(recyclerView_intrester);
+
         WebService.loading(IntrestedActivity.this, true);
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, IntrestedActivity.this);
-
-
 //        url_list = WebService.home_estate_custom_list + "?" + type_filtter_;
-        mVolleyService.getAsync("home_estate_custom_list_more_1", WebService.title_gloable);
-
+        mVolleyService.getAsync("my_interest", WebService.my_interest);
 
     }
 
@@ -99,7 +99,7 @@ public class IntrestedActivity extends AppCompatActivity {
                     if (status) {
                         WebService.loading(IntrestedActivity.this, false);
 
-                        if (requestType.equals("home_estate_custom_list_more_1")) {
+                        if (requestType.equals("my_interest")) {
 
                             JsonParser parser = new JsonParser();
                             JsonElement mJson = parser.parse(response.toString());
@@ -111,11 +111,10 @@ public class IntrestedActivity extends AppCompatActivity {
 
                             AllCityListxx allCityListxx = gson.fromJson(mJson, AllCityListxx.class);
 
-                            dataCities.addAll(allCityListxx.getData());
+                            dataCities.add(allCityListxx.getData().get(0));
 
 
-                            RecyclerView_Intrester recyclerView_intrester = new RecyclerView_Intrester(IntrestedActivity.this, dataCities);
-                            all_arya_list.setAdapter(recyclerView_intrester);
+                            recyclerView_intrester.Refr();
 
 //                            set_locationEstate(allNeigbers.getData().getData());
 //                            all_estate_size.setVisibility(View.VISIBLE);

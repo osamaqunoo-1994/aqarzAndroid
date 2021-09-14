@@ -227,7 +227,7 @@ public class RecyclerView_Intrester extends RecyclerView.Adapter<RecyclerView_In
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_type_map_fillter, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_intrested, parent, false);
 
 
         // Fresco.initialize(context);

@@ -226,7 +226,6 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:id="@+id/add_aqares_and_order_and_estate"
                 android:layout_width="match_parent"
@@ -242,107 +241,218 @@
                 android:padding="10dp"
                 android:visibility="gone">
 
-                <ImageView
-                    android:id="@+id/close_add"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/ic_close_black_24dp" />
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp"
+
+                    android:layout_marginRight="20dp"
+
+                    android:layout_marginBottom="130dp"
+                    android:background="@drawable/back_searcj"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/close_add"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_close_black_24dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="15dp">
+
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:background="@drawable/circle_fill"
+                                android:padding="11dp"
+                                android:src="@drawable/ic_plus" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/add_aqar"
+                                android:textColor="@color/black"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+
+                            android:id="@+id/RequstAqars"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="15dp">
+
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:background="@drawable/circle_orange"
+                                android:padding="10dp"
+                                android:src="@drawable/ic_home11"
+                                app:tint="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/AqarsService"
+                                android:textColor="@color/black"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="10dp"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:id="@+id/rent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="15dp">
+
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:background="@drawable/circle_blue"
+                                android:padding="10dp"
+                                android:src="@drawable/ic_home_uuu"
+                                app:tint="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/rent_aq1"
+                                android:textColor="@color/black"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/addAqares"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="center"
+                    android:paddingStart="10dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+
+                        android:src="@drawable/ic_addaqarez" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/din_bold"
+                            android:text="@string/AddAqarzA"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/din_bold"
+                            android:text="@string/AddAqarzA1"
+                            android:textColor="#5F5F5F"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="1dp"
+                    android:background="#BCBCBC" />
+
+                <LinearLayout
+                    android:id="@+id/my_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:paddingStart="10dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+
+                        android:src="@drawable/ic_addorderss" />
 
                     <LinearLayout
-                        android:id="@+id/addAqares"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="15dp">
-
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:background="@drawable/circle_fill"
-                            android:padding="11dp"
-                            android:src="@drawable/ic_plus" />
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="@string/add_aqar"
-                            android:textColor="@color/black"
-                            android:textSize="14dp"
+                            android:fontFamily="@font/din_bold"
+                            android:text="@string/AddorderA"
+                            android:textColor="#FF9F1A"
+                            android:textSize="16dp"
                             android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content" />
-
-                    <LinearLayout
-
-                        android:id="@+id/RequstAqars"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="15dp">
-
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:background="@drawable/circle_orange"
-                            android:padding="10dp"
-                            android:src="@drawable/ic_home11"
-                            app:tint="@color/white" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="@string/AqarsService"
-                            android:textColor="@color/black"
-                            android:textSize="14dp"
+                            android:fontFamily="@font/din_bold"
+                            android:lines="1"
+                            android:text="@string/AddorderA1"
+                            android:textColor="#5F5F5F"
+                            android:textSize="12dp"
                             android:textStyle="bold" />
+
+
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content" />
-
-                    <LinearLayout
-                        android:id="@+id/rent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="15dp">
-
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:background="@drawable/circle_blue"
-                            android:padding="10dp"
-                            android:src="@drawable/ic_home_uuu"
-                            app:tint="@color/white" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="@string/rent_aq1"
-                            android:textColor="@color/black"
-                            android:textSize="14dp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
 
                 </LinearLayout>
 

@@ -1224,7 +1224,14 @@ Two working days to complete your order</string>
 
 
     <string name="addNib">Add</string>
+    <string name="AddAqarzA">Add a commercial</string>
+    <string name="AddAqarzA1">Market your property in simple steps</string>
+
+    <string name="AddorderA">Manage My orders</string>
+    <string name="AddorderA1">Add real estate requests or rent installment service</string>
 
 
+    <string name="Request_property">Request a property</string>
+    <string name="rent_installment">Rent installment</string>
 
 </resources>
