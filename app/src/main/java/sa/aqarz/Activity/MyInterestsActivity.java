@@ -279,7 +279,7 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
 
-        WebService.loading(MyInterestsActivity.this, true);
+//        WebService.loading(MyInterestsActivity.this, true);
 
 //        clusterManager = new ClusterManager<MyItem>(MyInterestsActivity.this, mMap);
 
@@ -301,23 +301,23 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
 //        }
 
 
-        try {
-            String getCityId = getIntent().getStringExtra("getCityId");
-
-            init_volley();
-            WebService.loading(MyInterestsActivity.this, true);
-
-            try {
-                VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
-//            mVolleyService.getDataVolley("user", WebService.user + id + "");
-                mVolleyService.getDataVolley("title_gloable", WebService.title_gloable + getCityId + "/neb");
-
-            } catch (Exception e) {
-
-            }
-        } catch (Exception e) {
-
-        }
+//        try {
+//            String getCityId = getIntent().getStringExtra("getCityId");
+//
+//            init_volley();
+//            WebService.loading(MyInterestsActivity.this, true);
+//
+//            try {
+//                VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
+////            mVolleyService.getDataVolley("user", WebService.user + id + "");
+//                mVolleyService.getDataVolley("title_gloable", WebService.title_gloable + getCityId + "/neb");
+//
+//            } catch (Exception e) {
+//
+//            }
+//        } catch (Exception e) {
+//
+//        }
 
 
         allneb.setLayoutManager(new GridLayoutManager(this, 3));
@@ -489,19 +489,19 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
                         }
                     }
 
-                    init_volley();
-//                    WebService.loading(MyInterestsActivity.this, true);
-
-                    try {
-
-                        RequestParams requestParams = new RequestParams();
-                        requestParams.put("neb_ids", all_neb.get(Integer.valueOf(polygon.getTag().toString())).getDistrictId() + "");
-                        VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
-//            mVolleyService.getDataVolley("user", WebService.user + id + "");
-                        mVolleyService.postDataasync_with_file("remove_neb_interest", WebService.remove_neb_interest, requestParams);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+//                    init_volley();
+////                    WebService.loading(MyInterestsActivity.this, true);
+//
+//                    try {
+//
+//                        RequestParams requestParams = new RequestParams();
+//                        requestParams.put("neb_ids", all_neb.get(Integer.valueOf(polygon.getTag().toString())).getDistrictId() + "");
+//                        VolleyService mVolleyService = new VolleyService(mResultCallback, MyInterestsActivity.this);
+////            mVolleyService.getDataVolley("user", WebService.user + id + "");
+//                        mVolleyService.postDataasync_with_file("remove_neb_interest", WebService.remove_neb_interest, requestParams);
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
 
                 } else {
                     polygon.setFillColor(color);
@@ -611,6 +611,7 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
                             Gson gson = new Gson();
                             AllCityModules allCityModules = gson.fromJson(mJson, AllCityModules.class);
                             dataCities = allCityModules.getData();
+
                             mMap.clear();
 //                            for (int i = 0; i < allCityModules.getData().size(); i++) {
 ////                                double offset = i / 60d;

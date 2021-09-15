@@ -35,6 +35,7 @@ import sa.aqarz.Activity.Auth.NewSiginUpActivity;
 import sa.aqarz.Activity.ContactUsActivity;
 import sa.aqarz.Activity.Employee.DetailsEmployeeActivity;
 import sa.aqarz.Activity.FavoriteActivity;
+import sa.aqarz.Activity.MyInterestsActivity;
 import sa.aqarz.Activity.MyOrderActivity;
 import sa.aqarz.Activity.SettingsActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
@@ -271,7 +272,7 @@ public class MoreFragment extends Fragment {
         all_area.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), IntrestedActivity.class);
+                Intent intent = new Intent(getActivity(), MyInterestsActivity.class);
 //              intent.putExtra("from", "splash");
                 intent.putExtra("type", "all");
                 intent.putExtra("id_user", "--");

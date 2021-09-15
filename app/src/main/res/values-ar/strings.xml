@@ -1166,5 +1166,6 @@
     <string name="Request_property">طلب عقار</string>
     <string name="rent_installment">تقسيط التاجير</string>
 
-
+    <string name="title_tab_order_1">طلبات العقارات</string>
+    <string name="title_tab_order_2">طلبات تقسيط التأجير</string>
 </resources>

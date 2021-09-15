@@ -428,7 +428,8 @@ public class MainAqarzActivity extends AppCompatActivity {
                         } else {
 
 //                            Intent intent = new Intent(MainAqarzActivity.this, AddAqarzActivity.class);
-                            Intent intent = new Intent(MainAqarzActivity.this, MyOrderRequstActivity.class);
+//                            Intent intent = new Intent(MainAqarzActivity.this, MyOrderRequstActivity.class);
+                            Intent intent = new Intent(MainAqarzActivity.this, ManageOrderActivity.class);
                             intent.putExtra("id", "");
                             intent.putExtra("from", "home");
                             startActivity(intent);

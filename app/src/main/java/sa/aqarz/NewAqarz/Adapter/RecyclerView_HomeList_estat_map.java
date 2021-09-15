@@ -147,11 +147,18 @@ public class RecyclerView_HomeList_estat_map extends RecyclerView.Adapter<Recycl
         holder.date.setText(alldata.get(position).getCreatedAt() + "");
         holder.num_id.setText("#" + alldata.get(position).getId() + "");
 
-        if (alldata.get(position).getCity_name() != null) {
-            holder.address.setText(alldata.get(position).getCity_name() + " - " + alldata.get(position).getNeighborhood_name());
+//        if (alldata.get(position).getCity_name() != null) {
+//            holder.address.setText(alldata.get(position).getCity_name() + " , " + alldata.get(position).getNeighborhood_name());
+//
+//        } else {
+//            holder.address.setText(alldata.get(position).getAddress());
+//
+//        }
+        if (alldata.get(position).getFull_address() != null) {
+            if (!alldata.get(position).getFull_address().equals("null")) {
+                holder.address.setText(alldata.get(position).getFull_address() + "");
 
-        } else {
-            holder.address.setText(alldata.get(position).getAddress());
+            }
 
         }
 

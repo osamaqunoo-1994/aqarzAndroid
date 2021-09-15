@@ -471,6 +471,7 @@
         </androidx.core.widget.NestedScrollView>
 
         <LinearLayout
+            android:id="@+id/bar_add"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginLeft="15dp"

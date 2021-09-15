@@ -161,6 +161,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
     EditText Date_of_construction_text;
     EditText sale_price_text;
     EditText Warranties_duration_txt;
+    EditText note;
 
     LinearLayout button_step_3;
     ///------------------------------------------------------------------------------------------------------
@@ -271,6 +272,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         Lounges_plus = findViewById(R.id.Lounges_plus);
         Lounges_minus = findViewById(R.id.Lounges_minus);
         Lounges_number = findViewById(R.id.Lounges_number);
+        note = findViewById(R.id.note);
 
         room_plus = findViewById(R.id.room_plus);
         room_minus = findViewById(R.id.room_minus);
@@ -2004,6 +2006,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             sendObj.put("advertiser_character", addAqarezObject.getAdvertiser_character());
             sendObj.put("operation_type_id", addAqarezObject.getOperation_type_id());
             sendObj.put("estate_use_type", addAqarezObject.getEstate_use_type());
+            sendObj.put("note", note.getText().toString());
 
 
             if (addAqarezObject.getVideo() != null) {

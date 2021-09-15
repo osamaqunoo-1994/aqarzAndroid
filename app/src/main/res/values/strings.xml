@@ -1222,7 +1222,6 @@ Two working days to complete your order</string>
     <string name="awaw4">Top Rated</string>
 
 
-
     <string name="addNib">Add</string>
     <string name="AddAqarzA">Add a commercial</string>
     <string name="AddAqarzA1">Market your property in simple steps</string>
@@ -1233,5 +1232,7 @@ Two working days to complete your order</string>
 
     <string name="Request_property">Request a property</string>
     <string name="rent_installment">Rent installment</string>
+    <string name="title_tab_order_1">Request a property</string>
+    <string name="title_tab_order_2">Rent installment</string>
 
 </resources>

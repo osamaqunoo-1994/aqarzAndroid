@@ -366,7 +366,7 @@
                             android:fontFamily="@font/din_bold"
 
                             android:lines="1"
-                            android:text="الروابي، الخبر ، المنطقة الشرقية"
+                            android:text=""
 
                             android:textColor="@color/textColor"
                             android:textSize="12dp" />

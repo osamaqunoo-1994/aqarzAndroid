@@ -473,7 +473,7 @@ public class ListAqarzActivity extends AppCompatActivity {
         String state_id = "";
 
         if (!MainAqarzActivity.object_filtter.getId_state().equals("")) {
-//            state_id = "&state_id=" + MainAqarzActivity.object_filtter.getId_state();
+            state_id = "&state_id=" + MainAqarzActivity.object_filtter.getId_state();
         }
 
         String price_to = "";

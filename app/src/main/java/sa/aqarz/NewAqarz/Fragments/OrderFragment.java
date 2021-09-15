@@ -14,10 +14,13 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.booking.rtlviewpager.RtlViewPager;
+import com.google.android.material.tabs.TabLayout;
 import com.orhanobut.hawk.Hawk;
 
 import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
 import sa.aqarz.NewAqarz.MainAqarzActivity;
+import sa.aqarz.NewAqarz.ManageOrderActivity;
 import sa.aqarz.R;
 
 /**
@@ -37,8 +40,6 @@ public class OrderFragment extends Fragment {
     private String mParam2;
     ViewPager vpPager;
 
-
-    MyPagerAdapter adapterViewPager;
 
     public OrderFragment() {
         // Required empty public constructor
@@ -77,6 +78,8 @@ public class OrderFragment extends Fragment {
     LinearLayout Real_Estate_orders_line;
     private static FragmentTransaction fragmentTransaction;
     private static FragmentManager fragmentManager;
+    TabLayout tabLayout;
+    RtlViewPager viewPager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,6 +92,14 @@ public class OrderFragment extends Fragment {
         Real_Estate_orders_line = view.findViewById(R.id.Real_Estate_orders_line);
 
 
+        tabLayout = view.findViewById(R.id.my_tabs);
+
+        viewPager = view.findViewById(R.id.pager);
+        ViewPagerAdapter viewPagerz = new ViewPagerAdapter(getChildFragmentManager());
+        viewPager.setAdapter(viewPagerz);
+        tabLayout.setupWithViewPager(viewPager);
+
+
 //        vpPager = (ViewPager) view.findViewById(R.id.vpPager);
 //        adapterViewPager = new MyPagerAdapter(getActivity().getSupportFragmentManager());
 //        vpPager.setAdapter(adapterViewPager);
@@ -98,108 +109,108 @@ public class OrderFragment extends Fragment {
 //            vpPager.setCurrentItem(1);
 //        }
 
-        if (!MainAqarzActivity.type_order_main.equals("")) {
-            if (MainAqarzActivity.type_order_main.equals("real")) {
-                MainAqarzActivity.type_order_main = "real";
-                MainAqarzActivity.objectFiltterOrder.setTypelayout("Real");
-                Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
-                Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
-
-
-                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
-
-                fragmentManager = getActivity().getSupportFragmentManager();
-
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container_fragment, new FirstFragment());
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
-            } else {
-                MainAqarzActivity.type_order_main = "Shopping";
-                MainAqarzActivity.objectFiltterOrder.setTypelayout("Market");
-
-                Shoppingrequest.setTextColor(getResources().getColor(R.color.colorPrimary));
-                Real_Estate_orders.setTextColor(getResources().getColor(R.color.te_unselected));
-
-                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
-                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-
-                fragmentManager = getActivity().getSupportFragmentManager();
-
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container_fragment, new SecandFragment());
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
-            }
-        } else {
-            MainAqarzActivity.type_order_main = "real";
-            MainAqarzActivity.objectFiltterOrder.setTypelayout("Real");
-
-            Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
-            Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
-
-
-            Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-            Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
-
-            fragmentManager = getActivity().getSupportFragmentManager();
-
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_fragment, new FirstFragment());
-            //  fragmentTransaction.commit();
-            fragmentTransaction.commitAllowingStateLoss();
-
-        }
-
-
-        Real_Estate_orders.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-//                vpPager.setCurrentItem(1);
-                MainAqarzActivity.type_order_main = "real";
-                MainAqarzActivity.objectFiltterOrder.setTypelayout("Real");
-
-                Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
-                Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
-
-
-                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
-
-                fragmentManager = getActivity().getSupportFragmentManager();
-
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container_fragment, new FirstFragment());
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
-
-            }
-        });
-        Shoppingrequest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                vpPager.setCurrentItem(0);
-                MainAqarzActivity.type_order_main = "Shopping";
-                MainAqarzActivity.objectFiltterOrder.setTypelayout("Market");
-
-                Shoppingrequest.setTextColor(getResources().getColor(R.color.colorPrimary));
-                Real_Estate_orders.setTextColor(getResources().getColor(R.color.te_unselected));
-
-                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
-                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-
-                fragmentManager = getActivity().getSupportFragmentManager();
-
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container_fragment, new SecandFragment());
-                //  fragmentTransaction.commit();
-                fragmentTransaction.commitAllowingStateLoss();
-
-
-            }
-        });
+//        if (!MainAqarzActivity.type_order_main.equals("")) {
+//            if (MainAqarzActivity.type_order_main.equals("real")) {
+//                MainAqarzActivity.type_order_main = "real";
+//                MainAqarzActivity.objectFiltterOrder.setTypelayout("Real");
+//                Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
+//                Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
+//
+//
+//                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
+//
+//                fragmentManager = getActivity().getSupportFragmentManager();
+//
+//                fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.container_fragment, new FirstFragment());
+//                //  fragmentTransaction.commit();
+//                fragmentTransaction.commitAllowingStateLoss();
+//            } else {
+//                MainAqarzActivity.type_order_main = "Shopping";
+//                MainAqarzActivity.objectFiltterOrder.setTypelayout("Market");
+//
+//                Shoppingrequest.setTextColor(getResources().getColor(R.color.colorPrimary));
+//                Real_Estate_orders.setTextColor(getResources().getColor(R.color.te_unselected));
+//
+//                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
+//                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//
+//                fragmentManager = getActivity().getSupportFragmentManager();
+//
+//                fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.container_fragment, new SecandFragment());
+//                //  fragmentTransaction.commit();
+//                fragmentTransaction.commitAllowingStateLoss();
+//            }
+//        } else {
+//            MainAqarzActivity.type_order_main = "real";
+//            MainAqarzActivity.objectFiltterOrder.setTypelayout("Real");
+//
+//            Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
+//            Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
+//
+//
+//            Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//            Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
+//
+//            fragmentManager = getActivity().getSupportFragmentManager();
+//
+//            fragmentTransaction = fragmentManager.beginTransaction();
+//            fragmentTransaction.replace(R.id.container_fragment, new FirstFragment());
+//            //  fragmentTransaction.commit();
+//            fragmentTransaction.commitAllowingStateLoss();
+//
+//        }
+//
+//
+//        Real_Estate_orders.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+////                vpPager.setCurrentItem(1);
+//                MainAqarzActivity.type_order_main = "real";
+//                MainAqarzActivity.objectFiltterOrder.setTypelayout("Real");
+//
+//                Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
+//                Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
+//
+//
+//                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
+//
+//                fragmentManager = getActivity().getSupportFragmentManager();
+//
+//                fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.container_fragment, new FirstFragment());
+//                //  fragmentTransaction.commit();
+//                fragmentTransaction.commitAllowingStateLoss();
+//
+//            }
+//        });
+//        Shoppingrequest.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                vpPager.setCurrentItem(0);
+//                MainAqarzActivity.type_order_main = "Shopping";
+//                MainAqarzActivity.objectFiltterOrder.setTypelayout("Market");
+//
+//                Shoppingrequest.setTextColor(getResources().getColor(R.color.colorPrimary));
+//                Real_Estate_orders.setTextColor(getResources().getColor(R.color.te_unselected));
+//
+//                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
+//                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+//
+//                fragmentManager = getActivity().getSupportFragmentManager();
+//
+//                fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.container_fragment, new SecandFragment());
+//                //  fragmentTransaction.commit();
+//                fragmentTransaction.commitAllowingStateLoss();
+//
+//
+//            }
+//        });
         // Attach the page change listener inside the activity
 //        vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 //
@@ -245,39 +256,41 @@ public class OrderFragment extends Fragment {
 
     }
 
-    public static class MyPagerAdapter extends FragmentPagerAdapter {
-        private static final int NUM_ITEMS = 2;
+    public class ViewPagerAdapter extends FragmentPagerAdapter {
 
-        public MyPagerAdapter(FragmentManager fragmentManager) {
-            super(fragmentManager);
+        public ViewPagerAdapter(FragmentManager fm) {
+            super(fm);
         }
 
-        // Returns total number of pages
-        @Override
-        public int getCount() {
-            return NUM_ITEMS;
-        }
-
-        // Returns the fragment to display for that page
         @Override
         public Fragment getItem(int position) {
-            switch (position) {
-                case 0: // Fragment # 0 - This will show FirstFragment
-                    return FirstFragment.newInstance("0", "Page # 1");
-
-                case 1: // Fragment # 1 - This will show SecondFragment
-                    return SecandFragment.newInstance("2", "Page # 3");
-                default:
-                    return null;
+            Fragment fragment = null;
+            if (position == 0) {
+                fragment = new FirstFragment();
+            } else if (position == 1) {
+                fragment = new SecandFragment();
             }
+
+            return fragment;
         }
 
-        // Returns the page title for the top indicator
+        @Override
+        public int getCount() {
+            return 2;
+        }
+
         @Override
         public CharSequence getPageTitle(int position) {
-            return "Page " + position;
-        }
+            String title = null;
+            if (position == 0) {
+                title = getActivity().getResources().getString(R.string.Real_Estate_orders);
+            } else if (position == 1) {
+                title = getActivity().getResources().getString(R.string.Shoppingrequest);
+            }
 
+            return title;
+        }
     }
+
 
 }

@@ -9,105 +9,135 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:fontFamily="@font/din_bold"
-            android:gravity="center"
-            android:text="@string/orders"
-            android:textColor="@color/black"
-            android:textSize="17dp"
-            android:textStyle="bold" />
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            android:layout_height="46dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:fontFamily="@font/din_bold"
+                android:gravity="center"
+                android:text="@string/orders"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_height="46dp"
+                android:orientation="horizontal"
 
+                android:visibility="gone">
 
-                <TextView
-                    android:id="@+id/Real_Estate_orders"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/din_bold"
-                    android:gravity="center"
-                    android:text="@string/Real_Estate_orders"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="17dp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/Real_Estate_orders"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/din_bold"
+                        android:gravity="center"
+                        android:text="@string/Real_Estate_orders"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="17dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/Real_Estate_orders_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorPrimary"
+                        android:orientation="horizontal" />
+
+
+                </LinearLayout>
+
 
                 <LinearLayout
-                    android:id="@+id/Real_Estate_orders_line"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorPrimary"
-                    android:orientation="horizontal" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/Shoppingrequest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/din_bold"
+                        android:gravity="center"
+                        android:text="@string/Shoppingrequest"
+                        android:textColor="@color/te_unselected"
+                        android:textSize="17dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/Shoppingrequest_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/te_unselected"
+                        android:orientation="horizontal" />
+
+
+                </LinearLayout>
 
 
             </LinearLayout>
 
-
-            <LinearLayout
+            <FrameLayout
+                android:id="@+id/container_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="40dp"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:visibility="gone"
+                tools:background="#EFF0F2" />
 
 
-                <TextView
-                    android:id="@+id/Shoppingrequest"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/din_bold"
-                    android:gravity="center"
-                    android:text="@string/Shoppingrequest"
-                    android:textColor="@color/te_unselected"
-                    android:textSize="17dp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:id="@+id/Shoppingrequest_line"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/te_unselected"
-                    android:orientation="horizontal" />
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/my_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabIndicatorColor="@color/colorPrimary"
+                app:tabSelectedTextColor="@color/colorPrimary"
+                app:tabTextAppearance="@style/MineCustomTabText"
+                tools:layout_editor_absoluteX="96dp"
+                tools:layout_editor_absoluteY="190dp">
 
 
-            </LinearLayout>
+            </com.google.android.material.tabs.TabLayout>
 
+
+            <com.booking.rtlviewpager.RtlViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+
+                android:clipToPadding="false"
+
+                >
+
+
+            </com.booking.rtlviewpager.RtlViewPager>
 
         </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/container_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="40dp"
-            android:layout_weight="1"
-            tools:background="#EFF0F2" />
 
     </LinearLayout>
-
-
-</LinearLayout>
 
 </LinearLayout>

@@ -3,6 +3,7 @@ package sa.aqarz.NewAqarz.Adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,11 +13,16 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.squareup.picasso.Picasso;
 import com.willy.ratingbar.ScaleRatingBar;
 
@@ -105,10 +111,10 @@ public class ViewPager_Adapter_estate_home_map1 extends PagerAdapter {
         share = vieww.findViewById(R.id.share);
         hide = vieww.findViewById(R.id.hide);
         rate = vieww.findViewById(R.id.rate);
-        bathroom = view.findViewById(R.id.bathroom);
-        room = view.findViewById(R.id.room);
-        noimage1 = view.findViewById(R.id.noimage1);
-        pr_1 = view.findViewById(R.id.pr_1);
+        bathroom = vieww.findViewById(R.id.bathroom);
+        room = vieww.findViewById(R.id.room);
+        noimage1 = vieww.findViewById(R.id.noimage1);
+        pr_1 = vieww.findViewById(R.id.pr_1);
 
         price.setText(alldata.get(position).getTotalPrice());
         type.setText(alldata.get(position).getEstate_type_name());
@@ -117,7 +123,14 @@ public class ViewPager_Adapter_estate_home_map1 extends PagerAdapter {
         date.setText(alldata.get(position).getCreatedAt() + "");
         num_id.setText("#" + alldata.get(position).getId() + "");
 
-        address.setText(alldata.get(position).getFull_address() + "");
+
+        if (alldata.get(position).getFull_address() != null) {
+            if (!alldata.get(position).getFull_address().equals("null")) {
+                address.setText(alldata.get(position).getFull_address() + "");
+
+            }
+
+        }
         try {
             if (!alldata.get(position).getBathroomsNumber().toString().equals("null")) {
                 bathroom.setText(alldata.get(position).getBathroomsNumber() + "");
@@ -157,7 +170,48 @@ public class ViewPager_Adapter_estate_home_map1 extends PagerAdapter {
 //            Glide.with(context).load(alldata.get(position).getEstate_type().getIcon() + "").into(image_icon);
 //
 //        }
-        Picasso.get().load(alldata.get(position).getFirst_image() + "").error(context.getResources().getDrawable(R.drawable.logo_login)).into(image);
+
+
+        try {
+
+
+            if (alldata.get(position).getFirst_image() != null) {
+                if (!alldata.get(position).getFirst_image().equals("")) {
+
+                    System.out.println("&^UU");
+                    Glide.with(context).load(alldata.get(position).getFirst_image() + "").addListener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+
+                            pr_1.setVisibility(View.GONE);
+                            noimage1.setVisibility(View.VISIBLE);
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            return false;
+                        }
+                    }).into(image);
+                    pr_1.setVisibility(View.GONE);
+                    noimage1.setVisibility(View.GONE);
+                } else {
+                    System.out.println("&^cc");
+
+                    pr_1.setVisibility(View.GONE);
+                    noimage1.setVisibility(View.VISIBLE);
+                }
+            } else {
+                System.out.println("&^vv");
+
+                pr_1.setVisibility(View.GONE);
+                noimage1.setVisibility(View.VISIBLE);
+            }
+
+        } catch (Exception e) {
+            pr_1.setVisibility(View.GONE);
+            noimage1.setVisibility(View.VISIBLE);
+        }
 
 //        if (alldata.get(position).getFirst_image() != null) {
 //

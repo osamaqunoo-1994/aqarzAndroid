@@ -111,7 +111,11 @@ public class IntrestedActivity extends AppCompatActivity {
 
                             AllCityListxx allCityListxx = gson.fromJson(mJson, AllCityListxx.class);
 
-                            dataCities.add(allCityListxx.getData().get(0));
+
+                            System.out.println("allCityListxx.getData()" + allCityListxx.getData().size());
+
+
+                            dataCities.addAll(allCityListxx.getData());
 
 
                             recyclerView_intrester.Refr();
