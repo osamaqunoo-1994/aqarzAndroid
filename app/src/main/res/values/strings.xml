@@ -567,7 +567,8 @@ Two working days to complete your order</string>
     <string name="modetagar">Duration of the contract</string>
     <string name="update_message_s">Modified successfully</string>
     <string name="salary_read_bank">Salary is transferred to Riyad Bank</string>
-    <string name="dd_price_money"> Enter the rental price</string>
+    <string name="dd_price_money">Enter the rental price<font color="#AAABB3"><sup>*</sup></font></string>
+
     <string name="info_estat">Tenant information</string>
     <string name="MoreFiltter">Extra filter</string>
     <string name="serach_price">Choose the price</string>
@@ -1234,5 +1235,37 @@ Two working days to complete your order</string>
     <string name="rent_installment">Rent installment</string>
     <string name="title_tab_order_1">Request a property</string>
     <string name="title_tab_order_2">Rent installment</string>
+
+
+    <string name="Bank_title">Bank</string>
+    <string name="finance_company_title">finance company</string>
+    <string name="Financing_agency">Financing agency<font color="#DD4131"><sup>*</sup></font></string>
+    <string name="Tenant_Information">Tenant Information</string>
+    <string name="type_work_title">Type work<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="financialbanksfailures">Do you have previous financial failures with banks or transfer companies?<font color="#DD4131"><sup>*</sup></font></string>
+    <string name="obligationsfinancecompanies">Do you have obligations with banks or finance companies?<font color="#DD4131"><sup>*</sup></font></string>
+
+
+    <string name="Amount_of_tripping">Amount of tripping<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="amount_of_funding">amount of funding<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="creditcard">total credit card limit<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="personal_financing">personal financing</string>
+    <string name="lease_finance">lease finance</string>
+    <string name="credit_card">credit card</string>
+
+
+    <string name="Soldier_sf">retired</string>
+    <string name="ThankYou">Thank You</string>
+    <string name="ThankYou_rent">You have initial approval, please prepare the following documents so that the work team can communicate with you:</string>
+
+
+    <string name="sds">
+    .Certified recent cover letter. <br />
+     .Salary statement for the last 3 months. <br />
+    .National ID photo. <br />
+.National address
+</string>
+
+    <string name="fillallfileds1">Fill fileds</string>
 
 </resources>

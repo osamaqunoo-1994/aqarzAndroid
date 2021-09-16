@@ -579,7 +579,6 @@ public class FirstFragment extends Fragment {
             public void notifySuccess(String requestType, JSONObject response) {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + response);
-                WebService.loading(activity, false);
 
 //                type_requst = "" + requestType;
 
@@ -643,6 +642,7 @@ public class FirstFragment extends Fragment {
                     e.printStackTrace();
                 }
 
+                WebService.loading(activity, false);
 
             }
 

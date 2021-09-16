@@ -32,6 +32,9 @@ public class HomeModules_aqares {
     @SerializedName("city_id")
     @Expose
     private String city_id;
+    @SerializedName("is_rate")
+    @Expose
+    private String is_rate;
     @SerializedName("neighborhood_id")
     @Expose
     private String neighborhood_id;
@@ -137,6 +140,9 @@ public class HomeModules_aqares {
     @SerializedName("video")
     @Expose
     private String video;
+    @SerializedName("estate_total_area")
+    @Expose
+    private String estate_total_area;
     @SerializedName("note")
     @Expose
     private String note;
@@ -186,12 +192,18 @@ public class HomeModules_aqares {
     @SerializedName("seen_count")
     @Expose
     private String seen_count;
+    @SerializedName("estate_city")
+    @Expose
+    private String estate_city;
     @SerializedName("unit_counter")
     @Expose
     private String unit_counter;
     @SerializedName("estate_dimensions")
     @Expose
     private String estate_dimensions;
+    @SerializedName("estate_total_price")
+    @Expose
+    private String estate_total_price;
     @SerializedName("estate_type")
     @Expose
     private estate_type estate_type;
@@ -231,8 +243,16 @@ public class HomeModules_aqares {
         return full_address;
     }
 
+    public String getIs_rate() {
+        return is_rate;
+    }
+
     public List<HomeModules_aqares.rates> getRates() {
         return rates;
+    }
+
+    public String getEstate_total_price() {
+        return estate_total_price;
     }
 
     public String getRate() {
@@ -311,12 +331,20 @@ public class HomeModules_aqares {
         return _interface;
     }
 
+    public String getEstate_total_area() {
+        return estate_total_area;
+    }
+
     public String getNeighborhood_name_web() {
         return neighborhood_name_web;
     }
 
     public List<HomeModules_aqares.estate_file> getEstate_file() {
         return estate_file;
+    }
+
+    public String getEstate_city() {
+        return estate_city;
     }
 
     public Integer getUserId() {
@@ -857,7 +885,7 @@ public class HomeModules_aqares {
         @Expose
         private String icon;
 
-        public estate_file(){
+        public estate_file() {
 
         }
 

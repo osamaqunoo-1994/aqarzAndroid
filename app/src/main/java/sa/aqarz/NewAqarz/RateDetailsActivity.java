@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,6 +68,7 @@ public class RateDetailsActivity extends AppCompatActivity {
     String rate_me_slid = "";
     RecyclerView all_review;
     ImageView back;
+    LinearLayout is_rate_lay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,7 @@ public class RateDetailsActivity extends AppCompatActivity {
         nodata_cust = findViewById(R.id.nodata_cust);
         all_review = findViewById(R.id.all_review);
         back = findViewById(R.id.back);
+        is_rate_lay = findViewById(R.id.is_rate_lay);
 
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(RateDetailsActivity.this, LinearLayoutManager.VERTICAL, false);
@@ -99,6 +102,17 @@ public class RateDetailsActivity extends AppCompatActivity {
 
             VolleyService mVolleyService = new VolleyService(mResultCallback, RateDetailsActivity.this);
             mVolleyService.getDataVolley("rate", WebService.rate + id_or_aq + "/details");
+
+
+            String is_rate = getIntent().getStringExtra("is_rate");
+
+            if (is_rate.equals("0")) {
+                is_rate_lay.setVisibility(View.VISIBLE);
+            } else {
+                is_rate_lay.setVisibility(View.GONE);
+
+            }
+
 
         } catch (Exception e) {
 

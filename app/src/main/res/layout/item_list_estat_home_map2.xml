@@ -165,7 +165,7 @@
                         android:fontFamily="@font/din_bold"
 
 
-                        android:text="فيلا"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="17dp"
                         android:textStyle="bold" />
@@ -300,7 +300,7 @@
 
                         android:layout_marginStart="5dp"
                         android:fontFamily="@font/din_bold"
-                        android:text="13000"
+                        android:text=""
                         android:textColor="@color/colorPrimary"
 
                         android:textSize="17dp"
@@ -367,7 +367,6 @@
                             android:fontFamily="@font/din_bold"
 
                             android:lines="1"
-                            android:text="الروابي، الخبر ، المنطقة الشرقية"
 
                             android:textColor="@color/textColor"
                             android:textSize="12dp" />

@@ -145,7 +145,7 @@ public class AllOfferOrderMarket_MyOrder extends AppCompatActivity {
 
         VolleyService mVolleyService = new VolleyService(mResultCallback, this);
 
-        mVolleyService.getDataVolley("my_estate", WebService.my_estate);
+        mVolleyService.getDataVolley("customeroffer_Request", WebService.customeroffer_Request);
 
 
         confirm.setOnClickListener(new View.OnClickListener() {
@@ -161,6 +161,7 @@ public class AllOfferOrderMarket_MyOrder extends AppCompatActivity {
                     try {
 
                         sendObj.put("uuid", id_offer);//form operation list api in setting
+//                        sendObj.put("id", id);//form operation list api in setting
                         sendObj.put("estate_id", is_selected);//form estate type list api in setting
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -246,11 +247,11 @@ public class AllOfferOrderMarket_MyOrder extends AppCompatActivity {
 
                         } else {
                             String data = response.getString("data");
-                            JSONObject jsonObjectdata = new JSONObject(data);
+//                            JSONObject jsonObjectdata = new JSONObject(data);
 //
-                            String datax = jsonObjectdata.getString("data");
+//                            String datax = jsonObjectdata.getString("data");
 
-                            JSONArray jsonArray = new JSONArray(datax);
+                            JSONArray jsonArray = new JSONArray(data);
                             progress.setVisibility(View.GONE);
                             homeModules.clear();
                             for (int i = 0; i < jsonArray.length(); i++) {
@@ -272,18 +273,18 @@ public class AllOfferOrderMarket_MyOrder extends AppCompatActivity {
                                 public void onItemClick(List<HomeModules_aqares> homeModules_aqares) {
 //                                homeModules = homeModules_aqares;
 
-                                    is_selected = "";
-                                    for (int i = 0; i < homeModules_aqares.size(); i++) {
-                                        if (homeModules_aqares.get(i).getIs_selected()) {
-                                            if (is_selected.equals("")) {
-                                                is_selected = homeModules_aqares.get(i).getId() + "";
-                                            } else {
-                                                is_selected = is_selected + "," + homeModules_aqares.get(i).getId() + "";
-
-                                            }
-                                        }
-                                    }
-
+//                                    is_selected = "";
+//                                    for (int i = 0; i < homeModules_aqares.size(); i++) {
+//                                        if (homeModules_aqares.get(i).getIs_selected()) {
+//                                            if (is_selected.equals("")) {
+//                                                is_selected = homeModules_aqares.get(i).getId() + "";
+//                                            } else {
+//                                                is_selected = is_selected + "," + homeModules_aqares.get(i).getId() + "";
+//
+//                                            }
+//                                        }
+//                                    }
+//
 
                                 }
                             });

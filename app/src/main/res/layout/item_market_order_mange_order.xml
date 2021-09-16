@@ -549,6 +549,23 @@
                     android:textSize="12dp"
                     android:textStyle="bold" />
 
+   <TextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="5dp"
+
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/button_login"
+                    android:fontFamily="@font/din_bold"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+       android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
 
             </LinearLayout>
 

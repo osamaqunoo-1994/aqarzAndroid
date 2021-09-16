@@ -88,6 +88,7 @@ public class WebService {
     public static String my_msg = Domain + "my/msg";
     public static String msg = Domain + "msg";
     public static String my_profile = Domain + "my/profile";
+    public static String customeroffer_Request = Domain + "customer/my/offer/Request";
     public static String user = Domain + "user/";
     public static String send_msg = Domain + "send/msg";
     public static String MYOfferOrder = Domain + "my/fund/request/offer";

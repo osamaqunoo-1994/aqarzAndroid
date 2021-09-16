@@ -2,6 +2,7 @@ package sa.aqarz.NewAqarz.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +11,18 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,12 +70,17 @@ public class RecyclerView_MyState_manage_order extends RecyclerView.Adapter<Recy
 
         LinearLayout back_ground;
         TextView opration;
+        TextView space;
         TextView price;
         TextView address;
         TextView date;
+        TextView type;
         ImageView image;
+        ImageView noimage1;
 
         CheckBox chechbox;
+
+        ProgressBar pr_1;
 
         public MyViewHolder(View view) {
             super(view);
@@ -80,6 +92,10 @@ public class RecyclerView_MyState_manage_order extends RecyclerView.Adapter<Recy
             address = view.findViewById(R.id.address);
             chechbox = view.findViewById(R.id.chechbox);
             date = view.findViewById(R.id.date);
+            space = view.findViewById(R.id.space);
+            type = view.findViewById(R.id.type);
+            pr_1 = view.findViewById(R.id.pr_1);
+            noimage1 = view.findViewById(R.id.noimage1);
 
 
         }
@@ -98,13 +114,19 @@ public class RecyclerView_MyState_manage_order extends RecyclerView.Adapter<Recy
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
-
+        try {
+            holder.price.setText(alldata.get(position).getEstate_total_price() + "");
+            holder.opration.setText(alldata.get(position).getOperationTypeName() + "");
+            holder.type.setText(alldata.get(position).getEstate_type_name() + "");
+            holder.space.setText(alldata.get(position).getEstate_total_area() + "");
+            holder.address.setText(alldata.get(position).getEstate_city() + "");
+            holder.date.setText(alldata.get(position).getCreatedAt() + "");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 //        holder.setIsRecyclable(false);
 //        holder.title.setText(alldata.get(position).getName());
-        holder.price.setText(alldata.get(position).getTotalPrice());
-        holder.opration.setText(alldata.get(position).getEstate_type_name());
-        holder.address.setText(alldata.get(position).getCity_name());
-        holder.date.setText(alldata.get(position).getCreatedAt());
+
 //        if (alldata.get(position).getRate() != null) {
 //            if (!alldata.get(position).getRate().equals("null")) {
 //
@@ -134,7 +156,49 @@ public class RecyclerView_MyState_manage_order extends RecyclerView.Adapter<Recy
 //        }
 ////
 //        System.out.println(alldata.get(position).getImage() + "");
-        Glide.with(context).load(alldata.get(position).getFirst_image()).into(holder.image);
+        try {
+
+
+            if (alldata.get(position).getFirst_image() != null) {
+                if (!alldata.get(position).getFirst_image().equals("")) {
+
+                    System.out.println("&^UU");
+                    Glide.with(context).load(alldata.get(position).getFirst_image() + "").addListener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+
+                            holder.pr_1.setVisibility(View.GONE);
+                            holder.noimage1.setVisibility(View.VISIBLE);
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            return false;
+                        }
+                    }).into(holder.image);
+                    holder.pr_1.setVisibility(View.GONE);
+                    holder.noimage1.setVisibility(View.GONE);
+                } else {
+                    System.out.println("&^cc");
+
+                    holder.pr_1.setVisibility(View.GONE);
+                    holder.noimage1.setVisibility(View.VISIBLE);
+                }
+            } else {
+                System.out.println("&^vv");
+
+                holder.pr_1.setVisibility(View.GONE);
+                holder.noimage1.setVisibility(View.VISIBLE);
+            }
+
+        } catch (Exception e) {
+            holder.pr_1.setVisibility(View.GONE);
+            holder.noimage1.setVisibility(View.VISIBLE);
+        }
+
+
+//        Glide.with(context).load(alldata.get(position).getFirst_image()).into(holder.image);
 ////
 //
 //        try {

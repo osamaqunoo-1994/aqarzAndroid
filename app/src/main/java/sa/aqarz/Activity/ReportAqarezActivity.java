@@ -2,6 +2,7 @@ package sa.aqarz.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,9 +20,12 @@ import com.google.gson.JsonParser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Adapter.RecyclerView_ChatRoom;
 import sa.aqarz.Modules.MsgModules;
+import sa.aqarz.NewAqarz.DetaislAqarzActivity;
 import sa.aqarz.R;
+import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
@@ -59,39 +63,44 @@ public class ReportAqarezActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {//('error_data', 'error_image', 'other')
 
-                String type = "";
-                if (st_1.isChecked()) {
-                    type = "error_data";
-                }
-                if (st_2.isChecked()) {
-                    type = "error_image";
+                if (Settings.checkLogin()) {
+
+                    String type = "";
+                    if (st_1.isChecked()) {
+                        type = "error_data";
+                    }
+                    if (st_2.isChecked()) {
+                        type = "error_image";
+
+                    }
+                    if (st_3.isChecked()) {
+                        type = "other";
+
+                    }
+
+                    init_volley();
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, ReportAqarezActivity.this);
+                    JSONObject jsonObject = new JSONObject();
+
+                    try {
+                        jsonObject.put("report_type", type);
+                        jsonObject.put("estate_id", estate_id);
+
+                        jsonObject.put("body", edt_des.getText().toString());
+
+
+                    } catch (Exception e) {
+
+                    }
+
+                    WebService.loading(ReportAqarezActivity.this, true);
+                    mVolleyService.postDataVolley("report", WebService.report, jsonObject);
+
+                } else {
+                    startActivity(new Intent(ReportAqarezActivity.this, LoginActivity.class));
 
                 }
-                if (st_3.isChecked()) {
-                    type = "other";
-
-                }
-
-                init_volley();
-
-                VolleyService mVolleyService = new VolleyService(mResultCallback, ReportAqarezActivity.this);
-                JSONObject jsonObject = new JSONObject();
-
-                try {
-                    jsonObject.put("report_type", type);
-                    jsonObject.put("estate_id", estate_id);
-
-                    jsonObject.put("body", edt_des.getText().toString());
-
-
-                } catch (Exception e) {
-
-                }
-
-                WebService.loading(ReportAqarezActivity.this, true);
-                mVolleyService.postDataVolley("report", WebService.report, jsonObject);
-
-
             }
         });
         back.setOnClickListener(new View.OnClickListener() {

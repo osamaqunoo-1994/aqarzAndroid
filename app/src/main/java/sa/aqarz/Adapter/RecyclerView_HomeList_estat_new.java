@@ -179,7 +179,13 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         } catch (Exception e) {
 
         }
-        holder.address.setText(alldata.get(position).getFull_address() + "");
+
+        if (alldata.get(position).getFull_address() != null) {
+            if (!alldata.get(position).getFull_address().equals("null")) {
+                holder.address.setText(alldata.get(position).getFull_address() + "");
+
+            }
+        }
 
 //        if (alldata.get(position).getCity_name() != null) {
 //            holder.address.setText(alldata.get(position).getCity_name() + " - " + alldata.get(position).getNeighborhood_name());

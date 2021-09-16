@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,6 +32,21 @@ public class ManageOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manage_order);
 
         tabLayout = findViewById(R.id.my_tabs);
+        back = findViewById(R.id.back);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.white, this.getTheme()));
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.white));
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (back != null) {
+                back.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            }
+        }
+
 
         viewPager = findViewById(R.id.pager);
         ViewPagerAdapter viewPagerz = new ViewPagerAdapter(getSupportFragmentManager());

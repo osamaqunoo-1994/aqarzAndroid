@@ -8,20 +8,26 @@ public class TypeModules {
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private final Integer id;
     @SerializedName("name")
     @Expose
-    private String name;
+    private final String name;
     @SerializedName("icon")
     @Expose
-    private String icon;
+    private final String icon;
+
+    public TypeModules(int id, String name, String icon) {
+        this.id = id;
+        this.name = name;
+        this.icon = icon;
+    }
 
 
     public String getIcon() {
         return icon;
     }
 
-    boolean isselected=false;
+    boolean isselected = false;
 
     public boolean isIsselected() {
         return isselected;

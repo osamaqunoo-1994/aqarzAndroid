@@ -66,6 +66,8 @@ public class RecyclerView_MyState_selected extends RecyclerView.Adapter<Recycler
         TextView opration;
         TextView price;
         TextView address;
+        TextView type;
+        TextView space;
         TextView date;
         ImageView image;
         LinearLayout back_s;
@@ -77,7 +79,9 @@ public class RecyclerView_MyState_selected extends RecyclerView.Adapter<Recycler
 
             image = view.findViewById(R.id.image);
             opration = view.findViewById(R.id.opration);
+            type = view.findViewById(R.id.type);
             price = view.findViewById(R.id.price);
+            space = view.findViewById(R.id.space);
             address = view.findViewById(R.id.address);
             chechbox = view.findViewById(R.id.chechbox);
             date = view.findViewById(R.id.date);
@@ -105,8 +109,10 @@ public class RecyclerView_MyState_selected extends RecyclerView.Adapter<Recycler
 //        holder.setIsRecyclable(false);
 //        holder.title.setText(alldata.get(position).getName());
             holder.price.setText(alldata.get(position).getTotalPrice());
-            holder.opration.setText(alldata.get(position).getEstate_type_name());
+            holder.opration.setText(alldata.get(position).getOperationTypeName());
+            holder.type.setText(alldata.get(position).getEstate_type_name());
             holder.address.setText(alldata.get(position).getCity_name());
+            holder.space.setText(alldata.get(position).getTotalArea());
             holder.date.setText(alldata.get(position).getCreatedAt());
 //        if (alldata.get(position).getRate() != null) {
 //            if (!alldata.get(position).getRate().equals("null")) {

@@ -1,4 +1,4 @@
-package sa.aqarz.Adapter;
+package sa.aqarz.NewAqarz.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -6,24 +6,17 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import sa.aqarz.Modules.HomeModules;
-import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.R;
 
@@ -31,9 +24,9 @@ import sa.aqarz.R;
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MyState.MyViewHolder> {
-    public static List<HomeModules_aqares> alldata = new ArrayList<HomeModules_aqares>();
-    static int Postion_opend = 0;
+public class RecyclerView_All_type_in_Rent extends RecyclerView.Adapter<RecyclerView_All_type_in_Rent.MyViewHolder> {
+    public static List<TypeModules> alldata = new ArrayList<TypeModules>();
+    static int Postion_opend = -1;
 
 
     static AlertDialog alertDialog;
@@ -66,35 +59,26 @@ public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MySt
         //  public FrameLayout frame;
 
         LinearLayout back_ground;
-        TextView opration;
-        TextView price;
-        TextView address;
-        TextView date;
-        TextView type;
-        TextView space;
-        ImageView image;
-
-        CheckBox chechbox;
+        TextView text;
+        ImageView image_in_type;
+        ImageView selected;
 
         public MyViewHolder(View view) {
             super(view);
             //  title_cared_product_rec = (TextView) view.findViewById(R.id.title_cared_product_rec);
 
-            image = view.findViewById(R.id.image);
-            opration = view.findViewById(R.id.opration);
-            price = view.findViewById(R.id.price);
-            address = view.findViewById(R.id.address);
-            chechbox = view.findViewById(R.id.chechbox);
-            date = view.findViewById(R.id.date);
-            type = view.findViewById(R.id.type);
-            space = view.findViewById(R.id.space);
 
+            back_ground = view.findViewById(R.id.back_ground);
+            text = view.findViewById(R.id.text);
+            image_in_type = view.findViewById(R.id.image_in_type);
+            selected = view.findViewById(R.id.selected);
+////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
     }
 
-    public RecyclerView_MyState(Context context, List<HomeModules_aqares> alldata) {
-        RecyclerView_MyState.alldata = alldata;
+    public RecyclerView_All_type_in_Rent(Context context, List<TypeModules> alldata) {
+        RecyclerView_All_type_in_Rent.alldata = alldata;
         this.context = context;
     }
 
@@ -109,17 +93,7 @@ public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MySt
 
 //        holder.setIsRecyclable(false);
 //        holder.title.setText(alldata.get(position).getName());
-//        holder.price.setText(alldata.get(position).getTotalPrice());
-//        holder.opration.setText(alldata.get(position).getEstate_type_name());
-//        holder.address.setText(alldata.get(position).getCity_name());
-//        holder.date.setText(alldata.get(position).getCreatedAt());
-
-        holder.price.setText(alldata.get(position).getTotalPrice());
-        holder.opration.setText(alldata.get(position).getOperationTypeName());
-        holder.type.setText(alldata.get(position).getEstate_type_name());
-        holder.address.setText(alldata.get(position).getCity_name());
-        holder.space.setText(alldata.get(position).getTotalArea());
-        holder.date.setText(alldata.get(position).getCreatedAt());
+//        holder.details.setText(alldata.get(position).getName());
 //        if (alldata.get(position).getRate() != null) {
 //            if (!alldata.get(position).getRate().equals("null")) {
 //
@@ -129,27 +103,37 @@ public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MySt
 //            }
 //        }
 ////
-//        holder.text.setText(alldata.get(position).getName() + "");
+        holder.text.setText(alldata.get(position).getName() + "");
 
+        holder.image_in_type.setVisibility(View.GONE);
 
-//        if (position == Postion_opend) {
-//            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login));
+//        try {
+////            System.out.println("#$#$#$#"+alldata.get(position).getIcon());
+//            Glide.with(context).load(alldata.get(position).getIcon() + "").into(holder.image_in_type);
 //
-//            holder.text.setTextColor(context.getResources().getColor(R.color.white));
-//
-//
-//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY);
-//
-//        } else {
-//            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.search_background));
-//
-//            holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
-//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.textColor), android.graphics.PorterDuff.Mode.MULTIPLY);
-//
+//        } catch (Exception e) {
+//            e.printStackTrace();
 //        }
-////
+
+
+        if (position == Postion_opend) {
+            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.back_search_home_selected));
+
+            holder.text.setTextColor(context.getResources().getColor(R.color.white));
+
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+//            holder.selected.setVisibility(View.VISIBLE);
+        } else {
+            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.back_search_home));
+
+            holder.text.setTextColor(context.getResources().getColor(R.color.color_filter));
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.color_filter), android.graphics.PorterDuff.Mode.SRC_IN);
+//            holder.selected.setVisibility(View.GONE);
+
+        }
+//
 //        System.out.println(alldata.get(position).getImage() + "");
-        Glide.with(context).load(alldata.get(position).getFirst_image()).into(holder.image);
+//        Picasso.with(context).load(alldata.get(position).getImage()).into(holder.service_image);
 ////
 //
 //        try {
@@ -202,27 +186,21 @@ public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MySt
 //        });
 //
 
-
-        holder.chechbox.setChecked(alldata.get(position).getIs_selected());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 //
-//
+
+                Postion_opend = position;
 
 
-                if (alldata.get(position).getIs_selected()) {
-                    holder.chechbox.setChecked(false);
-                    alldata.get(position).setIs_selected(false);
-                } else {
-                    holder.chechbox.setChecked(true);
-                    alldata.get(position).setIs_selected(true);
-                }
+//                alldata.get(position).setIsselected(!alldata.get(position).isIsselected());
+
+
                 if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(alldata);
+                    mItemClickListener.onItemClick(position);
                 }
-//                Postion_opend = position;
                 Refr();
 
             }
@@ -247,7 +225,7 @@ public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MySt
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_my_estate, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_type_map_home, parent, false);
 
 
         // Fresco.initialize(context);
@@ -258,6 +236,6 @@ public class RecyclerView_MyState extends RecyclerView.Adapter<RecyclerView_MySt
 
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(List<HomeModules_aqares> homeModules_aqares);
+        void onItemClick(int postion);
     }
 }

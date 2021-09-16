@@ -111,9 +111,10 @@
     <string name="Date_of_Birth">تاريخ الميلاد</string>
     <string name="city">المدينة</string>
     <string name="Type_work">العرض</string>
-    <string name="governmental">حكومي</string>
-    <string name="Special">خاص</string>
-    <string name="Soldier">عسكري</string>
+    <string name="governmental">حكومي مدني</string>
+    <string name="Special">خاص قطاع خاص</string>
+    <string name="Soldier">حكومي عسكري</string>
+    <string name="Soldier_sf">متقاعد</string>
 
 
     <string name="startworkdate">تاريخ بدء العمل</string>
@@ -802,7 +803,6 @@
     <string name="modetagar">مدة العقد</string>
     <string name="update_message_s">تم التعديل بنجاح</string>
     <string name="salary_read_bank">الراتب محول على بنك الرياض</string>
-    <string name="dd_price_money"> أدخل سعر الإيجار</string>
     <string name="info_estat">معلومات المستأجر</string>
     <string name="MoreFiltter">فلتر اضافي</string>
     <string name="serach_price">اختار السعر</string>
@@ -1160,7 +1160,6 @@
     <string name="AddAqarzA1">قم بتسويق عقارك في خطوات بسيطة</string>
 
 
-
     <string name="AddorderA">إدارة طلباتي</string>
     <string name="AddorderA1">إضافة ومتابعة طلباتك العقارية أو خدمة تقسيط الإيجار</string>
     <string name="Request_property">طلب عقار</string>
@@ -1168,4 +1167,41 @@
 
     <string name="title_tab_order_1">طلبات العقارات</string>
     <string name="title_tab_order_2">طلبات تقسيط التأجير</string>
+
+
+    <string name="Bank_title">بنك</string>
+    <string name="finance_company_title">شركة تمويل</string>
+    <string name="Financing_agency">الجهة التمويلية<font color="#DD4131"><sup>*</sup></font></string>
+    <string name="dd_price_money">سعر الإيجار<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="type_work_title">نوع العمل<font color="#AAABB3"><sup>*</sup></font></string>
+
+    <string name="Tenant_Information">معلومات المستأجر</string>
+
+
+    <string name="financialbanksfailures">هل لديك تعثرات مالية سابقة مع البنوك أو شركات التحويل؟<font color="#DD4131"><sup>*</sup></font></string>
+
+
+    <string name="Amount_of_tripping">مقدار التعثر<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="obligationsfinancecompanies">هل لديك التزامات لدى البنوك أو شركات التمويل؟<font color="#DD4131"><sup>*</sup></font></string>
+
+    <string name="amount_of_funding">مقدار التمويل<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="creditcard">..إجمالي الحد الائتماني للبطاقة الائتمانية<font color="#AAABB3"><sup>*</sup></font></string>
+
+
+    <string name="personal_financing">تمويل شخصي</string>
+    <string name="lease_finance">تمويل تاجيري</string>
+    <string name="credit_card">بطاقة ائتمانيه</string>
+
+    <string name="ThankYou">شكرا لك..</string>
+    <string name="ThankYou_rent">لديك موافقة مبدئية نرجو تجهيز المستندات التالية حتى يتم التواصل معك من قبل فريق العمل:</string>
+
+
+    <string name="sds">
+    .خطاب تعريف حديث معتمد. <br />
+     .كشف حساب راتب لآخر 3 أشهر. <br />
+    .صورة بطاقة التعريف الوطني. <br />
+.العنوان الوطني
+</string>
+    <string name="fillallfileds1">الرجاء تعبئه  الحقول المطلوبة</string>
+
 </resources>

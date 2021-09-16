@@ -2,6 +2,7 @@ package sa.aqarz.NewAqarz.Fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -91,13 +92,24 @@ public class OrderFragment extends Fragment {
         Shoppingrequest_line = view.findViewById(R.id.Shoppingrequest_line);
         Real_Estate_orders_line = view.findViewById(R.id.Real_Estate_orders_line);
 
-
-        tabLayout = view.findViewById(R.id.my_tabs);
-
-        viewPager = view.findViewById(R.id.pager);
-        ViewPagerAdapter viewPagerz = new ViewPagerAdapter(getChildFragmentManager());
-        viewPager.setAdapter(viewPagerz);
-        tabLayout.setupWithViewPager(viewPager);
+//
+//        tabLayout = view.findViewById(R.id.my_tabs);
+//
+//        viewPager = view.findViewById(R.id.pager);
+//        ViewPagerAdapter viewPagerz = new ViewPagerAdapter(getChildFragmentManager());
+//        viewPager.setAdapter(viewPagerz);
+//        viewPager.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+//            @Override
+//            public void onViewAttachedToWindow(View v) {
+//
+//            }
+//
+//            @Override
+//            public void onViewDetachedFromWindow(View v) {
+//
+//            }
+//        });
+//        tabLayout.setupWithViewPager(viewPager);
 
 
 //        vpPager = (ViewPager) view.findViewById(R.id.vpPager);
@@ -109,109 +121,109 @@ public class OrderFragment extends Fragment {
 //            vpPager.setCurrentItem(1);
 //        }
 
-//        if (!MainAqarzActivity.type_order_main.equals("")) {
-//            if (MainAqarzActivity.type_order_main.equals("real")) {
-//                MainAqarzActivity.type_order_main = "real";
-//                MainAqarzActivity.objectFiltterOrder.setTypelayout("Real");
-//                Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
-//                Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
-//
-//
-//                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-//                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
-//
-//                fragmentManager = getActivity().getSupportFragmentManager();
-//
-//                fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.container_fragment, new FirstFragment());
-//                //  fragmentTransaction.commit();
-//                fragmentTransaction.commitAllowingStateLoss();
-//            } else {
-//                MainAqarzActivity.type_order_main = "Shopping";
-//                MainAqarzActivity.objectFiltterOrder.setTypelayout("Market");
-//
-//                Shoppingrequest.setTextColor(getResources().getColor(R.color.colorPrimary));
-//                Real_Estate_orders.setTextColor(getResources().getColor(R.color.te_unselected));
-//
-//                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
-//                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-//
-//                fragmentManager = getActivity().getSupportFragmentManager();
-//
-//                fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.container_fragment, new SecandFragment());
-//                //  fragmentTransaction.commit();
-//                fragmentTransaction.commitAllowingStateLoss();
-//            }
-//        } else {
-//            MainAqarzActivity.type_order_main = "real";
-//            MainAqarzActivity.objectFiltterOrder.setTypelayout("Real");
-//
-//            Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
-//            Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
-//
-//
-//            Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-//            Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
-//
-//            fragmentManager = getActivity().getSupportFragmentManager();
-//
-//            fragmentTransaction = fragmentManager.beginTransaction();
-//            fragmentTransaction.replace(R.id.container_fragment, new FirstFragment());
-//            //  fragmentTransaction.commit();
-//            fragmentTransaction.commitAllowingStateLoss();
-//
-//        }
-//
-//
-//        Real_Estate_orders.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-////                vpPager.setCurrentItem(1);
-//                MainAqarzActivity.type_order_main = "real";
-//                MainAqarzActivity.objectFiltterOrder.setTypelayout("Real");
-//
-//                Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
-//                Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
-//
-//
-//                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-//                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
-//
-//                fragmentManager = getActivity().getSupportFragmentManager();
-//
-//                fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.container_fragment, new FirstFragment());
-//                //  fragmentTransaction.commit();
-//                fragmentTransaction.commitAllowingStateLoss();
-//
-//            }
-//        });
-//        Shoppingrequest.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                vpPager.setCurrentItem(0);
-//                MainAqarzActivity.type_order_main = "Shopping";
-//                MainAqarzActivity.objectFiltterOrder.setTypelayout("Market");
-//
-//                Shoppingrequest.setTextColor(getResources().getColor(R.color.colorPrimary));
-//                Real_Estate_orders.setTextColor(getResources().getColor(R.color.te_unselected));
-//
-//                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
-//                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-//
-//                fragmentManager = getActivity().getSupportFragmentManager();
-//
-//                fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.container_fragment, new SecandFragment());
-//                //  fragmentTransaction.commit();
-//                fragmentTransaction.commitAllowingStateLoss();
-//
-//
-//            }
-//        });
-        // Attach the page change listener inside the activity
+        if (!MainAqarzActivity.type_order_main.equals("")) {
+            if (MainAqarzActivity.type_order_main.equals("real")) {
+                MainAqarzActivity.type_order_main = "real";
+                MainAqarzActivity.objectFiltterOrder.setTypelayout("Real");
+                Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
+                Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
+
+
+                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
+
+                fragmentManager = getActivity().getSupportFragmentManager();
+
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container_fragment, new FirstFragment());
+                //  fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
+            } else {
+                MainAqarzActivity.type_order_main = "Shopping";
+                MainAqarzActivity.objectFiltterOrder.setTypelayout("Market");
+
+                Shoppingrequest.setTextColor(getResources().getColor(R.color.colorPrimary));
+                Real_Estate_orders.setTextColor(getResources().getColor(R.color.te_unselected));
+
+                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
+                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
+                fragmentManager = getActivity().getSupportFragmentManager();
+
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container_fragment, new SecandFragment());
+                //  fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
+            }
+        } else {
+            MainAqarzActivity.type_order_main = "real";
+            MainAqarzActivity.objectFiltterOrder.setTypelayout("Real");
+
+            Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
+            Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
+
+
+            Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
+
+            fragmentManager = getActivity().getSupportFragmentManager();
+
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_fragment, new FirstFragment());
+            //  fragmentTransaction.commit();
+            fragmentTransaction.commitAllowingStateLoss();
+
+        }
+
+
+        Real_Estate_orders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                vpPager.setCurrentItem(1);
+                MainAqarzActivity.type_order_main = "real";
+                MainAqarzActivity.objectFiltterOrder.setTypelayout("Real");
+
+                Real_Estate_orders.setTextColor(getResources().getColor(R.color.colorPrimary));
+                Shoppingrequest.setTextColor(getResources().getColor(R.color.te_unselected));
+
+
+                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
+
+                fragmentManager = getActivity().getSupportFragmentManager();
+
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container_fragment, new FirstFragment());
+                //  fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
+
+            }
+        });
+        Shoppingrequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                vpPager.setCurrentItem(0);
+                MainAqarzActivity.type_order_main = "Shopping";
+                MainAqarzActivity.objectFiltterOrder.setTypelayout("Market");
+
+                Shoppingrequest.setTextColor(getResources().getColor(R.color.colorPrimary));
+                Real_Estate_orders.setTextColor(getResources().getColor(R.color.te_unselected));
+
+                Real_Estate_orders_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
+                Shoppingrequest_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
+                fragmentManager = getActivity().getSupportFragmentManager();
+
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container_fragment, new SecandFragment());
+                //  fragmentTransaction.commit();
+                fragmentTransaction.commitAllowingStateLoss();
+
+
+            }
+        });
+//         Attach the page change listener inside the activity
 //        vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 //
 //            // This method will be invoked when a new page becomes selected.
@@ -277,6 +289,16 @@ public class OrderFragment extends Fragment {
         @Override
         public int getCount() {
             return 2;
+        }
+
+        @Override
+        public int getItemPosition(@NonNull Object object) {
+            return super.getItemPosition(object);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return super.getItemId(position);
         }
 
         @Override

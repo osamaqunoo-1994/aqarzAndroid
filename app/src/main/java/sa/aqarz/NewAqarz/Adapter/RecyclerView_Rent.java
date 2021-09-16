@@ -1,4 +1,4 @@
-package sa.aqarz.Adapter;
+package sa.aqarz.NewAqarz.Adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -14,7 +14,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
@@ -26,10 +25,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sa.aqarz.Activity.MainActivity;
-import sa.aqarz.Activity.RealState.AllOfferOrderActivity;
-import sa.aqarz.Activity.RealState.AllOfferOrderMarket_demandsActivity;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
+import sa.aqarz.Modules.DeferredInstallment;
 import sa.aqarz.Modules.demandsModules;
+import sa.aqarz.NewAqarz.AllOfferOrderMarket_MyOrder;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -39,8 +38,8 @@ import sa.aqarz.api.VolleyService;
 /**
  * Created by osama on 10/16/2017.
  */
-public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerView_orders_demandsx.MyViewHolder> {
-    public static List<demandsModules> alldata = new ArrayList<demandsModules>();
+public class RecyclerView_Rent extends RecyclerView.Adapter<RecyclerView_Rent.MyViewHolder> {
+    public static List<DeferredInstallment> alldata = new ArrayList<DeferredInstallment>();
     static int Postion_opend = 0;
 
     IResult mResultCallback;
@@ -80,8 +79,11 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
         TextView new_offer;
         TextView number_id;
         TextView date;
+        TextView status;
         ImageView image_icon;
         ImageView add_favorite;
+        ImageView share;
+        ImageView hide;
 
         public MyViewHolder(View view) {
             super(view);
@@ -89,6 +91,8 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
 
 
             price = view.findViewById(R.id.price);
+            share = view.findViewById(R.id.share);
+            hide = view.findViewById(R.id.hide);
             name_estate = view.findViewById(R.id.name_estate);
             address = view.findViewById(R.id.address);
             space = view.findViewById(R.id.space);
@@ -99,14 +103,15 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
             prof_name = view.findViewById(R.id.prof_name);
             number_id = view.findViewById(R.id.number_id);
             date = view.findViewById(R.id.date);
+            status = view.findViewById(R.id.status);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
     }
 
-    public RecyclerView_orders_demandsx(Context context, List<demandsModules> alldata) {
-        RecyclerView_orders_demandsx.alldata = alldata;
+    public RecyclerView_Rent(Context context, List<DeferredInstallment> alldata) {
+        RecyclerView_Rent.alldata = alldata;
         this.context = context;
     }
 
@@ -132,73 +137,54 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
 //        }
 //
 
-        if (alldata.get(position).getPriceFrom() != null) {
-            if (!alldata.get(position).getPriceFrom().equals("null")) {
-                holder.price.setText(alldata.get(position).getPriceFrom() + " - " + alldata.get(position).getPriceTo());
 
-            } else {
-                holder.price.setText("");
-
-            }
-        } else {
-            holder.price.setText("");
+        if (alldata.get(position).getRentPrice() != null && !alldata.get(position).getRentPrice().equals("null")) {
+            holder.price.setText(alldata.get(position).getRentPrice() + "");
 
         }
 
+//        if (alldata.get(position).area() != null && !alldata.get(position).getAreaFrom().equals("null")) {
+//            holder.space.setText(alldata.get(position).getAreaFrom() + " - " + alldata.get(position).getAreaTo());
+//
+//        }
 
-        if (alldata.get(position).getAreaFrom() != null) {
-            if (!alldata.get(position).getAreaFrom().equals("null")) {
-                holder.space.setText(alldata.get(position).getAreaFrom() + " - " + alldata.get(position).getAreaTo());
-
-            } else {
-                holder.space.setText("");
-
-            }
-        } else {
-            holder.space.setText("");
+        if (alldata.get(position).getTenantName() != null && !alldata.get(position).getTenantName().equals("null")) {
+            holder.prof_name.setText(alldata.get(position).getTenantName() + "");
 
         }
-
-
-        if (alldata.get(position).getEstateTypeName() != null) {
-            if (!alldata.get(position).getEstateTypeName().equals("null")) {
-                holder.name_estate.setText(alldata.get(position).getEstateTypeName() + "");
-
-            } else {
-                holder.name_estate.setText("");
-
-            }
-        } else {
-            holder.name_estate.setText("");
-
-        }
-        if (alldata.get(position).getOwnerName() != null) {
-            if (!alldata.get(position).getOwnerName().equals("null")) {
-                holder.prof_name.setText(alldata.get(position).getOwnerName() + "");
-
-            } else {
-                holder.prof_name.setText("");
-
-            }
-        } else {
-            holder.prof_name.setText("");
-
-        }
+//
 //        holder.view_type.setText(alldata.get(position).getDirEstate());
-        holder.number_id.setText("#" + alldata.get(position).getId() + "");
+        holder.name_estate.setText(alldata.get(position).getEstateTypeName() + "");
+        holder.number_id.setText(alldata.get(position).getId() + "");
         holder.date.setText("" + alldata.get(position).getCreatedAt() + "");
 
 
-        if (alldata.get(position).getAddress() != null) {
-            holder.address.setText(alldata.get(position).getAddress());
+        if (alldata.get(position).getTenantCityName() != null) {
+            holder.address.setText(alldata.get(position).getTenantCityName());
 
         } else {
-            if (alldata.get(position).getCity_name() != null) {
-                holder.address.setText(alldata.get(position).getCity_name() + " , " + alldata.get(position).getNeighborhood_name());
+            if (alldata.get(position).getTenantCityName() != null) {
+                holder.address.setText(alldata.get(position).getTenantCityName());
 
             }
 
         }
+        holder.status.setVisibility(View.VISIBLE);
+
+
+        holder.status.setText("" + alldata.get(position).getStatusName() + "");
+
+        if (alldata.get(position).getStatus().equals("0")) {
+            holder.status.setBackground(context.getResources().getDrawable(R.drawable.circle_fill_b));
+        } else if (alldata.get(position).getStatus().equals("1")) {
+            holder.status.setBackground(context.getResources().getDrawable(R.drawable.circle_fill_g));
+
+        } else {
+            holder.status.setBackground(context.getResources().getDrawable(R.drawable.circle_red));
+
+        }
+
+
 //
 //        System.out.println(alldata.get(position).getImage() + "");
 //        Glide.with(context).load(alldata.get(position).getes()).into(holder.image_icon);
@@ -253,7 +239,44 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
 //            }
 //        });
 //
-
+//        if (alldata.get(position).getIn_fav().equals("1")) {
+//            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
+//
+//        } else {
+//            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_path_1212));
+//
+//        }
+//        holder.add_favorite.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                if (alldata.get(position).getIn_fav().equals("1")) {
+//                    holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_path_1212));
+//                    alldata.get(position).setIn_fav("0");
+//                } else {
+//                    holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
+//                    alldata.get(position).setIn_fav("1");
+//
+//
+//                }
+//                init_volley();
+//                WebService.loading((Activity) context, true);
+//
+//                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+//                try {
+//
+//                    JSONObject jsonObject = new JSONObject();
+//                    jsonObject.put("type_id", "" + alldata.get(position).getId());
+//                    jsonObject.put("type", "" + "request");
+//                    mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
+//
+//
+//                } catch (Exception e) {
+//
+//                }
+//
+//            }
+//        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -272,58 +295,69 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
 
             }
         });
+        holder.share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+//                Postion_opend = position;
+//                Refr();
+
+//                RequestOrderActivity.set_fragment(position);
+                try {
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "https://aqarz.sa/RealStatae/" + alldata.get(position).getId() + "/show");
+                    sendIntent.setType("text/plain");
+
+                    Intent shareIntent = Intent.createChooser(sendIntent, null);
+                    context.startActivity(shareIntent);
+                } catch (Exception e) {
+
+                }
+
+
+            }
+        });
+
+        holder.hide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+//                Postion_opend = position;
+//                Refr();
+
+//                RequestOrderActivity.set_fragment(position);
+                try {
+                    init_volley();
+                    WebService.loading((Activity) context, true);
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+                    mVolleyService.getDataVolley("hide", WebService.hide + "/" + alldata.get(position).getId() + "/estate");
+
+                } catch (Exception e) {
+
+                }
+
+            }
+        });
+
+        holder.new_offer.setVisibility(View.GONE);
         holder.new_offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getId() + "");
 //
 
-                MainActivity.demandsModules = alldata.get(position);
+//                MainActivity.demandsModules = alldata.get(position);
 //                bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
-                Intent intent = new Intent(context, AllOfferOrderMarket_demandsActivity.class);
-                intent.putExtra("getUuid", alldata.get(position).getId() + "");
-                intent.putExtra("id", alldata.get(position).getId() + "");
-                context.startActivity(intent);
-//                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+//                Intent intent = new Intent(context, AllOfferOrderMarket_MyOrder.class);
+//                intent.putExtra("getUuid", alldata.get(position).getId() + "");
+//                intent.putExtra("id", alldata.get(position).getId() + "");
+//                context.startActivity(intent);
+////                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
-
-            }
-        });
-        if (alldata.get(position).getIn_fav().equals("1")) {
-            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
-
-        } else {
-            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
-
-        }
-        holder.add_favorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (alldata.get(position).getIn_fav().equals("1")) {
-                    holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
-                    alldata.get(position).setIn_fav("0");
-                } else {
-                    holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
-                    alldata.get(position).setIn_fav("1");
-
-
-                }
-                init_volley();
-                WebService.loading((Activity) context, true);
-
-                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
-                try {
-
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("type_id", "" + alldata.get(position).getId());
-                    jsonObject.put("type", "" + "request");
-                    mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
-
-
-                } catch (Exception e) {
-
-                }
 
             }
         });
@@ -347,7 +381,7 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_market_order, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_market_order_mange_order, parent, false);
 
 
         // Fresco.initialize(context);

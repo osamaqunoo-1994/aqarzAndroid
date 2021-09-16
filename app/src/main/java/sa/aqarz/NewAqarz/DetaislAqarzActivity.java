@@ -290,6 +290,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent inte = new Intent(DetaislAqarzActivity.this, RateDetailsActivity.class);
                 inte.putExtra("id_or_aq", id_or_aq);
+                inte.putExtra("is_rate", homeModules_aqares.getIs_rate()+"");
                 startActivity(inte);
 
 
@@ -337,12 +338,19 @@ public class DetaislAqarzActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.hide) {
-            init_volley();
-            WebService.loading(DetaislAqarzActivity.this, true);
 
-            VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivity.this);
-            mVolleyService.getDataVolley("hide", WebService.hide + "/" + id_or_aq + "/estate");
+            if (Settings.checkLogin()) {
 
+                init_volley();
+                WebService.loading(DetaislAqarzActivity.this, true);
+
+                VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivity.this);
+                mVolleyService.getDataVolley("hide", WebService.hide + "/" + id_or_aq + "/estate");
+
+            }else{
+                startActivity(new Intent(DetaislAqarzActivity.this, LoginActivity.class));
+
+            }
             return true;
         }
         if (id == R.id.love) {
@@ -374,7 +382,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
 
             } else {
-                startActivity(new Intent(DetaislAqarzActivity.this, check_login.class));
+                startActivity(new Intent(DetaislAqarzActivity.this, LoginActivity.class));
 
 //                    new AlertDialog.Builder(DetailsActivity_aqarz.this)
 //                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
