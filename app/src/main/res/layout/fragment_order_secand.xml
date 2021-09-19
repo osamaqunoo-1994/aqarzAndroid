@@ -3,91 +3,110 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".NewAqarz.Fragments.OrderFirstFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-
-            android:layout_margin="15dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
             <LinearLayout
-                android:id="@+id/rent_installment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/back_cvcbbn"
-                android:gravity="center"
+                android:layout_height="40dp"
+                android:visibility="gone"
+
+                android:layout_margin="15dp"
                 android:orientation="horizontal">
 
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_plussss_s" />
+                <LinearLayout
+                    android:id="@+id/rent_installment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/back_cvcbbn"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginBottom="2dp"
-                    android:fontFamily="@font/din_bold"
-                    android:text="@string/rent_installment"
-                    android:textColor="#888686"
-                    android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_plussss_s" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginBottom="2dp"
+                        android:fontFamily="@font/din_bold"
+                        android:text="@string/rent_installment"
+                        android:textColor="#888686"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
 
 
             </LinearLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/orders_rec"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+
+                    android:paddingTop="5dp" />
+
+                <LinearLayout
+                    android:id="@+id/nodata_vis"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:alpha=".3"
+                        android:src="@drawable/ic_no_data" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="@string/nodata"
+                        android:textColor="@color/textColor2" />
+
+
+                </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/orders_rec"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
 
-                android:paddingTop="5dp" />
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_plus"
+            app:rippleColor="@color/colorPrimary" />
 
-            <LinearLayout
-                android:id="@+id/nodata_vis"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:alpha=".3"
-                    android:src="@drawable/ic_no_data" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:text="@string/nodata"
-                    android:textColor="@color/textColor2" />
-
-
-            </LinearLayout>
-        </RelativeLayout>
-
-    </LinearLayout>
-
+    </RelativeLayout>
 </FrameLayout>

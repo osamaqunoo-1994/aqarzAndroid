@@ -329,7 +329,8 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
 
                 VolleyService mVolleyService = new VolleyService(mResultCallback, context);
                 mVolleyService.getDataVolley("hide", WebService.hide + "/" + alldata.get(position).getId() + "/estate");
-
+                alldata.remove(position);
+                Refr();
             }
         });
 

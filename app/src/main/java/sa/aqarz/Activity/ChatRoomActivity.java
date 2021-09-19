@@ -48,6 +48,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
     String lastMessage = "";
     String msg_id = "";
+    RecyclerView_ChatRoom recyclerView_chatRoom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,9 @@ public class ChatRoomActivity extends AppCompatActivity {
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, ChatRoomActivity.this);
 
+        ordersModules.clear();
+        recyclerView_chatRoom = new RecyclerView_ChatRoom(ChatRoomActivity.this, ordersModules);
+        message.setAdapter(recyclerView_chatRoom);
 
         try {
 
@@ -149,8 +153,16 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                     }
 
-                    WebService.loading(ChatRoomActivity.this, true);
+//                    WebService.loading(ChatRoomActivity.this, true);
                     System.out.println("jsonObjectjsonObjectjsonObject" + jsonObject.toString());
+
+                    ordersModules.add(new MsgModules(lastMessage, 1));
+
+//                            message.setAdapter(new RecyclerView_ChatRoom(ChatRoomActivity.this, ordersModules));
+                    recyclerView_chatRoom.Ref();
+                    text_mesage.setText("");
+                    message.smoothScrollToPosition(ordersModules.size()-1);
+
                     mVolleyService.postDataVolley("send_msg", WebService.send_msg, jsonObject);
 
 
@@ -195,8 +207,8 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
                             JSONArray jsonArray = new JSONArray(data);
-                            message.setAdapter(null);
-                            ordersModules.clear();
+//                            message.setAdapter(null);
+//                            ordersModules.clear();
                             for (int i = 0; i < jsonArray.length(); i++) {
 
 
@@ -212,8 +224,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
                             }
-
-                            message.setAdapter(new RecyclerView_ChatRoom(ChatRoomActivity.this, ordersModules));
+                            recyclerView_chatRoom.Ref();
 
 //
 //                            if (ordersModules.size() != 0) {
@@ -225,10 +236,10 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 //                            WebService.loading(ChatRoomActivity.this, true);
 
-                            init_volley();
-                            VolleyService mVolleyService = new VolleyService(mResultCallback, ChatRoomActivity.this);
-
-                            mVolleyService.getDataVolley("msg", WebService.msg + "/" + user_id + "/det");
+//                            init_volley();
+//                            VolleyService mVolleyService = new VolleyService(mResultCallback, ChatRoomActivity.this);
+//
+//                            mVolleyService.getDataVolley("msg", WebService.msg + "/" + user_id + "/det");
 
 
                         } else if (requestType.equals("send_msg")) {
@@ -236,10 +247,6 @@ public class ChatRoomActivity extends AppCompatActivity {
                             String messagecc = response.getString("message");
 
 
-                            ordersModules.add(new MsgModules(lastMessage, 1));
-
-                            message.setAdapter(new RecyclerView_ChatRoom(ChatRoomActivity.this, ordersModules));
-                            text_mesage.setText("");
 //                            WebService.Make_Toast_color(ChatRoomActivity.this, messagecc, "success");
 
                         } else {

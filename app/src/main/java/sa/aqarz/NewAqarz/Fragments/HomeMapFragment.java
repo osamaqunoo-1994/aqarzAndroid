@@ -471,7 +471,14 @@ public class HomeMapFragment extends Fragment {
     public void set_map_marker() {
 
         if (Hawk.contains("region_id_postion")) {
-            MainAqarzActivity.object_filtter.setId_state(region_id_postion);
+
+            try {
+                region_id_postion = Hawk.get("region_id_postion").toString();
+                MainAqarzActivity.object_filtter.setId_state(regionModules_list.get(Integer.valueOf(region_id_postion)).getId() + "");
+
+            } catch (Exception e) {
+
+            }
 
         }
 
@@ -745,7 +752,7 @@ public class HomeMapFragment extends Fragment {
                         String number = separated[1]; // this will contain " they taste good"
                         region_id_postion = number;
 
-                        MainAqarzActivity.object_filtter.setId_state(region_id_postion);
+                        MainAqarzActivity.object_filtter.setId_state(regionModules_list.get(Integer.valueOf(region_id_postion)).getId() + "");
 
 
                         Hawk.put("region_id_postion", region_id_postion + "");

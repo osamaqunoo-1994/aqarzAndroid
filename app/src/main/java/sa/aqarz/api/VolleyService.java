@@ -118,6 +118,8 @@ public class VolleyService {
     public void postDataasync_with_file(final String requestType, String url, RequestParams requestParams) {
         try {
 
+            System.out.println(url);
+
             AsyncHttpClient client = new AsyncHttpClient();
             final int DEFAULT_TIMEOUT = 20 * 1000;
             client.setTimeout(DEFAULT_TIMEOUT);

@@ -272,7 +272,8 @@ public class MoreFragment extends Fragment {
         all_area.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MyInterestsActivity.class);
+//                Intent intent = new Intent(getActivity(), MyInterestsActivity.class);
+                Intent intent = new Intent(getActivity(), IntrestedActivity.class);
 //              intent.putExtra("from", "splash");
                 intent.putExtra("type", "all");
                 intent.putExtra("id_user", "--");

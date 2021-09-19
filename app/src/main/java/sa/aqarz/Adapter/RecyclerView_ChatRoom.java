@@ -53,6 +53,13 @@ public class RecyclerView_ChatRoom extends RecyclerView.Adapter<RecyclerView_Cha
         this.notifyDataSetChanged();
 
     }
+    public void Ref() {
+
+
+
+        this.notifyDataSetChanged();
+
+    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView date;

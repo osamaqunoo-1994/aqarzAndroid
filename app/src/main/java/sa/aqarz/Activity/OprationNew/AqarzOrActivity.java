@@ -310,6 +310,8 @@ public class AqarzOrActivity extends AppCompatActivity {
             public void onItemClick(int position) {
                 opration_select = type_list.get(position).getId().toString() + "";
 
+                System.out.println("opration_select"+opration_select);
+
                 if (opration_select.equals("1")) {//فيلا
 
                     seaction_roomes.setVisibility(View.VISIBLE);

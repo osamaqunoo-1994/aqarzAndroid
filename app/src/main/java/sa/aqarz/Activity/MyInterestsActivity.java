@@ -290,6 +290,15 @@ public class MyInterestsActivity extends FragmentActivity implements OnMapReadyC
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(MyInterestsActivity.this, LinearLayoutManager.VERTICAL, false);
         all_city.setLayoutManager(layoutManager1);
+
+
+        try {
+
+        } catch (Exception e) {
+
+        }
+
+
 //        init_volley();
 //
 //        try {

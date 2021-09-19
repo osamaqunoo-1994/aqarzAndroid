@@ -110,18 +110,18 @@ public class RecyclerView_All_opration_bottom_sheet extends RecyclerView.Adapter
         Glide.with(context).load(alldata.get(position).getIcon()).into(holder.image_in_type);
 
         if (position == Postion_opend) {
-            holder.image_in_type.setBackground(context.getResources().getDrawable(R.drawable.button_login));
+            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_login1));
 
-            holder.text.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+            holder.text.setTextColor(context.getResources().getColor(R.color.white));
 
 
-            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.white), android.graphics.PorterDuff.Mode.SRC_IN);
 
         } else {
-            holder.image_in_type.setBackground(context.getResources().getDrawable(R.drawable.circle_filter));
+            holder.back_ground.setBackground(context.getResources().getDrawable(R.drawable.button_loginc));
 
-            holder.text.setTextColor(context.getResources().getColor(R.color.color_filter));
-            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.color_filter), android.graphics.PorterDuff.Mode.SRC_IN);
+            holder.text.setTextColor(context.getResources().getColor(R.color.textColor));
+//            holder.image_in_type.setColorFilter(ContextCompat.getColor(context, R.color.textColor), android.graphics.PorterDuff.Mode.SRC_IN);
 
         }
 //
@@ -212,7 +212,7 @@ public class RecyclerView_All_opration_bottom_sheet extends RecyclerView.Adapter
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_filtter_type_map, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_type_map_home, parent, false);
 
 
         // Fresco.initialize(context);

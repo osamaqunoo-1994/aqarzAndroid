@@ -61,7 +61,6 @@
                         android:paddingLeft="7dp"
                         android:paddingRight="7dp"
                         android:paddingBottom="1dp"
-                        android:text="شقة"
 
 
                         android:textColor="@color/white"
@@ -79,67 +78,6 @@
                 android:layout_height="wrap_content"
 
                 android:orientation="vertical">
-
-
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="10dp"
-                    android:orientation="horizontal"
-
-                    android:visibility="gone">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <TextView
-
-                        android:id="@+id/num_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:fontFamily="@font/din_light"
-
-                        android:textColor="@color/black"
-                        android:textSize="10dp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/hide"
-
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/circle_filter"
-                        android:padding="4dp"
-                        android:src="@drawable/ic_un_hide" />
-
-                    <ImageView
-                        android:id="@+id/share"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/circle_filter"
-                        android:padding="4dp"
-                        android:src="@drawable/ic_send_" />
-
-                    <ImageView
-                        android:id="@+id/add_favorite"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/circle_filter"
-                        android:padding="4dp"
-                        android:src="@drawable/ic_like_l"
-                        app:tint="#AAABB3" />
-
-
-                </LinearLayout>
 
 
                 <LinearLayout
@@ -182,7 +120,6 @@
                         android:fontFamily="@font/din_bold"
 
 
-                        android:text="فيلا"
                         android:textColor="@color/black"
                         android:textSize="17dp"
                         android:textStyle="bold" />
@@ -226,7 +163,6 @@
 
                         android:fontFamily="@font/din_light"
                         android:lines="1"
-                        android:text="200"
                         android:textColor="#AAABB3"
                         android:textSize="13dp" />
 
@@ -248,6 +184,67 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
+
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="horizontal"
+
+                        android:visibility="visible">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <TextView
+
+                            android:id="@+id/num_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:fontFamily="@font/din_light"
+
+                            android:textColor="@color/black"
+
+                            android:textSize="10dp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/hide"
+
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/circle_filter"
+                            android:padding="4dp"
+                            android:src="@drawable/ic_un_hide" />
+
+                        <ImageView
+                            android:id="@+id/share"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@drawable/circle_filter"
+                            android:padding="4dp"
+                            android:src="@drawable/ic_send_" />
+
+                        <ImageView
+                            android:id="@+id/add_favorite"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/circle_filter"
+                            android:padding="4dp"
+                            android:src="@drawable/ic_like_l"
+                            app:tint="#AAABB3" />
+
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
@@ -289,7 +286,6 @@
 
                         android:layout_marginStart="5dp"
                         android:fontFamily="@font/din_bold"
-                        android:text="13000"
                         android:textColor="@color/colorPrimary"
 
                         android:textSize="17dp"
@@ -356,7 +352,6 @@
                             android:fontFamily="@font/din_bold"
 
                             android:lines="1"
-                            android:text="الروابي، الخبر ، المنطقة الشرقية"
 
                             android:textColor="@color/textColor"
                             android:textSize="12dp" />

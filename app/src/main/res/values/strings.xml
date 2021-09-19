@@ -323,6 +323,7 @@ new password</string>
     <string name="Offer_btn">Offer</string>
     <string name="Sending_code">Sending</string>
     <string name="NoInternt">No Internt Please check your conniction !</string>
+    <string name="NoInternt_reload">There is a mistake !</string>
     <string name="Reaty">Reaty</string>
 
 
@@ -975,6 +976,8 @@ Two working days to complete your order</string>
     <string name="title_activity_my_interests">Map</string>
     <string name="my_interests">My Interests</string>
     <string name="neb_Selected">specified neighborhoods</string>
+    <string name="neb_Selected2">specified neighborhoods</string>
+
     <string name="neb_Selected_msg">neighborhoods selected successfully</string>
     <string name="title_activity_tes_t_t_e_stctivity">Map</string>
     <string name="How_to_use">How to use</string>
@@ -1224,6 +1227,8 @@ Two working days to complete your order</string>
 
 
     <string name="addNib">Add</string>
+    <string name="Nib">Neighborhoods</string>
+
     <string name="AddAqarzA">Add a commercial</string>
     <string name="AddAqarzA1">Market your property in simple steps</string>
 

@@ -346,6 +346,8 @@
 
 
     <string name="NoInternt">لا يوجد إنترنت يرجى التحقق من الاتصال الخاص بك !</string>
+    <string name="NoInternt_reload">هنالك خطا بالبيانات  !</string>
+
     <string name="Reaty">اعادة</string>
 
 
@@ -992,6 +994,7 @@
     <string name="btn_order_accept">طلبات مقبوله</string>
 
     <string name="neb_Selected">الاحياء المحدده</string>
+    <string name="neb_Selected2">المناطق المفضلة</string>
     <string name="neb_Selected_msg">تم تحديد الاحياء بنجاح</string>
     <string name="title_activity_tes_t_t_e_stctivity">Map</string>
     <string name="How_to_use">طريقة الاستخدام</string>
@@ -1153,9 +1156,10 @@
 
     <string name="Congratulatioon11">اكمل ملفك الشخصي</string>
     <string name="addNib">اضف احياء</string>
+    <string name="Nib">الاحياء</string>
 
 
-    <string name="AddAqarzA">اضافة اعلان تجاري</string>
+    <string name="AddAqarzA">اضافة اعلان عقاري</string>
 
     <string name="AddAqarzA1">قم بتسويق عقارك في خطوات بسيطة</string>
 

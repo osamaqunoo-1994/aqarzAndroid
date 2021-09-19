@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sa.aqarz.Activity.FavoriteActivity;
+import sa.aqarz.Activity.MyInterestsActivity;
 import sa.aqarz.Modules.AllCityListxx;
 import sa.aqarz.Modules.AllCityModules;
 import sa.aqarz.Modules.AllEstate;
@@ -61,7 +62,17 @@ public class IntrestedActivity extends AppCompatActivity {
         add_interst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(IntrestedActivity.this, SelectFavCityActivity.class));
+//                startActivity(new Intent(IntrestedActivity.this, SelectFavCityActivity.class));
+
+//                Intent intent = new Intent(IntrestedActivity.this, MyInterestsActivity.class);
+                Intent intent = new Intent(IntrestedActivity.this, AddIntrestedMapActivity.class);
+//              intent.putExtra("from", "splash");
+                intent.putExtra("type", "all");
+                intent.putExtra("id_user", "--");
+                intent.putExtra("id_city", "");
+                intent.putExtra("name_city", "");
+
+                startActivity(intent);
             }
         });
         back.setOnClickListener(new View.OnClickListener() {

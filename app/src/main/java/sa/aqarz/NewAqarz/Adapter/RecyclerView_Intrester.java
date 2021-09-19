@@ -2,6 +2,7 @@ package sa.aqarz.NewAqarz.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,13 +13,18 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import sa.aqarz.Activity.MyInterestsActivity;
+import sa.aqarz.Adapter.RecyclerView_select_neb;
 import sa.aqarz.Modules.AllCityModules;
 import sa.aqarz.Modules.TypeModules;
+import sa.aqarz.NewAqarz.AddIntrestedMapActivity;
+import sa.aqarz.NewAqarz.IntrestedActivity;
 import sa.aqarz.R;
 
 
@@ -59,11 +65,15 @@ public class RecyclerView_Intrester extends RecyclerView.Adapter<RecyclerView_In
         //        LinearLayout answer_layout;
         //  public FrameLayout frame;
 
-//        LinearLayout back_ground;
+        //        LinearLayout back_ground;
 //        TextView text;
 //        ImageView image_in_type;
 //        ImageView selected;
         TextView text_;
+        RecyclerView all_nib_selected;
+        ImageView delete;
+        ImageView edit;
+        LinearLayout add_more;
 
         public MyViewHolder(View view) {
             super(view);
@@ -74,6 +84,10 @@ public class RecyclerView_Intrester extends RecyclerView.Adapter<RecyclerView_In
 //            text = view.findViewById(R.id.text);
 //            image_in_type = view.findViewById(R.id.image_in_type);
             text_ = view.findViewById(R.id.text_);
+            all_nib_selected = view.findViewById(R.id.all_nib_selected);
+            add_more = view.findViewById(R.id.add_more);
+            edit = view.findViewById(R.id.edit);
+            delete = view.findViewById(R.id.delete);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
 
         }
@@ -107,6 +121,12 @@ public class RecyclerView_Intrester extends RecyclerView.Adapter<RecyclerView_In
 ////
         holder.text_.setText(alldata.get(position).getNameAr() + "");
 
+
+        holder.all_nib_selected.setLayoutManager(new GridLayoutManager(context, 3));
+        RecyclerView_select_neb recyclerView_select_neb = new RecyclerView_select_neb(context, alldata.get(position).getNeb());
+
+
+        holder.all_nib_selected.setAdapter(recyclerView_select_neb);
 //        holder.image_in_type.setVisibility(View.GONE);
 
 //        try {
@@ -194,6 +214,82 @@ public class RecyclerView_Intrester extends RecyclerView.Adapter<RecyclerView_In
 
 //
 
+//                Postion_opend = position;
+
+
+//                alldata.get(position).setIsselected(!alldata.get(position).isIsselected());
+//
+//
+//                if (mItemClickListener != null) {
+//                    mItemClickListener.onItemClick(alldata);
+//                }
+//                Refr();
+
+            }
+        });
+
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//
+
+//                Postion_opend = position;
+
+
+//                alldata.get(position).setIsselected(!alldata.get(position).isIsselected());
+//
+//
+//                if (mItemClickListener != null) {
+//                    mItemClickListener.onItemClick(alldata);
+//                }
+                alldata.remove(position);
+                Refr();
+
+            }
+        });
+
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//
+
+//                Postion_opend = position;
+//                Intent intent = new Intent(context, MyInterestsActivity.class);
+                Intent intent = new Intent(context, AddIntrestedMapActivity.class);
+//              intent.putExtra("from", "splash");
+                intent.putExtra("type", "all");
+                intent.putExtra("id_user", "--");
+                intent.putExtra("id_city", alldata.get(position).getCityId()+"");
+                intent.putExtra("name_city", alldata.get(position).getNameAr()+"");
+
+                context.startActivity(intent);
+
+//                alldata.get(position).setIsselected(!alldata.get(position).isIsselected());
+//
+//
+//                if (mItemClickListener != null) {
+//                    mItemClickListener.onItemClick(alldata);
+//                }
+//                Refr();
+
+            }
+        });
+
+        holder.add_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//
+                Intent intent = new Intent(context, AddIntrestedMapActivity.class);
+//              intent.putExtra("from", "splash");
+                intent.putExtra("type", "all");
+                intent.putExtra("id_user", "--");
+                intent.putExtra("id_city", alldata.get(position).getCityId()+"");
+                intent.putExtra("name_city", alldata.get(position).getNameAr()+"");
+
+                context.startActivity(intent);
 //                Postion_opend = position;
 
 

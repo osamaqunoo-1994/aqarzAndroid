@@ -165,9 +165,17 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
 //
 //        int random = ThreadLocalRandom.current().nextInt(1, 5);
 //       holder.ratingbar.setStar(random);
-        if (alldata.get(position).getReceiverPhoto() != null) {
-            if (!alldata.get(position).getReceiverPhoto().equals("")) {
-                Glide.with(context).load(alldata.get(position).getReceiverPhoto()).error(R.drawable.ic_user_un).into(holder.image_profile);
+
+
+//
+//        if(){
+//
+//        }else{
+//
+//        }
+        if (alldata.get(position).getSenderPhoto() != null) {
+            if (!alldata.get(position).getSenderPhoto().equals("")) {
+                Glide.with(context).load(alldata.get(position).getSenderPhoto()).error(R.drawable.ic_user_un).into(holder.image_profile);
 
             } else {
                 Glide.with(context).load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(holder.image_profile);

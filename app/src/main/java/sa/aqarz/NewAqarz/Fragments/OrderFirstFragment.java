@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -89,6 +90,7 @@ public class OrderFirstFragment extends Fragment {
     static RecyclerView_mu_souq_order_mange_order recyclerView_orders_demandsx;
     int page = 1;
     LinearLayout Request_property;
+    FloatingActionButton add_;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -97,6 +99,7 @@ public class OrderFirstFragment extends Fragment {
         orders_rec = view.findViewById(R.id.orders_rec);
         nodata_vis = view.findViewById(R.id.nodata_vis);
         Request_property = view.findViewById(R.id.Request_property);
+        add_ = view.findViewById(R.id.add_);
         page = 1;
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -117,6 +120,15 @@ public class OrderFirstFragment extends Fragment {
         // Inflate the layout for this fragment
 
         Request_property.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity(), AqarzOrActivity.class);
+                intent.putExtra("id", "");
+                startActivity(intent);
+            }
+        });
+        add_.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

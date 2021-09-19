@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -93,6 +94,7 @@ public class OrderSecandFragment extends Fragment {
     static RecyclerView_Rent recyclerView_orders_demandsx;
     int page = 1;
     LinearLayout Request_property;
+    FloatingActionButton add_;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -103,6 +105,7 @@ public class OrderSecandFragment extends Fragment {
         orders_rec = view.findViewById(R.id.orders_rec);
         nodata_vis = view.findViewById(R.id.nodata_vis);
         Request_property = view.findViewById(R.id.Request_property);
+        add_ = view.findViewById(R.id.add_);
         page = 1;
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -125,18 +128,37 @@ public class OrderSecandFragment extends Fragment {
         rent_installment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Hawk.contains("rent_layout")) {
-
-//                    Intent intent = new Intent(getActivity(), RentActivity.class);
-                    Intent intent = new Intent(getActivity(), AddRentalInstallmentActivity.class);
-                    intent.putExtra("id", "");
-                    startActivity(intent);
-                } else {
-                    Hawk.put("rent_layout", "rent_layout");
-                    Intent intent = new Intent(getActivity(), RentShowActivity.class);
-                    intent.putExtra("id", "");
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(getActivity(), AddRentalInstallmentActivity.class);
+                intent.putExtra("id", "");
+                startActivity(intent);
+//                if (Hawk.contains("rent_layout")) {
+//
+////                    Intent intent = new Intent(getActivity(), RentActivity.class);
+//
+//                } else {
+//                    Hawk.put("rent_layout", "rent_layout");
+//                    Intent intent = new Intent(getActivity(), RentShowActivity.class);
+//                    intent.putExtra("id", "");
+//                    startActivity(intent);
+//                }
+            }
+        });
+        add_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddRentalInstallmentActivity.class);
+                intent.putExtra("id", "");
+                startActivity(intent);
+//                if (Hawk.contains("rent_layout")) {
+//
+////                    Intent intent = new Intent(getActivity(), RentActivity.class);
+//
+//                } else {
+//                    Hawk.put("rent_layout", "rent_layout");
+//                    Intent intent = new Intent(getActivity(), RentShowActivity.class);
+//                    intent.putExtra("id", "");
+//                    startActivity(intent);
+//                }
             }
         });
 

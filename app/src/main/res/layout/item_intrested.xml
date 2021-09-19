@@ -11,7 +11,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
         app:cardCornerRadius="10dp">
 
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="15dp">
+            android:padding="10dp">
 
 
             <LinearLayout
@@ -38,7 +38,11 @@
                 <TextView
                     android:id="@+id/text_"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/din_bold"
+
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -46,13 +50,14 @@
                     android:layout_weight="1" />
 
                 <ImageView
+                    android:id="@+id/edit"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
+
                     android:src="@drawable/ic_group_edit" />
 
                 <ImageView
+                    android:id="@+id/delete"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="10dp"
@@ -64,12 +69,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="end|bottom">
+                android:gravity="end|bottom"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/all_nib_selected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp" />
 
 
                 <LinearLayout
+                    android:id="@+id/add_more"
                     android:layout_width="110dp"
-                    android:layout_height="38dp"
+                    android:layout_height="34dp"
                     android:background="@drawable/button_login1"
                     android:gravity="center"
                     android:orientation="horizontal">
@@ -88,7 +102,7 @@
                         android:fontFamily="@font/din_bold"
                         android:text="@string/addNib"
                         android:textColor="@color/white"
-                        android:textSize="15dp"
+                        android:textSize="13dp"
                         android:textStyle="bold" />
 
 

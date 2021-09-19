@@ -46,6 +46,14 @@ public class AllCityModules {
         @SerializedName("updated_at")
         @Expose
         private String updatedAt;
+        @SerializedName("neb")
+        @Expose
+        private List<AlLNebModules.neb> neb;
+
+
+        public List<AlLNebModules.neb> getNeb() {
+            return neb;
+        }
 
         public Integer getCityId() {
             return cityId;

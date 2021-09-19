@@ -26,7 +26,7 @@ import sa.aqarz.R;
  * Created by osama on 10/16/2017.
  */
 public class RecyclerView_select_neb extends RecyclerView.Adapter<RecyclerView_select_neb.MyViewHolder> {
-    public static List<AlLNebModules.neb> alldata = new ArrayList<AlLNebModules.neb>();
+    public static List<AlLNebModules.neb> alldata_neb = new ArrayList<AlLNebModules.neb>();
     static int Postion_opend = -1;
 
 
@@ -73,7 +73,7 @@ public class RecyclerView_select_neb extends RecyclerView.Adapter<RecyclerView_s
     }
 
     public RecyclerView_select_neb(Context context, List<AlLNebModules.neb> alldata) {
-        RecyclerView_select_neb.alldata = alldata;
+        alldata_neb = alldata;
         this.context = context;
     }
 
@@ -118,7 +118,8 @@ public class RecyclerView_select_neb extends RecyclerView.Adapter<RecyclerView_s
 //        int random = ThreadLocalRandom.current().nextInt(1, 5);
 //       holder.ratingbar.setStar(random);
 
-        holder.text.setText(alldata.get(position).getNameAr() + "");
+        holder.text.setText(alldata_neb.get(position).getNameAr() + "");
+//        holder.text.setTag(alldata_neb.get(position).getCityId()+"");
         //   wallet, dafter, receipt, payment
 
 //
@@ -179,8 +180,10 @@ public class RecyclerView_select_neb extends RecyclerView.Adapter<RecyclerView_s
                 if (mItemClickListener != null) {
                     mItemClickListener.onItemClick(position);
                 }
+
+
+//                alldata_neb.remove(position);
                 Postion_opend = position;
-//                alldata.remove(position);
                 Refr();
 
 //                RequestOrderActivity.set_fragment(position);
@@ -199,11 +202,11 @@ public class RecyclerView_select_neb extends RecyclerView.Adapter<RecyclerView_s
 
     @Override
     public int getItemCount() {
-        return alldata.size();
+        return alldata_neb.size();
     }
 
     public static int getIcCount() {
-        return alldata.size();
+        return alldata_neb.size();
     }
 
     @Override

@@ -225,7 +225,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                         } else if (requestType.equals("regions")) {
 
 
-
                         }
 
 
@@ -247,6 +246,19 @@ public class SplashScreenActivity extends AppCompatActivity {
                 Log.d("TAG", "Volley requester " + requestType);
                 Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.getMessage());
 
+
+                Snackbar.make(parentLayout, getResources().getString(R.string.NoInternt), Snackbar.LENGTH_INDEFINITE)
+                        .setAction(getResources().getString(R.string.Reaty), new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                VolleyService mVolleyService = new VolleyService(mResultCallback, SplashScreenActivity.this);
+
+                                mVolleyService.getDataVolley("Settings", WebService.settings);
+
+                            }
+                        })
+                        .setActionTextColor(getResources().getColor(android.R.color.holo_red_light))
+                        .show();
                 try {
 
                     NetworkResponse response = error.networkResponse;
