@@ -2,6 +2,7 @@ package sa.aqarz.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -17,6 +18,7 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.LocaleList;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -98,24 +100,25 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
         if (Hawk.contains("lang")) {
-
-
-            Locale locale = new Locale(Hawk.get("lang").toString());
-            Locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config,
-                    getBaseContext().getResources().getDisplayMetrics());
+            setLocale(SplashScreenActivity.this, Hawk.get("lang").toString());
+//
+//            Locale locale = new Locale(Hawk.get("lang").toString());
+//            Locale.setDefault(locale);
+//            Configuration config = new Configuration();
+//            config.locale = locale;
+//            getBaseContext().getResources().updateConfiguration(config,
+//                    getBaseContext().getResources().getDisplayMetrics());
         } else {
 
             Hawk.put("lang", "ar");
+            setLocale(SplashScreenActivity.this, Hawk.get("lang").toString());
 
-            Locale locale = new Locale(Hawk.get("lang").toString());
-            Locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config,
-                    getBaseContext().getResources().getDisplayMetrics());
+//            Locale locale = new Locale(Hawk.get("lang").toString());
+//            Locale.setDefault(locale);
+//            Configuration config = new Configuration();
+//            config.locale = locale;
+//            getBaseContext().getResources().updateConfiguration(config,
+//                    getBaseContext().getResources().getDisplayMetrics());
 
 
         }
@@ -137,8 +140,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, SplashScreenActivity.this);
-
         mVolleyService.getDataVolley("Settings", WebService.settings);
+
 ////
 //        try {
 //
@@ -321,5 +324,30 @@ public class SplashScreenActivity extends AppCompatActivity {
         new ForceUpdateAsync(currentVersion, SplashScreenActivity.this).execute();
     }
 
+    public static void setLocale(Activity activity, String local) {
+//        if (!BuildConfig.DEBUG)
+//            Thread.setDefaultUncaughtExceptionHandler(new DefaultExceptionHandler(activity));
+//        if (!BuildConfig.ENGLISH) {
+        String languageToLoad = local; // your language
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
 
+
+        if (Build.VERSION.SDK_INT > 17) {
+            config.setLocale(locale);
+        } else {
+            config.locale = locale;
+
+        }
+        config.locale = locale;
+
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
+            config.setLocales(new LocaleList(locale));
+        }
+
+        activity.getBaseContext().getResources().updateConfiguration(config,
+                activity.getBaseContext().getResources().getDisplayMetrics());
+
+    }
 }

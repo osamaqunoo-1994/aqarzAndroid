@@ -1,16 +1,19 @@
 package sa.aqarz.NewAqarz.Fragments;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.os.LocaleList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -440,13 +443,14 @@ public class MoreFragment extends Fragment {
                                 if (Hawk.get("lang").toString().equals("ar")) {
 
                                     Hawk.put("lang", "en");
+                                    setLocale(getActivity(), Hawk.get("lang").toString());
 
-                                    Locale locale = new Locale("en");
-                                    Locale.setDefault(locale);
-                                    Resources resources = getResources();
-                                    Configuration config = resources.getConfiguration();
-                                    config.setLocale(locale);
-                                    resources.updateConfiguration(config, resources.getDisplayMetrics());
+//                                    Locale locale = new Locale("en");
+//                                    Locale.setDefault(locale);
+//                                    Resources resources = getResources();
+//                                    Configuration config = resources.getConfiguration();
+//                                    config.setLocale(locale);
+//                                    resources.updateConfiguration(config, resources.getDisplayMetrics());
 
 
 //                                    LocaleUtils.setLocale(SettingsActivity.this, "en");
@@ -461,13 +465,14 @@ public class MoreFragment extends Fragment {
                                 } else {
 
                                     Hawk.put("lang", "ar");
+                                    setLocale(getActivity(), Hawk.get("lang").toString());
 
-                                    Locale locale = new Locale("ar");
-                                    Locale.setDefault(locale);
-                                    Resources resources = getResources();
-                                    Configuration config = resources.getConfiguration();
-                                    config.setLocale(locale);
-                                    resources.updateConfiguration(config, resources.getDisplayMetrics());
+//                                    Locale locale = new Locale("ar");
+//                                    Locale.setDefault(locale);
+//                                    Resources resources = getResources();
+//                                    Configuration config = resources.getConfiguration();
+//                                    config.setLocale(locale);
+//                                    resources.updateConfiguration(config, resources.getDisplayMetrics());
 
 
                                     Intent intent = new Intent(getContext(), SplashScreenActivity.class);
@@ -485,4 +490,31 @@ public class MoreFragment extends Fragment {
             }
         });
     }
+
+    public static void setLocale(Activity activity, String local) {
+//        if (!BuildConfig.DEBUG)
+//            Thread.setDefaultUncaughtExceptionHandler(new DefaultExceptionHandler(activity));
+//        if (!BuildConfig.ENGLISH) {
+        String languageToLoad = local; // your language
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+
+
+        if (Build.VERSION.SDK_INT > 17) {
+            config.setLocale(locale);
+        } else {
+            config.locale = locale;
+        }
+        config.locale = locale;
+
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
+            config.setLocales(new LocaleList(locale));
+        }
+
+        activity.getBaseContext().getResources().updateConfiguration(config,
+                activity.getBaseContext().getResources().getDisplayMetrics());
+
+    }
+
 }

@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
+import android.os.LocaleList;
 import android.view.View;
 
 import com.google.gson.Gson;
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.Locale;
 
 import sa.aqarz.Activity.MainActivity;
+import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Modules.CityModules;
 import sa.aqarz.Modules.MyOfferModule;
 
@@ -67,29 +69,30 @@ public class Application extends android.app.Application {
             System.out.println("(*(*(*(*(*");
         }
 
-        if (Hawk.contains("lang")) {
-
-
-            Locale locale = new Locale(Hawk.get("lang").toString());
-            Locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config,
-                    getBaseContext().getResources().getDisplayMetrics());
-
-        } else {
-
-            Hawk.put("lang", "ar");
-
-            Locale locale = new Locale(Hawk.get("lang").toString());
-            Locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config,
-                    getBaseContext().getResources().getDisplayMetrics());
-
-
-        }
+//        if (Hawk.contains("lang")) {
+//            setLocale(Application.this, Hawk.get("lang").toString());
+//
+//
+////            Locale locale = new Locale(Hawk.get("lang").toString());
+////            Locale.setDefault(locale);
+////            Configuration config = new Configuration();
+////            config.locale = locale;
+////            getBaseContext().getResources().updateConfiguration(config,
+////                    getBaseContext().getResources().getDisplayMetrics());
+//
+//        } else {
+//
+//            Hawk.put("lang", "ar");
+//
+//            Locale locale = new Locale(Hawk.get("lang").toString());
+//            Locale.setDefault(locale);
+//            Configuration config = new Configuration();
+//            config.locale = locale;
+//            getBaseContext().getResources().updateConfiguration(config,
+//                    getBaseContext().getResources().getDisplayMetrics());
+//
+//
+//        }
 
 //        if (Hawk.contains("lang")) {
 //            Hawk.put("lang", "ar");
@@ -153,5 +156,28 @@ public class Application extends android.app.Application {
         return currentVersion;
     }
 
+    public static void setLocale(Activity activity, String local) {
+//        if (!BuildConfig.DEBUG)
+//            Thread.setDefaultUncaughtExceptionHandler(new DefaultExceptionHandler(activity));
+//        if (!BuildConfig.ENGLISH) {
+        String languageToLoad = local; // your language
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+
+
+        if (Build.VERSION.SDK_INT > 17) {
+            config.setLocale(locale);
+        } else {
+            config.locale = locale;
+        }
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
+            config.setLocales(new LocaleList(locale));
+        }
+
+        activity.getBaseContext().getResources().updateConfiguration(config,
+                activity.getBaseContext().getResources().getDisplayMetrics());
+
+    }
 
 }
