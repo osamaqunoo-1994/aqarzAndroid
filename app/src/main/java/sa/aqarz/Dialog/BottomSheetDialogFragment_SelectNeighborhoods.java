@@ -75,7 +75,7 @@ public class BottomSheetDialogFragment_SelectNeighborhoods extends BottomSheetDi
 
                 VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 
-                mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + id_city + "/list"+"?is_all=1&name="+search.getText().toString());
+                mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + id_city + "/list" + "?is_all=1&name=" + search.getText().toString());
 
                 return actionId == EditorInfo.IME_ACTION_SEARCH;
             }
@@ -89,7 +89,7 @@ public class BottomSheetDialogFragment_SelectNeighborhoods extends BottomSheetDi
 
                 VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 
-                mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + id_city + "/list"+"?is_all=1&name="+search.getText().toString());
+                mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + id_city + "/list" + "?is_all=1&name=" + search.getText().toString());
 
             }
         });
@@ -102,7 +102,7 @@ public class BottomSheetDialogFragment_SelectNeighborhoods extends BottomSheetDi
 
         VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
 
-        mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + id_city + "/list"+"?is_all=1&name="+search.getText().toString());
+        mVolleyService.getDataVolley("neighborhoods", WebService.neighborhoods + "/" + id_city + "/list" + "?is_all=1&name=" + search.getText().toString());
 
         return v;
     }
@@ -155,7 +155,7 @@ public class BottomSheetDialogFragment_SelectNeighborhoods extends BottomSheetDi
                             @Override
                             public void onItemClick(int position) {
                                 if (mItemClickListener != null) {
-                                    mItemClickListener.onItemClick(cityModules_list.get(position).getNeighborhood_serial()+"", cityModules_list.get(position).getName(),cityModules_list.get(position).getLat()+"",cityModules_list.get(position).getLan()+"");
+                                    mItemClickListener.onItemClick(cityModules_list.get(position).getNeighborhood_serial() + "", cityModules_list.get(position).getName(), cityModules_list.get(position).getLat() + "", cityModules_list.get(position).getLan() + "");
                                 }
                             }
                         });
@@ -218,7 +218,7 @@ public class BottomSheetDialogFragment_SelectNeighborhoods extends BottomSheetDi
 
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(String id_city, String city_naem,String lat,String lng);
+        void onItemClick(String id_city, String city_naem, String lat, String lng);
     }
 
     @Override

@@ -7,20 +7,34 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.orhanobut.hawk.Hawk;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import sa.aqarz.Activity.AddAqarz.AddAqarzActivity;
 import sa.aqarz.Activity.AllOrderActivity;
@@ -30,8 +44,10 @@ import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
 import sa.aqarz.Activity.OprationNew.RentActivity;
 import sa.aqarz.Activity.OprationNew.RentShowActivity;
 import sa.aqarz.Activity.check_login;
+import sa.aqarz.Adapter.RecyclerView_city_side_menu;
 import sa.aqarz.Fragment.MapsFragment;
 import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
+import sa.aqarz.Modules.CityModules;
 import sa.aqarz.Modules.ObjectFiltterOrder;
 import sa.aqarz.Modules.Object_filtter;
 import sa.aqarz.NewAqarz.AqqAqarz.AddAqarzStepsActivity;
@@ -43,6 +59,9 @@ import sa.aqarz.NewAqarz.Fragments.OrderUserFragment;
 import sa.aqarz.R;
 import sa.aqarz.Settings.ForceUpdateAsync;
 import sa.aqarz.Settings.Settings;
+import sa.aqarz.Settings.WebService;
+import sa.aqarz.api.IResult;
+import sa.aqarz.api.VolleyService;
 
 public class MainAqarzActivity extends AppCompatActivity {
     static ImageView image_1;
@@ -55,6 +74,7 @@ public class MainAqarzActivity extends AppCompatActivity {
     static TextView text_3;
     static TextView text_4;
     static TextView text_s;
+    IResult mResultCallback;
 
     public static LinearLayout lay_1, lay_2, lay_3, lay_4, lay_s;
     FloatingActionButton myFab;
@@ -71,7 +91,7 @@ public class MainAqarzActivity extends AppCompatActivity {
     LinearLayout my_order;
 
     ImageView close_add;
-
+AlertDialog alertDialog;
 
     public static String type_order_main = "";
     public static String type_type_order_main = "";
@@ -155,6 +175,106 @@ public class MainAqarzActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
+
+        if (Settings.checkLogin()) {
+
+            init_volley();
+
+            JSONObject jsonObject = new JSONObject();
+            try {
+                String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+
+                System.out.println("device_token " + refreshedToken);
+                jsonObject.put("device_token", refreshedToken);
+            } catch (Exception e) {
+
+            }
+
+            VolleyService mVolleyService = new VolleyService(mResultCallback, MainAqarzActivity.this);
+            mVolleyService.postDataVolley("updateDeviceToken", WebService.updateDeviceToken, jsonObject);
+
+
+            if (Settings.GetUser().getIs_employee().equals("1")) {
+
+
+                LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                final View popupView = layoutInflater.inflate(R.layout.is_emp_alert_dialog, null);
+                ImageView close = popupView.findViewById(R.id.close);
+                TextView yes = popupView.findViewById(R.id.yes);
+                TextView no = popupView.findViewById(R.id.no);
+
+
+                close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        init_volley();
+
+                        JSONObject jsonObject = new JSONObject();
+                        try {
+
+                            jsonObject.put("is_emp", "yes");
+                            jsonObject.put("mobile", Settings.GetUser().getMobile() + "");
+                            jsonObject.put("country_code", "+966");
+
+                        } catch (Exception e) {
+
+                        }
+                        init_volley();
+
+                        WebService.loading(MainAqarzActivity.this, true);
+
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, MainAqarzActivity.this);
+                        mVolleyService.postDataVolley("check_employe", WebService.check_employe, jsonObject);
+                        alertDialog.dismiss();
+
+                    }
+                });
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        init_volley();
+
+                        JSONObject jsonObject = new JSONObject();
+                        try {
+
+                            jsonObject.put("is_emp", "no");
+                            jsonObject.put("mobile", Settings.GetUser().getMobile() + "");
+                            jsonObject.put("country_code", "966");
+                        } catch (Exception e) {
+
+                        }
+                        init_volley();
+                        WebService.loading(MainAqarzActivity.this, true);
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, MainAqarzActivity.this);
+                        mVolleyService.postDataVolley("check_employe", WebService.check_employe, jsonObject);
+                        alertDialog.dismiss();
+
+                    }
+                });
+                final AlertDialog.Builder builder = new AlertDialog.Builder(MainAqarzActivity.this);
+
+//            alertDialog_country =
+                builder.setView(popupView);
+
+
+                alertDialog = builder.show();
+
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+
+            }
+
+
+        }
+
     }
 
 
@@ -531,4 +651,91 @@ public class MainAqarzActivity extends AppCompatActivity {
         }
         super.onResume();
     }
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response.toString());
+                WebService.loading(MainAqarzActivity.this, false);
+//{"status":true,"code":200,"message":"User Profile","data"
+                try {
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+                        String data = response.getString("data");
+//                        String next_page_url = response.getString("next_page_url");
+
+
+                        if (requestType.equals("user")) {
+                            JSONObject jsonObject = new JSONObject(data);
+
+
+                            Hawk.put("user", data);
+
+                        } else if (requestType.equals("check_employe")) {
+
+
+                            init_volley();
+                            VolleyService mVolleyService = new VolleyService(mResultCallback, MainAqarzActivity.this);
+//            mVolleyService.getDataVolley("user", WebService.user + id + "");
+                            mVolleyService.getDataVolley("user", WebService.my_profile + "");
+
+
+                        }
+
+
+                    }
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+
+                WebService.loading(MainAqarzActivity.this, false);
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color(MainAqarzActivity.this, message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+                WebService.loading(MainAqarzActivity.this, false);
+
+
+            }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+                WebService.loading(MainAqarzActivity.this, false);
+
+                WebService.Make_Toast_color(MainAqarzActivity.this, error, "error");
+
+
+            }
+        };
+
+
+    }
+
 }

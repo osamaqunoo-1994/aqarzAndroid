@@ -120,11 +120,19 @@ public class RecyclerView_Intrester extends RecyclerView.Adapter<RecyclerView_In
 //        }
 ////
         holder.text_.setText(alldata.get(position).getNameAr() + "");
-
+        holder.text_.setTag(position + "");
 
         holder.all_nib_selected.setLayoutManager(new GridLayoutManager(context, 3));
         RecyclerView_select_neb recyclerView_select_neb = new RecyclerView_select_neb(context, alldata.get(position).getNeb());
+        recyclerView_select_neb.addItemClickListener(new RecyclerView_select_neb.ItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
 
+                alldata.remove(Integer.valueOf(holder.text_.getTag().toString()));
+
+                recyclerView_select_neb.Refr();
+            }
+        });
 
         holder.all_nib_selected.setAdapter(recyclerView_select_neb);
 //        holder.image_in_type.setVisibility(View.GONE);
@@ -261,8 +269,8 @@ public class RecyclerView_Intrester extends RecyclerView.Adapter<RecyclerView_In
 //              intent.putExtra("from", "splash");
                 intent.putExtra("type", "all");
                 intent.putExtra("id_user", "--");
-                intent.putExtra("id_city", alldata.get(position).getCityId()+"");
-                intent.putExtra("name_city", alldata.get(position).getNameAr()+"");
+                intent.putExtra("id_city", alldata.get(position).getCityId() + "");
+                intent.putExtra("name_city", alldata.get(position).getNameAr() + "");
 
                 context.startActivity(intent);
 
@@ -286,8 +294,8 @@ public class RecyclerView_Intrester extends RecyclerView.Adapter<RecyclerView_In
 //              intent.putExtra("from", "splash");
                 intent.putExtra("type", "all");
                 intent.putExtra("id_user", "--");
-                intent.putExtra("id_city", alldata.get(position).getCityId()+"");
-                intent.putExtra("name_city", alldata.get(position).getNameAr()+"");
+                intent.putExtra("id_city", alldata.get(position).getCityId() + "");
+                intent.putExtra("name_city", alldata.get(position).getNameAr() + "");
 
                 context.startActivity(intent);
 //                Postion_opend = position;
