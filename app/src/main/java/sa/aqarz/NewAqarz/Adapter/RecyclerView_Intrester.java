@@ -1,9 +1,11 @@
 package sa.aqarz.NewAqarz.Adapter;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +18,28 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import sa.aqarz.Activity.MyInterestsActivity;
 import sa.aqarz.Adapter.RecyclerView_select_neb;
+import sa.aqarz.Modules.AllCityListxx;
 import sa.aqarz.Modules.AllCityModules;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.NewAqarz.AddIntrestedMapActivity;
 import sa.aqarz.NewAqarz.IntrestedActivity;
 import sa.aqarz.R;
+import sa.aqarz.Settings.WebService;
+import sa.aqarz.api.IResult;
+import sa.aqarz.api.VolleyService;
 
 
 /**
@@ -38,6 +52,7 @@ public class RecyclerView_Intrester extends RecyclerView.Adapter<RecyclerView_In
 
     static AlertDialog alertDialog;
     private ItemClickListener mItemClickListener;
+    static IResult mResultCallback;
 
 
     /**
@@ -128,9 +143,16 @@ public class RecyclerView_Intrester extends RecyclerView.Adapter<RecyclerView_In
             @Override
             public void onItemClick(int position) {
 
-                alldata.remove(Integer.valueOf(holder.text_.getTag().toString()));
+                IntrestedActivity.dataCities.get(Integer.valueOf(holder.text_.getTag().toString())).getNeb().remove(position);
+                IntrestedActivity.recyclerView_intrester.Refr();
 
-                recyclerView_select_neb.Refr();
+
+//                WebService.loading((Activity) context, true);
+//                init_volley();
+//                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+//        url_list = WebService.home_estate_custom_list + "?" + type_filtter_;
+//                mVolleyService.getAsync("my_interest", WebService.my_interest);
+
             }
         });
 
@@ -344,4 +366,92 @@ public class RecyclerView_Intrester extends RecyclerView.Adapter<RecyclerView_In
     public interface ItemClickListener {
         void onItemClick(List<TypeModules> typeModules);
     }
+
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response);
+//{"status":true,"code":200,"message":"User Profile","data"
+                try {
+                    WebService.loading((Activity) context, false);
+
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+                        WebService.loading((Activity) context, false);
+
+                        if (requestType.equals("my_interest")) {
+
+
+//                            set_locationEstate(allNeigbers.getData().getData());
+//                            all_estate_size.setVisibility(View.VISIBLE);
+
+
+                        } else {
+                            String message = response.getString("message");
+                            WebService.Make_Toast_color((Activity) context, message, "success");
+
+                        }
+
+
+                    } else {
+                        String message = response.getString("message");
+
+                        WebService.Make_Toast_color((Activity) context, message, "error");
+                    }
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + "That didn't work!" + error.getMessage());
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color((Activity) context, message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+
+                WebService.loading((Activity) context, false);
+
+
+            }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+
+                WebService.loading((Activity) context, false);
+
+            }
+        }
+
+        ;
+
+
+    }
+
 }

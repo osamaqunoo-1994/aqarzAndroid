@@ -42,8 +42,8 @@ public class IntrestedActivity extends AppCompatActivity {
     static IResult mResultCallback;
 
 
-    List<AllCityModules.City> dataCities = new ArrayList<>();
-    RecyclerView_Intrester recyclerView_intrester;
+   public static List<AllCityModules.City> dataCities = new ArrayList<>();
+    public static RecyclerView_Intrester recyclerView_intrester;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
