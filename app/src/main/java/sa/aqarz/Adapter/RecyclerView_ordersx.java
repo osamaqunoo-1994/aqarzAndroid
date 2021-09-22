@@ -180,41 +180,53 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 
         Glide.with(context).load(alldata.get(position).getEstateTypeIcon()).into(holder.image_icon);
 
-        if (alldata.get(position).getHas_my_offer().equals("0")) {
-            holder.new_offer.setVisibility(View.VISIBLE);
-            holder.Watting.setVisibility(View.GONE);
-            holder.reject.setVisibility(View.GONE);
-            holder.accept.setVisibility(View.GONE);
 
-        } else {
-            holder.new_offer.setVisibility(View.GONE);
-            holder.Watting.setVisibility(View.VISIBLE);
-            holder.reject.setVisibility(View.GONE);
-            holder.accept.setVisibility(View.GONE);
-            if (alldata.get(position).getStatus() == null) {
+        try {
 
-            } else if (alldata.get(position).getStatus().equals("active")) {
+            if (alldata.get(position).getHas_my_offer() != null) {
+                if (!alldata.get(position).getHas_my_offer().equals("null")) {
+                    if (alldata.get(position).getHas_my_offer().equals("0")) {
+                        holder.new_offer.setVisibility(View.VISIBLE);
+                        holder.Watting.setVisibility(View.GONE);
+                        holder.reject.setVisibility(View.GONE);
+                        holder.accept.setVisibility(View.GONE);
+
+                    } else {
+                        holder.new_offer.setVisibility(View.GONE);
+                        holder.Watting.setVisibility(View.VISIBLE);
+                        holder.reject.setVisibility(View.GONE);
+                        holder.accept.setVisibility(View.GONE);
+                        if (alldata.get(position).getStatus() == null) {
+
+                        } else if (alldata.get(position).getStatus().equals("active")) {
 //
-            } else if (alldata.get(position).getStatus().equals("Waiting_provider_accepted")) {
+                        } else if (alldata.get(position).getStatus().equals("Waiting_provider_accepted")) {
 //
-            } else if (alldata.get(position).getStatus().equals("rejected_customer ")) {
-                holder.new_offer.setVisibility(View.GONE);
-                holder.Watting.setVisibility(View.GONE);
-                holder.reject.setVisibility(View.VISIBLE);
-                holder.accept.setVisibility(View.GONE);
-            } else if (alldata.get(position).getStatus().equals("accepted_customer")) {
-                holder.new_offer.setVisibility(View.GONE);
-                holder.Watting.setVisibility(View.GONE);
-                holder.reject.setVisibility(View.GONE);
-                holder.sending_code.setVisibility(View.GONE);
-                holder.accept.setVisibility(View.VISIBLE);
-            } else if (alldata.get(position).getStatus().equals("sending_code")) {
-                holder.new_offer.setVisibility(View.GONE);
-                holder.Watting.setVisibility(View.GONE);
-                holder.reject.setVisibility(View.GONE);
-                holder.accept.setVisibility(View.GONE);
-                holder.sending_code.setVisibility(View.VISIBLE);
+                        } else if (alldata.get(position).getStatus().equals("rejected_customer ")) {
+                            holder.new_offer.setVisibility(View.GONE);
+                            holder.Watting.setVisibility(View.GONE);
+                            holder.reject.setVisibility(View.VISIBLE);
+                            holder.accept.setVisibility(View.GONE);
+                        } else if (alldata.get(position).getStatus().equals("accepted_customer")) {
+                            holder.new_offer.setVisibility(View.GONE);
+                            holder.Watting.setVisibility(View.GONE);
+                            holder.reject.setVisibility(View.GONE);
+                            holder.sending_code.setVisibility(View.GONE);
+                            holder.accept.setVisibility(View.VISIBLE);
+                        } else if (alldata.get(position).getStatus().equals("sending_code")) {
+                            holder.new_offer.setVisibility(View.GONE);
+                            holder.Watting.setVisibility(View.GONE);
+                            holder.reject.setVisibility(View.GONE);
+                            holder.accept.setVisibility(View.GONE);
+                            holder.sending_code.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                }
             }
+
+        } catch (Exception e) {
+
         }
 
 
@@ -458,48 +470,61 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
             }
         });
 
-        if (alldata.get(position).getIn_fav().equals("1")) {
-            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
 
-        } else {
-            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
+        try {
+            if (alldata.get(position).getIn_fav() != null) {
 
-        }
-        holder.add_favorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                if (!alldata.get(position).getIn_fav().equals("null")) {
+                    if (alldata.get(position).getIn_fav().equals("1")) {
+                        holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
 
-                if (alldata.get(position).getIn_fav().equals("1")) {
-                    holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
-                    alldata.get(position).setIn_fav("0");
-                } else {
-                    holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
-                    alldata.get(position).setIn_fav("1");
+                    } else {
+                        holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
+
+                    }
+                    holder.add_favorite.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            if (alldata.get(position).getIn_fav().equals("1")) {
+                                holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
+                                alldata.get(position).setIn_fav("0");
+                            } else {
+                                holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
+                                alldata.get(position).setIn_fav("1");
 
 
-                }
+                            }
 //                bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getId() + "");
 //
 //                bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
 
-                init_volley();
-                WebService.loading((Activity) context, true);
+                            init_volley();
+                            WebService.loading((Activity) context, true);
 
-                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
-                try {
+                            VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+                            try {
 
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("type_id", "" + alldata.get(position).getId());
-                    jsonObject.put("type", "" + "fund");
-                    mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
+                                JSONObject jsonObject = new JSONObject();
+                                jsonObject.put("type_id", "" + alldata.get(position).getId());
+                                jsonObject.put("type", "" + "fund");
+                                mVolleyService.postDataVolley("favorite", WebService.favorite, jsonObject);
 
 
-                } catch (Exception e) {
+                            } catch (Exception e) {
+
+                            }
+
+                        }
+                    });
+
 
                 }
 
             }
-        });
+        } catch (Exception e) {
+
+        }
 
 
     }

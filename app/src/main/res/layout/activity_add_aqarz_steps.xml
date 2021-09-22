@@ -95,13 +95,14 @@
                             android:id="@+id/sell"
                             android:layout_width="90dp"
                             android:layout_height="44dp"
-                            android:background="@drawable/back_search_homecc"
+                            android:background="@drawable/button_login1"
                             android:fontFamily="@font/muli_bold"
                             android:gravity="center"
                             android:paddingTop="3dp"
                             android:paddingBottom="3dp"
+
                             android:text="@string/For_sale"
-                            android:textColor="#AAABB3"
+                            android:textColor="@color/white"
                             android:textSize="13dp"
 
                             android:textStyle="bold" />
@@ -1214,6 +1215,7 @@
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -1229,11 +1231,11 @@
                             android:layout_weight="1"
                             android:background="@drawable/back_edittext_add_aqarz"
                             android:gravity="start"
-                            android:paddingTop="10dp"
-
                             android:hint="@string/add_note"
+
                             android:inputType="number"
                             android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
 
                             android:paddingRight="10dp"
                             android:text=""
@@ -1292,10 +1294,10 @@
                     android:visibility="gone">
 
                     <LinearLayout
-                        android:orientation="vertical"
                         android:id="@+id/step_3"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1471,8 +1473,6 @@
                         </LinearLayout>
 
                     </LinearLayout>
-
-
 
 
                     <LinearLayout

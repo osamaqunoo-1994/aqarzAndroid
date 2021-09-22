@@ -96,7 +96,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
     TextView rent;
     TextView investment;
 
-    String type_opration_selected = "";
+    String type_opration_selected = "1";
     String type_aqarz_selected = "";
 
     ArrayList<Image> images = new ArrayList<>();
@@ -352,6 +352,9 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                 if (lay_1.getVisibility() == View.VISIBLE) {
 
 
+                    finish();
+
+
                 } else if (lay_2.getVisibility() == View.VISIBLE) {
                     lay_1.setVisibility(View.VISIBLE);
                     lay_2.setVisibility(View.GONE);
@@ -412,6 +415,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
     }
 
     public void step_1() {
+        change_color_button_step_1();
         sell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -609,6 +613,11 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                 commercial.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
                 Artificial.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
 
+
+                residential.setTextColor(getResources().getColor(R.color.white));
+                commercial.setTextColor(getResources().getColor(R.color.textColor));
+                Artificial.setTextColor(getResources().getColor(R.color.textColor));
+
             }
         });
         commercial.setOnClickListener(new View.OnClickListener() {
@@ -620,6 +629,10 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                 commercial.setBackground(getResources().getDrawable(R.drawable.back_search_home_selected));
                 Artificial.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
 
+
+                commercial.setTextColor(getResources().getColor(R.color.white));
+                residential.setTextColor(getResources().getColor(R.color.textColor));
+                Artificial.setTextColor(getResources().getColor(R.color.textColor));
             }
         });
         Artificial.setOnClickListener(new View.OnClickListener() {
@@ -631,6 +644,10 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                 commercial.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
                 Artificial.setBackground(getResources().getDrawable(R.drawable.back_search_home_selected));
 
+
+                Artificial.setTextColor(getResources().getColor(R.color.white));
+                residential.setTextColor(getResources().getColor(R.color.textColor));
+                commercial.setTextColor(getResources().getColor(R.color.textColor));
             }
         });
         button_step_3.setOnClickListener(new View.OnClickListener() {
@@ -652,51 +669,63 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
     public void select_image_and_video() {
 
-        LinearLayoutManager layoutManagem
-                = new LinearLayoutManager(AddAqarzStepsActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        images_RecyclerView.setLayoutManager(layoutManagem);
+
+        try {
+            LinearLayoutManager layoutManagem
+                    = new LinearLayoutManager(AddAqarzStepsActivity.this, LinearLayoutManager.HORIZONTAL, false);
+            images_RecyclerView.setLayoutManager(layoutManagem);
 
 
-        addImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            addImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (ContextCompat.checkSelfPermission(AddAqarzStepsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (ContextCompat.checkSelfPermission(AddAqarzStepsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
 
-                        // No explanation needed, we can request the permission.
+                            // No explanation needed, we can request the permission.
 
-                        ActivityCompat.requestPermissions(AddAqarzStepsActivity.this,
-                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                                111);
+                            ActivityCompat.requestPermissions(AddAqarzStepsActivity.this,
+                                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                    111);
 
+                        } else {
+                            select_image_from_local(111, 111);
+
+                        }
                     } else {
                         select_image_from_local(111, 111);
 
                     }
-                } else {
-                    select_image_from_local(111, 111);
+
 
                 }
+            });
+            select_video.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (ContextCompat.checkSelfPermission(AddAqarzStepsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
+                            // No explanation needed, we can request the permission.
 
-            }
-        });
-        select_video.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (ContextCompat.checkSelfPermission(AddAqarzStepsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(AddAqarzStepsActivity.this,
+                                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                    1451);
 
-                        // No explanation needed, we can request the permission.
+                        } else {
+                            Intent intent = new Intent();
+                            intent.setType("video/*");
+                            intent.setAction(Intent.ACTION_PICK);
+                            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
 
-                        ActivityCompat.requestPermissions(AddAqarzStepsActivity.this,
-                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                                1451);
+                            startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
 
+                        }
                     } else {
+//                    Pico.openMultipleFiles(AddnewsActivity.this, Pico.TYPE_VIDEO);
                         Intent intent = new Intent();
                         intent.setType("video/*");
                         intent.setAction(Intent.ACTION_PICK);
@@ -705,129 +734,147 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                         startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
 
                     }
-                } else {
-//                    Pico.openMultipleFiles(AddnewsActivity.this, Pico.TYPE_VIDEO);
-                    Intent intent = new Intent();
-                    intent.setType("video/*");
-                    intent.setAction(Intent.ACTION_PICK);
-                    intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
-
-                    startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
 
                 }
+            });
+            button_step_2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (selectIamgeList.size() != 0) {
 
-            }
-        });
-        button_step_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (selectIamgeList.size() != 0) {
-
-                    Intent intent = new Intent(AddAqarzStepsActivity.this, SelectLocationActivity.class);
-                    intent.putExtra("lat", addAqarezObject.getLat() + "");
-                    intent.putExtra("lan", addAqarezObject.getLan() + "");
-                    intent.putExtra("address", "");
-                    startActivityForResult(intent, 115);
+                        Intent intent = new Intent(AddAqarzStepsActivity.this, SelectLocationActivity.class);
+                        intent.putExtra("lat", addAqarezObject.getLat() + "");
+                        intent.putExtra("lan", addAqarezObject.getLan() + "");
+                        intent.putExtra("address", "");
+                        startActivityForResult(intent, 115);
 
 
-                } else {
+                    } else {
 
 
+                    }
                 }
-            }
-        });
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
-        if ((requestCode == 115)) {
-            if (resultCode == Activity.RESULT_OK) {
 
+        try {
+            if ((requestCode == 115)) {
+                if (resultCode == Activity.RESULT_OK) {
+
+                    try {
+
+                        // TODO Extract the data returned from the child Activity.
+                        String lat_ = data.getStringExtra("lat");
+                        String lang_ = data.getStringExtra("lang");
+                        String address_ = data.getStringExtra("address");
+
+                        addAqarezObject.setLat("" + lat_);
+                        addAqarezObject.setLan("" + lang_);
+                        Toast.makeText(AddAqarzStepsActivity.this, "You selected the place: " + address_, Toast.LENGTH_SHORT).show();
+
+                        addAqarezObject.setAddress(address_ + "");
+
+
+                        lay_1.setVisibility(View.GONE);
+                        lay_2.setVisibility(View.GONE);
+                        lay_3.setVisibility(View.VISIBLE);
+                        title.setText(getResources().getString(R.string.title6));
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            if (requestCode == 111) {
+
+
+                if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 111)) {
+                    images = ImagePicker.getImages(data);
+
+                    for (int i = 0; i < images.size(); i++) {
+                        Bitmap selectedImagea = BitmapFactory.decodeFile(images.get(i).getPath());
+                        selectIamgeList.add(new SelectImageModules("1", selectedImagea));
+                    }
+                    addAqarezObject.setSelectIamgeList(selectIamgeList);
+                    images_RecyclerView.setAdapter(new RecyclerView_selectImage(AddAqarzStepsActivity.this, selectIamgeList));
+
+                    change_color_button_step_2();
+
+                }
+
+
+            }
+            if (requestCode == 1451) {
                 try {
+                    Uri selectedImageUri = data.getData();
 
-                    // TODO Extract the data returned from the child Activity.
-                    String lat_ = data.getStringExtra("lat");
-                    String lang_ = data.getStringExtra("lang");
-                    String address_ = data.getStringExtra("address");
-
-                    addAqarezObject.setLat("" + lat_);
-                    addAqarezObject.setLan("" + lang_);
-                    Toast.makeText(AddAqarzStepsActivity.this, "You selected the place: " + address_, Toast.LENGTH_SHORT).show();
-
-                    addAqarezObject.setAddress(address_ + "");
+                    String selectedImagePath = getPath(selectedImageUri);
 
 
-                    lay_1.setVisibility(View.GONE);
-                    lay_2.setVisibility(View.GONE);
-                    lay_3.setVisibility(View.VISIBLE);
-                    title.setText(getResources().getString(R.string.title6));
+                    if (selectedImagePath != null) {
 
+                        addAqarezObject.setVideo(getFile(getApplicationContext(), selectedImageUri));
 
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+
+                            select_video_image.setImageBitmap(createThumbnail(AddAqarzStepsActivity.this, addAqarezObject.getVideo().getPath() + ""));
+
+                        } else {
+                            select_video_image.setImageBitmap(ThumbnailUtils.createVideoThumbnail(addAqarezObject.getVideo().getPath(), MediaStore.Video.Thumbnails.FULL_SCREEN_KIND));
+                        }
+
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if (requestCode == 111) {
 
-
-            if (ImagePicker.shouldHandleResult(requestCode, resultCode, data, 111)) {
-                images = ImagePicker.getImages(data);
-
-                for (int i = 0; i < images.size(); i++) {
-                    Bitmap selectedImagea = BitmapFactory.decodeFile(images.get(i).getPath());
-                    selectIamgeList.add(new SelectImageModules("1", selectedImagea));
-                }
-                addAqarezObject.setSelectIamgeList(selectIamgeList);
-                images_RecyclerView.setAdapter(new RecyclerView_selectImage(AddAqarzStepsActivity.this, selectIamgeList));
-
-                change_color_button_step_2();
-
-            }
-
-
-        }
-        if (requestCode == 1451) {
-            try {
-                Uri selectedImageUri = data.getData();
-
-                String selectedImagePath = getPath(selectedImageUri);
-
-
-                if (selectedImagePath != null) {
-
-                    addAqarezObject.setVideo(getFile(getApplicationContext(), selectedImageUri));
-
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-
-                        select_video_image.setImageBitmap(createThumbnail(AddAqarzStepsActivity.this, addAqarezObject.getVideo().getPath() + ""));
-
-                    } else {
-                        select_video_image.setImageBitmap(ThumbnailUtils.createVideoThumbnail(addAqarezObject.getVideo().getPath(), MediaStore.Video.Thumbnails.FULL_SCREEN_KIND));
-                    }
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
         super.onActivityResult(requestCode, resultCode, data);
 
     }
 
     public void select_image_from_local(int permission, int st_code) {
 
+        try {
+            if (permission == 111) {
 
-        if (permission == 111) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (ContextCompat.checkSelfPermission(AddAqarzStepsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (ContextCompat.checkSelfPermission(AddAqarzStepsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(AddAqarzStepsActivity.this,
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                permission);
 
-                    ActivityCompat.requestPermissions(AddAqarzStepsActivity.this,
-                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                            permission);
+                    } else {
 
+
+                        ImagePicker.with(this)
+                                .setFolderMode(true)
+                                .setFolderTitle("Album")
+
+                                .setDirectoryName("Image Picker")
+                                .setMultipleMode(true)
+                                .setShowNumberIndicator(true)
+                                .setMaxSize(5)
+                                .setLimitMessage("You can select up to 10 images")
+                                .setRequestCode(111)
+                                .start();
+
+
+                    }
                 } else {
 
 
@@ -840,31 +887,18 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                             .setShowNumberIndicator(true)
                             .setMaxSize(5)
                             .setLimitMessage("You can select up to 10 images")
+
                             .setRequestCode(111)
                             .start();
 
 
                 }
-            } else {
-
-
-                ImagePicker.with(this)
-                        .setFolderMode(true)
-                        .setFolderTitle("Album")
-
-                        .setDirectoryName("Image Picker")
-                        .setMultipleMode(true)
-                        .setShowNumberIndicator(true)
-                        .setMaxSize(5)
-                        .setLimitMessage("You can select up to 10 images")
-
-                        .setRequestCode(111)
-                        .start();
-
 
             }
+        } catch (Exception e) {
 
         }
+
 
     }
 
@@ -2153,7 +2187,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                     north.setTextColor(getResources().getColor(R.color.black));
                 } else {
                     north_selected = true;
-                    north.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    north.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     north.setTextColor(getResources().getColor(R.color.white));
 
 
@@ -2172,7 +2206,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
                 } else {
                     south_selected = true;
-                    south.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    south.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     south.setTextColor(getResources().getColor(R.color.white));
 
 
@@ -2189,7 +2223,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
                 } else {
                     east_selected = true;
-                    east.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    east.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     east.setTextColor(getResources().getColor(R.color.white));
 
 
@@ -2206,7 +2240,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
                 } else {
                     west_selected = true;
-                    west.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    west.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     west.setTextColor(getResources().getColor(R.color.white));
 
 
