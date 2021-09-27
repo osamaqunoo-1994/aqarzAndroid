@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="@android:color/transparent"
+    android:layoutDirection="rtl">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_b"
+        android:gravity="center_horizontal"
+
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/rent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:fontFamily="@font/din_bold"
+            android:gravity="center"
+            android:text="@string/rent"
+            android:textColor="@color/textColor"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#20000000" />
+
+        <TextView
+            android:id="@+id/Purchase"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:fontFamily="@font/din_bold"
+            android:gravity="center"
+            android:text="@string/Purchase"
+            android:textColor="@color/textColor"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#20000000" />
+
+        <TextView
+            android:id="@+id/investment"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:fontFamily="@font/din_bold"
+            android:gravity="center"
+            android:text="@string/investment"
+            android:textColor="@color/textColor"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#20000000" />
+
+        <TextView
+            android:id="@+id/canclee"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:fontFamily="@font/din_bold"
+            android:gravity="center"
+            android:text="@string/canclee"
+            android:textColor="@color/textColor"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

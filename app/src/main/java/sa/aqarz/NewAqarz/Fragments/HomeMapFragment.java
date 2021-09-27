@@ -78,6 +78,7 @@ import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.NewAqarz.Adapter.RecyclerView_All_type_in_home_fragment;
 import sa.aqarz.NewAqarz.Adapter.RecyclerView_HomeList_estat_map;
 import sa.aqarz.NewAqarz.Adapter.ViewPager_Adapter_estate_home_map1;
+import sa.aqarz.NewAqarz.BottomDialog.BottomSheetDialogFragment_SelectType;
 import sa.aqarz.NewAqarz.FillterActivity;
 import sa.aqarz.NewAqarz.ListAqarzActivity;
 import sa.aqarz.NewAqarz.MainAqarzActivity;
@@ -131,6 +132,11 @@ public class HomeMapFragment extends Fragment {
     ImageView fill_filtter;
     static RecyclerView all_city;
     static ImageView clear_city;
+
+    LinearLayout select_type_lay;
+    TextView select_type_txt;
+
+    BottomSheetDialogFragment_SelectType bottomSheetDialogFragment_selectType;
     private final OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -193,6 +199,8 @@ public class HomeMapFragment extends Fragment {
         search_text = v.findViewById(R.id.search_text);
         fill_filtter = v.findViewById(R.id.fill_filtter);
         clear_city = v.findViewById(R.id.clear_city);
+        select_type_lay = v.findViewById(R.id.select_type_lay);
+        select_type_txt = v.findViewById(R.id.select_type_txt);
 
         //LastPostionLat
         //LastPostionLan
@@ -371,6 +379,50 @@ public class HomeMapFragment extends Fragment {
             public void onClick(View v) {
 
                 startActivity(new Intent(getActivity(), NotficationActvity.class));
+
+            }
+        });
+
+        select_type_lay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetDialogFragment_selectType = new BottomSheetDialogFragment_SelectType("");
+                bottomSheetDialogFragment_selectType.addItemClickListener(new BottomSheetDialogFragment_SelectType.ItemClickListener() {
+                    @Override
+                    public void onItemClick(String filter) {
+
+                        if (filter.equals("rent")) {
+                            MainAqarzActivity.object_filtter.setEstate_pay_type("is_rent");
+
+                            select_type_txt.setText(getResources().getString(R.string.rent));
+                            bottomSheetDialogFragment_selectType.dismiss();
+
+                        } else if (filter.equals("Purchase")) {
+                            MainAqarzActivity.object_filtter.setEstate_pay_type("is_pay");
+
+                            select_type_txt.setText(getResources().getString(R.string.Purchase));
+                            bottomSheetDialogFragment_selectType.dismiss();
+
+                        } else if (filter.equals("investment")) {
+                            MainAqarzActivity.object_filtter.setEstate_pay_type("is_pay");
+
+                            select_type_txt.setText(getResources().getString(R.string.investment));
+                            bottomSheetDialogFragment_selectType.dismiss();
+
+                        } else if (filter.equals("canclee")) {
+                            MainAqarzActivity.object_filtter.setEstate_pay_type("");
+
+                            select_type_txt.setText("");
+                            bottomSheetDialogFragment_selectType.dismiss();
+                        }
+
+                        get_Estate_from_api();
+
+
+                    }
+                });
+                bottomSheetDialogFragment_selectType.show(getChildFragmentManager(), "");
+
 
             }
         });
