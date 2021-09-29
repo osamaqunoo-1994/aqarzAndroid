@@ -81,6 +81,10 @@ public class home_viewPager_Adapter extends PagerAdapter {
             play_video.setVisibility(View.GONE);
 
         } else {
+
+            System.out.println("$$$$$$$$"+IMAGES.get(position).getImage_url());
+
+
             progress.setVisibility(View.GONE);
             play_video.setVisibility(View.VISIBLE);
             play_video.setOnClickListener(new View.OnClickListener() {

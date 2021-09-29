@@ -27,6 +27,7 @@ import android.view.animation.AnimationUtils;
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -78,6 +79,12 @@ public class SplashScreenActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
+
+
+        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+
+        System.out.println("refreshedToken : "+refreshedToken);
 
         if (Settings.checkLogin()) {
 
