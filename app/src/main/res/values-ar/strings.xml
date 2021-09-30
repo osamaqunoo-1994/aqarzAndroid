@@ -1209,4 +1209,19 @@
 </string>
     <string name="fillallfileds1">الرجاء تعبئه  الحقول المطلوبة</string>
 
+
+
+    <string name="addNewOrder">طلب جديد</string>
+    <string name="propertiesyes">هل ترغب بإظهار العقارات التي تدعم تقسيط التأجير فقط</string>
+    <string name="eeent">تقسيط التأجير</string>
+
+
+
+    <string name="req_n">طلب الخدمة</string>
+    <string name="trrr">القسط الشهري:</string>
+    <string name="trrr1">مدة العقد:</string>
+    <string name="trrr2">شهر</string>
+    <string name="trrr9">ريال سعودي</string>
+    <string name="hintsall">المبلغ المستحق للعقاري</string>
+
 </resources>

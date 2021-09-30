@@ -42,6 +42,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -117,6 +118,9 @@ public class DetaislAqarzActivity extends AppCompatActivity {
     LinearLayout rate_;
     ImageView map_location;
     RecyclerView all_comfort;
+    RelativeLayout map;
+
+    TextView type_;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,8 +151,12 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                     toolbar.setTitle(homeModules_aqares.getTotalPrice() + " " + getResources().getString(R.string.SAR));
                     toolbar.setTitleTextColor(getResources().getColor(R.color.black));
 
+
+                    type_.setVisibility(View.GONE);
+
                 } else {
 
+                    type_.setVisibility(View.VISIBLE);
 
                     System.out.println("&&&&&&&&&&&&&&&&&&&&&&");
 
@@ -182,8 +190,10 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
     public void init() {
 
+        type_ = findViewById(R.id.type_);
         rate_ = findViewById(R.id.rate_);
         rec_list_all = findViewById(R.id.rec_list_all);
+        map = findViewById(R.id.map);
         home_viewPager = findViewById(R.id.home_viewPager);
         view_pager_indicator = findViewById(R.id.view_pager_indicator);
         price = findViewById(R.id.price);
@@ -290,7 +300,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent inte = new Intent(DetaislAqarzActivity.this, RateDetailsActivity.class);
                 inte.putExtra("id_or_aq", id_or_aq);
-                inte.putExtra("is_rate", homeModules_aqares.getIs_rate()+"");
+                inte.putExtra("is_rate", homeModules_aqares.getIs_rate() + "");
                 startActivity(inte);
 
 
@@ -347,7 +357,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                 VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivity.this);
                 mVolleyService.getDataVolley("hide", WebService.hide + "/" + id_or_aq + "/estate");
 
-            }else{
+            } else {
                 startActivity(new Intent(DetaislAqarzActivity.this, LoginActivity.class));
 
             }
@@ -499,7 +509,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 //
 //                            }
 
-
+                            type_.setText(homeModules_aqares.getOperationTypeName() + "");
 //
 //                            name.setText(homeModules_aqares.getEstate_type_name() + "");
                             if (homeModules_aqares.getRate() != null) {
@@ -542,7 +552,13 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 ////                            metter_price.setText(homeModules_aqares.getMeterPrice() + "");
                             bathroom.setText(homeModules_aqares.getBathroomsNumber() + "");
 //                            purpose.setText(homeModules_aqares.getBathroomsNumber() + "");
-                            name_owner.setText(homeModules_aqares.getOwnerName() + "");
+
+                            try {
+                                name_owner.setText(homeModules_aqares.getUser().getName() + "");
+
+                            } catch (Exception e) {
+
+                            }
 //                            link.setText(homeModules_aqares.getUser().getLink() + "");
 
 
@@ -677,6 +693,19 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                                     Intent intent = new Intent(DetaislAqarzActivity.this, OtherProfileActivity.class);
                                     intent.putExtra("id", homeModules_aqares.getUserId() + "");
                                     startActivity(intent);
+//                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                }
+                            });
+                            map.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    Uri gmmIntentUri = Uri.parse("geo:" + homeModules_aqares.getLat() + "," + homeModules_aqares.getLan());
+                                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                                    mapIntent.setPackage("com.google.android.apps.maps");
+                                    if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                                        startActivity(mapIntent);
+                                    }
 //                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                                 }
                             });

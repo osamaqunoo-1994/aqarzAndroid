@@ -155,6 +155,7 @@ public class FillterActivity extends AppCompatActivity {
     Button search_filtter;
     String from = "";
     TextView clearfiltter;
+    TextView yes, no;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,6 +164,8 @@ public class FillterActivity extends AppCompatActivity {
 
 
         search_filtter = findViewById(R.id.search_filtter);
+        yes = findViewById(R.id.yes);
+        no = findViewById(R.id.no);
         back = findViewById(R.id.back);
         search_qr = findViewById(R.id.search_qr);
         search_aqarz_man = findViewById(R.id.search_aqarz_man);
@@ -1375,7 +1378,30 @@ public class FillterActivity extends AppCompatActivity {
             }
         });
 
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+
+                yes.setBackground(getResources().getDrawable(R.drawable.button_login));
+                yes.setTextColor(getResources().getColor(R.color.white));
+                no.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
+                no.setTextColor(getResources().getColor(R.color.black));
+
+
+            }
+        });
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                no.setBackground(getResources().getDrawable(R.drawable.button_login));
+                no.setTextColor(getResources().getColor(R.color.white));
+                yes.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
+                yes.setTextColor(getResources().getColor(R.color.black));
+
+
+            }
+        });
     }
 
     public void init_volley() {

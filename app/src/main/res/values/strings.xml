@@ -1272,5 +1272,18 @@ Two working days to complete your order</string>
 </string>
 
     <string name="fillallfileds1">Fill fileds</string>
+    <string name="addNewOrder">New Order</string>
+    <string name="propertiesyes">Do you want to show properties that support rental installments only</string>
+    <string name="eeent">Rental Installment</string>
+    <string name="req_n">Service Request</string>
+    <string name="trrr">monthly installment:</string>
+    <string name="trrr1">Duration of the contract:</string>
+    <string name="trrr2">Month</string>
+    <string name="trrr9">SR</string>
+
+
+
+    <string name="hintsall">Amount owed real estate</string>
+
 
 </resources>

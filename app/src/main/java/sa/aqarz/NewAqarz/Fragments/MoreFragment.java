@@ -500,13 +500,13 @@ public class MoreFragment extends Fragment {
         Locale.setDefault(locale);
         Configuration config = new Configuration();
 
+        config.locale = locale;
 
         if (Build.VERSION.SDK_INT > 17) {
             config.setLocale(locale);
         } else {
             config.locale = locale;
         }
-        config.locale = locale;
 
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
             config.setLocales(new LocaleList(locale));

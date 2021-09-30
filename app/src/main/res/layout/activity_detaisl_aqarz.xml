@@ -167,4 +167,30 @@
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
+    <TextView
+        android:id="@+id/type_"
+        app:layout_anchorGravity="bottom"
+        android:layout_marginStart="10dp"
+        app:layout_anchor="@id/app_bar"
+
+        android:layout_width="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        android:text=""
+
+        android:background="@drawable/back_image_1"
+        android:layout_height="35dp">
+
+
+
+
+    </TextView>
+
+
+
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

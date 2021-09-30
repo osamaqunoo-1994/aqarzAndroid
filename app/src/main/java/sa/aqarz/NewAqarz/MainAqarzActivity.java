@@ -366,20 +366,21 @@ AlertDialog alertDialog;
                 } else {
                     click_tab = "order";
 
-                    text_1.setTextColor(getResources().getColor(R.color.color_un_active));
-                    text_2.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    text_3.setTextColor(getResources().getColor(R.color.color_un_active));
-                    text_4.setTextColor(getResources().getColor(R.color.color_un_active));
-                    text_s.setTextColor(getResources().getColor(R.color.color_un_active));
-
-                    image_1.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                    image_2.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                    image_3.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                    image_4.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                    click_tab = "order";
+                     click_tab = "order";
 
 
                     if (Settings.CheckIsAccountAqarzMan()) {
+                        text_1.setTextColor(getResources().getColor(R.color.color_un_active));
+                        text_2.setTextColor(getResources().getColor(R.color.colorPrimary));
+                        text_3.setTextColor(getResources().getColor(R.color.color_un_active));
+                        text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+                        text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+
+                        image_1.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                        image_2.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                        image_3.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+                        image_4.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+
                         fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.container, new OrderFragment());
                         fragmentTransaction.addToBackStack(null);
@@ -387,11 +388,15 @@ AlertDialog alertDialog;
                         fragmentTransaction.commitAllowingStateLoss();
                     } else {
 
-                        fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.container, new OrderUserFragment());
-                        fragmentTransaction.addToBackStack(null);
-                        //  fragmentTransaction.commit();
-                        fragmentTransaction.commitAllowingStateLoss();
+
+
+                        startActivity(new Intent(MainAqarzActivity.this,ManageOrderActivity.class));
+
+//                        fragmentTransaction = fragmentManager.beginTransaction();
+//                        fragmentTransaction.replace(R.id.container, new OrderUserFragment());
+//                        fragmentTransaction.addToBackStack(null);
+//                        //  fragmentTransaction.commit();
+//                        fragmentTransaction.commitAllowingStateLoss();
 
 
                     }

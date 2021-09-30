@@ -94,7 +94,7 @@ public class OrderSecandFragment extends Fragment {
     static RecyclerView_Rent recyclerView_orders_demandsx;
     int page = 1;
     LinearLayout Request_property;
-    FloatingActionButton add_;
+    LinearLayout add_;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
