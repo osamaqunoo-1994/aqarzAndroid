@@ -71,6 +71,7 @@ public class ViewPager_Adapter_estate_home_map1 extends PagerAdapter {
     TextView room;
     ScaleRatingBar rate;
     ProgressBar pr_1;
+    TextView is_rent_installment;
     public static final ArrayList<imagemodules> items_ViewPager = new ArrayList<imagemodules>();
 //
 //    RecyclerView type_RecyclerView;
@@ -99,6 +100,7 @@ public class ViewPager_Adapter_estate_home_map1 extends PagerAdapter {
         image_icon = vieww.findViewById(R.id.image_icon);
 
         image = vieww.findViewById(R.id.image);
+        is_rent_installment = vieww.findViewById(R.id.is_rent_installment);
         price = vieww.findViewById(R.id.price);
         type = vieww.findViewById(R.id.type);
         dublex = vieww.findViewById(R.id.dublex);
@@ -156,6 +158,26 @@ public class ViewPager_Adapter_estate_home_map1 extends PagerAdapter {
 //        } else {
 //
 //        }
+
+        if (alldata.get(position).getIs_rent_installment() != null) {
+            if (!alldata.get(position).getIs_rent_installment().equals("null")) {
+
+                if (alldata.get(position).getIs_rent_installment().equals("1")) {
+
+                    is_rent_installment.setVisibility(View.VISIBLE);
+
+                } else {
+                    is_rent_installment.setVisibility(View.GONE);
+
+                }
+            } else {
+                is_rent_installment.setVisibility(View.GONE);
+
+            }
+        } else {
+            is_rent_installment.setVisibility(View.GONE);
+
+        }
 
         try {
             rate.setRating(Float.valueOf(alldata.get(position).getRate() + ""));

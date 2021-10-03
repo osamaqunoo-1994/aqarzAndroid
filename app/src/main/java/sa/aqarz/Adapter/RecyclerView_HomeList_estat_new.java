@@ -94,6 +94,7 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         ScaleRatingBar rate;
         ProgressBar pr_1;
 
+        TextView is_rent_installment;
 
         public MyViewHolder(View view) {
             super(view);
@@ -130,6 +131,7 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
             num_id = view.findViewById(R.id.num_id);
             bathroom = view.findViewById(R.id.bathroom);
             room = view.findViewById(R.id.room);
+            is_rent_installment = view.findViewById(R.id.is_rent_installment);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
@@ -238,6 +240,28 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
 //            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
 //
 //        }
+
+        if (alldata.get(position).getIs_rent_installment() != null) {
+            if (!alldata.get(position).getIs_rent_installment().equals("null")) {
+
+                if (alldata.get(position).getIs_rent_installment().equals("1")) {
+
+                    holder.is_rent_installment.setVisibility(View.VISIBLE);
+
+                } else {
+                    holder.is_rent_installment.setVisibility(View.GONE);
+
+                }
+            } else {
+                holder.is_rent_installment.setVisibility(View.GONE);
+
+            }
+        } else {
+            holder.is_rent_installment.setVisibility(View.GONE);
+
+        }
+
+
         holder.add_favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

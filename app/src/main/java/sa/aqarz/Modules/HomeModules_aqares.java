@@ -44,6 +44,9 @@ public class HomeModules_aqares {
     @SerializedName("estate_use_type")
     @Expose
     private String estate_use_type;
+    @SerializedName("rent_installment_price")
+    @Expose
+    private String rent_installment_price;
     @SerializedName("advertiser_side")
     @Expose
     private String advertiser_side;
@@ -149,6 +152,9 @@ public class HomeModules_aqares {
     @SerializedName("status")
     @Expose
     private String status;
+    @SerializedName("is_rent_installment")
+    @Expose
+    private String is_rent_installment;
     @SerializedName("is_resident")
     @Expose
     private Object isResident;
@@ -233,6 +239,10 @@ public class HomeModules_aqares {
         return address;
     }
 
+    public String getIs_rent_installment() {
+        return is_rent_installment;
+    }
+
     public String getFirst_image() {
         return first_image;
     }
@@ -245,6 +255,10 @@ public class HomeModules_aqares {
 
     public String getIs_rate() {
         return is_rate;
+    }
+
+    public String getRent_installment_price() {
+        return rent_installment_price;
     }
 
     public List<HomeModules_aqares.rates> getRates() {

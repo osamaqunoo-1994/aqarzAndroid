@@ -957,8 +957,10 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/is_rent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginBottom="15dp"
 
                 android:background="@drawable/background_details"
@@ -998,6 +1000,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/rentPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
@@ -1075,6 +1078,7 @@
                     android:gravity="center">
 
                     <Button
+                        android:id="@+id/request"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
 

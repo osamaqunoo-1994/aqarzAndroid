@@ -1189,7 +1189,7 @@
     <string name="Amount_of_tripping">مقدار التعثر<font color="#AAABB3"><sup>*</sup></font></string>
     <string name="obligationsfinancecompanies">هل لديك التزامات لدى البنوك أو شركات التمويل؟<font color="#DD4131"><sup>*</sup></font></string>
 
-    <string name="amount_of_funding">مقدار التمويل<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="amount_of_funding">مقدار الالتزام<font color="#AAABB3"><sup>*</sup></font></string>
     <string name="creditcard">..إجمالي الحد الائتماني للبطاقة الائتمانية<font color="#AAABB3"><sup>*</sup></font></string>
 
 
@@ -1223,5 +1223,13 @@
     <string name="trrr2">شهر</string>
     <string name="trrr9">ريال سعودي</string>
     <string name="hintsall">المبلغ المستحق للعقاري</string>
+
+
+
+
+    <string name="rent_price">سعر الايجار</string>
+
+
+    <string name="rent_alal"> يدعم <font color="#5840BB">التقسيط التاجير</font></string>
 
 </resources>

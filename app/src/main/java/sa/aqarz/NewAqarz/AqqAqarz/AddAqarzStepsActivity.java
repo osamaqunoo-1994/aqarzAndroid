@@ -100,6 +100,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
     String type_opration_selected = "1";
     String type_aqarz_selected = "";
+    String is_rent_installment = "0";
 
     ArrayList<Image> images = new ArrayList<>();
     public static List<SelectImageModules> selectIamgeList = new ArrayList<>();
@@ -456,6 +457,9 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
 
+                sale_price_text.setText(price_int.getText().toString());
+
+
                 int is = Integer.valueOf(price_int.getText().toString());
                 double xx = 0;
 
@@ -489,7 +493,9 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                 rent_qustion.setVisibility(View.GONE);
                 rental_period_lay.setVisibility(View.GONE);
                 filed_rent.setVisibility(View.GONE);
+                sale_price_text.setVisibility(View.VISIBLE);
                 filed_rent1.setVisibility(View.GONE);
+
                 selected_opration();
             }
         });
@@ -500,8 +506,8 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                 addAqarezObject.setOperation_type_id(type_opration_selected);
                 rental_period_lay.setVisibility(View.VISIBLE);
                 filed_rent.setVisibility(View.VISIBLE);
-                filed_rent1.setVisibility(View.VISIBLE);
                 rent_qustion.setVisibility(View.VISIBLE);
+                sale_price_text.setVisibility(View.GONE);
 
                 selected_opration();
 
@@ -515,8 +521,10 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                 addAqarezObject.setOperation_type_id(type_opration_selected);
                 rental_period_lay.setVisibility(View.GONE);
                 filed_rent.setVisibility(View.GONE);
-                filed_rent1.setVisibility(View.GONE);
                 rent_qustion.setVisibility(View.GONE);
+                sale_price_text.setVisibility(View.VISIBLE);
+                filed_rent1.setVisibility(View.GONE);
+
 
                 selected_opration();
 
@@ -1781,6 +1789,10 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                is_rent_installment = "1";
+                filed_rent1.setVisibility(View.VISIBLE);
+                rental_period_lay.setVisibility(View.GONE);
+
 
                 yes.setBackground(getResources().getDrawable(R.drawable.button_login));
                 yes.setTextColor(getResources().getColor(R.color.white));
@@ -1793,6 +1805,11 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                is_rent_installment = "0";
+
+                filed_rent1.setVisibility(View.GONE);
+                rental_period_lay.setVisibility(View.VISIBLE);
+
                 no.setBackground(getResources().getDrawable(R.drawable.button_login));
                 no.setTextColor(getResources().getColor(R.color.white));
                 yes.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
@@ -2070,6 +2087,8 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             sendObj.put("boards_number", number_Boards_plus + "");
             sendObj.put("kitchen_number", number_Kitchens_plus + "");
             sendObj.put("dining_rooms_number", number_Dining_rooms + "");
+            sendObj.put("is_rent_installment", is_rent_installment + "");
+            sendObj.put("rent_installment_price", price_int_result.getText().toString() + "");
             sendObj.put("estate_dimensions", lengths_add_text.getText().toString() + "");
 
 

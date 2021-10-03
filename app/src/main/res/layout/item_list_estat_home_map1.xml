@@ -261,6 +261,20 @@
                         android:layout_weight="1" />
 
 
+                    <TextView
+                        android:id="@+id/is_rent_installment"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+
+android:visibility="gone"
+                        android:fontFamily="@font/din_light"
+                        android:lines="1"
+                        android:text="@string/rent_alal"
+                        android:textSize="10dp" />
+
+
                 </LinearLayout>
 
                 <LinearLayout

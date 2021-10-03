@@ -177,6 +177,25 @@ public class AddRentalInstallmentActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
+
+        try {
+            String re_p = getIntent().getStringExtra("rent_price");
+            if (re_p != null) {
+
+                if (!re_p.equals("null")) {
+                    price.setText(re_p + "");
+
+                    price.setEnabled(false);
+                }
+            }
+
+
+        } catch (Exception e) {
+
+        }
+
+
         type_aqarz();
         actionbutton();
         set_type_work();
@@ -509,7 +528,8 @@ public class AddRentalInstallmentActivity extends AppCompatActivity {
                         sendObj.put("estate_type_id", type_filtter);//form estate type list api in setting
 
 
-                        sendObj.put("contract_interval", contract_interval);//'year','six_month'
+//                        sendObj.put("contract_interval", contract_interval);//'year','six_month'
+                        sendObj.put("contract_interval", month.getText().toString());//'year','six_month'
 
 
                         sendObj.put("rent_price", price.getText().toString());//

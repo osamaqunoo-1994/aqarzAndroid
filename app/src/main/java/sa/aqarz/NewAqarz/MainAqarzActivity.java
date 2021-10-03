@@ -91,7 +91,7 @@ public class MainAqarzActivity extends AppCompatActivity {
     LinearLayout my_order;
 
     ImageView close_add;
-AlertDialog alertDialog;
+    AlertDialog alertDialog;
 
     public static String type_order_main = "";
     public static String type_type_order_main = "";
@@ -366,7 +366,7 @@ AlertDialog alertDialog;
                 } else {
                     click_tab = "order";
 
-                     click_tab = "order";
+                    click_tab = "order";
 
 
                     if (Settings.CheckIsAccountAqarzMan()) {
@@ -389,8 +389,12 @@ AlertDialog alertDialog;
                     } else {
 
 
+                        Intent intent = new Intent(MainAqarzActivity.this, ManageOrderActivity.class);
+                        intent.putExtra("id", "");
+                        intent.putExtra("from", "home");
+                        startActivity(intent);
 
-                        startActivity(new Intent(MainAqarzActivity.this,ManageOrderActivity.class));
+//                        startActivity(new Intent(MainAqarzActivity.this,ManageOrderActivity.class));
 
 //                        fragmentTransaction = fragmentManager.beginTransaction();
 //                        fragmentTransaction.replace(R.id.container, new OrderUserFragment());
@@ -557,6 +561,7 @@ AlertDialog alertDialog;
                             Intent intent = new Intent(MainAqarzActivity.this, ManageOrderActivity.class);
                             intent.putExtra("id", "");
                             intent.putExtra("from", "home");
+
                             startActivity(intent);
                             gray_layout.setVisibility(View.GONE);
                             add_aqares_and_order_and_estate.setVisibility(View.GONE);
@@ -656,6 +661,7 @@ AlertDialog alertDialog;
         }
         super.onResume();
     }
+
     public void init_volley() {
 
 

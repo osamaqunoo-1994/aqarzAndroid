@@ -82,6 +82,7 @@ import sa.aqarz.NewAqarz.BottomDialog.BottomSheetDialogFragment_SelectType;
 import sa.aqarz.NewAqarz.FillterActivity;
 import sa.aqarz.NewAqarz.ListAqarzActivity;
 import sa.aqarz.NewAqarz.MainAqarzActivity;
+import sa.aqarz.NewAqarz.ManageOrderActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.CustomInfoWindowGoogleMapEstatMaps;
 import sa.aqarz.Settings.Settings;
@@ -134,6 +135,7 @@ public class HomeMapFragment extends Fragment {
     static ImageView clear_city;
 
     LinearLayout select_type_lay;
+    LinearLayout add_rent;
     TextView select_type_txt;
 
     BottomSheetDialogFragment_SelectType bottomSheetDialogFragment_selectType;
@@ -201,6 +203,7 @@ public class HomeMapFragment extends Fragment {
         clear_city = v.findViewById(R.id.clear_city);
         select_type_lay = v.findViewById(R.id.select_type_lay);
         select_type_txt = v.findViewById(R.id.select_type_txt);
+        add_rent = v.findViewById(R.id.add_rent);
 
         //LastPostionLat
         //LastPostionLan
@@ -354,6 +357,18 @@ public class HomeMapFragment extends Fragment {
 
         }
 
+
+        add_rent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ManageOrderActivity.class);
+                intent.putExtra("type_filtter", type_filtter);
+                intent.putExtra("from", "is_rent");
+                startActivity(intent);
+
+
+            }
+        });
         convert_to_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1530,6 +1545,8 @@ public class HomeMapFragment extends Fragment {
         if (Settings.checkLogin()) {
             notfication.setVisibility(View.VISIBLE);
             notfication_dote.setVisibility(View.VISIBLE);
+            notfication_dote.setVisibility(View.VISIBLE);
+            add_rent.setVisibility(View.VISIBLE);
 
             if (Settings.CheckIsAccountAqarzMan()) {
 
@@ -1541,6 +1558,7 @@ public class HomeMapFragment extends Fragment {
         } else {
             notfication.setVisibility(View.INVISIBLE);
             notfication_dote.setVisibility(View.INVISIBLE);
+            add_rent.setVisibility(View.GONE);
 
 
         }

@@ -299,7 +299,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/back_edittext_add_aqarz"
                             android:gravity="center_vertical"
-                            android:hint="@string/n2"
+                            android:hint="@string/rent_price"
 
                             android:inputType="number"
                             android:paddingLeft="10dp"

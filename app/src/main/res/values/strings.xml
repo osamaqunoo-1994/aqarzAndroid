@@ -1281,9 +1281,11 @@ Two working days to complete your order</string>
     <string name="trrr2">Month</string>
     <string name="trrr9">SR</string>
 
-
-
     <string name="hintsall">Amount owed real estate</string>
 
+    <string name="rent_price">rent price</string>
+
+
+    <string name="rent_alal"> supports <font color="#5840BB">Installment Leasing</font></string>
 
 </resources>

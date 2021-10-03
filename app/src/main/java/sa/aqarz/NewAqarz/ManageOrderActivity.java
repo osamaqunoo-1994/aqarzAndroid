@@ -52,6 +52,18 @@ public class ManageOrderActivity extends AppCompatActivity {
         ViewPagerAdapter viewPagerz = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerz);
         tabLayout.setupWithViewPager(viewPager);
+
+        try {
+
+            String from_ = getIntent().getStringExtra("from");
+            if (from_.equals("is_rent")) {
+                viewPager.setCurrentItem(1);
+            }
+        } catch (Exception e) {
+
+        }
+
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

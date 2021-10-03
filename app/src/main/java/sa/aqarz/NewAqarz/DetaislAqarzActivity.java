@@ -40,6 +40,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -69,6 +70,7 @@ import sa.aqarz.Adapter.RecyclerView_samilar;
 import sa.aqarz.Adapter.home_viewPager_Adapter;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.imagemodules;
+import sa.aqarz.NewAqarz.AqqAqarz.AddRentalInstallmentActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
@@ -116,11 +118,13 @@ public class DetaislAqarzActivity extends AppCompatActivity {
     LinearLayout chat;
     LinearLayout whatsapp;
     LinearLayout rate_;
+    LinearLayout is_rent;
     ImageView map_location;
     RecyclerView all_comfort;
     RelativeLayout map;
-
+    Button request;
     TextView type_;
+    TextView rentPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,6 +202,8 @@ public class DetaislAqarzActivity extends AppCompatActivity {
         view_pager_indicator = findViewById(R.id.view_pager_indicator);
         price = findViewById(R.id.price);
         estate_type_name = findViewById(R.id.estate_type_name);
+        request = findViewById(R.id.request);
+        is_rent = findViewById(R.id.is_rent);
         area = findViewById(R.id.area);
         call = findViewById(R.id.call);
         rate = findViewById(R.id.rate);
@@ -211,6 +217,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
         ads_number = findViewById(R.id.ads_number);
         views_nummm = findViewById(R.id.views_nummm);
         all_comfort = findViewById(R.id.all_comfort);
+        rentPrice = findViewById(R.id.rentPrice);
 
         bathroom = findViewById(R.id.bathroom);
         room = findViewById(R.id.room);
@@ -509,6 +516,8 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 //
 //                            }
 
+
+
                             type_.setText(homeModules_aqares.getOperationTypeName() + "");
 //
 //                            name.setText(homeModules_aqares.getEstate_type_name() + "");
@@ -519,6 +528,38 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                                 }
 
                             }
+
+                            if (homeModules_aqares.getIs_rent_installment().equals("1")) {
+                                is_rent.setVisibility(View.VISIBLE);
+
+                            } else {
+                                is_rent.setVisibility(View.GONE);
+
+                            }
+
+                            if (homeModules_aqares.getRent_installment_price() != null) {
+                                if (!homeModules_aqares.getRent_installment_price().equals("null")) {
+
+                                    int yy = Integer.valueOf(homeModules_aqares.getRent_installment_price());
+                                    double sd = yy / 12;
+                                    rentPrice.setText(sd + "");
+
+                                }
+
+                            }
+                            request.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    Intent intent = new Intent(DetaislAqarzActivity.this, AddRentalInstallmentActivity.class);
+
+                                    intent.putExtra("rent_price", homeModules_aqares.getRent_installment_price());
+
+                                    startActivity(intent);
+                                }
+                            });
+
+
 //                            note.setText(homeModules_aqares.getNote() + "");
 //                            type_.setText(homeModules_aqares.getEstate_type_name() + "");
                             kitchens.setText(homeModules_aqares.getKitchenNumber() + "");

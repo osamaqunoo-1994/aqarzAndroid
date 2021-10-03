@@ -174,7 +174,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:text="0"
+                        android:text="12"
                         android:textColor="#424446"
                         android:textSize="12dp" />
 
@@ -189,6 +189,7 @@
 
                 <SeekBar xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/seek_bar"
+                    android:visibility="gone"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
