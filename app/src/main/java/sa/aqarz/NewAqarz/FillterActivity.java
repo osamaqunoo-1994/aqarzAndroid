@@ -157,6 +157,9 @@ public class FillterActivity extends AppCompatActivity {
     TextView clearfiltter;
     TextView yes, no;
 
+
+    String is_rent_installment = "0";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -588,6 +591,7 @@ public class FillterActivity extends AppCompatActivity {
                 MainAqarzActivity.object_filtter.setNumber_Boards_plus(number_Boards_plus);
                 MainAqarzActivity.object_filtter.setNumber_Kitchens_plus(number_Kitchens_plus);
                 MainAqarzActivity.object_filtter.setNumber_Dining_rooms(number_Dining_rooms);
+                MainAqarzActivity.object_filtter.setIs_rent_installment(is_rent_installment);
 
 
                 MainAqarzActivity.object_filtter.setNumber_parking(number_parking);
@@ -630,6 +634,7 @@ public class FillterActivity extends AppCompatActivity {
                 MainAqarzActivity.object_filtter.setNumber_Boards_plus(0);
                 MainAqarzActivity.object_filtter.setNumber_Kitchens_plus(0);
                 MainAqarzActivity.object_filtter.setNumber_Dining_rooms(0);
+                MainAqarzActivity.object_filtter.setIs_rent_installment("0");
 
 
                 MainAqarzActivity.object_filtter.setNumber_parking(0);
@@ -1381,7 +1386,7 @@ public class FillterActivity extends AppCompatActivity {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                is_rent_installment = "1";
 
                 yes.setBackground(getResources().getDrawable(R.drawable.button_login));
                 yes.setTextColor(getResources().getColor(R.color.white));
@@ -1394,6 +1399,8 @@ public class FillterActivity extends AppCompatActivity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                is_rent_installment = "0";
+
                 no.setBackground(getResources().getDrawable(R.drawable.button_login));
                 no.setTextColor(getResources().getColor(R.color.white));
                 yes.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));

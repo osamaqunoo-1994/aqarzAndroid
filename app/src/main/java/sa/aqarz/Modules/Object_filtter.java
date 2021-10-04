@@ -14,6 +14,7 @@ public class Object_filtter {
     String max_space = "";
     String estate_pay_type = "";
     String id_state = "";
+    String is_rent_installment = "0";
 
     int number_Lounges = 0;
     int number_room = 0;
@@ -99,6 +100,14 @@ public class Object_filtter {
 
     public void setComfortModules(List<ComfortModules> comfortModules) {
         this.comfortModules = comfortModules;
+    }
+
+    public String getIs_rent_installment() {
+        return is_rent_installment;
+    }
+
+    public void setIs_rent_installment(String is_rent_installment) {
+        this.is_rent_installment = is_rent_installment;
     }
 
     public int getNumber_Kitchens_plus() {

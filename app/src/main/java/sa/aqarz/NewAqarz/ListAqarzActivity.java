@@ -488,7 +488,11 @@ public class ListAqarzActivity extends AppCompatActivity {
         if (!MainAqarzActivity.object_filtter.getLess_price().equals("")) {
             price_from = "&price_from=" + MainAqarzActivity.object_filtter.getLess_price();
         }
+        String is_rent_installment = "";
 
+        if (!MainAqarzActivity.object_filtter.getLess_space().equals("")) {
+            is_rent_installment = "&is_rent_installment=" + MainAqarzActivity.object_filtter.getIs_rent_installment();
+        }
 
         String area_from = "";
 
@@ -568,7 +572,7 @@ public class ListAqarzActivity extends AppCompatActivity {
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + fil_by + state_id + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
+        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + fil_by + state_id + kitchen_number + is_rent_installment + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
 
 //        url_list = WebService.home_estate_custom_list + "?" + type_filtter_;
         mVolleyService.getAsync("home_estate_custom_list_more_1", url_list);

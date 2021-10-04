@@ -972,6 +972,11 @@ public class HomeMapFragment extends Fragment {
         }
 
 
+        String is_rent_installment = "";
+
+        if (!MainAqarzActivity.object_filtter.getLess_space().equals("")) {
+            is_rent_installment = "&is_rent_installment=" + MainAqarzActivity.object_filtter.getIs_rent_installment();
+        }
         String area_from = "";
 
         if (!MainAqarzActivity.object_filtter.getLess_space().equals("")) {
@@ -1037,7 +1042,7 @@ public class HomeMapFragment extends Fragment {
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-        mVolleyService.getAsync("home_estate_custom_list", WebService.home_estate_custom_list + "?" + lat_lan + "&distance=" + distance + type_filtter_ + elevators_number + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type);
+        mVolleyService.getAsync("home_estate_custom_list", WebService.home_estate_custom_list + "?" + lat_lan + "&distance=" + distance + type_filtter_ + is_rent_installment+elevators_number + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type);
 //        urlEstat = WebService.home_estate_custom_list + "?" + filter + lat_lan + "&distance=" + distance + getId_region + getSerial_city;
 
 
