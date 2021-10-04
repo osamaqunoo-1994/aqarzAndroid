@@ -125,6 +125,11 @@ public class DetaislAqarzActivity extends AppCompatActivity {
     Button request;
     TextView type_;
     TextView rentPrice;
+    LinearLayout emp_lay;
+    LinearLayout emp_lay_1;
+    CircleImageView company_enp_image;
+    TextView company_enp_name;
+    TextView name_emp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,12 +200,17 @@ public class DetaislAqarzActivity extends AppCompatActivity {
     public void init() {
 
         type_ = findViewById(R.id.type_);
+        emp_lay_1 = findViewById(R.id.emp_lay_1);
         rate_ = findViewById(R.id.rate_);
         rec_list_all = findViewById(R.id.rec_list_all);
+        company_enp_name = findViewById(R.id.company_enp_name);
+        company_enp_image = findViewById(R.id.company_enp_image);
+        emp_lay = findViewById(R.id.emp_lay);
         map = findViewById(R.id.map);
         home_viewPager = findViewById(R.id.home_viewPager);
         view_pager_indicator = findViewById(R.id.view_pager_indicator);
         price = findViewById(R.id.price);
+        name_emp = findViewById(R.id.name_emp);
         estate_type_name = findViewById(R.id.estate_type_name);
         request = findViewById(R.id.request);
         is_rent = findViewById(R.id.is_rent);
@@ -517,6 +527,38 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 //                            }
 
 
+                            try {
+
+
+                                if (homeModules_aqares.getUser().getEmp() != null) {
+                                    if (homeModules_aqares.getUser().getEmp() != null) {
+
+                                        emp_lay_1.setVisibility(View.VISIBLE);
+
+
+                                        name_owner.setText(homeModules_aqares.getUser().getEmp().getName() + "");
+
+                                        name_emp.setText(homeModules_aqares.getUser().getName() + "");
+
+                                        Glide.with(DetaislAqarzActivity.this).load(homeModules_aqares.getUser().getEmp().getLogo() + "").into(Image_user);
+
+                                    } else {
+                                        emp_lay_1.setVisibility(View.GONE);
+                                        name_owner.setText(homeModules_aqares.getUser().getName() + "");
+                                        Glide.with(DetaislAqarzActivity.this).load(homeModules_aqares.getUser().getLogo() + "").into(Image_user);
+
+                                    }
+                                } else {
+                                    name_owner.setText(homeModules_aqares.getUser().getName() + "");
+                                    Glide.with(DetaislAqarzActivity.this).load(homeModules_aqares.getUser().getLogo() + "").into(Image_user);
+
+                                    emp_lay_1.setVisibility(View.GONE);
+                                }
+
+
+                            } catch (Exception e) {
+
+                            }
 
                             type_.setText(homeModules_aqares.getOperationTypeName() + "");
 //
@@ -595,7 +637,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 //                            purpose.setText(homeModules_aqares.getBathroomsNumber() + "");
 
                             try {
-                                name_owner.setText(homeModules_aqares.getUser().getName() + "");
+//                                name_owner.setText(homeModules_aqares.getUser().getName() + "");
 
                             } catch (Exception e) {
 

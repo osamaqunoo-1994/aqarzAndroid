@@ -137,6 +137,10 @@ public class User {
     @Expose
     private String city_id;
 
+    @SerializedName("emp")
+    @Expose
+    private User emp;
+
     @SerializedName("is_employee")
     @Expose
     private String is_employee;
@@ -182,6 +186,10 @@ public class User {
 
     public List<SettingsModules.service_types> getExperience_name() {
         return experience_name;
+    }
+
+    public User getEmp() {
+        return emp;
     }
 
     public String getCount_fund_offer() {

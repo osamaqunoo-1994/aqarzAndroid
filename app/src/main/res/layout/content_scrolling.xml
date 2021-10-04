@@ -960,11 +960,11 @@
                 android:id="@+id/is_rent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_marginBottom="15dp"
-
                 android:background="@drawable/background_details"
-                android:orientation="vertical">
+
+                android:orientation="vertical"
+                android:visibility="gone">
 
 
                 <TextView
@@ -1126,8 +1126,8 @@
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/Image_user"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
                             android:layout_marginLeft="2dp"
                             android:layout_marginRight="2dp"
                             android:background="@drawable/ic_user_un"></de.hdodenhof.circleimageview.CircleImageView>
@@ -1152,8 +1152,41 @@
                                 android:textColor="@color/black"
 
 
-                                android:textSize="17dp"
+                                android:textSize="15dp"
                                 android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:id="@+id/emp_lay"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/company_enp_image"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginLeft="2dp"
+                                    android:layout_marginRight="2dp"
+                                    android:background="@drawable/ic_user_un"></de.hdodenhof.circleimageview.CircleImageView>
+
+                                <TextView
+                                    android:id="@+id/company_enp_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+
+                                    android:fontFamily="@font/din_bold"
+                                    android:gravity="center"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp"
+                                    android:text=""
+
+                                    android:textColor="@color/black"
+
+
+                                    android:textSize="12dp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
 
                             <LinearLayout
                                 android:id="@+id/rate_"
@@ -1176,9 +1209,9 @@
                                     app:srb_numStars="5"
                                     app:srb_rating="2"
                                     app:srb_scrollable="false"
-                                    app:srb_starHeight="13dp"
+                                    app:srb_starHeight="12dp"
                                     app:srb_starPadding="1dp"
-                                    app:srb_starWidth="13dp"
+                                    app:srb_starWidth="12dp"
                                     app:srb_stepSize="0.5"></com.willy.ratingbar.ScaleRatingBar>
 
 
@@ -1206,21 +1239,24 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
                                     android:text="@string/rate_details"
+                                    android:textColor="#1289BC"
 
-                                    android:textColor="#1289BC" />
+                                    android:textSize="12dp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
                                     android:text=")"
+                                    android:textColor="#1289BC"
 
-                                    android:textColor="#1289BC" />
+                                    android:textSize="12dp" />
 
                                 <ImageView
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
                                     android:padding="8dp"
+
                                     android:src="@drawable/ic_path_sdsd" />
 
                             </LinearLayout>
@@ -1324,7 +1360,7 @@
                                 android:fontFamily="@font/din_bold"
                                 android:text="@string/t11_details"
                                 android:textColor="@color/textColor1"
-                                android:textSize="14dp"
+                                android:textSize="13dp"
                                 android:textStyle="bold" />
 
                             <LinearLayout
@@ -1340,7 +1376,7 @@
                                 android:fontFamily="@font/din_bold"
                                 android:text="55"
                                 android:textColor="@color/textColor"
-                                android:textSize="14dp"
+                                android:textSize="13dp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -1367,7 +1403,7 @@
                             android:fontFamily="@font/din_bold"
                             android:text="@string/t9_details"
                             android:textColor="@color/textColor1"
-                            android:textSize="14dp"
+                            android:textSize="13dp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -1400,7 +1436,7 @@
                             android:text=""
                             android:textColor="@color/textColor"
 
-                            android:textSize="14dp"
+                            android:textSize="13dp"
                             android:textStyle="bold" />
 
 
@@ -1423,8 +1459,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_weight="1">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -1445,7 +1480,7 @@
                                 android:fontFamily="@font/din_bold"
                                 android:text="@string/t10_details"
                                 android:textColor="@color/textColor1"
-                                android:textSize="14dp"
+                                android:textSize="13dp"
                                 android:textStyle="bold" />
 
                             <LinearLayout
@@ -1461,7 +1496,57 @@
                                 android:layout_marginEnd="25dp"
                                 android:fontFamily="@font/din_bold"
                                 android:textColor="@color/textColor"
-                                android:textSize="14dp"
+                                android:textSize="13dp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/emp_lay_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+
+                                android:layout_marginRight="5dp"
+                                android:fontFamily="@font/din_bold"
+                                android:text="@string/name_emp"
+                                android:textColor="@color/textColor1"
+                                android:textSize="13dp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:id="@+id/name_emp"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="25dp"
+                                android:fontFamily="@font/din_bold"
+                                android:textColor="@color/textColor"
+                                android:textSize="13dp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -1469,10 +1554,6 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
                 </LinearLayout>
 
 
