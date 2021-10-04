@@ -130,6 +130,10 @@ public class DetaislAqarzActivity extends AppCompatActivity {
     CircleImageView company_enp_image;
     TextView company_enp_name;
     TextView name_emp;
+    LinearLayout contact_lay;
+
+    String id_user = "";
+    String name_user = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -228,6 +232,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
         views_nummm = findViewById(R.id.views_nummm);
         all_comfort = findViewById(R.id.all_comfort);
         rentPrice = findViewById(R.id.rentPrice);
+        contact_lay = findViewById(R.id.contact_lay);
 
         bathroom = findViewById(R.id.bathroom);
         room = findViewById(R.id.room);
@@ -526,7 +531,6 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 //
 //                            }
 
-
                             try {
 
 
@@ -541,11 +545,14 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                                         name_emp.setText(homeModules_aqares.getUser().getName() + "");
 
                                         Glide.with(DetaislAqarzActivity.this).load(homeModules_aqares.getUser().getEmp().getLogo() + "").into(Image_user);
-
+                                        id_user = homeModules_aqares.getUser().getId() + "";
+                                        name_user = homeModules_aqares.getUser().getName() + "";
                                     } else {
                                         emp_lay_1.setVisibility(View.GONE);
                                         name_owner.setText(homeModules_aqares.getUser().getName() + "");
                                         Glide.with(DetaislAqarzActivity.this).load(homeModules_aqares.getUser().getLogo() + "").into(Image_user);
+                                        id_user = homeModules_aqares.getUser().getId() + "";
+                                        name_user = homeModules_aqares.getUser().getName() + "";
 
                                     }
                                 } else {
@@ -553,12 +560,64 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                                     Glide.with(DetaislAqarzActivity.this).load(homeModules_aqares.getUser().getLogo() + "").into(Image_user);
 
                                     emp_lay_1.setVisibility(View.GONE);
+                                    id_user = homeModules_aqares.getUser().getId() + "";
+                                    name_user = homeModules_aqares.getUser().getName() + "";
+
                                 }
 
+                                if (id_user.equals(Settings.GetUser().getId()+"")) {
+                                    contact_lay.setVisibility(View.GONE);
+                                } else {
+                                    contact_lay.setVisibility(View.VISIBLE);
+
+                                }
 
                             } catch (Exception e) {
 
                             }
+
+
+
+                            Image_user.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+
+                                    Intent intent = new Intent(DetaislAqarzActivity.this, OtherProfileActivity.class);
+                                    intent.putExtra("id", id_user + "");
+                                    startActivity(intent);
+//                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                }
+                            });
+                            name_owner.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+
+                                    Intent intent = new Intent(DetaislAqarzActivity.this, OtherProfileActivity.class);
+                                    intent.putExtra("id", id_user + "");
+                                    startActivity(intent);
+//                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                }
+                            });
+                            chat.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (!Settings.checkLogin()) {
+
+
+                                        startActivity(new Intent(DetaislAqarzActivity.this, LoginActivity.class));
+
+                                    } else {
+                                        Intent intent = new Intent(DetaislAqarzActivity.this, ChatRoomActivity.class);
+                                        intent.putExtra("user_id", id_user + "");
+                                        intent.putExtra("parent_id", "-1");
+                                        intent.putExtra("nameUser", name_user + "");
+                                        intent.putExtra("imageUser", "");
+                                        startActivity(intent);
+                                    }
+                                }
+                            });
 
                             type_.setText(homeModules_aqares.getOperationTypeName() + "");
 //
@@ -768,17 +827,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 //                                e.printStackTrace();
 //                            }
 
-                            Image_user.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
 
-
-                                    Intent intent = new Intent(DetaislAqarzActivity.this, OtherProfileActivity.class);
-                                    intent.putExtra("id", homeModules_aqares.getUserId() + "");
-                                    startActivity(intent);
-//                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-                                }
-                            });
                             map.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -792,35 +841,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 //                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                                 }
                             });
-                            name_owner.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
 
-
-                                    Intent intent = new Intent(DetaislAqarzActivity.this, OtherProfileActivity.class);
-                                    intent.putExtra("id", homeModules_aqares.getUserId() + "");
-                                    startActivity(intent);
-//                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-                                }
-                            });
-                            chat.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    if (!Settings.checkLogin()) {
-
-
-                                        startActivity(new Intent(DetaislAqarzActivity.this, LoginActivity.class));
-
-                                    } else {
-                                        Intent intent = new Intent(DetaislAqarzActivity.this, ChatRoomActivity.class);
-                                        intent.putExtra("user_id", homeModules_aqares.getUserId() + "");
-                                        intent.putExtra("parent_id", "-1");
-                                        intent.putExtra("nameUser", homeModules_aqares.getOwnerName() + "");
-                                        intent.putExtra("imageUser", "");
-                                        startActivity(intent);
-                                    }
-                                }
-                            });
                             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                             try {
                                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
