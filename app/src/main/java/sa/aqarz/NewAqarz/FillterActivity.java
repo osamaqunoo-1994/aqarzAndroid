@@ -146,6 +146,8 @@ public class FillterActivity extends AppCompatActivity {
     LinearLayout lay1;
     LinearLayout lay2;
 
+    LinearLayout layout_is_rent;
+
 
     EditText name_aqarz;
 
@@ -185,6 +187,7 @@ public class FillterActivity extends AppCompatActivity {
 
         purchase = findViewById(R.id.purchase);
         rent = findViewById(R.id.rent);
+        layout_is_rent = findViewById(R.id.layout_is_rent);
         investment = findViewById(R.id.investment);
         all_type_aqarz = findViewById(R.id.all_type_aqarz);
         Les_price = findViewById(R.id.Les_price);
@@ -343,10 +346,12 @@ public class FillterActivity extends AppCompatActivity {
             purchase.setTextColor(getResources().getColor(R.color.textColor));
             rent.setTextColor(getResources().getColor(R.color.textColor));
             investment.setTextColor(getResources().getColor(R.color.textColor));
+            layout_is_rent.setVisibility(View.GONE);
 
         } else {
             if (MainAqarzActivity.object_filtter.getEstate_pay_type().equals("is_pay")) {
                 type = "purchase";
+                layout_is_rent.setVisibility(View.GONE);
 
                 purchase.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
                 rent.setBackground(getResources().getDrawable(R.drawable.border_fillter));
@@ -359,6 +364,8 @@ public class FillterActivity extends AppCompatActivity {
             } else if (MainAqarzActivity.object_filtter.getEstate_pay_type().equals("is_rent")) {
                 type = "rent";
 
+                layout_is_rent.setVisibility(View.VISIBLE);
+
                 purchase.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                 rent.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
                 investment.setBackground(getResources().getDrawable(R.drawable.border_fillter));
@@ -370,6 +377,7 @@ public class FillterActivity extends AppCompatActivity {
 
             } else if (MainAqarzActivity.object_filtter.getEstate_pay_type().equals("is_pay")) {
                 type = "investment";
+                layout_is_rent.setVisibility(View.GONE);
 
                 purchase.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                 rent.setBackground(getResources().getDrawable(R.drawable.border_fillter));
@@ -391,6 +399,7 @@ public class FillterActivity extends AppCompatActivity {
 
                 if (type.equals("purchase")) {
                     type = "";
+                    layout_is_rent.setVisibility(View.GONE);
 
                     purchase.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                     rent.setBackground(getResources().getDrawable(R.drawable.border_fillter));
@@ -403,6 +412,9 @@ public class FillterActivity extends AppCompatActivity {
 
                 } else {
                     type = "purchase";
+
+
+                    layout_is_rent.setVisibility(View.GONE);
 
                     purchase.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
                     rent.setBackground(getResources().getDrawable(R.drawable.border_fillter));
@@ -426,6 +438,7 @@ public class FillterActivity extends AppCompatActivity {
 
                 if (type.equals("rent")) {
                     type = "";
+                    layout_is_rent.setVisibility(View.GONE);
 
                     purchase.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                     rent.setBackground(getResources().getDrawable(R.drawable.border_fillter));
@@ -438,6 +451,7 @@ public class FillterActivity extends AppCompatActivity {
 
                 } else {
                     type = "rent";
+                    layout_is_rent.setVisibility(View.VISIBLE);
 
                     purchase.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                     rent.setBackground(getResources().getDrawable(R.drawable.border_fillter_fill));
@@ -461,6 +475,7 @@ public class FillterActivity extends AppCompatActivity {
 
                 if (type.equals("investment")) {
                     type = "";
+                    layout_is_rent.setVisibility(View.GONE);
 
                     purchase.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                     rent.setBackground(getResources().getDrawable(R.drawable.border_fillter));
@@ -473,6 +488,7 @@ public class FillterActivity extends AppCompatActivity {
 
                 } else {
                     type = "investment";
+                    layout_is_rent.setVisibility(View.GONE);
 
                     purchase.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                     rent.setBackground(getResources().getDrawable(R.drawable.border_fillter));

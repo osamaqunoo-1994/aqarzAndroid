@@ -134,6 +134,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
     String id_user = "";
     String name_user = "";
+    TextView is_rent_installment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -233,6 +234,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
         all_comfort = findViewById(R.id.all_comfort);
         rentPrice = findViewById(R.id.rentPrice);
         contact_lay = findViewById(R.id.contact_lay);
+        is_rent_installment = findViewById(R.id.is_rent_installment);
 
         bathroom = findViewById(R.id.bathroom);
         room = findViewById(R.id.room);
@@ -525,6 +527,28 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
                             }
 
+
+                            if (homeModules_aqares.getIs_rent_installment() != null) {
+                                if (!homeModules_aqares.getIs_rent_installment().equals("null")) {
+
+                                    if (homeModules_aqares.getIs_rent_installment().equals("1")) {
+
+                                        is_rent_installment.setVisibility(View.VISIBLE);
+
+                                    } else {
+                                        is_rent_installment.setVisibility(View.GONE);
+
+                                    }
+                                } else {
+                                    is_rent_installment.setVisibility(View.GONE);
+
+                                }
+                            } else {
+                                is_rent_installment.setVisibility(View.GONE);
+
+                            }
+
+
 //                            if (homeModules_aqares.getAddress() == null) {
 //
 //                            } else {
@@ -565,7 +589,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
                                 }
 
-                                if (id_user.equals(Settings.GetUser().getId()+"")) {
+                                if (id_user.equals(Settings.GetUser().getId() + "")) {
                                     contact_lay.setVisibility(View.GONE);
                                 } else {
                                     contact_lay.setVisibility(View.VISIBLE);
@@ -575,7 +599,6 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                             } catch (Exception e) {
 
                             }
-
 
 
                             Image_user.setOnClickListener(new View.OnClickListener() {
@@ -668,7 +691,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                             loungs.setText(homeModules_aqares.getLoungesNumber() + "");
                             dining_room.setText(homeModules_aqares.getDiningRoomsNumber() + "");
                             area.setText(homeModules_aqares.getTotalArea() + "");
-                            room.setText(homeModules_aqares.getRoomsNumber() + "");
+                            room.setText(homeModules_aqares.getBedroom_number() + "");
                             if (homeModules_aqares.getEstate_use_type() != null) {
                                 if (!homeModules_aqares.getEstate_use_type().equals("null")) {
                                     why.setText(homeModules_aqares.getEstate_use_type() + "");

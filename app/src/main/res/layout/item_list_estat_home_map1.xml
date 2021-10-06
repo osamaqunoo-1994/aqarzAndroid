@@ -267,12 +267,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="3dp"
+                        android:layout_marginEnd="10dp"
 
-android:visibility="gone"
                         android:fontFamily="@font/din_light"
                         android:lines="1"
                         android:text="@string/rent_alal"
-                        android:textSize="10dp" />
+                        android:textSize="10dp"
+                        android:visibility="gone" />
 
 
                 </LinearLayout>

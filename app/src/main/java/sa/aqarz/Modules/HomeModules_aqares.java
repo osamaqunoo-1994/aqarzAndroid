@@ -182,6 +182,9 @@ public class HomeModules_aqares {
     @SerializedName("rate")
     @Expose
     private String rate;
+    @SerializedName("bedroom_number")
+    @Expose
+    private String bedroom_number;
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
@@ -435,6 +438,10 @@ public class HomeModules_aqares {
 
     public Integer getFloorNumber() {
         return floorNumber;
+    }
+
+    public String getBedroom_number() {
+        return bedroom_number;
     }
 
     public void setFloorNumber(Integer floorNumber) {

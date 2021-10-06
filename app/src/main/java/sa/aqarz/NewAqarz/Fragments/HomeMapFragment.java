@@ -974,7 +974,7 @@ public class HomeMapFragment extends Fragment {
 
         String is_rent_installment = "";
 
-        if (!MainAqarzActivity.object_filtter.getLess_space().equals("")) {
+        if (!MainAqarzActivity.object_filtter.getIs_rent_installment().equals("0")) {
             is_rent_installment = "&is_rent_installment=" + MainAqarzActivity.object_filtter.getIs_rent_installment();
         }
         String area_from = "";
