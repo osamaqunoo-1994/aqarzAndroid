@@ -39,6 +39,7 @@ import sa.aqarz.Adapter.RecyclerView_other_offer_in_profile;
 import sa.aqarz.Modules.Clints;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.NewAqarz.Adapter.RecyclerView_HomeList_estat_new_my;
+import sa.aqarz.NewAqarz.AqqAqarz.AddAqarzStepsActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -130,7 +131,8 @@ public class MyOffersActivity extends AppCompatActivity {
         add_offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MyOffersActivity.this, AddAqarsActivity.class);
+//                Intent intent = new Intent(MyOffersActivity.this, AddAqarsActivity.class);
+                Intent intent = new Intent(MyOffersActivity.this, AddAqarzStepsActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
 //                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);

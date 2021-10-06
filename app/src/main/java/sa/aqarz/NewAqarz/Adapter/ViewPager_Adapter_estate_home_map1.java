@@ -123,7 +123,7 @@ public class ViewPager_Adapter_estate_home_map1 extends PagerAdapter {
         opration.setText(alldata.get(position).getOperationTypeName());
         space.setText(alldata.get(position).getTotalArea() + "");
         date.setText(alldata.get(position).getCreatedAt() + "");
-        num_id.setText("#" + alldata.get(position).getId() + "");
+        num_id.setText("#" + alldata.get(position).getId() + "");//"estate_type_name":"بيع","operation_type_name":"شقة",
 
 
         if (alldata.get(position).getFull_address() != null) {

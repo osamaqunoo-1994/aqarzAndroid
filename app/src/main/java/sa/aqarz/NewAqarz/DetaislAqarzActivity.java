@@ -136,6 +136,12 @@ public class DetaislAqarzActivity extends AppCompatActivity {
     String name_user = "";
     TextView is_rent_installment;
 
+
+
+    TextView Number_parking_add;
+    TextView unit_number;
+    TextView number_lifts_add;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().getDecorView().setSystemUiVisibility(
@@ -205,6 +211,11 @@ public class DetaislAqarzActivity extends AppCompatActivity {
     public void init() {
 
         type_ = findViewById(R.id.type_);
+        number_lifts_add = findViewById(R.id.number_lifts_add);
+        unit_number = findViewById(R.id.unit_number);
+        Number_parking_add = findViewById(R.id.Number_parking_add);
+
+
         emp_lay_1 = findViewById(R.id.emp_lay_1);
         rate_ = findViewById(R.id.rate_);
         rec_list_all = findViewById(R.id.rec_list_all);

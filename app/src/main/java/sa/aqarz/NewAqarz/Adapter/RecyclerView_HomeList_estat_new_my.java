@@ -178,7 +178,18 @@ public class RecyclerView_HomeList_estat_new_my extends RecyclerView.Adapter<Rec
         holder.hide.setVisibility(View.VISIBLE);
         holder.add_favorite.setVisibility(View.VISIBLE);
 
-        holder.address.setText(alldata.get(position).getFull_address() + "");
+        if (alldata.get(position).getFull_address() != null) {
+            if (!alldata.get(position).getFull_address().equals("null")) {
+                holder.address.setText(alldata.get(position).getFull_address() + "");
+
+            } else {
+                holder.address.setText("");
+            }
+        } else {
+            holder.address.setText("");
+
+        }
+
 
 //        if (alldata.get(position).getCity_name() != null) {
 //            holder.address.setText(alldata.get(position).getCity_name() + " - " + alldata.get(position).getNeighborhood_name());
@@ -234,7 +245,6 @@ public class RecyclerView_HomeList_estat_new_my extends RecyclerView.Adapter<Rec
             holder.is_rent_installment.setVisibility(View.GONE);
 
         }
-
 
 
         holder.add_favorite.setOnClickListener(new View.OnClickListener() {
