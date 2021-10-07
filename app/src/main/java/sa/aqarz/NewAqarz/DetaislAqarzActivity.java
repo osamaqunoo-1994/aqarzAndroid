@@ -137,7 +137,6 @@ public class DetaislAqarzActivity extends AppCompatActivity {
     TextView is_rent_installment;
 
 
-
     TextView Number_parking_add;
     TextView unit_number;
     TextView number_lifts_add;
@@ -703,6 +702,11 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                             dining_room.setText(homeModules_aqares.getDiningRoomsNumber() + "");
                             area.setText(homeModules_aqares.getTotalArea() + "");
                             room.setText(homeModules_aqares.getBedroom_number() + "");
+                            Number_parking_add.setText(homeModules_aqares.getParking_spaces_numbers() + "");
+                            unit_number.setText(homeModules_aqares.getUnit_number() + "");
+                            number_lifts_add.setText(homeModules_aqares.getElevators_number() + "");
+
+
                             if (homeModules_aqares.getEstate_use_type() != null) {
                                 if (!homeModules_aqares.getEstate_use_type().equals("null")) {
                                     why.setText(homeModules_aqares.getEstate_use_type() + "");

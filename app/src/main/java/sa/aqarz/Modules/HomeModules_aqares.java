@@ -152,9 +152,15 @@ public class HomeModules_aqares {
     @SerializedName("status")
     @Expose
     private String status;
+    @SerializedName("elevators_number")
+    @Expose
+    private String elevators_number;
     @SerializedName("is_rent_installment")
     @Expose
     private String is_rent_installment;
+    @SerializedName("parking_spaces_numbers")
+    @Expose
+    private String parking_spaces_numbers;
     @SerializedName("is_resident")
     @Expose
     private Object isResident;
@@ -262,6 +268,14 @@ public class HomeModules_aqares {
 
     public String getRent_installment_price() {
         return rent_installment_price;
+    }
+
+    public String getElevators_number() {
+        return elevators_number;
+    }
+
+    public String getParking_spaces_numbers() {
+        return parking_spaces_numbers;
     }
 
     public List<HomeModules_aqares.rates> getRates() {
