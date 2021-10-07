@@ -1007,7 +1007,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                                 .setDirectoryName("Image Picker")
                                 .setMultipleMode(true)
                                 .setShowNumberIndicator(true)
-                                .setMaxSize(5)
+                                .setMaxSize(15)
                                 .setLimitMessage("You can select up to 10 images")
                                 .setRequestCode(111)
                                 .start();
@@ -1024,7 +1024,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                             .setDirectoryName("Image Picker")
                             .setMultipleMode(true)
                             .setShowNumberIndicator(true)
-                            .setMaxSize(5)
+                            .setMaxSize(15)
                             .setLimitMessage("You can select up to 10 images")
 
                             .setRequestCode(111)
@@ -1124,7 +1124,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                         .setDirectoryName("Image Picker")
                         .setMultipleMode(true)
                         .setShowNumberIndicator(true)
-                        .setMaxSize(5)
+                        .setMaxSize(15)
                         .setLimitMessage("You can select up to 10 images")
                         .setRequestCode(111)
                         .start();

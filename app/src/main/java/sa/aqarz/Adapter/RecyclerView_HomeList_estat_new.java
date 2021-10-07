@@ -85,6 +85,7 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         TextView space;
         TextView num_id;
         TextView bathroom;
+        TextView id;
         TextView room;
         ImageView image_icon;
         ImageView add_favorite;
@@ -132,6 +133,7 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
             bathroom = view.findViewById(R.id.bathroom);
             room = view.findViewById(R.id.room);
             is_rent_installment = view.findViewById(R.id.is_rent_installment);
+            id = view.findViewById(R.id.id);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 //            ratingbar = view.findViewById(R.id.ratingbar);
 ////            simpleRatingBar = view.findViewById(R.id.simpleRatingBar);
@@ -164,6 +166,7 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         holder.space.setText(alldata.get(position).getTotalArea() + "");
         holder.date.setText(alldata.get(position).getCreatedAt() + "");
         holder.num_id.setText("#" + alldata.get(position).getId() + "");
+        holder.id.setText("#" + alldata.get(position).getId() + "");
         try {
 
             if (alldata.get(position).getBathroomsNumber() != null) {

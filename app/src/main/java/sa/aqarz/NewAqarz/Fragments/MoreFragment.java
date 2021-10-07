@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.media.Image;
@@ -134,7 +136,7 @@ public class MoreFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+TextView virs;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -165,6 +167,7 @@ public class MoreFragment extends Fragment {
         favorit = view.findViewById(R.id.favorit);
         all_area = view.findViewById(R.id.all_area);
         rang_profile = view.findViewById(R.id.rang_profile);
+        virs = view.findViewById(R.id.virs);
 
         name = view.findViewById(R.id.name);
         rate = view.findViewById(R.id.rate);
@@ -234,6 +237,23 @@ public class MoreFragment extends Fragment {
         } catch (Exception e) {
 
         }
+        try {
+            PackageManager packageManager = getActivity().getPackageManager();
+            PackageInfo packageInfo = null;
+            try {
+                packageInfo = packageManager.getPackageInfo(getActivity().getPackageName(), 0);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+            String currentVersion = packageInfo.versionName;
+
+
+            virs.setText(" اصدار التطبيق " + currentVersion);
+
+        } catch (Exception e) {
+
+        }
+
         onclick();
         return view;
     }
