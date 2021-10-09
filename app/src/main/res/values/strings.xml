@@ -1291,6 +1291,8 @@ Two working days to complete your order</string>
 
 
     <string name="name_emp">Name Employee</string>
+    <string name="name_emp1">Name Owner</string>
+    <string name="addAQarsNumber">add Aqars Number</string>
 
 
 </resources>

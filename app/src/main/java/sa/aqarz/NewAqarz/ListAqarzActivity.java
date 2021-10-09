@@ -10,8 +10,11 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -75,6 +78,9 @@ public class ListAqarzActivity extends AppCompatActivity {
 
     ImageView clear_fi_by;
 
+
+    static EditText number_aqarez;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +91,7 @@ public class ListAqarzActivity extends AppCompatActivity {
         nodata = findViewById(R.id.nodata);
         fill_filtter = findViewById(R.id.fill_filtter);
         clear_fi_by = findViewById(R.id.clear_fi_by);
+        number_aqarez = findViewById(R.id.number_aqarez);
 
 
         activity = this;
@@ -446,6 +453,18 @@ public class ListAqarzActivity extends AppCompatActivity {
 
             }
         });
+        number_aqarez.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+                    get_data();
+
+                    return true;
+                }
+                return false;
+            }
+        });
         get_data();
     }
 
@@ -531,6 +550,11 @@ public class ListAqarzActivity extends AppCompatActivity {
 
         if (MainAqarzActivity.object_filtter.getNumber_Boards_plus() != 0) {
             boards_number = "&boards_number=" + MainAqarzActivity.object_filtter.getNumber_Boards_plus();
+        }
+        String number_aqareza = "";
+
+        if (!number_aqarez.getText().toString().equals("")) {
+            number_aqareza = "&number_aqarez=" + number_aqarez.getText().toString();
         }
 
         String elevators_number = "";

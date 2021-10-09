@@ -1232,5 +1232,10 @@
 
     <string name="rent_alal"> يدعم <font color="#5840BB">التقسيط التاجير</font></string>
     <string name="name_emp">اسم الموظف</string>
+    <string name="name_emp1">اسم المسؤول</string>
+
+
+
+    <string name="addAQarsNumber">ادخل رقم العقار</string>
 
 </resources>

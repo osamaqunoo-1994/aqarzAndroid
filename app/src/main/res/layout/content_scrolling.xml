@@ -18,6 +18,7 @@
         android:fillViewport="true">
 
         <LinearLayout
+            android:id="@+id/swipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -1770,6 +1771,47 @@
 
                             <TextView
                                 android:id="@+id/name_emp"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="25dp"
+                                android:fontFamily="@font/din_bold"
+                                android:textColor="@color/textColor"
+                                android:textSize="13dp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/emp_lay_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="center"
+
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+
+                                android:layout_marginRight="5dp"
+                                android:fontFamily="@font/din_bold"
+                                android:text="@string/name_emp1"
+                                android:textColor="@color/textColor1"
+                                android:textSize="13dp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:id="@+id/name_emp1"
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

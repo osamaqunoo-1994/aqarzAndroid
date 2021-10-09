@@ -4,10 +4,12 @@ import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -434,7 +436,22 @@ public class BottomSheetDialogFragment_Filtter extends BottomSheetDialogFragment
 
             }
         });
+        search_text.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 
+                    progress_city.setVisibility(View.VISIBLE);
+                    init_volley();
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+                    mVolleyService.getDataVolley("cities_with_neb", WebService.cities_with_neb + "?name=" + search_text.getText().toString());//+ "&state_id=" + region_id_postion + "&city_id=" + city_id_postion
+
+
+                    return true;
+                }
+                return false;
+            }
+        });
 
         room_1.setOnClickListener(new View.OnClickListener() {
             @Override

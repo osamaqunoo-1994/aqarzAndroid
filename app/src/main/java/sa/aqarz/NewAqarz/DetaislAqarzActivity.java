@@ -1,6 +1,7 @@
 package sa.aqarz.NewAqarz;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -35,8 +36,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -127,9 +130,11 @@ public class DetaislAqarzActivity extends AppCompatActivity {
     TextView rentPrice;
     LinearLayout emp_lay;
     LinearLayout emp_lay_1;
+    LinearLayout emp_lay_2;
     CircleImageView company_enp_image;
     TextView company_enp_name;
     TextView name_emp;
+    TextView name_emp1;
     LinearLayout contact_lay;
 
     String id_user = "";
@@ -140,6 +145,8 @@ public class DetaislAqarzActivity extends AppCompatActivity {
     TextView Number_parking_add;
     TextView unit_number;
     TextView number_lifts_add;
+
+    LinearLayout swipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -216,6 +223,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
 
         emp_lay_1 = findViewById(R.id.emp_lay_1);
+        swipe = findViewById(R.id.swipe);
         rate_ = findViewById(R.id.rate_);
         rec_list_all = findViewById(R.id.rec_list_all);
         company_enp_name = findViewById(R.id.company_enp_name);
@@ -226,6 +234,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
         view_pager_indicator = findViewById(R.id.view_pager_indicator);
         price = findViewById(R.id.price);
         name_emp = findViewById(R.id.name_emp);
+        name_emp1 = findViewById(R.id.name_emp1);
         estate_type_name = findViewById(R.id.estate_type_name);
         request = findViewById(R.id.request);
         is_rent = findViewById(R.id.is_rent);
@@ -352,6 +361,21 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
             }
         });
+
+//        swipe.setOnTouchListener(new OnSwipeTouchListener(DetaislAqarzActivity.this){
+//            public void onSwipeTop() {
+//                Toast.makeText(DetaislAqarzActivity.this, "top", Toast.LENGTH_SHORT).show();
+//            }
+//            public void onSwipeRight() {
+//                Toast.makeText(DetaislAqarzActivity.this, "right", Toast.LENGTH_SHORT).show();
+//            }
+//            public void onSwipeLeft() {
+//                Toast.makeText(DetaislAqarzActivity.this, "left", Toast.LENGTH_SHORT).show();
+//            }
+//            public void onSwipeBottom() {
+//                Toast.makeText(DetaislAqarzActivity.this, "bottom", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
     }
 
@@ -572,6 +596,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                                     if (homeModules_aqares.getUser().getEmp() != null) {
 
                                         emp_lay_1.setVisibility(View.VISIBLE);
+                                        emp_lay_2.setVisibility(View.GONE);
 
 
                                         name_owner.setText(homeModules_aqares.getUser().getEmp().getName() + "");
@@ -583,6 +608,9 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                                         name_user = homeModules_aqares.getUser().getName() + "";
                                     } else {
                                         emp_lay_1.setVisibility(View.GONE);
+                                        emp_lay_2.setVisibility(View.VISIBLE);
+                                        name_emp1.setText(homeModules_aqares.getUser().getOnwer_name() + "");
+
                                         name_owner.setText(homeModules_aqares.getUser().getName() + "");
                                         Glide.with(DetaislAqarzActivity.this).load(homeModules_aqares.getUser().getLogo() + "").into(Image_user);
                                         id_user = homeModules_aqares.getUser().getId() + "";
@@ -591,9 +619,12 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                                     }
                                 } else {
                                     name_owner.setText(homeModules_aqares.getUser().getName() + "");
+                                    name_emp1.setText(homeModules_aqares.getUser().getOnwer_name() + "");
+
                                     Glide.with(DetaislAqarzActivity.this).load(homeModules_aqares.getUser().getLogo() + "").into(Image_user);
 
                                     emp_lay_1.setVisibility(View.GONE);
+                                    emp_lay_2.setVisibility(View.VISIBLE);
                                     id_user = homeModules_aqares.getUser().getId() + "";
                                     name_user = homeModules_aqares.getUser().getName() + "";
 
@@ -1075,5 +1106,70 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
 
     }
+public class OnSwipeTouchListener implements View.OnTouchListener {
 
+    private final GestureDetector gestureDetector;
+
+    public OnSwipeTouchListener (Context ctx){
+        gestureDetector = new GestureDetector(ctx, new GestureListener());
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return gestureDetector.onTouchEvent(event);
+    }
+
+    private final class GestureListener extends GestureDetector.SimpleOnGestureListener {
+
+        private static final int SWIPE_THRESHOLD = 100;
+        private static final int SWIPE_VELOCITY_THRESHOLD = 100;
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            boolean result = false;
+            try {
+                float diffY = e2.getY() - e1.getY();
+                float diffX = e2.getX() - e1.getX();
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+                        if (diffX > 0) {
+                            onSwipeRight();
+                        } else {
+                            onSwipeLeft();
+                        }
+                        result = true;
+                    }
+                }
+                else if (Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
+                    if (diffY > 0) {
+                        onSwipeBottom();
+                    } else {
+                        onSwipeTop();
+                    }
+                    result = true;
+                }
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+            return result;
+        }
+    }
+
+    public void onSwipeRight() {
+    }
+
+    public void onSwipeLeft() {
+    }
+
+    public void onSwipeTop() {
+    }
+
+    public void onSwipeBottom() {
+    }
+}
 }
