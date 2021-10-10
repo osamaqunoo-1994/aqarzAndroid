@@ -489,11 +489,6 @@ public class ListAqarzActivity extends AppCompatActivity {
 
             }
         }
-        String state_id = "";
-
-        if (!MainAqarzActivity.object_filtter.getId_state().equals("")) {
-            state_id = "&state_id=" + MainAqarzActivity.object_filtter.getId_state();
-        }
 
         String price_to = "";
 
@@ -551,9 +546,18 @@ public class ListAqarzActivity extends AppCompatActivity {
         if (MainAqarzActivity.object_filtter.getNumber_Boards_plus() != 0) {
             boards_number = "&boards_number=" + MainAqarzActivity.object_filtter.getNumber_Boards_plus();
         }
+
+        String state_id = "";
+
+        if (!MainAqarzActivity.object_filtter.getId_state().equals("")) {
+            state_id = "&state_id=" + MainAqarzActivity.object_filtter.getId_state();
+        }
+
         String number_aqareza = "";
 
         if (!number_aqarez.getText().toString().equals("")) {
+
+            state_id="";
             number_aqareza = "&search=" + number_aqarez.getText().toString();
         }
 

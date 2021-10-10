@@ -104,7 +104,7 @@ public class EditAqarzActivity extends AppCompatActivity {
     LinearLayout step_3_lay;
     LinearLayout step_4_lay;
 
-
+    HomeModules_aqares homeModules_aqares;
     TextView step_1_text;
     TextView step_2_text;
     TextView step_3_text;
@@ -269,6 +269,7 @@ public class EditAqarzActivity extends AppCompatActivity {
     TextView f1, f2, f3;
     TextView yes, no;
 
+    String is_rent_installment = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -427,6 +428,7 @@ public class EditAqarzActivity extends AppCompatActivity {
         owner_info();
         approval();
         in_rent();
+        price();
 
 
         LinearLayoutManager layoutManagems
@@ -802,7 +804,39 @@ public class EditAqarzActivity extends AppCompatActivity {
     public void in_rent() {
 
 //        addAqarezObject.setEstate_use_type("residential");
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                is_rent_installment = "1";
+                filed_rent1.setVisibility(View.VISIBLE);
+                rental_period_lay.setVisibility(View.GONE);
+
+
+                yes.setBackground(getResources().getDrawable(R.drawable.button_login));
+                yes.setTextColor(getResources().getColor(R.color.white));
+                no.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
+                no.setTextColor(getResources().getColor(R.color.black));
+
+
+            }
+        });
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                is_rent_installment = "0";
+
+                filed_rent1.setVisibility(View.GONE);
+                rental_period_lay.setVisibility(View.VISIBLE);
+
+                no.setBackground(getResources().getDrawable(R.drawable.button_login));
+                no.setTextColor(getResources().getColor(R.color.white));
+                yes.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
+                yes.setTextColor(getResources().getColor(R.color.black));
+
+
+            }
+        });
         f1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -854,6 +888,10 @@ public class EditAqarzActivity extends AppCompatActivity {
     }
 
     public void selected_opration() {
+
+
+
+
         if (type_opration_selected.equals("1")) {
 
             sell.setTextColor(getResources().getColor(R.color.white));
@@ -864,6 +902,11 @@ public class EditAqarzActivity extends AppCompatActivity {
             rent.setBackground(getResources().getDrawable(R.drawable.mash));
             investment.setBackground(getResources().getDrawable(R.drawable.mash));
 
+
+            rental_period_lay.setVisibility(View.GONE);
+            filed_rent.setVisibility(View.GONE);
+            rent_qustion.setVisibility(View.GONE);
+            sale_price_text.setVisibility(View.VISIBLE);
         } else if (type_opration_selected.equals("2")) {
             rent.setTextColor(getResources().getColor(R.color.white));
             sell.setTextColor(getResources().getColor(R.color.textColor));
@@ -872,6 +915,11 @@ public class EditAqarzActivity extends AppCompatActivity {
             rent.setBackground(getResources().getDrawable(R.drawable.button_login1));
             sell.setBackground(getResources().getDrawable(R.drawable.mash));
             investment.setBackground(getResources().getDrawable(R.drawable.mash));
+
+            rental_period_lay.setVisibility(View.VISIBLE);
+            filed_rent.setVisibility(View.VISIBLE);
+            rent_qustion.setVisibility(View.VISIBLE);
+            sale_price_text.setVisibility(View.GONE);
         } else {
 
             investment.setTextColor(getResources().getColor(R.color.white));
@@ -882,6 +930,11 @@ public class EditAqarzActivity extends AppCompatActivity {
             investment.setBackground(getResources().getDrawable(R.drawable.button_login1));
             rent.setBackground(getResources().getDrawable(R.drawable.mash));
             sell.setBackground(getResources().getDrawable(R.drawable.mash));
+
+            rental_period_lay.setVisibility(View.GONE);
+            filed_rent.setVisibility(View.GONE);
+            rent_qustion.setVisibility(View.GONE);
+            sale_price_text.setVisibility(View.VISIBLE);
         }
     }
 
@@ -1957,32 +2010,68 @@ public class EditAqarzActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (addAqarezObject.getState_id().equals("") |
+//                if (addAqarezObject.getState_id().equals("") |
+//
+//                        addAqarezObject.getLan().equals("") |
+//                        area_text.getText().toString().equals("") |
+//                        lengths_add_text.getText().toString().equals("") |
+//                        streetwidthadd_text.getText().toString().equals("") |
+//                        Date_of_construction_text.getText().toString().equals("") |
+//                        sale_price_text.getText().toString().equals("") |
+//                        Warranties_duration_txt.getText().toString().equals("") |
+//                        mobile_edt.getText().toString().equals("") |
+//                        owner_edt.getText().toString().equals("") |
+//                        addAqarezObject.getAdvertiser_side().equals("") |
+//                        addAqarezObject.getAdvertiser_character().equals("")
+//                ) {
+//                    WebService.Make_Toast_color_info(EditAqarzActivity.this, "عليك تعبئة الحقول المطلوبه اعلى", "error");
+//
+//
+//                } else {
+//                }
 
-                        addAqarezObject.getLan().equals("") |
-                        area_text.getText().toString().equals("") |
-                        lengths_add_text.getText().toString().equals("") |
-                        streetwidthadd_text.getText().toString().equals("") |
-                        Date_of_construction_text.getText().toString().equals("") |
-                        sale_price_text.getText().toString().equals("") |
-                        Warranties_duration_txt.getText().toString().equals("") |
-                        mobile_edt.getText().toString().equals("") |
-                        owner_edt.getText().toString().equals("") |
-                        addAqarezObject.getAdvertiser_side().equals("") |
-                        addAqarezObject.getAdvertiser_character().equals("")
-                ) {
-                    WebService.Make_Toast_color_info(EditAqarzActivity.this, "عليك تعبئة الحقول المطلوبه اعلى", "error");
-
-
-                } else {
-                    add_aqares_information();
-                }
-
+                add_aqares_information();
 
             }
         });
 
 
+    }
+
+    public void price() {
+        price_int.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                sale_price_text.setText(price_int.getText().toString());
+
+
+                int is = Integer.valueOf(price_int.getText().toString());
+                double xx = 0;
+
+                if (is >= 250000) {
+                    xx = is - (is * (8.5 / 100));
+                } else {
+                    xx = is - (is * (10.5 / 100));
+
+                }
+
+                price_int_result.setText(xx + "");
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     public void add_aqares_information() {
@@ -2010,7 +2099,10 @@ public class EditAqarzActivity extends AppCompatActivity {
             sendObj.put("kitchen_number", number_Kitchens_plus + "");
             sendObj.put("dining_rooms_number", number_Dining_rooms + "");
             sendObj.put("estate_dimensions", lengths_add_text.getText().toString() + "");
+            sendObj.put("rent_installment_price", price_int_result.getText().toString() + "");
 
+            sendObj.put("is_rent_installment", is_rent_installment + "");
+            sendObj.put("rent_installment_price", price_int_result.getText().toString() + "");
 
             String interface_ = "";
 
@@ -2435,7 +2527,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                         Gson gson = new Gson();
 
-                        HomeModules_aqares homeModules_aqares = gson.fromJson(mJson, HomeModules_aqares.class);
+                         homeModules_aqares = gson.fromJson(mJson, HomeModules_aqares.class);
 
 
 //                        state.setText(homeModules_aqares.get);
@@ -2518,7 +2610,6 @@ public class EditAqarzActivity extends AppCompatActivity {
 
 
                         }
-
                         if (homeModules_aqares.getAdvertiser_character().equals("onwer")) {
 
                             addAqarezObject.setAdvertiser_character("onwer");
@@ -2537,6 +2628,10 @@ public class EditAqarzActivity extends AppCompatActivity {
 
 
                         }
+
+                        type_opration_selected=homeModules_aqares.getOperationTypeId()+"";
+
+                        selected_opration();
 
 //                                    images_RecyclerView_url.setAdapter(new RecyclerView_selectImage_url(EditAqarsActivity.this, homeModules_aqares.getEstate_file()));
                         RecyclerView_selectImage_url_image recyclerView_selectImage_url_image = new RecyclerView_selectImage_url_image(EditAqarzActivity.this, homeModules_aqares.getEstate_file());
