@@ -256,6 +256,20 @@ public class EditAqarzActivity extends AppCompatActivity {
     LinearLayout all_details;
     RecyclerView images_RecyclerView_url;
 
+
+    String id_or_aq;
+
+
+    LinearLayout rental_period_lay;
+    LinearLayout rent_qustion;
+    LinearLayout filed_rent;
+    LinearLayout filed_rent1;
+    EditText price_int;
+    EditText price_int_result;
+    TextView f1, f2, f3;
+    TextView yes, no;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -287,6 +301,19 @@ public class EditAqarzActivity extends AppCompatActivity {
         street = findViewById(R.id.street);
         all_details = findViewById(R.id.all_details);
 
+
+        yes = findViewById(R.id.yes);
+        no = findViewById(R.id.no);
+        rental_period_lay = findViewById(R.id.rental_period_lay);
+        price_int = findViewById(R.id.price_int);
+        price_int_result = findViewById(R.id.price_int_result);
+        filed_rent = findViewById(R.id.filed_rent);
+        filed_rent1 = findViewById(R.id.filed_rent1);
+        rent_qustion = findViewById(R.id.rent_qustion);
+        rent = findViewById(R.id.rent);
+        f1 = findViewById(R.id.f1);
+        f2 = findViewById(R.id.f2);
+        f3 = findViewById(R.id.f3);
 
         step_1_text = findViewById(R.id.step_1_text);
         step_2_text = findViewById(R.id.step_2_text);
@@ -399,6 +426,7 @@ public class EditAqarzActivity extends AppCompatActivity {
         comfort_();
         owner_info();
         approval();
+        in_rent();
 
 
         LinearLayoutManager layoutManagems
@@ -406,12 +434,12 @@ public class EditAqarzActivity extends AppCompatActivity {
         images_RecyclerView_url.setLayoutManager(layoutManagems);
 
         try {
-            String id_or_aq = getIntent().getStringExtra("id_aqarz");
+            id_or_aq = getIntent().getStringExtra("id_aqarz");
             init_volley();
             WebService.loading(EditAqarzActivity.this, true);
 
             VolleyService mVolleyService = new VolleyService(mResultCallback, EditAqarzActivity.this);
-            mVolleyService.getDataVolley("single_estat", WebService.single_estat + 1831 + "/estate");
+            mVolleyService.getDataVolley("single_estat", WebService.single_estat + id_or_aq + "/estate");
 
 
         } catch (Exception e) {
@@ -691,7 +719,11 @@ public class EditAqarzActivity extends AppCompatActivity {
             public void onClick(View v) {
                 type_opration_selected = "1";
                 addAqarezObject.setOperation_type_id(type_opration_selected);
-
+                rent_qustion.setVisibility(View.GONE);
+                rental_period_lay.setVisibility(View.GONE);
+                filed_rent.setVisibility(View.GONE);
+                sale_price_text.setVisibility(View.VISIBLE);
+                filed_rent1.setVisibility(View.GONE);
                 selected_opration();
             }
         });
@@ -700,7 +732,10 @@ public class EditAqarzActivity extends AppCompatActivity {
             public void onClick(View v) {
                 type_opration_selected = "2";
                 addAqarezObject.setOperation_type_id(type_opration_selected);
-
+                rental_period_lay.setVisibility(View.VISIBLE);
+                filed_rent.setVisibility(View.VISIBLE);
+                rent_qustion.setVisibility(View.VISIBLE);
+                sale_price_text.setVisibility(View.GONE);
                 selected_opration();
 
             }
@@ -710,7 +745,11 @@ public class EditAqarzActivity extends AppCompatActivity {
             public void onClick(View v) {
                 type_opration_selected = "3";
                 addAqarezObject.setOperation_type_id(type_opration_selected);
-
+                rental_period_lay.setVisibility(View.GONE);
+                filed_rent.setVisibility(View.GONE);
+                rent_qustion.setVisibility(View.GONE);
+                sale_price_text.setVisibility(View.VISIBLE);
+                filed_rent1.setVisibility(View.GONE);
                 selected_opration();
 
             }
@@ -729,7 +768,7 @@ public class EditAqarzActivity extends AppCompatActivity {
                 addAqarezObject.setEstate_use_type("residential");
 
 
-                residential.setBackground(getResources().getDrawable(R.drawable.button_login));
+                residential.setBackground(getResources().getDrawable(R.drawable.button_login1));
                 commercial.setBackground(getResources().getDrawable(R.drawable.mash));
                 Artificial.setBackground(getResources().getDrawable(R.drawable.mash));
 
@@ -741,7 +780,7 @@ public class EditAqarzActivity extends AppCompatActivity {
                 addAqarezObject.setEstate_use_type("commercial");
 
                 residential.setBackground(getResources().getDrawable(R.drawable.mash));
-                commercial.setBackground(getResources().getDrawable(R.drawable.button_login));
+                commercial.setBackground(getResources().getDrawable(R.drawable.button_login1));
                 Artificial.setBackground(getResources().getDrawable(R.drawable.mash));
 
             }
@@ -753,8 +792,62 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                 residential.setBackground(getResources().getDrawable(R.drawable.mash));
                 commercial.setBackground(getResources().getDrawable(R.drawable.mash));
-                Artificial.setBackground(getResources().getDrawable(R.drawable.button_login));
+                Artificial.setBackground(getResources().getDrawable(R.drawable.button_login1));
 
+            }
+        });
+
+    }
+
+    public void in_rent() {
+
+//        addAqarezObject.setEstate_use_type("residential");
+
+        f1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                addAqarezObject.setEstate_use_type("residential");
+
+
+                f1.setBackground(getResources().getDrawable(R.drawable.back_search_home_selected));
+                f2.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
+                f3.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
+
+
+                f1.setTextColor(getResources().getColor(R.color.white));
+                f2.setTextColor(getResources().getColor(R.color.textColor));
+                f3.setTextColor(getResources().getColor(R.color.textColor));
+
+            }
+        });
+        f2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                addAqarezObject.setEstate_use_type("commercial");
+
+                f1.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
+                f2.setBackground(getResources().getDrawable(R.drawable.back_search_home_selected));
+                f3.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
+
+
+                f2.setTextColor(getResources().getColor(R.color.white));
+                f1.setTextColor(getResources().getColor(R.color.textColor));
+                f3.setTextColor(getResources().getColor(R.color.textColor));
+            }
+        });
+        f3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                addAqarezObject.setEstate_use_type("artificial");
+
+                f1.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
+                f2.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
+                f3.setBackground(getResources().getDrawable(R.drawable.back_search_home_selected));
+
+
+                f3.setTextColor(getResources().getColor(R.color.white));
+                f2.setTextColor(getResources().getColor(R.color.textColor));
+                f1.setTextColor(getResources().getColor(R.color.textColor));
             }
         });
 
@@ -767,7 +860,7 @@ public class EditAqarzActivity extends AppCompatActivity {
             rent.setTextColor(getResources().getColor(R.color.textColor));
             investment.setTextColor(getResources().getColor(R.color.textColor));
 
-            sell.setBackground(getResources().getDrawable(R.drawable.button_login));
+            sell.setBackground(getResources().getDrawable(R.drawable.button_login1));
             rent.setBackground(getResources().getDrawable(R.drawable.mash));
             investment.setBackground(getResources().getDrawable(R.drawable.mash));
 
@@ -776,7 +869,7 @@ public class EditAqarzActivity extends AppCompatActivity {
             sell.setTextColor(getResources().getColor(R.color.textColor));
             investment.setTextColor(getResources().getColor(R.color.textColor));
 
-            rent.setBackground(getResources().getDrawable(R.drawable.button_login));
+            rent.setBackground(getResources().getDrawable(R.drawable.button_login1));
             sell.setBackground(getResources().getDrawable(R.drawable.mash));
             investment.setBackground(getResources().getDrawable(R.drawable.mash));
         } else {
@@ -786,7 +879,7 @@ public class EditAqarzActivity extends AppCompatActivity {
             sell.setTextColor(getResources().getColor(R.color.textColor));
 
 
-            investment.setBackground(getResources().getDrawable(R.drawable.button_login));
+            investment.setBackground(getResources().getDrawable(R.drawable.button_login1));
             rent.setBackground(getResources().getDrawable(R.drawable.mash));
             sell.setBackground(getResources().getDrawable(R.drawable.mash));
         }
@@ -1052,7 +1145,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                 if (number_Lounges > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    Lounges_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Lounges_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     Lounges_number.setTextColor(getResources().getColor(R.color.white));
                 } else {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
@@ -1087,7 +1180,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 //                }
                 if (number_Lounges > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    Lounges_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Lounges_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     Lounges_number.setTextColor(getResources().getColor(R.color.white));
                 } else {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
@@ -1125,7 +1218,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 //                }
                 if (number_room > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    room_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    room_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     room_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
@@ -1161,7 +1254,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 //                }
                 if (number_room > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    room_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    room_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     room_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
@@ -1196,7 +1289,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                 if (number_Bathrooms > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    Bathrooms_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Bathrooms_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     Bathrooms_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
@@ -1232,7 +1325,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                 if (number_Bathrooms > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    Bathrooms_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Bathrooms_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     Bathrooms_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
@@ -1266,7 +1359,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                 if (number_Boards_plus > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    Boards_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Boards_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     Boards_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
@@ -1302,7 +1395,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 //                }
                 if (number_Boards_plus > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    Boards_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Boards_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     Boards_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
@@ -1341,7 +1434,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                 if (number_Kitchens_plus > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    Kitchens_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Kitchens_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     Kitchens_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
@@ -1377,7 +1470,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 //                }
                 if (number_Kitchens_plus > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    Kitchens_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Kitchens_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     Kitchens_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
@@ -1415,7 +1508,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 //                }
                 if (number_Dining_rooms > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    Dining_rooms_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Dining_rooms_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     Dining_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
@@ -1451,7 +1544,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 //                }
                 if (number_Dining_rooms > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    Dining_rooms_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    Dining_rooms_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     Dining_text.setTextColor(getResources().getColor(R.color.white));
                 } else {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
@@ -1481,7 +1574,7 @@ public class EditAqarzActivity extends AppCompatActivity {
                     north.setTextColor(getResources().getColor(R.color.black));
                 } else {
                     north_selected = true;
-                    north.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    north.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     north.setTextColor(getResources().getColor(R.color.white));
 
 
@@ -1500,7 +1593,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                 } else {
                     south_selected = true;
-                    south.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    south.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     south.setTextColor(getResources().getColor(R.color.white));
 
 
@@ -1517,7 +1610,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                 } else {
                     east_selected = true;
-                    east.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    east.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     east.setTextColor(getResources().getColor(R.color.white));
 
 
@@ -1534,7 +1627,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                 } else {
                     west_selected = true;
-                    west.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    west.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     west.setTextColor(getResources().getColor(R.color.white));
 
 
@@ -1553,7 +1646,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
 
                 addAqarezObject.setIs_disputes("1");
-                is_disputes_yes.setBackground(getResources().getDrawable(R.drawable.button_login));
+                is_disputes_yes.setBackground(getResources().getDrawable(R.drawable.button_login1));
                 is_disputes_yes.setTextColor(getResources().getColor(R.color.white));
                 is_disputes_no.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                 is_disputes_no.setTextColor(getResources().getColor(R.color.black));
@@ -1579,7 +1672,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
 
                 addAqarezObject.setIs_mortgage("1");
-                is_mortgage_yes.setBackground(getResources().getDrawable(R.drawable.button_login));
+                is_mortgage_yes.setBackground(getResources().getDrawable(R.drawable.button_login1));
                 is_mortgage_yes.setTextColor(getResources().getColor(R.color.white));
                 is_mortgage_no.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                 is_mortgage_no.setTextColor(getResources().getColor(R.color.black));
@@ -1591,7 +1684,7 @@ public class EditAqarzActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addAqarezObject.setIs_mortgage("0");
-                is_mortgage_no.setBackground(getResources().getDrawable(R.drawable.button_login));
+                is_mortgage_no.setBackground(getResources().getDrawable(R.drawable.button_login1));
                 is_mortgage_no.setTextColor(getResources().getColor(R.color.white));
                 is_mortgage_yes.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                 is_mortgage_yes.setTextColor(getResources().getColor(R.color.black));
@@ -1605,7 +1698,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
 
                 addAqarezObject.setIs_obligations("1");
-                is_obligations_yes.setBackground(getResources().getDrawable(R.drawable.button_login));
+                is_obligations_yes.setBackground(getResources().getDrawable(R.drawable.button_login1));
                 is_obligations_yes.setTextColor(getResources().getColor(R.color.white));
                 is_obligations_no.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                 is_obligations_no.setTextColor(getResources().getColor(R.color.black));
@@ -1617,7 +1710,7 @@ public class EditAqarzActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addAqarezObject.setIs_obligations("0");
-                is_obligations_no.setBackground(getResources().getDrawable(R.drawable.button_login));
+                is_obligations_no.setBackground(getResources().getDrawable(R.drawable.button_login1));
                 is_obligations_no.setTextColor(getResources().getColor(R.color.white));
                 is_obligations_yes.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                 is_obligations_yes.setTextColor(getResources().getColor(R.color.black));
@@ -1631,7 +1724,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
 
                 addAqarezObject.setIs_saudi_building_code("1");
-                is_saudi_building_code_yes.setBackground(getResources().getDrawable(R.drawable.button_login));
+                is_saudi_building_code_yes.setBackground(getResources().getDrawable(R.drawable.button_login1));
                 is_saudi_building_code_yes.setTextColor(getResources().getColor(R.color.white));
                 is_saudi_building_code_no.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                 is_saudi_building_code_no.setTextColor(getResources().getColor(R.color.black));
@@ -1643,7 +1736,7 @@ public class EditAqarzActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addAqarezObject.setIs_saudi_building_code("0");
-                is_saudi_building_code_no.setBackground(getResources().getDrawable(R.drawable.button_login));
+                is_saudi_building_code_no.setBackground(getResources().getDrawable(R.drawable.button_login1));
                 is_saudi_building_code_no.setTextColor(getResources().getColor(R.color.white));
                 is_saudi_building_code_yes.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                 is_saudi_building_code_yes.setTextColor(getResources().getColor(R.color.black));
@@ -1680,7 +1773,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                 if (number_lifts > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    lifts_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    lifts_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     lifts_txt.setTextColor(getResources().getColor(R.color.white));
                 } else {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
@@ -1715,7 +1808,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 //                }
                 if (number_lifts > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    lifts_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    lifts_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     lifts_txt.setTextColor(getResources().getColor(R.color.white));
                 } else {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
@@ -1745,7 +1838,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                 if (number_parking > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    parking_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    parking_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     parking_txt.setTextColor(getResources().getColor(R.color.white));
                 } else {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
@@ -1780,7 +1873,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 //                }
                 if (number_parking > 0) {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    parking_lay.setBackground(getResources().getDrawable(R.drawable.button_login));
+                    parking_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
                     parking_txt.setTextColor(getResources().getColor(R.color.white));
                 } else {
 //                    Lounges_number.setBackgroundColor(getResources().getColor(R.color.white));
@@ -1807,7 +1900,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
 
                 addAqarezObject.setAdvertiser_side("individual");
-                individual_txt.setBackground(getResources().getDrawable(R.drawable.button_login));
+                individual_txt.setBackground(getResources().getDrawable(R.drawable.button_login1));
                 individual_txt.setTextColor(getResources().getColor(R.color.white));
                 facility_txt.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                 facility_txt.setTextColor(getResources().getColor(R.color.black));
@@ -1819,7 +1912,7 @@ public class EditAqarzActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addAqarezObject.setAdvertiser_side("facility");
-                facility_txt.setBackground(getResources().getDrawable(R.drawable.button_login));
+                facility_txt.setBackground(getResources().getDrawable(R.drawable.button_login1));
                 facility_txt.setTextColor(getResources().getColor(R.color.white));
                 individual_txt.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                 individual_txt.setTextColor(getResources().getColor(R.color.black));
@@ -1833,7 +1926,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
 
                 addAqarezObject.setAdvertiser_character("onwer");
-                owner_txt.setBackground(getResources().getDrawable(R.drawable.button_login));
+                owner_txt.setBackground(getResources().getDrawable(R.drawable.button_login1));
                 owner_txt.setTextColor(getResources().getColor(R.color.white));
                 authorized_txt.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                 authorized_txt.setTextColor(getResources().getColor(R.color.black));
@@ -1845,7 +1938,7 @@ public class EditAqarzActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addAqarezObject.setAdvertiser_character("authorized");
-                authorized_txt.setBackground(getResources().getDrawable(R.drawable.button_login));
+                authorized_txt.setBackground(getResources().getDrawable(R.drawable.button_login1));
                 authorized_txt.setTextColor(getResources().getColor(R.color.white));
                 owner_txt.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                 owner_txt.setTextColor(getResources().getColor(R.color.black));
@@ -1865,8 +1958,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
 
                 if (addAqarezObject.getState_id().equals("") |
-                        addAqarezObject.getCity_id().equals("") |
-                        addAqarezObject.getNeighborhood_id().equals("") |
+
                         addAqarezObject.getLan().equals("") |
                         area_text.getText().toString().equals("") |
                         lengths_add_text.getText().toString().equals("") |
@@ -2378,7 +2470,7 @@ public class EditAqarzActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        area_text.setText(homeModules_aqares.getTotalArea() + "");
+                        area_text.setText(homeModules_aqares.getUnit_number() + "");
                         if (homeModules_aqares.getPaceNumber() != null && !homeModules_aqares.getPaceNumber().equals("null")) {
                             land_number_text.setText(homeModules_aqares.getPaceNumber() + "");
                         }
@@ -2412,14 +2504,14 @@ public class EditAqarzActivity extends AppCompatActivity {
                         if (homeModules_aqares.getAdvertiser_side().equals("individual")) {
 
                             addAqarezObject.setAdvertiser_side("individual");
-                            individual_txt.setBackground(getResources().getDrawable(R.drawable.button_login));
+                            individual_txt.setBackground(getResources().getDrawable(R.drawable.button_login1));
                             individual_txt.setTextColor(getResources().getColor(R.color.white));
                             facility_txt.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                             facility_txt.setTextColor(getResources().getColor(R.color.black));
 
                         } else {
                             addAqarezObject.setAdvertiser_side("facility");
-                            facility_txt.setBackground(getResources().getDrawable(R.drawable.button_login));
+                            facility_txt.setBackground(getResources().getDrawable(R.drawable.button_login1));
                             facility_txt.setTextColor(getResources().getColor(R.color.white));
                             individual_txt.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                             individual_txt.setTextColor(getResources().getColor(R.color.black));
@@ -2430,7 +2522,7 @@ public class EditAqarzActivity extends AppCompatActivity {
                         if (homeModules_aqares.getAdvertiser_character().equals("onwer")) {
 
                             addAqarezObject.setAdvertiser_character("onwer");
-                            owner_txt.setBackground(getResources().getDrawable(R.drawable.button_login));
+                            owner_txt.setBackground(getResources().getDrawable(R.drawable.button_login1));
                             owner_txt.setTextColor(getResources().getColor(R.color.white));
                             authorized_txt.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                             authorized_txt.setTextColor(getResources().getColor(R.color.black));
@@ -2438,7 +2530,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                         } else {
                             addAqarezObject.setAdvertiser_character("authorized");
-                            authorized_txt.setBackground(getResources().getDrawable(R.drawable.button_login));
+                            authorized_txt.setBackground(getResources().getDrawable(R.drawable.button_login1));
                             authorized_txt.setTextColor(getResources().getColor(R.color.white));
                             owner_txt.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                             owner_txt.setTextColor(getResources().getColor(R.color.black));
@@ -2573,7 +2665,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
 
         AsyncHttpClient client = new AsyncHttpClient();
-        String BASE_URL = WebService.addestate;
+        String BASE_URL = WebService.update + "/" + id_or_aq + "/estate";
         WebService.loading(EditAqarzActivity.this, true);
 
 

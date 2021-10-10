@@ -151,7 +151,7 @@ public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_
 
         if (alldata.get(position).getUser() != null) {
 
-            holder.aqarez.setText(alldata.get(position).getUser().getCount_offer() + "");
+            holder.aqarez.setText(alldata.get(position).getUser().getCount_estate() + "");
             holder.real_order.setText(alldata.get(position).getUser().getCount_request() + "");
             holder.market.setText(alldata.get(position).getUser().getCount_request() + "");
             holder.calling.setText(alldata.get(position).getUser().getCount_visit() + "");

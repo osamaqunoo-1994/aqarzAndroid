@@ -125,6 +125,7 @@ dependencies {
     implementation 'com.github.PierfrancescoSoffritti:AndroidYouTubePlayer:7.0.1'
 //    implementation 'com.dision.android:rtlviewpager:1.0.3'
     implementation 'com.booking:rtlviewpager:1.0.1'
+    implementation 'io.github.ivanespitiac:imageslider:1.0.3'
 
 }
 

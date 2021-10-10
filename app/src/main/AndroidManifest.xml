@@ -61,6 +61,10 @@
             android:label="@string/title_activity_detaisl_aqarz"
             android:theme="@style/AppTheme.NoActionBar1" />
         <activity
+            android:name=".NewAqarz.DetaislAqarzActivityFromList"
+            android:label="@string/title_activity_detaisl_aqarz"
+            android:theme="@style/AppTheme.NoActionBar1" />
+        <activity
             android:name=".NewAqarz.MyOrderRequstActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

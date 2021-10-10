@@ -3,37 +3,9 @@ package sa.aqarz.NewAqarz;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
-import com.android.volley.NetworkResponse;
-import com.android.volley.VolleyError;
-import com.bumptech.glide.Glide;
-import com.github.vivchar.viewpagerindicator.ViewPagerIndicator;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.willy.ratingbar.ScaleRatingBar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-
 import android.os.Handler;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -41,14 +13,30 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
+import com.github.vivchar.viewpagerindicator.ViewPagerIndicator;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.willy.ratingbar.ScaleRatingBar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -63,12 +51,9 @@ import java.util.Locale;
 import de.hdodenhof.circleimageview.CircleImageView;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.ChatRoomActivity;
-import sa.aqarz.Activity.DetailsActivity_aqarz;
 import sa.aqarz.Activity.ReportAqarezActivity;
-import sa.aqarz.Activity.check_login;
 import sa.aqarz.Activity.profile.OtherProfileActivity;
 import sa.aqarz.Adapter.RecyclerView_All_Comfort_in_details;
-import sa.aqarz.Adapter.RecyclerView_coments;
 import sa.aqarz.Adapter.RecyclerView_samilar;
 import sa.aqarz.Adapter.home_viewPager_Adapter;
 import sa.aqarz.Modules.HomeModules_aqares;
@@ -80,7 +65,7 @@ import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
 
-public class DetaislAqarzActivity extends AppCompatActivity {
+public class DetaislAqarzActivityFromList extends AppCompatActivity {
     ViewPagerIndicator view_pager_indicator;
     ViewPager home_viewPager;
     IResult mResultCallback;
@@ -147,9 +132,11 @@ public class DetaislAqarzActivity extends AppCompatActivity {
     TextView number_lifts_add;
 
     LinearLayout swipe;
+    home_viewPager_Adapter home_viewPager_adapter;
 
-
+    int postion = 0;
     Handler handler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().getDecorView().setSystemUiVisibility(
@@ -274,16 +261,25 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
         all_comfort.setLayoutManager(new GridLayoutManager(this, 2));
 
+
+        action_click();
+
+
         try {
+
+            String postionz = getIntent().getStringExtra("postion");
+
+            postion = Integer.valueOf(postionz + "");
+
 
             id_or_aq = getIntent().getStringExtra("id_aqarz");
 
             if (id_or_aq != null | !id_or_aq.equals("null")) {
                 System.out.println("0000000000000");
                 init_volley();
-                WebService.loading(DetaislAqarzActivity.this, true);
+                WebService.loading(DetaislAqarzActivityFromList.this, true);
 
-                VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivity.this);
+                VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivityFromList.this);
                 mVolleyService.getDataVolley("single_estat", WebService.single_estat + id_or_aq + "/estate");
 
             } else {
@@ -303,9 +299,9 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
 
                 init_volley();
-                WebService.loading(DetaislAqarzActivity.this, true);
+                WebService.loading(DetaislAqarzActivityFromList.this, true);
 
-                VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivity.this);
+                VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivityFromList.this);
                 mVolleyService.getDataVolley("single_estat", WebService.single_estat + number + "/estate");
 
             }
@@ -330,9 +326,9 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
 
                 init_volley();
-                WebService.loading(DetaislAqarzActivity.this, true);
+                WebService.loading(DetaislAqarzActivityFromList.this, true);
 
-                VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivity.this);
+                VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivityFromList.this);
                 mVolleyService.getDataVolley("single_estat", WebService.single_estat + number + "/estate");
 
 
@@ -343,7 +339,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
         rate_.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent inte = new Intent(DetaislAqarzActivity.this, RateDetailsActivity.class);
+                Intent inte = new Intent(DetaislAqarzActivityFromList.this, RateDetailsActivity.class);
                 inte.putExtra("id_or_aq", id_or_aq);
                 inte.putExtra("is_rate", homeModules_aqares.getIs_rate() + "");
                 startActivity(inte);
@@ -356,7 +352,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                Intent intent = new Intent(DetaislAqarzActivity.this, ReportAqarezActivity.class);
+                Intent intent = new Intent(DetaislAqarzActivityFromList.this, ReportAqarezActivity.class);
                 intent.putExtra("id", id_or_aq + "");
                 startActivity(intent);
 
@@ -364,20 +360,61 @@ public class DetaislAqarzActivity extends AppCompatActivity {
             }
         });
 
-//        swipe.setOnTouchListener(new OnSwipeTouchListener(DetaislAqarzActivity.this){
-//            public void onSwipeTop() {
-//                Toast.makeText(DetaislAqarzActivity.this, "top", Toast.LENGTH_SHORT).show();
-//            }
-//            public void onSwipeRight() {
-//                Toast.makeText(DetaislAqarzActivity.this, "right", Toast.LENGTH_SHORT).show();
-//            }
-//            public void onSwipeLeft() {
-//                Toast.makeText(DetaislAqarzActivity.this, "left", Toast.LENGTH_SHORT).show();
-//            }
-//            public void onSwipeBottom() {
-//                Toast.makeText(DetaislAqarzActivity.this, "bottom", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        swipe.setOnTouchListener(new OnSwipeTouchListener(DetaislAqarzActivityFromList.this) {
+            public void onSwipeTop() {
+//                Toast.makeText(DetaislAqarzActivityFromList.this, "top", Toast.LENGTH_SHORT).show();
+            }
+
+            public void onSwipeRight() {
+
+
+                System.out.println("postion" + postion);
+                System.out.println("XXXpostion" + ListAqarzActivity.homeModules_aqares_list.size());
+
+                postion = postion + 1;
+
+                if (postion < ListAqarzActivity.homeModules_aqares_list.size() - 1) {
+
+                    if (handler != null) {
+                        handler.removeCallbacksAndMessages(null);
+                    }
+                    System.out.println("0000000000000");
+                    WebService.loading(DetaislAqarzActivityFromList.this, true);
+                    init_volley();
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivityFromList.this);
+                    mVolleyService.getDataVolley("single_estat", WebService.single_estat + ListAqarzActivity.homeModules_aqares_list.get(postion).getId() + "/estate");
+                }
+
+
+//                Toast.makeText(DetaislAqarzActivityFromList.this, "right", Toast.LENGTH_SHORT).show();
+            }
+
+            public void onSwipeLeft() {
+//                Toast.makeText(DetaislAqarzActivityFromList.this, "left", Toast.LENGTH_SHORT).show();
+                System.out.println("postion" + postion);
+                System.out.println("XXXpostion" + ListAqarzActivity.homeModules_aqares_list.size());
+
+                postion = postion - 1;
+
+                if (postion > 0) {
+                    if (handler != null) {
+                        handler.removeCallbacksAndMessages(null);
+                    }
+                    System.out.println("0000000000000");
+                    WebService.loading(DetaislAqarzActivityFromList.this, true);
+                    init_volley();
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivityFromList.this);
+                    mVolleyService.getDataVolley("single_estat", WebService.single_estat + ListAqarzActivity.homeModules_aqares_list.get(postion).getId() + "/estate");
+                }
+
+            }
+
+            public void onSwipeBottom() {
+//                Toast.makeText(DetaislAqarzActivityFromList.this, "bottom", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -412,13 +449,13 @@ public class DetaislAqarzActivity extends AppCompatActivity {
             if (Settings.checkLogin()) {
 
                 init_volley();
-                WebService.loading(DetaislAqarzActivity.this, true);
+                WebService.loading(DetaislAqarzActivityFromList.this, true);
 
-                VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivity.this);
+                VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivityFromList.this);
                 mVolleyService.getDataVolley("hide", WebService.hide + "/" + id_or_aq + "/estate");
 
             } else {
-                startActivity(new Intent(DetaislAqarzActivity.this, LoginActivity.class));
+                startActivity(new Intent(DetaislAqarzActivityFromList.this, LoginActivity.class));
 
             }
             return true;
@@ -426,9 +463,9 @@ public class DetaislAqarzActivity extends AppCompatActivity {
         if (id == R.id.love) {
             if (Settings.checkLogin()) {
                 init_volley();
-                WebService.loading(DetaislAqarzActivity.this, true);
+                WebService.loading(DetaislAqarzActivityFromList.this, true);
 
-                VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivity.this);
+                VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivityFromList.this);
                 try {
                     if (homeModules_aqares.getIn_fav().equals("1")) {
 //                        favorit.setImageDrawable(getDrawable(R.drawable.ic_like));
@@ -452,7 +489,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
 
             } else {
-                startActivity(new Intent(DetaislAqarzActivity.this, LoginActivity.class));
+                startActivity(new Intent(DetaislAqarzActivityFromList.this, LoginActivity.class));
 
 //                    new AlertDialog.Builder(DetailsActivity_aqarz.this)
 //                            .setMessage(getResources().getString(R.string.you_are_not_login_please_login))
@@ -471,12 +508,135 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
 
             }
+
             return true;
         }
 
         return super.
 
                 onOptionsItemSelected(item);
+
+    }
+
+
+    public void action_click() {
+
+
+        Image_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(DetaislAqarzActivityFromList.this, OtherProfileActivity.class);
+                intent.putExtra("id", id_user + "");
+                startActivity(intent);
+//                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
+        name_owner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(DetaislAqarzActivityFromList.this, OtherProfileActivity.class);
+                intent.putExtra("id", id_user + "");
+                startActivity(intent);
+//                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!Settings.checkLogin()) {
+
+
+                    startActivity(new Intent(DetaislAqarzActivityFromList.this, LoginActivity.class));
+
+                } else {
+                    Intent intent = new Intent(DetaislAqarzActivityFromList.this, ChatRoomActivity.class);
+                    intent.putExtra("user_id", id_user + "");
+                    intent.putExtra("parent_id", "-1");
+                    intent.putExtra("nameUser", name_user + "");
+                    intent.putExtra("imageUser", "");
+                    startActivity(intent);
+                }
+            }
+        });
+        request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(DetaislAqarzActivityFromList.this, AddRentalInstallmentActivity.class);
+
+                intent.putExtra("rent_price", homeModules_aqares.getRent_installment_price());
+
+                startActivity(intent);
+            }
+        });
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try {
+                    String phone = "0" + homeModules_aqares.getOwnerMobile();
+                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                    startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        whatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try {
+                    String number = "0" + homeModules_aqares.getOwnerMobile();
+
+                    Uri uri = Uri.parse("smsto:" + number);
+                    Intent i = new Intent(Intent.ACTION_SENDTO, uri);
+                    i.setPackage("com.whatsapp");
+                    startActivity(Intent.createChooser(i, ""));
+                } catch (Exception e) {
+                    Toast.makeText(DetaislAqarzActivityFromList.this, "WhatsApp not Installed", Toast.LENGTH_SHORT)
+                            .show();
+                }
+
+            }
+        });
+
+        map_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try {
+
+                    // Creates an Intent that will load a map of San Francisco
+                    Uri gmmIntentUri = Uri.parse("geo:" + homeModules_aqares.getLat() + "," + homeModules_aqares.getLan());
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");
+                    startActivity(mapIntent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Uri gmmIntentUri = Uri.parse("geo:" + homeModules_aqares.getLat() + "," + homeModules_aqares.getLan());
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                }
+//                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+            }
+        });
+
 
     }
 
@@ -525,21 +685,21 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
                             }
                             LinearLayoutManager layoutManager1
-                                    = new LinearLayoutManager(DetaislAqarzActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                                    = new LinearLayoutManager(DetaislAqarzActivityFromList.this, LinearLayoutManager.HORIZONTAL, false);
                             rec_list_all.setLayoutManager(layoutManager1);
 
 
-                            rec_list_all.setAdapter(new RecyclerView_samilar(DetaislAqarzActivity.this, homeModules_aqares_list));
+                            rec_list_all.setAdapter(new RecyclerView_samilar(DetaislAqarzActivityFromList.this, homeModules_aqares_list));
 
 
                         } else if (requestType.equals("favorite")) {
 
-                            WebService.Make_Toast_color(DetaislAqarzActivity.this, message, "error");
+                            WebService.Make_Toast_color(DetaislAqarzActivityFromList.this, message, "error");
 
 
                         } else if (requestType.equals("hide")) {
 
-                            WebService.Make_Toast_color(DetaislAqarzActivity.this, message, "error");
+                            WebService.Make_Toast_color(DetaislAqarzActivityFromList.this, message, "error");
 
 
                         } else {
@@ -605,7 +765,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
                                         name_emp.setText(homeModules_aqares.getUser().getName() + "");
 
-                                        Glide.with(DetaislAqarzActivity.this).load(homeModules_aqares.getUser().getEmp().getLogo() + "").into(Image_user);
+                                        Glide.with(DetaislAqarzActivityFromList.this).load(homeModules_aqares.getUser().getEmp().getLogo() + "").into(Image_user);
                                         id_user = homeModules_aqares.getUser().getId() + "";
                                         name_user = homeModules_aqares.getUser().getName() + "";
                                     } else {
@@ -614,7 +774,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                                         name_emp1.setText(homeModules_aqares.getUser().getOnwer_name() + "");
 
                                         name_owner.setText(homeModules_aqares.getUser().getName() + "");
-                                        Glide.with(DetaislAqarzActivity.this).load(homeModules_aqares.getUser().getLogo() + "").into(Image_user);
+                                        Glide.with(DetaislAqarzActivityFromList.this).load(homeModules_aqares.getUser().getLogo() + "").into(Image_user);
                                         id_user = homeModules_aqares.getUser().getId() + "";
                                         name_user = homeModules_aqares.getUser().getName() + "";
 
@@ -623,7 +783,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                                     name_owner.setText(homeModules_aqares.getUser().getName() + "");
                                     name_emp1.setText(homeModules_aqares.getUser().getOnwer_name() + "");
 
-                                    Glide.with(DetaislAqarzActivity.this).load(homeModules_aqares.getUser().getLogo() + "").into(Image_user);
+                                    Glide.with(DetaislAqarzActivityFromList.this).load(homeModules_aqares.getUser().getLogo() + "").into(Image_user);
 
                                     emp_lay_1.setVisibility(View.GONE);
                                     emp_lay_2.setVisibility(View.VISIBLE);
@@ -643,47 +803,6 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
                             }
 
-
-                            Image_user.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-
-                                    Intent intent = new Intent(DetaislAqarzActivity.this, OtherProfileActivity.class);
-                                    intent.putExtra("id", id_user + "");
-                                    startActivity(intent);
-//                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-                                }
-                            });
-                            name_owner.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-
-                                    Intent intent = new Intent(DetaislAqarzActivity.this, OtherProfileActivity.class);
-                                    intent.putExtra("id", id_user + "");
-                                    startActivity(intent);
-//                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-                                }
-                            });
-                            chat.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    if (!Settings.checkLogin()) {
-
-
-                                        startActivity(new Intent(DetaislAqarzActivity.this, LoginActivity.class));
-
-                                    } else {
-                                        Intent intent = new Intent(DetaislAqarzActivity.this, ChatRoomActivity.class);
-                                        intent.putExtra("user_id", id_user + "");
-                                        intent.putExtra("parent_id", "-1");
-                                        intent.putExtra("nameUser", name_user + "");
-                                        intent.putExtra("imageUser", "");
-                                        startActivity(intent);
-                                    }
-                                }
-                            });
 
                             type_.setText(homeModules_aqares.getOperationTypeName() + "");
 //
@@ -714,17 +833,6 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                                 }
 
                             }
-                            request.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    Intent intent = new Intent(DetaislAqarzActivity.this, AddRentalInstallmentActivity.class);
-
-                                    intent.putExtra("rent_price", homeModules_aqares.getRent_installment_price());
-
-                                    startActivity(intent);
-                                }
-                            });
 
 
 //                            note.setText(homeModules_aqares.getNote() + "");
@@ -817,101 +925,9 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                                 age.setText("-");
 
                             }
-                            WebService.loading(DetaislAqarzActivity.this, false);
+                            WebService.loading(DetaislAqarzActivityFromList.this, false);
 
-//                            if (homeModules_aqares.getInterface() != null) {
 //
-//                                if (!homeModules_aqares.getInterface().equals("null")) {
-//                                    view_.setText(homeModules_aqares.getInterface() + "");
-//
-//                                } else {
-//                                    view_.setText("-");
-//
-//                                }
-//                            } else {
-//                                view_.setText("-");
-//
-//                            }
-//                            if (homeModules_aqares.getMeterPrice() != null) {
-//
-//                                if (!homeModules_aqares.getMeterPrice().equals("null")) {
-//                                    metter_price.setText(homeModules_aqares.getMeterPrice() + "");
-//
-//                                } else {
-//                                    metter_price.setText("-");
-//
-//                                }
-//                            } else {
-//                                metter_price.setText("-");
-//
-//                            }
-//                            try {
-//                                if (homeModules_aqares.getUser() != null) {
-//                                    rate_user.setRating(Float.valueOf(homeModules_aqares.getUser().getRate()));
-//
-//                                }
-//                            } catch (Exception e) {
-//
-//                            }
-//
-//                            if (homeModules_aqares.getRate() != null) {
-//
-//
-//                                if (homeModules_aqares.getRate().equals("0")) {
-//                                    rate_aqarez.setVisibility(View.VISIBLE);
-//
-//                                } else {
-//                                    rate_aqarez.setVisibility(View.GONE);
-//
-//                                }
-//
-//
-//                            } else {
-//                                rate_aqarez.setVisibility(View.VISIBLE);
-//
-//                            }
-//                            if (homeModules_aqares.getRate() != null) {
-//
-//
-//                                if (homeModules_aqares.getRate().equals("0")) {
-//                                    rate_aqarez.setVisibility(View.VISIBLE);
-//
-//                                } else {
-//                                    rate_aqarez.setVisibility(View.GONE);
-//
-//                                }
-//
-//
-//                            } else {
-//                                rate_aqarez.setVisibility(View.VISIBLE);
-//
-//                            }
-//
-//                            try {
-//                                list_coments.setAdapter(new RecyclerView_coments(DetailsActivity_aqarz.this, homeModules_aqares.getRates()));
-//                            } catch (Exception e) {
-//                                e.printStackTrace();
-//                            }
-//                            try {
-//                                simpleRatingBar.setRating(Float.valueOf(homeModules_aqares.getRate()));
-//                            } catch (Exception e) {
-//                                e.printStackTrace();
-//                            }
-
-
-                            map.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    Uri gmmIntentUri = Uri.parse("geo:" + homeModules_aqares.getLat() + "," + homeModules_aqares.getLan());
-                                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                                    mapIntent.setPackage("com.google.android.apps.maps");
-                                    if (mapIntent.resolveActivity(getPackageManager()) != null) {
-                                        startActivity(mapIntent);
-                                    }
-//                                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-                                }
-                            });
 
                             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                             try {
@@ -941,56 +957,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                             ads_number.setText(homeModules_aqares.getId() + "");
                             views_nummm.setText(homeModules_aqares.getSeen_count() + "");
 //
-                            call.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
 
-                                    try {
-                                        String phone = "0" + homeModules_aqares.getOwnerMobile();
-                                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
-                                        startActivity(intent);
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-
-                                }
-                            });
-                            whatsapp.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    try {
-                                        String number = "0" + homeModules_aqares.getOwnerMobile();
-
-                                        Uri uri = Uri.parse("smsto:" + number);
-                                        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
-                                        i.setPackage("com.whatsapp");
-                                        startActivity(Intent.createChooser(i, ""));
-                                    } catch (Exception e) {
-                                        Toast.makeText(DetaislAqarzActivity.this, "WhatsApp not Installed", Toast.LENGTH_SHORT)
-                                                .show();
-                                    }
-
-                                }
-                            });
-
-                            map_location.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    try {
-
-                                        // Creates an Intent that will load a map of San Francisco
-                                        Uri gmmIntentUri = Uri.parse("geo:" + homeModules_aqares.getLat() + "," + homeModules_aqares.getLan());
-                                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                                        mapIntent.setPackage("com.google.android.apps.maps");
-                                        startActivity(mapIntent);
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-
-                                }
-                            });
 
 //
 //                            } catch (Exception e) {
@@ -1010,35 +977,64 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                             }
 
 
+//                            if (home_viewPager_adapter != null) {
+//                                home_viewPager_adapter.Refa();
+//                            }
 
+//                            if(home_viewPager_adapter!=null){
+//                                home_viewPager_adapter.Refa();
+//
+//                            }
                             try {
                                 if (items_ViewPager.size() > 1) {
                                     oi = 0;
 
-                                     handler = new Handler();
+//                                    Handler handler = new Handler();
+//
+//                                    Runnable runnable = new Runnable() {
+//                                        public void run() {
+//
+//
+//
+////
+////                                            if (oi == items_ViewPager.size()) {
+////                                                oi = 0;
+////                                            }
+////
+////                                            home_viewPager.setCurrentItem(oi);
+////                                            oi++;
+//                                            handler.postDelayed(this, 1500);
+//                                        }
+//                                    };
+//                                    handler.postDelayed(runnable, 3000);
+//
+
+
+                                    handler = new Handler();
                                     handler.postDelayed(new Runnable() {
                                         public void run() {
                                             // Actions to do after 10 seconds
-                                            home_viewPager.setAdapter(new home_viewPager_Adapter(DetaislAqarzActivity.this, items_ViewPager));
+                                            home_viewPager_adapter = new home_viewPager_Adapter(DetaislAqarzActivityFromList.this, items_ViewPager);
+                                            home_viewPager.setAdapter(home_viewPager_adapter);
                                             view_pager_indicator.setupWithViewPager(home_viewPager);
-
+//
 
                                         }
-                                    }, 1000);
+                                    }, 1500);
                                 }
 
                             } catch (Exception e) {
 
                             }
-
-
-                            RecyclerView_All_Comfort_in_details recyclerView_all_comfort_in_fragment = new RecyclerView_All_Comfort_in_details(DetaislAqarzActivity.this, homeModules_aqares.getComforts());//
+//
+//
+                            RecyclerView_All_Comfort_in_details recyclerView_all_comfort_in_fragment = new RecyclerView_All_Comfort_in_details(DetaislAqarzActivityFromList.this, homeModules_aqares.getComforts());//
                             all_comfort.setAdapter(recyclerView_all_comfort_in_fragment);
 
 
-                            init_volley();
-                            VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivity.this);
-                            mVolleyService.getDataVolley("smilier", WebService.smilier + "/" + id_or_aq + "/estate");//&request_type=pay
+//                            init_volley();
+//                            VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivityFromList.this);
+//                            mVolleyService.getDataVolley("smilier", WebService.smilier + "/" + id_or_aq + "/estate");//&request_type=pay
 
 
                         }
@@ -1047,10 +1043,10 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                     } else {
                         String message = response.getString("message");
 
-                        WebService.Make_Toast_color(DetaislAqarzActivity.this, message, "error");
+                        WebService.Make_Toast_color(DetaislAqarzActivityFromList.this, message, "error");
                     }
 
-                    WebService.loading(DetaislAqarzActivity.this, false);
+                    WebService.loading(DetaislAqarzActivityFromList.this, false);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -1063,7 +1059,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
             public void notifyError(String requestType, VolleyError error) {
                 Log.d("TAG", "Volley requester " + requestType);
 
-                WebService.loading(DetaislAqarzActivity.this, false);
+                WebService.loading(DetaislAqarzActivityFromList.this, false);
 
                 try {
 
@@ -1075,7 +1071,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                     String message = jsonObject.getString("message");
 
 
-                    WebService.Make_Toast_color(DetaislAqarzActivity.this, message, "error");
+                    WebService.Make_Toast_color(DetaislAqarzActivityFromList.this, message, "error");
 
                     Log.e("error response", response_data);
 
@@ -1083,16 +1079,16 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
                 }
 
-                WebService.loading(DetaislAqarzActivity.this, false);
+                WebService.loading(DetaislAqarzActivityFromList.this, false);
 
 
             }
 
             @Override
             public void notify_Async_Error(String requestType, String error) {
-                WebService.loading(DetaislAqarzActivity.this, false);
+                WebService.loading(DetaislAqarzActivityFromList.this, false);
 
-                WebService.Make_Toast_color(DetaislAqarzActivity.this, error, "error");
+                WebService.Make_Toast_color(DetaislAqarzActivityFromList.this, error, "error");
 
 
             }

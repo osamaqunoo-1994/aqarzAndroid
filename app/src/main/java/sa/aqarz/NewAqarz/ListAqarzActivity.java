@@ -554,7 +554,7 @@ public class ListAqarzActivity extends AppCompatActivity {
         String number_aqareza = "";
 
         if (!number_aqarez.getText().toString().equals("")) {
-            number_aqareza = "&number_aqarez=" + number_aqarez.getText().toString();
+            number_aqareza = "&search=" + number_aqarez.getText().toString();
         }
 
         String elevators_number = "";
@@ -596,7 +596,7 @@ public class ListAqarzActivity extends AppCompatActivity {
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + fil_by + state_id + kitchen_number + is_rent_installment + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
+        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + fil_by +number_aqareza+ state_id + kitchen_number + is_rent_installment + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
 
 //        url_list = WebService.home_estate_custom_list + "?" + type_filtter_;
         mVolleyService.getAsync("home_estate_custom_list_more_1", url_list);

@@ -48,6 +48,10 @@ public class home_viewPager_Adapter extends PagerAdapter {
         inflater = LayoutInflater.from(context);
     }
 
+    public void Refa() {
+        notifyDataSetChanged();
+    }
+
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
@@ -80,7 +84,8 @@ public class home_viewPager_Adapter extends PagerAdapter {
             });
             play_video.setVisibility(View.GONE);
 
-        } else {
+        }
+        else {
 
             System.out.println("$$$$$$$$"+IMAGES.get(position).getImage_url());
 
@@ -97,14 +102,14 @@ public class home_viewPager_Adapter extends PagerAdapter {
             });
 
 //            long thumb = view.getLayoutPosition()*1000;
-            try {
-                Bitmap bitmap = retriveVideoFrameFromVideo(IMAGES.get(position).getImage_url() + "");
-                if (bitmap != null) {
-                    image.setImageBitmap(bitmap);
-                }
-            } catch (Throwable throwable) {
-                throwable.printStackTrace();
-            }
+//            try {
+//                Bitmap bitmap = retriveVideoFrameFromVideo(IMAGES.get(position).getImage_url() + "");
+//                if (bitmap != null) {
+//                    image.setImageBitmap(bitmap);
+//                }
+//            } catch (Throwable throwable) {
+//                throwable.printStackTrace();
+//            }
         }
 
 

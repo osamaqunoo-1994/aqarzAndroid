@@ -106,7 +106,7 @@
                         android:id="@+id/sell"
                         android:layout_width="90dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/button_login"
+                        android:background="@drawable/button_login1"
                         android:fontFamily="@font/muli_bold"
                         android:gravity="center"
                         android:paddingTop="3dp"
@@ -151,6 +151,204 @@
                         android:textSize="13dp"
 
 
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/rental_period_lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/muli_bold"
+                        android:text="@string/rental_period"
+                        android:textColor="#424446"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/f1"
+                        android:layout_width="90dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/button_login1"
+                        android:fontFamily="@font/muli_bold"
+                        android:gravity="center"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+
+                        android:text="@string/daily"
+                        android:textColor="@color/white"
+                        android:textSize="13dp"
+
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/f2"
+                        android:layout_width="90dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/back_search_homecc"
+                        android:fontFamily="@font/muli_bold"
+                        android:gravity="center"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+
+                        android:text="@string/Monthly"
+                        android:textColor="#AAABB3"
+                        android:textSize="13dp"
+
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/f3"
+                        android:layout_width="90dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/back_search_homecc"
+                        android:fontFamily="@font/muli_bold"
+                        android:gravity="center"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:text="@string/yearly"
+                        android:textColor="#AAABB3"
+                        android:textSize="13dp"
+
+
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/rent_qustion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
+                    android:paddingBottom="5dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/propertiesyes"
+                        android:textColor="#424446"
+                        android:textSize="13dp" />
+
+
+                    <LinearLayout
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:background="@drawable/back_type_work"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/yes"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
+                            android:text="@string/yes"
+                            android:textSize="11dp" />
+
+
+                        <TextView
+                            android:id="@+id/no"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/button_login"
+                            android:gravity="center"
+                            android:paddingLeft="8dp"
+
+                            android:paddingRight="8dp"
+                            android:text="@string/no"
+                            android:textColor="@color/white"
+                            android:textSize="13dp" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/filed_rent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:paddingBottom="5dp"
+                    android:visibility="gone">
+
+
+                    <EditText
+                        android:id="@+id/price_int"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/back_edittext_add_aqarz"
+                        android:gravity="center_vertical"
+                        android:hint="@string/rent_price"
+
+                        android:inputType="number"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/filed_rent1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:paddingBottom="5dp"
+                    android:visibility="gone">
+
+
+                    <EditText
+                        android:id="@+id/price_int_result"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/back_edittext_add_aqarz"
+                        android:gravity="center_vertical"
+                        android:hint="@string/hintsall"
+
+                        android:inputType="number"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
 
 
@@ -227,6 +425,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
+                        android:visibility="gone"
                         android:paddingBottom="5dp">
 
 
@@ -254,6 +453,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
+                        android:visibility="gone"
+
                         android:paddingBottom="5dp">
 
 
@@ -281,6 +482,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
+                        android:visibility="gone"
+
                         android:paddingBottom="5dp">
 
 
@@ -308,6 +511,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
+                        android:visibility="gone"
+
                         android:paddingBottom="5dp">
 
 
@@ -451,7 +656,7 @@
                             android:id="@+id/residential"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/button_login"
+                            android:background="@drawable/button_login1"
                             android:fontFamily="@font/muli_bold"
                             android:gravity="center"
                             android:paddingTop="3dp"
@@ -1425,7 +1630,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/button_login"
+                                android:background="@drawable/button_login1"
                                 android:gravity="center"
                                 android:paddingLeft="8dp"
 
@@ -1483,7 +1688,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/button_login"
+                                android:background="@drawable/button_login1"
                                 android:gravity="center"
                                 android:paddingLeft="8dp"
 
@@ -1541,7 +1746,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/button_login"
+                                android:background="@drawable/button_login1"
                                 android:gravity="center"
                                 android:paddingLeft="8dp"
 
@@ -2179,7 +2384,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:background="@drawable/button_login"
+                    android:background="@drawable/button_login1"
                     android:fontFamily="@font/muli_bold"
                     android:text="@string/Approval_request_add"
                     android:textColor="@color/white"
