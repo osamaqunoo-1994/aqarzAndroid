@@ -270,6 +270,7 @@ public class EditAqarzActivity extends AppCompatActivity {
     TextView yes, no;
 
     String is_rent_installment = "0";
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -301,6 +302,7 @@ public class EditAqarzActivity extends AppCompatActivity {
         nibors = findViewById(R.id.nibors);
         street = findViewById(R.id.street);
         all_details = findViewById(R.id.all_details);
+        back = findViewById(R.id.back);
 
 
         yes = findViewById(R.id.yes);
@@ -709,7 +711,12 @@ public class EditAqarzActivity extends AppCompatActivity {
         opration_RecyclerView.setAdapter(recyclerView_all_opration);
 
         ///------------------------------------------------------------------------------------------------------
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
@@ -888,8 +895,6 @@ public class EditAqarzActivity extends AppCompatActivity {
     }
 
     public void selected_opration() {
-
-
 
 
         if (type_opration_selected.equals("1")) {
@@ -2527,7 +2532,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                         Gson gson = new Gson();
 
-                         homeModules_aqares = gson.fromJson(mJson, HomeModules_aqares.class);
+                        homeModules_aqares = gson.fromJson(mJson, HomeModules_aqares.class);
 
 
 //                        state.setText(homeModules_aqares.get);
@@ -2629,7 +2634,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                         }
 
-                        type_opration_selected=homeModules_aqares.getOperationTypeId()+"";
+                        type_opration_selected = homeModules_aqares.getOperationTypeId() + "";
 
                         selected_opration();
 

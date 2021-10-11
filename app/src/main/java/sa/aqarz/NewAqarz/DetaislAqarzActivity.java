@@ -150,6 +150,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
 
     Handler handler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().getDecorView().setSystemUiVisibility(
@@ -237,6 +238,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
         price = findViewById(R.id.price);
         name_emp = findViewById(R.id.name_emp);
         name_emp1 = findViewById(R.id.name_emp1);
+        emp_lay_2 = findViewById(R.id.emp_lay_2);
         estate_type_name = findViewById(R.id.estate_type_name);
         request = findViewById(R.id.request);
         is_rent = findViewById(R.id.is_rent);
@@ -620,6 +622,8 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
                                     }
                                 } else {
+
+                                    System.out.println("&&&&&&&&&&&&&&&&&");
                                     name_owner.setText(homeModules_aqares.getUser().getName() + "");
                                     name_emp1.setText(homeModules_aqares.getUser().getOnwer_name() + "");
 
@@ -696,14 +700,18 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
                             }
 
-                            if (homeModules_aqares.getIs_rent_installment().equals("1")) {
-                                is_rent.setVisibility(View.VISIBLE);
+                            if (homeModules_aqares.getIs_rent_installment() != null) {
+                                if (homeModules_aqares.getIs_rent_installment().equals("1")) {
+                                    is_rent.setVisibility(View.VISIBLE);
 
+                                } else {
+                                    is_rent.setVisibility(View.GONE);
+
+                                }
                             } else {
                                 is_rent.setVisibility(View.GONE);
 
                             }
-
                             if (homeModules_aqares.getRent_installment_price() != null) {
                                 if (!homeModules_aqares.getRent_installment_price().equals("null")) {
 
@@ -735,10 +743,22 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                             dining_room.setText(homeModules_aqares.getDiningRoomsNumber() + "");
                             area.setText(homeModules_aqares.getTotalArea() + "");
                             room.setText(homeModules_aqares.getBedroom_number() + "");
-                            Number_parking_add.setText(homeModules_aqares.getParking_spaces_numbers() + "");
                             unit_number.setText(homeModules_aqares.getUnit_number() + "");
-                            number_lifts_add.setText(homeModules_aqares.getElevators_number() + "");
 
+                            if (homeModules_aqares.getElevators_number() != null) {
+                                if (!homeModules_aqares.getElevators_number().equals("null")) {
+                                    number_lifts_add.setText(homeModules_aqares.getElevators_number() + "");
+
+                                }
+
+                            }
+                            if (homeModules_aqares.getParking_spaces_numbers() != null) {
+                                if (!homeModules_aqares.getParking_spaces_numbers().equals("null")) {
+                                    Number_parking_add.setText(homeModules_aqares.getParking_spaces_numbers() + "");
+
+                                }
+
+                            }
 
                             if (homeModules_aqares.getEstate_use_type() != null) {
                                 if (!homeModules_aqares.getEstate_use_type().equals("null")) {
@@ -1010,12 +1030,11 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                             }
 
 
-
                             try {
                                 if (items_ViewPager.size() > 1) {
                                     oi = 0;
 
-                                     handler = new Handler();
+                                    handler = new Handler();
                                     handler.postDelayed(new Runnable() {
                                         public void run() {
                                             // Actions to do after 10 seconds

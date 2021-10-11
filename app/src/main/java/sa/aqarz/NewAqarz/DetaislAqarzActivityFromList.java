@@ -3,6 +3,8 @@ package sa.aqarz.NewAqarz;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -137,6 +139,7 @@ public class DetaislAqarzActivityFromList extends AppCompatActivity {
     int postion = 0;
     Handler handler;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().getDecorView().setSystemUiVisibility(
@@ -222,6 +225,7 @@ public class DetaislAqarzActivityFromList extends AppCompatActivity {
         home_viewPager = findViewById(R.id.home_viewPager);
         view_pager_indicator = findViewById(R.id.view_pager_indicator);
         price = findViewById(R.id.price);
+        emp_lay_2 = findViewById(R.id.emp_lay_2);
         name_emp = findViewById(R.id.name_emp);
         name_emp1 = findViewById(R.id.name_emp1);
         estate_type_name = findViewById(R.id.estate_type_name);
@@ -422,6 +426,8 @@ public class DetaislAqarzActivityFromList extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+
         return true;
     }
 
@@ -843,10 +849,26 @@ public class DetaislAqarzActivityFromList extends AppCompatActivity {
                             dining_room.setText(homeModules_aqares.getDiningRoomsNumber() + "");
                             area.setText(homeModules_aqares.getTotalArea() + "");
                             room.setText(homeModules_aqares.getBedroom_number() + "");
-                            Number_parking_add.setText(homeModules_aqares.getParking_spaces_numbers() + "");
-                            unit_number.setText(homeModules_aqares.getUnit_number() + "");
-                            number_lifts_add.setText(homeModules_aqares.getElevators_number() + "");
 
+
+
+                            unit_number.setText(homeModules_aqares.getUnit_number() + "");
+
+
+                            if (homeModules_aqares.getElevators_number() != null) {
+                                if (!homeModules_aqares.getElevators_number().equals("null")) {
+                                    number_lifts_add.setText(homeModules_aqares.getElevators_number() + "");
+
+                                }
+
+                            }
+                            if (homeModules_aqares.getParking_spaces_numbers() != null) {
+                                if (!homeModules_aqares.getParking_spaces_numbers().equals("null")) {
+                                    Number_parking_add.setText(homeModules_aqares.getParking_spaces_numbers() + "");
+
+                                }
+
+                            }
 
                             if (homeModules_aqares.getEstate_use_type() != null) {
                                 if (!homeModules_aqares.getEstate_use_type().equals("null")) {

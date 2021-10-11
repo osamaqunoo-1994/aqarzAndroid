@@ -40,6 +40,7 @@ import sa.aqarz.Adapter.RecyclerView_MyState_selected;
 import sa.aqarz.Adapter.RecyclerView_ordersx;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_MyEstate;
 import sa.aqarz.Modules.HomeModules_aqares;
+import sa.aqarz.NewAqarz.AqqAqarz.AddAqarzStepsActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -128,7 +129,7 @@ public class AllOfferOrderActivity extends AppCompatActivity {
         addAqares.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AllOfferOrderActivity.this, AddAqarsActivity.class);
+                Intent intent = new Intent(AllOfferOrderActivity.this, AddAqarzStepsActivity.class);
 //              intent.putExtra("from", "splash");
                 startActivity(intent);
             }
@@ -155,6 +156,21 @@ public class AllOfferOrderActivity extends AppCompatActivity {
                 if (is_selected.equals("")) {
 
                 } else {
+
+                    is_selected = "";
+                    for (int i = 0; i < homeModules.size(); i++) {
+                        if (homeModules.get(i).getIs_selected()) {
+                            if (is_selected.equals("")) {
+                                is_selected = homeModules.get(i).getId() + "";
+                            } else {
+                                is_selected = is_selected + "," + homeModules.get(i).getId() + "";
+
+                            }
+                        }
+                    }
+
+
+
                     RequestParams sendObj = new RequestParams();
 
                     try {
@@ -336,17 +352,9 @@ public class AllOfferOrderActivity extends AppCompatActivity {
                                 public void onItemClick(List<HomeModules_aqares> homeModules_aqares) {
 //                                homeModules = homeModules_aqares;
 
-                                    is_selected = "";
-                                    for (int i = 0; i < homeModules_aqares.size(); i++) {
-                                        if (homeModules_aqares.get(i).getIs_selected()) {
-                                            if (is_selected.equals("")) {
-                                                is_selected = homeModules_aqares.get(i).getId() + "";
-                                            } else {
-                                                is_selected = is_selected + "," + homeModules_aqares.get(i).getId() + "";
 
-                                            }
-                                        }
-                                    }
+
+                                    homeModules=homeModules_aqares;
 
 
                                 }

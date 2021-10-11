@@ -100,6 +100,8 @@ public class OtherProfileActivity extends AppCompatActivity {
     ImageView experience_i;
     ImageView Coursesxx_i;
 
+    LinearLayout whats_up;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +124,7 @@ public class OtherProfileActivity extends AppCompatActivity {
         aqarez = findViewById(R.id.aqarez);
         back = findViewById(R.id.back);
         myoffer_layout = findViewById(R.id.myoffer_layout);
+        whats_up = findViewById(R.id.whats_up);
 
         member_list = findViewById(R.id.member_list);
         editProfile = findViewById(R.id.editProfile);
@@ -498,6 +501,24 @@ public class OtherProfileActivity extends AppCompatActivity {
 
                                         }
                                     });
+                                    whats_up.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            try {
+                                                String phone = "9660" + userModules.getMobile();
+
+                                                String url = "https://api.whatsapp.com/send?phone="+phone;
+                                                Intent i = new Intent(Intent.ACTION_VIEW);
+                                                i.setData(Uri.parse(url));
+                                                startActivity(i);
+
+
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+
+                                        }
+                                    });
                                     try {
                                         if (!userModules.getName().equals("null")) {
                                             name.setText(userModules.getName());
@@ -536,7 +557,7 @@ public class OtherProfileActivity extends AppCompatActivity {
 
                                         Clints.setText(userModules.getCount_emp() + "");
                                         request_nu.setText(userModules.getCount_estate() + "");
-                                        MyOffer.setText(userModules.getCount_offer() + "");
+                                        MyOffer.setText(userModules.getCount_fund_offer() + "");
 //                                        visit_nu.setText(userModules.getCount_visit() + "");
 
                                         if (userModules.getLogo() != null && !userModules.getLogo().equals("null")) {

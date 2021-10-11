@@ -330,79 +330,83 @@ public class SelectLocationActivity extends AppCompatActivity {
                         lang = cameraPosition.target.longitude + "";
 
 
-//                        geocoder = new Geocoder(SelectLocationActivity.this, Locale.getDefault());
+                        geocoder = new Geocoder(SelectLocationActivity.this, Locale.getDefault());
 
-//                        try {
+                        try {
+
+                            WebService.loading(SelectLocationActivity.this, true);
+
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    try {
+                                        WebService.loading(SelectLocationActivity.this, false);
+
+
+                                        addresses = geocoder.getFromLocation(cameraPosition.target.latitude, cameraPosition.target.longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
 //
-//                            WebService.loading(SelectLocationActivity.this, true);
+                                        String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+//                                        String city = addresses.get(0).getLocality();
+                                        String state = addresses.get(0).getAdminArea();
+                                        String country = addresses.get(0).getCountryName();
+
 //
-//                            final Handler handler = new Handler();
-//                            handler.postDelayed(new Runnable() {
-//                                @Override
-//                                public void run() {
+                                        text_search.setText(""+address);
+
+
+//                                        try {
+//                                            List<Address> addresses = geocoder.getFromLocationName(
+//                                                    "السعودية", 5);
+//                                            PolylineOptions polylineOptions = new PolylineOptions();
 //
-//                                    try {
-//                                        WebService.loading(SelectLocationActivity.this, false);
+//                                            for (int i = 0; i < addresses.size(); i++) {
 //
-//
-//                                        addresses = geocoder.getFromLocation(cameraPosition.target.latitude, cameraPosition.target.longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-////                                        String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-////                                        String city = addresses.get(0).getLocality();
-//                                        String state = addresses.get(0).getAdminArea();
-//                                        String country = addresses.get(0).getCountryName();
-//
-////
-////                                        try {
-////                                            List<Address> addresses = geocoder.getFromLocationName(
-////                                                    "السعودية", 5);
-////                                            PolylineOptions polylineOptions = new PolylineOptions();
-////
-////                                            for (int i = 0; i < addresses.size(); i++) {
-////
-////                                                System.out.println("**&&^%%%" + addresses.get(i).getLatitude() + "--" + addresses.get(i).getLongitude());
-////                                                polylineOptions.add(new LatLng(addresses.get(i).getLatitude(), addresses.get(i).getLongitude()));
-////
-////
-////                                            }
-////
-////                                            Polyline polyline = googleMap.addPolyline(polylineOptions);
-////
-////
-////                                            if (addresses.size() > 0) {
-////                                                Log.d("TAG", "ADRESSE " + addresses.get(0) + ",LAT :" + addresses.get(0).getLatitude() + ", LONG :" + addresses.get(0).getLongitude());
-////                                            }
-////                                        } catch (IOException e) {
-////                                            e.printStackTrace();
-////                                        }
-//
-////                                        System.out.println("countrycountry" + country);
-//////                                        String postalCode = addresses.get(0).getPostalCode();
-//////                                        String knownName = addresses.get(0).getFeatureName(); // Onl
-////
-////
-//////                                        text_search.setText(country + " - " + state);
-////
-////
-////                                        if (country.equals("السعودية")) {
-////
-////                                            select.setVisibility(View.VISIBLE);
-////
-////                                        } else {
-////                                            select.setVisibility(View.INVISIBLE);
-////
-////                                        }
+//                                                System.out.println("**&&^%%%" + addresses.get(i).getLatitude() + "--" + addresses.get(i).getLongitude());
+//                                                polylineOptions.add(new LatLng(addresses.get(i).getLatitude(), addresses.get(i).getLongitude()));
 //
 //
-//                                    } catch (Exception e) {
+//                                            }
 //
-//                                    }
+//                                            Polyline polyline = googleMap.addPolyline(polylineOptions);
 //
-//                                }
-//                            }, 500); // After 1 seconds
 //
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
+//                                            if (addresses.size() > 0) {
+//                                                Log.d("TAG", "ADRESSE " + addresses.get(0) + ",LAT :" + addresses.get(0).getLatitude() + ", LONG :" + addresses.get(0).getLongitude());
+//                                            }
+//                                        } catch (IOException e) {
+//                                            e.printStackTrace();
+//                                        }
+
+//                                        System.out.println("countrycountry" + country);
+////                                        String postalCode = addresses.get(0).getPostalCode();
+////                                        String knownName = addresses.get(0).getFeatureName(); // Onl
+//
+//
+////                                        text_search.setText(country + " - " + state);
+//
+//
+//                                        if (country.equals("السعودية")) {
+//
+//                                            select.setVisibility(View.VISIBLE);
+//
+//                                        } else {
+//                                            select.setVisibility(View.INVISIBLE);
+//
+//                                        }
+
+
+                                    } catch (Exception e) {
+
+                                    }
+
+                                }
+                            }, 500); // After 1 seconds
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
 
                     }

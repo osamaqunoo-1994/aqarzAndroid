@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.os.LocaleList;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +25,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.orhanobut.hawk.Hawk;
 import com.willy.ratingbar.ScaleRatingBar;
+
+import org.json.JSONObject;
 
 import java.util.Locale;
 
@@ -55,6 +60,9 @@ import sa.aqarz.NewAqarz.MainAqarzActivity;
 import sa.aqarz.NewAqarz.MyOrderRequstActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
+import sa.aqarz.Settings.WebService;
+import sa.aqarz.api.IResult;
+import sa.aqarz.api.VolleyService;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -72,6 +80,7 @@ public class MoreFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    IResult mResultCallback;
 
     LinearLayout logout;
     LinearLayout langauge;
@@ -534,6 +543,165 @@ TextView virs;
 
         activity.getBaseContext().getResources().updateConfiguration(config,
                 activity.getBaseContext().getResources().getDisplayMetrics());
+
+    }
+
+    @Override
+    public void onResume() {
+
+        init_volley();
+        VolleyService mVolleyService = new VolleyService(mResultCallback, getActivity());
+//            mVolleyService.getDataVolley("user", WebService.user + id + "");
+        mVolleyService.getDataVolley("user", WebService.my_profile + "");
+
+
+        super.onResume();
+    }
+
+    public void init_volley() {
+
+
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, JSONObject response) {
+                Log.d("TAG", "Volley requester " + requestType);
+                Log.d("TAG", "Volley JSON post" + response.toString());
+                WebService.loading(getActivity(), false);
+//{"status":true,"code":200,"message":"User Profile","data"
+                try {
+                    boolean status = response.getBoolean("status");
+                    if (status) {
+                        String data = response.getString("data");
+//                        String next_page_url = response.getString("next_page_url");
+
+
+                        if (requestType.equals("user")) {
+                            JSONObject jsonObject = new JSONObject(data);
+
+
+                            Hawk.put("user", data);
+
+                            try{
+
+                                if (Settings.GetUser().getName() != null) {
+                                    if (Settings.GetUser().getName().equals("null")) {
+                                        name.setText(getResources().getString(R.string.NewMember) + "");
+
+
+                                    } else {
+                                        name.setText(Settings.GetUser().getName() + "");
+
+//
+//                    if(Settings.GetUser().ge){
+//
+//                    }
+
+
+                                    }
+                                } else {
+                                    name.setText(getResources().getString(R.string.NewMember) + "");
+
+                                }
+
+
+                                if (Settings.GetUser().getProfile_percentage() == 0) {
+                                    st_100.setVisibility(View.GONE);
+                                    st_25.setVisibility(View.GONE);
+                                    st_00.setVisibility(View.VISIBLE);
+                                } else if (Settings.GetUser().getProfile_percentage() < 100) {
+                                    rang_profile.setText(Settings.GetUser().getProfile_percentage() + " % ");
+                                    st_100.setVisibility(View.GONE);
+                                    st_25.setVisibility(View.VISIBLE);
+                                    st_00.setVisibility(View.GONE);
+                                } else if (Settings.GetUser().getProfile_percentage() == 100) {
+                                    st_100.setVisibility(View.VISIBLE);
+                                    st_25.setVisibility(View.GONE);
+                                    st_00.setVisibility(View.GONE);
+                                }
+
+                                Glide.with(getActivity()).load(Settings.GetUser().getLogo() + "").error(getResources().getDrawable(R.drawable.ic_user_un)).diskCacheStrategy(DiskCacheStrategy.NONE)
+                                        .skipMemoryCache(true).into(iamge);
+
+                                if (Settings.GetUser().getIs_certified().equals("1")) {
+                                    active.setVisibility(View.VISIBLE);
+                                } else {
+                                    active.setVisibility(View.GONE);
+
+                                }
+
+                                employee_num.setText("(" + Settings.GetUser().getCount_emp() + ")");
+                                order.setText("(" + Settings.GetUser().getCount_request() + ")");
+                                offer_num.setText("(" + Settings.GetUser().getCount_estate() + ")");
+                                int allo = Integer.valueOf(Settings.GetUser().getCount_fund_offer() + "") + Integer.valueOf(Settings.GetUser().getCount_offer() + "");
+                                aqarz_offer_num.setText("(" + allo + ")");
+//            order.setText("(0)");
+//            aqarz_offer_num.setText("(0)");
+
+                            }catch (Exception e){
+
+                            }
+
+                        } else if (requestType.equals("check_employe")) {
+
+
+//                            init_volley();
+//                            VolleyService mVolleyService = new VolleyService(mResultCallback, getActivity());
+////            mVolleyService.getDataVolley("user", WebService.user + id + "");
+//                            mVolleyService.getDataVolley("user", WebService.my_profile + "");
+//
+
+                        }
+
+
+                    }
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.d("TAG", "Volley requester " + requestType);
+
+                WebService.loading(getActivity(), false);
+
+                try {
+
+                    NetworkResponse response = error.networkResponse;
+                    String response_data = new String(response.data);
+
+                    JSONObject jsonObject = new JSONObject(response_data);
+
+                    String message = jsonObject.getString("message");
+
+
+                    WebService.Make_Toast_color(getActivity(), message, "error");
+
+                    Log.e("error response", response_data);
+
+                } catch (Exception e) {
+
+                }
+
+                WebService.loading(getActivity(), false);
+
+
+            }
+
+            @Override
+            public void notify_Async_Error(String requestType, String error) {
+                WebService.loading(getActivity(), false);
+
+                WebService.Make_Toast_color(getActivity(), error, "error");
+
+
+            }
+        };
+
 
     }
 

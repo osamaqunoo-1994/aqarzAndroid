@@ -24,6 +24,7 @@ import sa.aqarz.Activity.AddAqarz.AddAqarzActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
 import sa.aqarz.Modules.SelectImageModules;
 import sa.aqarz.Modules.TypeModules;
+import sa.aqarz.NewAqarz.AqqAqarz.AddAqarzStepsActivity;
 import sa.aqarz.R;
 
 
@@ -187,8 +188,9 @@ public class RecyclerView_selectImage extends RecyclerView.Adapter<RecyclerView_
 //                alldata.remove(position);
 
                 try {
-                    AddAqarzActivity.selectIamgeList.remove(position);
-                    AddAqarzActivity.addAqarezObject.setSelectIamgeList(AddAqarzActivity.selectIamgeList);
+//                    AddAqarzStepsActivity.images.remove(position);
+                    AddAqarzStepsActivity.selectIamgeList.remove(position);
+                    AddAqarzStepsActivity.addAqarezObject.setSelectIamgeList(AddAqarzActivity.selectIamgeList);
                     Refr();
                 } catch (Exception e) {
                     e.printStackTrace();

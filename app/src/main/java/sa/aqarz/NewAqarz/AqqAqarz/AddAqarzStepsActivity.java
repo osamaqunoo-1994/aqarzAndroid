@@ -373,7 +373,8 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         all_details = findViewById(R.id.all_details);
         step_3 = findViewById(R.id.step_3);
 
-
+        images.clear();
+        selectIamgeList.clear();
         title.setText(getResources().getString(R.string.AqarTypeselect));
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -2097,40 +2098,46 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
             if (south_selected) {
                 if (interface_.equals("")) {
-                    interface_ = "south";
+//                    interface_ = "south";
+                    interface_ = " شرق ";
+
 
                 } else {
-                    interface_ = "," + "south";
+//                    interface_ = "," + "south";
+                    interface_ = interface_ + "," + " شرق ";
 
                 }
             }
 
             if (north_selected) {
                 if (interface_.equals("")) {
-                    interface_ = "north";
+                    interface_ = " شمال ";
 
                 } else {
-                    interface_ = "," + "north";
+//                    interface_ = "," + "north";
+                    interface_ = interface_ + "," + " شمال ";
 
                 }
             }
 
             if (east_selected) {
                 if (interface_.equals("")) {
-                    interface_ = "east";
+                    interface_ = " غرب ";
 
                 } else {
-                    interface_ = "," + "east";
+//                    interface_ = "," + "east";
+                    interface_ = interface_ + "," + " غرب ";
 
                 }
             }
 
             if (west_selected) {
                 if (interface_.equals("")) {
-                    interface_ = "west";
+                    interface_ = " جنوب ";
 
                 } else {
-                    interface_ = "," + "west";
+//                    interface_ = "," + "west";
+                    interface_ = interface_ + "," + " جنوب ";
 
                 }
             }

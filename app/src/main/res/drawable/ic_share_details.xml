@@ -4,11 +4,11 @@
     android:width="17.487dp" xmlns:android="http://schemas.android.com/apk/res/android">
     <path android:fillColor="#00000000"
         android:pathData="M20.487,13.5089v2.784a4.176,4.176 0,0 1,-4.176 4.176L5.172,20.469a4.176,4.176 0,0 1,-4.176 -4.176v-2.784"
-        android:strokeColor="#7C7C7C" android:strokeLineCap="round" android:strokeWidth="2"/>
+        android:strokeColor="#000000" android:strokeLineCap="round" android:strokeWidth="2"/>
     <path android:fillColor="#00000000"
         android:pathData="M10.744,12.832L10.744,1"
-        android:strokeColor="#7C7C7C" android:strokeLineCap="round" android:strokeWidth="2"/>
+        android:strokeColor="#000000" android:strokeLineCap="round" android:strokeWidth="2"/>
     <path android:fillColor="#00000000"
         android:pathData="M15.795,6.046l-4.623,-4.622a0.6,0.6 0,0 0,-0.848 0l-4.621,4.622"
-        android:strokeColor="#7C7C7C" android:strokeLineCap="round" android:strokeWidth="2"/>
+        android:strokeColor="#000000" android:strokeLineCap="round" android:strokeWidth="2"/>
 </vector>

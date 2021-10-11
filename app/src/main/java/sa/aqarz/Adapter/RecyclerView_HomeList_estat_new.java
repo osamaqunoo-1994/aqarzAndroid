@@ -237,13 +237,13 @@ public class RecyclerView_HomeList_estat_new extends RecyclerView.Adapter<Recycl
         }
 
 
-//        if (alldata.get(position).getIn_fav().equals("1")) {
-//            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
-//
-//        } else {
-//            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
-//
-//        }
+        if (alldata.get(position).getIn_fav().equals("1")) {
+            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
+
+        } else {
+            holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_like));
+
+        }
 
         if (alldata.get(position).getIs_rent_installment() != null) {
             if (!alldata.get(position).getIs_rent_installment().equals("null")) {
