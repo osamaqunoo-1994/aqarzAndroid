@@ -159,7 +159,8 @@ public class AllOfferOrderMarket_demandsActivity extends AppCompatActivity {
 
                     try {
 
-                        sendObj.put("uuid", id_offer);//form operation list api in setting
+                        sendObj.put("request_id", id_offer);//form operation list api in setting
+//                        sendObj.put("uuid", id_offer);//form operation list api in setting
                         sendObj.put("estate_id", is_selected);//form estate type list api in setting
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -168,7 +169,7 @@ public class AllOfferOrderMarket_demandsActivity extends AppCompatActivity {
                     WebService.loading(AllOfferOrderMarket_demandsActivity.this, true);
 
                     System.out.println(sendObj.toString());
-                    mVolleyService.postDataasync_with_file("send_offer_fund_Request", WebService.send_offer_fund_Request, sendObj);
+                    mVolleyService.postDataasync_with_file("send_offer_fund_Request", WebService.send_offer_Request, sendObj);
 
 
                 }
