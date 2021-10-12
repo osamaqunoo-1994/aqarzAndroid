@@ -190,12 +190,16 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                         holder.Watting.setVisibility(View.GONE);
                         holder.reject.setVisibility(View.GONE);
                         holder.accept.setVisibility(View.GONE);
+                        holder.sending_code.setVisibility(View.GONE);
+
 
                     } else {
                         holder.new_offer.setVisibility(View.GONE);
                         holder.Watting.setVisibility(View.VISIBLE);
                         holder.reject.setVisibility(View.GONE);
                         holder.accept.setVisibility(View.GONE);
+                        holder.sending_code.setVisibility(View.GONE);
+
                         if (alldata.get(position).getStatus() == null) {
 
                         } else if (alldata.get(position).getStatus().equals("active")) {
@@ -206,6 +210,8 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                             holder.new_offer.setVisibility(View.GONE);
                             holder.Watting.setVisibility(View.GONE);
                             holder.reject.setVisibility(View.VISIBLE);
+                            holder.sending_code.setVisibility(View.GONE);
+
                             holder.accept.setVisibility(View.GONE);
                         } else if (alldata.get(position).getStatus().equals("accepted_customer")) {
                             holder.new_offer.setVisibility(View.GONE);

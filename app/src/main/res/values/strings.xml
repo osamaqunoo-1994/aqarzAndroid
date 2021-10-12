@@ -437,6 +437,10 @@ Your request and reply in the fastest time</string>
 
 
     <string name="Status_">Status</string>
+
+    <string name="Status_1">preview status</string>
+    <string name="expired">expired</string>
+
     <string name="Edit_but_order">Edit</string>
     <string name="seelctlosato">Select Address</string>
     <string name="Site">Site</string>

@@ -35,13 +35,17 @@
                     app:tint="@color/white" />
 
                 <TextView
+                    android:id="@+id/order_aa"
+                    android:text=""
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/din_bold"
-                    android:gravity="center"
+                    android:gravity="center|start"
 
                     android:textColor="@color/white"
+                    android:textStyle="bold"
+
                     android:textSize="17dp" />
 
 
@@ -117,7 +121,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp">
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+              >
 
 
                 <LinearLayout
@@ -230,6 +236,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/OrderstatusDetialss"
+                    android:fontFamily="@font/din_bold"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
@@ -274,6 +282,10 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="1dp"
+                            android:layout_height="40dp"
+                           />
 
                         <ImageView
                             android:layout_width="20dp"
@@ -335,7 +347,11 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical">
-
+                        <LinearLayout
+                            android:layout_width="1dp"
+                            android:layout_height="40dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="#E0E0E0" />
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
@@ -415,7 +431,10 @@
                             android:src="@drawable/circle_fill"
                             app:tint="#E0E0E0" />
 
-
+                        <LinearLayout
+                            android:layout_width="1dp"
+                            android:layout_height="20dp"
+ />
                     </LinearLayout>
 
                     <TextView
@@ -473,6 +492,11 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="1dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="5dp" />
+
 
                         <ImageView
                             android:layout_width="20dp"
@@ -536,6 +560,13 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="1dp"
+                            android:layout_height="40dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/colorPrimary" />
+
 
                         <ImageView
                             android:layout_width="20dp"
@@ -613,7 +644,10 @@
                             android:src="@drawable/circle_fill"
                             app:tint="#E0E0E0" />
 
-
+                        <LinearLayout
+                            android:layout_width="1dp"
+                            android:layout_height="20dp"
+ />
                     </LinearLayout>
 
 
@@ -672,6 +706,11 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="1dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="5dp"
+                             />
 
                         <ImageView
                             android:layout_width="20dp"
@@ -736,6 +775,11 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="1dp"
+                            android:layout_height="40dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/colorPrimary" />
 
                         <ImageView
                             android:layout_width="20dp"
@@ -815,6 +859,11 @@
                             android:src="@drawable/circle_fill"
                             app:tint="#FFD740" />
 
+                        <LinearLayout
+                            android:layout_width="1dp"
+                            android:layout_height="20dp"
+
+                            />
 
                     </LinearLayout>
 
@@ -849,7 +898,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
 
-                android:background="@drawable/button_login"
+                android:background="@drawable/button_login1"
                 android:fontFamily="@font/din_bold"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -980,7 +1029,7 @@
                     android:id="@+id/requst_code"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/button_login"
+                    android:background="@drawable/button_login1"
 
                     android:paddingBottom="6dp"
                     android:text="@string/request_code"

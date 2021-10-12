@@ -42,7 +42,6 @@ public class Settings {
 
             Gson gson = new Gson();
             SettingsModules userModules = gson.fromJson(mJson, SettingsModules.class);
-
             return userModules;
         } else {
             SettingsModules userModules = new SettingsModules();
@@ -114,7 +113,6 @@ public class Settings {
 
             Gson gson = new Gson();
             User userModules = gson.fromJson(mJson, User.class);
-
             return userModules;
         } catch (Exception e) {
             Hawk.put("user", "");

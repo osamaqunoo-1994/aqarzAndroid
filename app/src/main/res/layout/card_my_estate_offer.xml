@@ -50,7 +50,7 @@
                     android:paddingLeft="7dp"
                     android:paddingRight="7dp"
                     android:paddingBottom="1dp"
-                    android:text="شقة"
+                    android:text=""
 
 
                     android:textColor="@color/white"
@@ -124,7 +124,7 @@
                     android:fontFamily="@font/din_bold"
 
 
-                    android:text="فيلا"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="17dp"
                     android:textStyle="bold" />
@@ -203,17 +203,14 @@
 
                     android:fontFamily="@font/din_light"
                     android:lines="1"
-                    android:text="@string/sequare"
-                    android:textColor="#AAABB3"
-                    android:textSize="9dp" />
+                    android:textColor="#000000"
+                    android:textSize="11dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:gravity="center"
-
                 android:orientation="horizontal">
 
 
@@ -245,7 +242,6 @@
 
                     android:layout_marginStart="5dp"
                     android:fontFamily="@font/din_bold"
-                    android:text="13000"
                     android:textColor="@color/colorPrimary"
 
                     android:textSize="17dp"
@@ -312,7 +308,6 @@
                         android:fontFamily="@font/din_bold"
 
                         android:lines="1"
-                        android:text="الروابي، الخبر ، المنطقة الشرقية"
 
                         android:textColor="@color/textColor"
                         android:textSize="12dp" />
@@ -512,12 +507,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:background="@drawable/button_login"
+                    android:background="@drawable/button_login1"
                     android:gravity="center"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
                     android:paddingBottom="4dp"
-                    android:text="@string/contune"
+                    android:text="@string/Status_1"
                     android:textColor="@color/white"
                     android:visibility="gone" />
 
@@ -527,13 +522,29 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:background="@drawable/button_login"
+                    android:background="@drawable/button_login1"
+                    android:gravity="center"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:textSize="13dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/Status_1"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/expired"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:gravity="center"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
                     android:paddingBottom="4dp"
-                    android:text="@string/Status_"
-                    android:textColor="@color/white"
+
+                    android:text="@string/expired"
+                    android:textColor="@color/red_btn_bg_color"
                     android:visibility="gone" />
 
                 <TextView
@@ -573,8 +584,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="#DEDEDE" />
 
 </LinearLayout>

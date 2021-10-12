@@ -111,7 +111,7 @@ public class RecyclerView_MyState_selected extends RecyclerView.Adapter<Recycler
             holder.price.setText(alldata.get(position).getTotalPrice());
             holder.opration.setText(alldata.get(position).getOperationTypeName());
             holder.type.setText(alldata.get(position).getEstate_type_name());
-            holder.address.setText(alldata.get(position).getCity_name());
+            holder.address.setText(alldata.get(position).getFull_address());
             holder.space.setText(alldata.get(position).getTotalArea());
             holder.date.setText(alldata.get(position).getCreatedAt());
 //        if (alldata.get(position).getRate() != null) {

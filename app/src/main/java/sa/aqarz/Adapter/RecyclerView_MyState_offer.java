@@ -80,7 +80,11 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
         TextView rejecteds;
         TextView sale;
         TextView status;
+        TextView type;
         TextView id_number;
+        TextView expired;
+        TextView space;
+        TextView bathroom;
         ImageView image;
 
         CheckBox chechbox;
@@ -100,6 +104,10 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
             sale = view.findViewById(R.id.sale);
             status = view.findViewById(R.id.status);
             id_number = view.findViewById(R.id.id_number);
+            type = view.findViewById(R.id.type);
+            expired = view.findViewById(R.id.expired);
+            space = view.findViewById(R.id.space);
+            bathroom = view.findViewById(R.id.bathroom);
 
 
         }
@@ -122,12 +130,22 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
 //        holder.setIsRecyclable(false);
 //        holder.title.setText(alldata.get(position).getName());
         holder.price.setText(alldata.get(position).getEstateTotalPrice() + "");
-        holder.opration.setText(alldata.get(position).getEstate_type_name() + "");
-        holder.address.setText(alldata.get(position).getEstateCity() + " , "+alldata.get(position).getEstateNeighborhood()+"");
+        holder.opration.setText(alldata.get(position).getSale_type_name() + "");
         holder.sale.setText(alldata.get(position).getSale_type_name() + "");
-        try{
+        holder.type.setText(alldata.get(position).getEstate_type_name() + "");
+        holder.space.setText(alldata.get(position).getEstateTotalArea() + "");
+//        holder.bathroom.setText(alldata.get(position).getb() + "");
+        try {
 
-        }catch (Exception e){
+            if (alldata.get(position).getFull_address() != null) {
+
+                if (!alldata.get(position).getFull_address().equals("")) {
+                    holder.address.setText(alldata.get(position).getFull_address() + " ");
+
+                }
+            }
+
+        } catch (Exception e) {
 
         }
         holder.id_number.setText(" # " + alldata.get(position).getId() + "");
@@ -168,32 +186,47 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
 
         }
 
+        holder.status.setVisibility(View.VISIBLE);
+
+        System.out.println("%^HHHH^^" + alldata.get(position).getStatus());
 
         if (alldata.get(position).getStatus() == null) {
             holder.contnue.setVisibility(View.GONE);
             holder.rejecteds.setVisibility(View.GONE);
             holder.status.setVisibility(View.VISIBLE);
+            holder.expired.setVisibility(View.GONE);
 
         } else if (alldata.get(position).getStatus().equals("active")) {
             holder.contnue.setVisibility(View.VISIBLE);
             holder.rejecteds.setVisibility(View.GONE);
             holder.status.setVisibility(View.GONE);
+            holder.expired.setVisibility(View.GONE);
 
         } else if (alldata.get(position).getStatus().equals("sending_code")) {
             holder.contnue.setVisibility(View.VISIBLE);
             holder.rejecteds.setVisibility(View.GONE);
             holder.status.setVisibility(View.GONE);
+            holder.expired.setVisibility(View.GONE);
 
         } else if (alldata.get(position).getStatus().equals("rejected_customer ")) {
             holder.rejecteds.setVisibility(View.VISIBLE);
             holder.contnue.setVisibility(View.GONE);
             holder.status.setVisibility(View.GONE);
+            holder.expired.setVisibility(View.GONE);
 
             System.out.println("dkflfjlkfdlfkldfkldfkdlfk");
         } else if (alldata.get(position).getStatus().equals("accepted_customer")) {
             holder.contnue.setVisibility(View.VISIBLE);
             holder.rejecteds.setVisibility(View.GONE);
             holder.status.setVisibility(View.GONE);
+            holder.expired.setVisibility(View.GONE);
+
+
+        } else if (alldata.get(position).getStatus().equals("expired")) {
+            holder.contnue.setVisibility(View.GONE);
+            holder.rejecteds.setVisibility(View.GONE);
+            holder.status.setVisibility(View.GONE);
+            holder.expired.setVisibility(View.VISIBLE);
 
         }
 
@@ -262,6 +295,21 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
             @Override
             public void onClick(View v) {
 
+//                if(alldata.get(position).getBeneficiaryMobile()!=null) {
+//                    if (alldata.get(position).getBeneficiaryMobile().equals("")) {
+//                        Application.myOfferModule = alldata.get(position);
+//
+//                        Intent intent = new Intent(context, OfferDetailsActivity.class);
+//                        context.startActivity(intent);
+//                    }else{
+//
+//                    }
+//                }else{
+//                    BottomSheetDialogFragment_status_cancle bottomSheetDialogFragment_status = new BottomSheetDialogFragment_status_cancle("");
+//
+//                    bottomSheetDialogFragment_status.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+//
+//                }
                 BottomSheetDialogFragment_status_cancle bottomSheetDialogFragment_status = new BottomSheetDialogFragment_status_cancle("");
 
                 bottomSheetDialogFragment_status.show(((FragmentActivity) context).getSupportFragmentManager(), "");

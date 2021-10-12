@@ -28,6 +28,9 @@ public class MyOfferModule {
     @Expose
     private String sale_type_name;
 
+    @SerializedName("full_address")
+    @Expose
+    private String full_address;
 
     @SerializedName("beneficiary_mobile")
     @Expose
@@ -167,6 +170,10 @@ public class MyOfferModule {
 
     public void setBeneficiaryName(String beneficiaryName) {
         this.beneficiaryName = beneficiaryName;
+    }
+
+    public String getFull_address() {
+        return full_address;
     }
 
     public String getBeneficiaryMobile() {
