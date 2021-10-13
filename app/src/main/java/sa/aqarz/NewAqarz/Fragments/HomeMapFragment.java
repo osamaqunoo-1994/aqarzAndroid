@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -25,9 +26,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,6 +42,7 @@ import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -46,6 +52,19 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.AutocompletePrediction;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
+import com.google.android.libraries.places.api.net.FetchPlaceResponse;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -55,7 +74,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import sa.aqarz.Activity.AllOrderActivity;
 import sa.aqarz.Activity.DetailsActivity_aqarz;
@@ -84,11 +105,14 @@ import sa.aqarz.NewAqarz.ListAqarzActivity;
 import sa.aqarz.NewAqarz.MainAqarzActivity;
 import sa.aqarz.NewAqarz.ManageOrderActivity;
 import sa.aqarz.R;
+import sa.aqarz.Settings.AutoCompleteAdapter;
 import sa.aqarz.Settings.CustomInfoWindowGoogleMapEstatMaps;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
+
+import static android.app.Activity.RESULT_OK;
 
 public class HomeMapFragment extends Fragment {
     RecyclerView all_type_aqarz;
@@ -127,7 +151,7 @@ public class HomeMapFragment extends Fragment {
     LinearLayoutManager layoutManager;
     public static List<Marker> marker_list = new ArrayList<Marker>();
     ImageView search_nib;
-    static EditText search_text;
+    static TextView search_text;
     public static boolean is_first = true;
     static List<CityModules> cityModules_list_filtter = new ArrayList<>();
     ImageView fill_filtter;
@@ -137,6 +161,9 @@ public class HomeMapFragment extends Fragment {
     LinearLayout select_type_lay;
     LinearLayout add_rent;
     TextView select_type_txt;
+
+    LinearLayout auto_search_text;
+
 
     BottomSheetDialogFragment_SelectType bottomSheetDialogFragment_selectType;
     private final OnMapReadyCallback callback = new OnMapReadyCallback() {
@@ -204,9 +231,52 @@ public class HomeMapFragment extends Fragment {
         select_type_lay = v.findViewById(R.id.select_type_lay);
         select_type_txt = v.findViewById(R.id.select_type_txt);
         add_rent = v.findViewById(R.id.add_rent);
+        auto_search_text = v.findViewById(R.id.auto_search_text);
 
         //LastPostionLat
         //LastPostionLan
+        if (!Places.isInitialized()) {
+            Places.initialize(getContext(), "AIzaSyCX9U6fj5-Tt5lK_23d2RFsr4Nlp3yqdoM", Locale.UK);
+        }
+
+
+        auto_search_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.ADDRESS, Place.Field.NAME, Place.Field.LAT_LNG);
+
+                // Start the autocomplete intent.
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
+                        .build(getContext());
+                startActivityForResult(intent, 11);
+
+            }
+        });
+
+        search_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.ADDRESS, Place.Field.NAME, Place.Field.LAT_LNG);
+
+                // Start the autocomplete intent.
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
+                        .build(getContext());
+                startActivityForResult(intent, 11);
+
+            }
+        });
+        search_nib.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.ADDRESS, Place.Field.NAME, Place.Field.LAT_LNG);
+
+                // Start the autocomplete intent.
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
+                        .build(getContext());
+                startActivityForResult(intent, 11);
+
+            }
+        });
 
 
         if (Hawk.contains("filtter")) {
@@ -442,96 +512,96 @@ public class HomeMapFragment extends Fragment {
             }
         });
 
-        search_nib.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//        search_nib.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//
+//                final View mView = LayoutInflater.from(getContext()).inflate(R.layout.drop_down_layout_city_and_nib, null, false);
+//                popUp = new PopupWindow(mView, LinearLayout.LayoutParams.WRAP_CONTENT,
+//                        LinearLayout.LayoutParams.WRAP_CONTENT, false);
+//
+//                all_city = mView.findViewById(R.id.all_city);
+//                loading_city = mView.findViewById(R.id.loading_city);
+//
+//                LinearLayoutManager layoutManager1
+//                        = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+//                all_city.setLayoutManager(layoutManager1);
+//
+//
+//                init_volley();
+//
+////                String region_id_postion = "";
+////                if (MapsFragmentNew.region_id_postion != null) {
+////                    region_id_postion = MapsFragmentNew.region_id_postion + "";
+////                }
+////                String city_id_postion = "";
+////                if (MapsFragmentNew.city_id_postion != null) {
+////                    city_id_postion = MapsFragmentNew.city_id_postion + "";
+////                }
+//
+//
+//                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+//                mVolleyService.getDataVolley("cities_with_neb", WebService.cities_with_neb + "?name=" + search_text.getText().toString());//+ "&state_id=" + region_id_postion + "&city_id=" + city_id_postion
+//
+//
+//                popUp.setTouchable(true);
+//                popUp.setFocusable(true);
+//                popUp.setOutsideTouchable(true);
+//
+//                //Solution
+//                popUp.showAsDropDown(search_nib);
 
 
-                final View mView = LayoutInflater.from(getContext()).inflate(R.layout.drop_down_layout_city_and_nib, null, false);
-                popUp = new PopupWindow(mView, LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT, false);
-
-                all_city = mView.findViewById(R.id.all_city);
-                loading_city = mView.findViewById(R.id.loading_city);
-
-                LinearLayoutManager layoutManager1
-                        = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-                all_city.setLayoutManager(layoutManager1);
-
-
-                init_volley();
-
-//                String region_id_postion = "";
-//                if (MapsFragmentNew.region_id_postion != null) {
-//                    region_id_postion = MapsFragmentNew.region_id_postion + "";
+//            }
+//        });
+//        search_text.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+//
+//
+//                    final View mView = LayoutInflater.from(getContext()).inflate(R.layout.drop_down_layout_city_and_nib, null, false);
+//                    popUp = new PopupWindow(mView, LinearLayout.LayoutParams.WRAP_CONTENT,
+//                            LinearLayout.LayoutParams.WRAP_CONTENT, false);
+//
+//                    all_city = mView.findViewById(R.id.all_city);
+//                    loading_city = mView.findViewById(R.id.loading_city);
+//
+//                    LinearLayoutManager layoutManager1
+//                            = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+//                    all_city.setLayoutManager(layoutManager1);
+//
+//
+//                    init_volley();
+//
+////                String region_id_postion = "";
+////                if (MapsFragmentNew.region_id_postion != null) {
+////                    region_id_postion = MapsFragmentNew.region_id_postion + "";
+////                }
+////                String city_id_postion = "";
+////                if (MapsFragmentNew.city_id_postion != null) {
+////                    city_id_postion = MapsFragmentNew.city_id_postion + "";
+////                }
+//
+//
+//                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+//                    mVolleyService.getDataVolley("cities_with_neb", WebService.cities_with_neb + "?name=" + search_text.getText().toString());//+ "&state_id=" + region_id_postion + "&city_id=" + city_id_postion
+//
+//
+//                    popUp.setTouchable(true);
+//                    popUp.setFocusable(true);
+//                    popUp.setOutsideTouchable(true);
+//
+//                    //Solution
+//                    popUp.showAsDropDown(search_nib);
+//
+//
+//                    return true;
 //                }
-//                String city_id_postion = "";
-//                if (MapsFragmentNew.city_id_postion != null) {
-//                    city_id_postion = MapsFragmentNew.city_id_postion + "";
-//                }
-
-
-                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-                mVolleyService.getDataVolley("cities_with_neb", WebService.cities_with_neb + "?name=" + search_text.getText().toString());//+ "&state_id=" + region_id_postion + "&city_id=" + city_id_postion
-
-
-                popUp.setTouchable(true);
-                popUp.setFocusable(true);
-                popUp.setOutsideTouchable(true);
-
-                //Solution
-                popUp.showAsDropDown(search_nib);
-
-
-            }
-        });
-        search_text.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-
-
-                    final View mView = LayoutInflater.from(getContext()).inflate(R.layout.drop_down_layout_city_and_nib, null, false);
-                    popUp = new PopupWindow(mView, LinearLayout.LayoutParams.WRAP_CONTENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT, false);
-
-                    all_city = mView.findViewById(R.id.all_city);
-                    loading_city = mView.findViewById(R.id.loading_city);
-
-                    LinearLayoutManager layoutManager1
-                            = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-                    all_city.setLayoutManager(layoutManager1);
-
-
-                    init_volley();
-
-//                String region_id_postion = "";
-//                if (MapsFragmentNew.region_id_postion != null) {
-//                    region_id_postion = MapsFragmentNew.region_id_postion + "";
-//                }
-//                String city_id_postion = "";
-//                if (MapsFragmentNew.city_id_postion != null) {
-//                    city_id_postion = MapsFragmentNew.city_id_postion + "";
-//                }
-
-
-                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-                    mVolleyService.getDataVolley("cities_with_neb", WebService.cities_with_neb + "?name=" + search_text.getText().toString());//+ "&state_id=" + region_id_postion + "&city_id=" + city_id_postion
-
-
-                    popUp.setTouchable(true);
-                    popUp.setFocusable(true);
-                    popUp.setOutsideTouchable(true);
-
-                    //Solution
-                    popUp.showAsDropDown(search_nib);
-
-
-                    return true;
-                }
-                return false;
-            }
-        });
+//                return false;
+//            }
+//        });
 
     }
 
@@ -611,6 +681,25 @@ public class HomeMapFragment extends Fragment {
             @Override
             public void onMapReady(GoogleMap googleMapc) {
                 googleMap = googleMapc;
+
+
+//                String apiKey = "AIzaSyBw6QmlOdBAItUnbgrONR0qTuun4Rx9kT8";
+////        String apiKey = "AIzaSyCX9U6fj5-Tt5lK_23d2RFsr4Nlp3yqdoM";
+//
+//                if (apiKey.isEmpty()) {
+////            responseView.setText(getString(R.string.error));
+//                    return;
+//                }
+//
+//                // Setup Places Client
+//                if (!Places.isInitialized()) {
+//                    Places.initialize(getContext(), apiKey);
+//                }
+//
+//                placesClient = Places.createClient(getContext());
+//                initAutoCompleteTextView();
+
+
                 set_map_marker();
                 on_click_maps_marker();
                 try {
@@ -1042,7 +1131,7 @@ public class HomeMapFragment extends Fragment {
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-        mVolleyService.getAsync("home_estate_custom_list", WebService.home_estate_custom_list + "?" + lat_lan + "&distance=" + distance + type_filtter_ + is_rent_installment+elevators_number + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type);
+        mVolleyService.getAsync("home_estate_custom_list", WebService.home_estate_custom_list + "?" + lat_lan + "&distance=" + distance + type_filtter_ + is_rent_installment + elevators_number + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type);
 //        urlEstat = WebService.home_estate_custom_list + "?" + filter + lat_lan + "&distance=" + distance + getId_region + getSerial_city;
 
 
@@ -1570,4 +1659,70 @@ public class HomeMapFragment extends Fragment {
         super.onResume();
     }
 
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == 11) {
+            if (resultCode == RESULT_OK) {
+
+                try {
+
+                    Place place = Autocomplete.getPlaceFromIntent(data);
+                    Log.i("TAG", "Place: " + place.getName() + ", " + place.getId());
+
+                    lat = "" + place.getLatLng().latitude;
+                    lan = "" + place.getLatLng().longitude;
+
+                    clear_city.setVisibility(View.VISIBLE);
+                    Hawk.put("LastPostionLat", lat);
+                    Hawk.put("LastPostionLan", lan);
+
+                    LatLng my_location = new LatLng(Double.valueOf(lat), Double.valueOf(lan));
+                    CameraPosition cameraPosition = new CameraPosition.Builder().target(my_location).zoom(4).build();
+                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 8));
+                    // Zoom in, animating the camera.
+                    googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+//                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
+                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(9), 3000, null);
+
+//                get_Estate_from_api();
+                    search_text.setText(place.getAddress());//+ "-" + cityModules_list_filtter.get(i).getCity().getName()
+
+                    clear_city.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            search_text.setText("");//+ "-" + cityModules_list_filtter.get(i).getCity().getName()
+
+                            clear_city.setVisibility(View.GONE);
+
+                        }
+                    });
+                } catch (Exception e) {
+
+                }
+
+
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                // TODO: Handle the error.
+                Status status = Autocomplete.getStatusFromIntent(data);
+                Log.i("TAG", status.getStatusMessage());
+            } else if (resultCode == 0) {
+                // The user canceled the operation.
+            }
+            return;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

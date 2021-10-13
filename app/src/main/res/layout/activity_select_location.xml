@@ -86,11 +86,35 @@
                         android:textColor="@color/black"
                         android:textSize="16dp"
                         android:textStyle="bold" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+
+                        android:layout_marginStart="15dp"
+
+                        android:background="@drawable/edit_text_background_new_design"
+                        android:visibility="gone">
+
+                        <fragment
+                            android:id="@+id/place_autocomplete"
+                            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+                            android:layout_width="match_parent"
+
+                            android:layout_height="match_parent"
+
+                            />
+
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
+                        android:visibility="gone"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
                         android:background="@drawable/search_background">
@@ -121,6 +145,36 @@
                             android:padding="5dp"
                             android:src="@drawable/ic_search"
                             app:tint="@color/colorPrimary" />
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginEnd="15dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/edit_text_background_b"
+
+                        android:layout_marginStart="15dp">
+                        <AutoCompleteTextView
+                            android:id="@+id/auto"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:visibility="gone"
+                            android:paddingStart="10dp"
+                            android:background="@android:color/transparent"
+                            android:textSize="13dp"
+                            android:maxLines="1"
+                            android:hint="@string/search" />
+                        <fragment android:id="@+id/autocomplete_fragment"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingStart="10dp"
+
+                            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                            />
 
                     </LinearLayout>
 
@@ -233,25 +287,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_margin="20dp"
-
-                android:background="@drawable/edit_text_background_new_design"
-                android:visibility="gone">
-
-                <fragment
-                    android:id="@+id/place_autocomplete"
-                    android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
-                    android:layout_width="match_parent"
-
-                    android:layout_height="match_parent"
-
-                    />
-
-
-            </LinearLayout>
 
 
         </RelativeLayout>

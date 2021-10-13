@@ -858,7 +858,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                         } else {
                             Intent intent = new Intent();
                             intent.setType("video/*");
-                            intent.setAction(Intent.ACTION_PICK);
+                            intent.setAction(Intent.ACTION_GET_CONTENT);
                             intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
 
                             startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
@@ -868,7 +868,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 //                    Pico.openMultipleFiles(AddnewsActivity.this, Pico.TYPE_VIDEO);
                         Intent intent = new Intent();
                         intent.setType("video/*");
-                        intent.setAction(Intent.ACTION_PICK);
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
                         intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
 
                         startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
@@ -904,7 +904,6 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-
 
         try {
             if ((requestCode == 115)) {
@@ -954,14 +953,114 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
 
             }
+
+            if (requestCode == 100) {
+                if (resultCode == Activity.RESULT_OK) {
+
+
+                    if (data.getClipData() != null) {
+                        int count = data.getClipData().getItemCount(); //evaluate the count before the for loop --- otherwise, the count is evaluated every loop.
+
+                        System.out.println("%^%^%^%^"+count);
+
+                        for (int i = 0; i < count; i++) {
+                            Uri imageUri = data.getClipData().getItemAt(i).getUri();
+
+
+                            System.out.println("%%%%%%%%%%%%%%%%%"+imageUri);
+
+//                                String  selectedImagePath = imageUri.getPath();
+                            String selectedImagePath = getPath(imageUri);
+
+
+                            if(selectedImagePath==null){
+
+                                selectedImagePath= getImageFilePath(imageUri);
+
+                            }
+                            if(selectedImagePath.equals("null")) {
+
+
+                                selectedImagePath= getImageFilePath(imageUri);
+
+
+                            }
+                            System.out.println("selectedImagePath" + selectedImagePath);
+
+
+                            Bitmap selectedImagea = BitmapFactory.decodeFile(selectedImagePath);
+
+
+                            selectIamgeList.add(new SelectImageModules("1", selectedImagea));
+
+                            //do something with the image (save it to some directory or whatever you need to do with it here)
+                        }
+
+                        addAqarezObject.setSelectIamgeList(selectIamgeList);
+                        images_RecyclerView.setAdapter(new RecyclerView_selectImage(AddAqarzStepsActivity.this, selectIamgeList));
+
+                        change_color_button_step_2();
+                    }
+                    else if (data.getData() != null) {
+                        Uri uri = data.getData();
+                       String selectedImagePath= getImageFilePath(uri);
+
+//                        String selectedImagePath = data.getData()getPath();
+
+
+
+//                        Uri imageUri = data.getClipData().getItemAt(i).getUri();
+//                        selectedImagePath= getImageFilePath(imageUri);
+
+
+//                        System.out.println("%%%%%%%%%%%%%%%%%"+imageUri);
+
+//                                String  selectedImagePath = imageUri.getPath();
+//                        String selectedImagePath = getPath(imageUri);
+
+                        System.out.println("selectedImagePath" + selectedImagePath);
+
+
+                        Bitmap selectedImagea = BitmapFactory.decodeFile(selectedImagePath);
+
+
+                        selectIamgeList.add(new SelectImageModules("1", selectedImagea));
+                        addAqarezObject.setSelectIamgeList(selectIamgeList);
+                        images_RecyclerView.setAdapter(new RecyclerView_selectImage(AddAqarzStepsActivity.this, selectIamgeList));
+
+                        change_color_button_step_2();
+//                        System.out.println("%%%%%%%%%dfdfd%%%%%%%%"+imagePath);
+
+                        //do something with the image (save it to some directory or whatever you need to do with it here)
+                    }
+                }
+            }
+
+
+
+
             if (requestCode == 1451) {
                 try {
+
+//                    Uri selectedImageUri = data.getData();
+
+                    // OI FILE Manager
+
+                    // MEDIA GALLERY
+//                    selectedImagePath = getPath(selectedImageUri);
+
+
                     Uri selectedImageUri = data.getData();
 
-                    String selectedImagePath = getPath(selectedImageUri);
+
+                    String selectedImagePath = selectedImageUri.getPath();
+
+//                    String selectedImagePath = getPath(selectedImageUri);
+                    System.out.println("&&&&&&&&&&&&&&&&&7" + selectedImagePath);
 
 
                     if (selectedImagePath != null) {
+
 
                         addAqarezObject.setVideo(getFile(getApplicationContext(), selectedImageUri));
 
@@ -986,6 +1085,23 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
     }
 
+    public String getImageFilePath(Uri uri) {
+        String imagePath = "";
+        File file = new File(uri.getPath());
+        String[] filePath = file.getPath().split(":");
+        String image_id = filePath[filePath.length - 1];
+
+        Cursor cursor = getContentResolver().query(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, MediaStore.Images.Media._ID + " = ? ", new String[]{image_id}, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            imagePath = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+//            imagePathList.add(imagePath);
+            cursor.close();
+        }
+
+        return imagePath;
+    }
+
     public void select_image_from_local(int permission, int st_code) {
 
         try {
@@ -1001,35 +1117,44 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                     } else {
 
 
-                        ImagePicker.with(this)
-                                .setFolderMode(true)
-                                .setFolderTitle("Album")
-
-                                .setDirectoryName("Image Picker")
-                                .setMultipleMode(true)
-                                .setShowNumberIndicator(true)
-                                .setMaxSize(15)
-                                .setLimitMessage("You can select up to 10 images")
-                                .setRequestCode(111)
-                                .start();
+//                        ImagePicker.with(this)
+//                                .setFolderMode(true)
+//                                .setFolderTitle("Album")
+//
+//                                .setDirectoryName("Image Picker")
+//                                .setMultipleMode(true)
+//                                .setShowNumberIndicator(true)
+//                                .setMaxSize(15)
+//                                .setLimitMessage("You can select up to 10 images")
+//                                .setRequestCode(111)
+//                                .start();
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 100);
 
 
                     }
                 } else {
 
-
-                    ImagePicker.with(this)
-                            .setFolderMode(true)
-                            .setFolderTitle("Album")
-
-                            .setDirectoryName("Image Picker")
-                            .setMultipleMode(true)
-                            .setShowNumberIndicator(true)
-                            .setMaxSize(15)
-                            .setLimitMessage("You can select up to 10 images")
-
-                            .setRequestCode(111)
-                            .start();
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), 100);
+//                    ImagePicker.with(this)
+//                            .setFolderMode(true)
+//                            .setFolderTitle("Album")
+//
+//                            .setDirectoryName("Image Picker")
+//                            .setMultipleMode(true)
+//                            .setShowNumberIndicator(true)
+//                            .setMaxSize(15)
+//                            .setLimitMessage("You can select up to 10 images")
+//
+//                            .setRequestCode(111)
+//                            .start();
 
 
                 }
@@ -1042,6 +1167,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
     }
 
+    // UPDATED!
     public String getPath(Uri uri) {
         String[] projection = {MediaStore.Video.Media.DATA};
         Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
@@ -1055,6 +1181,20 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         } else
             return null;
     }
+
+//    public String getPath(Uri uri) {
+//        String[] projection = {MediaStore.Video.Media.DATA};
+//        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+//        if (cursor != null) {
+//            // HERE YOU WILL GET A NULLPOINTER IF CURSOR IS NULL
+//            // THIS CAN BE, IF YOU USED OI FILE MANAGER FOR PICKING THE MEDIA
+//            int column_index = cursor
+//                    .getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
+//            cursor.moveToFirst();
+//            return cursor.getString(column_index);
+//        } else
+//            return null;
+//    }
 
 
     public static File getFile(Context context, Uri uri) throws IOException {
@@ -1116,21 +1256,26 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         if (requestCode == 111) {
             if (ContextCompat.checkSelfPermission(AddAqarzStepsActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             } else {
+                select_image_from_local(111, 111);
 
 
-                ImagePicker.with(this)
-                        .setFolderMode(true)
-                        .setFolderTitle("Album")
+//                ImagePicker.with(this)
+//                        .setFolderMode(true)
+//                        .setFolderTitle("Album")
+//
+//                        .setDirectoryName("Image Picker")
+//                        .setMultipleMode(true)
+//                        .setShowNumberIndicator(true)
+//                        .setMaxSize(15)
+//                        .setLimitMessage("You can select up to 10 images")
+//                        .setRequestCode(111)
+//                        .start();
 
-                        .setDirectoryName("Image Picker")
-                        .setMultipleMode(true)
-                        .setShowNumberIndicator(true)
-                        .setMaxSize(15)
-                        .setLimitMessage("You can select up to 10 images")
-                        .setRequestCode(111)
-                        .start();
-
-
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), 100);
             }
         }
         if (requestCode == 1451) {
@@ -1140,7 +1285,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             } else {
                 Intent intent = new Intent();
                 intent.setType("video/*");
-                intent.setAction(Intent.ACTION_PICK);
+                intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
 
                 startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);

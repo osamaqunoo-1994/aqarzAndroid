@@ -29,16 +29,22 @@
 
 
                 <LinearLayout
+                    android:id="@+id/auto_search_text"
+
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_weight="1"
+
                     android:background="@drawable/back_search_home"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp">
 
-                    <EditText
+
+
+
+                    <TextView
                         android:id="@+id/search_text"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -47,22 +53,29 @@
                         android:hint="@string/seach_hint"
                         android:imeOptions="actionSearch"
                         android:inputType="text"
+
+                        android:gravity="center|start"
+                        android:visibility="visible"
                         android:lines="1"
                         android:textSize="13dp" />
 
                     <LinearLayout
+
                         android:layout_width="10dp"
+                        android:visibility="gone"
                         android:layout_height="match_parent" />
 
                     <ImageView
                         android:id="@+id/clear_city"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
+
                         android:padding="7dp"
                         android:src="@drawable/ic_close_black_24dp"
                         android:visibility="gone" />
 
                     <ImageView
+                        android:visibility="visible"
                         android:id="@+id/search_nib"
                         android:layout_width="35dp"
                         android:layout_height="35dp"

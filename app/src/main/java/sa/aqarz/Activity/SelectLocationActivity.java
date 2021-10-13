@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,6 +22,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -34,9 +36,7 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
-import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -48,6 +48,16 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.AutocompletePrediction;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
+import com.google.android.libraries.places.api.net.FetchPlaceResponse;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -58,6 +68,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -69,6 +80,7 @@ import sa.aqarz.Dialog.BottomSheetDialogFragment_Filtter;
 import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
 import sa.aqarz.Modules.CityModules;
 import sa.aqarz.R;
+import sa.aqarz.Settings.AutoCompleteAdapter;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
@@ -101,6 +113,12 @@ public class SelectLocationActivity extends AppCompatActivity {
     LinearLayout select_location;
     TextView text_t;
     ImageView closr_tecxt;
+
+
+    AutoCompleteTextView autoCompleteTextView;
+    AutoCompleteAdapter adapter;
+    //    TextView responseView;
+    PlacesClient placesClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,6 +183,60 @@ public class SelectLocationActivity extends AppCompatActivity {
             }
         });
 
+//        responseView = findViewById(R.id.response);
+
+//        String apiKey = "AIzaSyBw6QmlOdBAItUnbgrONR0qTuun4Rx9kT8";
+//        String apiKey = "AIzaSyCX9U6fj5-Tt5lK_23d2RFsr4Nlp3yqdoM";
+//
+//        if (apiKey.isEmpty()) {
+////            responseView.setText(getString(R.string.error));
+//            return;
+//        }
+//
+//        // Setup Places Client
+//        if (!Places.isInitialized()) {
+//            Places.initialize(getApplicationContext(), apiKey);
+//        }
+//
+//        placesClient = Places.createClient(this);
+//        initAutoCompleteTextView();
+        if (!Places.isInitialized()) {
+//            Places.initialize(SelectLocationActivity.this, "AIzaSyBw6QmlOdBAItUnbgrONR0qTuun4Rx9kT8", Locale.UK);
+            Places.initialize(SelectLocationActivity.this, "AIzaSyCX9U6fj5-Tt5lK_23d2RFsr4Nlp3yqdoM", Locale.UK);
+        }
+
+
+        // Initialize the AutocompleteSupportFragment.
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
+        // Specify the types of place data to return.
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS));
+
+        // Set up a PlaceSelectionListener to handle the response.
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+
+                try {
+                    Log.i("TAG", "Place: " + place.getName() + ", " + place.getAddress());
+                    LatLng sydney = new LatLng(Double.valueOf(place.getLatLng().latitude), Double.valueOf(place.getLatLng().longitude));
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 9));
+                    text_search.setText(place.getAddress() + "");
+
+                } catch (Exception e) {
+
+                }
+
+
+            }
+
+            @Override
+            public void onError(@NonNull Status status) {
+
+            }
+        });
+
 
 //        placeAutoComplete = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete);
 //        placeAutoComplete.setOnPlaceSelectedListener(new PlaceSelectionListener() {
@@ -210,6 +282,22 @@ public class SelectLocationActivity extends AppCompatActivity {
 
             }
         });
+
+
+//        placeAutoComplete = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete);
+//        placeAutoComplete.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+//            @Override
+//            public void onPlaceSelected(Place place) {
+//
+//                Log.d("Maps", "Place selected: " + place.getName());
+//            }
+//
+//            @Override
+//            public void onError(Status status) {
+//                Log.d("Maps", "An error occurred: " + status);
+//            }
+//        });
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -353,7 +441,7 @@ public class SelectLocationActivity extends AppCompatActivity {
                                         String country = addresses.get(0).getCountryName();
 
 //
-                                        text_search.setText(""+address);
+                                        text_search.setText("" + address);
 
 
 //                                        try {
@@ -575,5 +663,65 @@ public class SelectLocationActivity extends AppCompatActivity {
 
     }
 
+    private void initAutoCompleteTextView() {
+
+        autoCompleteTextView = findViewById(R.id.auto);
+        autoCompleteTextView.setThreshold(1);
+        autoCompleteTextView.setOnItemClickListener(autocompleteClickListener);
+        adapter = new AutoCompleteAdapter(this, placesClient);
+        autoCompleteTextView.setAdapter(adapter);
+    }
+
+    private final AdapterView.OnItemClickListener autocompleteClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            try {
+                final AutocompletePrediction item = adapter.getItem(i);
+                String placeID = null;
+                if (item != null) {
+                    placeID = item.getPlaceId();
+                }
+
+//                To specify which data types to return, pass an array of Place.Fields in your FetchPlaceRequest
+//                Use only those fields which are required.
+
+                List<com.google.android.libraries.places.api.model.Place.Field> placeFields = Arrays.asList(com.google.android.libraries.places.api.model.Place.Field.ID, com.google.android.libraries.places.api.model.Place.Field.NAME, com.google.android.libraries.places.api.model.Place.Field.ADDRESS
+                        , Place.Field.LAT_LNG);
+
+                FetchPlaceRequest request = null;
+                if (placeID != null) {
+                    request = FetchPlaceRequest.builder(placeID, placeFields)
+                            .build();
+                }
+
+                if (request != null) {
+                    placesClient.fetchPlace(request).addOnSuccessListener(new OnSuccessListener<FetchPlaceResponse>() {
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void onSuccess(FetchPlaceResponse task) {
+
+
+                            LatLng sydney = new LatLng(Double.valueOf(task.getPlace().getLatLng().latitude), Double.valueOf(task.getPlace().getLatLng().longitude));
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 6));
+                            text_search.setText(task.getPlace().getAddress() + "");
+
+
+//                            responseView.setText(task.getPlace().getName() + "\n" + task.getPlace().getAddress());
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            e.printStackTrace();
+//                            responseView.setText(e.getMessage());
+                        }
+                    });
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    };
 
 }

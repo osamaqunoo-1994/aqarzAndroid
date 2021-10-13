@@ -126,6 +126,8 @@ dependencies {
 //    implementation 'com.dision.android:rtlviewpager:1.0.3'
     implementation 'com.booking:rtlviewpager:1.0.1'
     implementation 'io.github.ivanespitiac:imageslider:1.0.3'
+    compile 'com.codemybrainsout.placesearchdialog:placesearch:1.0.1'
+    compile 'com.github.darsh2:MultipleImageSelect:v0.0.4'
 
 }
 
