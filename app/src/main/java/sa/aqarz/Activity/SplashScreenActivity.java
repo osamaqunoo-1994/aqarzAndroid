@@ -339,18 +339,25 @@ public class SplashScreenActivity extends AppCompatActivity {
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
+        config.locale = locale;
 
 
         if (Build.VERSION.SDK_INT > 17) {
+
+
+            System.out.println("!!!!!");
             config.setLocale(locale);
         } else {
             config.locale = locale;
+            System.out.println("!!!!!x");
 
         }
-        config.locale = locale;
+
 
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
             config.setLocales(new LocaleList(locale));
+            System.out.println("!!!!!s");
+
         }
 
         activity.getBaseContext().getResources().updateConfiguration(config,

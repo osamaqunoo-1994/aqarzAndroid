@@ -414,6 +414,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     @Override
@@ -445,6 +446,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             title.setText(getResources().getString(R.string.title6));
 
         }
+
     }
 
     public void price() {
@@ -481,6 +483,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
 
@@ -664,6 +667,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             rent.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
             sell.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
         }
+
     }
 
     public void change_color_button_step_1() {
@@ -673,6 +677,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             button_step_1.setBackground(getResources().getDrawable(R.drawable.back_search_homeccc));
 
         }
+
     }
 
     public void change_color_button_step_2() {
@@ -682,6 +687,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             button_step_2.setBackground(getResources().getDrawable(R.drawable.back_search_homeccc));
 
         }
+
     }
 
 
@@ -750,6 +756,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     public void in_rent() {
@@ -961,27 +968,27 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                     if (data.getClipData() != null) {
                         int count = data.getClipData().getItemCount(); //evaluate the count before the for loop --- otherwise, the count is evaluated every loop.
 
-                        System.out.println("%^%^%^%^"+count);
+                        System.out.println("%^%^%^%^" + count);
 
                         for (int i = 0; i < count; i++) {
                             Uri imageUri = data.getClipData().getItemAt(i).getUri();
 
 
-                            System.out.println("%%%%%%%%%%%%%%%%%"+imageUri);
+                            System.out.println("%%%%%%%%%%%%%%%%%" + imageUri);
 
 //                                String  selectedImagePath = imageUri.getPath();
                             String selectedImagePath = getPath(imageUri);
 
 
-                            if(selectedImagePath==null){
+                            if (selectedImagePath == null) {
 
-                                selectedImagePath= getImageFilePath(imageUri);
+                                selectedImagePath = getImageFilePath(imageUri);
 
                             }
-                            if(selectedImagePath.equals("null")) {
+                            if (selectedImagePath.equals("null")) {
 
 
-                                selectedImagePath= getImageFilePath(imageUri);
+                                selectedImagePath = getImageFilePath(imageUri);
 
 
                             }
@@ -1000,13 +1007,11 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                         images_RecyclerView.setAdapter(new RecyclerView_selectImage(AddAqarzStepsActivity.this, selectIamgeList));
 
                         change_color_button_step_2();
-                    }
-                    else if (data.getData() != null) {
+                    } else if (data.getData() != null) {
                         Uri uri = data.getData();
-                       String selectedImagePath= getImageFilePath(uri);
+                        String selectedImagePath = getImageFilePath(uri);
 
 //                        String selectedImagePath = data.getData()getPath();
-
 
 
 //                        Uri imageUri = data.getClipData().getItemAt(i).getUri();
@@ -1035,8 +1040,6 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                     }
                 }
             }
-
-
 
 
             if (requestCode == 1451) {
@@ -2182,20 +2185,89 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
+                boolean is_selected_view=false;
+
+
+                if(north_selected){
+                    is_selected_view=true;
+                }
+                if(south_selected){
+                    is_selected_view=true;
+                }
+                if(east_selected){
+                    is_selected_view=true;
+                }
+                if(north_selected){
+                    west_selected=true;
+                }
+
+
+
+
+
+
+
                 if (
                         addAqarezObject.getLan().equals("") |
                                 area_text.getText().toString().equals("") |
                                 lengths_add_text.getText().toString().equals("") |
                                 streetwidthadd_text.getText().toString().equals("") |
                                 Date_of_construction_text.getText().toString().equals("") |
-                                sale_price_text.getText().toString().equals("") |
+//                                sale_price_text.getText().toString().equals("") |
                                 Warranties_duration_txt.getText().toString().equals("") |
                                 mobile_edt.getText().toString().equals("") |
-                                owner_edt.getText().toString().equals("") |
-                                addAqarezObject.getAdvertiser_side().equals("") |
-                                addAqarezObject.getAdvertiser_character().equals("")
+                                owner_edt.getText().toString().equals("")|
+
+                                !is_selected_view
+
+
+
+
+
+
+//                                addAqarezObject.getAdvertiser_side().equals("") |
+//                                addAqarezObject.getAdvertiser_character().equals("")
                 ) {
-                    WebService.Make_Toast_color_info(AddAqarzStepsActivity.this, "عليك تعبئة الحقول المطلوبه اعلى", "error");
+
+
+                    String s = "";
+                    if (addAqarezObject.getLan().equals("")) {
+
+                        s = s + "\n" + "اختر موقع العقار على الخريطه";
+
+                    }  if (area_text.getText().toString().equals("")) {
+                        s = s + "\n" + " , " + "ادخل المساحه";
+
+                    }  if (lengths_add_text.getText().toString().equals("")) {
+                        s = s + "\n" + " , " + " ادخل حدود وأطوال العقار ";
+
+                    }  if (streetwidthadd_text.getText().toString().equals("")) {
+                        s = s + "\n" + " , " + " ادخل عرض الشارع ";
+
+
+                    }  if (Date_of_construction_text.getText().toString().equals("")) {
+                        s = s + "\n" + " , " + " ادخل تاريخ البناء (عمر العقار) ";
+
+                    }  if (sale_price_text.getText().toString().equals("")) {
+                        s = s + "\n" + " ,  " + " ادخل سعر البيع ";
+
+                    }  if (Warranties_duration_txt.getText().toString().equals("")) {
+                        s = s + "\n" + " ,  " + " ادخل الضمانات ومدتها ";
+
+                    }  if (mobile_edt.getText().toString().equals("")) {
+                        s = s + "\n" + " ,  " + " ادخل رقم الموبايل ";
+
+                    }  if (owner_edt.getText().toString().equals("")) {
+                        s = s + "\n" + " ,  " + " ادخل اسم المسؤول ";
+
+                    }  if (addAqarezObject.getAdvertiser_side().equals("")) {
+
+                    }  if (addAqarezObject.getAdvertiser_character().equals("")) {
+
+                    }
+
+                    System.out.println("^^^^^^"+s);
+                    WebService.Make_Toast_color_info(AddAqarzStepsActivity.this, " " + s, "error");
 
 
                 } else {

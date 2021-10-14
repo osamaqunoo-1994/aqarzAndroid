@@ -726,11 +726,17 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
 
-                                    Intent intent = new Intent(DetaislAqarzActivity.this, AddRentalInstallmentActivity.class);
+                                    if (Settings.checkLogin()) {
+                                        Intent intent = new Intent(DetaislAqarzActivity.this, AddRentalInstallmentActivity.class);
 
-                                    intent.putExtra("rent_price", homeModules_aqares.getRent_installment_price());
+                                        intent.putExtra("rent_price", homeModules_aqares.getRent_installment_price());
 
-                                    startActivity(intent);
+                                        startActivity(intent);
+                                    } else {
+                                        Intent intent = new Intent(DetaislAqarzActivity.this, LoginActivity.class);
+
+                                        startActivity(intent);
+                                    }
                                 }
                             });
 

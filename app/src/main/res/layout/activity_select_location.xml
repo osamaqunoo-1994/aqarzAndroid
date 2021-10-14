@@ -114,10 +114,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
-                        android:background="@drawable/search_background">
+                        android:background="@drawable/edit_text_background_b">
 
                         <ImageView
                             android:layout_width="42dp"
@@ -126,16 +126,29 @@
                             android:src="@drawable/ic_location_ss"
                             app:tint="@color/te_unselected" />
 
-                        <EditText
+                        <TextView
                             android:id="@+id/text_search"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:gravity="start|center"
                             android:background="@android:color/transparent"
                             android:imeOptions="actionSearch"
                             android:inputType="text"
+                            android:hint="@string/search"
+                            android:paddingStart="10dp"
                             android:lines="1"
                             android:textSize="13dp" />
+
+                        <ImageView
+                            android:id="@+id/clear_city"
+
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:visibility="gone"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_close_black_24dp"
+                            app:tint="@color/black" />
 
                         <ImageView
                             android:id="@+id/search_btn"
@@ -154,6 +167,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginEnd="15dp"
+                        android:visibility="gone"
                         android:orientation="vertical"
                         android:background="@drawable/edit_text_background_b"
 
@@ -168,13 +182,6 @@
                             android:textSize="13dp"
                             android:maxLines="1"
                             android:hint="@string/search" />
-                        <fragment android:id="@+id/autocomplete_fragment"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:paddingStart="10dp"
-
-                            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-                            />
 
                     </LinearLayout>
 
