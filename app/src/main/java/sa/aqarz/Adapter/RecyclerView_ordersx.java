@@ -372,6 +372,8 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                     Intent intent = new Intent(context, MyOfferOrderActivity.class);
                     intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
                     intent.putExtra("id", alldata.get(position).getId() + "");
+                    intent.putExtra("type", "Watting");
+
                     context.startActivity(intent);
 //                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
@@ -403,11 +405,18 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 
 //                        bottomSheetDialogFragment_offerEstate = new BottomSheetDialogFragment_OfferEstate(alldata.get(position).getUuid() + "");
 //                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+
+
+
+
+
                     MainActivity.ordersModules = alldata.get(position);
 
                     Intent intent = new Intent(context, MyOfferOrderActivity.class);
                     intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
                     intent.putExtra("id", alldata.get(position).getId() + "");
+                    intent.putExtra("type", "sending_code");
                     context.startActivity(intent);
 //                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
@@ -440,6 +449,8 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                     Intent intent = new Intent(context, MyOfferOrderActivity.class);
                     intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
                     intent.putExtra("id", alldata.get(position).getId() + "");
+                    intent.putExtra("type", "accept");
+
                     context.startActivity(intent);
 //                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 //

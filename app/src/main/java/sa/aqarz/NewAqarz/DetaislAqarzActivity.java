@@ -975,6 +975,15 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                                         String phone = "0" + homeModules_aqares.getOwnerMobile();
                                         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
                                         startActivity(intent);
+
+
+                                        init_volley();
+//                                        WebService.loading(DetaislAqarzActivity.this, true);
+
+                                        VolleyService mVolleyService = new VolleyService(mResultCallback, DetaislAqarzActivity.this);
+                                        mVolleyService.getDataVolley("count_call", WebService.count_call + "/" + homeModules_aqares.getId() + "/call");
+
+
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }

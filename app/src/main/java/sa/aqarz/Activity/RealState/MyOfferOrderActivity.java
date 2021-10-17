@@ -63,6 +63,8 @@ public class MyOfferOrderActivity extends AppCompatActivity {
     TextView price;
     TextView address;
     TextView space;
+    TextView noofferfound;
+    String status = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +85,7 @@ public class MyOfferOrderActivity extends AppCompatActivity {
         price = findViewById(R.id.price);
         address = findViewById(R.id.address);
         space = findViewById(R.id.space);
+        noofferfound = findViewById(R.id.noofferfound);
 
         activity = this;
 
@@ -95,6 +98,20 @@ public class MyOfferOrderActivity extends AppCompatActivity {
             number_order.setText(id + "");
 
             uuid.setText(getResources().getString(R.string.MyOFFERFOR) + " " + getUuid + "");
+        } catch (Exception e) {
+
+        }
+
+
+        try {
+            String type = getIntent().getStringExtra("type");
+
+
+            if (type.equals("sending_code")) {
+                status = "sending_code";
+            }
+
+
         } catch (Exception e) {
 
         }
@@ -128,11 +145,11 @@ public class MyOfferOrderActivity extends AppCompatActivity {
         all_my_state.setLayoutManager(layoutManager1);
 
 
-        init_volley();
+//        init_volley();
 
-        VolleyService mVolleyService = new VolleyService(mResultCallback, this);
-
-        mVolleyService.getDataVolley("MYOfferOrder", WebService.MYOfferOrder + "?uuid=" + id_offer);
+//        VolleyService mVolleyService = new VolleyService(mResultCallback, this);
+//
+//        mVolleyService.getDataVolley("MYOfferOrder", WebService.MYOfferOrder + "?uuid=" + id_offer + "&status=" + status);
 
 
 //        confirm.setOnClickListener(new View.OnClickListener() {
@@ -275,6 +292,13 @@ public class MyOfferOrderActivity extends AppCompatActivity {
 
                                 }
                             });
+
+                            if(homeModules.size()==0){
+                                noofferfound.setVisibility(View.VISIBLE);
+                            }else{
+                                noofferfound.setVisibility(View.GONE);
+
+                            }
                             all_my_state.setAdapter(recyclerView_myState);
 
 //                        RecyclerView_city_bootom_sheets recyclerView_city_bootom_sheets = new RecyclerView_city_bootom_sheets(getContext(), cityModules_list);
@@ -355,7 +379,7 @@ public class MyOfferOrderActivity extends AppCompatActivity {
 
         VolleyService mVolleyService = new VolleyService(mResultCallback, this);
 
-        mVolleyService.getDataVolley("MYOfferOrder", WebService.MYOfferOrder + "?uuid=" + id_offer);
+        mVolleyService.getDataVolley("MYOfferOrder", WebService.MYOfferOrder + "?uuid=" + id_offer + "&status=" + status);
 
 
         super.onResume();

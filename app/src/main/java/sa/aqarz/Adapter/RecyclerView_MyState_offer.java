@@ -191,9 +191,9 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
         System.out.println("%^HHHH^^" + alldata.get(position).getStatus());
 
         if (alldata.get(position).getStatus() == null) {
-            holder.contnue.setVisibility(View.GONE);
+            holder.contnue.setVisibility(View.VISIBLE);
             holder.rejecteds.setVisibility(View.GONE);
-            holder.status.setVisibility(View.VISIBLE);
+            holder.status.setVisibility(View.GONE);
             holder.expired.setVisibility(View.GONE);
 
         } else if (alldata.get(position).getStatus().equals("active")) {
@@ -320,10 +320,31 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
         holder.contnue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Application.myOfferModule = alldata.get(position);
 
-                Intent intent = new Intent(context, OfferDetailsActivity.class);
-                context.startActivity(intent);
+
+                if (alldata.get(position).getBeneficiaryMobile() != null) {
+
+
+                    if (!alldata.get(position).getBeneficiaryMobile().equals("null")) {
+                        Application.myOfferModule = alldata.get(position);
+
+                        Intent intent = new Intent(context, OfferDetailsActivity.class);
+                        context.startActivity(intent);
+
+                    } else {
+                        BottomSheetDialogFragment_status_cancle bottomSheetDialogFragment_status = new BottomSheetDialogFragment_status_cancle("");
+
+                        bottomSheetDialogFragment_status.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+                    }
+
+
+                } else {
+                    BottomSheetDialogFragment_status_cancle bottomSheetDialogFragment_status = new BottomSheetDialogFragment_status_cancle("");
+
+                    bottomSheetDialogFragment_status.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+                }
 
 
             }
