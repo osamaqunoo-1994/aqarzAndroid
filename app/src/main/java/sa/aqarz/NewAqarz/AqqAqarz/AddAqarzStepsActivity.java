@@ -103,6 +103,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
     String is_rent_installment = "0";
 
     ArrayList<Image> images = new ArrayList<>();
+    ArrayList<String> images_path = new ArrayList<>();
     public static List<SelectImageModules> selectIamgeList = new ArrayList<>();
 
     public static AddAqarezObject addAqarezObject;
@@ -997,8 +998,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
                             Bitmap selectedImagea = BitmapFactory.decodeFile(selectedImagePath);
 
-
-                            selectIamgeList.add(new SelectImageModules("1", selectedImagea));
+                            selectIamgeList.add(new SelectImageModules(selectedImagePath, selectedImagea));
 
                             //do something with the image (save it to some directory or whatever you need to do with it here)
                         }
@@ -1029,7 +1029,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                         Bitmap selectedImagea = BitmapFactory.decodeFile(selectedImagePath);
 
 
-                        selectIamgeList.add(new SelectImageModules("1", selectedImagea));
+                        selectIamgeList.add(new SelectImageModules(selectedImagePath, selectedImagea));
                         addAqarezObject.setSelectIamgeList(selectIamgeList);
                         images_RecyclerView.setAdapter(new RecyclerView_selectImage(AddAqarzStepsActivity.this, selectIamgeList));
 
@@ -2185,26 +2185,21 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                boolean is_selected_view=false;
+                boolean is_selected_view = false;
 
 
-                if(north_selected){
-                    is_selected_view=true;
+                if (north_selected) {
+                    is_selected_view = true;
                 }
-                if(south_selected){
-                    is_selected_view=true;
+                if (south_selected) {
+                    is_selected_view = true;
                 }
-                if(east_selected){
-                    is_selected_view=true;
+                if (east_selected) {
+                    is_selected_view = true;
                 }
-                if(north_selected){
-                    west_selected=true;
+                if (north_selected) {
+                    west_selected = true;
                 }
-
-
-
-
-
 
 
                 if (
@@ -2216,13 +2211,9 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 //                                sale_price_text.getText().toString().equals("") |
                                 Warranties_duration_txt.getText().toString().equals("") |
                                 mobile_edt.getText().toString().equals("") |
-                                owner_edt.getText().toString().equals("")|
+                                owner_edt.getText().toString().equals("") |
 
                                 !is_selected_view
-
-
-
-
 
 
 //                                addAqarezObject.getAdvertiser_side().equals("") |
@@ -2235,38 +2226,48 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
                         s = s + "\n" + "اختر موقع العقار على الخريطه";
 
-                    }  if (area_text.getText().toString().equals("")) {
+                    }
+                    if (area_text.getText().toString().equals("")) {
                         s = s + "\n" + " , " + "ادخل المساحه";
 
-                    }  if (lengths_add_text.getText().toString().equals("")) {
+                    }
+                    if (lengths_add_text.getText().toString().equals("")) {
                         s = s + "\n" + " , " + " ادخل حدود وأطوال العقار ";
 
-                    }  if (streetwidthadd_text.getText().toString().equals("")) {
+                    }
+                    if (streetwidthadd_text.getText().toString().equals("")) {
                         s = s + "\n" + " , " + " ادخل عرض الشارع ";
 
 
-                    }  if (Date_of_construction_text.getText().toString().equals("")) {
+                    }
+                    if (Date_of_construction_text.getText().toString().equals("")) {
                         s = s + "\n" + " , " + " ادخل تاريخ البناء (عمر العقار) ";
 
-                    }  if (sale_price_text.getText().toString().equals("")) {
+                    }
+                    if (sale_price_text.getText().toString().equals("")) {
                         s = s + "\n" + " ,  " + " ادخل سعر البيع ";
 
-                    }  if (Warranties_duration_txt.getText().toString().equals("")) {
+                    }
+                    if (Warranties_duration_txt.getText().toString().equals("")) {
                         s = s + "\n" + " ,  " + " ادخل الضمانات ومدتها ";
 
-                    }  if (mobile_edt.getText().toString().equals("")) {
+                    }
+                    if (mobile_edt.getText().toString().equals("")) {
                         s = s + "\n" + " ,  " + " ادخل رقم الموبايل ";
 
-                    }  if (owner_edt.getText().toString().equals("")) {
+                    }
+                    if (owner_edt.getText().toString().equals("")) {
                         s = s + "\n" + " ,  " + " ادخل اسم المسؤول ";
 
-                    }  if (addAqarezObject.getAdvertiser_side().equals("")) {
+                    }
+                    if (addAqarezObject.getAdvertiser_side().equals("")) {
 
-                    }  if (addAqarezObject.getAdvertiser_character().equals("")) {
+                    }
+                    if (addAqarezObject.getAdvertiser_character().equals("")) {
 
                     }
 
-                    System.out.println("^^^^^^"+s);
+                    System.out.println("^^^^^^" + s);
                     WebService.Make_Toast_color_info(AddAqarzStepsActivity.this, " " + s, "error");
 
 
@@ -2308,6 +2309,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             sendObj.put("is_rent_installment", is_rent_installment + "");
             sendObj.put("rent_installment_price", price_int_result.getText().toString() + "");
             sendObj.put("estate_dimensions", lengths_add_text.getText().toString() + "");
+            sendObj.put("full_address", addAqarezObject.getAddress() + "");
 
 
             String interface_ = "";
@@ -2410,11 +2412,12 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
 
 //            sendObj.put("in_fund_offer", street.getText().toString());
+            System.out.println("images.size()" + selectIamgeList.size());
             if (images != null) {
-                for (int i = 0; i < images.size(); i++) {
+                for (int i = 0; i < selectIamgeList.size(); i++) {
 
                     try {
-                        File file_image_profile = new File(images.get(i).getPath());
+                        File file_image_profile = new File(selectIamgeList.get(i).getId() + "");
 
                         System.out.println();
                         sendObj.put("photo[" + i + "]", file_image_profile);
