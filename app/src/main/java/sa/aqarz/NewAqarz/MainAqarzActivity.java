@@ -652,7 +652,7 @@ public class MainAqarzActivity extends AppCompatActivity {
             text_2.setText(getResources().getString(R.string.MyOrder));
         } else {
             if (Settings.CheckIsAccountAqarzMan()) {
-                text_2.setText(getResources().getString(R.string.orders));
+                text_2.setText(getResources().getString(R.string.orders2));
 
             } else {
                 text_2.setText(getResources().getString(R.string.MyOrder));

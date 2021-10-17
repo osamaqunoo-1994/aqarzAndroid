@@ -111,6 +111,7 @@ public class EditAqarzActivity extends AppCompatActivity {
     TextView step_4_text;
 
     public static AddAqarezObject addAqarezObject;
+    String interface_ = "";
 
     ///------------------------------------------------------------------------------------------------------
 
@@ -2109,9 +2110,7 @@ public class EditAqarzActivity extends AppCompatActivity {
             sendObj.put("is_rent_installment", is_rent_installment + "");
             sendObj.put("rent_installment_price", price_int_result.getText().toString() + "");
 
-            String interface_ = "";
-
-
+            interface_ = "";
             if (south_selected) {
                 if (interface_.equals("")) {
                     interface_ = "south";
@@ -2596,6 +2595,83 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                         if (homeModules_aqares.getOwnerName() != null && !homeModules_aqares.getOwnerName().equals("null")) {
                             owner_edt.setText(homeModules_aqares.getOwnerName() + "");
+                        }
+                        if (homeModules_aqares.getRent_installment_price() != null && !homeModules_aqares.getRent_installment_price().equals("null")) {
+                            price_int_result.setText(homeModules_aqares.getRent_installment_price() + "");
+                        }
+                        if (homeModules_aqares.getRent_installment_price() != null && !homeModules_aqares.getRent_installment_price().equals("null")) {
+                            price_int.setText(homeModules_aqares.getRent_installment_price() + "");
+                        }
+                        if (homeModules_aqares.getInterface() != null && !homeModules_aqares.getInterface().equals("null")) {
+
+
+                            south_selected = false;
+                            north_selected = false;
+                            east_selected = false;
+                            west_selected = false;
+
+                            if (homeModules_aqares.getInterface().contains("south")) {
+                                if (interface_.equals("")) {
+//                    interface_ = "south";
+                                    interface_ = " south ";
+
+
+                                } else {
+//                    interface_ = "," + "south";
+                                    interface_ = interface_ + "," + " south ";
+
+                                }
+                                south.setBackground(getResources().getDrawable(R.drawable.button_login1));
+                                south.setTextColor(getResources().getColor(R.color.white));
+
+
+                                south_selected = true;
+                            }
+                            if (homeModules_aqares.getInterface().contains("north")) {
+                                if (interface_.equals("")) {
+                                    interface_ = " north ";
+
+                                } else {
+//                    interface_ = "," + "north";
+                                    interface_ = interface_ + "," + " north ";
+
+                                }
+                                north_selected = true;
+                                north.setBackground(getResources().getDrawable(R.drawable.button_login1));
+                                north.setTextColor(getResources().getColor(R.color.white));
+
+
+                            }
+                            if (homeModules_aqares.getInterface().contains("east")) {
+                                if (interface_.equals("")) {
+                                    interface_ = " east ";
+
+                                } else {
+//                    interface_ = "," + "غرب";
+                                    interface_ = interface_ + "," + " east ";
+
+                                }
+                                east_selected = true;
+                                east.setBackground(getResources().getDrawable(R.drawable.button_login1));
+                                east.setTextColor(getResources().getColor(R.color.white));
+
+                            }
+                            if (homeModules_aqares.getInterface().contains("west")) {
+                                if (interface_.equals("")) {
+                                    interface_ = " west ";
+
+                                } else {
+//                    interface_ = "," + "west";
+                                    interface_ = interface_ + "," + " west ";
+
+                                }
+                                west_selected = true;
+                                west.setBackground(getResources().getDrawable(R.drawable.button_login1));
+                                west.setTextColor(getResources().getColor(R.color.white));
+
+                            }
+
+
                         }
 
                         if (homeModules_aqares.getAdvertiser_side().equals("individual")) {

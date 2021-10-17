@@ -39,6 +39,7 @@
     <string name="enter_verification">قم بادخال رمز التفعيل الذي وصل على هاتفك المحمول.</string>
     <string name="home">الرئيسية</string>
     <string name="orders">إدارة الطلبات</string>
+    <string name="orders2">الطلبات</string>
     <string name="subscriptions">الاشتراكات</string>
     <string name="messages">مراسلة</string>
     <string name="search">بحث</string>

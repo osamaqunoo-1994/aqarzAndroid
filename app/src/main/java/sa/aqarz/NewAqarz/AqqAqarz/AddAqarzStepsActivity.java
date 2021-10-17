@@ -2318,45 +2318,45 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             if (south_selected) {
                 if (interface_.equals("")) {
 //                    interface_ = "south";
-                    interface_ = " شرق ";
+                    interface_ = " south ";
 
 
                 } else {
 //                    interface_ = "," + "south";
-                    interface_ = interface_ + "," + " شرق ";
+                    interface_ = interface_ + "," + " south ";
 
                 }
             }
 
             if (north_selected) {
                 if (interface_.equals("")) {
-                    interface_ = " شمال ";
+                    interface_ = " north ";
 
                 } else {
 //                    interface_ = "," + "north";
-                    interface_ = interface_ + "," + " شمال ";
+                    interface_ = interface_ + "," + " north ";
 
                 }
             }
 
             if (east_selected) {
                 if (interface_.equals("")) {
-                    interface_ = " غرب ";
+                    interface_ = " east ";
 
                 } else {
-//                    interface_ = "," + "east";
-                    interface_ = interface_ + "," + " غرب ";
+//                    interface_ = "," + "غرب";
+                    interface_ = interface_ + "," + " east ";
 
                 }
             }
 
             if (west_selected) {
                 if (interface_.equals("")) {
-                    interface_ = " جنوب ";
+                    interface_ = " west ";
 
                 } else {
 //                    interface_ = "," + "west";
-                    interface_ = interface_ + "," + " جنوب ";
+                    interface_ = interface_ + "," + " west ";
 
                 }
             }
