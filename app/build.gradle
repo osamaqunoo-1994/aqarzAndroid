@@ -129,6 +129,9 @@ dependencies {
     compile 'com.codemybrainsout.placesearchdialog:placesearch:1.0.1'
     compile 'com.github.darsh2:MultipleImageSelect:v0.0.4'
 
+
+    compile 'com.github.marlonlom:timeago:4.0.3'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

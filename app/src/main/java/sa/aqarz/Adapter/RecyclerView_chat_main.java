@@ -14,13 +14,18 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.github.marlonlom.utilities.timeago.TimeAgo;
+import com.github.marlonlom.utilities.timeago.TimeAgoMessages;
+import com.orhanobut.hawk.Hawk;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import sa.aqarz.Activity.ChatRoomActivity;
@@ -144,19 +149,38 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
         holder.count.setText(alldata.get(position).getCount_not_read() + "");
 
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-
-        String dateInStrings = alldata.get(position).getCreatedAt() + "";
-        String dateInString = dateInStrings.substring(0, 19);
-
-        SimpleDateFormat formatterOut = new SimpleDateFormat("dd MMM yyyy");
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+//
+//        String dateInStrings = alldata.get(position).getCreatedAt() + "";
+//        String dateInString = dateInStrings.substring(0, 19);
+//
+//        SimpleDateFormat formatterOut = new SimpleDateFormat("dd MMM yyyy");
 
         try {
 
-            Date date = formatter.parse(dateInString);
-            holder.text_date.setText(formatterOut.format(date));
+//            Date date = formatter.parse(dateInString);
+//            holder.text_date.setText(formatterOut.format(date));
+            String str_date = alldata.get(position).getCreatedAt() + "";
 
-        } catch (ParseException e) {
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//2021-09-09 01:01:23
+            Date date = formatter.parse(str_date);
+            System.out.println("Today is " + date.getTime());
+
+
+            Locale LocaleBylanguageTag;
+            if (Hawk.get("lang").toString().equals("ar")) {
+                LocaleBylanguageTag = Locale.forLanguageTag("ar");
+
+            } else {
+                LocaleBylanguageTag = Locale.forLanguageTag("en");
+
+            }
+            TimeAgoMessages messages = new TimeAgoMessages.Builder().withLocale(LocaleBylanguageTag).build();
+
+            String text = TimeAgo.using(date.getTime(), messages);
+
+            holder.text_date.setText(text + "");
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

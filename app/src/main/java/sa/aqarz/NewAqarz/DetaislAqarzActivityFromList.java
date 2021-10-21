@@ -988,16 +988,27 @@ public class DetaislAqarzActivityFromList extends AppCompatActivity {
 ////                            System.out.println("items_ViewPageritems_ViewPager" + homeModules_aqares.getEstate_file().size());
 
 
+//                            items_ViewPager.clear();
+//                            for (int i = 0; i < homeModules_aqares.getEstate_file().size(); i++) {
+//                                items_ViewPager.add(new imagemodules(homeModules_aqares.getEstate_file().get(i).getFile() + "", "image"));
+//                            }
+//                            if (homeModules_aqares.getVideo() != null) {
+//                                if (!homeModules_aqares.getVideo().equals("null")) {
+//                                    items_ViewPager.add(new imagemodules(homeModules_aqares.getVideo() + "", "video"));
+//                                }
+//                            }
+
                             items_ViewPager.clear();
                             for (int i = 0; i < homeModules_aqares.getEstate_file().size(); i++) {
-                                items_ViewPager.add(new imagemodules(homeModules_aqares.getEstate_file().get(i).getFile() + "", "image"));
-                            }
-                            if (homeModules_aqares.getVideo() != null) {
-                                if (!homeModules_aqares.getVideo().equals("null")) {
-                                    items_ViewPager.add(new imagemodules(homeModules_aqares.getVideo() + "", "video"));
+
+                                if(homeModules_aqares.getEstate_file().get(i).getType().equals("images")){
+                                    items_ViewPager.add(new imagemodules(homeModules_aqares.getEstate_file().get(i).getFile() + "", "image"));
+
+                                }else{
+                                    items_ViewPager.add(new imagemodules(homeModules_aqares.getEstate_file().get(i).getFile() + "", "video"));
+
                                 }
                             }
-
 
 //                            if (home_viewPager_adapter != null) {
 //                                home_viewPager_adapter.Refa();

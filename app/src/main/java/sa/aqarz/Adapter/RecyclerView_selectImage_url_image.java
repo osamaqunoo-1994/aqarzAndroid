@@ -167,10 +167,10 @@ public class RecyclerView_selectImage_url_image extends RecyclerView.Adapter<Rec
 //                RequestOrderActivity.set_fragment(position);
 
 
-                if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(position);
-                }
-//
+//                if (mItemClickListener != null) {
+//                    mItemClickListener.onItemClick(position);
+//                }
+////
 
             }
         });
@@ -178,6 +178,10 @@ public class RecyclerView_selectImage_url_image extends RecyclerView.Adapter<Rec
             @Override
             public void onClick(View view) {
 
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(alldata.get(position).getId());
+                }
+//
 
                 Postion_opend = position;
 
@@ -185,14 +189,8 @@ public class RecyclerView_selectImage_url_image extends RecyclerView.Adapter<Rec
                 Refr();
 
 
-
 //                RequestOrderActivity.set_fragment(position);
 
-
-                if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(alldata.get(position).getId());
-                }
-//
 
             }
         });

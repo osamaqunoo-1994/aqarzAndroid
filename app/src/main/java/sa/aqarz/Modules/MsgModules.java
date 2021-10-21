@@ -62,9 +62,10 @@ public class MsgModules {
     private Integer formMe;
 
 
-    public MsgModules(String body, int formMe) {
+    public MsgModules(String body, int formMe,String createdAt) {
         this.body = body;
         this.formMe = formMe;
+        this.createdAt = createdAt;
     }
 
     public String getDisplay_name() {

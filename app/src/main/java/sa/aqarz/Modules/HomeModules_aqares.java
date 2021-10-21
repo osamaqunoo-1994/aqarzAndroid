@@ -919,9 +919,16 @@ public class HomeModules_aqares {
         @SerializedName("icon")
         @Expose
         private String icon;
+        @SerializedName("type")
+        @Expose
+        private String type;
 
         public estate_file() {
 
+        }
+
+        public String getType() {
+            return type;
         }
 
         public String getIcon() {

@@ -10,7 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -22,6 +25,8 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.text.Editable;
@@ -74,6 +79,7 @@ import sa.aqarz.Modules.AddAqarezObject;
 import sa.aqarz.Modules.ComfortModules;
 import sa.aqarz.Modules.SelectImageModules;
 import sa.aqarz.Modules.TypeModules;
+import sa.aqarz.NewAqarz.Adapter.RecyclerView_selectVideo;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
@@ -113,6 +119,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
     LinearLayout addImage;
     LinearLayout select_video;
     RecyclerView images_RecyclerView;
+    RecyclerView video_RecyclerView;
 
     ImageView select_video_image;
     LinearLayout button_step_2;
@@ -232,6 +239,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
     EditText price_int_result;
     TextView f1, f2, f3;
     TextView yes, no;
+    public static List<String> selectedVideos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -287,6 +295,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         button_step_1 = findViewById(R.id.button_step_1);
         addImage = findViewById(R.id.addImage);
         images_RecyclerView = findViewById(R.id.images_RecyclerView);
+        video_RecyclerView = findViewById(R.id.video_RecyclerView);
         select_video = findViewById(R.id.select_video);
         select_video_image = findViewById(R.id.select_video_image);
         lay_1 = findViewById(R.id.lay_1);
@@ -376,6 +385,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
         images.clear();
         selectIamgeList.clear();
+        images_path.clear();
         title.setText(getResources().getString(R.string.AqarTypeselect));
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -489,6 +499,8 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
 
     public void step_1() {
+        addAqarezObject.setOperation_type_id(type_opration_selected);
+
         change_color_button_step_1();
         sell.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -822,6 +834,9 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             LinearLayoutManager layoutManagem
                     = new LinearLayoutManager(AddAqarzStepsActivity.this, LinearLayoutManager.HORIZONTAL, false);
             images_RecyclerView.setLayoutManager(layoutManagem);
+            LinearLayoutManager layoutManagema
+                    = new LinearLayoutManager(AddAqarzStepsActivity.this, LinearLayoutManager.HORIZONTAL, false);
+            video_RecyclerView.setLayoutManager(layoutManagema);
 
 
             addImage.setOnClickListener(new View.OnClickListener() {
@@ -864,22 +879,54 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                                     1451);
 
                         } else {
-                            Intent intent = new Intent();
-                            intent.setType("video/*");
-                            intent.setAction(Intent.ACTION_GET_CONTENT);
-                            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
 
-                            startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
+
+                            if (Build.VERSION.SDK_INT < 19) {
+                                Intent intent = new Intent();
+                                intent.setType("video/mp4");
+                                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                                intent.setAction(Intent.ACTION_GET_CONTENT);
+                                startActivityForResult(Intent.createChooser(intent, "Select videos"), 1451);
+                            } else {
+                                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                                intent.setType("video/mp4");
+                                startActivityForResult(intent, 1451);
+                            }
+
+
+//                            Intent intent = new Intent();
+//                            intent.setType("video/*");
+//                            intent.setAction(Intent.ACTION_GET_CONTENT);
+//                            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+//
+//                            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
+//
+//                            startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
 
                         }
                     } else {
+                        if (Build.VERSION.SDK_INT < 19) {
+                            Intent intent = new Intent();
+                            intent.setType("video/mp4");
+                            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                            intent.setAction(Intent.ACTION_GET_CONTENT);
+                            startActivityForResult(Intent.createChooser(intent, "Select videos"), 1451);
+                        } else {
+                            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                            intent.addCategory(Intent.CATEGORY_OPENABLE);
+                            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                            intent.setType("video/mp4");
+                            startActivityForResult(intent, 1451);
+                        }
 //                    Pico.openMultipleFiles(AddnewsActivity.this, Pico.TYPE_VIDEO);
-                        Intent intent = new Intent();
-                        intent.setType("video/*");
-                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
-
-                        startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
+//                        Intent intent = new Intent();
+//                        intent.setType("video/*");
+//                        intent.setAction(Intent.ACTION_GET_CONTENT);
+//                        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
+//
+//                        startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
 
                     }
 
@@ -1043,42 +1090,57 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
 
             if (requestCode == 1451) {
-                try {
+                if (resultCode == RESULT_OK) {
 
-//                    Uri selectedImageUri = data.getData();
+                    if (selectedVideos != null) {
+                        selectedVideos.addAll(getSelectedVideos(requestCode, data));
 
-                    // OI FILE Manager
-
-                    // MEDIA GALLERY
-//                    selectedImagePath = getPath(selectedImageUri);
-
-
-                    Uri selectedImageUri = data.getData();
-
-
-                    String selectedImagePath = selectedImageUri.getPath();
-
-//                    String selectedImagePath = getPath(selectedImageUri);
-                    System.out.println("&&&&&&&&&&&&&&&&&7" + selectedImagePath);
-
-
-                    if (selectedImagePath != null) {
-
-
-                        addAqarezObject.setVideo(getFile(getApplicationContext(), selectedImageUri));
-
-                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-
-                            select_video_image.setImageBitmap(createThumbnail(AddAqarzStepsActivity.this, addAqarezObject.getVideo().getPath() + ""));
-
-                        } else {
-                            select_video_image.setImageBitmap(ThumbnailUtils.createVideoThumbnail(addAqarezObject.getVideo().getPath(), MediaStore.Video.Thumbnails.FULL_SCREEN_KIND));
-                        }
+                    } else {
+                        selectedVideos = getSelectedVideos(requestCode, data);
 
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
+
+                    System.out.println("selectedVideos" + selectedVideos.size());
+                    video_RecyclerView.setAdapter(new RecyclerView_selectVideo(AddAqarzStepsActivity.this, selectedVideos));
+
+
                 }
+//                try {
+//
+////                    Uri selectedImageUri = data.getData();
+//
+//                    // OI FILE Manager
+//
+//                    // MEDIA GALLERY
+////                    selectedImagePath = getPath(selectedImageUri);
+//
+//
+//                    Uri selectedImageUri = data.getData();
+//
+//
+//                    String selectedImagePath = selectedImageUri.getPath();
+//
+////                    String selectedImagePath = getPath(selectedImageUri);
+//                    System.out.println("&&&&&&&&&&&&&&&&&7" + selectedImagePath);
+//
+//
+//                    if (selectedImagePath != null) {
+//
+//
+//                        addAqarezObject.setVideo(getFile(getApplicationContext(), selectedImageUri));
+//
+//                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+//
+//                            select_video_image.setImageBitmap(createThumbnail(AddAqarzStepsActivity.this, addAqarezObject.getVideo().getPath() + ""));
+//
+//                        } else {
+//                            select_video_image.setImageBitmap(ThumbnailUtils.createVideoThumbnail(addAqarezObject.getVideo().getPath(), MediaStore.Video.Thumbnails.FULL_SCREEN_KIND));
+//                        }
+//
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -1286,12 +1348,25 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
 
             } else {
-                Intent intent = new Intent();
-                intent.setType("video/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
-
-                startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
+                if (Build.VERSION.SDK_INT < 19) {
+                    Intent intent = new Intent();
+                    intent.setType("video/mp4");
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select videos"), 1451);
+                } else {
+                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                    intent.addCategory(Intent.CATEGORY_OPENABLE);
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                    intent.setType("video/mp4");
+                    startActivityForResult(intent, 1451);
+                }
+//                Intent intent = new Intent();
+//                intent.setType("video/*");
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
+//
+//                startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
 
             }
         }
@@ -2207,7 +2282,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                                 area_text.getText().toString().equals("") |
                                 lengths_add_text.getText().toString().equals("") |
                                 streetwidthadd_text.getText().toString().equals("") |
-                                Date_of_construction_text.getText().toString().equals("") |
+//                                Date_of_construction_text.getText().toString().equals("") |
 //                                sale_price_text.getText().toString().equals("") |
                                 Warranties_duration_txt.getText().toString().equals("") |
                                 mobile_edt.getText().toString().equals("") |
@@ -2260,6 +2335,10 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                         s = s + "\n" + " ,  " + " ادخل اسم المسؤول ";
 
                     }
+                    if (!is_selected_view) {
+                        s = s + "\n" + " ,  " + " اختر الاتجاهات ";
+
+                    }
                     if (addAqarezObject.getAdvertiser_side().equals("")) {
 
                     }
@@ -2310,6 +2389,8 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             sendObj.put("rent_installment_price", price_int_result.getText().toString() + "");
             sendObj.put("estate_dimensions", lengths_add_text.getText().toString() + "");
             sendObj.put("full_address", addAqarezObject.getAddress() + "");
+            sendObj.put("unit_counter", number_units_text.getText().toString() + "");
+            sendObj.put("unit_number", unit_number_text.getText().toString() + "");
 
 
             String interface_ = "";
@@ -2413,7 +2494,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
 //            sendObj.put("in_fund_offer", street.getText().toString());
             System.out.println("images.size()" + selectIamgeList.size());
-            if (images != null) {
+            if (selectIamgeList != null) {
                 for (int i = 0; i < selectIamgeList.size(); i++) {
 
                     try {
@@ -2421,6 +2502,21 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
                         System.out.println();
                         sendObj.put("photo[" + i + "]", file_image_profile);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+            if (selectedVideos != null) {
+                for (int i = 0; i < selectedVideos.size(); i++) {
+
+                    try {
+                        File file_image_profile = new File(selectedVideos.get(i) + "");
+
+                        System.out.println();
+                        sendObj.put("video[" + i + "]", file_image_profile);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -2445,10 +2541,10 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             sendObj.put("note", note.getText().toString());
 
 
-            if (addAqarezObject.getVideo() != null) {
-                sendObj.put("video", addAqarezObject.getVideo());
-
-            }
+//            if (addAqarezObject.getVideo() != null) {
+//                sendObj.put("video", addAqarezObject.getVideo());
+//
+//            }
 
 
             System.out.println(sendObj.toString());
@@ -2539,7 +2635,15 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                 System.out.println("responseString" + responseString);
                 WebService.loading(AddAqarzStepsActivity.this, false);
 
+                try {
+                    JSONObject jsonObject = new JSONObject(responseString);
+                    String message = jsonObject.getString("message");
 
+                    WebService.Make_Toast_color(AddAqarzStepsActivity.this, message,"error");
+
+                } catch (Exception e) {
+
+                }
                 WebService.loading(AddAqarzStepsActivity.this, false);
 
             }
@@ -2549,14 +2653,22 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
 
                 try {
-                    System.out.println("responseString" + errorResponse.toString());
+                    System.out.println("responseStrinssssgs" + errorResponse.toString());
 
                     WebService.loading(AddAqarzStepsActivity.this, false);
 
                 } catch (Exception e) {
 
                 }
+                try {
+//                    JSONObject jsonObject = new JSONObject(errorResponse.toString());
+                    String message = errorResponse.getString("message");
 
+                    WebService.Make_Toast_color(AddAqarzStepsActivity.this, message,"error");
+
+                } catch (Exception e) {
+
+                }
             }
 
             @Override
@@ -2653,4 +2765,158 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
     }
 
+    public List<String> getSelectedVideos(int requestCode, Intent data) {
+
+        List<String> result = new ArrayList<>();
+
+        ClipData clipData = data.getClipData();
+        if (clipData != null) {
+            for (int i = 0; i < clipData.getItemCount(); i++) {
+                ClipData.Item videoItem = clipData.getItemAt(i);
+                Uri videoURI = videoItem.getUri();
+                String filePath = getPath2(AddAqarzStepsActivity.this, videoURI);
+                result.add(filePath);
+            }
+        } else {
+            Uri videoURI = data.getData();
+            String filePath = getPath2(AddAqarzStepsActivity.this, videoURI);
+            result.add(filePath);
+        }
+
+        return result;
+    }
+
+    @SuppressLint("NewApi")
+    public static String getPath2(final Context context, final Uri uri) {
+
+        final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+
+        // DocumentProvider
+        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+            // ExternalStorageProvider
+            if (isExternalStorageDocument(uri)) {
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                final String type = split[0];
+
+                if ("primary".equalsIgnoreCase(type)) {
+                    return Environment.getExternalStorageDirectory() + "/" + split[1];
+                }
+
+                // TODO handle non-primary volumes
+            }
+            // DownloadsProvider
+            else if (isDownloadsDocument(uri)) {
+
+                final String id = DocumentsContract.getDocumentId(uri);
+                final Uri contentUri = ContentUris.withAppendedId(
+                        Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
+
+                return getDataColumn(context, contentUri, null, null);
+            }
+            // MediaProvider
+            else if (isMediaDocument(uri)) {
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                final String type = split[0];
+
+                Uri contentUri = null;
+                if ("image".equals(type)) {
+                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                } else if ("video".equals(type)) {
+                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                } else if ("audio".equals(type)) {
+                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+                }
+
+                final String selection = "_id=?";
+                final String[] selectionArgs = new String[]{
+                        split[1]
+                };
+
+                return getDataColumn(context, contentUri, selection, selectionArgs);
+            }
+        }
+        // MediaStore (and general)
+        else if ("content".equalsIgnoreCase(uri.getScheme())) {
+
+            // Return the remote address
+            if (isGooglePhotosUri(uri))
+                return uri.getLastPathSegment();
+
+            return getDataColumn(context, uri, null, null);
+        }
+        // File
+        else if ("file".equalsIgnoreCase(uri.getScheme())) {
+            return uri.getPath();
+        }
+
+        return null;
+    }
+
+    /**
+     * Get the value of the data column for this Uri. This is useful for
+     * MediaStore Uris, and other file-based ContentProviders.
+     *
+     * @param context       The context.
+     * @param uri           The Uri to query.
+     * @param selection     (Optional) Filter used in the query.
+     * @param selectionArgs (Optional) Selection arguments used in the query.
+     * @return The value of the _data column, which is typically a file path.
+     */
+    public static String getDataColumn(Context context, Uri uri, String selection,
+                                       String[] selectionArgs) {
+
+        Cursor cursor = null;
+        final String column = "_data";
+        final String[] projection = {
+                column
+        };
+
+        try {
+            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
+                    null);
+            if (cursor != null && cursor.moveToFirst()) {
+                final int index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(index);
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return null;
+    }
+
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is ExternalStorageProvider.
+     */
+    public static boolean isExternalStorageDocument(Uri uri) {
+        return "com.android.externalstorage.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is DownloadsProvider.
+     */
+    public static boolean isDownloadsDocument(Uri uri) {
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is MediaProvider.
+     */
+    public static boolean isMediaDocument(Uri uri) {
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is Google Photos.
+     */
+    public static boolean isGooglePhotosUri(Uri uri) {
+        return "com.google.android.apps.photos.content".equals(uri.getAuthority());
+    }
 }

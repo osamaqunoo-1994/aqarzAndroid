@@ -23,8 +23,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import sa.aqarz.Adapter.RecyclerView_ChatRoom;
@@ -49,6 +53,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     String lastMessage = "";
     String msg_id = "";
     RecyclerView_ChatRoom recyclerView_chatRoom;
+    String id_aqarez = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +89,21 @@ public class ChatRoomActivity extends AppCompatActivity {
         ordersModules.clear();
         recyclerView_chatRoom = new RecyclerView_ChatRoom(ChatRoomActivity.this, ordersModules);
         message.setAdapter(recyclerView_chatRoom);
+
+
+        try {
+
+            String id_dd = getIntent().getStringExtra("id_aqarez");
+
+            if (id_dd != null) {
+                id_aqarez = id_dd;
+            }
+
+
+        } catch (Exception e) {
+
+        }
+
 
         try {
 
@@ -138,7 +158,14 @@ public class ChatRoomActivity extends AppCompatActivity {
                     try {
                         jsonObject.put("user_id", user_id);
                         jsonObject.put("title", "##");
-                        jsonObject.put("body", text_mesage.getText().toString());
+
+                        if (id_aqarez.equals("")) {
+                            jsonObject.put("body", text_mesage.getText().toString());
+
+                        } else {
+                            jsonObject.put("body", " بخصوص اعلانك رقم " + id_aqarez + " \n " + text_mesage.getText().toString());
+                            id_aqarez = "";
+                        }
 
                         if (msg_id != null) {
                             if (!msg_id.equals("")) {
@@ -148,6 +175,16 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                         }
                         lastMessage = text_mesage.getText().toString();
+
+                        Date c = Calendar.getInstance().getTime();
+//                        System.out.println("Current time => " + c);
+
+                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                        String formattedDate = df.format(c);
+
+                        ordersModules.add(new MsgModules(lastMessage, 1, formattedDate));
+
+
 //                        jsonObject.put("parent_id", "");
                     } catch (Exception e) {
 
@@ -156,12 +193,11 @@ public class ChatRoomActivity extends AppCompatActivity {
 //                    WebService.loading(ChatRoomActivity.this, true);
                     System.out.println("jsonObjectjsonObjectjsonObject" + jsonObject.toString());
 
-                    ordersModules.add(new MsgModules(lastMessage, 1));
 
 //                            message.setAdapter(new RecyclerView_ChatRoom(ChatRoomActivity.this, ordersModules));
                     recyclerView_chatRoom.Ref();
                     text_mesage.setText("");
-                    message.smoothScrollToPosition(ordersModules.size()-1);
+                    message.smoothScrollToPosition(ordersModules.size() - 1);
 
                     mVolleyService.postDataVolley("send_msg", WebService.send_msg, jsonObject);
 

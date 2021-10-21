@@ -1,5 +1,4 @@
-<!DOCTYPE resources [<!ENTITY nbsp  "&#160;" ><!ENTITY copy  "&#169;" ><!ENTITY bull "&#8226;" >]>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
 
 
@@ -1242,5 +1241,6 @@
 
 
     <string name="addAQarsNumber">ادخل رقم العقار</string>
+    <string name="WriteHeare">اكتب هنا</string>
 
 </resources>

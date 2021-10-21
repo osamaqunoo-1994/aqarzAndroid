@@ -95,7 +95,7 @@
                             android:id="@+id/sell"
                             android:layout_width="90dp"
                             android:layout_height="44dp"
-                            android:background="@drawable/button_login1"
+                            android:background="@drawable/back_search_home_selected"
                             android:fontFamily="@font/muli_bold"
                             android:gravity="center"
                             android:paddingTop="3dp"
@@ -121,7 +121,7 @@
                             android:paddingBottom="3dp"
 
                             android:text="@string/rent"
-                            android:textColor="#AAABB3"
+                            android:textColor="@color/textColor"
                             android:textSize="13dp"
 
                             android:textStyle="bold" />
@@ -137,7 +137,7 @@
                             android:paddingTop="3dp"
                             android:paddingBottom="3dp"
                             android:text="@string/investment"
-                            android:textColor="#AAABB3"
+                            android:textColor="@color/textColor"
                             android:textSize="13dp"
 
 
@@ -470,8 +470,16 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_marginTop="10dp"
-                        android:padding="5dp"></ImageView>
+                        android:padding="5dp"
+                        android:visibility="gone"></ImageView>
 
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/video_RecyclerView"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+
+                        />
 
                     <LinearLayout
                         android:id="@+id/button_step_2"
@@ -563,7 +571,7 @@
                             android:paddingTop="3dp"
                             android:paddingBottom="3dp"
                             android:text="@string/commercial_add"
-                            android:textColor="#AAABB3"
+                            android:textColor="@color/textColor"
 
                             android:textStyle="bold" />
 
@@ -578,7 +586,7 @@
                             android:paddingTop="3dp"
                             android:paddingBottom="3dp"
                             android:text="@string/Artificial_add"
-                            android:textColor="#AAABB3"
+                            android:textColor="@color/textColor"
 
                             android:textStyle="bold" />
 

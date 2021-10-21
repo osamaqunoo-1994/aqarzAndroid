@@ -684,6 +684,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                                         intent.putExtra("parent_id", "-1");
                                         intent.putExtra("nameUser", name_user + "");
                                         intent.putExtra("imageUser", "");
+                                        intent.putExtra("id_aqarez", homeModules_aqares.getId()+"");
                                         startActivity(intent);
                                     }
                                 }
@@ -1036,13 +1037,20 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
                             items_ViewPager.clear();
                             for (int i = 0; i < homeModules_aqares.getEstate_file().size(); i++) {
-                                items_ViewPager.add(new imagemodules(homeModules_aqares.getEstate_file().get(i).getFile() + "", "image"));
-                            }
-                            if (homeModules_aqares.getVideo() != null) {
-                                if (!homeModules_aqares.getVideo().equals("null")) {
-                                    items_ViewPager.add(new imagemodules(homeModules_aqares.getVideo() + "", "video"));
+
+                                if(homeModules_aqares.getEstate_file().get(i).getType().equals("images")){
+                                    items_ViewPager.add(new imagemodules(homeModules_aqares.getEstate_file().get(i).getFile() + "", "image"));
+
+                                }else{
+                                    items_ViewPager.add(new imagemodules(homeModules_aqares.getEstate_file().get(i).getFile() + "", "video"));
+
                                 }
                             }
+//                            if (homeModules_aqares.getVideo() != null) {
+//                                if (!homeModules_aqares.getVideo().equals("null")) {
+//                                    items_ViewPager.add(new imagemodules(homeModules_aqares.getVideo() + "", "video"));
+//                                }
+//                            }
 
 
                             try {

@@ -1,7 +1,10 @@
 package sa.aqarz.Activity.AddAqarz;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -13,6 +16,8 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.text.Editable;
@@ -85,6 +90,10 @@ import sa.aqarz.Modules.ComfortModules;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.SelectImageModules;
 import sa.aqarz.Modules.TypeModules;
+import sa.aqarz.NewAqarz.Adapter.RecyclerView_selectImage_url_video;
+import sa.aqarz.NewAqarz.Adapter.RecyclerView_selectVideo;
+import sa.aqarz.NewAqarz.Adapter.RecyclerView_selectVideoEdit;
+import sa.aqarz.NewAqarz.AqqAqarz.AddAqarzStepsActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
@@ -92,6 +101,11 @@ import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
 
 public class EditAqarzActivity extends AppCompatActivity {
+
+
+    List<HomeModules_aqares.estate_file> estate_files_image = new ArrayList<>();
+    List<HomeModules_aqares.estate_file> estate_files_video = new ArrayList<>();
+    public static List<String> selectedVideos = new ArrayList<>();
 
 
     LinearLayout step_1;
@@ -256,6 +270,8 @@ public class EditAqarzActivity extends AppCompatActivity {
 
     LinearLayout all_details;
     RecyclerView images_RecyclerView_url;
+    RecyclerView video_RecyclerView_url;
+    RecyclerView video_RecyclerView;
 
 
     String id_or_aq;
@@ -290,6 +306,8 @@ public class EditAqarzActivity extends AppCompatActivity {
     public void inti() {
         opration_RecyclerView = findViewById(R.id.opration_RecyclerView);
 
+        video_RecyclerView_url = findViewById(R.id.video_RecyclerView_url);
+        video_RecyclerView = findViewById(R.id.video_RecyclerView);
         step_1 = findViewById(R.id.step_1);
         step_2 = findViewById(R.id.step_2);
         step_3 = findViewById(R.id.step_3);
@@ -418,7 +436,7 @@ public class EditAqarzActivity extends AppCompatActivity {
         owner_edt = findViewById(R.id.owner_edt);
         approval = findViewById(R.id.approval);
         images_RecyclerView_url = findViewById(R.id.images_RecyclerView_url);
-
+        selectedVideos.clear();
 
         select_opration_type();
         add_address_And_location();
@@ -437,6 +455,13 @@ public class EditAqarzActivity extends AppCompatActivity {
         LinearLayoutManager layoutManagems
                 = new LinearLayoutManager(EditAqarzActivity.this, LinearLayoutManager.HORIZONTAL, false);
         images_RecyclerView_url.setLayoutManager(layoutManagems);
+
+        LinearLayoutManager layoutManagemsa
+                = new LinearLayoutManager(EditAqarzActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        video_RecyclerView_url.setLayoutManager(layoutManagemsa);
+        LinearLayoutManager layoutManagemsaa
+                = new LinearLayoutManager(EditAqarzActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        video_RecyclerView.setLayoutManager(layoutManagemsaa);
 
         try {
             id_or_aq = getIntent().getStringExtra("id_aqarz");
@@ -1166,22 +1191,50 @@ public class EditAqarzActivity extends AppCompatActivity {
                                 1451);
 
                     } else {
-                        Intent intent = new Intent();
-                        intent.setType("video/*");
-                        intent.setAction(Intent.ACTION_PICK);
-                        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
+                        if (Build.VERSION.SDK_INT < 19) {
+                            Intent intent = new Intent();
+                            intent.setType("video/mp4");
+                            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                            intent.setAction(Intent.ACTION_GET_CONTENT);
+                            startActivityForResult(Intent.createChooser(intent, "Select videos"), 1451);
+                        } else {
+                            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                            intent.addCategory(Intent.CATEGORY_OPENABLE);
+                            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                            intent.setType("video/mp4");
+                            startActivityForResult(intent, 1451);
+                        }
 
-                        startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
+//                        Intent intent = new Intent();
+//                        intent.setType("video/*");
+//                        intent.setAction(Intent.ACTION_PICK);
+//                        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
+//
+//                        startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
 
                     }
                 } else {
-//                    Pico.openMultipleFiles(AddnewsActivity.this, Pico.TYPE_VIDEO);
-                    Intent intent = new Intent();
-                    intent.setType("video/*");
-                    intent.setAction(Intent.ACTION_PICK);
-                    intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
+                    if (Build.VERSION.SDK_INT < 19) {
+                        Intent intent = new Intent();
+                        intent.setType("video/mp4");
+                        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, "Select videos"), 1451);
+                    } else {
+                        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                        intent.addCategory(Intent.CATEGORY_OPENABLE);
+                        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                        intent.setType("video/mp4");
+                        startActivityForResult(intent, 1451);
+                    }
 
-                    startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
+//                    Pico.openMultipleFiles(AddnewsActivity.this, Pico.TYPE_VIDEO);
+//                    Intent intent = new Intent();
+//                    intent.setType("video/*");
+//                    intent.setAction(Intent.ACTION_PICK);
+//                    intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
+//
+//                    startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
 
                 }
 
@@ -2199,6 +2252,8 @@ public class EditAqarzActivity extends AppCompatActivity {
             sendObj.put("street_name", street.getText().toString());
             sendObj.put("lat", addAqarezObject.getLat());
             sendObj.put("lan", addAqarezObject.getLan());
+            sendObj.put("unit_counter", number_units_text.getText().toString() + "");
+            sendObj.put("unit_number", unit_number_text.getText().toString() + "");
 
 
 //            sendObj.put("in_fund_offer", street.getText().toString());
@@ -2217,7 +2272,21 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                 }
             }
+            if (selectedVideos != null) {
+                for (int i = 0; i < selectedVideos.size(); i++) {
 
+                    try {
+                        File file_image_profile = new File(selectedVideos.get(i) + "");
+
+                        System.out.println();
+                        sendObj.put("video[" + i + "]", file_image_profile);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
 
 //            sendObj.put("attachment_planned[0]", Type_work_select);
             sendObj.put("is_mortgage", addAqarezObject.getIs_mortgage());
@@ -2233,10 +2302,10 @@ public class EditAqarzActivity extends AppCompatActivity {
             sendObj.put("estate_use_type", addAqarezObject.getEstate_use_type());
 
 
-            if (addAqarezObject.getVideo() != null) {
-                sendObj.put("video", addAqarezObject.getVideo());
-
-            }
+//            if (addAqarezObject.getVideo() != null) {
+//                sendObj.put("video", addAqarezObject.getVideo());
+//
+//            }
 
 
             System.out.println(sendObj.toString());
@@ -2308,28 +2377,43 @@ public class EditAqarzActivity extends AppCompatActivity {
 
         }
         if (requestCode == 1451) {
-            try {
-                Uri selectedImageUri = data.getData();
+            if (resultCode == RESULT_OK) {
 
-                String selectedImagePath = getPath(selectedImageUri);
+                if (selectedVideos != null) {
+                    selectedVideos.addAll(getSelectedVideos(requestCode, data));
 
-
-                if (selectedImagePath != null) {
-
-                    addAqarezObject.setVideo(getFile(getApplicationContext(), selectedImageUri));
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-
-                        select_video.setImageBitmap(createThumbnail(EditAqarzActivity.this, addAqarezObject.getVideo().getPath() + ""));
-
-                    } else {
-                        select_video.setImageBitmap(ThumbnailUtils.createVideoThumbnail(addAqarezObject.getVideo().getPath(), MediaStore.Video.Thumbnails.FULL_SCREEN_KIND));
-                    }
+                } else {
+                    selectedVideos = getSelectedVideos(requestCode, data);
 
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+
+                System.out.println("selectedVideos" + selectedVideos.size());
+                video_RecyclerView.setAdapter(new RecyclerView_selectVideoEdit(EditAqarzActivity.this, selectedVideos));
+
+
             }
+//            try {
+//                Uri selectedImageUri = data.getData();
+//
+//                String selectedImagePath = getPath(selectedImageUri);
+//
+//
+//                if (selectedImagePath != null) {
+//
+//                    addAqarezObject.setVideo(getFile(getApplicationContext(), selectedImageUri));
+//
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+//
+//                        select_video.setImageBitmap(createThumbnail(EditAqarzActivity.this, addAqarezObject.getVideo().getPath() + ""));
+//
+//                    } else {
+//                        select_video.setImageBitmap(ThumbnailUtils.createVideoThumbnail(addAqarezObject.getVideo().getPath(), MediaStore.Video.Thumbnails.FULL_SCREEN_KIND));
+//                    }
+//
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
         }
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -2374,16 +2458,185 @@ public class EditAqarzActivity extends AppCompatActivity {
 
 
             } else {
-                Intent intent = new Intent();
-                intent.setType("video/*");
-                intent.setAction(Intent.ACTION_PICK);
-                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
+                if (Build.VERSION.SDK_INT < 19) {
+                    Intent intent = new Intent();
+                    intent.setType("video/mp4");
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select videos"), 1451);
+                } else {
+                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                    intent.addCategory(Intent.CATEGORY_OPENABLE);
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                    intent.setType("video/mp4");
+                    startActivityForResult(intent, 1451);
+                }
 
-                startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
+//                Intent intent = new Intent();
+//                intent.setType("video/*");
+//                intent.setAction(Intent.ACTION_PICK);
+//                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "video/*");
+//
+//                startActivityForResult(Intent.createChooser(intent, "Select Video"), 1451);
 
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    public List<String> getSelectedVideos(int requestCode, Intent data) {
+
+        List<String> result = new ArrayList<>();
+
+        ClipData clipData = data.getClipData();
+        if (clipData != null) {
+            for (int i = 0; i < clipData.getItemCount(); i++) {
+                ClipData.Item videoItem = clipData.getItemAt(i);
+                Uri videoURI = videoItem.getUri();
+                String filePath = getPath2(EditAqarzActivity.this, videoURI);
+                result.add(filePath);
+            }
+        } else {
+            Uri videoURI = data.getData();
+            String filePath = getPath2(EditAqarzActivity.this, videoURI);
+            result.add(filePath);
+        }
+
+        return result;
+    }
+
+    @SuppressLint("NewApi")
+    public static String getPath2(final Context context, final Uri uri) {
+
+        final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+
+        // DocumentProvider
+        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+            // ExternalStorageProvider
+            if (isExternalStorageDocument(uri)) {
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                final String type = split[0];
+
+                if ("primary".equalsIgnoreCase(type)) {
+                    return Environment.getExternalStorageDirectory() + "/" + split[1];
+                }
+
+                // TODO handle non-primary volumes
+            }
+            // DownloadsProvider
+            else if (isDownloadsDocument(uri)) {
+
+                final String id = DocumentsContract.getDocumentId(uri);
+                final Uri contentUri = ContentUris.withAppendedId(
+                        Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
+
+                return getDataColumn(context, contentUri, null, null);
+            }
+            // MediaProvider
+            else if (isMediaDocument(uri)) {
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                final String type = split[0];
+
+                Uri contentUri = null;
+                if ("image".equals(type)) {
+                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                } else if ("video".equals(type)) {
+                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                } else if ("audio".equals(type)) {
+                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+                }
+
+                final String selection = "_id=?";
+                final String[] selectionArgs = new String[]{
+                        split[1]
+                };
+
+                return getDataColumn(context, contentUri, selection, selectionArgs);
+            }
+        }
+        // MediaStore (and general)
+        else if ("content".equalsIgnoreCase(uri.getScheme())) {
+
+            // Return the remote address
+            if (isGooglePhotosUri(uri))
+                return uri.getLastPathSegment();
+
+            return getDataColumn(context, uri, null, null);
+        }
+        // File
+        else if ("file".equalsIgnoreCase(uri.getScheme())) {
+            return uri.getPath();
+        }
+
+        return null;
+    }
+
+    /**
+     * Get the value of the data column for this Uri. This is useful for
+     * MediaStore Uris, and other file-based ContentProviders.
+     *
+     * @param context       The context.
+     * @param uri           The Uri to query.
+     * @param selection     (Optional) Filter used in the query.
+     * @param selectionArgs (Optional) Selection arguments used in the query.
+     * @return The value of the _data column, which is typically a file path.
+     */
+    public static String getDataColumn(Context context, Uri uri, String selection,
+                                       String[] selectionArgs) {
+
+        Cursor cursor = null;
+        final String column = "_data";
+        final String[] projection = {
+                column
+        };
+
+        try {
+            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
+                    null);
+            if (cursor != null && cursor.moveToFirst()) {
+                final int index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(index);
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return null;
+    }
+
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is ExternalStorageProvider.
+     */
+    public static boolean isExternalStorageDocument(Uri uri) {
+        return "com.android.externalstorage.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is DownloadsProvider.
+     */
+    public static boolean isDownloadsDocument(Uri uri) {
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is MediaProvider.
+     */
+    public static boolean isMediaDocument(Uri uri) {
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri The Uri to check.
+     * @return Whether the Uri authority is Google Photos.
+     */
+    public static boolean isGooglePhotosUri(Uri uri) {
+        return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
 
     public void select_image_from_local(int permission, int st_code) {
@@ -2602,6 +2855,71 @@ public class EditAqarzActivity extends AppCompatActivity {
                         if (homeModules_aqares.getRent_installment_price() != null && !homeModules_aqares.getRent_installment_price().equals("null")) {
                             price_int.setText(homeModules_aqares.getRent_installment_price() + "");
                         }
+
+
+                        if (homeModules_aqares.getUnit_counter() != null && !homeModules_aqares.getUnit_counter().equals("null")) {
+                            number_units_text.setText(homeModules_aqares.getUnit_counter() + "");
+                        }
+                        if (homeModules_aqares.getUnit_number() != null && !homeModules_aqares.getUnit_number().equals("null")) {
+                            unit_number_text.setText(homeModules_aqares.getUnit_number() + "");
+                        }
+
+                        if (homeModules_aqares.getEstateAge() != null && !homeModules_aqares.getEstateAge().equals("null")) {
+                            Date_of_construction_text.setText(homeModules_aqares.getEstateAge() + "");
+                        }
+
+
+                        if (homeModules_aqares.getLoungesNumber() != null && !homeModules_aqares.getLoungesNumber().equals("null")) {
+                            Lounges_number.setText(homeModules_aqares.getLoungesNumber() + "");
+                            number_Lounges = Integer.valueOf(homeModules_aqares.getLoungesNumber().toString());
+
+                        }
+
+                        if (homeModules_aqares.getBathroomsNumber() != null && !homeModules_aqares.getBathroomsNumber().equals("null")) {
+                            Bathrooms_text.setText(homeModules_aqares.getBathroomsNumber() + "");
+                            number_Bathrooms = Integer.valueOf(homeModules_aqares.getBathroomsNumber().toString());
+
+                        }
+
+                        if (homeModules_aqares.getBedroom_number() != null && !homeModules_aqares.getBedroom_number().equals("null")) {
+                            room_text.setText(homeModules_aqares.getBedroom_number() + "");
+                            number_room = Integer.valueOf(homeModules_aqares.getBedroom_number());
+
+                        }
+
+                        if (homeModules_aqares.getDiningRoomsNumber() != null && !homeModules_aqares.getDiningRoomsNumber().equals("null")) {
+                            Dining_text.setText(homeModules_aqares.getDiningRoomsNumber() + "");
+                            number_Dining_rooms = Integer.valueOf(homeModules_aqares.getDiningRoomsNumber().toString());
+
+                        }
+
+                        if (homeModules_aqares.getBoardsNumber() != null && !homeModules_aqares.getBoardsNumber().equals("null")) {
+                            Boards_text.setText(homeModules_aqares.getBoardsNumber() + "");
+                            number_Boards_plus = Integer.valueOf(homeModules_aqares.getBoardsNumber().toString());
+
+                        }
+
+
+                        if (homeModules_aqares.getKitchenNumber() != null && !homeModules_aqares.getKitchenNumber().equals("null")) {
+                            Kitchens_text.setText(homeModules_aqares.getKitchenNumber() + "");
+                            number_Kitchens_plus = Integer.valueOf(homeModules_aqares.getKitchenNumber().toString());
+
+                        }
+
+
+                        if (homeModules_aqares.getElevators_number() != null && !homeModules_aqares.getElevators_number().equals("null")) {
+                            lifts_txt.setText(homeModules_aqares.getElevators_number() + "");
+                            number_lifts = Integer.valueOf(homeModules_aqares.getElevators_number());
+
+                        }
+
+
+                        if (homeModules_aqares.getParking_spaces_numbers() != null && !homeModules_aqares.getParking_spaces_numbers().equals("null")) {
+                            parking_txt.setText(homeModules_aqares.getParking_spaces_numbers() + "");
+                            number_parking = Integer.valueOf(homeModules_aqares.getParking_spaces_numbers());
+                        }
+
+
                         if (homeModules_aqares.getInterface() != null && !homeModules_aqares.getInterface().equals("null")) {
 
 
@@ -2715,7 +3033,19 @@ public class EditAqarzActivity extends AppCompatActivity {
                         selected_opration();
 
 //                                    images_RecyclerView_url.setAdapter(new RecyclerView_selectImage_url(EditAqarsActivity.this, homeModules_aqares.getEstate_file()));
-                        RecyclerView_selectImage_url_image recyclerView_selectImage_url_image = new RecyclerView_selectImage_url_image(EditAqarzActivity.this, homeModules_aqares.getEstate_file());
+                        estate_files_image.clear();
+                        estate_files_video.clear();
+                        for (int i = 0; i < homeModules_aqares.getEstate_file().size(); i++) {
+                            if (homeModules_aqares.getEstate_file().get(i).getType().equals("images")) {
+                                estate_files_image.add(homeModules_aqares.getEstate_file().get(i));
+                            } else {
+                                estate_files_video.add(homeModules_aqares.getEstate_file().get(i));
+
+                            }
+                        }
+
+
+                        RecyclerView_selectImage_url_image recyclerView_selectImage_url_image = new RecyclerView_selectImage_url_image(EditAqarzActivity.this, estate_files_image);
 
                         recyclerView_selectImage_url_image.addItemClickListener(new RecyclerView_selectImage_url_image.ItemClickListener() {
                             @Override
@@ -2741,6 +3071,34 @@ public class EditAqarzActivity extends AppCompatActivity {
 
 
                         images_RecyclerView_url.setAdapter(recyclerView_selectImage_url_image);
+
+
+                        RecyclerView_selectImage_url_video recyclerView_selectImage_url_video = new RecyclerView_selectImage_url_video(EditAqarzActivity.this, estate_files_video);
+
+                        recyclerView_selectImage_url_video.addItemClickListener(new RecyclerView_selectImage_url_video.ItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+                                //-----------------------------------------------------------------------------------------
+                                init_volley();
+                                VolleyService mVolleyService = new VolleyService(mResultCallback, EditAqarzActivity.this);
+
+
+                                JSONObject jsonObject = new JSONObject();
+                                try {
+                                    jsonObject.put("image_id", position + "");
+                                } catch (Exception e) {
+
+                                }
+
+                                mVolleyService.postDataVolley("deleteImg_estate", WebService.deleteImg_estate, jsonObject);
+
+                                WebService.loading(EditAqarzActivity.this, false);
+
+                            }
+                        });
+
+
+                        video_RecyclerView_url.setAdapter(recyclerView_selectImage_url_video);
 
                     } catch (Exception e) {
                         e.printStackTrace();
