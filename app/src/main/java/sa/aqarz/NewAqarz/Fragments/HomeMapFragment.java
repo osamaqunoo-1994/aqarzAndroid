@@ -91,6 +91,7 @@ import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
 import sa.aqarz.Fragment.mapsHome.MapsRepository;
 import sa.aqarz.Fragment.mapsHome.MapsViewModel;
 import sa.aqarz.Modules.AllEstate;
+import sa.aqarz.Modules.AllEstate1;
 import sa.aqarz.Modules.CityLocation;
 import sa.aqarz.Modules.CityModules;
 import sa.aqarz.Modules.HomeModules_aqares;
@@ -1021,6 +1022,9 @@ public class HomeMapFragment extends Fragment {
         loading.setVisibility(View.VISIBLE);
         String lat_lan = "&lan=" + lan + "&lat=" + lat;
         String distance = "50";
+        MainAqarzActivity.object_filtter.setLan(lan + "");
+        MainAqarzActivity.object_filtter.setLat(lat + "");
+        MainAqarzActivity.object_filtter.setDistance(distance + "");
 
 
 //        float zoom = googleMap.getCameraPosition().zoom;
@@ -1120,6 +1124,7 @@ public class HomeMapFragment extends Fragment {
         if (!MainAqarzActivity.object_filtter.getDate().equals("")) {
             estate_age = "&estate_age=" + MainAqarzActivity.object_filtter.getDate();
         }
+        String is_list = "&is_list=" + 0;
 
 
         String type_filtter_ = "";
@@ -1131,7 +1136,7 @@ public class HomeMapFragment extends Fragment {
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-        mVolleyService.getAsync("home_estate_custom_list", WebService.home_estate_custom_list + "?" + lat_lan + "&distance=" + distance + type_filtter_ + is_rent_installment + elevators_number + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type);
+        mVolleyService.getAsync("home_estate_custom_list", WebService.home_estate_custom_list + "?" + lat_lan + "&distance=" + distance + type_filtter_ + is_list + is_rent_installment + elevators_number + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type);
 //        urlEstat = WebService.home_estate_custom_list + "?" + filter + lat_lan + "&distance=" + distance + getId_region + getSerial_city;
 
 
@@ -1165,12 +1170,12 @@ public class HomeMapFragment extends Fragment {
 
                             Gson gson = new Gson();
 
-                            AllEstate allNeigbers = gson.fromJson(mJson, AllEstate.class);
+                            AllEstate1 allNeigbers = gson.fromJson(mJson, AllEstate1.class);
 
-                            homeModules_aqares = allNeigbers.getData().getData();
+                            homeModules_aqares = allNeigbers.getData();
 
 
-                            set_locationEstate(allNeigbers.getData().getData());
+                            set_locationEstate(allNeigbers.getData());
 //                            all_estate_size.setVisibility(View.VISIBLE);
 //                            all_estate_size.setText(allNeigbers.getData().getTo() + " " + activity.getResources().getString(R.string.From_t) + " " + allNeigbers.getData().getTotal() + " " + activity.getResources().getString(R.string.advertisementsx));
 
@@ -1210,7 +1215,7 @@ public class HomeMapFragment extends Fragment {
                                         CameraPosition cameraPosition = new CameraPosition.Builder().target(my_location).zoom(4).build();
                                         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-                                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 10));
+                                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 11));
                                         // Zoom in, animating the camera.
 //                                        googleMap.animateCamera(CameraUpdateFactory.zoomIn());
 //                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.

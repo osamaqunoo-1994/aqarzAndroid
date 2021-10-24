@@ -8,6 +8,9 @@ public class Object_filtter {
 
     String type_aqarz_view = "";
     String type_aqarz = "";
+    String lat = "";
+    String lan = "";
+    String distance = "";
     String less_price = "";
     String max_price = "";
     String less_space = "";
@@ -68,6 +71,30 @@ public class Object_filtter {
 
     public String getId_state() {
         return id_state;
+    }
+
+    public String getLan() {
+        return lan;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public void setLan(String lan) {
+        this.lan = lan;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
     }
 
     public void setId_state(String id_state) {

@@ -548,16 +548,16 @@ public class ListAqarzActivity extends AppCompatActivity {
         }
 
         String state_id = "";
-
-        if (!MainAqarzActivity.object_filtter.getId_state().equals("")) {
-            state_id = "&state_id=" + MainAqarzActivity.object_filtter.getId_state();
-        }
+//
+//        if (!MainAqarzActivity.object_filtter.getId_state().equals("")) {
+//            state_id = "&state_id=" + MainAqarzActivity.object_filtter.getId_state();
+//        }
 
         String number_aqareza = "";
 
         if (!number_aqarez.getText().toString().equals("")) {
 
-            state_id="";
+            state_id = "";
             number_aqareza = "&search=" + number_aqarez.getText().toString();
         }
 
@@ -576,6 +576,27 @@ public class ListAqarzActivity extends AppCompatActivity {
         if (!MainAqarzActivity.object_filtter.getDate().equals("")) {
             estate_age = "&estate_age=" + MainAqarzActivity.object_filtter.getDate();
         }
+
+
+        String lan = "";
+
+        if (!MainAqarzActivity.object_filtter.getLan().equals("")) {
+            lan = "&lan=" + MainAqarzActivity.object_filtter.getLan();
+        }
+        String lat = "";
+
+        if (!MainAqarzActivity.object_filtter.getLat().equals("")) {
+            lat = "&lat=" + MainAqarzActivity.object_filtter.getLat();
+        }
+
+        String distance = "";
+
+        if (!MainAqarzActivity.object_filtter.getDistance().equals("")) {
+            distance = "&distance=" + MainAqarzActivity.object_filtter.getDistance();
+        }
+
+
+        String is_list = "&is_list=" + 1;
 
 
 //        String type_filtter_ = "";
@@ -600,7 +621,7 @@ public class ListAqarzActivity extends AppCompatActivity {
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + fil_by +number_aqareza+ state_id + kitchen_number + is_rent_installment + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
+        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + fil_by + is_list + lat + lan + distance + number_aqareza + state_id + kitchen_number + is_rent_installment + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
 
 //        url_list = WebService.home_estate_custom_list + "?" + type_filtter_;
         mVolleyService.getAsync("home_estate_custom_list_more_1", url_list);
