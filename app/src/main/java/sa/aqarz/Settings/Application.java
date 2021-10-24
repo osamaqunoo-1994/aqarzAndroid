@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.LocaleList;
 import android.view.View;
 
+import com.google.android.libraries.places.api.Places;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.Locale;
 
 import sa.aqarz.Activity.MainActivity;
+import sa.aqarz.Activity.SelectLocationActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Modules.CityModules;
 import sa.aqarz.Modules.MyOfferModule;
@@ -50,6 +52,9 @@ public class Application extends android.app.Application {
         activity = this;
         Hawk.init(this).build();
 
+//        if (!Places.isInitialized()) {
+//            Places.initialize(Application.this, "AIzaSyCX9U6fj5-Tt5lK_23d2RFsr4Nlp3yqdoM", Locale.UK);
+//        }
 //        if (Hawk.contains("lang")) {
 //
 //            Locale locale = new Locale(Hawk.get("lang").toString());

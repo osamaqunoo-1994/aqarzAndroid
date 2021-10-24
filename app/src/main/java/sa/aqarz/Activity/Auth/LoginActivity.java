@@ -204,7 +204,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
-              intent.putExtra("mobile", phone_ed.getText().toString());
+                intent.putExtra("mobile", phone_ed.getText().toString());
                 startActivity(intent);
 //                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
@@ -297,28 +297,62 @@ public class LoginActivity extends AppCompatActivity {
 
 
                         } else {
-
-
                             String data = response.getString("data");
+                            JSONObject jsonObject = new JSONObject(data);
 
-                            Hawk.put("user", data);
-                            JsonParser parser = new JsonParser();
-                            JsonElement mJson = parser.parse(data);
+//                            boolean statue = jsonObject.getBoolean("statue");
+                            String code = jsonObject.getString("code") + "";
 
-                            Gson gson = new Gson();
-                            User userModules = gson.fromJson(mJson, User.class);
-
-
+                            if (code != null) {
+                                if (code.equals("null")) {
 
 
+                                    Hawk.put("user", data);
+                                    JsonParser parser = new JsonParser();
+                                    JsonElement mJson = parser.parse(data);
 
-                            Hawk.put("api_token", "token " + userModules.getApi_token() + "");
+                                    Gson gson = new Gson();
+                                    User userModules = gson.fromJson(mJson, User.class);
+
+
+                                    Hawk.put("api_token", "token " + userModules.getApi_token() + "");
 //                            Hawk.put("api_token", "token " + "d97f7aceeaeb1b9f7ffd8303896f51e706203fe8b6c716815eaea85890c7a488fab7250a60cb4a1e32110e84fb5d16d3392e00e9be00d407b313fadb6c3b26b5" + "");
 
 
-                            String message = response.getString("message");
-                            WebService.Make_Toast_color(LoginActivity.this, message, "success");
-                            finish();
+                                    String message = response.getString("message");
+                                    WebService.Make_Toast_color(LoginActivity.this, message, "success");
+                                    finish();
+
+                                } else {
+                                    Intent intent = new Intent(LoginActivity.this, ConfirmationActivity.class);
+                                    intent.putExtra("mobile", phone_ed.getText().toString());
+                                    intent.putExtra("code", code);
+//                                intent.putExtra("from", "splash");
+                                    startActivity(intent);
+//                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                    finish();
+
+                                }
+
+                            } else {
+                                Hawk.put("user", data);
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(data);
+
+                                Gson gson = new Gson();
+                                User userModules = gson.fromJson(mJson, User.class);
+
+
+                                Hawk.put("api_token", "token " + userModules.getApi_token() + "");
+//                            Hawk.put("api_token", "token " + "d97f7aceeaeb1b9f7ffd8303896f51e706203fe8b6c716815eaea85890c7a488fab7250a60cb4a1e32110e84fb5d16d3392e00e9be00d407b313fadb6c3b26b5" + "");
+
+
+                                String message = response.getString("message");
+                                WebService.Make_Toast_color(LoginActivity.this, message, "success");
+                                finish();
+                            }
+
+
                         }
                     } else {
                         String message = response.getString("message");
@@ -328,6 +362,32 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 } catch (Exception e) {
+                    e.printStackTrace();
+
+                    String data = null;
+                    try {
+                        data = response.getString("data");
+
+
+                        Hawk.put("user", data);
+                        JsonParser parser = new JsonParser();
+                        JsonElement mJson = parser.parse(data);
+
+                        Gson gson = new Gson();
+                        User userModules = gson.fromJson(mJson, User.class);
+
+
+                        Hawk.put("api_token", "token " + userModules.getApi_token() + "");
+//                            Hawk.put("api_token", "token " + "d97f7aceeaeb1b9f7ffd8303896f51e706203fe8b6c716815eaea85890c7a488fab7250a60cb4a1e32110e84fb5d16d3392e00e9be00d407b313fadb6c3b26b5" + "");
+
+
+                        String message = response.getString("message");
+                        WebService.Make_Toast_color(LoginActivity.this, message, "success");
+                        finish();
+
+                    } catch (Exception jsonException) {
+                        jsonException.printStackTrace();
+                    }
 
                 }
 

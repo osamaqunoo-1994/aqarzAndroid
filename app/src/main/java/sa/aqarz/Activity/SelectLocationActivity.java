@@ -156,13 +156,16 @@ public class SelectLocationActivity extends AppCompatActivity {
                 = new LinearLayoutManager(SelectLocationActivity.this, LinearLayoutManager.VERTICAL, false);
         allcity.setLayoutManager(layoutManager1);
 
+//
+//        if (!Places.isInitialized()) {
+//            Places.initialize(SelectLocationActivity.this, "AIzaSyCX9U6fj5-Tt5lK_23d2RFsr4Nlp3yqdoM", Locale.UK);
+////            Places.initialize(SelectLocationActivity.this, "AIzaSyBw6QmlOdBAItUnbgrONR0qTuun4Rx9kT8", Locale.UK);
+//
+//        }
 
         if (!Places.isInitialized()) {
-            Places.initialize(SelectLocationActivity.this, "AIzaSyCX9U6fj5-Tt5lK_23d2RFsr4Nlp3yqdoM", Locale.UK);
-//            Places.initialize(SelectLocationActivity.this, "AIzaSyBw6QmlOdBAItUnbgrONR0qTuun4Rx9kT8", Locale.UK);
-
+            Places.initialize(SelectLocationActivity.this, "AIzaSyBw6QmlOdBAItUnbgrONR0qTuun4Rx9kT8", Locale.UK);
         }
-
 
 //        auto_search_text.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -180,10 +183,10 @@ public class SelectLocationActivity extends AppCompatActivity {
         text_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.ADDRESS, Place.Field.NAME, Place.Field.LAT_LNG);
+                List<Place.Field> fieldss = Arrays.asList(Place.Field.ID, Place.Field.ADDRESS, Place.Field.NAME, Place.Field.LAT_LNG);
 
                 // Start the autocomplete intent.
-                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldss)
                         .build(SelectLocationActivity.this);
                 startActivityForResult(intent, 11);
 
@@ -192,20 +195,15 @@ public class SelectLocationActivity extends AppCompatActivity {
         search_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.ADDRESS, Place.Field.NAME, Place.Field.LAT_LNG);
+                List<Place.Field> fieldsw = Arrays.asList(Place.Field.ID, Place.Field.ADDRESS, Place.Field.NAME, Place.Field.LAT_LNG);
 
                 // Start the autocomplete intent.
-                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields)
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldsw)
                         .build(SelectLocationActivity.this);
                 startActivityForResult(intent, 11);
 
             }
         });
-
-
-
-
-
 
 
 //        search_btn.setOnClickListener(new View.OnClickListener() {
@@ -475,11 +473,11 @@ public class SelectLocationActivity extends AppCompatActivity {
                         lang = cameraPosition.target.longitude + "";
 
 
-                        System.out.println("Locale.getDefault()"+Locale.getDefault());
+                        System.out.println("Locale.getDefault()" + Locale.getDefault());
                         Locale Arabic = new Locale("ar");
 
                         geocoder = new Geocoder(SelectLocationActivity.this, Arabic);
-                        System.out.println("Locale.getDefault()"+Locale.getDefault());
+                        System.out.println("Locale.getDefault()" + Locale.getDefault());
 
                         try {
 

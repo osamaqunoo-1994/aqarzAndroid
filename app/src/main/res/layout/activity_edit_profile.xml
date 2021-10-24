@@ -237,8 +237,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
-                    android:layoutDirection="ltr"
-                    android:layout_marginRight="20dp">
+                    android:layout_marginRight="20dp"
+                    android:layoutDirection="ltr">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -247,6 +248,7 @@
                         android:gravity="center"
                         android:text="aqarz.sa/"
                         android:visibility="visible" />
+
                     <EditText
                         android:id="@+id/link"
 
@@ -264,8 +266,6 @@
                         android:paddingRight="20dp"
                         android:text=""
                         android:textSize="9dp" />
-
-
 
 
                     <ImageView
@@ -378,7 +378,8 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:paddingBottom="5dp">
+                    android:paddingBottom="5dp"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"

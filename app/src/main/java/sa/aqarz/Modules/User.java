@@ -39,6 +39,9 @@ public class User {
     @SerializedName("link")
     @Expose
     private String link;
+    @SerializedName("office_staff")
+    @Expose
+    private String office_staff;
     @SerializedName("emp_name")
     @Expose
     private String emp_name;
@@ -151,6 +154,9 @@ public class User {
     @SerializedName("count_fund_offer")
     @Expose
     private String count_fund_offer;
+    @SerializedName("experience")
+    @Expose
+    private String experience;
     @SerializedName("member_name")
     @Expose
     private List<SettingsModules.service_types> member_name;
@@ -170,6 +176,10 @@ public class User {
 
     public String getBio() {
         return bio;
+    }
+
+    public String getExperience() {
+        return experience;
     }
 
     public String getCount_estate() {
@@ -194,6 +204,10 @@ public class User {
 
     public String getCount_fund_offer() {
         return count_fund_offer;
+    }
+
+    public String getOffice_staff() {
+        return office_staff;
     }
 
     public String getCount_fund_pending_offer() {

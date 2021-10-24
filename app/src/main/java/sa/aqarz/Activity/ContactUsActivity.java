@@ -122,6 +122,9 @@ public class ContactUsActivity extends AppCompatActivity {
                         WebService.Make_Toast_color(ContactUsActivity.this, message, "success");
 
 
+                        finish();
+
+
                     } else {
                         String message = response.getString("message");
 

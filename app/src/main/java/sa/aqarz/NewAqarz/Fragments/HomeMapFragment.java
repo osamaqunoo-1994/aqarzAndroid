@@ -1694,7 +1694,7 @@ public class HomeMapFragment extends Fragment {
                     // Zoom in, animating the camera.
                     googleMap.animateCamera(CameraUpdateFactory.zoomIn());
 //                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(9), 3000, null);
+                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(12), 1500, null);
 
 //                get_Estate_from_api();
                     search_text.setText(place.getAddress());//+ "-" + cityModules_list_filtter.get(i).getCity().getName()

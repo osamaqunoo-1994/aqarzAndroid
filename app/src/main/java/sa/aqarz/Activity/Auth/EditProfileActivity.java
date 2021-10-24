@@ -17,6 +17,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -67,8 +68,11 @@ import sa.aqarz.Adapter.RecyclerView_Course;
 import sa.aqarz.Adapter.RecyclerView_experince;
 import sa.aqarz.Adapter.RecyclerView_member;
 import sa.aqarz.Adapter.RecyclerView_service_types;
+import sa.aqarz.Adapter.home_viewPager_Adapter;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
 import sa.aqarz.Modules.SettingsModules;
+import sa.aqarz.NewAqarz.DetaislAqarzActivity;
+import sa.aqarz.NewAqarz.MainAqarzActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
@@ -126,6 +130,7 @@ public class EditProfileActivity extends AppCompatActivity {
     RecyclerView course_recycle;
 
     EditText Bio;
+    Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,6 +179,164 @@ public class EditProfileActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(EditProfileActivity.this, LinearLayoutManager.VERTICAL, false);
         service_types_list.setLayoutManager(layoutManager1);
+
+
+        city_id = Settings.GetUser().getCity_id() + "";
+        member_list.setLayoutManager(new GridLayoutManager(this, 2));
+
+
+        try {
+            lat = Settings.GetUser().getLat() + "";
+            lng = Settings.GetUser().getLan() + "";
+            Address_t = Settings.GetUser().getAddress();
+
+            address.setText(Address_t + "");
+            link.setText(Settings.GetUser().getUser_name() + "");
+
+        } catch (Exception e) {
+
+        }
+
+        Member_typesl = Settings.getSettings().getMember_types();
+
+
+        try {
+
+            System.out.println("YTYTY" + Settings.GetUser().getMember_name().get(0).getName());
+            for (int i = 0; i < Member_typesl.size(); i++) {
+                for (int j = 0; j < Settings.GetUser().getMember_name().size(); j++) {
+
+
+                    try {
+                        if (Member_typesl.get(i).getId() == Settings.GetUser().getMember_name().get(j).getId()) {
+                            System.out.println("XXXXX" + Member_typesl.get(i).getName());
+                            Member_typesl.get(i).setChecked(true);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        memmber_te = "";
+        for (int i = 0; i < Member_typesl.size(); i++) {
+            if (Member_typesl.get(i).isChecked()) {
+                if (memmber_te.equals("")) {
+                    memmber_te = Member_typesl.get(i).getId() + "";
+
+                } else {
+                    memmber_te = memmber_te + "," + Member_typesl.get(i).getId() + "";
+
+                }
+
+            }
+        }
+
+
+//        FlowLayoutManager flowLayoutManager = new FlowLayoutManager();
+//        flowLayoutManager.setAutoMeasureEnabled(true);
+////                            flowLayoutManager.maxItemsPerLine(1);
+//        member_list.setLayoutManager(flowLayoutManager);
+
+
+        if (Settings.CheckIsCompleate()) {
+
+
+            if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
+
+//                        bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getUuid() + "");
+//                        bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+                real_1_no.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                real_1_no.setTextColor(getResources().getColor(R.color.white));
+                real_1_yes.setBackground(null);
+
+                real_1_yes.setTextColor(getResources().getColor(R.color.textColor));
+
+            } else {
+                show_dialog();
+
+                //
+                real_1_yes.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                real_1_yes.setTextColor(getResources().getColor(R.color.white));
+                real_1_no.setBackground(null);
+
+                real_1_no.setTextColor(getResources().getColor(R.color.textColor));
+
+            }
+        } else {
+            real_1_no.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+            real_1_no.setTextColor(getResources().getColor(R.color.white));
+            real_1_yes.setBackground(null);
+
+            real_1_yes.setTextColor(getResources().getColor(R.color.textColor));
+
+        }
+
+
+        try {
+
+            phone_ed.setText(Settings.GetUser().getMobile());
+
+            if (Settings.GetUser().getOnwer_name() != null) {
+                name_ed.setText(Settings.GetUser().getOnwer_name() + "");
+
+            }
+            if (Settings.GetUser().getName() != null) {
+                name_office.setText(Settings.GetUser().getName() + "");
+
+            }
+            if (Settings.GetUser().getUser_name() != null) {
+                link.setText(Settings.GetUser().getUser_name() + "");
+
+            }
+            if (Settings.GetUser().getEmail() != null) {
+                email_ed.setText(Settings.GetUser().getEmail() + "");
+
+            }
+            if (Settings.GetUser().getCity_name() != null) {
+                address.setText(Settings.GetUser().getAddress() + "");
+
+            }
+
+
+            Bio.setText(Settings.GetUser().getBio() + "");
+
+            Glide.with(EditProfileActivity.this).load(Settings.GetUser().getLogo() + "").error(getResources().getDrawable(R.drawable.ic_user_un)).diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true).into(image_profile);
+
+        } catch (Exception e) {
+
+        }
+
+
+        try {
+            handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    // Actions to do after 10 seconds
+
+                    show_data();
+
+
+                }
+            }, 500);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void show_data() {
 
 
         service_types_listss = Settings.getSettings().getService_types();
@@ -229,25 +392,231 @@ public class EditProfileActivity extends AppCompatActivity {
 
         service_types_list.setAdapter(recyclerView_service_types);
 
+        RecyclerView_member recyclerView_member = new RecyclerView_member(EditProfileActivity.this, Member_typesl);
+        recyclerView_member.addItemClickListener(new RecyclerView_member.ItemClickListener() {
+            @Override
+            public void onItemClick(List<SettingsModules.service_types> service_types) {
+                memmber_te = "";
+                for (int i = 0; i < service_types.size(); i++) {
+                    if (service_types.get(i).isChecked()) {
+                        if (memmber_te.equals("")) {
+                            memmber_te = service_types.get(i).getId() + "";
 
-        city_id = Settings.GetUser().getCity_id() + "";
-        member_list.setLayoutManager(new GridLayoutManager(this, 2));
+                        } else {
+                            memmber_te = memmber_te + "," + service_types.get(i).getId() + "";
 
+                        }
+
+                    }
+                }
+                System.out.println("memmber_te" + memmber_te);
+
+            }
+        });
+        member_list.setAdapter(recyclerView_member);
+
+
+        experience_recycle.setLayoutManager(new GridLayoutManager(this, 3));
+
+//        FlowLayoutManager flowLayoutManager_exp = new FlowLayoutManager();
+//        flowLayoutManager.setAutoMeasureEnabled(true);
+////                            flowLayoutManager.maxItemsPerLine(1);
+//        experience_recycle.setLayoutManager(flowLayoutManager_exp);
+        experince_list = Settings.getSettings().getExperience_types();
 
         try {
-            lat = Settings.GetUser().getLat() + "";
-            lng = Settings.GetUser().getLan() + "";
-            Address_t = Settings.GetUser().getAddress();
 
-            address.setText(Address_t + "");
-            link.setText(Settings.GetUser().getUser_name() + "");
 
+            for (int i = 0; i < experince_list.size(); i++) {
+                for (int j = 0; j < Settings.GetUser().getExperience_name().size(); j++) {
+
+
+                    try {
+                        if (experince_list.get(i).getId() == Settings.GetUser().getExperience_name().get(j).getId()) {
+
+                            experince_list.get(i).setChecked(true);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
-        Member_typesl = Settings.getSettings().getMember_types();
+        exp_te = "";
+        for (int i = 0; i < experince_list.size(); i++) {
+            if (experince_list.get(i).isChecked()) {
+                if (exp_te.equals("")) {
+                    exp_te = experince_list.get(i).getId() + "";
 
+                } else {
+                    exp_te = exp_te + "," + experince_list.get(i).getId() + "";
+
+                }
+
+            }
+        }
+
+
+        RecyclerView_experince recyclerView_experince = new RecyclerView_experince(EditProfileActivity.this, experince_list);
+        recyclerView_experince.addItemClickListener(new RecyclerView_experince.ItemClickListener() {
+            @Override
+            public void onItemClick(List<SettingsModules.service_types> service_types) {
+                exp_te = "";
+                for (int i = 0; i < service_types.size(); i++) {
+                    if (service_types.get(i).isChecked()) {
+                        if (exp_te.equals("")) {
+                            exp_te = service_types.get(i).getId() + "";
+
+                        } else {
+                            exp_te = exp_te + "," + service_types.get(i).getId() + "";
+
+                        }
+
+                    }
+                }
+
+
+            }
+        });
+
+        experience_recycle.setAdapter(recyclerView_experince);
+
+        course_recycle.setLayoutManager(new GridLayoutManager(this, 3));
+
+//        FlowLayoutManager flowLayoutManager_course = new FlowLayoutManager();
+//        flowLayoutManager.setAutoMeasureEnabled(true);
+////                            flowLayoutManager.maxItemsPerLine(1);
+//        course_recycle.setLayoutManager(flowLayoutManager_course);
+        course_list = Settings.getSettings().getCourse_types();
+
+        try {
+
+
+            for (int i = 0; i < course_list.size(); i++) {
+                for (int j = 0; j < Settings.GetUser().getCourse_name().size(); j++) {
+
+
+                    try {
+                        if (course_list.get(i).getId() == Settings.GetUser().getCourse_name().get(j).getId()) {
+
+                            course_list.get(i).setChecked(true);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        cour_te = "";
+        for (int i = 0; i < course_list.size(); i++) {
+            if (course_list.get(i).isChecked()) {
+                if (cour_te.equals("")) {
+                    cour_te = course_list.get(i).getId() + "";
+
+                } else {
+                    cour_te = cour_te + "," + course_list.get(i).getId() + "";
+
+                }
+
+            }
+        }
+
+
+        RecyclerView_Course recyclerView_course = new RecyclerView_Course(EditProfileActivity.this, experince_list);
+        recyclerView_course.addItemClickListener(new RecyclerView_Course.ItemClickListener() {
+            @Override
+            public void onItemClick(List<SettingsModules.service_types> service_types) {
+                cour_te = "";
+                for (int i = 0; i < service_types.size(); i++) {
+                    if (service_types.get(i).isChecked()) {
+                        if (cour_te.equals("")) {
+                            cour_te = service_types.get(i).getId() + "";
+
+                        } else {
+                            cour_te = cour_te + "," + service_types.get(i).getId() + "";
+
+                        }
+
+                    }
+                }
+
+
+            }
+        });
+
+//        System.out.println("#####" + experince_list.size());
+        course_recycle.setAdapter(recyclerView_course);
+
+
+        if (Settings.GetUser().getExperience() != null) {
+
+            if (!Settings.GetUser().getExperience().equals("null")) {
+
+
+                if (Settings.GetUser().getExperience().equals("less_than_5")) {
+                    less_than_5.setChecked(true);
+                    form_5_to_10.setChecked(false);
+                    more_than_10.setChecked(false);
+                    type_experiencex = "less_than_5";
+                } else if (Settings.GetUser().getExperience().equals("form_5_to_10")) {
+                    less_than_5.setChecked(false);
+                    form_5_to_10.setChecked(true);
+                    more_than_10.setChecked(false);
+                    type_experiencex = "form_5_to_10";
+                } else {
+                    less_than_5.setChecked(false);
+                    form_5_to_10.setChecked(false);
+                    more_than_10.setChecked(true);
+                    type_experiencex = "more_than_10";
+                }
+
+
+            }
+        }
+        if (Settings.GetUser().getOffice_staff() != null) {//office_staff
+
+            if (!Settings.GetUser().getOffice_staff().equals("null")) {
+
+
+                if (Settings.GetUser().getOffice_staff().equals("1")) {
+                    yes.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                    yes.setTextColor(getResources().getColor(R.color.white));
+
+                    no.setBackground(null);
+                    type_yes_no = "1";
+                    no.setTextColor(getResources().getColor(R.color.textColor));
+                } else if (Settings.GetUser().getOffice_staff().equals("0")) {
+                    no.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                    no.setTextColor(getResources().getColor(R.color.white));
+                    type_yes_no = "0";
+
+
+                    yes.setBackground(null);
+
+                    yes.setTextColor(getResources().getColor(R.color.textColor));
+                }
+
+
+            }
+        }
+
+
+        onclick();
+    }
+
+    public void onclick() {
 
         less_than_5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -288,211 +657,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-        try {
-
-            System.out.println("YTYTY" + Settings.GetUser().getMember_name().get(0).getName());
-            for (int i = 0; i < Member_typesl.size(); i++) {
-                for (int j = 0; j < Settings.GetUser().getMember_name().size(); j++) {
-
-
-                    try {
-                        if (Member_typesl.get(i).getId() == Settings.GetUser().getMember_name().get(j).getId()) {
-                            System.out.println("XXXXX" + Member_typesl.get(i).getName());
-                            Member_typesl.get(i).setChecked(true);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        memmber_te = "";
-        for (int i = 0; i < Member_typesl.size(); i++) {
-            if (Member_typesl.get(i).isChecked()) {
-                if (memmber_te.equals("")) {
-                    memmber_te = Member_typesl.get(i).getId() + "";
-
-                } else {
-                    memmber_te = memmber_te + "," + Member_typesl.get(i).getId() + "";
-
-                }
-
-            }
-        }
-
-
-//        FlowLayoutManager flowLayoutManager = new FlowLayoutManager();
-//        flowLayoutManager.setAutoMeasureEnabled(true);
-////                            flowLayoutManager.maxItemsPerLine(1);
-//        member_list.setLayoutManager(flowLayoutManager);
-
-
-        RecyclerView_member recyclerView_member = new RecyclerView_member(EditProfileActivity.this, Member_typesl);
-        recyclerView_member.addItemClickListener(new RecyclerView_member.ItemClickListener() {
-            @Override
-            public void onItemClick(List<SettingsModules.service_types> service_types) {
-                memmber_te = "";
-                for (int i = 0; i < service_types.size(); i++) {
-                    if (service_types.get(i).isChecked()) {
-                        if (memmber_te.equals("")) {
-                            memmber_te = service_types.get(i).getId() + "";
-
-                        } else {
-                            memmber_te = memmber_te + "," + service_types.get(i).getId() + "";
-
-                        }
-
-                    }
-                }
-                System.out.println("memmber_te" + memmber_te);
-
-            }
-        });
-
-        if (Settings.CheckIsCompleate()) {
-
-
-            if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
-
-//                        bottomSheetDialogFragment_myEstate = new BottomSheetDialogFragment_MyEstate(alldata.get(position).getUuid() + "");
-//                        bottomSheetDialogFragment_myEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
-
-                real_1_no.setBackground(getResources().getDrawable(R.drawable.button_login));
-
-                real_1_no.setTextColor(getResources().getColor(R.color.white));
-                real_1_yes.setBackground(null);
-
-                real_1_yes.setTextColor(getResources().getColor(R.color.textColor));
-
-            } else {
-                show_dialog();
-
-                //
-                real_1_yes.setBackground(getResources().getDrawable(R.drawable.button_login));
-
-                real_1_yes.setTextColor(getResources().getColor(R.color.white));
-                real_1_no.setBackground(null);
-
-                real_1_no.setTextColor(getResources().getColor(R.color.textColor));
-
-            }
-        } else {
-            real_1_no.setBackground(getResources().getDrawable(R.drawable.button_login));
-
-            real_1_no.setTextColor(getResources().getColor(R.color.white));
-            real_1_yes.setBackground(null);
-
-            real_1_yes.setTextColor(getResources().getColor(R.color.textColor));
-
-        }
-        real_1_yes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                show_dialog();
-            }
-        });
-
-
-        member_list.setAdapter(recyclerView_member);
-        address.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//
-                Intent intent = new Intent(EditProfileActivity.this, SelectLocationActivity.class);
-                startActivityForResult(intent, 11);
-
-//
-//                bottomSheetDialogFragment_selectCity = new BottomSheetDialogFragment_SelectCity("");
-//                bottomSheetDialogFragment_selectCity.addItemClickListener(new BottomSheetDialogFragment_SelectCity.ItemClickListener() {
-//                    @Override
-//                    public void onItemClick(int id_city, String city_naem) {
-//                        city_id = id_city + "";
-//                        address.setText(city_naem);
-//                        bottomSheetDialogFragment_selectCity.dismiss();
-//
-//                    }
-//                });
-//
-//                bottomSheetDialogFragment_selectCity.show(getSupportFragmentManager(), "");
-
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                    if (ContextCompat.checkSelfPermission(EditProfileActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//
-//
-//                        // No explanation needed, we can request the permission.
-//
-//                        ActivityCompat.requestPermissions(EditProfileActivity.this,
-//                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-//                                11);
-//
-//                    } else {
-//
-//                        PingPlacePicker.IntentBuilder builder = new PingPlacePicker.IntentBuilder();
-//                        builder.setAndroidApiKey("AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc")
-//                                .setMapsApiKey("AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc");
-//
-//                        // If you want to set a initial location rather then the current device location.
-//                        // NOTE: enable_nearby_search MUST be true.
-//                        // builder.setLatLng(new LatLng(37.4219999, -122.0862462))
-//
-//                        try {
-//                            Intent placeIntent = builder.build(EditProfileActivity.this);
-//                            startActivityForResult(placeIntent, 11);
-//                        } catch (Exception ex) {
-//                            // Google Play services is not available...
-//                        }
-//                    }
-//                } else {
-//
-//
-//                }
-            }
-        });
-
-        try {
-
-            phone_ed.setText(Settings.GetUser().getMobile());
-
-            if (Settings.GetUser().getOnwer_name() != null) {
-                name_ed.setText(Settings.GetUser().getOnwer_name() + "");
-
-            }
-            if (Settings.GetUser().getName() != null) {
-                name_office.setText(Settings.GetUser().getName() + "");
-
-            }
-            if (Settings.GetUser().getUser_name() != null) {
-                link.setText(Settings.GetUser().getUser_name() + "");
-
-            }
-            if (Settings.GetUser().getEmail() != null) {
-                email_ed.setText(Settings.GetUser().getEmail() + "");
-
-            }
-            if (Settings.GetUser().getCity_name() != null) {
-                address.setText(Settings.GetUser().getAddress() + "");
-
-            }
-
-
-            Bio.setText(Settings.GetUser().getBio() + "");
-
-            Glide.with(EditProfileActivity.this).load(Settings.GetUser().getLogo() + "").error(getResources().getDrawable(R.drawable.ic_user_un)).diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true).into(image_profile);
-
-        } catch (Exception e) {
-
-        }
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -650,147 +814,70 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
         });
-
-        experience_recycle.setLayoutManager(new GridLayoutManager(this, 3));
-
-//        FlowLayoutManager flowLayoutManager_exp = new FlowLayoutManager();
-//        flowLayoutManager.setAutoMeasureEnabled(true);
-////                            flowLayoutManager.maxItemsPerLine(1);
-//        experience_recycle.setLayoutManager(flowLayoutManager_exp);
-        experince_list = Settings.getSettings().getExperience_types();
-
-        try {
-
-
-            for (int i = 0; i < experince_list.size(); i++) {
-                for (int j = 0; j < Settings.GetUser().getExperience_name().size(); j++) {
-
-
-                    try {
-                        if (experince_list.get(i).getId() == Settings.GetUser().getExperience_name().get(j).getId()) {
-
-                            experince_list.get(i).setChecked(true);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        exp_te = "";
-        for (int i = 0; i < experince_list.size(); i++) {
-            if (experince_list.get(i).isChecked()) {
-                if (exp_te.equals("")) {
-                    exp_te = experince_list.get(i).getId() + "";
-
-                } else {
-                    exp_te = exp_te + "," + experince_list.get(i).getId() + "";
-
-                }
-
-            }
-        }
-
-
-        RecyclerView_experince recyclerView_experince = new RecyclerView_experince(EditProfileActivity.this, experince_list);
-        recyclerView_experince.addItemClickListener(new RecyclerView_experince.ItemClickListener() {
+        address.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(List<SettingsModules.service_types> service_types) {
-                exp_te = "";
-                for (int i = 0; i < service_types.size(); i++) {
-                    if (service_types.get(i).isChecked()) {
-                        if (exp_te.equals("")) {
-                            exp_te = service_types.get(i).getId() + "";
+            public void onClick(View v) {
+//
+                Intent intent = new Intent(EditProfileActivity.this, SelectLocationActivity.class);
+                startActivityForResult(intent, 11);
 
-                        } else {
-                            exp_te = exp_te + "," + service_types.get(i).getId() + "";
+//
+//                bottomSheetDialogFragment_selectCity = new BottomSheetDialogFragment_SelectCity("");
+//                bottomSheetDialogFragment_selectCity.addItemClickListener(new BottomSheetDialogFragment_SelectCity.ItemClickListener() {
+//                    @Override
+//                    public void onItemClick(int id_city, String city_naem) {
+//                        city_id = id_city + "";
+//                        address.setText(city_naem);
+//                        bottomSheetDialogFragment_selectCity.dismiss();
+//
+//                    }
+//                });
+//
+//                bottomSheetDialogFragment_selectCity.show(getSupportFragmentManager(), "");
 
-                        }
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                    if (ContextCompat.checkSelfPermission(EditProfileActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//
+//
+//                        // No explanation needed, we can request the permission.
+//
+//                        ActivityCompat.requestPermissions(EditProfileActivity.this,
+//                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+//                                11);
+//
+//                    } else {
+//
+//                        PingPlacePicker.IntentBuilder builder = new PingPlacePicker.IntentBuilder();
+//                        builder.setAndroidApiKey("AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc")
+//                                .setMapsApiKey("AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc");
+//
+//                        // If you want to set a initial location rather then the current device location.
+//                        // NOTE: enable_nearby_search MUST be true.
+//                        // builder.setLatLng(new LatLng(37.4219999, -122.0862462))
+//
+//                        try {
+//                            Intent placeIntent = builder.build(EditProfileActivity.this);
+//                            startActivityForResult(placeIntent, 11);
+//                        } catch (Exception ex) {
+//                            // Google Play services is not available...
+//                        }
+//                    }
+//                } else {
+//
+//
+//                }
+            }
+        });
+        real_1_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                    }
-                }
 
-
+                show_dialog();
             }
         });
 
-        experience_recycle.setAdapter(recyclerView_experince);
 
-        course_recycle.setLayoutManager(new GridLayoutManager(this, 3));
-
-//        FlowLayoutManager flowLayoutManager_course = new FlowLayoutManager();
-//        flowLayoutManager.setAutoMeasureEnabled(true);
-////                            flowLayoutManager.maxItemsPerLine(1);
-//        course_recycle.setLayoutManager(flowLayoutManager_course);
-        course_list = Settings.getSettings().getCourse_types();
-
-        try {
-
-
-            for (int i = 0; i < course_list.size(); i++) {
-                for (int j = 0; j < Settings.GetUser().getCourse_name().size(); j++) {
-
-
-                    try {
-                        if (course_list.get(i).getId() == Settings.GetUser().getCourse_name().get(j).getId()) {
-
-                            course_list.get(i).setChecked(true);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        cour_te = "";
-        for (int i = 0; i < course_list.size(); i++) {
-            if (course_list.get(i).isChecked()) {
-                if (cour_te.equals("")) {
-                    cour_te = course_list.get(i).getId() + "";
-
-                } else {
-                    cour_te = cour_te + "," + course_list.get(i).getId() + "";
-
-                }
-
-            }
-        }
-
-
-        RecyclerView_Course recyclerView_course = new RecyclerView_Course(EditProfileActivity.this, experince_list);
-        recyclerView_course.addItemClickListener(new RecyclerView_Course.ItemClickListener() {
-            @Override
-            public void onItemClick(List<SettingsModules.service_types> service_types) {
-                cour_te = "";
-                for (int i = 0; i < service_types.size(); i++) {
-                    if (service_types.get(i).isChecked()) {
-                        if (cour_te.equals("")) {
-                            cour_te = service_types.get(i).getId() + "";
-
-                        } else {
-                            cour_te = cour_te + "," + service_types.get(i).getId() + "";
-
-                        }
-
-                    }
-                }
-
-
-            }
-        });
-
-        System.out.println("#####" + experince_list.size());
-        course_recycle.setAdapter(recyclerView_course);
     }
 
     public void init_volley() {
@@ -806,15 +893,25 @@ public class EditProfileActivity extends AppCompatActivity {
                 try {
                     boolean status = response.getBoolean("status");
                     if (status) {
-                        String data = response.getString("data");
 
-                        Hawk.put("user", data);
+                        if (requestType.equals("Update")) {
+                            String data = response.getString("data");
+
+                            Hawk.put("user", data);
 
 
-                        String message = response.getString("message");
+                            String message = response.getString("message");
 
 
-                        WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.edit_text), "success");
+                            WebService.Make_Toast_color(MainAqarzActivity.activity, getResources().getString(R.string.edit_text), "success");
+
+
+                            finish();
+
+                        } else {
+
+                        }
+
 
                     } else {
                         String message = response.getString("message");
