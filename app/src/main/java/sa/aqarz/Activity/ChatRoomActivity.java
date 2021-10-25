@@ -154,16 +154,18 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
                     JSONObject jsonObject = new JSONObject();
+                    lastMessage = text_mesage.getText().toString();
 
                     try {
                         jsonObject.put("user_id", user_id);
                         jsonObject.put("title", "##");
 
                         if (id_aqarez.equals("")) {
-                            jsonObject.put("body", text_mesage.getText().toString());
+                            jsonObject.put("body", lastMessage);
 
                         } else {
-                            jsonObject.put("body", " بخصوص اعلانك رقم " + id_aqarez + " \n " + text_mesage.getText().toString());
+                            lastMessage = " بخصوص اعلانك رقم #" + id_aqarez + " \n " + lastMessage;
+                            jsonObject.put("body", lastMessage);
                             id_aqarez = "";
                         }
 
@@ -174,7 +176,6 @@ public class ChatRoomActivity extends AppCompatActivity {
                             }
 
                         }
-                        lastMessage = text_mesage.getText().toString();
 
                         Date c = Calendar.getInstance().getTime();
 //                        System.out.println("Current time => " + c);
@@ -191,7 +192,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                     }
 
 //                    WebService.loading(ChatRoomActivity.this, true);
-                    System.out.println("jsonObjectjsonObjectjsonObject" + jsonObject.toString());
+//                    System.out.println("jsonObjectjsonObjectjsonObject" + jsonObject.toString());
 
 
 //                            message.setAdapter(new RecyclerView_ChatRoom(ChatRoomActivity.this, ordersModules));

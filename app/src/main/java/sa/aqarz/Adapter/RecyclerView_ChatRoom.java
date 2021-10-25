@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Locale;
 
 import sa.aqarz.Modules.MsgModules;
+import sa.aqarz.NewAqarz.DetaislAqarzActivity;
 import sa.aqarz.R;
 
 
@@ -44,6 +45,7 @@ public class RecyclerView_ChatRoom extends RecyclerView.Adapter<RecyclerView_Cha
 
 
     AlertDialog alertDialog;
+    String tt = "";
 
     /**
      * View holder class
@@ -58,8 +60,8 @@ public class RecyclerView_ChatRoom extends RecyclerView.Adapter<RecyclerView_Cha
         this.notifyDataSetChanged();
 
     }
-    public void Ref() {
 
+    public void Ref() {
 
 
         this.notifyDataSetChanged();
@@ -99,9 +101,6 @@ public class RecyclerView_ChatRoom extends RecyclerView.Adapter<RecyclerView_Cha
         } else {
 
 
-            holder.text.setText(alldata.get(position).getBody() + "");
-
-
             try {
 
 //                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
@@ -139,6 +138,74 @@ public class RecyclerView_ChatRoom extends RecyclerView.Adapter<RecyclerView_Cha
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+
+            if (alldata.get(position).getBody().contains("#")) {
+                holder.text.setText(alldata.get(position).getBody() + "");
+
+                String str = alldata.get(position).getBody() + "";
+                String[] splited = str.split(" ");
+
+                for (int i = 0; i < splited.length; i++) {
+
+                    if (splited[i].contains("#")) {
+                        tt = splited[i] + "";
+                    }
+
+
+                }
+
+                holder.text.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (tt.equals("")) {
+
+                        } else {
+                            Intent intent = new Intent(context, DetaislAqarzActivity.class);
+
+
+                            String value = tt.substring(1);
+
+
+                            intent.putExtra("id_aqarz", value + "");
+                            context.startActivity(intent);
+
+                        }
+
+                    }
+                });
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (tt.equals("")) {
+
+                        } else {
+                            Intent intent = new Intent(context, DetaislAqarzActivity.class);
+                            String value = tt.substring(1);
+
+
+                            intent.putExtra("id_aqarz", value + "");
+                            context.startActivity(intent);
+
+
+                        }
+
+                    }
+                });
+
+
+            } else {
+                holder.text.setText(alldata.get(position).getBody() + "");
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                    }
+                });
+            }
+
+
 //            holder.share.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -158,13 +225,6 @@ public class RecyclerView_ChatRoom extends RecyclerView.Adapter<RecyclerView_Cha
 //                }
 //            });
         }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
 
 
     }

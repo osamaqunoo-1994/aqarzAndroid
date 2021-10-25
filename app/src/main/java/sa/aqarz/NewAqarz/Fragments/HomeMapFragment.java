@@ -137,6 +137,7 @@ public class HomeMapFragment extends Fragment {
 
     static IResult mResultCallback;
     public static List<HomeModules_aqares> homeModules_aqares = new ArrayList<>();
+    public static List<HomeModules_aqares> homeModules_aqares2 = new ArrayList<>();
 
     static String lat = "26.196634";
     static String lan = "43.813666";
@@ -397,7 +398,7 @@ public class HomeMapFragment extends Fragment {
                     } else {
                         LatLng mylocation = getLocation();
                         if (mylocation != null) {
-                            googleMap.setMyLocationEnabled(true);
+//                            googleMap.setMyLocationEnabled(true);
                             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 6));
                         }
                     }
@@ -707,7 +708,7 @@ public class HomeMapFragment extends Fragment {
                     if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 //                        requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
                     } else {
-                        googleMap.setMyLocationEnabled(true);
+//                        googleMap.setMyLocationEnabled(true);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -1175,64 +1176,20 @@ public class HomeMapFragment extends Fragment {
                             homeModules_aqares = allNeigbers.getData();
 
 
-                            set_locationEstate(allNeigbers.getData());
-//                            all_estate_size.setVisibility(View.VISIBLE);
-//                            all_estate_size.setText(allNeigbers.getData().getTo() + " " + activity.getResources().getString(R.string.From_t) + " " + allNeigbers.getData().getTotal() + " " + activity.getResources().getString(R.string.advertisementsx));
-
-//                            allEstate_view_pager.setVisibility(View.VISIBLE);
-                            ViewPager_Adapter_estate_home_map1 viewPager_adapter_estate_home_map = new ViewPager_Adapter_estate_home_map1(activity, homeModules_aqares);
-                            allEstate_view_pager.setAdapter(viewPager_adapter_estate_home_map);
-
                             if (homeModules_aqares.size() == 0) {
                                 allEstate_view_pager.setVisibility(View.GONE);
                             } else {
                                 allEstate_view_pager.setVisibility(View.VISIBLE);
 
                             }
-                            allEstate_view_pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                                @Override
-                                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-                                }
-
-                                @Override
-                                public void onPageSelected(int position) {
-
-                                    try {
-                                        if (marker_selected != null) {
-                                            marker_selected.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewEstate_galf(get_price_and_return_price(homeModules_aqares.get(last_postion_marker).getTotalPrice() + ""), "")));
-
-                                        }
-                                        onclick_marker_aqarez = true;
 
 
-                                        marker_selected = marker_list.get(position);
-                                        last_postion_marker = position;
-                                        marker_selected.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewEstate_green(get_price_and_return_price(homeModules_aqares.get(Integer.valueOf(position)).getTotalPrice() + ""), "")));
+                            set_locationEstate(homeModules_aqares);
+//                            all_estate_size.setVisibility(View.VISIBLE);
+//                            all_estate_size.setText(allNeigbers.getData().getTo() + " " + activity.getResources().getString(R.string.From_t) + " " + allNeigbers.getData().getTotal() + " " + activity.getResources().getString(R.string.advertisementsx));
 
+//                            allEstate_view_pager.setVisibility(View.VISIBLE);
 
-                                        LatLng my_location = new LatLng(Double.valueOf(homeModules_aqares.get(Integer.valueOf(position)).getLat()), Double.valueOf(homeModules_aqares.get(Integer.valueOf(position)).getLan()));
-                                        CameraPosition cameraPosition = new CameraPosition.Builder().target(my_location).zoom(4).build();
-                                        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
-                                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 11));
-                                        // Zoom in, animating the camera.
-//                                        googleMap.animateCamera(CameraUpdateFactory.zoomIn());
-//                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
-//                                        googleMap.animateCamera(CameraUpdateFactory.zoomTo(9), 3000, null);
-//                                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 12.0f));
-
-
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-                                @Override
-                                public void onPageScrollStateChanged(int state) {
-
-                                }
-                            });
 
 //                            allEstate_view_pager
                         } else if (requestType.equals("cities_with_neb")) {
@@ -1387,7 +1344,22 @@ public class HomeMapFragment extends Fragment {
         homeModules_aqares = homeModules_aqaresz;
         if (googleMap != null) {
             googleMap.clear();
-            for (int i = 0; i < homeModules_aqares.size(); i++) {
+
+
+            int ii = homeModules_aqares.size();
+
+            if (ii < 100) {
+
+            } else {
+                ii = 100;
+            }
+            homeModules_aqares2.clear();
+
+            for (int i = 0; i < ii; i++) {
+
+                homeModules_aqares2.add(homeModules_aqares.get(i));
+
+
                 if (i == 0) {
 
                     LatLng sydneya = new LatLng(Double.valueOf(homeModules_aqares.get(i).getLat() + ""), Double.valueOf(homeModules_aqares.get(i).getLan() + ""));
@@ -1431,7 +1403,17 @@ public class HomeMapFragment extends Fragment {
                 public void onMapReady(GoogleMap googleMap) {
                     googleMap.clear();
                     on_click_maps_marker();
-                    for (int i = 0; i < homeModules_aqares.size(); i++) {
+
+                    int ii = homeModules_aqares.size();
+
+                    if (ii < 100) {
+
+                    } else {
+                        ii = 100;
+                    }
+                    homeModules_aqares2.clear();
+                    for (int i = 0; i < ii; i++) {
+                        homeModules_aqares2.add(homeModules_aqares.get(i));
                         if (i == 0) {
 
                             LatLng sydneya = new LatLng(Double.valueOf(homeModules_aqares.get(i).getLat() + ""), Double.valueOf(homeModules_aqares.get(i).getLan() + ""));
@@ -1472,7 +1454,54 @@ public class HomeMapFragment extends Fragment {
                 }
             });
         }
+        ViewPager_Adapter_estate_home_map1 viewPager_adapter_estate_home_map = new ViewPager_Adapter_estate_home_map1(activity, homeModules_aqares2);
+        allEstate_view_pager.setAdapter(viewPager_adapter_estate_home_map);
 
+
+        allEstate_view_pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                try {
+                    if (marker_selected != null) {
+                        marker_selected.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewEstate_galf(get_price_and_return_price(homeModules_aqares.get(last_postion_marker).getTotalPrice() + ""), "")));
+
+                    }
+                    onclick_marker_aqarez = true;
+
+
+                    marker_selected = marker_list.get(position);
+                    last_postion_marker = position;
+                    marker_selected.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromViewEstate_green(get_price_and_return_price(homeModules_aqares2.get(Integer.valueOf(position)).getTotalPrice() + ""), "")));
+
+
+                    LatLng my_location = new LatLng(Double.valueOf(homeModules_aqares2.get(Integer.valueOf(position)).getLat()), Double.valueOf(homeModules_aqares2.get(Integer.valueOf(position)).getLan()));
+                    CameraPosition cameraPosition = new CameraPosition.Builder().target(my_location).zoom(4).build();
+                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 11));
+                    // Zoom in, animating the camera.
+//                                        googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+//                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
+//                                        googleMap.animateCamera(CameraUpdateFactory.zoomTo(9), 3000, null);
+//                                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 12.0f));
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     private static Bitmap getMarkerBitmapFromViewEstate(String Price, String numbers) {

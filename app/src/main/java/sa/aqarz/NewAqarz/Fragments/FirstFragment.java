@@ -474,7 +474,7 @@ public class FirstFragment extends Fragment {
                     status_3.setTextColor(getResources().getColor(R.color.te_unselected));
 
 
-                    status_1.setBackground(getResources().getDrawable(R.drawable.border_fillter_1));
+                    status_1.setBackground(getResources().getDrawable(R.drawable.border_fillter_3));
                     status_2.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                     status_3.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                     offer_status = "customer_accepted";
@@ -540,7 +540,7 @@ public class FirstFragment extends Fragment {
 
                     status_1.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                     status_2.setBackground(getResources().getDrawable(R.drawable.border_fillter));
-                    status_3.setBackground(getResources().getDrawable(R.drawable.border_fillter_3));
+                    status_3.setBackground(getResources().getDrawable(R.drawable.border_fillter_1));
                     offer_status = "new";
 
                 }

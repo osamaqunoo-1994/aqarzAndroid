@@ -739,6 +739,8 @@
     <string name="request_code">اطلب كود التحقق</string>
     <string name="allclintsshate">العقاريين الأكثر نشاطاً</string>
     <string name="OfferMoqadam">عرض مقدم</string>
+    <string name="OfferMoqadamFund">عرض مقدم على الصندوق</string>
+    <string name="OfferMoqadamFundAccept">عرض مقبول من الصندوق</string>
     <string name="orderMoqadam">طلب منفذ</string>
     <string name="rejecxted">ملغي</string>
     <string name="anmdrj">اعتماد</string>

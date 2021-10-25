@@ -69,6 +69,8 @@ public class RecyclerView_AllClints extends RecyclerView.Adapter<RecyclerView_Al
         TextView address;
         TextView order_done;
         TextView post;
+        TextView number_aqarez;
+        TextView number_fund_offer;
         CircleImageView profile;
 
 
@@ -82,6 +84,8 @@ public class RecyclerView_AllClints extends RecyclerView.Adapter<RecyclerView_Al
             order_done = view.findViewById(R.id.order_done);
             post = view.findViewById(R.id.post);
             profile = view.findViewById(R.id.profile);
+            number_aqarez = view.findViewById(R.id.number_aqarez);
+            number_fund_offer = view.findViewById(R.id.number_fund_offer);
 
 
         }
@@ -106,8 +110,10 @@ public class RecyclerView_AllClints extends RecyclerView.Adapter<RecyclerView_Al
         holder.post.setText(position + 1 + "");
         holder.name.setText(alldata.get(position).getName() + "");
         holder.address.setText(alldata.get(position).getAddress() + "");
-        holder.number_offer.setText(alldata.get(position).getCount_offer() + "");
-        holder.order_done.setText(alldata.get(position).getCount_request() + "");
+        holder.number_offer.setText(alldata.get(position).getCount_fund_offer() + "");
+        holder.number_aqarez.setText(alldata.get(position).getCount_estate() + "");
+
+        holder.number_fund_offer.setText(alldata.get(position).getCount_accept_fund_offer() + "");
 //        holder.date.setText(alldata.get(position).getCreatedAt());
 //        if (alldata.get(position).getRate() != null) {
 //            if (!alldata.get(position).getRate().equals("null")) {

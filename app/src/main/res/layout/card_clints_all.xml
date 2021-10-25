@@ -128,8 +128,7 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
+
                             android:fontFamily="@font/din_light"
                             android:text="@string/OfferMoqadam"
                             android:textColor="@color/black"
@@ -141,6 +140,96 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1" />
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_mobilex" />
+
+                        <TextView
+                            android:id="@+id/number_aqarez"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:fontFamily="@font/din_light"
+
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="11dp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:fontFamily="@font/din_light"
+                            android:text="@string/AqarzMaqarzSearcganAqarzMan"
+                            android:textColor="@color/black"
+                            android:textSize="11dp" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_mobilex" />
+
+                        <TextView
+                            android:id="@+id/number_fund_offer"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:fontFamily="@font/din_light"
+
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="11dp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:fontFamily="@font/din_light"
+                            android:text="@string/offer_titele_profile"
+                            android:textColor="@color/black"
+                            android:textSize="11dp" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -169,17 +258,6 @@
                             android:fontFamily="@font/din_light"
 
                             android:textColor="@color/colorPrimary"
-                            android:textSize="12dp" />
-
-                        <TextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:fontFamily="@font/din_light"
-                            android:text="@string/orderMoqadam"
-                            android:textColor="@color/black"
                             android:textSize="12dp" />
 
 

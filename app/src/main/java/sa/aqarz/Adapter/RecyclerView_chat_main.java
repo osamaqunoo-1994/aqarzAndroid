@@ -197,19 +197,42 @@ public class RecyclerView_chat_main extends RecyclerView.Adapter<RecyclerView_ch
 //        }else{
 //
 //        }
-        if (alldata.get(position).getSenderPhoto() != null) {
-            if (!alldata.get(position).getSenderPhoto().equals("")) {
-                Glide.with(context).load(alldata.get(position).getSenderPhoto()).error(R.drawable.ic_user_un).into(holder.image_profile);
+
+        if (Settings.GetUser().getId().toString().equals(alldata.get(position).getReceiverId())) {
+
+//            System.out.println("^^^^^^^^"+Settings.GetUser().getId().toString());
+            if (alldata.get(position).getSenderPhoto() != null) {
+                if (!alldata.get(position).getSenderPhoto().equals("")) {
+                    Glide.with(context).load(alldata.get(position).getSenderPhoto()).error(R.drawable.ic_user_un).into(holder.image_profile);
+
+
+                } else {
+                    Glide.with(context).load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(holder.image_profile);
+
+                }
 
             } else {
                 Glide.with(context).load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(holder.image_profile);
 
             }
-
         } else {
-            Glide.with(context).load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(holder.image_profile);
+//            System.out.println("^^^^^^^^7");
 
+            if (alldata.get(position).getReceiverPhoto() != null) {
+                if (!alldata.get(position).getReceiverPhoto().equals("")) {
+                    Glide.with(context).load(alldata.get(position).getReceiverPhoto()).error(R.drawable.ic_user_un).into(holder.image_profile);
+
+                } else {
+                    Glide.with(context).load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(holder.image_profile);
+
+                }
+
+            } else {
+                Glide.with(context).load(R.drawable.ic_user_un).error(R.drawable.ic_user_un).into(holder.image_profile);
+
+            }
         }
+
 
         //   wallet, dafter, receipt, payment
 

@@ -684,7 +684,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                                         intent.putExtra("parent_id", "-1");
                                         intent.putExtra("nameUser", name_user + "");
                                         intent.putExtra("imageUser", "");
-                                        intent.putExtra("id_aqarez", homeModules_aqares.getId()+"");
+                                        intent.putExtra("id_aqarez", homeModules_aqares.getId() + "");
                                         startActivity(intent);
                                     }
                                 }
@@ -1038,10 +1038,10 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                             items_ViewPager.clear();
                             for (int i = 0; i < homeModules_aqares.getEstate_file().size(); i++) {
 
-                                if(homeModules_aqares.getEstate_file().get(i).getType().equals("images")){
+                                if (homeModules_aqares.getEstate_file().get(i).getType().equals("images")) {
                                     items_ViewPager.add(new imagemodules(homeModules_aqares.getEstate_file().get(i).getFile() + "", "image"));
 
-                                }else{
+                                } else {
                                     items_ViewPager.add(new imagemodules(homeModules_aqares.getEstate_file().get(i).getFile() + "", "video"));
 
                                 }

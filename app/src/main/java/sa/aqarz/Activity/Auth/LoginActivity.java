@@ -261,7 +261,7 @@ public class LoginActivity extends AppCompatActivity {
 //                            boolean statue = jsonObject.getBoolean("statue");
                             String code = jsonObject.getString("code");
 
-                            if (code == null) {
+                            if (code.equals("")) {
 
                                 pass_layout_card.setVisibility(View.VISIBLE);
                                 forget_pass.setVisibility(View.VISIBLE);
@@ -270,15 +270,6 @@ public class LoginActivity extends AppCompatActivity {
 
                             } else {
 
-                                if (code.equals("null")) {
-
-                                    pass_layout_card.setVisibility(View.VISIBLE);
-                                    forget_pass.setVisibility(View.VISIBLE);
-                                    title_passeord.setVisibility(View.VISIBLE);
-                                    Login.setText(getResources().getString(R.string.login));
-
-
-                                } else {
 
 
                                     Intent intent = new Intent(LoginActivity.this, ConfirmationActivity.class);
@@ -290,7 +281,7 @@ public class LoginActivity extends AppCompatActivity {
                                     finish();
 
 
-                                }
+
 
 
                             }

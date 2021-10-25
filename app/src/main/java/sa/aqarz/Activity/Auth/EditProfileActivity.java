@@ -741,7 +741,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.select_experiencex) + "", "error");
 
                 } else if (link.toString().equals("")) {
-                    WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.user_name_req) + "", "error");
+                    WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.site_hint) + "", "error");
 
                 } else {
                     init_volley();

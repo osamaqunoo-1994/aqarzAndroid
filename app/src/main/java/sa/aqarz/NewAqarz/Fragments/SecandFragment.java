@@ -327,7 +327,7 @@ public class SecandFragment extends Fragment {
         if (!search_text.getText().toString().equals("")) {
             search_text_s = "&search=" + search_text.getText();
         }
-        url = WebService.market_demands + "?" + type_requst_text + state_id_text + area_from + area_to + price_from + price_to + neighborhood_id_text + search_text_s + area_estate_id_text + price_id_text + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
+        url = WebService.market_demands + "?" + type_requst_text + state_id_text + area_from + area_to + price_from + price_to + neighborhood_id_text + search_text_s + area_estate_id_text +offer_status_text+ price_id_text + estate_type_id_text + city_id_text;//WebService.fund_Request + "?" + "page=" + page + "&today=1" + id_city_ + opration_select + search_te
         WebService.loading(activity, true);
 
         init_volley();
@@ -498,7 +498,7 @@ public class SecandFragment extends Fragment {
                     status_3.setTextColor(getResources().getColor(R.color.te_unselected));
 
 
-                    status_1.setBackground(getResources().getDrawable(R.drawable.border_fillter_1));
+                    status_1.setBackground(getResources().getDrawable(R.drawable.border_fillter_3));
                     status_2.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                     status_3.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                     offer_status = "customer_accepted";
@@ -565,7 +565,7 @@ public class SecandFragment extends Fragment {
 
                     status_1.setBackground(getResources().getDrawable(R.drawable.border_fillter));
                     status_2.setBackground(getResources().getDrawable(R.drawable.border_fillter));
-                    status_3.setBackground(getResources().getDrawable(R.drawable.border_fillter_3));
+                    status_3.setBackground(getResources().getDrawable(R.drawable.border_fillter_1));
                     offer_status = "new";
 
                 }

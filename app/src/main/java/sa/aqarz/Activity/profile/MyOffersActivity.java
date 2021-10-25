@@ -8,10 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
@@ -59,6 +65,11 @@ public class MyOffersActivity extends AppCompatActivity {
 
     int page = 1;
 
+    EditText edt_search;
+    ImageView search;
+    ImageView close;
+    String id_user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +78,9 @@ public class MyOffersActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         nodata_vis = findViewById(R.id.nodata_vis);
         add_offer = findViewById(R.id.add_offer);
+        edt_search = findViewById(R.id.edt_search);
+        search = findViewById(R.id.search);
+        close = findViewById(R.id.close);
 
 
         WebService.loading(MyOffersActivity.this, true);
@@ -84,11 +98,12 @@ public class MyOffersActivity extends AppCompatActivity {
         init_volley();
 
         try {
-            String id_user = getIntent().getStringExtra("id_user");
+            id_user = getIntent().getStringExtra("id_user");
 
             if (id_user.equals("--")) {
 
                 VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
+                WebService.loading(MyOffersActivity.this, true);
 
                 mVolleyService.getDataVolley("my_estate", WebService.my_estate);
                 add_offer.setVisibility(View.VISIBLE);
@@ -115,6 +130,7 @@ public class MyOffersActivity extends AppCompatActivity {
                 recyclerView_homeList_estat_other = new RecyclerView_HomeList_estat_other(MyOffersActivity.this, homeModules);
 
                 myoffer.setAdapter(recyclerView_homeList_estat_other);
+                WebService.loading(MyOffersActivity.this, true);
 
 
                 init_volley();
@@ -127,6 +143,175 @@ public class MyOffersActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+        edt_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+                if (edt_search.getText().length() > 0) {
+                    close.setVisibility(View.VISIBLE);
+
+                } else {
+                    close.setVisibility(View.GONE);
+
+                }
+
+
+            }
+        });
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    edt_search.setText("");
+                    edt_search.setVisibility(View.GONE);
+                    page = 1;
+                    id_user = getIntent().getStringExtra("id_user");
+
+                    if (id_user.equals("--")) {
+
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
+
+                        mVolleyService.getDataVolley("my_estate", WebService.my_estate);
+                        add_offer.setVisibility(View.VISIBLE);
+                        WebService.loading(MyOffersActivity.this, true);
+
+                        myoffer.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                            @Override
+                            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                                super.onScrolled(recyclerView, dx, dy);
+                                if (!recyclerView.canScrollVertically(1)) { //1 for down
+
+                                    page = page + 1;
+                                    init_volley();
+                                    WebService.loading(MyOffersActivity.this, true);
+
+                                    VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
+                                    mVolleyService.getDataVolley("my_estate", WebService.my_estate + "?page=" + page);
+
+                                }
+                            }
+                        });
+
+                    } else {
+
+                        recyclerView_homeList_estat_other = new RecyclerView_HomeList_estat_other(MyOffersActivity.this, homeModules);
+
+                        myoffer.setAdapter(recyclerView_homeList_estat_other);
+
+                        WebService.loading(MyOffersActivity.this, true);
+
+                        init_volley();
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
+
+                        mVolleyService.getDataVolley("user_estate", WebService.user_estate + "/" + id_user + "/estate");
+                        add_offer.setVisibility(View.GONE);
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+        });
+        edt_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+                    page = 1;
+                    id_user = getIntent().getStringExtra("id_user");
+
+                    if (id_user.equals("--")) {
+
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
+                        WebService.loading(MyOffersActivity.this, true);
+
+                        mVolleyService.getDataVolley("my_estate", WebService.my_estate + "?&search=" + edt_search.getText().toString());
+
+                        myoffer.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                            @Override
+                            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                                super.onScrolled(recyclerView, dx, dy);
+                                if (!recyclerView.canScrollVertically(1)) { //1 for down
+//
+//                                page = page + 1;
+//                                init_volley();
+//                                WebService.loading(MyOffersActivity.this, true);
+//
+//                                VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
+//                                mVolleyService.getDataVolley("my_estate", WebService.my_estate + "?page=" + page+"&search="+edt_search.getText().toString());
+
+                                }
+                            }
+                        });
+
+                    } else {
+
+                        init_volley();
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
+                        WebService.loading(MyOffersActivity.this, true);
+
+                        mVolleyService.getDataVolley("user_estate", WebService.user_estate + "/" + id_user + "/estate" + "?&search=" + edt_search.getText().toString());
+                        add_offer.setVisibility(View.GONE);
+                    }
+
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                page = 1;
+                id_user = getIntent().getStringExtra("id_user");
+
+                if (id_user.equals("--")) {
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
+
+                    mVolleyService.getDataVolley("my_estate", WebService.my_estate + "?&search=" + edt_search.getText().toString());
+
+                    myoffer.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                        @Override
+                        public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                            super.onScrolled(recyclerView, dx, dy);
+                            if (!recyclerView.canScrollVertically(1)) { //1 for down
+//
+//                                page = page + 1;
+//                                init_volley();
+//                                WebService.loading(MyOffersActivity.this, true);
+//
+//                                VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
+//                                mVolleyService.getDataVolley("my_estate", WebService.my_estate + "?page=" + page+"&search="+edt_search.getText().toString());
+
+                            }
+                        }
+                    });
+
+                } else {
+
+                    init_volley();
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
+
+                    mVolleyService.getDataVolley("user_estate", WebService.user_estate + "/" + id_user + "/estate" + "?&search=" + edt_search.getText().toString());
+                    add_offer.setVisibility(View.GONE);
+                }
+
+            }
+        });
 
         add_offer.setOnClickListener(new View.OnClickListener() {
             @Override

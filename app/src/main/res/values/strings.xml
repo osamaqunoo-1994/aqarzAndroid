@@ -496,6 +496,8 @@ Your request and reply in the fastest time</string>
     <string name="request_code">Request the verification code</string>
     <string name="allclintsshate">The most active real estate agents</string>
     <string name="OfferMoqadam">Offers</string>
+    <string name="OfferMoqadamFund">Fund Offers</string>
+    <string name="OfferMoqadamFundAccept">Accept Fund Offers</string>
     <string name="orderMoqadam">Order request</string>
     <string name="rejecxted">Canceled</string>
     <string name="anmdrj">trust</string>
