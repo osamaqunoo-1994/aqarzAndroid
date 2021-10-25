@@ -16,7 +16,8 @@
     <string name="ok">موافق </string>
     <string name="cancel">إلغاء</string>
     <string name="phone_number">رقم الهاتف </string>
-    <string name="email">البريد الإلكتروني</string>
+    <string name="email">البريد الإلكتروني<font color="#AAABB3"><sup>*</sup></font></string>
+
     <string name="password">كلمة المرور</string>
     <string name="login">تسجيل الدخول</string>
     <string name="sign_up">حساب جديد </string>
@@ -761,9 +762,10 @@
     <string name="five_yeares_to_ten">من ٥ سنوات ١٠</string>
     <string name="ten_yeares">أكثر من ١٠ سنوات</string>
     <string name="have_employee">هل لديك موظفين بالمكتب؟</string>
-    <string name="name_office">اسم المكتب</string>
+    <string name="name_office">اسم المكتب<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="name_cli">اسم المسؤول<font color="#AAABB3"><sup>*</sup></font></string>
+
     <string name="reqname_office">مطلوب اسم المكتب</string>
-    <string name="name_cli">اسم المسؤول</string>
     <string name="user_name_req">اسم الرابط مطلوب</string>
 
     <string name="rate_text">هل ترغب بتقييم العقار ؟</string>
@@ -1216,11 +1218,9 @@
     <string name="fillallfileds1">الرجاء تعبئه  الحقول المطلوبة</string>
 
 
-
     <string name="addNewOrder">طلب جديد</string>
     <string name="propertiesyes">هل ترغب بإظهار العقارات التي تدعم تقسيط التأجير فقط</string>
     <string name="eeent">تقسيط التأجير</string>
-
 
 
     <string name="req_n">طلب الخدمة</string>
@@ -1231,15 +1231,12 @@
     <string name="hintsall">المبلغ المستحق للعقاري</string>
 
 
-
-
     <string name="rent_price">سعر الايجار</string>
 
 
     <string name="rent_alal"> يدعم <font color="#5840BB">التقسيط التاجير</font></string>
     <string name="name_emp">اسم الموظف</string>
     <string name="name_emp1">اسم المسؤول</string>
-
 
 
     <string name="addAQarsNumber">ادخل رقم العقار</string>

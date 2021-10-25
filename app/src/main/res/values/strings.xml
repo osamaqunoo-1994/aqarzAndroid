@@ -20,7 +20,8 @@
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCX9U6fj5-Tt5lK_23d2RFsr4Nlp3yqdoM</string>
     <string name="google_maps_keys" templateMergeStrategy="preserve" translatable="false">AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc</string>
     <string name="google_maps_keyaa" templateMergeStrategy="preserve" translatable="false">AIzaSyASdJamfAg4qsuiXSKebSefmQlVBAzhtlk</string>
-    <string name="email">Email</string>
+    <string name="email">email<font color="#AAABB3"><sup>*</sup></font></string>
+
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="sign_up">Sign up</string>
@@ -529,9 +530,11 @@ Your request and reply in the fastest time</string>
     <string name="ten_yeares">mor than 10 years</string>
     <string name="AreYouAqarezman">Are You Aqarez man</string>
     <string name="have_employee">are have clints in office?</string>
-    <string name="name_office">Office Name</string>
+    <string name="name_office">Office Name<font color="#AAABB3"><sup>*</sup></font></string>
+
     <string name="reqname_office">Name Ofice Requierd</string>
-    <string name="name_cli">Owner Name</string>
+    <string name="name_cli">Owner Name<font color="#AAABB3"><sup>*</sup></font></string>
+
     <string name="user_name_req">Link it required</string>
 
     <string name="rate_text">Rate you?</string>
