@@ -647,7 +647,32 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
                             }
 
+                            whatsapp.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
 
+                                    try {
+
+                                        String url = "https://api.whatsapp.com/send?phone=+966" + homeModules_aqares.getOwnerMobile();
+                                        Intent i = new Intent(Intent.ACTION_VIEW);
+                                        i.setData(Uri.parse(url));
+                                        startActivity(i);
+
+
+//
+//                                        String number = "+966" + homeModules_aqares.getOwnerMobile();
+//
+//                                        Uri uri = Uri.parse("smsto:" + number);
+//                                        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
+//                                        i.setPackage("com.whatsapp");
+//                                        startActivity(Intent.createChooser(i, ""));
+                                    } catch (Exception e) {
+                                        Toast.makeText(DetaislAqarzActivity.this, "WhatsApp not Installed", Toast.LENGTH_SHORT)
+                                                .show();
+                                    }
+
+                                }
+                            });
                             Image_user.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -991,24 +1016,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
                                 }
                             });
-                            whatsapp.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
 
-                                    try {
-                                        String number = "0" + homeModules_aqares.getOwnerMobile();
-
-                                        Uri uri = Uri.parse("smsto:" + number);
-                                        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
-                                        i.setPackage("com.whatsapp");
-                                        startActivity(Intent.createChooser(i, ""));
-                                    } catch (Exception e) {
-                                        Toast.makeText(DetaislAqarzActivity.this, "WhatsApp not Installed", Toast.LENGTH_SHORT)
-                                                .show();
-                                    }
-
-                                }
-                            });
 
                             map_location.setOnClickListener(new View.OnClickListener() {
                                 @Override

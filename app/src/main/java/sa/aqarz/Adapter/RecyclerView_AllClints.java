@@ -109,11 +109,22 @@ public class RecyclerView_AllClints extends RecyclerView.Adapter<RecyclerView_Al
 //        holder.title.setText(alldata.get(position).getName());
         holder.post.setText(position + 1 + "");
         holder.name.setText(alldata.get(position).getName() + "");
-        holder.address.setText(alldata.get(position).getAddress() + "");
         holder.number_offer.setText(alldata.get(position).getCount_fund_offer() + "");
         holder.number_aqarez.setText(alldata.get(position).getCount_estate() + "");
 
         holder.number_fund_offer.setText(alldata.get(position).getCount_accept_fund_offer() + "");
+
+
+        if (alldata.get(position).getAddress() != null) {
+            if (!alldata.get(position).getAddress().equals("null")) {
+
+                holder.address.setText(alldata.get(position).getAddress() + "");
+
+
+            }
+        }
+
+
 //        holder.date.setText(alldata.get(position).getCreatedAt());
 //        if (alldata.get(position).getRate() != null) {
 //            if (!alldata.get(position).getRate().equals("null")) {

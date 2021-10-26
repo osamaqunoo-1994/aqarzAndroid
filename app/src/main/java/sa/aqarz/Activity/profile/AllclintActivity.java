@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
@@ -37,6 +38,7 @@ public class AllclintActivity extends AppCompatActivity {
     ImageView back;
     IResult mResultCallback;
     List<User> homeModules = new ArrayList<>();
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class AllclintActivity extends AppCompatActivity {
         allclints = findViewById(R.id.allclints);
 
         back = findViewById(R.id.back);
+        title = findViewById(R.id.title);
 
         LinearLayoutManager layoutManager1
                 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -56,6 +59,21 @@ public class AllclintActivity extends AppCompatActivity {
             }
         });
 
+
+        try {
+
+            String titles = getIntent().getStringExtra("title");
+
+
+            if (titles != null) {
+                if (titles.equals("search")) {
+                    title.setText(getResources().getString(R.string.BrokersBrokers));
+                }
+            }
+
+        } catch (Exception e) {
+
+        }
 
         try {
 

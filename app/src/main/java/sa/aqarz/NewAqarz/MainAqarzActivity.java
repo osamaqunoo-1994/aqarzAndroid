@@ -169,13 +169,6 @@ public class MainAqarzActivity extends AppCompatActivity {
         on_click_bottom_action();
         set_contanier_fragments();
 
-        try {
-            forceUpdate();
-
-        } catch (Exception e) {
-
-        }
-
 
         if (Settings.checkLogin()) {
 
@@ -659,6 +652,12 @@ public class MainAqarzActivity extends AppCompatActivity {
 
             }
         }
+        try {
+            forceUpdate();
+
+        } catch (Exception e) {
+
+        }
         super.onResume();
     }
 
@@ -748,5 +747,6 @@ public class MainAqarzActivity extends AppCompatActivity {
 
 
     }
+
 
 }

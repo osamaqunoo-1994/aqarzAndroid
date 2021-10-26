@@ -598,12 +598,16 @@ public class DetaislAqarzActivityFromList extends AppCompatActivity {
             public void onClick(View v) {
 
                 try {
-                    String number = "0" + homeModules_aqares.getOwnerMobile();
-
-                    Uri uri = Uri.parse("smsto:" + number);
-                    Intent i = new Intent(Intent.ACTION_SENDTO, uri);
-                    i.setPackage("com.whatsapp");
-                    startActivity(Intent.createChooser(i, ""));
+                    String url = "https://api.whatsapp.com/send?phone=+966" + homeModules_aqares.getOwnerMobile();
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+//                    String number = "0" + homeModules_aqares.getOwnerMobile();
+//
+//                    Uri uri = Uri.parse("smsto:" + number);
+//                    Intent i = new Intent(Intent.ACTION_SENDTO, uri);
+//                    i.setPackage("com.whatsapp");
+//                    startActivity(Intent.createChooser(i, ""));
                 } catch (Exception e) {
                     Toast.makeText(DetaislAqarzActivityFromList.this, "WhatsApp not Installed", Toast.LENGTH_SHORT)
                             .show();

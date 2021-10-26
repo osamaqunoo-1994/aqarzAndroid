@@ -554,6 +554,7 @@ public class FillterActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(FillterActivity.this, AllclintActivity.class);
                     intent.putExtra("search_text", name_aqarz.getText().toString() + "");
+                    intent.putExtra("title", "search");
                     startActivity(intent);
 
                 } catch (Exception e) {

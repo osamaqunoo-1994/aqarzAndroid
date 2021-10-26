@@ -145,7 +145,9 @@ public class MoreFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-TextView virs;
+
+    TextView virs;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -341,6 +343,40 @@ TextView virs;
             }
         });
         EditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Settings.CheckIsAccountAqarzMan()) {
+                    Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+//              intent.putExtra("from", "splash");
+                    startActivity(intent);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                } else {
+                    Intent intent = new Intent(getActivity(), MyProfileInformationActivity.class);
+//              intent.putExtra("from", "splash");
+                    startActivity(intent);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                }
+
+            }
+        });
+        st_25.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Settings.CheckIsAccountAqarzMan()) {
+                    Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+//              intent.putExtra("from", "splash");
+                    startActivity(intent);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                } else {
+                    Intent intent = new Intent(getActivity(), MyProfileInformationActivity.class);
+//              intent.putExtra("from", "splash");
+                    startActivity(intent);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                }
+
+            }
+        });
+        st_00.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (Settings.CheckIsAccountAqarzMan()) {
@@ -581,7 +617,7 @@ TextView virs;
 
                             Hawk.put("user", data);
 
-                            try{
+                            try {
 
                                 if (Settings.GetUser().getName() != null) {
                                     if (Settings.GetUser().getName().equals("null")) {
@@ -637,7 +673,7 @@ TextView virs;
 //            order.setText("(0)");
 //            aqarz_offer_num.setText("(0)");
 
-                            }catch (Exception e){
+                            } catch (Exception e) {
 
                             }
 
