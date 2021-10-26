@@ -151,6 +151,10 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
     Handler handler;
 
+
+
+    String deep_link="^^^";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().getDecorView().setSystemUiVisibility(
