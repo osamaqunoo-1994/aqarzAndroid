@@ -1062,23 +1062,27 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
 
                             try {
-                                if (items_ViewPager.size() > 1) {
+                                if (items_ViewPager.size() > 0) {
+
                                     oi = 0;
 
                                     handler = new Handler();
                                     handler.postDelayed(new Runnable() {
                                         public void run() {
+
+
+                                            System.out.println("*****************************************" + items_ViewPager.size());
                                             // Actions to do after 10 seconds
                                             home_viewPager.setAdapter(new home_viewPager_Adapter(DetaislAqarzActivity.this, items_ViewPager));
                                             view_pager_indicator.setupWithViewPager(home_viewPager);
 
 
                                         }
-                                    }, 1000);
+                                    }, 500);
                                 }
 
                             } catch (Exception e) {
-
+                                e.printStackTrace();
                             }
 
 

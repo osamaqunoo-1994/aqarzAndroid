@@ -1023,7 +1023,7 @@ public class DetaislAqarzActivityFromList extends AppCompatActivity {
 //
 //                            }
                             try {
-                                if (items_ViewPager.size() > 1) {
+                                if (items_ViewPager.size() > 0) {
                                     oi = 0;
 
 //                                    Handler handler = new Handler();

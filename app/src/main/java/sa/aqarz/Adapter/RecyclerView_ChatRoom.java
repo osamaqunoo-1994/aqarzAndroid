@@ -138,72 +138,72 @@ public class RecyclerView_ChatRoom extends RecyclerView.Adapter<RecyclerView_Cha
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            holder.text.setText(alldata.get(position).getBody() + "");
 
 
-            if (alldata.get(position).getBody().contains("#")) {
-                holder.text.setText(alldata.get(position).getBody() + "");
+            holder.text.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                String str = alldata.get(position).getBody() + "";
-                String[] splited = str.split(" ");
+                    if (alldata.get(position).getBody().contains("#")) {
 
-                for (int i = 0; i < splited.length; i++) {
+                        String str = alldata.get(position).getBody() + "";
+                        String[] splited = str.split(" ");
 
-                    if (splited[i].contains("#")) {
-                        tt = splited[i] + "";
+                        for (int i = 0; i < splited.length; i++) {
+
+                            if (splited[i].contains("#")) {
+                                tt = splited[i] + "";
+                            }
+
+
+                        }
+                        Intent intent = new Intent(context, DetaislAqarzActivity.class);
+
+
+                        String value = tt.substring(1);
+
+
+                        intent.putExtra("id_aqarz", value + "");
+                        context.startActivity(intent);
+
+
                     }
 
 
                 }
+            });
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (alldata.get(position).getBody().contains("#")) {
 
-                holder.text.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (tt.equals("")) {
+                        String str = alldata.get(position).getBody() + "";
+                        String[] splited = str.split(" ");
 
-                        } else {
-                            Intent intent = new Intent(context, DetaislAqarzActivity.class);
+                        for (int i = 0; i < splited.length; i++) {
 
-
-                            String value = tt.substring(1);
-
-
-                            intent.putExtra("id_aqarz", value + "");
-                            context.startActivity(intent);
-
-                        }
-
-                    }
-                });
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (tt.equals("")) {
-
-                        } else {
-                            Intent intent = new Intent(context, DetaislAqarzActivity.class);
-                            String value = tt.substring(1);
-
-
-                            intent.putExtra("id_aqarz", value + "");
-                            context.startActivity(intent);
+                            if (splited[i].contains("#")) {
+                                tt = splited[i] + "";
+                            }
 
 
                         }
-
-                    }
-                });
+                        Intent intent = new Intent(context, DetaislAqarzActivity.class);
 
 
-            } else {
-                holder.text.setText(alldata.get(position).getBody() + "");
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                        String value = tt.substring(1);
+
+
+                        intent.putExtra("id_aqarz", value + "");
+                        context.startActivity(intent);
 
 
                     }
-                });
-            }
+
+
+                }
+            });
 
 
 //            holder.share.setOnClickListener(new View.OnClickListener() {
