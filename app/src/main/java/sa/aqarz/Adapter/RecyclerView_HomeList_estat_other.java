@@ -145,6 +145,8 @@ public class RecyclerView_HomeList_estat_other extends RecyclerView.Adapter<Recy
         holder.opration.setText(alldata.get(position).getOperationTypeName());
         holder.space.setText(alldata.get(position).getTotalArea() + "");
         holder.date.setText(alldata.get(position).getCreatedAt() + "");
+
+
         holder.num_id.setText("#" + alldata.get(position).getId() + "");
 
         if (alldata.get(position).getCity_name() != null) {
@@ -174,8 +176,7 @@ public class RecyclerView_HomeList_estat_other extends RecyclerView.Adapter<Recy
         }
 
 
-
-        try{
+        try {
             if (alldata.get(position).getIn_fav().equals("1")) {
                 holder.add_favorite.setImageDrawable(context.getDrawable(R.drawable.ic_heart));
 
@@ -216,7 +217,7 @@ public class RecyclerView_HomeList_estat_other extends RecyclerView.Adapter<Recy
             });
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
@@ -277,7 +278,7 @@ public class RecyclerView_HomeList_estat_other extends RecyclerView.Adapter<Recy
                 WebService.loading((Activity) context, true);
 
                 VolleyService mVolleyService = new VolleyService(mResultCallback, context);
-                mVolleyService.getDataVolley("hide", WebService.hide +"/"+ alldata.get(position).getId() + "/estate");
+                mVolleyService.getDataVolley("hide", WebService.hide + "/" + alldata.get(position).getId() + "/estate");
 
             }
         });

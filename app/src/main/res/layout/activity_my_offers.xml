@@ -60,8 +60,10 @@
                 android:layout_height="match_parent"
                 android:id="@+id/edt_search"
                 android:imeOptions="actionSearch"
+                android:hint="@string/addAQarsNumber"
                 android:inputType="text"
                 android:layout_weight="1"
+                android:textSize="13dp"
                 android:background="@android:color/transparent"
                 android:gravity="start|center"
                 android:paddingStart="15dp" />

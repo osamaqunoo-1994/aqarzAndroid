@@ -219,7 +219,7 @@
                             android:id="@+id/hide"
 
                             android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_height="match_parent"
                             android:background="@drawable/circle_filter"
                             android:padding="4dp"
                             android:src="@drawable/ic_un_hide" />

@@ -11,6 +11,7 @@ import com.github.vivchar.viewpagerindicator.ViewPagerIndicator;
 
 import sa.aqarz.Adapter.fullscreen_viewPager_Adapter;
 import sa.aqarz.Adapter.home_viewPager_Adapter;
+import sa.aqarz.NewAqarz.MainAqarzActivity;
 import sa.aqarz.R;
 
 public class FullScreenImageActivity extends AppCompatActivity {
@@ -35,7 +36,10 @@ public class FullScreenImageActivity extends AppCompatActivity {
         home_viewPager = findViewById(R.id.home_viewPager);
         view_pager_indicator = findViewById(R.id.view_pager_indicator);
 
-        home_viewPager.setAdapter(new fullscreen_viewPager_Adapter(FullScreenImageActivity.this, DetailsActivity_aqarz.items_ViewPager));
+
+        System.out.println("TTTTTT" + DetailsActivity_aqarz.items_ViewPager.size());
+
+        home_viewPager.setAdapter(new fullscreen_viewPager_Adapter(FullScreenImageActivity.this, MainAqarzActivity.items_ViewPager_all));
         try {
             String position = getIntent().getStringExtra("position");
             home_viewPager.setCurrentItem(Integer.valueOf(position));

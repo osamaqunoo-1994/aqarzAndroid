@@ -36,6 +36,8 @@ import com.orhanobut.hawk.Hawk;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import sa.aqarz.Activity.AddAqarz.AddAqarzActivity;
 import sa.aqarz.Activity.AllOrderActivity;
 import sa.aqarz.Activity.Auth.LoginActivity;
@@ -50,6 +52,7 @@ import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
 import sa.aqarz.Modules.CityModules;
 import sa.aqarz.Modules.ObjectFiltterOrder;
 import sa.aqarz.Modules.Object_filtter;
+import sa.aqarz.Modules.imagemodules;
 import sa.aqarz.NewAqarz.AqqAqarz.AddAqarzStepsActivity;
 import sa.aqarz.NewAqarz.Fragments.ChatFragment;
 import sa.aqarz.NewAqarz.Fragments.HomeMapFragment;
@@ -102,6 +105,7 @@ public class MainAqarzActivity extends AppCompatActivity {
     public static Activity activity;
     public static Object_filtter object_filtter = new Object_filtter();
     public static ObjectFiltterOrder objectFiltterOrder = new ObjectFiltterOrder();
+    public static ArrayList<imagemodules> items_ViewPager_all = new ArrayList<imagemodules>();
 
 
     @Override

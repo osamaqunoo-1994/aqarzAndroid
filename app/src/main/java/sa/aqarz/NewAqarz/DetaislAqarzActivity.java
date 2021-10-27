@@ -1068,6 +1068,10 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                             try {
                                 if (items_ViewPager.size() > 0) {
 
+                                    MainAqarzActivity.items_ViewPager_all=items_ViewPager;
+
+
+
                                     oi = 0;
 
                                     handler = new Handler();
