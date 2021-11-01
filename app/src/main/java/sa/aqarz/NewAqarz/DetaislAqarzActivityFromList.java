@@ -724,15 +724,21 @@ public class DetaislAqarzActivityFromList extends AppCompatActivity {
                             operation_type_name.setText(homeModules_aqares.getOperationTypeName());
                             estate_type_name.setText(homeModules_aqares.getEstate_type_name());
                             price.setText(homeModules_aqares.getTotalPrice());
+////
+//                            if (homeModules_aqares.getCity_name() != null) {
+//                                address.setText(homeModules_aqares.getCity_name() + " - " + homeModules_aqares.getNeighborhood_name());
 //
-                            if (homeModules_aqares.getCity_name() != null) {
-                                address.setText(homeModules_aqares.getCity_name() + " - " + homeModules_aqares.getNeighborhood_name());
+//                            } else {
+//                                address.setText(homeModules_aqares.getAddress());
+//
+//                            }
+                            if (homeModules_aqares.getFull_address() != null) {
+                                if (!homeModules_aqares.getFull_address().equals("null")) {
+                                    address.setText(homeModules_aqares.getFull_address() + "");
 
-                            } else {
-                                address.setText(homeModules_aqares.getAddress());
+                                }
 
                             }
-
 
                             if (homeModules_aqares.getIs_rent_installment() != null) {
                                 if (!homeModules_aqares.getIs_rent_installment().equals("null")) {
