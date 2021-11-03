@@ -91,7 +91,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
     public static final ArrayList<imagemodules> items_ViewPager = new ArrayList<imagemodules>();
     int oi = 0;
     public static Activity activity;
-
+    String view_n_e_s_ = "";
     ScaleRatingBar rate_user;
     TextView estate_type_name;
     TextView area;
@@ -149,7 +149,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 
     Handler handler;
 
-    String deep_link="^^^";
+    String deep_link = "^^^";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -777,12 +777,44 @@ public class DetaislAqarzActivity extends AppCompatActivity {
 //                            note.setText(homeModules_aqares.getNote() + "");
 //                            type_.setText(homeModules_aqares.getEstate_type_name() + "");
                             kitchens.setText(homeModules_aqares.getKitchenNumber() + "");
-                            interfacex.setText(homeModules_aqares.getInterface() + "");
+
                             loungs.setText(homeModules_aqares.getLoungesNumber() + "");
                             dining_room.setText(homeModules_aqares.getDiningRoomsNumber() + "");
                             area.setText(homeModules_aqares.getTotalArea() + "");
                             room.setText(homeModules_aqares.getBedroom_number() + "");
                             unit_number.setText(homeModules_aqares.getUnit_number() + "");
+
+
+//if(homeModules_aqares.inter){
+//
+//}
+
+                            for (int i = 0; i < homeModules_aqares.getInterface_array().size(); i++) {
+
+                                if (homeModules_aqares.getInterface_array().get(i).contains("north")) {
+
+                                    view_n_e_s_ = view_n_e_s_ + "," + getResources().getString(R.string.north);
+
+                                }
+                                if (homeModules_aqares.getInterface_array().get(i).contains("west")) {
+                                    view_n_e_s_ = view_n_e_s_ + "," + getResources().getString(R.string.west);
+
+                                }
+                                if (homeModules_aqares.getInterface_array().get(i).contains("east")) {
+                                    view_n_e_s_ = view_n_e_s_ + "," + getResources().getString(R.string.east);
+
+                                }
+                                if (homeModules_aqares.getInterface_array().get(i).contains("south")) {
+                                    view_n_e_s_ = view_n_e_s_ + "," + getResources().getString(R.string.south);
+                                }
+
+
+                            }
+
+
+                            interfacex.setText(view_n_e_s_ + "");
+//                            interfacex.setText(homeModules_aqares.getInterface() + "");
+
 
                             if (homeModules_aqares.getElevators_number() != null) {
                                 if (!homeModules_aqares.getElevators_number().equals("null")) {
@@ -1071,8 +1103,7 @@ public class DetaislAqarzActivity extends AppCompatActivity {
                             try {
                                 if (items_ViewPager.size() > 0) {
 
-                                    MainAqarzActivity.items_ViewPager_all=items_ViewPager;
-
+                                    MainAqarzActivity.items_ViewPager_all = items_ViewPager;
 
 
                                     oi = 0;

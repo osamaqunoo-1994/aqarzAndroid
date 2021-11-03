@@ -407,10 +407,6 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 //                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
 
 
-
-
-
-
                     MainActivity.ordersModules = alldata.get(position);
 
                     Intent intent = new Intent(context, MyOfferOrderActivity.class);

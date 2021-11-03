@@ -137,6 +137,11 @@ public class HomeModules_aqares {
     @SerializedName("lat")
     @Expose
     private String lat;
+    @SerializedName("interface_array")
+    @Expose
+    private List<String> interface_array;
+
+
     @SerializedName("lan")
     @Expose
     private String lan;
@@ -432,6 +437,10 @@ public class HomeModules_aqares {
 
     public String getTotalArea() {
         return totalArea;
+    }
+
+    public List<String> getInterface_array() {
+        return interface_array;
     }
 
     public void setTotalArea(String totalArea) {

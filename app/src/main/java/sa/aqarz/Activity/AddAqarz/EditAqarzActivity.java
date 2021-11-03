@@ -2920,7 +2920,6 @@ public class EditAqarzActivity extends AppCompatActivity {
                         }
 
 
-                        if (homeModules_aqares.getInterface() != null && !homeModules_aqares.getInterface().equals("null")) {
 
 
                             south_selected = false;
@@ -2928,69 +2927,77 @@ public class EditAqarzActivity extends AppCompatActivity {
                             east_selected = false;
                             west_selected = false;
 
-                            if (homeModules_aqares.getInterface().contains("south")) {
-                                if (interface_.equals("")) {
-//                    interface_ = "south";
-                                    interface_ = " south ";
 
+                            for (int i = 0; i < homeModules_aqares.getInterface_array().size(); i++) {
 
-                                } else {
-//                    interface_ = "," + "south";
-                                    interface_ = interface_ + "," + " south ";
+                                if (homeModules_aqares.getInterface_array().get(i).contains("north")) {
 
-                                }
-                                south.setBackground(getResources().getDrawable(R.drawable.button_login1));
-                                south.setTextColor(getResources().getColor(R.color.white));
+                                    if (interface_.equals("")) {
+                                        interface_ = " north ";
 
-
-                                south_selected = true;
-                            }
-                            if (homeModules_aqares.getInterface().contains("north")) {
-                                if (interface_.equals("")) {
-                                    interface_ = " north ";
-
-                                } else {
+                                    } else {
 //                    interface_ = "," + "north";
-                                    interface_ = interface_ + "," + " north ";
+                                        interface_ = interface_ + "," + " north ";
+
+                                    }
+                                    north_selected = true;
+                                    north.setBackground(getResources().getDrawable(R.drawable.button_login1));
+                                    north.setTextColor(getResources().getColor(R.color.white));
 
                                 }
-                                north_selected = true;
-                                north.setBackground(getResources().getDrawable(R.drawable.button_login1));
-                                north.setTextColor(getResources().getColor(R.color.white));
+                                if (homeModules_aqares.getInterface_array().get(i).contains("west")) {
+                                    if (interface_.equals("")) {
+                                        interface_ = " west ";
 
-
-                            }
-                            if (homeModules_aqares.getInterface().contains("east")) {
-                                if (interface_.equals("")) {
-                                    interface_ = " east ";
-
-                                } else {
-//                    interface_ = "," + "غرب";
-                                    interface_ = interface_ + "," + " east ";
-
-                                }
-                                east_selected = true;
-                                east.setBackground(getResources().getDrawable(R.drawable.button_login1));
-                                east.setTextColor(getResources().getColor(R.color.white));
-
-                            }
-                            if (homeModules_aqares.getInterface().contains("west")) {
-                                if (interface_.equals("")) {
-                                    interface_ = " west ";
-
-                                } else {
+                                    } else {
 //                    interface_ = "," + "west";
-                                    interface_ = interface_ + "," + " west ";
+                                        interface_ = interface_ + "," + " west ";
+
+                                    }
+                                    west_selected = true;
+                                    west.setBackground(getResources().getDrawable(R.drawable.button_login1));
+                                    west.setTextColor(getResources().getColor(R.color.white));
 
                                 }
-                                west_selected = true;
-                                west.setBackground(getResources().getDrawable(R.drawable.button_login1));
-                                west.setTextColor(getResources().getColor(R.color.white));
+                                if (homeModules_aqares.getInterface_array().get(i).contains("east")) {
+                                    if (interface_.equals("")) {
+                                        interface_ = " east ";
+
+                                    } else {
+//                    interface_ = "," + "غرب";
+                                        interface_ = interface_ + "," + " east ";
+
+                                    }
+                                    east_selected = true;
+                                    east.setBackground(getResources().getDrawable(R.drawable.button_login1));
+                                    east.setTextColor(getResources().getColor(R.color.white));
+
+                                }
+                                if (homeModules_aqares.getInterface_array().get(i).contains("south")) {
+
+                                    if (interface_.equals("")) {
+//                    interface_ = "south";
+                                        interface_ = " south ";
+
+
+                                    } else {
+//                    interface_ = "," + "south";
+                                        interface_ = interface_ + "," + " south ";
+
+                                    }
+                                    south.setBackground(getResources().getDrawable(R.drawable.button_login1));
+                                    south.setTextColor(getResources().getColor(R.color.white));
+
+
+                                    south_selected = true;
+                                }
+
 
                             }
 
 
-                        }
+
+
 
                         if (homeModules_aqares.getAdvertiser_side().equals("individual")) {
 

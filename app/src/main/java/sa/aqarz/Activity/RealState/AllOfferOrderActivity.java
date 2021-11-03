@@ -145,7 +145,7 @@ public class AllOfferOrderActivity extends AppCompatActivity {
 
         VolleyService mVolleyService = new VolleyService(mResultCallback, this);
 
-        mVolleyService.getDataVolley("my_estate", WebService.my_estate+"?estate_type_id="+MainActivity.ordersModules.getEstateTypeId());
+        mVolleyService.getDataVolley("my_estate", WebService.my_estate+"?estate_type_id="+MainActivity.ordersModules.getEstateTypeId()+"&status=fund");
 
 
         confirm.setOnClickListener(new View.OnClickListener() {
