@@ -75,6 +75,9 @@ public class User {
     @SerializedName("country_code")
     @Expose
     private String country_code;
+    @SerializedName("password")
+    @Expose
+    private String password;
     @SerializedName("confirmation_code")
     @Expose
     private String confirmation_code;
@@ -176,6 +179,10 @@ public class User {
 
     public String getBio() {
         return bio;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getExperience() {

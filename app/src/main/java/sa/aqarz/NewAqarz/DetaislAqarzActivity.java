@@ -141,17 +141,13 @@ public class DetaislAqarzActivity extends AppCompatActivity {
     String name_user = "";
     TextView is_rent_installment;
 
-
     TextView Number_parking_add;
     TextView unit_number;
     TextView number_lifts_add;
 
     LinearLayout swipe;
 
-
     Handler handler;
-
-
 
     String deep_link="^^^";
 

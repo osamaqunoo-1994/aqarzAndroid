@@ -28,7 +28,13 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    //... removed for brevity
+    bundle {
 
+        language {
+            enableSplit = false
+        }
+    }
 }
 
 dependencies {

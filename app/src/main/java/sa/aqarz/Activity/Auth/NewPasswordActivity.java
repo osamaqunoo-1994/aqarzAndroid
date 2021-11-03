@@ -22,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import sa.aqarz.R;
+import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
@@ -84,6 +85,31 @@ public class NewPasswordActivity extends AppCompatActivity {
 
 
         }
+
+        try {
+
+            if (Settings.GetUser().getPassword() != null) {
+
+                if (!Settings.GetUser().getPassword().equals("null")) {
+
+
+                    Oldpassword.setVisibility(View.VISIBLE);
+
+
+                } else {
+                    Oldpassword.setVisibility(View.GONE);
+
+                }
+            } else {
+                Oldpassword.setVisibility(View.GONE);
+
+            }
+
+
+        } catch (Exception e) {
+
+        }
+
 
         Oldpassword.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -206,7 +232,7 @@ public class NewPasswordActivity extends AppCompatActivity {
 
                         WebService.Make_Toast_color(NewPasswordActivity.this, message, "success");
 
-
+                        finish();
                     } else {
                         String message = response.getString("message");
 

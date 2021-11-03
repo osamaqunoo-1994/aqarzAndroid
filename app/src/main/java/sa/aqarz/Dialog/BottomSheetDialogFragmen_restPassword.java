@@ -74,7 +74,7 @@ public class BottomSheetDialogFragmen_restPassword extends BottomSheetDialogFrag
 
 
                     System.out.println(sendObj.toString());
-                    mVolleyServicex.postDataVolley_without_token("forgetpassword", WebService.forget_password1, sendObj);
+                    mVolleyServicex.postDataVolley_without_token("forgetpassword", WebService.resend_code, sendObj);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -205,7 +205,7 @@ public class BottomSheetDialogFragmen_restPassword extends BottomSheetDialogFrag
             public void notifyError(String requestType, VolleyError error) {
                 Log.d("TAG", "Volley requester " + requestType);
 
-                WebService.loading((Activity) getActivity(), false);
+                WebService.loading(getActivity(), false);
 
                 try {
 
@@ -217,7 +217,7 @@ public class BottomSheetDialogFragmen_restPassword extends BottomSheetDialogFrag
                     String message = jsonObject.getString("message");
 
 
-                    WebService.Make_Toast_color((Activity) getActivity(), message, "error");
+                    WebService.Make_Toast_color(getActivity(), message, "error");
 
                     Log.e("error response", response_data);
 
@@ -225,16 +225,16 @@ public class BottomSheetDialogFragmen_restPassword extends BottomSheetDialogFrag
 
                 }
 
-                WebService.loading((Activity) getActivity(), false);
+                WebService.loading(getActivity(), false);
 
 
             }
 
             @Override
             public void notify_Async_Error(String requestType, String error) {
-                WebService.loading((Activity) getActivity(), false);
+                WebService.loading(getActivity(), false);
 
-                WebService.Make_Toast_color((Activity) getActivity(), error, "error");
+                WebService.Make_Toast_color(getActivity(), error, "error");
 
 
             }

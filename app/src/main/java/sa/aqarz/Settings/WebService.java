@@ -32,6 +32,7 @@ public class WebService {
     public static String mobile_verify_code = Domain + "confirm/password/code";
     public static String forget_password = Domain + "forget/password";
     public static String forget_password1 = Domain + "forget/password";
+    public static String resend_code = Domain + "resend/code";
     public static String update_password = Domain + "update/password";
     public static String update_my_profile = Domain + "update/my/profile";
     public static String settings = Domain + "settings";

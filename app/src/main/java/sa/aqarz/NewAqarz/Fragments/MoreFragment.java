@@ -41,6 +41,7 @@ import sa.aqarz.Activity.AllOrder_filtterActivity;
 import sa.aqarz.Activity.Auth.EditProfileActivity;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
+import sa.aqarz.Activity.Auth.NewPasswordActivity;
 import sa.aqarz.Activity.Auth.NewSiginUpActivity;
 import sa.aqarz.Activity.ContactUsActivity;
 import sa.aqarz.Activity.Employee.DetailsEmployeeActivity;
@@ -443,14 +444,14 @@ public class MoreFragment extends Fragment {
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getContext(), NewPasswordActivity.class);
-////                                intent.putExtra("from", "splash");
-//                startActivity(intent);
+                Intent intent = new Intent(getContext(), NewPasswordActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
 //                getActivity().overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 
 
-                BottomSheetDialogFragmen_restPassword bottomSheetDialogFragmen_restPassword = new BottomSheetDialogFragmen_restPassword("");
-                bottomSheetDialogFragmen_restPassword.show(getChildFragmentManager(), "");
+//                BottomSheetDialogFragmen_restPassword bottomSheetDialogFragmen_restPassword = new BottomSheetDialogFragmen_restPassword("");
+//                bottomSheetDialogFragmen_restPassword.show(getChildFragmentManager(), "");
 
 //                Intent intent = new Intent(getContext(), ForgotPasswordActivity.class);
 ////                                intent.putExtra("from", "splash");

@@ -861,7 +861,6 @@ public class DetaislAqarzActivityFromList extends AppCompatActivity {
                             room.setText(homeModules_aqares.getBedroom_number() + "");
 
 
-
                             unit_number.setText(homeModules_aqares.getUnit_number() + "");
 
 
@@ -1011,10 +1010,10 @@ public class DetaislAqarzActivityFromList extends AppCompatActivity {
                             items_ViewPager.clear();
                             for (int i = 0; i < homeModules_aqares.getEstate_file().size(); i++) {
 
-                                if(homeModules_aqares.getEstate_file().get(i).getType().equals("images")){
+                                if (homeModules_aqares.getEstate_file().get(i).getType().equals("images")) {
                                     items_ViewPager.add(new imagemodules(homeModules_aqares.getEstate_file().get(i).getFile() + "", "image"));
 
-                                }else{
+                                } else {
                                     items_ViewPager.add(new imagemodules(homeModules_aqares.getEstate_file().get(i).getFile() + "", "video"));
 
                                 }
@@ -1031,7 +1030,7 @@ public class DetaislAqarzActivityFromList extends AppCompatActivity {
                             try {
                                 if (items_ViewPager.size() > 0) {
                                     oi = 0;
-                                    MainAqarzActivity.items_ViewPager_all=items_ViewPager;
+                                    MainAqarzActivity.items_ViewPager_all = items_ViewPager;
 
 
 //                                    Handler handler = new Handler();
