@@ -96,12 +96,12 @@ public class RecyclerView_GenralNotfication extends RecyclerView.Adapter<Recycle
 
 
 //        holder.setIsRecyclable(false);
-        if (alldata.get(position).getType().equals("request")) {
-            holder.title.setText("طلب");
-        } else {
-            holder.title.setText(alldata.get(position).getType());
-
-        }
+//        if (alldata.get(position).getType().equals("request")) {
+//            holder.title.setText("طلب");
+//        } else {
+//            holder.title.setText(alldata.get(position).getType());
+//
+//        }
         holder.des.setText(alldata.get(position).getTitle());
 //        if (alldata.get(position).getRate() != null) {
 //            if (!alldata.get(position).getRate().equals("null")) {
@@ -113,29 +113,40 @@ public class RecyclerView_GenralNotfication extends RecyclerView.Adapter<Recycle
 
         holder.date.setText(alldata.get(position).getCreatedAt() + "");
         if (alldata.get(position).getType().equals("request")) {
+            holder.title.setText(context.getResources().getString(R.string.not1));
 
             holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.logo_png));
 
         } else if (alldata.get(position).getType().equals("chat")) {
             holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_message_chat));
+            holder.title.setText(context.getResources().getString(R.string.not2));
 
         } else if (alldata.get(position).getType().equals("fund_request")) {
             holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.logo_png));
+            holder.title.setText(context.getResources().getString(R.string.not3));
 
         } else if (alldata.get(position).getType().equals("fund_offer")) {
             holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.logo_png));
+            holder.title.setText(context.getResources().getString(R.string.not4));
 
         } else if (alldata.get(position).getType().equals("offer")) {
             holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.logo_png));
+            holder.title.setText(context.getResources().getString(R.string.not5));
 
         } else if (alldata.get(position).getType().equals("rate_offer")) {
             holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.star_w));
+            holder.title.setText(context.getResources().getString(R.string.not6));
 
         } else if (alldata.get(position).getType().equals("rate_estate")) {
             holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.star_w));
+            holder.title.setText(context.getResources().getString(R.string.not7));
 
         } else if (alldata.get(position).getType().equals("employee")) {
             holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_user_menu));
+            holder.title.setText(context.getResources().getString(R.string.not8));
+
+        } else {
+            holder.title.setText(alldata.get(position).getType());
 
         }
 

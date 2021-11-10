@@ -1246,4 +1246,20 @@
 
     <string name="writeid_aqarz">اكتب رقم العقار</string>
 
+
+
+
+    <string name="not1">طلب</string>
+    <string name="not2">محادثة</string>
+    <string name="not3">طلب صندوق</string>
+    <string name="not4">عرض طلب</string>
+    <string name="not5">عرض</string>
+    <string name="not6">تقييم العرض</string>
+    <string name="not7">تقيم العقار</string>
+    <string name="not8">موظف</string>
+
+
+
+
+
 </resources>

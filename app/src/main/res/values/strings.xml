@@ -1310,4 +1310,18 @@ Two working days to complete your order</string>
     <string name="BrokersBrokers">Brokers</string>
     <string name="writeid_aqarz">write id aqar</string>
 
+
+    <string name="not1">Request</string>
+    <string name="not2">Chat</string>
+    <string name="not3">Fund request</string>
+    <string name="not4">Fund offer</string>
+    <string name="not5">Offer</string>
+    <string name="not6">Rate offer</string>
+    <string name="not7">Rate estate</string>
+    <string name="not8">Employee</string>
+
+
+
+
+
 </resources>
