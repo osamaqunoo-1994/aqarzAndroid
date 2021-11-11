@@ -31,6 +31,7 @@ import org.json.JSONObject;
 
 import sa.aqarz.Activity.TermsActivity;
 import sa.aqarz.Modules.User;
+import sa.aqarz.NewAqarz.WebViewActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
@@ -361,19 +362,25 @@ public class ChoseTypeActivity extends AppCompatActivity {
                         String data = response.getString("data");
 
 //
-                        Hawk.put("user", data);
-                        JsonParser parser = new JsonParser();
-                        JsonElement mJson = parser.parse(data);
 
-                        Gson gson = new Gson();
-                        User userModules = gson.fromJson(mJson, User.class);
-
-                        Hawk.put("api_token", "token " + userModules.getApi_token() + "");
+                        Intent intent=new Intent(ChoseTypeActivity.this, WebViewActivity.class);
+                        intent.putExtra("data",data);
+                        startActivity(intent);
 
 
-                        String message = response.getString("message");
-                        WebService.Make_Toast_color(ChoseTypeActivity.this, message, "success");
-                        finish();
+//                        Hawk.put("user", data);
+//                        JsonParser parser = new JsonParser();
+//                        JsonElement mJson = parser.parse(data);
+//
+//                        Gson gson = new Gson();
+//                        User userModules = gson.fromJson(mJson, User.class);
+//
+//                        Hawk.put("api_token", "token " + userModules.getApi_token() + "");
+//
+//
+//                        String message = response.getString("message");
+//                        WebService.Make_Toast_color(ChoseTypeActivity.this, message, "success");
+//                        finish();
 
                     } else {
                         String message = response.getString("message");

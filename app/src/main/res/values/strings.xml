@@ -1301,7 +1301,6 @@ Two working days to complete your order</string>
     <string name="rent_alal"> supports <font color="#5840BB">Installment Leasing</font></string>
 
 
-
     <string name="name_emp">Name Employee</string>
     <string name="name_emp1">Name Owner</string>
     <string name="addAQarsNumber">add Aqars Number</string>
@@ -1319,9 +1318,6 @@ Two working days to complete your order</string>
     <string name="not6">Rate offer</string>
     <string name="not7">Rate estate</string>
     <string name="not8">Employee</string>
-
-
-
 
 
 </resources>
