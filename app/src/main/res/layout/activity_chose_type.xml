@@ -387,6 +387,39 @@
                     android:textStyle="bold"
                     android:visibility="gone" />
 
+
+                <LinearLayout
+                    android:id="@+id/identity_lay"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/edit_text_background_b"
+
+                    android:visibility="visible">
+
+                    <EditText
+                        android:id="@+id/identity"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+
+
+                        android:fontFamily="@font/din_bold"
+                        android:hint="@string/identity"
+                        android:inputType="number"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+
+
+                        android:paddingBottom="10dp"
+                        android:textSize="13dp"
+
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
                 <Button
                     android:id="@+id/confirm"
                     android:layout_width="match_parent"

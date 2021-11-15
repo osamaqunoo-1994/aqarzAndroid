@@ -17,6 +17,7 @@
     <string name="cancel">إلغاء</string>
     <string name="phone_number">رقم الهاتف </string>
     <string name="email">البريد الإلكتروني<font color="#AAABB3"><sup>*</sup></font></string>
+    <string name="identity">رقم الهوية<font color="#AAABB3"><sup>*</sup></font></string>
 
     <string name="password">كلمة المرور</string>
     <string name="login">تسجيل الدخول</string>
@@ -1261,5 +1262,6 @@
 
 
 
+    <string name="error_msg">اكتب رقم الهوية</string>
 
 </resources>

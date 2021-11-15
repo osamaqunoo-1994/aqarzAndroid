@@ -118,6 +118,7 @@ public class WebService {
     public static String add_neb_interest = Domain + "add/neb/interest";
     public static String check_employe = Domain + "check/employee";
     public static String check_location_data = Domain + "check/location/data";
+    public static String login_auth_callback = Domain + "login/auth/callback";
 //    public static String provider_code_send = Domain + "provider/code/send";
 
 

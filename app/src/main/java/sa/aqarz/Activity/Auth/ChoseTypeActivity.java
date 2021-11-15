@@ -1,8 +1,11 @@
 package sa.aqarz.Activity.Auth;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.LocaleList;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.Gravity;
@@ -13,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -29,8 +33,12 @@ import com.orhanobut.hawk.Hawk;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Locale;
+
+import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Activity.TermsActivity;
 import sa.aqarz.Modules.User;
+import sa.aqarz.NewAqarz.MainAqarzActivity;
 import sa.aqarz.NewAqarz.WebViewActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.WebService;
@@ -75,6 +83,8 @@ public class ChoseTypeActivity extends AppCompatActivity {
 
     String type_man = "";
     Button confirm;
+    EditText identity;
+    LinearLayout identity_lay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +113,7 @@ public class ChoseTypeActivity extends AppCompatActivity {
         aqarz_lay = findViewById(R.id.aqarz_lay);
         aqarz_txt = findViewById(R.id.aqarz_txt);
         aqarz_img = findViewById(R.id.aqarz_img);
+        identity = findViewById(R.id.identity);
 
         code_ed = findViewById(R.id.code_ed);
         Cpassword = findViewById(R.id.Cpassword);
@@ -162,7 +173,7 @@ public class ChoseTypeActivity extends AppCompatActivity {
                 user_txt.setTextColor(getResources().getColor(R.color.white));
                 aqarz_txt.setTextColor(getResources().getColor(R.color.textColor));
 
-
+                identity_lay.setVisibility(View.GONE);
             }
         });
 
@@ -182,6 +193,9 @@ public class ChoseTypeActivity extends AppCompatActivity {
                 user_txt.setTextColor(getResources().getColor(R.color.textColor));
                 aqarz_txt.setTextColor(getResources().getColor(R.color.white));
                 confirm.setTextColor(getResources().getColor(R.color.white));
+
+                identity_lay.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -274,32 +288,42 @@ public class ChoseTypeActivity extends AppCompatActivity {
                         type.equals("")) {
                     WebService.Make_Toast_color(ChoseTypeActivity.this, getResources().getString(R.string.select_type) + "", "error");
                 } else {
-                    WebService.loading(ChoseTypeActivity.this, true);
 
-                    VolleyService mVolleyService = new VolleyService(mResultCallback, ChoseTypeActivity.this);
+                    if (type_man.equals("provider") && identity.getText().toString().equals("")) {
+                        WebService.Make_Toast_color(ChoseTypeActivity.this, getResources().getString(R.string.error_msg) + "", "error");
+
+                    } else {
+                        WebService.loading(ChoseTypeActivity.this, true);
+
+                        VolleyService mVolleyService = new VolleyService(mResultCallback, ChoseTypeActivity.this);
 
 
-                    JSONObject sendObj = new JSONObject();
+                        JSONObject sendObj = new JSONObject();
 
-                    try {
+                        try {
 
-                        sendObj.put("mobile", mobile);
-                        sendObj.put("code", code);
+                            sendObj.put("mobile", mobile);
+                            sendObj.put("code", code);
 
-                        sendObj.put("type", type_man + "");
+
+                            sendObj.put("identity", identity.getText().toString());
+
+                            sendObj.put("type", type_man + "");
 //                        sendObj.put("password_confirmation", Cpassword.getText().toString());
-                        sendObj.put("country_code", "+966");
+                            sendObj.put("country_code", "+966");
 
 //                        sendObj.put("device_token", "157");
 //                        sendObj.put("type", type);
 //                        sendObj.put("country_code", "+972");
 //                        sendObj.put("device_type", "android");
 
-                        System.out.println(sendObj.toString());
-                        mVolleyService.postDataVolley_without_token("verifyNew", WebService.verifyNew, sendObj);
+                            System.out.println(sendObj.toString());
+                            mVolleyService.postDataVolley_without_token("verifyNew", WebService.verifyNew, sendObj);
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     }
 
                 }
@@ -362,25 +386,64 @@ public class ChoseTypeActivity extends AppCompatActivity {
                         String data = response.getString("data");
 
 //
+                        if (requestType.equals("login_auth_callback")) {
+                            Hawk.put("user", data);
+                            JsonParser parser = new JsonParser();
+                            JsonElement mJson = parser.parse(data);
 
-                        Intent intent=new Intent(ChoseTypeActivity.this, WebViewActivity.class);
-                        intent.putExtra("data",data);
-                        startActivity(intent);
+                            Gson gson = new Gson();
+                            User userModules = gson.fromJson(mJson, User.class);
+
+                            Hawk.put("api_token", "token " + userModules.getApi_token() + "");
 
 
-//                        Hawk.put("user", data);
-//                        JsonParser parser = new JsonParser();
-//                        JsonElement mJson = parser.parse(data);
+                            String message = response.getString("message");
+                            WebService.Make_Toast_color(ChoseTypeActivity.this, message, "success");
+                            setLocale(ChoseTypeActivity.this, Hawk.get("lang").toString());
+
+                            Intent intent = new Intent(ChoseTypeActivity.this, MainAqarzActivity.class);
+//              intent.putExtra("from", "splash");
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                            startActivity(intent);
+//                                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                            finish();
+                        } else {
+                            if (type_man.equals("provider")) {
+
+                                Intent intent = new Intent(ChoseTypeActivity.this, WebViewActivity.class);
+                                intent.putExtra("data", data);
+                                startActivityForResult(intent, 115);
+
+                            } else {
+
+                                Hawk.put("user", data);
+                                JsonParser parser = new JsonParser();
+                                JsonElement mJson = parser.parse(data);
+
+                                Gson gson = new Gson();
+                                User userModules = gson.fromJson(mJson, User.class);
+
+                                Hawk.put("api_token", "token " + userModules.getApi_token() + "");
+
+
+                                String message = response.getString("message");
+                                WebService.Make_Toast_color(ChoseTypeActivity.this, message, "success");
+
+                                setLocale(ChoseTypeActivity.this, Hawk.get("lang").toString());
+
+                                Intent intent = new Intent(ChoseTypeActivity.this, MainAqarzActivity.class);
+//              intent.putExtra("from", "splash");
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                                startActivity(intent);
+//                                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                                finish();
+                            }
+                        }
+
+
 //
-//                        Gson gson = new Gson();
-//                        User userModules = gson.fromJson(mJson, User.class);
-//
-//                        Hawk.put("api_token", "token " + userModules.getApi_token() + "");
-//
-//
-//                        String message = response.getString("message");
-//                        WebService.Make_Toast_color(ChoseTypeActivity.this, message, "success");
-//                        finish();
 
                     } else {
                         String message = response.getString("message");
@@ -433,5 +496,102 @@ public class ChoseTypeActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        if ((requestCode == 115)) {
+            if (resultCode == Activity.RESULT_OK) {
+
+
+                try {
+                    String state = data.getStringExtra("state");
+                    String id_token = data.getStringExtra("id_token");
+
+
+                    if (state != null) {
+
+                        if (!state.equals("null")) {
+
+
+                            WebService.loading(ChoseTypeActivity.this, true);
+
+                            VolleyService mVolleyService = new VolleyService(mResultCallback, ChoseTypeActivity.this);
+
+
+                            JSONObject sendObj = new JSONObject();
+
+                            try {
+
+                                sendObj.put("id_token", id_token);
+                                sendObj.put("state", state);
+
+
+//                                sendObj.put("identity", identity.getText().toString());
+//
+//                                sendObj.put("type", type_man + "");
+////                        sendObj.put("password_confirmation", Cpassword.getText().toString());
+//                                sendObj.put("country_code", "+966");
+
+//                        sendObj.put("device_token", "157");
+//                        sendObj.put("type", type);
+//                        sendObj.put("country_code", "+972");
+//                        sendObj.put("device_type", "android");
+
+                                System.out.println(sendObj.toString());
+                                mVolleyService.postDataVolley_without_token("login_auth_callback", WebService.login_auth_callback, sendObj);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                        }
+
+
+                    }
+
+
+                } catch (Exception e) {
+
+                }
+            }
+        }
+
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+    public static void setLocale(Activity activity, String local) {
+//        if (!BuildConfig.DEBUG)
+//            Thread.setDefaultUncaughtExceptionHandler(new DefaultExceptionHandler(activity));
+//        if (!BuildConfig.ENGLISH) {
+        String languageToLoad = local; // your language
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+
+
+        if (Build.VERSION.SDK_INT > 17) {
+
+
+            System.out.println("!!!!!");
+            config.setLocale(locale);
+        } else {
+            config.locale = locale;
+            System.out.println("!!!!!x");
+
+        }
+
+
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
+            config.setLocales(new LocaleList(locale));
+            System.out.println("!!!!!s");
+
+        }
+
+        activity.getBaseContext().getResources().updateConfiguration(config,
+                activity.getBaseContext().getResources().getDisplayMetrics());
+
+    }
 
 }
