@@ -249,6 +249,20 @@ public class MoreFragment extends Fragment {
         } catch (Exception e) {
 
         }
+        if (Settings.CheckIsAccountAqarzMan()) {
+            offer.setVisibility(View.VISIBLE);
+            employee.setVisibility(View.VISIBLE);
+            aqarz_offer.setVisibility(View.VISIBLE);
+            all_area.setVisibility(View.VISIBLE);
+        } else {
+            offer.setVisibility(View.GONE);
+            employee.setVisibility(View.GONE);
+            aqarz_offer.setVisibility(View.GONE);
+            all_area.setVisibility(View.GONE);
+
+        }
+
+
         try {
             PackageManager packageManager = getActivity().getPackageManager();
             PackageInfo packageInfo = null;
@@ -320,8 +334,20 @@ public class MoreFragment extends Fragment {
         myAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ProfileDetailsActivity.class);
-                startActivity(intent);
+
+
+                if (Settings.CheckIsAccountAqarzMan()) {
+                    Intent intent = new Intent(getActivity(), ProfileDetailsActivity.class);
+                    startActivity(intent);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                } else {
+                    Intent intent = new Intent(getActivity(), MyProfileInformationActivity.class);
+//              intent.putExtra("from", "splash");
+                    startActivity(intent);
+//                    overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                }
+//                Intent intent = new Intent(getActivity(), ProfileDetailsActivity.class);
+//                startActivity(intent);
 
             }
         });

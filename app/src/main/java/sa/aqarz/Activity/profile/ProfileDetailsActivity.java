@@ -257,8 +257,6 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                                     }
 
 
-                                    System.out.println("userModulesuserModules" + userModules.getService_name().size());
-
                                     myoffer_layout.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -334,9 +332,9 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 
                                     list_service.setAdapter(new RecyclerView_experince(ProfileDetailsActivity.this, userModules.getExperience_name()));
 
-                                    System.out.println("^%^%^%" + userModules.getService_name().size());
-                                    System.out.println("getCourse_name" + userModules.getCourse_name().size());
-                                    System.out.println("getExperience_name" + userModules.getExperience_name().size());
+//                                    System.out.println("^%^%^%" + userModules.getService_name().size());
+//                                    System.out.println("getCourse_name" + userModules.getCourse_name().size());
+//                                    System.out.println("getExperience_name" + userModules.getExperience_name().size());
 
                                     if (userModules.getBio() != null) {
                                         bio.setText(userModules.getBio() + "");
@@ -752,7 +750,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         }
 
 
-        System.out.println("userModulesuserModules" + userModules.getService_name().size());
+//        System.out.println("userModulesuserModules" + userModules.getService_name().size());
 
         myoffer_layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -829,9 +827,9 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 
         list_service.setAdapter(new RecyclerView_experince(ProfileDetailsActivity.this, userModules.getExperience_name()));
 
-        System.out.println("^%^%^%" + userModules.getService_name().size());
-        System.out.println("getCourse_name" + userModules.getCourse_name().size());
-        System.out.println("getExperience_name" + userModules.getExperience_name().size());
+//        System.out.println("^%^%^%" + userModules.getService_name().size());
+//        System.out.println("getCourse_name" + userModules.getCourse_name().size());
+//        System.out.println("getExperience_name" + userModules.getExperience_name().size());
 
         if (userModules.getBio() != null) {
             bio.setText(userModules.getBio() + "");

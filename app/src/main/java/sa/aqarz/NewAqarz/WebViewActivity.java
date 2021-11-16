@@ -26,6 +26,7 @@ public class WebViewActivity extends AppCompatActivity {
     String state = "";
     ProgressBar progress;
     private final OkHttpClient okHttpClient = new OkHttpClient.Builder().build(); // TODO: Make this a singleton for the app
+    String url_callback = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,6 @@ public class WebViewActivity extends AppCompatActivity {
             WebViewClient yourWebClient = new WebViewClient() {
 
 
-
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
                     return false;
@@ -78,6 +78,12 @@ public class WebViewActivity extends AppCompatActivity {
 
                 @Override
                 public void onPageFinished(WebView view, String url) {
+
+
+                    System.out.println("YYYYYYYYYYYYY" + url);
+
+
+                    url_callback = url;
                     progress.setVisibility(View.GONE);
                     wb.loadUrl("javascript:HtmlViewer.showHTML" +
                             "('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');");
@@ -127,57 +133,75 @@ public class WebViewActivity extends AppCompatActivity {
         public void showHTML(String html) {
 
 
-            if (html.contains("<input type=\"hidden\" name=\"state\"")) {
-//                Spanned htmlText = Html.fromHtml(html);
-                Document doc = Jsoup.parse(html);
-                Elements elements = doc.select("body").first().getAllElements();
-//or only `<p>` elements
-//Elements elements = doc.select("p");
+            System.out.println("html#####" + html);
 
 
-//                System.out.println("سيملنينملبيبمبلوةي: "+elements.get(2).val());
+            if (html.contains("{\"status\":true,\"code\":200,\"message\"")) {
 
-                if (html.contains("type=\"hidden\" name=\"state\"")) {
-//                    for (Element el : elements) {
-//
-//                    }
-//
-                    for (int i = 0; i < elements.size(); i++) {
-
-                        if (elements.get(i).toString().contains("state")) {
-                            System.out.println("elementxxx: " + elements.get(i));
-
-                            System.out.println("OssmsmEled: " + elements.get(i).tagName("state").val());
-                            state = elements.get(i).tagName("state").val() + "";
-
-                        }
-                        if (elements.get(i).toString().contains("id_token")) {
-                            System.out.println("elementxxx: " + elements.get(i));
-
-                            System.out.println("OssmsmEled: " + elements.get(i).tagName("id_token").val());
-
-                            id_token = elements.get(i).tagName("id_token").val() + "";
-
-                        }
-                    }
-
-
-                    System.out.println("state : " + state);
-                    System.out.println("id_token : " + id_token);
-
-
-                    Intent resultIntent = new Intent();
-// TODO Add extras or a data URI to this intent as appropriate.
-                    resultIntent.putExtra("state", state);
-                    resultIntent.putExtra("id_token", id_token);
-                    setResult(Activity.RESULT_OK, resultIntent);
-                    finish();
-
-
-                }
-
+                Intent resultIntent = new Intent();
+//// TODO Add extras or a data URI to this intent as appropriate.
+                resultIntent.putExtra("url_callback", url_callback);
+//                    resultIntent.putExtra("id_token", id_token);
+                setResult(Activity.RESULT_OK, resultIntent);
+                finish();
 
             }
+
+//            System.out.println("state : " + state);
+//            System.out.println("id_token : " + id_token);
+//
+//
+//            Intent resultIntent = new Intent();
+//// TODO Add extras or a data URI to this intent as appropriate.
+////                    resultIntent.putExtra("state", state);
+////                    resultIntent.putExtra("id_token", id_token);
+//            setResult(Activity.RESULT_OK, resultIntent);
+//            finish();
+
+//
+//
+//
+//            if (html.contains("<input type=\"hidden\" name=\"state\"")) {
+////                Spanned htmlText = Html.fromHtml(html);
+//                Document doc = Jsoup.parse(html);
+//                Elements elements = doc.select("body").first().getAllElements();
+////or only `<p>` elements
+////Elements elements = doc.select("p");
+//
+//
+////                System.out.println("سيملنينملبيبمبلوةي: "+elements.get(2).val());
+//
+//                if (html.contains("type=\"hidden\" name=\"state\"")) {
+////                    for (Element el : elements) {
+////
+////                    }
+////
+////                    for (int i = 0; i < elements.size(); i++) {
+////
+////                        if (elements.get(i).toString().contains("state")) {
+////                            System.out.println("elementxxx: " + elements.get(i));
+////
+////                            System.out.println("OssmsmEled: " + elements.get(i).tagName("state").val());
+////                            state = elements.get(i).tagName("state").val() + "";
+////
+////                        }
+////                        if (elements.get(i).toString().contains("id_token")) {
+////                            System.out.println("elementxxx: " + elements.get(i));
+////
+////                            System.out.println("OssmsmEled: " + elements.get(i).tagName("id_token").val());
+////
+////                            id_token = elements.get(i).tagName("id_token").val() + "";
+////
+////                        }
+////                    }
+//
+//
+//
+//
+//                }
+
+
+//            }
 
         }
 

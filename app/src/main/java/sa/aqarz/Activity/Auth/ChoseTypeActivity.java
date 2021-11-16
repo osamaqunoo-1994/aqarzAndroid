@@ -3,6 +3,7 @@ package sa.aqarz.Activity.Auth;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.LocaleList;
@@ -37,6 +38,7 @@ import java.util.Locale;
 
 import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Activity.TermsActivity;
+import sa.aqarz.Activity.profile.OtherProfileActivity;
 import sa.aqarz.Modules.User;
 import sa.aqarz.NewAqarz.MainAqarzActivity;
 import sa.aqarz.NewAqarz.WebViewActivity;
@@ -173,7 +175,7 @@ public class ChoseTypeActivity extends AppCompatActivity {
                 user_txt.setTextColor(getResources().getColor(R.color.white));
                 aqarz_txt.setTextColor(getResources().getColor(R.color.textColor));
 
-                identity_lay.setVisibility(View.GONE);
+//                identity_lay.setVisibility(View.GONE);
             }
         });
 
@@ -194,7 +196,7 @@ public class ChoseTypeActivity extends AppCompatActivity {
                 aqarz_txt.setTextColor(getResources().getColor(R.color.white));
                 confirm.setTextColor(getResources().getColor(R.color.white));
 
-                identity_lay.setVisibility(View.VISIBLE);
+//                identity_lay.setVisibility(View.GONE);
 
             }
         });
@@ -289,44 +291,45 @@ public class ChoseTypeActivity extends AppCompatActivity {
                     WebService.Make_Toast_color(ChoseTypeActivity.this, getResources().getString(R.string.select_type) + "", "error");
                 } else {
 
-                    if (type_man.equals("provider") && identity.getText().toString().equals("")) {
-                        WebService.Make_Toast_color(ChoseTypeActivity.this, getResources().getString(R.string.error_msg) + "", "error");
+//                    if (type_man.equals("provider") && identity.getText().toString().equals("")) {
+////                    if (type_man.equals("provider") && identity.getText().toString().equals("")) {
+//                        WebService.Make_Toast_color(ChoseTypeActivity.this, getResources().getString(R.string.error_msg) + "", "error");
+//
+//                    } else {
+                    WebService.loading(ChoseTypeActivity.this, true);
 
-                    } else {
-                        WebService.loading(ChoseTypeActivity.this, true);
-
-                        VolleyService mVolleyService = new VolleyService(mResultCallback, ChoseTypeActivity.this);
-
-
-                        JSONObject sendObj = new JSONObject();
-
-                        try {
-
-                            sendObj.put("mobile", mobile);
-                            sendObj.put("code", code);
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, ChoseTypeActivity.this);
 
 
-                            sendObj.put("identity", identity.getText().toString());
+                    JSONObject sendObj = new JSONObject();
 
-                            sendObj.put("type", type_man + "");
+                    try {
+
+                        sendObj.put("mobile", mobile);
+                        sendObj.put("code", code);
+
+
+//                            sendObj.put("identity", identity.getText().toString());
+
+                        sendObj.put("type", type_man + "");
 //                        sendObj.put("password_confirmation", Cpassword.getText().toString());
-                            sendObj.put("country_code", "+966");
+                        sendObj.put("country_code", "+966");
 
 //                        sendObj.put("device_token", "157");
 //                        sendObj.put("type", type);
 //                        sendObj.put("country_code", "+972");
 //                        sendObj.put("device_type", "android");
 
-                            System.out.println(sendObj.toString());
-                            mVolleyService.postDataVolley_without_token("verifyNew", WebService.verifyNew, sendObj);
+                        System.out.println(sendObj.toString());
+                        mVolleyService.postDataVolley_without_token("verifyNew", WebService.verifyNew, sendObj);
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
 
                 }
+
+//                }
 
             }
         });
@@ -386,7 +389,7 @@ public class ChoseTypeActivity extends AppCompatActivity {
                         String data = response.getString("data");
 
 //
-                        if (requestType.equals("login_auth_callback")) {
+                        if (requestType.equals("user")) {
                             Hawk.put("user", data);
                             JsonParser parser = new JsonParser();
                             JsonElement mJson = parser.parse(data);
@@ -504,43 +507,49 @@ public class ChoseTypeActivity extends AppCompatActivity {
 
 
                 try {
-                    String state = data.getStringExtra("state");
-                    String id_token = data.getStringExtra("id_token");
+                    String url_callback = data.getStringExtra("url_callback");
+//                    String id_token = data.getStringExtra("id_token");
+
+                    System.out.println("url_callback"+url_callback);
+                    if (url_callback != null) {
+
+                        if (!url_callback.equals("null")) {
 
 
-                    if (state != null) {
+                            String[] separated = url_callback.split("/");
+//https://apibeta.aqarz.sa/api/login/auth/2918/callback
+                            String number = separated[6]; // this will contain " they taste good"
 
-                        if (!state.equals("null")) {
+                            System.out.println("$$$$$$$$$$$$$" + number);
 
 
                             WebService.loading(ChoseTypeActivity.this, true);
-
                             VolleyService mVolleyService = new VolleyService(mResultCallback, ChoseTypeActivity.this);
-
-
-                            JSONObject sendObj = new JSONObject();
+//                            JSONObject sendObj = new JSONObject();
 
                             try {
-
-                                sendObj.put("id_token", id_token);
-                                sendObj.put("state", state);
+                                mVolleyService.postDataVolley_without_token("user", WebService.user + number + "",null);
 
 
-//                                sendObj.put("identity", identity.getText().toString());
+//                                sendObj.put("mobile", mobile);
+////                                sendObj.put("state", state);
 //
-//                                sendObj.put("type", type_man + "");
-////                        sendObj.put("password_confirmation", Cpassword.getText().toString());
-//                                sendObj.put("country_code", "+966");
+//
+////                                sendObj.put("identity", identity.getText().toString());
+////
+////                                sendObj.put("type", type_man + "");
+//////                        sendObj.put("password_confirmation", Cpassword.getText().toString());
+////                                sendObj.put("country_code", "+966");
+//
+////                        sendObj.put("device_token", "157");
+////                        sendObj.put("type", type);
+////                        sendObj.put("country_code", "+972");
+////                        sendObj.put("device_type", "android");
+//
+//                                System.out.println(sendObj.toString());
+//                                mVolleyService.postDataVolley_without_token("login_auth_callback", WebService.login_auth_callback, sendObj);
 
-//                        sendObj.put("device_token", "157");
-//                        sendObj.put("type", type);
-//                        sendObj.put("country_code", "+972");
-//                        sendObj.put("device_type", "android");
-
-                                System.out.println(sendObj.toString());
-                                mVolleyService.postDataVolley_without_token("login_auth_callback", WebService.login_auth_callback, sendObj);
-
-                            } catch (JSONException e) {
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
 
@@ -560,6 +569,7 @@ public class ChoseTypeActivity extends AppCompatActivity {
 
         super.onActivityResult(requestCode, resultCode, data);
     }
+
     public static void setLocale(Activity activity, String local) {
 //        if (!BuildConfig.DEBUG)
 //            Thread.setDefaultUncaughtExceptionHandler(new DefaultExceptionHandler(activity));
