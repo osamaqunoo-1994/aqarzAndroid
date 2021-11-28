@@ -92,6 +92,7 @@ public class SecandFragment extends Fragment {
     static List<demandsModules> demandsModules_list = new ArrayList<>();
     static RecyclerView_orders_demandsx recyclerView_orders_demandsx;
     ImageView search_btn;
+    TextView search_btn_txt;
     ProgressBar progress;
     public static Activity activity;
     ImageView fillter;
@@ -150,6 +151,7 @@ public class SecandFragment extends Fragment {
         progress = view.findViewById(R.id.progress);
         search_text = view.findViewById(R.id.search_text);
         search_btn = view.findViewById(R.id.search_btn);
+        search_btn_txt = view.findViewById(R.id.search_btn_txt);
         fillter = view.findViewById(R.id.fillter);
         fill_filtter = view.findViewById(R.id.fill_filtter);
 
@@ -579,6 +581,16 @@ public class SecandFragment extends Fragment {
 
 
                 get_data();
+            }
+        });
+        search_btn_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!search_text.getText().toString().equals("")) {
+                    get_data();
+
+                }
             }
         });
         search_text.setOnEditorActionListener(new TextView.OnEditorActionListener() {

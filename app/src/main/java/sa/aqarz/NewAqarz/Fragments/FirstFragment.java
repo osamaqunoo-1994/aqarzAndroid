@@ -96,6 +96,7 @@ public class FirstFragment extends Fragment {
     static List<OrdersModules> ordersModules = new ArrayList<>();
     static RecyclerView_ordersx recyclerView_ordersx;
     ImageView search_btn;
+    TextView search_btn_txt;
     ProgressBar progress;
     public static Activity activity;
     ImageView fillter;
@@ -145,6 +146,7 @@ public class FirstFragment extends Fragment {
         }
         nodata_vis = view.findViewById(R.id.nodata_vis);
         all_order_lay = view.findViewById(R.id.all_order_lay);
+        search_btn_txt = view.findViewById(R.id.search_btn_txt);
         order_day_lay = view.findViewById(R.id.order_day_lay);
         MyOffer_lay = view.findViewById(R.id.MyOffer_lay);
         progress = view.findViewById(R.id.progress);
@@ -554,6 +556,16 @@ public class FirstFragment extends Fragment {
 
 
                 get_data();
+            }
+        });
+        search_btn_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!search_text.getText().toString().equals("")) {
+                    get_data();
+
+                }
             }
         });
         search_text.setOnEditorActionListener(new TextView.OnEditorActionListener() {

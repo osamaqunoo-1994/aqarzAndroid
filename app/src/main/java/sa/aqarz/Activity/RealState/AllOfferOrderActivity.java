@@ -152,22 +152,23 @@ public class AllOfferOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                is_selected = "";
+                for (int i = 0; i < homeModules.size(); i++) {
+                    if (homeModules.get(i).getIs_selected()) {
+                        if (is_selected.equals("")) {
+                            is_selected = homeModules.get(i).getId() + "";
+                        } else {
+                            is_selected = is_selected + "," + homeModules.get(i).getId() + "";
+
+                        }
+                    }
+                }
 
                 if (is_selected.equals("")) {
 
                 } else {
 
-                    is_selected = "";
-                    for (int i = 0; i < homeModules.size(); i++) {
-                        if (homeModules.get(i).getIs_selected()) {
-                            if (is_selected.equals("")) {
-                                is_selected = homeModules.get(i).getId() + "";
-                            } else {
-                                is_selected = is_selected + "," + homeModules.get(i).getId() + "";
 
-                            }
-                        }
-                    }
 
 
 

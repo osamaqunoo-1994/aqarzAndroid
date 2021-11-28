@@ -507,7 +507,7 @@ public class OtherProfileActivity extends AppCompatActivity {
                                             try {
                                                 String phone = "9660" + userModules.getMobile();
 
-                                                String url = "https://api.whatsapp.com/send?phone="+phone;
+                                                String url = "https://api.whatsapp.com/send?phone=" + phone;
                                                 Intent i = new Intent(Intent.ACTION_VIEW);
                                                 i.setData(Uri.parse(url));
                                                 startActivity(i);
