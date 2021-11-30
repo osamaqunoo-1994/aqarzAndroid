@@ -1,5 +1,6 @@
 package sa.aqarz.NewAqarz;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
@@ -12,10 +13,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.LocaleList;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,9 +40,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import sa.aqarz.Activity.AddAqarz.AddAqarzActivity;
 import sa.aqarz.Activity.AllOrderActivity;
+import sa.aqarz.Activity.Auth.ChoseTypeActivity;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
@@ -475,24 +480,68 @@ public class MainAqarzActivity extends AppCompatActivity {
                 if (Settings.checkLogin()) {
                     if (Settings.CheckIsAccountAqarzMan()) {
 
-                        add_aqares_and_order_and_estate.setVisibility(View.VISIBLE);
-                        gray_layout.setVisibility(View.VISIBLE);
-                        gray_layout.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                gray_layout.setVisibility(View.GONE);
-                                add_aqares_and_order_and_estate.setVisibility(View.GONE);
 
-                            }
-                        });
-                        close_add.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                gray_layout.setVisibility(View.GONE);
-                                add_aqares_and_order_and_estate.setVisibility(View.GONE);
+                        if (Settings.GetUser().getIs_iam_complete().equals("0")) {
 
-                            }
-                        });
+
+                            LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                            final View popupView = layoutInflater.inflate(R.layout.alert_is_iam_compleate, null);
+
+                            TextView ok = popupView.findViewById(R.id.ok);
+                            TextView cancle = popupView.findViewById(R.id.cancle);
+
+
+                            ok.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    init_volley();
+                                    WebService.loading(MainAqarzActivity.this, true);
+
+
+                                    VolleyService mVolleyService = new VolleyService(mResultCallback, MainAqarzActivity.this);
+                                    mVolleyService.getDataVolley("IAM_login", WebService.IAM_login);
+
+
+                                    alertDialog.dismiss();
+                                }
+                            });
+                            cancle.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    alertDialog.dismiss();
+                                }
+                            });
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(MainAqarzActivity.this);
+
+                            builder.setView(popupView);
+
+
+                            alertDialog = builder.show();
+
+                            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                        } else {
+
+
+                            add_aqares_and_order_and_estate.setVisibility(View.VISIBLE);
+                            gray_layout.setVisibility(View.VISIBLE);
+                            gray_layout.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    gray_layout.setVisibility(View.GONE);
+                                    add_aqares_and_order_and_estate.setVisibility(View.GONE);
+
+                                }
+                            });
+                            close_add.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    gray_layout.setVisibility(View.GONE);
+                                    add_aqares_and_order_and_estate.setVisibility(View.GONE);
+
+                                }
+                            });
+                        }
                     } else {
 //                        startActivity(new Intent(MainActivity.this, MyOrderUserActivity.class));
                         Intent intent = new Intent(MainAqarzActivity.this, AqarzOrActivity.class);
@@ -676,6 +725,8 @@ public class MainAqarzActivity extends AppCompatActivity {
                 WebService.loading(MainAqarzActivity.this, false);
 //{"status":true,"code":200,"message":"User Profile","data"
                 try {
+                    setLocale(MainAqarzActivity.this, Hawk.get("lang").toString());
+
                     boolean status = response.getBoolean("status");
                     if (status) {
                         String data = response.getString("data");
@@ -695,6 +746,13 @@ public class MainAqarzActivity extends AppCompatActivity {
                             VolleyService mVolleyService = new VolleyService(mResultCallback, MainAqarzActivity.this);
 //            mVolleyService.getDataVolley("user", WebService.user + id + "");
                             mVolleyService.getDataVolley("user", WebService.my_profile + "");
+
+
+                        } else if (requestType.equals("IAM_login")) {
+
+                            Intent intent = new Intent(MainAqarzActivity.this, WebViewActivity.class);
+                            intent.putExtra("data", data);
+                            startActivityForResult(intent, 115);
 
 
                         }
@@ -752,5 +810,110 @@ public class MainAqarzActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        if ((requestCode == 115)) {
+            if (resultCode == Activity.RESULT_OK) {
+
+                setLocale(MainAqarzActivity.this, Hawk.get("lang").toString());
+
+                try {
+                    String url_callback = data.getStringExtra("url_callback");
+//                    String id_token = data.getStringExtra("id_token");
+
+                    System.out.println("url_callback" + url_callback);
+                    if (url_callback != null) {
+
+                        if (!url_callback.equals("null")) {
+
+
+                            String[] separated = url_callback.split("/");
+//https://apibeta.aqarz.sa/api/login/auth/2918/callback
+                            String number = separated[6]; // this will contain " they taste good"
+
+                            System.out.println("$$$$$$$$$$$$$" + number);
+
+
+                            WebService.loading(MainAqarzActivity.this, true);
+                            VolleyService mVolleyService = new VolleyService(mResultCallback, MainAqarzActivity.this);
+//                            JSONObject sendObj = new JSONObject();
+
+                            try {
+                                mVolleyService.postDataVolley_without_token("user__", WebService.user + number + "", null);
+
+
+//                                sendObj.put("mobile", mobile);
+////                                sendObj.put("state", state);
+//
+//
+////                                sendObj.put("identity", identity.getText().toString());
+////
+////                                sendObj.put("type", type_man + "");
+//////                        sendObj.put("password_confirmation", Cpassword.getText().toString());
+////                                sendObj.put("country_code", "+966");
+//
+////                        sendObj.put("device_token", "157");
+////                        sendObj.put("type", type);
+////                        sendObj.put("country_code", "+972");
+////                        sendObj.put("device_type", "android");
+//
+//                                System.out.println(sendObj.toString());
+//                                mVolleyService.postDataVolley_without_token("login_auth_callback", WebService.login_auth_callback, sendObj);
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+
+                        }
+
+
+                    }
+
+
+                } catch (Exception e) {
+
+                }
+            }
+        }
+
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public static void setLocale(Activity activity, String local) {
+//        if (!BuildConfig.DEBUG)
+//            Thread.setDefaultUncaughtExceptionHandler(new DefaultExceptionHandler(activity));
+//        if (!BuildConfig.ENGLISH) {
+        String languageToLoad = local; // your language
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+
+
+        if (Build.VERSION.SDK_INT > 17) {
+
+
+            System.out.println("!!!!!");
+            config.setLocale(locale);
+        } else {
+            config.locale = locale;
+            System.out.println("!!!!!x");
+
+        }
+
+
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
+            config.setLocales(new LocaleList(locale));
+            System.out.println("!!!!!s");
+
+        }
+
+        activity.getBaseContext().getResources().updateConfiguration(config,
+                activity.getBaseContext().getResources().getDisplayMetrics());
+
+    }
 
 }

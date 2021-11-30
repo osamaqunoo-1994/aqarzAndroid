@@ -99,6 +99,7 @@ public class WebService {
     public static String delete = Domain + "delete";
     public static String make_up = Domain + "make/up";
     public static String updateDeviceToken = Domain + "updateDeviceToken";
+    public static String IAM_login = Domain + "IAM/login";
     public static String notification = Domain + "notification";
     public static String cancel = Domain + "cancel";
     public static String canczdssdsel = Domain + "cancel";

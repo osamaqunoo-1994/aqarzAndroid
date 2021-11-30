@@ -27,6 +27,9 @@ public class User {
     @SerializedName("created_at")
     @Expose
     private String created_at;
+    @SerializedName("is_iam_complete")
+    @Expose
+    private String is_iam_complete;
     @SerializedName("type")
     @Expose
     private String type;
@@ -195,6 +198,10 @@ public class User {
 
     public int getProfile_percentage() {
         return profile_percentage;
+    }
+
+    public String getIs_iam_complete() {
+        return is_iam_complete;
     }
 
     public String getIs_employee() {

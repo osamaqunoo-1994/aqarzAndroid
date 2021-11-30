@@ -1323,4 +1323,11 @@ Two working days to complete your order</string>
 
     <string name="error_msg">Write identity</string>
 
+
+
+
+    <string name="activate_ac">Account Verification</string>
+    <string name="activate_ac1">When verifying the account You can add a property</string>
+    <string name="activate_ac2">Verification</string>
+
 </resources>

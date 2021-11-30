@@ -229,12 +229,21 @@ public class MoreFragment extends Fragment {
             Glide.with(getActivity()).load(Settings.GetUser().getLogo() + "").error(getResources().getDrawable(R.drawable.ic_user_un)).diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true).into(iamge);
 
-            if (Settings.GetUser().getIs_certified().equals("1")) {
-                active.setVisibility(View.VISIBLE);
-            } else {
-                active.setVisibility(View.GONE);
+//            if (Settings.GetUser().getIs_certified().equals("1")) {
+//                active.setVisibility(View.VISIBLE);
+//            } else {
+//                active.setVisibility(View.GONE);
+//
+//            }
 
-            }
+          if(Settings.checkLogin()){
+              if (Settings.GetUser().getIs_iam_complete().equals("1")) {
+                  active.setVisibility(View.VISIBLE);
+              } else {
+                  active.setVisibility(View.GONE);
+
+              }
+          }
 
             employee_num.setText("(" + Settings.GetUser().getCount_emp() + ")");
             order.setText("(" + Settings.GetUser().getCount_request() + ")");
