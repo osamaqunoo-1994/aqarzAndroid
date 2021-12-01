@@ -755,6 +755,11 @@ public class MainAqarzActivity extends AppCompatActivity {
                             startActivityForResult(intent, 115);
 
 
+                        } else if (requestType.equals("user__")) {
+                            Hawk.put("user", data);
+
+
+
                         }
 
 
