@@ -1327,7 +1327,7 @@ Two working days to complete your order</string>
 
 
     <string name="activate_ac">Account Verification</string>
-    <string name="activate_ac1">When verifying the account You can add a property</string>
+    <string name="activate_ac1">It is necessary to authenticate your account through the national access according to the requirements of the General Real Estate Authority, and you will get the authentication badge in your account to make your offers more reliable.</string>
     <string name="activate_ac2">Verification</string>
 
 </resources>
