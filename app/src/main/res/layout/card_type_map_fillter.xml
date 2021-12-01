@@ -7,7 +7,7 @@
     <LinearLayout
         android:id="@+id/back_ground"
         android:layout_width="65dp"
-        android:layout_height="35dp"
+        android:layout_height="36dp"
 
         android:background="@drawable/border_fillter"
         android:gravity="center"
@@ -18,13 +18,11 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-
             android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:gravity="center">
 
                 <ImageView
