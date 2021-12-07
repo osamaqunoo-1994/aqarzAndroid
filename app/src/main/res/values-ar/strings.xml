@@ -1269,4 +1269,12 @@
     <string name="activate_ac1">لا بد من توثيق حسابك من خلال النفاذ الوطني حسب اشتراطات الهيئة العامه للعقار وستحصل على شارة التوثيق في حسابك لتكون عروضك اكثر موثوقيه</string>
     <string name="activate_ac2">توثيق</string>
 
+
+
+
+    <string name="my_a1">اعادة نشر</string>
+    <string name="my_a2">تعديل</string>
+    <string name="my_a3">حذف</string>
+    <string name="AddAqarezTi">اضافة عقار</string>
+
 </resources>

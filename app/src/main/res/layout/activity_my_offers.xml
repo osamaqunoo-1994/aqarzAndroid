@@ -51,38 +51,85 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/border_filltercirc">
+            android:orientation="horizontal">
 
-            <EditText
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/edt_search"
-                android:imeOptions="actionSearch"
-                android:hint="@string/addAQarsNumber"
-                android:inputType="text"
-                android:layout_weight="1"
-                android:textSize="13dp"
-                android:background="@android:color/transparent"
-                android:gravity="start|center"
-                android:paddingStart="15dp" />
-
-            <ImageView
-                android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:id="@+id/close"
-                android:visibility="gone"
-                android:padding="10dp"
-                android:src="@drawable/ic_close_black_24dp" />
+                android:layout_weight="1"
+                android:background="@drawable/border_filltercirc">
+
+                <EditText
+                    android:id="@+id/edt_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:gravity="start|center"
+                    android:hint="@string/addAQarsNumber"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:paddingStart="15dp"
+                    android:textSize="13dp" />
+
+                <ImageView
+                    android:id="@+id/close"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_close_black_24dp"
+                    android:visibility="gone" />
 
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/search"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/ic_search" />
+                <ImageView
+                    android:id="@+id/search"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_search" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="10dp"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/add_offer"
+
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/button_login1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+
+                    android:src="@drawable/ic_plus" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/din_bold"
+                    android:text="@string/AddAqarezTi"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
 
 
         </LinearLayout>
@@ -123,7 +170,7 @@
             </LinearLayout>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/add_offer"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

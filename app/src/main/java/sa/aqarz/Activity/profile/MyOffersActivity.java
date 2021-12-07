@@ -57,7 +57,7 @@ public class MyOffersActivity extends AppCompatActivity {
     List<HomeModules_aqares> homeModules = new ArrayList<>();
     ImageView back;
     LinearLayout nodata_vis;
-    FloatingActionButton add_offer;
+    LinearLayout add_offer;
     //    RecyclerView_my_offer_in_profile recyclerView_my_offer_in_profile;
     RecyclerView_HomeList_estat_other recyclerView_homeList_estat_other;
     static RecyclerView_HomeList_estat_new_my recyclerView_homeList_estat_new;

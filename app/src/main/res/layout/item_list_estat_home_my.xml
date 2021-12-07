@@ -28,7 +28,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="105dp"
-                android:layout_height="125dp"
+                android:layout_height="135dp"
                 android:layout_margin="2dp"
                 app:cardCornerRadius="10dp">
 
@@ -86,19 +86,19 @@
 
                         android:layout_alignParentBottom="true"
                         android:layout_marginTop="5dp"
-
                         android:background="@drawable/bac_wha"
+
                         android:fontFamily="@font/din_bold"
                         android:gravity="center"
                         android:paddingLeft="7dp"
                         android:paddingRight="7dp"
-                        android:textStyle="bold"
                         android:paddingBottom="1dp"
                         android:text="5445"
-
-
                         android:textColor="@color/black"
-                        android:textSize="10dp" />
+
+
+                        android:textSize="10dp"
+                        android:textStyle="bold" />
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
@@ -233,7 +233,7 @@
                         android:fontFamily="@font/din_light"
                         android:lines="1"
                         android:text="200"
-                        android:textColor="#AAABB3"
+                        android:textColor="#80000000"
                         android:textSize="13dp" />
 
                     <TextView
@@ -275,12 +275,12 @@
 
                     <ImageView
                         android:id="@+id/hide"
-
                         android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/circle_filter"
                         android:padding="4dp"
-                        android:src="@drawable/ic_un_hide" />
+                        android:src="@drawable/ic_un_hide"
+                        android:visibility="gone" />
 
                     <ImageView
                         android:id="@+id/share"
@@ -297,8 +297,10 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:background="@drawable/circle_filter"
+
                         android:padding="4dp"
                         android:src="@drawable/ic_like_l"
+                        android:visibility="gone"
                         app:tint="#AAABB3" />
 
 
@@ -540,53 +542,70 @@
                         android:textSize="9dp"
                         android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/re_news"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-
-                        android:background="@drawable/circle_fill"
-                        android:padding="9dp"
-                        android:src="@drawable/ic_re_new"
-
-                        android:visibility="gone"
-                        app:tint="@color/white" />
-
-                    <ImageView
-                        android:id="@+id/edit"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginRight="3dp"
-                        android:background="@drawable/circle_ss"
-                        android:padding="9dp"
-                        android:src="@drawable/ic_edit_offer"
-
-                        android:visibility="gone"
-                        app:tint="@color/white" />
-
-                    <ImageView
-                        android:id="@+id/delete"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-
-                        android:background="@drawable/circle_red"
-                        android:padding="9dp"
-                        android:src="@drawable/ic_delete"
-                        android:visibility="gone"
-                        app:tint="@color/white" />
-
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp">
 
-                    <LinearLayout
+
+                    <TextView
+                        android:id="@+id/re_news"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_height="30dp"
+
+                        android:layout_weight="1"
+                        android:background="@drawable/circle_fill1"
+                        android:gravity="center"
+                        android:paddingBottom="2dp"
+                        android:text="@string/my_a1"
+                        android:textColor="@color/white"
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+
+                        android:visibility="visible"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+
+                        android:layout_weight="1"
+                        android:background="@drawable/circle_ss1"
+                        android:gravity="center"
+                        android:paddingBottom="2dp"
+                        android:src="@drawable/ic_edit_offer"
+                        android:text="@string/my_a2"
+                        android:textColor="@color/white"
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+
+                        android:visibility="visible"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/delete"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+
+                        android:background="@drawable/circle_red1"
+                        android:gravity="center"
+                        android:paddingBottom="2dp"
+                        android:src="@drawable/ic_delete"
+                        android:text="@string/my_a3"
+                        android:textColor="@color/white"
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        android:visibility="visible"
+                        app:tint="@color/white" />
 
 
                 </LinearLayout>

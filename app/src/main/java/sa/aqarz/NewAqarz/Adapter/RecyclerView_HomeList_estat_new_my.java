@@ -92,9 +92,9 @@ public class RecyclerView_HomeList_estat_new_my extends RecyclerView.Adapter<Rec
         ScaleRatingBar rate;
 
 
-        ImageView re_news;
-        ImageView edit;
-        ImageView delete;
+        TextView re_news;
+        TextView edit;
+        TextView delete;
         TextView is_rent_installment;
 
         public MyViewHolder(View view) {
@@ -169,14 +169,14 @@ public class RecyclerView_HomeList_estat_new_my extends RecyclerView.Adapter<Rec
 //        holder.bathroom.setText(alldata.get(position).getBathroomsNumber() + "");
 //        holder.room.setText(alldata.get(position).getRoomsNumber() + "");
 
-        holder.delete.setVisibility(View.VISIBLE);
-        holder.re_news.setVisibility(View.VISIBLE);
-        holder.edit.setVisibility(View.VISIBLE);
+//        holder.delete.setVisibility(View.VISIBLE);
+//        holder.re_news.setVisibility(View.VISIBLE);
+//        holder.edit.setVisibility(View.VISIBLE);
 
 
         holder.share.setVisibility(View.VISIBLE);
-        holder.hide.setVisibility(View.VISIBLE);
-        holder.add_favorite.setVisibility(View.VISIBLE);
+//        holder.hide.setVisibility(View.VISIBLE);
+//        holder.add_favorite.setVisibility(View.VISIBLE);
 
         if (alldata.get(position).getFull_address() != null) {
             if (!alldata.get(position).getFull_address().equals("null")) {
@@ -411,7 +411,7 @@ public class RecyclerView_HomeList_estat_new_my extends RecyclerView.Adapter<Rec
 
 
 //        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_estat_home, parent, false);
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_estat_home_map2, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_estat_home_my, parent, false);
 
 
         // Fresco.initialize(context);
