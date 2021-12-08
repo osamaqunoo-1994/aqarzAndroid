@@ -369,7 +369,6 @@ public class HomeMapFragment extends Fragment {
                 Hawk.put("LastPostionLat", "");
                 Hawk.put("LastPostionLan", "");
 
-
                 homeModules_aqares.clear();
 //                recyclerView_homeList_estat_new = new RecyclerView_HomeList_estat_map(getContext(), homeModules_aqares);
 //                allEstate.setAdapter(recyclerView_homeList_estat_new);

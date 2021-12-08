@@ -552,7 +552,7 @@
                                 android:layout_height="30dp"
                                 android:background="@drawable/circle_fill_as"
                                 android:padding="8dp"
-                                android:src="@drawable/ic_aq_of"
+                                android:src="@drawable/ic_orders"
                                 app:tint="@color/white" />
 
                             <LinearLayout
@@ -611,7 +611,7 @@
                                 android:layout_height="30dp"
                                 android:background="@drawable/circle_fill_c"
                                 android:padding="8dp"
-                                android:src="@drawable/ic_orders"
+                                android:src="@drawable/ic_aq_of"
                                 app:tint="@color/white" />
 
                             <LinearLayout
