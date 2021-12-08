@@ -127,16 +127,16 @@ dependencies {
     implementation 'com.github.blikoon:QRCodeScanner:0.1.2'
     implementation 'com.budiyev.android:code-scanner:2.1.0'
     implementation 'androidx.multidex:multidex:2.0.1'
-    compile 'com.github.ome450901:SimpleRatingBar:1.5.1'
+    implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
     implementation 'com.github.PierfrancescoSoffritti:AndroidYouTubePlayer:7.0.1'
 //    implementation 'com.dision.android:rtlviewpager:1.0.3'
     implementation 'com.booking:rtlviewpager:1.0.1'
     implementation 'io.github.ivanespitiac:imageslider:1.0.3'
-    compile 'com.codemybrainsout.placesearchdialog:placesearch:1.0.1'
-    compile 'com.github.darsh2:MultipleImageSelect:v0.0.4'
+    implementation 'com.codemybrainsout.placesearchdialog:placesearch:1.0.1'
+    implementation 'com.github.darsh2:MultipleImageSelect:v0.0.4'
 
 
-    compile 'com.github.marlonlom:timeago:4.0.3'
+    implementation 'com.github.marlonlom:timeago:4.0.3'
 
 
 }
