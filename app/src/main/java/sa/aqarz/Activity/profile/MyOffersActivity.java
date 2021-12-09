@@ -1,17 +1,26 @@
 package sa.aqarz.Activity.profile;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.LocaleList;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -25,12 +34,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.orhanobut.hawk.Hawk;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import sa.aqarz.Activity.AqarzProfileActivity;
 import sa.aqarz.Activity.OprationAqarz.AddAqarsActivity;
@@ -46,7 +57,10 @@ import sa.aqarz.Modules.Clints;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.NewAqarz.Adapter.RecyclerView_HomeList_estat_new_my;
 import sa.aqarz.NewAqarz.AqqAqarz.AddAqarzStepsActivity;
+import sa.aqarz.NewAqarz.MainAqarzActivity;
+import sa.aqarz.NewAqarz.WebViewActivity;
 import sa.aqarz.R;
+import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
@@ -61,7 +75,7 @@ public class MyOffersActivity extends AppCompatActivity {
     //    RecyclerView_my_offer_in_profile recyclerView_my_offer_in_profile;
     RecyclerView_HomeList_estat_other recyclerView_homeList_estat_other;
     static RecyclerView_HomeList_estat_new_my recyclerView_homeList_estat_new;
-
+    AlertDialog alertDialog;
 
     int page = 1;
 
@@ -316,10 +330,56 @@ public class MyOffersActivity extends AppCompatActivity {
         add_offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (Settings.GetUser().getIs_iam_complete().equals("0")) {
+
+
+                    LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    final View popupView = layoutInflater.inflate(R.layout.alert_is_iam_compleate, null);
+
+                    TextView ok = popupView.findViewById(R.id.ok);
+                    TextView cancle = popupView.findViewById(R.id.cancle);
+
+
+                    ok.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            init_volley();
+                            WebService.loading(MyOffersActivity.this, true);
+
+
+                            VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
+                            mVolleyService.getDataVolley("IAM_login", WebService.IAM_login);
+
+
+                            alertDialog.dismiss();
+                        }
+                    });
+                    cancle.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alertDialog.dismiss();
+                        }
+                    });
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(MyOffersActivity.this);
+
+                    builder.setView(popupView);
+
+
+                    alertDialog = builder.show();
+
+                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                } else {
+                    Intent intent = new Intent(MyOffersActivity.this, AddAqarzStepsActivity.class);
+                    intent.putExtra("id", "");
+                    startActivity(intent);
+
+                }
 //                Intent intent = new Intent(MyOffersActivity.this, AddAqarsActivity.class);
-                Intent intent = new Intent(MyOffersActivity.this, AddAqarzStepsActivity.class);
-//              intent.putExtra("from", "splash");
-                startActivity(intent);
+//                Intent intent = new Intent(MyOffersActivity.this, AddAqarzStepsActivity.class);
+////              intent.putExtra("from", "splash");
+//                startActivity(intent);
 //                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
             }
         });
@@ -330,6 +390,7 @@ public class MyOffersActivity extends AppCompatActivity {
             }
         });
     }
+
 
     public void init_volley() {
 
@@ -430,6 +491,14 @@ public class MyOffersActivity extends AppCompatActivity {
 
                             }
 
+                        } else if (requestType.equals("IAM_login")) {
+                            String data = response.getString("data");
+
+                            Intent intent = new Intent(MyOffersActivity.this, WebViewActivity.class);
+                            intent.putExtra("data", data);
+                            startActivityForResult(intent, 115);
+
+
                         } else {
 
 
@@ -504,6 +573,121 @@ public class MyOffersActivity extends AppCompatActivity {
             }
         };
 
+
+    }
+
+
+    @Override
+    protected void onResume() {
+
+        setLocale(MyOffersActivity.this, Hawk.get("lang").toString());
+
+        super.onResume();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        if ((requestCode == 115)) {
+            if (resultCode == Activity.RESULT_OK) {
+
+                setLocale(MyOffersActivity.this, Hawk.get("lang").toString());
+
+                try {
+                    String url_callback = data.getStringExtra("url_callback");
+//                    String id_token = data.getStringExtra("id_token");
+
+                    System.out.println("url_callback" + url_callback);
+                    if (url_callback != null) {
+
+                        if (!url_callback.equals("null")) {
+
+
+                            String[] separated = url_callback.split("/");
+//https://apibeta.aqarz.sa/api/login/auth/2918/callback
+                            String number = separated[6]; // this will contain " they taste good"
+
+                            System.out.println("$$$$$$$$$$$$$" + number);
+
+
+                            WebService.loading(MyOffersActivity.this, true);
+                            VolleyService mVolleyService = new VolleyService(mResultCallback, MyOffersActivity.this);
+//                            JSONObject sendObj = new JSONObject();
+
+                            try {
+                                mVolleyService.postDataVolley_without_token("user__", WebService.user + number + "", null);
+
+
+//                                sendObj.put("mobile", mobile);
+////                                sendObj.put("state", state);
+//
+//
+////                                sendObj.put("identity", identity.getText().toString());
+////
+////                                sendObj.put("type", type_man + "");
+//////                        sendObj.put("password_confirmation", Cpassword.getText().toString());
+////                                sendObj.put("country_code", "+966");
+//
+////                        sendObj.put("device_token", "157");
+////                        sendObj.put("type", type);
+////                        sendObj.put("country_code", "+972");
+////                        sendObj.put("device_type", "android");
+//
+//                                System.out.println(sendObj.toString());
+//                                mVolleyService.postDataVolley_without_token("login_auth_callback", WebService.login_auth_callback, sendObj);
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+
+                        }
+
+
+                    }
+
+
+                } catch (Exception e) {
+
+                }
+            }
+        }
+
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public static void setLocale(Activity activity, String local) {
+//        if (!BuildConfig.DEBUG)
+//            Thread.setDefaultUncaughtExceptionHandler(new DefaultExceptionHandler(activity));
+//        if (!BuildConfig.ENGLISH) {
+        String languageToLoad = local; // your language
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+
+
+        if (Build.VERSION.SDK_INT > 17) {
+
+
+            System.out.println("!!!!!");
+            config.setLocale(locale);
+        } else {
+            config.locale = locale;
+            System.out.println("!!!!!x");
+
+        }
+
+
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
+            config.setLocales(new LocaleList(locale));
+            System.out.println("!!!!!s");
+
+        }
+
+        activity.getBaseContext().getResources().updateConfiguration(config,
+                activity.getBaseContext().getResources().getDisplayMetrics());
 
     }
 

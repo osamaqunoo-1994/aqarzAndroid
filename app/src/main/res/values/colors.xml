@@ -38,5 +38,7 @@
     <color name="yalow">#eac34a</color>
     <color name="te_selected">#888686</color>
     <color name="te_unselected">#AAABB3</color>
+    <color name="not_enable">#FF7675</color>
+    <color name="_enable">#16B455</color>
 
 </resources>

@@ -89,9 +89,9 @@ public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_
         TextView real_order;
         TextView calling;
         TextView market;
-        TextView Enabled;
+        //        TextView Enabled;
         TextView notEnabled;
-        ImageView image;
+        CircleImageView image;
         ImageView remove;
 
         public MyViewHolder(View view) {
@@ -101,7 +101,7 @@ public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_
 
             back_ground = view.findViewById(R.id.back_ground);
             name = view.findViewById(R.id.name);
-            Enabled = view.findViewById(R.id.Enabled);
+//            Enabled = view.findViewById(R.id.Enabled);
             notEnabled = view.findViewById(R.id.notEnabled);
             email = view.findViewById(R.id.email);
             mobile = view.findViewById(R.id.mobile);
@@ -156,11 +156,18 @@ public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_
             holder.market.setText(alldata.get(position).getUser().getCount_request() + "");
             holder.calling.setText(alldata.get(position).getUser().getCount_visit() + "");
             Glide.with(context).load(alldata.get(position).getUser().getLogo() + "").into(holder.image);
-            holder.notEnabled.setVisibility(View.GONE);
-            holder.Enabled.setVisibility(View.VISIBLE);
+//            holder.notEnabled.setVisibility(View.GONE);
+//            holder.Enabled.setVisibility(View.VISIBLE);
+
+            holder.notEnabled.setText(context.getResources().getString(R.string.Enabled));
+
+            holder.notEnabled.setTextColor(context.getResources().getColor(R.color._enable));
         } else {
-            holder.notEnabled.setVisibility(View.VISIBLE);
-            holder.Enabled.setVisibility(View.GONE);
+            holder.notEnabled.setText(context.getResources().getString(R.string.notEnabled));
+            holder.notEnabled.setTextColor(context.getResources().getColor(R.color.not_enable));
+
+//            holder.notEnabled.setVisibility(View.VISIBLE);
+//            holder.Enabled.setVisibility(View.GONE);
         }
 
 
@@ -238,40 +245,44 @@ public class RecyclerView_AllEmployee extends RecyclerView.Adapter<RecyclerView_
             @Override
             public void onClick(View view) {
 
-                new AlertDialog.Builder(context)
-                        .setMessage(context.getResources().getString(R.string.are_you_delete_post))
-                        .setCancelable(false)
-                        .setPositiveButton(context.getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Postion_opend = position;
-
-                                WebService.loading((Activity) context, true);
 
 
-                                init_volley();
+                DetailsEmployeeActivity.deleteEmployee(alldata.get(position).getEmp_mobile() + "");
 
-                                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
-
-                                try {
-
-                                    RequestParams requestParams = new RequestParams();
-
-                                    requestParams.put("emp_mobile", alldata.get(position).getEmp_mobile() + "");
-                                    requestParams.put("country_code", "966");
-
-                                    mVolleyService.postDataasync_with_file("delete_employee", WebService.delete_employee, requestParams);
-
-                                } catch (Exception e) {
-
-                                }
-
-                            }
-                        })
-                        .setNegativeButton(context.getResources().getString(R.string.no), null)
-                        .show();
-
-
+//                new AlertDialog.Builder(context)
+//                        .setMessage(context.getResources().getString(R.string.are_you_delete_post))
+//                        .setCancelable(false)
+//                        .setPositiveButton(context.getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int id) {
+//                                Postion_opend = position;
 //
+//                                WebService.loading((Activity) context, true);
+//
+//
+//                                init_volley();
+//
+//                                VolleyService mVolleyService = new VolleyService(mResultCallback, context);
+//
+//                                try {
+//
+//                                    RequestParams requestParams = new RequestParams();
+//
+//                                    requestParams.put("emp_mobile", alldata.get(position).getEmp_mobile() + "");
+//                                    requestParams.put("country_code", "966");
+//
+//                                    mVolleyService.postDataasync_with_file("delete_employee", WebService.delete_employee, requestParams);
+//
+//                                } catch (Exception e) {
+//
+//                                }
+//
+//                            }
+//                        })
+//                        .setNegativeButton(context.getResources().getString(R.string.no), null)
+//                        .show();
+//
+//
+////
 
 
 //                if (mItemClickListener != null) {

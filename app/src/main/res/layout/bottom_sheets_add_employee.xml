@@ -15,7 +15,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
             android:background="@drawable/background_b"
             android:gravity="center_horizontal"
             android:orientation="vertical"
@@ -27,16 +26,36 @@
                 android:gravity="end">
 
                 <ImageView
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:padding="5dp"
+                    app:tint="#ffffff" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/add_clints"
+                    android:textColor="@color/textColor"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
+
+                <ImageView
                     android:id="@+id/close"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:background="@drawable/circle_fill"
                     android:padding="5dp"
                     android:src="@drawable/ic_close_black_24dp"
-                    app:tint="#ffffff" />
-
+                    app:tint="@color/textColor" />
             </LinearLayout>
 
 
@@ -45,37 +64,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:gravity="center">
-
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/circle_fill"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_baseline_add_24"
-                        app:tint="@color/white" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:text="@string/add_clints"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="14dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                </LinearLayout>
 
                 <EditText
                     android:id="@+id/name"
@@ -123,11 +111,12 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="20dp"
-                    android:background="@drawable/button_login"
+                    android:background="@drawable/button_login1"
                     android:paddingLeft="@dimen/_44sdp"
                     android:paddingRight="@dimen/_44sdp"
-                    android:text="@string/add_clints"
-                    android:textColor="@android:color/white" />
+                    android:text="@string/Confirm_btn"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -145,7 +134,8 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/circle_fill"
             android:padding="15dp"
-            android:src="@drawable/logo_png" />
+            android:src="@drawable/logo_png"
+            android:visibility="gone" />
     </RelativeLayout>
 
 

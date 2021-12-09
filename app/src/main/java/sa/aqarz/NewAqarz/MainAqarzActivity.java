@@ -51,6 +51,7 @@ import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
 import sa.aqarz.Activity.OprationNew.RentActivity;
 import sa.aqarz.Activity.OprationNew.RentShowActivity;
 import sa.aqarz.Activity.check_login;
+import sa.aqarz.Activity.profile.MyOffersActivity;
 import sa.aqarz.Adapter.RecyclerView_city_side_menu;
 import sa.aqarz.Fragment.MapsFragment;
 import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
@@ -481,67 +482,25 @@ public class MainAqarzActivity extends AppCompatActivity {
                     if (Settings.CheckIsAccountAqarzMan()) {
 
 
-                        if (Settings.GetUser().getIs_iam_complete().equals("0")) {
+                        add_aqares_and_order_and_estate.setVisibility(View.VISIBLE);
+                        gray_layout.setVisibility(View.VISIBLE);
+                        gray_layout.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                gray_layout.setVisibility(View.GONE);
+                                add_aqares_and_order_and_estate.setVisibility(View.GONE);
 
+                            }
+                        });
+                        close_add.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                gray_layout.setVisibility(View.GONE);
+                                add_aqares_and_order_and_estate.setVisibility(View.GONE);
 
-                            LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                            final View popupView = layoutInflater.inflate(R.layout.alert_is_iam_compleate, null);
+                            }
+                        });
 
-                            TextView ok = popupView.findViewById(R.id.ok);
-                            TextView cancle = popupView.findViewById(R.id.cancle);
-
-
-                            ok.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    init_volley();
-                                    WebService.loading(MainAqarzActivity.this, true);
-
-
-                                    VolleyService mVolleyService = new VolleyService(mResultCallback, MainAqarzActivity.this);
-                                    mVolleyService.getDataVolley("IAM_login", WebService.IAM_login);
-
-
-                                    alertDialog.dismiss();
-                                }
-                            });
-                            cancle.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    alertDialog.dismiss();
-                                }
-                            });
-                            final AlertDialog.Builder builder = new AlertDialog.Builder(MainAqarzActivity.this);
-
-                            builder.setView(popupView);
-
-
-                            alertDialog = builder.show();
-
-                            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                        } else {
-
-
-                            add_aqares_and_order_and_estate.setVisibility(View.VISIBLE);
-                            gray_layout.setVisibility(View.VISIBLE);
-                            gray_layout.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    gray_layout.setVisibility(View.GONE);
-                                    add_aqares_and_order_and_estate.setVisibility(View.GONE);
-
-                                }
-                            });
-                            close_add.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    gray_layout.setVisibility(View.GONE);
-                                    add_aqares_and_order_and_estate.setVisibility(View.GONE);
-
-                                }
-                            });
-                        }
                     } else {
 //                        startActivity(new Intent(MainActivity.this, MyOrderUserActivity.class));
                         Intent intent = new Intent(MainAqarzActivity.this, AqarzOrActivity.class);
@@ -581,12 +540,54 @@ public class MainAqarzActivity extends AppCompatActivity {
 
                         } else {
 
+                            if (Settings.GetUser().getIs_iam_complete().equals("0")) {
+
+
+                                LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                                final View popupView = layoutInflater.inflate(R.layout.alert_is_iam_compleate, null);
+
+                                TextView ok = popupView.findViewById(R.id.ok);
+                                TextView cancle = popupView.findViewById(R.id.cancle);
+
+
+                                ok.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        init_volley();
+                                        WebService.loading(MainAqarzActivity.this, true);
+
+
+                                        VolleyService mVolleyService = new VolleyService(mResultCallback, MainAqarzActivity.this);
+                                        mVolleyService.getDataVolley("IAM_login", WebService.IAM_login);
+
+
+                                        alertDialog.dismiss();
+                                    }
+                                });
+                                cancle.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        alertDialog.dismiss();
+                                    }
+                                });
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(MainAqarzActivity.this);
+
+                                builder.setView(popupView);
+
+
+                                alertDialog = builder.show();
+
+                                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                            } else {
+                                Intent intent = new Intent(MainAqarzActivity.this, AddAqarzStepsActivity.class);
+                                intent.putExtra("id", "");
+                                startActivity(intent);
+                                gray_layout.setVisibility(View.GONE);
+                                add_aqares_and_order_and_estate.setVisibility(View.GONE);
+                            }
 //                            Intent intent = new Intent(MainAqarzActivity.this, AddAqarzActivity.class);
-                            Intent intent = new Intent(MainAqarzActivity.this, AddAqarzStepsActivity.class);
-                            intent.putExtra("id", "");
-                            startActivity(intent);
-                            gray_layout.setVisibility(View.GONE);
-                            add_aqares_and_order_and_estate.setVisibility(View.GONE);
+
                         }
 //                            alertDialog.dismiss();
                     }
@@ -693,6 +694,8 @@ public class MainAqarzActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        setLocale(MainAqarzActivity.this, Hawk.get("lang").toString());
+
         if (!Settings.checkLogin()) {
 
             text_2.setText(getResources().getString(R.string.MyOrder));
@@ -757,7 +760,6 @@ public class MainAqarzActivity extends AppCompatActivity {
 
                         } else if (requestType.equals("user__")) {
                             Hawk.put("user", data);
-
 
 
                         }
