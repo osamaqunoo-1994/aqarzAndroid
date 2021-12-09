@@ -1278,5 +1278,6 @@
     <string name="waitingapproval">..بانتظار موافقة الموظف</string>
 
     <string name="Delete_">حذف</string>
+    <string name="employeedelete">هل تريد حذف الموظف?</string>
 
 </resources>
