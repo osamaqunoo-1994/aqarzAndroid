@@ -1340,4 +1340,8 @@ Two working days to complete your order</string>
     <string name="waitingapproval">waiting for employee approval</string>
     <string name="employeedelete">Do you want to delete the employee?</string>
 
+
+
+    <string name="Are_you_an_employee">Are you an employee</string>
+
 </resources>

@@ -1279,5 +1279,6 @@
 
     <string name="Delete_">حذف</string>
     <string name="employeedelete">هل تريد حذف الموظف?</string>
+    <string name="Are_you_an_employee">هل انت موظف لدى</string>
 
 </resources>

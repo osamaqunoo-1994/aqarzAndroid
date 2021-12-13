@@ -198,84 +198,6 @@ public class MainAqarzActivity extends AppCompatActivity {
             mVolleyService.postDataVolley("updateDeviceToken", WebService.updateDeviceToken, jsonObject);
 
 
-            if (Settings.GetUser().getIs_employee().equals("1")) {
-
-
-                LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View popupView = layoutInflater.inflate(R.layout.is_emp_alert_dialog, null);
-                ImageView close = popupView.findViewById(R.id.close);
-                TextView yes = popupView.findViewById(R.id.yes);
-                TextView no = popupView.findViewById(R.id.no);
-
-
-                close.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        alertDialog.dismiss();
-                    }
-                });
-
-                yes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        init_volley();
-
-                        JSONObject jsonObject = new JSONObject();
-                        try {
-
-                            jsonObject.put("is_emp", "yes");
-                            jsonObject.put("mobile", Settings.GetUser().getMobile() + "");
-                            jsonObject.put("country_code", "+966");
-
-                        } catch (Exception e) {
-
-                        }
-                        init_volley();
-
-                        WebService.loading(MainAqarzActivity.this, true);
-
-                        VolleyService mVolleyService = new VolleyService(mResultCallback, MainAqarzActivity.this);
-                        mVolleyService.postDataVolley("check_employe", WebService.check_employe, jsonObject);
-                        alertDialog.dismiss();
-
-                    }
-                });
-                no.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        init_volley();
-
-                        JSONObject jsonObject = new JSONObject();
-                        try {
-
-                            jsonObject.put("is_emp", "no");
-                            jsonObject.put("mobile", Settings.GetUser().getMobile() + "");
-                            jsonObject.put("country_code", "966");
-                        } catch (Exception e) {
-
-                        }
-                        init_volley();
-                        WebService.loading(MainAqarzActivity.this, true);
-                        VolleyService mVolleyService = new VolleyService(mResultCallback, MainAqarzActivity.this);
-                        mVolleyService.postDataVolley("check_employe", WebService.check_employe, jsonObject);
-                        alertDialog.dismiss();
-
-                    }
-                });
-                final AlertDialog.Builder builder = new AlertDialog.Builder(MainAqarzActivity.this);
-
-//            alertDialog_country =
-                builder.setView(popupView);
-
-
-                alertDialog = builder.show();
-
-                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-
-            }
-
-
         }
 
     }
@@ -708,6 +630,87 @@ public class MainAqarzActivity extends AppCompatActivity {
 
             }
         }
+
+
+        if (Settings.GetUser().getIs_employee().equals("1")) {
+
+
+            LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final View popupView = layoutInflater.inflate(R.layout.is_emp_alert_dialog, null);
+            ImageView close = popupView.findViewById(R.id.close);
+            TextView title = popupView.findViewById(R.id.title);
+            TextView yes = popupView.findViewById(R.id.yes);
+            TextView no = popupView.findViewById(R.id.no);
+            title.setText(getResources().getString(R.string.Are_you_an_employee) + " " + Settings.GetUser().getEmp().getName() + " ? ");
+
+            close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                }
+            });
+
+            yes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    init_volley();
+
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+
+                        jsonObject.put("is_emp", "yes");
+                        jsonObject.put("mobile", Settings.GetUser().getMobile() + "");
+                        jsonObject.put("country_code", "+966");
+
+                    } catch (Exception e) {
+
+                    }
+                    init_volley();
+
+                    WebService.loading(MainAqarzActivity.this, true);
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, MainAqarzActivity.this);
+                    mVolleyService.postDataVolley("check_employe", WebService.check_employe, jsonObject);
+                    alertDialog.dismiss();
+
+                }
+            });
+            no.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    init_volley();
+
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+
+                        jsonObject.put("is_emp", "no");
+                        jsonObject.put("mobile", Settings.GetUser().getMobile() + "");
+                        jsonObject.put("country_code", "966");
+                    } catch (Exception e) {
+
+                    }
+                    init_volley();
+                    WebService.loading(MainAqarzActivity.this, true);
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, MainAqarzActivity.this);
+                    mVolleyService.postDataVolley("check_employe", WebService.check_employe, jsonObject);
+                    alertDialog.dismiss();
+
+                }
+            });
+            final AlertDialog.Builder builder = new AlertDialog.Builder(MainAqarzActivity.this);
+
+//            alertDialog_country =
+            builder.setView(popupView);
+
+
+            alertDialog = builder.show();
+
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+
+        }
+
+
         try {
             forceUpdate();
 
