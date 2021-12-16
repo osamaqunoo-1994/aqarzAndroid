@@ -70,8 +70,9 @@
                     android:background="@android:color/transparent"
                     android:gravity="start|center"
                     android:hint="@string/addAQarsNumber"
+
                     android:imeOptions="actionSearch"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:paddingStart="15dp"
                     android:textSize="13dp" />
 
