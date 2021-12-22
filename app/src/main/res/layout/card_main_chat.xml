@@ -23,15 +23,15 @@
                 android:layout_height="40dp"
 
                 android:src="#fff"
-                app:civ_border_color="#9777B2"
+                app:civ_border_color="#fff"
                 app:civ_border_width="1dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_weight="1"
+            android:gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
@@ -45,15 +45,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/din_bold"
-                    android:textStyle="bold"
+                    android:textColor="#585755"
 
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="13dp" />
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
+
                 <TextView
                     android:id="@+id/text_date"
                     android:layout_width="wrap_content"
@@ -79,7 +80,7 @@
                     android:fontFamily="@font/din_light"
                     android:lines="1"
 
-                    android:textColor="@color/textColor"
+                    android:textColor="#77838F"
                     android:textSize="12dp" />
 
                 <LinearLayout

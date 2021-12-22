@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -48,7 +49,7 @@ public class MyOfferOrderActivity extends AppCompatActivity {
     RecyclerView all_my_state;
     ImageView back;
     Button confirm;
-    Button addAqares;
+    LinearLayout addAqares;
     TextView uuid;
     String is_selected = "";
 

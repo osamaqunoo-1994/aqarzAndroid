@@ -40,5 +40,7 @@
     <color name="te_unselected">#AAABB3</color>
     <color name="not_enable">#FF7675</color>
     <color name="_enable">#16B455</color>
+    <color name="color_title_text">#585755</color>
+    <color name="color_title_text1">#848484</color>
 
 </resources>

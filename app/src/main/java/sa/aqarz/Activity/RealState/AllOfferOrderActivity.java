@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -53,8 +54,8 @@ public class AllOfferOrderActivity extends AppCompatActivity {
 
     RecyclerView all_my_state;
 
-    Button confirm;
-    Button addAqares;
+    LinearLayout confirm;
+    LinearLayout addAqares;
 
     String is_selected = "";
     public static ShowcaseView showCaseView;

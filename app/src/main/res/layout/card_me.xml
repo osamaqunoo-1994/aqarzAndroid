@@ -24,7 +24,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:background="@drawable/bac_message_me"
+                    android:background="@drawable/bac_message_me1"
                     android:fontFamily="@font/din_bold"
                     android:paddingLeft="17dp"
                     android:paddingTop="7dp"

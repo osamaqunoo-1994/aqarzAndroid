@@ -55,6 +55,8 @@ public class ChatRoomActivity extends AppCompatActivity {
     RecyclerView_ChatRoom recyclerView_chatRoom;
     String id_aqarez = "";
 
+    ImageView image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +67,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         send = findViewById(R.id.send);
         name = findViewById(R.id.name);
         profile = findViewById(R.id.profile);
+        image = findViewById(R.id.image);
 
 
         back.setOnClickListener(new View.OnClickListener() {

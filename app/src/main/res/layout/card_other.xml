@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="@drawable/bac_message_other">
+                android:background="@drawable/bac_message_other1">
 
                 <TextView
                     android:id="@+id/text"
@@ -38,7 +38,7 @@
                     android:paddingTop="7dp"
                     android:paddingRight="17dp"
                     android:paddingBottom="7dp"
-                    android:textColor="@color/black"
+                    android:textColor="#717274"
                     android:textIsSelectable="true"
                     android:textSize="13dp"
                     android:textStyle="bold" />

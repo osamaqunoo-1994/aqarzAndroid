@@ -694,7 +694,7 @@ Two working days to complete your order</string>
     <string name="hint_address__address">Enter your Location Address</string>
 
 
-    <string name="add_aqar_new">Add Aqar New</string>
+    <string name="add_aqar_new">Add New Aqars</string>
     <string name="Solidarity_salaryreq">Solidarity salary Required</string>
     <string name="message_location">سيتم اختيار العنوان الحالي لك كعنوان للعرض هل انت متأكد من ذلك ؟</string>
     <string name="Select_d">Select</string>
@@ -1343,5 +1343,7 @@ Two working days to complete your order</string>
 
 
     <string name="Are_you_an_employee">Are you an employee</string>
+    <string name="new_offer">Add New offer</string>
+    <string name="titlenew_offer">New offer</string>
 
 </resources>

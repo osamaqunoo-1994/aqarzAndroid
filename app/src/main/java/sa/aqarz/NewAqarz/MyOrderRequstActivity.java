@@ -74,71 +74,78 @@ public class MyOrderRequstActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_order_requst);
-        back = findViewById(R.id.back);
-        orders_rec = findViewById(R.id.orders_rec);
-        nodata_vis = findViewById(R.id.nodata_vis);
-        rent_installment = findViewById(R.id.rent_installment);
-        Request_property = findViewById(R.id.Request_property);
-        page = 1;
-
-        LinearLayoutManager layoutManager1
-                = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        orders_rec.setLayoutManager(layoutManager1);
 
 
         try {
-            String from = getIntent().getStringExtra("from");//more,home
+            back = findViewById(R.id.back);
+            orders_rec = findViewById(R.id.orders_rec);
+            nodata_vis = findViewById(R.id.nodata_vis);
+            rent_installment = findViewById(R.id.rent_installment);
+            Request_property = findViewById(R.id.Request_property);
+            page = 1;
+
+            LinearLayoutManager layoutManager1
+                    = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            orders_rec.setLayoutManager(layoutManager1);
 
 
+            try {
+                String from = getIntent().getStringExtra("from");//more,home
+
+
+            } catch (Exception e) {
+
+            }
+
+            rent_installment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(MyOrderRequstActivity.this, AqarzOrActivity.class);
+                    intent.putExtra("id", "");
+                    startActivity(intent);
+                }
+            });
+            Request_property.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (Hawk.contains("rent_layout")) {
+
+                        Intent intent = new Intent(MyOrderRequstActivity.this, RentActivity.class);
+                        intent.putExtra("id", "");
+                        startActivity(intent);
+                    } else {
+                        Hawk.put("rent_layout", "rent_layout");
+                        Intent intent = new Intent(MyOrderRequstActivity.this, RentShowActivity.class);
+                        intent.putExtra("id", "");
+                        startActivity(intent);
+                    }
+                }
+            });
+
+
+            MyRequst.clear();
+
+            recyclerView_orders_demandsx = new RecyclerView_mu_souq_order(MyOrderRequstActivity.this, MyRequst);
+
+            orders_rec.setAdapter(recyclerView_orders_demandsx);
+
+
+            WebService.loading(MyOrderRequstActivity.this, true);
+            init_volley();
+            VolleyService mVolleyService = new VolleyService(mResultCallback, MyOrderRequstActivity.this);
+            mVolleyService.getDataVolley("my_request", WebService.my_request);
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
         } catch (Exception e) {
 
         }
 
-        rent_installment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(MyOrderRequstActivity.this, AqarzOrActivity.class);
-                intent.putExtra("id", "");
-                startActivity(intent);
-            }
-        });
-        Request_property.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (Hawk.contains("rent_layout")) {
-
-                    Intent intent = new Intent(MyOrderRequstActivity.this, RentActivity.class);
-                    intent.putExtra("id", "");
-                    startActivity(intent);
-                } else {
-                    Hawk.put("rent_layout", "rent_layout");
-                    Intent intent = new Intent(MyOrderRequstActivity.this, RentShowActivity.class);
-                    intent.putExtra("id", "");
-                    startActivity(intent);
-                }
-            }
-        });
-
-
-        MyRequst.clear();
-
-        recyclerView_orders_demandsx = new RecyclerView_mu_souq_order(MyOrderRequstActivity.this, MyRequst);
-
-        orders_rec.setAdapter(recyclerView_orders_demandsx);
-
-
-        WebService.loading(MyOrderRequstActivity.this, true);
-        init_volley();
-        VolleyService mVolleyService = new VolleyService(mResultCallback, MyOrderRequstActivity.this);
-        mVolleyService.getDataVolley("my_request", WebService.my_request);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     public void init_volley() {
