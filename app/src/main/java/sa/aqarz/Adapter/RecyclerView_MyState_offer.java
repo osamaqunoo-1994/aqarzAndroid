@@ -297,10 +297,11 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
 
 //                if(alldata.get(position).getBeneficiaryMobile()!=null) {
 //                    if (alldata.get(position).getBeneficiaryMobile().equals("")) {
-//                        Application.myOfferModule = alldata.get(position);
+                        Application.myOfferModule = alldata.get(position);
 //
 //                        Intent intent = new Intent(context, OfferDetailsActivity.class);
-//                        context.startActivity(intent);
+                        Intent intent = new Intent(context, OfferDetailsActivity.class);
+                        context.startActivity(intent);
 //                    }else{
 //
 //                    }
@@ -310,9 +311,9 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
 //                    bottomSheetDialogFragment_status.show(((FragmentActivity) context).getSupportFragmentManager(), "");
 //
 //                }
-                BottomSheetDialogFragment_status_cancle bottomSheetDialogFragment_status = new BottomSheetDialogFragment_status_cancle("");
-
-                bottomSheetDialogFragment_status.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+//                BottomSheetDialogFragment_status_cancle bottomSheetDialogFragment_status = new BottomSheetDialogFragment_status_cancle("");
+//
+//                bottomSheetDialogFragment_status.show(((FragmentActivity) context).getSupportFragmentManager(), "");
 
 
             }
@@ -321,30 +322,34 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
             @Override
             public void onClick(View v) {
 
-
-                if (alldata.get(position).getBeneficiaryMobile() != null) {
-
-
-                    if (!alldata.get(position).getBeneficiaryMobile().equals("null")) {
-                        Application.myOfferModule = alldata.get(position);
-
-                        Intent intent = new Intent(context, OfferDetailsActivity.class);
-                        context.startActivity(intent);
-
-                    } else {
-                        BottomSheetDialogFragment_status_cancle bottomSheetDialogFragment_status = new BottomSheetDialogFragment_status_cancle("");
-
-                        bottomSheetDialogFragment_status.show(((FragmentActivity) context).getSupportFragmentManager(), "");
-
-                    }
-
-
-                } else {
-                    BottomSheetDialogFragment_status_cancle bottomSheetDialogFragment_status = new BottomSheetDialogFragment_status_cancle("");
-
-                    bottomSheetDialogFragment_status.show(((FragmentActivity) context).getSupportFragmentManager(), "");
-
-                }
+                Application.myOfferModule = alldata.get(position);
+//
+//                        Intent intent = new Intent(context, OfferDetailsActivity.class);
+                Intent intent = new Intent(context, OfferDetailsActivity.class);
+                context.startActivity(intent);
+//                if (alldata.get(position).getBeneficiaryMobile() != null) {
+//
+//
+//                    if (!alldata.get(position).getBeneficiaryMobile().equals("null")) {
+//                        Application.myOfferModule = alldata.get(position);
+//
+//                        Intent intent = new Intent(context, OfferDetailsActivity.class);
+//                        context.startActivity(intent);
+//
+//                    } else {
+//                        BottomSheetDialogFragment_status_cancle bottomSheetDialogFragment_status = new BottomSheetDialogFragment_status_cancle("");
+//
+//                        bottomSheetDialogFragment_status.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+//
+//                    }
+//
+//
+//                } else {
+//                    BottomSheetDialogFragment_status_cancle bottomSheetDialogFragment_status = new BottomSheetDialogFragment_status_cancle("");
+//
+//                    bottomSheetDialogFragment_status.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+//
+//                }
 
 
             }
@@ -367,6 +372,9 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
 //                    context.startActivity(intent);
 //
 //                }
+
+                Application.myOfferModule = alldata.get(position);
+
                 Intent intent = new Intent(context, DetaislAqarzActivity.class);//DetaislAqarzActivity
                 intent.putExtra("id_aqarz", alldata.get(position).getEstateId() + "");
                 context.startActivity(intent);

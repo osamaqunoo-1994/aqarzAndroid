@@ -65,6 +65,7 @@ import sa.aqarz.NewAqarz.Fragments.HomeMapFragment;
 import sa.aqarz.NewAqarz.Fragments.MoreFragment;
 import sa.aqarz.NewAqarz.Fragments.OrderFragment;
 import sa.aqarz.NewAqarz.Fragments.OrderUserFragment;
+import sa.aqarz.NewAqarz.OprationOrder.DetailsOrderActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.ForceUpdateAsync;
 import sa.aqarz.Settings.Settings;
@@ -264,6 +265,8 @@ public class MainAqarzActivity extends AppCompatActivity {
 
 
                 if (click_tab.equals("home")) {
+
+
 
                 } else {
                     click_tab = "home";

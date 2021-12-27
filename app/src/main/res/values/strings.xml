@@ -1341,9 +1341,28 @@ Two working days to complete your order</string>
     <string name="employeedelete">Do you want to delete the employee?</string>
 
 
-
     <string name="Are_you_an_employee">Are you an employee</string>
     <string name="new_offer">Add New offer</string>
     <string name="titlenew_offer">New offer</string>
+    <string name="OrderStatus">Order Status</string>
+    <string name="offerstatus">Offer Status</string>
+    <string name="Property_Inspection">Property Inspection</string>
+    <string name="Order_status">Order status</string>
+    <string name="customer_requests">The request is awaiting the customers approval, and the means of communication with him will be shown as soon as he approves your request</string>
+    <string name="customers_approval">The customer requests to inspect the property, contact him now directly
+Direct to schedule an appointment</string>
+
+
+    <string name="CallButton">Call</string>
+    <string name="sent_from_the_customer">A response will be sent from the customer accepting or rejecting the offer</string>
+
+
+    <string name="Congrats">Congrats !</string>
+    <string name="Excuseme">Excuse me !</string>
+    <string name="Your_offer_has_been">Your offer has been successfully accepted</string>
+    <string name="Your_offer_has_beenrejected">Your offer has been rejected</string>
+    <string name="Your_offeactivation">Enter the activation code to confirm the offer</string>
+    <string name="unacceptable">unacceptable</string>
+
 
 </resources>

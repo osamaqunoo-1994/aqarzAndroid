@@ -34,7 +34,7 @@ public class NewPasswordActivity extends AppCompatActivity {
     ImageView back;
     AppCompatButton change;
     IResult mResultCallback;
-
+    LinearLayout oldpass_layout;
     boolean is_show = false;
     boolean cis_show = false;
     boolean cis_show1 = false;
@@ -62,6 +62,7 @@ public class NewPasswordActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         Cpassword = findViewById(R.id.Cpassword);
         change = findViewById(R.id.change);
+        oldpass_layout = findViewById(R.id.oldpass_layout);
 
         back = findViewById(R.id.back);
 
@@ -93,15 +94,15 @@ public class NewPasswordActivity extends AppCompatActivity {
                 if (!Settings.GetUser().getPassword().equals("null")) {
 
 
-                    Oldpassword.setVisibility(View.VISIBLE);
+                    oldpass_layout.setVisibility(View.VISIBLE);
 
 
                 } else {
-                    Oldpassword.setVisibility(View.GONE);
+                    oldpass_layout.setVisibility(View.GONE);
 
                 }
             } else {
-                Oldpassword.setVisibility(View.GONE);
+                oldpass_layout.setVisibility(View.GONE);
 
             }
 
@@ -172,7 +173,7 @@ public class NewPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (Oldpassword.getText().toString().equals("") |
+                if (
                         password.getText().toString().equals("") | Cpassword.getText().toString().equals("")) {
 
                     WebService.Make_Toast_color(NewPasswordActivity.this, getResources().getString(R.string.AllFiledsREquered), "error");

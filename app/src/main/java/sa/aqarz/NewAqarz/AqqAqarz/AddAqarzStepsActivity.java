@@ -2639,7 +2639,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(responseString);
                     String message = jsonObject.getString("message");
 
-                    WebService.Make_Toast_color(AddAqarzStepsActivity.this, message,"error");
+                    WebService.Make_Toast_color(AddAqarzStepsActivity.this, message, "error");
 
                 } catch (Exception e) {
 
@@ -2664,7 +2664,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 //                    JSONObject jsonObject = new JSONObject(errorResponse.toString());
                     String message = errorResponse.getString("message");
 
-                    WebService.Make_Toast_color(AddAqarzStepsActivity.this, message,"error");
+                    WebService.Make_Toast_color(AddAqarzStepsActivity.this, message, "error");
 
                 } catch (Exception e) {
 

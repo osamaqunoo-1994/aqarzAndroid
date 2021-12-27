@@ -35,8 +35,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".NewAqarz.WebViewActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".NewAqarz.OprationOrder.DetailsOrderActivity"></activity>
+        <activity
+            android:name=".NewAqarz.WebViewActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NewAqarz.AddIntrestedMapActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -48,7 +50,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NewAqarz.RateDetailsActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NewAqarz.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -298,7 +300,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.DetailsActivity_aqarz"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.NoInterntConnectionActivity"
             android:theme="@style/AppTheme.NoActionBar_orders" />
