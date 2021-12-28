@@ -171,6 +171,10 @@ public class OfferDetailsActivity extends AppCompatActivity {
         number_order.setText(myOfferModule.getId() + "");
         System.out.println("dsdfsdsd" + myOfferModule.getStatus());
 
+
+        //                if(alldata.get(position).getBeneficiaryMobile()!=null) {
+
+
         if (myOfferModule.getStatus() == null) {
             status_1.setVisibility(View.VISIBLE);
             status_2.setVisibility(View.GONE);

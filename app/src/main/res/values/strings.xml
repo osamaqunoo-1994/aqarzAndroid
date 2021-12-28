@@ -1363,6 +1363,10 @@ Direct to schedule an appointment</string>
     <string name="Your_offer_has_beenrejected">Your offer has been rejected</string>
     <string name="Your_offeactivation">Enter the activation code to confirm the offer</string>
     <string name="unacceptable">unacceptable</string>
+    <string name="cancle_offer">cancle Offer</string>
+    <string name="reasoncanceling">What is the reason for canceling the offer?</string>
+    <string name="clientrefused">The client refused the property</string>
+    <string name="propertysold">The property has been sold</string>
 
 
 </resources>

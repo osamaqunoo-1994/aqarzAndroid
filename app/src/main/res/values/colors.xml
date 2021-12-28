@@ -44,4 +44,8 @@
     <color name="color_title_text1">#848484</color>
     <color name="accept_color">#4A8B00</color>
 
+
+    <color name="unselected">#ECE8F9</color>
+
+
 </resources>

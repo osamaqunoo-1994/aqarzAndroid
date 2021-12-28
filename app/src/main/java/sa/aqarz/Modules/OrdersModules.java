@@ -79,12 +79,29 @@ public class OrdersModules {
     @Expose
     private String neighborhoodName;
 
+
+    @SerializedName("beneficiary_name")
+    @Expose
+    private String beneficiaryName;
+
+
+    @SerializedName("beneficiary_mobile")
+    @Expose
+    private String beneficiaryMobile;
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getBeneficiaryName() {
+        return beneficiaryName;
+    }
+
+    public String getBeneficiaryMobile() {
+        return beneficiaryMobile;
     }
 
     public String getUuid() {
