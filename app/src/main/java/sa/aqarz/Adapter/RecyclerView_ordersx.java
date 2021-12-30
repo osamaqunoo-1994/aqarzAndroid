@@ -206,7 +206,7 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
 //
                         } else if (alldata.get(position).getStatus().equals("Waiting_provider_accepted")) {
 //
-                        } else if (alldata.get(position).getStatus().equals("rejected_customer ")) {
+                        } else if (alldata.get(position).getStatus().equals("rejected_customer")) {
                             holder.new_offer.setVisibility(View.GONE);
                             holder.Watting.setVisibility(View.GONE);
                             holder.reject.setVisibility(View.VISIBLE);
@@ -220,6 +220,12 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                             holder.sending_code.setVisibility(View.GONE);
                             holder.accept.setVisibility(View.VISIBLE);
                         } else if (alldata.get(position).getStatus().equals("sending_code")) {
+                            holder.new_offer.setVisibility(View.GONE);
+                            holder.Watting.setVisibility(View.GONE);
+                            holder.reject.setVisibility(View.GONE);
+                            holder.accept.setVisibility(View.GONE);
+                            holder.sending_code.setVisibility(View.VISIBLE);
+                        } else if (alldata.get(position).getStatus().equals("waiting_code")) {
                             holder.new_offer.setVisibility(View.GONE);
                             holder.Watting.setVisibility(View.GONE);
                             holder.reject.setVisibility(View.GONE);
@@ -412,7 +418,45 @@ public class RecyclerView_ordersx extends RecyclerView.Adapter<RecyclerView_orde
                     Intent intent = new Intent(context, MyOfferOrderActivity.class);
                     intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
                     intent.putExtra("id", alldata.get(position).getId() + "");
-                    intent.putExtra("type", "sending_code");
+
+//                    intent.putExtra("type", "sending_code");
+                    intent.putExtra("type", alldata.get(position).getStatus());
+                    context.startActivity(intent);
+//                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+//                    if (Settings.GetUser().getIs_pay() != null && Settings.GetUser().getIs_pay().equals("1")) {
+//
+//                    } else {
+//                        show_dialog();
+////
+//
+//                    }
+                } else {
+                    Settings.Dialog_not_compleate((Activity) context);
+
+                }
+
+
+            }
+        });   holder.reject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (Settings.CheckIsCompleate()) {
+
+
+//                        bottomSheetDialogFragment_offerEstate = new BottomSheetDialogFragment_OfferEstate(alldata.get(position).getUuid() + "");
+//                        bottomSheetDialogFragment_offerEstate.show(((FragmentActivity) context).getSupportFragmentManager(), "");
+
+
+                    MainActivity.ordersModules = alldata.get(position);
+
+                    Intent intent = new Intent(context, MyOfferOrderActivity.class);
+                    intent.putExtra("getUuid", alldata.get(position).getUuid() + "");
+                    intent.putExtra("id", alldata.get(position).getId() + "");
+
+//                    intent.putExtra("type", "sending_code");
+                    intent.putExtra("type", alldata.get(position).getStatus());
                     context.startActivity(intent);
 //                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
 

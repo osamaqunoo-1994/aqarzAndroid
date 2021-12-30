@@ -45,7 +45,7 @@ public class BottomSheetDialogFragmen_delete_offer extends BottomSheetDialogFrag
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.bottom_sheets_delete_offer, container, false);
+        View v = inflater.inflate(R.layout.bottom_sheets_delete_offer1, container, false);
         sendd = v.findViewById(R.id.sendd);
         resend = v.findViewById(R.id.resend);
         close = v.findViewById(R.id.close);

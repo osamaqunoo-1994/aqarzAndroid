@@ -1367,6 +1367,18 @@ Direct to schedule an appointment</string>
     <string name="reasoncanceling">What is the reason for canceling the offer?</string>
     <string name="clientrefused">The client refused the property</string>
     <string name="propertysold">The property has been sold</string>
+    <string name="Hasproperty">Has the property been inspected?</string>
+    <string name="communicate_w">The need to communicate with the customer</string>
+    <string name="cancle_refuse">Cancle</string>
+
+    <string name="nocalling">No , Callint to view</string>
+
+
+    <string name="confirm_sst">confirm</string>
+    <string name="receive_title">If you do not receive the code, you can </string>
+    <string name="resend_title">resend </string>
+    <string name="authorized_add_mobile">authorized number</string>
+    <string name="add_dad">Enter your Location Address</string>
 
 
 </resources>

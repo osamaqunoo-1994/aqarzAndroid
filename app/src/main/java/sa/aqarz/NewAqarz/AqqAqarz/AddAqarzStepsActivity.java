@@ -228,7 +228,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
     boolean east_selected = false;
     boolean west_selected = false;
     LinearLayout all_details;
-
+    EditText authorized_add;
     ImageView back;
     LinearLayout step_3;
     LinearLayout rental_period_lay;
@@ -280,6 +280,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         f1 = findViewById(R.id.f1);
         f2 = findViewById(R.id.f2);
         f3 = findViewById(R.id.f3);
+        authorized_add = findViewById(R.id.authorized_add);
         yes = findViewById(R.id.yes);
         no = findViewById(R.id.no);
         rental_period_lay = findViewById(R.id.rental_period_lay);
@@ -1988,7 +1989,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                 authorized_txt.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                 authorized_txt.setTextColor(getResources().getColor(R.color.black));
 
-
+                authorized_add.setVisibility(View.GONE);
             }
         });
         authorized_txt.setOnClickListener(new View.OnClickListener() {
@@ -2000,6 +2001,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                 owner_txt.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                 owner_txt.setTextColor(getResources().getColor(R.color.black));
 
+                authorized_add.setVisibility(View.VISIBLE);
 
             }
         });
@@ -2539,6 +2541,8 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             sendObj.put("operation_type_id", addAqarezObject.getOperation_type_id());
             sendObj.put("estate_use_type", addAqarezObject.getEstate_use_type());
             sendObj.put("note", note.getText().toString());
+            sendObj.put("advertiser_license_number", authorized_add.getText().toString());
+            sendObj.put("advertiser_email", Settings.GetUser().getEmail() + "");
 
 
 //            if (addAqarezObject.getVideo() != null) {

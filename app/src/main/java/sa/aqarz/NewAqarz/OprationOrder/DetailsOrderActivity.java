@@ -58,6 +58,16 @@ public class DetailsOrderActivity extends AppCompatActivity {
     EditText a5;
     public static MyOfferModule myOfferModule;
     TextView request_code;
+    TextView yes;
+    TextView no;
+    TextView error_message;
+    TextView cancle;
+    TextView resend;
+
+
+    LinearLayout sds_1;
+    LinearLayout sds_2;
+    LinearLayout sds_3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +75,19 @@ public class DetailsOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details_order);
         request_code = findViewById(R.id.request_code);
         back = findViewById(R.id.back);
+        yes = findViewById(R.id.yes);
+        no = findViewById(R.id.no);
         a1 = findViewById(R.id.a1);
         a2 = findViewById(R.id.a2);
         a3 = findViewById(R.id.a3);
         a4 = findViewById(R.id.a4);
         a5 = findViewById(R.id.a5);
+        sds_1 = findViewById(R.id.sds_1);
+        sds_2 = findViewById(R.id.sds_2);
+        error_message = findViewById(R.id.error_message);
+        sds_3 = findViewById(R.id.sds_3);
+        cancle = findViewById(R.id.cancle);
+        resend = findViewById(R.id.resend);
 
 
         myOfferModule = Application.myOfferModule;
@@ -115,13 +133,16 @@ public class DetailsOrderActivity extends AppCompatActivity {
         status_5.setVisibility(View.GONE);
         status_6.setVisibility(View.GONE);
         mobile_and_name.setVisibility(View.GONE);
-        cancleorder.setVisibility(View.VISIBLE);
+        cancleorder.setVisibility(View.GONE);
 
 
 //    } else if (myOfferModule.getStatus().equals("active")) {
 
 //            if (myOfferModule.getStatus() == null) {
 //    } else if (myOfferModule.getStatus().equals("Waiting_provider_accepted")) {
+        sds_1.setVisibility(View.GONE);
+        sds_2.setVisibility(View.GONE);
+        sds_3.setVisibility(View.VISIBLE);
 
         if (myOfferModule.getStatus().equals("new")) {//new->sending_code->accepted_customer
 
@@ -131,8 +152,13 @@ public class DetailsOrderActivity extends AppCompatActivity {
             status_4.setVisibility(View.GONE);
             status_5.setVisibility(View.GONE);
             status_6.setVisibility(View.GONE);
-            mobile_and_name.setVisibility(View.GONE);
+            mobile_and_name.setVisibility(View.VISIBLE);
             cancleorder.setVisibility(View.VISIBLE);
+
+
+            sds_1.setVisibility(View.VISIBLE);
+            sds_2.setVisibility(View.VISIBLE);
+            sds_3.setVisibility(View.GONE);
 
 
             status_2_txt_s.setVisibility(View.INVISIBLE);
@@ -197,7 +223,7 @@ public class DetailsOrderActivity extends AppCompatActivity {
             status_3_img.setBackground(getResources().getDrawable(R.drawable.circle_status_un_selected));
 
 
-        } else if (myOfferModule.getStatus().equals("rejected_customer ")) {
+        } else if (myOfferModule.getStatus().equals("rejected_customer")) {
             status_1_txt_s.setVisibility(View.INVISIBLE);
             status_2_txt_s.setVisibility(View.INVISIBLE);
 
@@ -207,6 +233,7 @@ public class DetailsOrderActivity extends AppCompatActivity {
             status_4.setVisibility(View.GONE);
             status_5.setVisibility(View.GONE);
             status_6.setVisibility(View.VISIBLE);
+            mobile_and_name.setVisibility(View.VISIBLE);
             cancleorder.setVisibility(View.GONE);
             status_3_txt_s.setTextColor(getResources().getColor(R.color.error));
             status_3_txt_s.setText(getResources().getString(R.string.unacceptable));
@@ -222,6 +249,7 @@ public class DetailsOrderActivity extends AppCompatActivity {
             status_3.setVisibility(View.GONE);
             status_4.setVisibility(View.GONE);
             status_5.setVisibility(View.VISIBLE);
+            mobile_and_name.setVisibility(View.VISIBLE);
             status_6.setVisibility(View.GONE);
 
             cancleorder.setVisibility(View.GONE);
@@ -229,10 +257,48 @@ public class DetailsOrderActivity extends AppCompatActivity {
 
 
         } else if (myOfferModule.getStatus().equals("close")) {
+            status_1_txt_s.setVisibility(View.INVISIBLE);
+            status_2_txt_s.setVisibility(View.INVISIBLE);
+
+            status_1.setVisibility(View.GONE);
+            status_2.setVisibility(View.GONE);
+            status_3.setVisibility(View.GONE);
+            status_4.setVisibility(View.GONE);
+            status_5.setVisibility(View.VISIBLE);
+            mobile_and_name.setVisibility(View.VISIBLE);
+            status_6.setVisibility(View.GONE);
+
+            cancleorder.setVisibility(View.GONE);
+            status_3_txt.setTypeface(status_3_txt.getTypeface(), Typeface.BOLD);
 
 
         }
 
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                request_code.setVisibility(View.VISIBLE);
+                error_message.setVisibility(View.GONE);
+            }
+        });
+
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                request_code.setVisibility(View.GONE);
+//                error_message.setVisibility(View.VISIBLE);
+
+                try {
+                    String phone = "" + MainActivity.ordersModules.getBeneficiaryMobile() + "";
+                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                    startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -287,10 +353,59 @@ public class DetailsOrderActivity extends AppCompatActivity {
 
                     System.out.println(sendObj.toString());
 //                    mVolleyService.postDataVolley("send_offer_fund_Request", WebService.send_offer_fund_Request, sendObj);
-                    mVolleyService.postDataVolley("send_customer_offer_status", WebService.send_customer_offer_status, sendObj);
+                    mVolleyService.postDataVolley("send_customer_offer_status_1", WebService.send_customer_offer_status, sendObj);
 
 
                 }
+
+            }
+        });
+        cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (a1.getText().toString().equals("") |
+                        a2.getText().toString().equals("") |
+                        a3.getText().toString().equals("") |
+                        a4.getText().toString().equals("") |
+                        a5.getText().toString().equals("")
+
+                ) {
+
+                } else {
+                    String code2 = a1.getText().toString() +
+                            a2.getText().toString() +
+                            a3.getText().toString() +
+                            a4.getText().toString() + a5.getText().toString() + "";
+
+
+                    JSONObject sendObj = new JSONObject();
+
+                    try {
+
+                        sendObj.put("uuid", myOfferModule.getId());//form operation list api in setting
+                        sendObj.put("code", code2);//form estate type list api in setting
+                        sendObj.put("estate_id", myOfferModule.getEstateId());//form estate type list api in setting
+                        sendObj.put("status", "rejected_customer");//form estate type list api in setting
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    init_volley();
+                    WebService.loading(DetailsOrderActivity.this, true);
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsOrderActivity.this);
+
+                    System.out.println(sendObj.toString());
+//                    mVolleyService.postDataVolley("send_offer_fund_Request", WebService.send_offer_fund_Request, sendObj);
+                    mVolleyService.postDataVolley("send_customer_offer_status_2", WebService.send_customer_offer_status, sendObj);
+
+
+                }
+
+            }
+        });
+        resend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
 
             }
         });
@@ -394,15 +509,89 @@ public class DetailsOrderActivity extends AppCompatActivity {
 
                             WebService.Make_Toast_color(DetailsOrderActivity.this, message, "success");
 
+                            status_1.setVisibility(View.GONE);
+                            status_2.setVisibility(View.GONE);
+                            status_3.setVisibility(View.GONE);
+                            status_4.setVisibility(View.VISIBLE);
+                            status_5.setVisibility(View.GONE);
+                            status_6.setVisibility(View.GONE);
+                            mobile_and_name.setVisibility(View.VISIBLE);
+                            cancleorder.setVisibility(View.VISIBLE);
 
-                        } else if (requestType.equals("send_customer_offer_status")) {
+
+                            status_1_txt_s.setVisibility(View.INVISIBLE);
+                            status_3_txt_s.setVisibility(View.INVISIBLE);
+
+                            status_1_txt.setTypeface(status_3_txt.getTypeface(), Typeface.NORMAL);
+                            status_2_txt.setTypeface(status_3_txt.getTypeface(), Typeface.BOLD);
+                            status_3_txt.setTypeface(status_3_txt.getTypeface(), Typeface.NORMAL);
+
+                            status_3_txt.setTextColor(getResources().getColor(R.color.unselected));
+
+
+                            status_3_img.setBackground(getResources().getDrawable(R.drawable.circle_status_un_selected));
+
+                        } else if (requestType.equals("send_customer_offer_status_1")) {
+                            String message = response.getString("message");
+
+
+                            WebService.Make_Toast_color(DetailsOrderActivity.this, message, "success");
+                            status_1_txt_s.setVisibility(View.INVISIBLE);
+                            status_2_txt_s.setVisibility(View.INVISIBLE);
+
+                            status_1.setVisibility(View.GONE);
+                            status_2.setVisibility(View.GONE);
+                            status_3.setVisibility(View.GONE);
+                            status_4.setVisibility(View.GONE);
+                            status_5.setVisibility(View.VISIBLE);
+                            mobile_and_name.setVisibility(View.VISIBLE);
+                            status_6.setVisibility(View.GONE);
+
+                            cancleorder.setVisibility(View.GONE);
+                            status_3_txt.setTypeface(status_3_txt.getTypeface(), Typeface.BOLD);
+
+
+                        } else if (requestType.equals("send_customer_offer_status_2")) {
                             String message = response.getString("message");
 
 
                             WebService.Make_Toast_color(DetailsOrderActivity.this, message, "success");
 
+                            status_1_txt_s.setVisibility(View.INVISIBLE);
+                            status_2_txt_s.setVisibility(View.INVISIBLE);
 
+                            status_1.setVisibility(View.GONE);
+                            status_2.setVisibility(View.GONE);
+                            status_3.setVisibility(View.GONE);
+                            status_4.setVisibility(View.GONE);
+                            status_5.setVisibility(View.GONE);
+                            status_6.setVisibility(View.VISIBLE);
+                            mobile_and_name.setVisibility(View.VISIBLE);
+                            cancleorder.setVisibility(View.GONE);
+                            status_3_txt_s.setTextColor(getResources().getColor(R.color.error));
+                            status_3_txt_s.setText(getResources().getString(R.string.unacceptable));
+                            status_3_txt.setTypeface(status_3_txt.getTypeface(), Typeface.BOLD);
+                        } else if (requestType.equals("cancel//fund/offer")) {
+                            String message = response.getString("message");
+
+
+                            WebService.Make_Toast_color(DetailsOrderActivity.this, message, "success");
+
+                            status_1_txt_s.setVisibility(View.INVISIBLE);
+                            status_2_txt_s.setVisibility(View.INVISIBLE);
+
+                            status_1.setVisibility(View.GONE);
+                            status_2.setVisibility(View.GONE);
+                            status_3.setVisibility(View.GONE);
+                            status_4.setVisibility(View.GONE);
+                            status_5.setVisibility(View.GONE);
+                            status_6.setVisibility(View.VISIBLE);
+                            cancleorder.setVisibility(View.GONE);
+                            status_3_txt_s.setTextColor(getResources().getColor(R.color.error));
+                            status_3_txt_s.setText(getResources().getString(R.string.unacceptable));
+                            status_3_txt.setTypeface(status_3_txt.getTypeface(), Typeface.BOLD);
                         }
+
 
 //                        if (requestType.equals("provider_code_send")) {
 //                            String message = response.getString("message");

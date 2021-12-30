@@ -288,33 +288,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:gravity="center"
 
-                    android:gravity="center">
+                    android:orientation="vertical">
 
-
-                    <TextView
-                        android:id="@+id/request_code"
-                        android:layout_width="wrap_content"
-                        android:layout_height="38dp"
-                        android:background="@drawable/button_login"
-                        android:gravity="center"
-                        android:paddingStart="15dp"
-                        android:paddingEnd="15dp"
-                        android:text="@string/request_code"
-                        android:textColor="@color/white"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
 
                     <LinearLayout
-                        android:layout_width="10dp"
-                        android:layout_height="10dp" />
-
-                    <LinearLayout
-                        android:id="@+id/calling"
+                        android:id="@+id/calling1"
                         android:layout_width="120dp"
                         android:layout_height="38dp"
                         android:background="@drawable/button_login_green1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:visibility="gone">
 
                         <ImageView
                             android:layout_width="15dp"
@@ -335,6 +320,84 @@
 
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Hasproperty"
+                            android:textColor="@color/black"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/button_login1"
+                            android:paddingStart="10dp"
+                            android:paddingTop="3dp"
+                            android:paddingEnd="10dp"
+                            android:paddingBottom="3dp"
+                            android:text="@string/yes"
+                            android:textColor="@color/white"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:background="@drawable/border_fillter_edit"
+                            android:paddingStart="15dp"
+                            android:paddingTop="3dp"
+                            android:paddingEnd="15dp"
+                            android:paddingBottom="3dp"
+                            android:text="@string/nocalling"
+                            android:textColor="@color/textColor"
+
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/request_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:layout_margin="15dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/button_login1"
+                        android:gravity="center"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:text="@string/request_code"
+
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/error_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="@string/communicate_w"
+                        android:textColor="@color/error"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
 
 
                 </LinearLayout>
@@ -371,8 +434,10 @@
                     android:gravity="center"
                     android:text="@string/Congrats"
                     android:textColor="@color/accept_color"
+
                     android:textSize="19dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -381,11 +446,41 @@
                     android:text="@string/Your_offer_has_been"
                     android:textColor="@color/black"
                     android:textSize="13dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/calling"
+                    android:layout_width="120dp"
+                    android:layout_height="38dp"
+                    android:background="@drawable/button_login_green1"
+                    android:gravity="center"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/ic_call"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="3dp"
+                        android:text="@string/CallButton"
+                        android:textColor="@color/white"
+                        android:textSize="17dp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="@string/Your_offeactivation"
                     android:textColor="@color/black"
@@ -465,20 +560,75 @@
                         android:maxLength="1" />
 
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/confirm"
+                        android:layout_width="120dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/button_login_greene"
+                        android:gravity="center"
+                        android:text="@string/confirm_sst"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="10dp"
+                        android:layout_height="10dp" />
+
+                    <TextView
+                        android:id="@+id/cancle"
+                        android:layout_width="120dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/button_cancle"
+                        android:gravity="center"
+                        android:text="@string/canclee"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/receive_title"
+                        android:textColor="@color/black"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/resend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:paddingStart="10dp"
+                        android:paddingTop="3dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="3dp"
+                        android:text="@string/resend_title"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
 
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/confirm"
-                    android:layout_width="120dp"
-                    android:layout_height="38dp"
-                    android:background="@drawable/button_login1"
-                    android:gravity="center"
-                    android:text="@string/Confirm_btn"
-                    android:textColor="@color/white"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -552,6 +702,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp">
 
+                <LinearLayout
+
+                    android:id="@+id/sds_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -568,6 +726,7 @@
                         android:padding="5dp"
                         android:src="@drawable/ic_order_number_x"
                         android:visibility="gone" />
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -605,13 +764,13 @@
                     android:layout_height="wrap_content" />
 
                 <LinearLayout
+                    android:id="@+id/sds_3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/back_details_realorder"
                     android:gravity="center"
                     android:padding="10dp">
-
 
                     <ImageView
                         android:layout_width="40dp"
@@ -652,7 +811,13 @@
 
                 </LinearLayout>
 
-
+                <LinearLayout
+                    android:id="@+id/sds_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout

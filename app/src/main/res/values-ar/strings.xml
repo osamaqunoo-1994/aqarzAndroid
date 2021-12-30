@@ -1303,10 +1303,23 @@
     <string name="Your_offer_has_beenrejected">تم رفض العرض الخاص بك</string>
     <string name="Your_offeactivation">أدخل كود التفعيل لتأكيد العرض</string>
 
-    <string name="unacceptable">unacceptable</string>
+    <string name="unacceptable">مرفوض</string>
     <string name="cancle_offer">الغاء العرض</string>
     <string name="reasoncanceling">ما هو سبب الغاء العرض?</string>
     <string name="clientrefused">رفض العميل للعقار</string>
     <string name="propertysold">تم بيع العقار</string>
+    <string name="cancle_refuse">رفض</string>
+    <string name="Hasproperty">هل تم معاينة العقار؟</string>
+    <string name="communicate_w">ضرورة التواصل مع العميل</string>
+
+    <string name="nocalling">لا , اتصل للمعاينه</string>
+
+
+    <string name="confirm_sst">قبول</string>
+    <string name="receive_title">في حال عدم وصول الكود بإمكانك </string>
+    <string name="resend_title">اعادة الارسال </string>
+
+    <string name="authorized_add_mobile">رقم التفويض</string>
+    <string name="add_dad">الرجاء ادخال عنوان</string>
 
 </resources>

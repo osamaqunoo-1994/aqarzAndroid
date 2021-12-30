@@ -3,6 +3,7 @@ package sa.aqarz.Activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -19,6 +21,7 @@ import android.location.Geocoder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -119,11 +122,13 @@ public class SelectLocationActivity extends AppCompatActivity {
     ImageView closr_tecxt;
     ImageView clear_city;
 
-//
+    //
 //    AutoCompleteTextView autoCompleteTextView;
 //    AutoCompleteAdapter adapter;
 //    //    TextView responseView;
 //    PlacesClient placesClient;
+    String address = "";
+    AlertDialog.Builder alert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -320,7 +325,44 @@ public class SelectLocationActivity extends AppCompatActivity {
         select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!lat.equals("")) {
+
+                if (address.equals("")) {
+                    alert = new AlertDialog.Builder(SelectLocationActivity.this);
+
+                    final EditText edittext = new EditText(SelectLocationActivity.this);
+                    alert.setMessage(getResources().getString(R.string.add_dad));
+//                    alert.setTitle(getResources().getString(R.string.add_dad));
+                    alert.setView(edittext);
+
+                    alert.setPositiveButton(getResources().getString(R.string.confirm_sst), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            //What ever you want to do with the value
+                            Editable YouEditTextValue = edittext.getText();
+                            //OR
+                            String YouEditTextValue1 = edittext.getText().toString();
+
+                            text_search.setText(YouEditTextValue1 + "");
+                            address = YouEditTextValue1 + "";
+                            Intent resultIntent = new Intent();
+// TODO Add extras or a data URI to this intent as appropriate.
+                            resultIntent.putExtra("lat", lat);
+                            resultIntent.putExtra("lang", lang);
+                            resultIntent.putExtra("address", text_search.getText().toString());
+                            setResult(Activity.RESULT_OK, resultIntent);
+                            finish();
+
+                        }
+                    });
+
+                    alert.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            // what ever you want to do with No option.
+                        }
+                    });
+
+                    alert.show();
+
+                } else if (!lat.equals("")) {
 //                    if (mItemClickListener != null) {
 ////                        mItemClickListener.onItemClick(lat, lang, text_search.getText().toString());
 ////                    }
@@ -463,6 +505,10 @@ public class SelectLocationActivity extends AppCompatActivity {
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void onCameraChange(CameraPosition cameraPosition) {
+                        address = "";
+
+                        text_search.setText("");
+
 
                         googleMap.clear();
 //                        googleMap.addMarker(new MarkerOptions()
@@ -494,7 +540,7 @@ public class SelectLocationActivity extends AppCompatActivity {
 
                                         addresses = geocoder.getFromLocation(cameraPosition.target.latitude, cameraPosition.target.longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
 //
-                                        String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+                                        address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
 //                                        String city = addresses.get(0).getLocality();
                                         String state = addresses.get(0).getAdminArea();
                                         String country = addresses.get(0).getCountryName();
