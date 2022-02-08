@@ -127,6 +127,8 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
     TextView residential;
     TextView commercial;
     TextView Artificial;
+    TextView Advertiser_side_add;
+    TextView Advertiser_adjective_add;
 
     EditText area_text;
     EditText land_number_text;
@@ -147,6 +149,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
     ImageView room_plus, room_minus;
     TextView room_text;
+    TextView rommes;
 
     ImageView Bathrooms_plus, Bathrooms_minus;
     TextView Bathrooms_text;
@@ -295,7 +298,12 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         title = findViewById(R.id.title);
         button_step_1 = findViewById(R.id.button_step_1);
         addImage = findViewById(R.id.addImage);
+        Advertiser_side_add = findViewById(R.id.Advertiser_side_add);
+        Advertiser_adjective_add = findViewById(R.id.Advertiser_adjective_add);
+
+
         images_RecyclerView = findViewById(R.id.images_RecyclerView);
+        rommes = findViewById(R.id.rommes);
         video_RecyclerView = findViewById(R.id.video_RecyclerView);
         select_video = findViewById(R.id.select_video);
         select_video_image = findViewById(R.id.select_video_image);
@@ -761,11 +769,61 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                lay_1.setVisibility(View.GONE);
-                lay_2.setVisibility(View.GONE);
-                lay_3.setVisibility(View.GONE);
-                lay_4.setVisibility(View.VISIBLE);
-                title.setText(getResources().getString(R.string.title7));
+                if (area_text.getText().toString().equals("") |
+                        room_text.getText().toString().equals("0") |
+                        lengths_add_text.getText().toString().equals("") |
+                        streetwidthadd_text.getText().toString().equals("") |
+                        Date_of_construction_text.getText().toString().equals("") |
+                        sale_price_text.getText().toString().equals("")
+                ) {
+
+
+                    if (area_text.getText().toString().equals("")) {
+                        area_text.setError(getResources().getString(R.string.is_requred));
+                    }
+
+
+                    if (room_text.getText().toString().equals("0")) {
+                        rommes.setError(getResources().getString(R.string.is_requred));
+
+                    }
+
+
+                    if (lengths_add_text.getText().toString().equals("")) {
+                        lengths_add_text.setError(getResources().getString(R.string.is_requred));
+
+                    }
+
+
+                    if (streetwidthadd_text.getText().toString().equals("")) {
+                        streetwidthadd_text.setError(getResources().getString(R.string.is_requred));
+
+                    }
+
+
+                    if (Date_of_construction_text.getText().toString().equals("")) {
+                        Date_of_construction_text.setError(getResources().getString(R.string.is_requred));
+
+                    }
+
+
+                    if (sale_price_text.getText().toString().equals("")) {
+                        sale_price_text.setError(getResources().getString(R.string.is_requred));
+
+                    }
+
+
+                } else {
+
+
+                    lay_1.setVisibility(View.GONE);
+                    lay_2.setVisibility(View.GONE);
+                    lay_3.setVisibility(View.GONE);
+                    lay_4.setVisibility(View.VISIBLE);
+                    title.setText(getResources().getString(R.string.title7));
+
+
+                }
 
 
             }
@@ -2290,11 +2348,11 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                                 mobile_edt.getText().toString().equals("") |
                                 owner_edt.getText().toString().equals("") |
 
-                                !is_selected_view
+                                !is_selected_view |
 
 
-//                                addAqarezObject.getAdvertiser_side().equals("") |
-//                                addAqarezObject.getAdvertiser_character().equals("")
+                                addAqarezObject.getAdvertiser_side().equals("") |
+                                addAqarezObject.getAdvertiser_character().equals("")
                 ) {
 
 
@@ -2327,14 +2385,16 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                     }
                     if (Warranties_duration_txt.getText().toString().equals("")) {
                         s = s + "\n" + " ,  " + " ادخل الضمانات ومدتها ";
-
+                        Warranties_duration_txt.setError(getResources().getString(R.string.is_requred));
                     }
                     if (mobile_edt.getText().toString().equals("")) {
                         s = s + "\n" + " ,  " + " ادخل رقم الموبايل ";
+                        mobile_edt.setError(getResources().getString(R.string.is_requred));
 
                     }
                     if (owner_edt.getText().toString().equals("")) {
                         s = s + "\n" + " ,  " + " ادخل اسم المسؤول ";
+                        owner_edt.setError(getResources().getString(R.string.is_requred));
 
                     }
                     if (!is_selected_view) {
@@ -2342,9 +2402,11 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
                     }
                     if (addAqarezObject.getAdvertiser_side().equals("")) {
+                        Advertiser_adjective_add.setError(getResources().getString(R.string.is_requred));
 
                     }
                     if (addAqarezObject.getAdvertiser_character().equals("")) {
+                        Advertiser_side_add.setError(getResources().getString(R.string.is_requred));
 
                     }
 

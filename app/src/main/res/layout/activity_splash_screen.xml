@@ -9,6 +9,23 @@
     android:background="@drawable/splash_screen_background"
     android:layoutDirection="ltr"
     tools:context=".Activity.SplashScreenActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:visibility="visible"
+        android:layout_height="match_parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationViewdiscount"
+            android:layout_width="300dp"
+            android:layout_height="220dp"
+            android:visibility="visible"
+
+
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false" />
+
+    </LinearLayout>
 
 
     <ImageView
@@ -16,6 +33,7 @@
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:src="@drawable/logo_login"
+        android:visibility="gone"
         app:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

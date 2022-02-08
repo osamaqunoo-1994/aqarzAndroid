@@ -35,6 +35,7 @@ import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.imagemodules;
 import sa.aqarz.NewAqarz.DetaislAqarzActivity;
 import sa.aqarz.R;
+import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 
@@ -69,6 +70,7 @@ public class ViewPager_Adapter_estate_home_map1 extends PagerAdapter {
     ImageView noimage1;
     TextView bathroom;
     TextView room;
+    TextView edit_;
     ScaleRatingBar rate;
     ProgressBar pr_1;
     TextView is_rent_installment;
@@ -117,6 +119,7 @@ public class ViewPager_Adapter_estate_home_map1 extends PagerAdapter {
         room = vieww.findViewById(R.id.room);
         noimage1 = vieww.findViewById(R.id.noimage1);
         pr_1 = vieww.findViewById(R.id.pr_1);
+        edit_ = vieww.findViewById(R.id.edit_);
 
         price.setText(alldata.get(position).getTotalPrice());
         type.setText(alldata.get(position).getEstate_type_name());
@@ -124,6 +127,23 @@ public class ViewPager_Adapter_estate_home_map1 extends PagerAdapter {
         space.setText(alldata.get(position).getTotalArea() + "");
         date.setText(alldata.get(position).getCreatedAt() + "");
         num_id.setText("#" + alldata.get(position).getId() + "");//"estate_type_name":"بيع","operation_type_name":"شقة",
+
+
+        if (Settings.checkLogin()) {
+
+
+            if (Settings.GetUser().getId() == alldata.get(position).getUserId()) {
+                edit_.setVisibility(View.VISIBLE);
+            } else {
+                edit_.setVisibility(View.GONE);
+
+            }
+
+
+        } else {
+            edit_.setVisibility(View.GONE);
+
+        }
 
 
         if (alldata.get(position).getFull_address() != null) {

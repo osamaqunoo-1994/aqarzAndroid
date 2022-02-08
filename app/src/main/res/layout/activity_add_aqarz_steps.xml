@@ -842,6 +842,7 @@
 
 
                                 <TextView
+                                    android:id="@+id/rommes"
                                     android:layout_width="wrap_content"
                                     android:layout_height="40dp"
                                     android:fontFamily="@font/din_light"
@@ -1995,6 +1996,7 @@
 
 
                         <TextView
+                            android:id="@+id/Advertiser_side_add"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/muli_bold"
@@ -2046,6 +2048,7 @@
 
 
                         <TextView
+                            android:id="@+id/Advertiser_adjective_add"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/muli_bold"

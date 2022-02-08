@@ -375,6 +375,11 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+
+
+
+
         <service android:name=".FCM.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
@@ -397,6 +402,12 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
+
+
+
+
+
+
     </application>
 
 </manifest>

@@ -2828,6 +2828,8 @@ public class EditAqarzActivity extends AppCompatActivity {
                         }
 
                         if (homeModules_aqares.getFloorNumber() != null && !homeModules_aqares.getFloorNumber().equals("null")) {
+
+                            System.out.println("%^%&^&^"+homeModules_aqares.getFloorNumber() + "");
                             turn_number_text.setText(homeModules_aqares.getFloorNumber() + "");
                         }
                         if (homeModules_aqares.getUnit_number() != null && !homeModules_aqares.getUnit_number().equals("null")) {

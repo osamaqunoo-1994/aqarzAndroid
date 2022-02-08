@@ -2,6 +2,7 @@ package sa.aqarz.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.Animator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.google.android.material.snackbar.Snackbar;
@@ -54,12 +56,54 @@ import sa.aqarz.api.VolleyService;
 public class SplashScreenActivity extends AppCompatActivity {
     IResult mResultCallback;
     View parentLayout;
+    LottieAnimationView animationView;
+    boolean is_fin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         parentLayout = findViewById(android.R.id.content);
+        animationView = findViewById(R.id.animationViewdiscount);
+
+
+//
+        animationView.setAnimation(R.raw.logo);
+        animationView.playAnimation();
+        animationView.loop(false);
+        animationView.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+
+                if (is_fin) {
+                    Intent intent = new Intent(SplashScreenActivity.this, MainAqarzActivity.class);
+//              intent.putExtra("from", "splash");
+                    startActivity(intent);
+//                                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+                    finish();
+                } else {
+                    is_fin = true;
+                }
+
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
 
 
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.splash_anim);
@@ -81,10 +125,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         }
 
 
-
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
-        System.out.println("refreshedToken : "+refreshedToken);
+        System.out.println("refreshedToken : " + refreshedToken);
 
         if (Settings.checkLogin()) {
 
@@ -227,11 +270,18 @@ public class SplashScreenActivity extends AppCompatActivity {
 //
 //                            Hawk.put("regions", response.toString());
 
-                            Intent intent = new Intent(SplashScreenActivity.this, MainAqarzActivity.class);
+
+                            if (is_fin) {
+                                Intent intent = new Intent(SplashScreenActivity.this, MainAqarzActivity.class);
 //              intent.putExtra("from", "splash");
-                            startActivity(intent);
+                                startActivity(intent);
 //                                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
-                            finish();
+                                finish();
+                            } else {
+                                is_fin = true;
+                            }
+
+
                         } else if (requestType.equals("regions")) {
 
 
