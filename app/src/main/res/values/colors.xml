@@ -46,6 +46,7 @@
 
 
     <color name="unselected">#ECE8F9</color>
+    <color name="gray_color">#CCCCCC</color>
 
 
 </resources>

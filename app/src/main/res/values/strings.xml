@@ -1379,6 +1379,17 @@ Direct to schedule an appointment</string>
     <string name="resend_title">resend </string>
     <string name="authorized_add_mobile">authorized number</string>
     <string name="add_dad">Enter your Location Address</string>
+    <string name="number_order">رقم الطلب: </string>
+    <string name="number_order2">الطلب قيد الانتظار ..</string>
+    <string name="number_order3">الطلب بانتظار موافقة العميل وسيتم اظهار وسيلة التواصل معه فور موافقته على طلبك</string>
 
+    <string name="number_order4">طلب معاينة</string>
+    <string name="number_order5">العميل يطلب معاينة العقار تواصل معه الآن بشكل
+.مباشر لتحديد الموعد</string>
+    <string name="number_order6">حالة الطلب</string>
+    <string name="number_order7">إدخل كود التفعيل الذي حصلت عليه وأكد حالة الطلب بعد معاينة العقار بالقبول أو الرفض؟</string>
+
+
+    <string name="number_order8">نعم,اطلب كود</string>
 
 </resources>

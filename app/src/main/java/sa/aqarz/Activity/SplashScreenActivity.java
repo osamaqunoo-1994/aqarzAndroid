@@ -46,6 +46,7 @@ import java.util.Set;
 import sa.aqarz.Activity.Auth.LoginActivity;
 import sa.aqarz.Modules.User;
 import sa.aqarz.NewAqarz.MainAqarzActivity;
+import sa.aqarz.NewAqarz.OprationOrder.DetailsStatusOrderActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.ForceUpdateAsync;
 import sa.aqarz.Settings.Settings;
@@ -83,6 +84,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                 if (is_fin) {
                     Intent intent = new Intent(SplashScreenActivity.this, MainAqarzActivity.class);
+//                    Intent intent = new Intent(SplashScreenActivity.this, DetailsStatusOrderActivity.class);
 //              intent.putExtra("from", "splash");
                     startActivity(intent);
 //                                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);

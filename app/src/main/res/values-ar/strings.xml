@@ -392,7 +392,7 @@
 
 
     <string name="AddNEWOFFER">اضافة عرض</string>
-    <string name="other_btn">اخرى</string>
+    <string name="other_btn">سبب آخر</string>
     <string name="Confirm_btn">تاكيد</string>
 
 
@@ -1039,7 +1039,7 @@
     <string name="city_add">المدينة<font color="#AAABB3"><sup>*</sup></font></string>
     <string name="Neighborhood_add">الحي<font color="#AAABB3"><sup>*</sup></font></string>
     <string name="Typeproperty_add">نوع استخدام العقار<font color="#AAABB3"><sup>*</sup></font></string>
-    <string name="bedrooms_add">غرف النوم<font color="#DD4131"><sup>*</sup></font></string>
+    <string name="bedrooms_add">غرف<font color="#DD4131"><sup>*</sup></font></string>
     <string name="area_add">المساحه<font color="#AAABB3"><sup>*</sup></font></string>
     <string name="Stret_add">الشارع</string>
     <string name="land_number_add">رقم الارض</string>

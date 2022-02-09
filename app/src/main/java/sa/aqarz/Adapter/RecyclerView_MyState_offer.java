@@ -31,6 +31,7 @@ import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.MyOfferModule;
 import sa.aqarz.NewAqarz.DetaislAqarzActivity;
 import sa.aqarz.NewAqarz.OprationOrder.DetailsOrderActivity;
+import sa.aqarz.NewAqarz.OprationOrder.DetailsStatusOrderActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Application;
 
@@ -301,7 +302,8 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
                         Application.myOfferModule = alldata.get(position);
 //
 //                        Intent intent = new Intent(context, OfferDetailsActivity.class);
-                        Intent intent = new Intent(context, DetailsOrderActivity.class);
+//                        Intent intent = new Intent(context, DetailsOrderActivity.class);
+                        Intent intent = new Intent(context, DetailsStatusOrderActivity.class);
                         context.startActivity(intent);
 //                    }else{
 //
@@ -326,7 +328,8 @@ public class RecyclerView_MyState_offer extends RecyclerView.Adapter<RecyclerVie
                 Application.myOfferModule = alldata.get(position);
 //
 //                        Intent intent = new Intent(context, OfferDetailsActivity.class);
-                Intent intent = new Intent(context, DetailsOrderActivity.class);
+//                Intent intent = new Intent(context, DetailsOrderActivity.class);
+                Intent intent = new Intent(context, DetailsStatusOrderActivity.class);
                 context.startActivity(intent);
 //                if (alldata.get(position).getBeneficiaryMobile() != null) {
 //

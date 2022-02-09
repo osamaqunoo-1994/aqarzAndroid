@@ -59,6 +59,7 @@ public class WebService {
     public static String fund_Request = Domain + "fund/Request";
     public static String rate_Request = Domain + "rate/Request";
     public static String rate_offer = Domain + "fund/offer";
+    public static String rate_offer1 =  "fund/offer";
     public static String estate_Request = Domain + "estate/Request";
     public static String single_estat = Domain + "single/";
     public static String rate = Domain + "rate/";
