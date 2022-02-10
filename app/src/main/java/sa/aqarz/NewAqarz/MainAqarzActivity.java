@@ -267,7 +267,6 @@ public class MainAqarzActivity extends AppCompatActivity {
                 if (click_tab.equals("home")) {
 
 
-
                 } else {
                     click_tab = "home";
                     set_contanier_fragments();
@@ -341,30 +340,38 @@ public class MainAqarzActivity extends AppCompatActivity {
         lay_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!Settings.checkLogin()) {
-                    startActivity(new Intent(MainAqarzActivity.this, LoginActivity.class));
+//                if (!Settings.checkLogin()) {
+//                    startActivity(new Intent(MainAqarzActivity.this, LoginActivity.class));
+//
+////                    startActivity(new Intent(MainAqarzActivity.this, check_login.class));
+//
+//                } else {
+//                    click_tab = "chat";
 
-//                    startActivity(new Intent(MainAqarzActivity.this, check_login.class));
 
-                } else {
-                    click_tab = "chat";
+                Intent intent = new Intent(MainAqarzActivity.this, FillterActivity.class);
+                intent.putExtra("from", "home");
+                startActivity(intent);
 
-                    text_1.setTextColor(getResources().getColor(R.color.color_un_active));
-                    text_2.setTextColor(getResources().getColor(R.color.color_un_active));
-                    text_3.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    text_4.setTextColor(getResources().getColor(R.color.color_un_active));
-                    text_s.setTextColor(getResources().getColor(R.color.color_un_active));
 
-                    image_1.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                    image_2.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                    image_3.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                    image_4.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
-                    fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container, new ChatFragment());
-                    fragmentTransaction.addToBackStack(null);
-                    //  fragmentTransaction.commit();
-                    fragmentTransaction.commitAllowingStateLoss();
-                }
+//                    text_1.setTextColor(getResources().getColor(R.color.color_un_active));
+//                    text_2.setTextColor(getResources().getColor(R.color.color_un_active));
+//                    text_3.setTextColor(getResources().getColor(R.color.colorPrimary));
+//                    text_4.setTextColor(getResources().getColor(R.color.color_un_active));
+//                    text_s.setTextColor(getResources().getColor(R.color.color_un_active));
+//
+//                    image_1.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                    image_2.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                    image_3.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.colorPrimary), android.graphics.PorterDuff.Mode.SRC_ATOP);
+//                    image_4.setColorFilter(ContextCompat.getColor(MainAqarzActivity.this, R.color.color_un_active), android.graphics.PorterDuff.Mode.SRC_ATOP);
+
+
+                //                    fragmentTransaction = fragmentManager.beginTransaction();
+//                    fragmentTransaction.replace(R.id.container, new ChatFragment());
+//                    fragmentTransaction.addToBackStack(null);
+//                    //  fragmentTransaction.commit();
+//                    fragmentTransaction.commitAllowingStateLoss();
+//                }
 
             }
         });

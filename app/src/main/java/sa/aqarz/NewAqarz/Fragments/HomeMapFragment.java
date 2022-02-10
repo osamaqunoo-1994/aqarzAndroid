@@ -126,7 +126,9 @@ public class HomeMapFragment extends Fragment {
     ImageView fillter;
     static ProgressBar loading_city;
     ImageView notfication;
+    ImageView chat;
     ImageView notfication_dote;
+    ImageView chat_dote;
     static SupportMapFragment mapFragment;
     static GoogleMap googleMap;
     String style = "";
@@ -224,8 +226,10 @@ public class HomeMapFragment extends Fragment {
         fillter = v.findViewById(R.id.fillter);
         loading = v.findViewById(R.id.loading);
         allEstate_view_pager = v.findViewById(R.id.allEstate_view_pager);
-        notfication = v.findViewById(R.id.notfication);
+        chat = v.findViewById(R.id.chat);
         notfication_dote = v.findViewById(R.id.notfication_dote);
+        notfication = v.findViewById(R.id.notfication);
+        chat_dote = v.findViewById(R.id.chat_dote);
         search_nib = v.findViewById(R.id.search_nib);
         search_text = v.findViewById(R.id.search_text);
         fill_filtter = v.findViewById(R.id.fill_filtter);
@@ -1671,7 +1675,9 @@ public class HomeMapFragment extends Fragment {
 
         if (Settings.checkLogin()) {
             notfication.setVisibility(View.VISIBLE);
+            chat.setVisibility(View.VISIBLE);
             notfication_dote.setVisibility(View.VISIBLE);
+            chat_dote.setVisibility(View.VISIBLE);
             notfication_dote.setVisibility(View.VISIBLE);
             add_rent.setVisibility(View.VISIBLE);
 
@@ -1684,6 +1690,8 @@ public class HomeMapFragment extends Fragment {
 
         } else {
             notfication.setVisibility(View.INVISIBLE);
+            chat.setVisibility(View.GONE);
+            chat_dote.setVisibility(View.GONE);
             notfication_dote.setVisibility(View.INVISIBLE);
             add_rent.setVisibility(View.GONE);
 

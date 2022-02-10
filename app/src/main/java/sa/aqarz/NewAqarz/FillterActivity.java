@@ -137,14 +137,17 @@ public class FillterActivity extends AppCompatActivity {
     int number_parking = 0;
 
     TextView aqarez_lay;
+    TextView number_aqarez;
     TextView aqarezman_lay;
 
     LinearLayout aqarezman_lay_line;
+    LinearLayout number_aqarez_line;
     LinearLayout aqarez_lay_line;
 
 
     LinearLayout lay1;
     LinearLayout lay2;
+    LinearLayout lay3;
 
     LinearLayout layout_is_rent;
 
@@ -175,10 +178,13 @@ public class FillterActivity extends AppCompatActivity {
         search_qr = findViewById(R.id.search_qr);
         search_aqarz_man = findViewById(R.id.search_aqarz_man);
         name_aqarz = findViewById(R.id.name_aqarz);
+        number_aqarez_line = findViewById(R.id.number_aqarez_line);
+        number_aqarez = findViewById(R.id.number_aqarez);
 
 
         lay1 = findViewById(R.id.lay1);
         lay2 = findViewById(R.id.lay2);
+        lay3 = findViewById(R.id.lay3);
 
         aqarez_lay = findViewById(R.id.aqarez_lay);
         aqarezman_lay = findViewById(R.id.aqarezman_lay);
@@ -302,13 +308,36 @@ public class FillterActivity extends AppCompatActivity {
 
                 lay1.setVisibility(View.VISIBLE);
                 lay2.setVisibility(View.GONE);
+                lay3.setVisibility(View.GONE);
 
                 aqarez_lay.setTextColor(getResources().getColor(R.color.colorPrimary));
                 aqarezman_lay.setTextColor(getResources().getColor(R.color.te_unselected));
+                number_aqarez.setTextColor(getResources().getColor(R.color.te_unselected));
 
 
                 aqarez_lay_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 aqarezman_lay_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
+                number_aqarez_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
+
+
+            }
+        });
+        number_aqarez.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                lay1.setVisibility(View.GONE);
+                lay2.setVisibility(View.GONE);
+                lay3.setVisibility(View.VISIBLE);
+
+                number_aqarez.setTextColor(getResources().getColor(R.color.colorPrimary));
+                aqarezman_lay.setTextColor(getResources().getColor(R.color.te_unselected));
+                aqarez_lay.setTextColor(getResources().getColor(R.color.te_unselected));
+
+
+                number_aqarez_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                aqarezman_lay_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
+                aqarez_lay_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
 
 
             }
@@ -319,12 +348,16 @@ public class FillterActivity extends AppCompatActivity {
 
                 lay1.setVisibility(View.GONE);
                 lay2.setVisibility(View.VISIBLE);
+                lay3.setVisibility(View.GONE);
 
                 aqarezman_lay.setTextColor(getResources().getColor(R.color.colorPrimary));
                 aqarez_lay.setTextColor(getResources().getColor(R.color.te_unselected));
+                number_aqarez.setTextColor(getResources().getColor(R.color.te_unselected));
+
 
                 aqarez_lay_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
                 aqarezman_lay_line.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                number_aqarez_line.setBackgroundColor(getResources().getColor(R.color.te_unselected));
 
             }
         });
