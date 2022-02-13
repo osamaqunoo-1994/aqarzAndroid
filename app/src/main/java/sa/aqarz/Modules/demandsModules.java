@@ -93,6 +93,26 @@ public class demandsModules {
     @SerializedName("neighborhood_name")
     @Expose
     private String neighborhood_name;
+    @SerializedName("start_at")
+    @Expose
+    private String start_at;
+    @SerializedName("review_at")
+    @Expose
+    private String review_at;
+    @SerializedName("accept_review_at")
+    @Expose
+    private String accept_review_at;
+    @SerializedName("accepted_at")
+    @Expose
+    private String accepted_at;
+    @SerializedName("offer_id")
+    @Expose
+    private String offer_id;
+    @SerializedName("cancel_at")
+    @Expose
+    private String cancel_at;
+
+
     @SerializedName("operation_type")
     @Expose
     private TypeModules operation_type;
@@ -110,6 +130,30 @@ public class demandsModules {
 
     public Integer getId() {
         return id;
+    }
+
+    public String getAccept_review_at() {
+        return accept_review_at;
+    }
+
+    public String getAccepted_at() {
+        return accepted_at;
+    }
+
+    public String getCancel_at() {
+        return cancel_at;
+    }
+
+    public String getOffer_id() {
+        return offer_id;
+    }
+
+    public String getReview_at() {
+        return review_at;
+    }
+
+    public String getStart_at() {
+        return start_at;
     }
 
     public void setId(Integer id) {

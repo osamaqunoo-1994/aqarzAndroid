@@ -549,6 +549,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         lay_s.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
@@ -1158,6 +1160,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         opration.setAdapter(recyclerView_all_opration_bottom_sheet);
+
+
+
 
 
         filtter_acion();

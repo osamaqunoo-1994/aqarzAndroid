@@ -23,6 +23,8 @@ import org.json.JSONObject;
 
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Modules.MyOfferModule;
+import sa.aqarz.Modules.OrdersModules;
+import sa.aqarz.Modules.demandsModules;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Application;
 import sa.aqarz.Settings.WebService;
@@ -32,7 +34,7 @@ import sa.aqarz.api.VolleyService;
 public class DetailsStatusOrderActivity extends AppCompatActivity {
 
 
-    TextView date_1, date_2, date_3;
+    TextView date_1, date_2, date_3, date_4, date_5;
     TextView status_1, status_2, status_3;
     TextView details_1, details_2, details_3;
 
@@ -66,7 +68,7 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
     LinearLayout status_x3;
     LinearLayout status_x4;
     LinearLayout status_x5;
-
+    OrdersModules demandsModules;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +84,8 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
         date_1 = findViewById(R.id.date_1);
         date_2 = findViewById(R.id.date_2);
         date_3 = findViewById(R.id.date_3);
+        date_4 = findViewById(R.id.date_4);
+        date_5 = findViewById(R.id.date_5);
         status_1 = findViewById(R.id.status_1);
         status_2 = findViewById(R.id.status_2);
         status_3 = findViewById(R.id.status_3);
@@ -111,6 +115,8 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
 
         myOfferModule = Application.myOfferModule;
 
+        demandsModules = MainActivity.ordersModules;
+
 
         status_x2.setVisibility(View.GONE);
         status_x3.setVisibility(View.GONE);
@@ -118,7 +124,6 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
         status_x5.setVisibility(View.GONE);
 
 
-        myOfferModule.setStatus("sending_code");
 
 
         if (myOfferModule.getStatus().equals("new")) {//new->sending_code->accepted_customer
@@ -130,9 +135,26 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
             status_x5.setVisibility(View.GONE);
 
 
+            if(demandsModules.getStart_at()!=null){
+                date_1.setText(demandsModules.getStart_at() + "");
+
+            }
+
         } else if (myOfferModule.getStatus().equals("sending_code")) {
 
 // status 1
+
+
+            if(demandsModules.getStart_at()!=null){
+                date_1.setText(demandsModules.getStart_at() + "");
+
+            }
+            if(demandsModules.getReview_at()!=null){
+                date_2.setText(demandsModules.getReview_at() + "");
+
+            }
+
+
             date_1.setTextColor(getResources().getColor(R.color.gray_color));
             status_1.setTextColor(getResources().getColor(R.color.gray_color));
             details_1.setTextColor(getResources().getColor(R.color.gray_color));
@@ -205,6 +227,19 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
         } else if (myOfferModule.getStatus().equals("waiting_code")) {
 
 // status 1
+
+            if(demandsModules.getStart_at()!=null){
+                date_1.setText(demandsModules.getStart_at() + "");
+
+            }
+            if(demandsModules.getReview_at()!=null){
+                date_2.setText(demandsModules.getReview_at() + "");
+
+            }
+            if(demandsModules.getAccept_review_at()!=null){
+                date_3.setText(demandsModules.getAccept_review_at() + "");
+
+            }
             date_1.setTextColor(getResources().getColor(R.color.gray_color));
             status_1.setTextColor(getResources().getColor(R.color.gray_color));
             details_1.setTextColor(getResources().getColor(R.color.gray_color));
@@ -320,6 +355,23 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
         } else if (myOfferModule.getStatus().equals("rejected_customer")) {
 
 
+            if(demandsModules.getStart_at()!=null){
+                date_1.setText(demandsModules.getStart_at() + "");
+
+            }
+            if(demandsModules.getReview_at()!=null){
+                date_2.setText(demandsModules.getReview_at() + "");
+
+            }
+            if(demandsModules.getAccept_review_at()!=null){
+                date_3.setText(demandsModules.getAccept_review_at() + "");
+
+            }
+            if(demandsModules.getCancel_at()!=null){
+                date_4.setText(demandsModules.getCancel_at() + "");
+
+            }
+
             cancleorder.setVisibility(View.GONE);
 
 // status 1
@@ -366,7 +418,26 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
         } else if (myOfferModule.getStatus().equals("accepted_customer")) {
 
             cancleorder.setVisibility(View.GONE);
+            if(demandsModules.getStart_at()!=null){
+                date_1.setText(demandsModules.getStart_at() + "");
 
+            }
+            if(demandsModules.getReview_at()!=null){
+                date_2.setText(demandsModules.getReview_at() + "");
+
+            }
+            if(demandsModules.getAccept_review_at()!=null){
+                date_3.setText(demandsModules.getAccept_review_at() + "");
+
+            }
+            if(demandsModules.getCancel_at()!=null){
+                date_4.setText(demandsModules.getCancel_at() + "");
+
+            }
+            if(demandsModules.getAccepted_at()!=null){
+                date_5.setText(demandsModules.getAccepted_at() + "");
+
+            }
 // status 1
             date_1.setTextColor(getResources().getColor(R.color.gray_color));
             status_1.setTextColor(getResources().getColor(R.color.gray_color));
@@ -411,6 +482,28 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
 
         } else if (myOfferModule.getStatus().equals("close")) {
 
+
+
+            if(demandsModules.getStart_at()!=null){
+                date_1.setText(demandsModules.getStart_at() + "");
+
+            }
+            if(demandsModules.getReview_at()!=null){
+                date_2.setText(demandsModules.getReview_at() + "");
+
+            }
+            if(demandsModules.getAccept_review_at()!=null){
+                date_3.setText(demandsModules.getAccept_review_at() + "");
+
+            }
+            if(demandsModules.getCancel_at()!=null){
+                date_4.setText(demandsModules.getCancel_at() + "");
+
+            }
+            if(demandsModules.getAccepted_at()!=null){
+                date_5.setText(demandsModules.getAccepted_at() + "");
+
+            }
             cancleorder.setVisibility(View.GONE);
 
 // status 1

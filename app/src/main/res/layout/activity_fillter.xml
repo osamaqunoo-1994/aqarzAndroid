@@ -1347,6 +1347,23 @@
 
                 </LinearLayout>
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/all_aq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/noResultFound"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:gravity="center"
+                    android:text="@string/noResultFound"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+
                 <Button
                     android:id="@+id/search_aqarz_id"
                     android:layout_width="150dp"

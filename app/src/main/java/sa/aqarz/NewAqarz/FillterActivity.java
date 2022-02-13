@@ -40,11 +40,16 @@ import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.QRCameraActivity;
 import sa.aqarz.Activity.profile.AllclintActivity;
 import sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
+import sa.aqarz.Adapter.RecyclerView_HomeList_estat_new;
+import sa.aqarz.Adapter.RecyclerView_search_aqarz;
+import sa.aqarz.Modules.AllEstate;
 import sa.aqarz.Modules.ComfortModules;
+import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.NewAqarz.Adapter.RecyclerView_All_type_fillter;
 import sa.aqarz.NewAqarz.Adapter.RecyclerView_All_type_in_home_fragment;
 import sa.aqarz.NewAqarz.Adapter.RecyclerView_comfort_fillter;
+import sa.aqarz.NewAqarz.Adapter.RecyclerView_selectVideoEdit;
 import sa.aqarz.NewAqarz.Fragments.HomeMapFragment;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
@@ -58,7 +63,8 @@ public class FillterActivity extends AppCompatActivity {
     TextView investment;
 
     List<TypeModules> type_list = new ArrayList<>();
-
+    public static List<HomeModules_aqares> homeModules_aqares_list = new ArrayList<>();
+    TextView noResultFound;
     String type = "";
     String type_filtter = "";
 
@@ -100,6 +106,9 @@ public class FillterActivity extends AppCompatActivity {
     ImageView Bathrooms_plus, Bathrooms_minus;
     TextView Bathrooms_text;
 
+
+    Button search_aqarz_id;
+    EditText id_aqarz;
     int number_Lounges = 0;
     int number_room = 0;
     int number_Bathrooms = 0;
@@ -164,6 +173,7 @@ public class FillterActivity extends AppCompatActivity {
 
 
     String is_rent_installment = "0";
+    RecyclerView all_aq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,12 +184,14 @@ public class FillterActivity extends AppCompatActivity {
         search_filtter = findViewById(R.id.search_filtter);
         yes = findViewById(R.id.yes);
         no = findViewById(R.id.no);
+        all_aq = findViewById(R.id.all_aq);
         back = findViewById(R.id.back);
         search_qr = findViewById(R.id.search_qr);
         search_aqarz_man = findViewById(R.id.search_aqarz_man);
         name_aqarz = findViewById(R.id.name_aqarz);
         number_aqarez_line = findViewById(R.id.number_aqarez_line);
         number_aqarez = findViewById(R.id.number_aqarez);
+        noResultFound = findViewById(R.id.noResultFound);
 
 
         lay1 = findViewById(R.id.lay1);
@@ -212,6 +224,7 @@ public class FillterActivity extends AppCompatActivity {
         Bathrooms_plus = findViewById(R.id.Bathrooms_plus);
         Bathrooms_minus = findViewById(R.id.Bathrooms_minus);
         Bathrooms_text = findViewById(R.id.Bathrooms_text);
+        search_aqarz_id = findViewById(R.id.search_aqarz_id);
 
         Boards_plus = findViewById(R.id.Boards_plus);
         Boards_minus = findViewById(R.id.Boards_minus);
@@ -224,6 +237,7 @@ public class FillterActivity extends AppCompatActivity {
         Dining_rooms_plus = findViewById(R.id.Dining_rooms_plus);
         Dining_rooms_minus = findViewById(R.id.Dining_rooms_minus);
         Dining_text = findViewById(R.id.Dining_text);
+        id_aqarz = findViewById(R.id.id_aqarz);
 
         Lounges_lay = findViewById(R.id.Lounges_lay);
         room_lay = findViewById(R.id.room_lay);
@@ -274,6 +288,10 @@ public class FillterActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
+        LinearLayoutManager layoutManagerss
+                = new LinearLayoutManager(FillterActivity.this, LinearLayoutManager.VERTICAL, false);
+        all_aq.setLayoutManager(layoutManagerss);
 
 
         LinearLayoutManager layoutManager1
@@ -593,6 +611,19 @@ public class FillterActivity extends AppCompatActivity {
                 } catch (Exception e) {
 
                 }
+            }
+        });
+        search_aqarz_id.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WebService.loading(FillterActivity.this, true);
+                //-----------------------------------------------------------------------------------------
+                init_volley();
+                VolleyService mVolleyService = new VolleyService(mResultCallback, FillterActivity.this);
+
+                mVolleyService.getDataVolley("check", WebService.estate_Search + id_aqarz.getText().toString() + "/check");
+
+
             }
         });
         search_qr.setOnClickListener(new View.OnClickListener() {
@@ -1476,6 +1507,53 @@ public class FillterActivity extends AppCompatActivity {
                 if (requestType.equals("SendOrder")) {
 
 
+                } else if (requestType.equals("check")) {
+
+                    try {
+
+
+                        String data = response.getString("data");
+
+                        if (data.equals("[]")) {
+                            noResultFound.setVisibility(View.VISIBLE);
+                            homeModules_aqares_list.clear();
+
+
+                            RecyclerView_search_aqarz recyclerView_homeList_estat_new = new RecyclerView_search_aqarz(FillterActivity.this, homeModules_aqares_list);
+                            all_aq.setAdapter(recyclerView_homeList_estat_new);
+
+                        } else {
+                            noResultFound.setVisibility(View.GONE);
+
+
+                            JsonParser parser = new JsonParser();
+                            JsonElement mJson = parser.parse(data);
+
+                            Gson gson = new Gson();
+
+
+                            homeModules_aqares_list.clear();
+
+                            HomeModules_aqares allNeigbers = gson.fromJson(mJson, HomeModules_aqares.class);
+
+                            homeModules_aqares_list.add(allNeigbers);
+
+                            RecyclerView_search_aqarz recyclerView_homeList_estat_new = new RecyclerView_search_aqarz(FillterActivity.this, homeModules_aqares_list);
+//                    recyclerView_homeList_estat_new.Refr();
+
+
+                            all_aq.setAdapter(recyclerView_homeList_estat_new);
+
+                            if (homeModules_aqares_list.size() == 0) {
+                                noResultFound.setVisibility(View.VISIBLE);
+                            } else {
+                                noResultFound.setVisibility(View.GONE);
+
+                            }
+                        }
+                    } catch (Exception e) {
+
+                    }
                 } else {
 
 
@@ -1520,9 +1598,31 @@ public class FillterActivity extends AppCompatActivity {
 
 
                         } else {
-                            String message = response.getString("message");
+                            if (requestType.equals("check")) {
 
-                            WebService.Make_Toast_color(FillterActivity.this, message, "error");
+                                try {
+
+
+                                    String data = response.getString("data");
+
+                                    if (data.equals("[]")) {
+                                        noResultFound.setVisibility(View.VISIBLE);
+                                        homeModules_aqares_list.clear();
+
+
+                                        RecyclerView_search_aqarz recyclerView_homeList_estat_new = new RecyclerView_search_aqarz(FillterActivity.this, homeModules_aqares_list);
+                                        all_aq.setAdapter(recyclerView_homeList_estat_new);
+
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                String message = response.getString("message");
+
+                                WebService.Make_Toast_color(FillterActivity.this, message, "error");
+                            }
+
                         }
 
 

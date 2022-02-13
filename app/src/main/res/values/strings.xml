@@ -1381,17 +1381,17 @@ Direct to schedule an appointment</string>
     <string name="resend_title">resend </string>
     <string name="authorized_add_mobile">authorized number</string>
     <string name="add_dad">Enter your Location Address</string>
-    <string name="number_order">رقم الطلب: </string>
-    <string name="number_order2">الطلب قيد الانتظار ..</string>
-    <string name="number_order3">الطلب بانتظار موافقة العميل وسيتم اظهار وسيلة التواصل معه فور موافقته على طلبك</string>
+    <string name="number_order">Order Number: </string>
+    <string name="number_order2">The request is pending ..</string>
+    <string name="number_order3">The request is awaiting the customers approval, and the means of communication with him will be shown as soon as he approves your request</string>
 
-    <string name="number_order4">طلب معاينة</string>
-    <string name="number_order5">العميل يطلب معاينة العقار تواصل معه الآن بشكل
-.مباشر لتحديد الموعد</string>
-    <string name="number_order6">حالة الطلب</string>
-    <string name="number_order7">إدخل كود التفعيل الذي حصلت عليه وأكد حالة الطلب بعد معاينة العقار بالقبول أو الرفض؟</string>
+    <string name="number_order4">Request a preview</string>
+    <string name="number_order5">The client requests to inspect the property, contact him directly now to set the appointment</string>
+    <string name="number_order6">Order status</string>
+    <string name="number_order7">Enter the activation code that you got and confirm the status of the request after inspecting the property by accepting or rejecting?</string>
 
 
-    <string name="number_order8">نعم,اطلب كود</string>
+    <string name="number_order8">Yes, ask for a code</string>
+    <string name="noResultFound">No Result Found</string>
 
 </resources>

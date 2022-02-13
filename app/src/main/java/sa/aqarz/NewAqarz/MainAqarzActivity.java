@@ -725,6 +725,14 @@ public class MainAqarzActivity extends AppCompatActivity {
 
 
         try {
+            if (Settings.checkLogin()) {
+                init_volley();
+                VolleyService mVolleyService = new VolleyService(mResultCallback, MainAqarzActivity.this);
+//            mVolleyService.getDataVolley("user", WebService.user + id + "");
+                mVolleyService.getDataVolley("user", WebService.my_profile + "");
+
+
+            }
             forceUpdate();
 
         } catch (Exception e) {
