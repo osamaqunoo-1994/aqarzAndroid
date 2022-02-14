@@ -316,7 +316,7 @@
                                         android:id="@+id/whats_up_number"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text=""
+                                        android:text="966532576667"
                                         android:textColor="@color/color_title_text"
                                         android:textSize="14dp"
                                         android:textStyle="bold" />

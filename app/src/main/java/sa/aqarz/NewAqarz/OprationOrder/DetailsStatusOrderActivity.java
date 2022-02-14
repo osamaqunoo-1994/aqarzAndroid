@@ -124,8 +124,6 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
         status_x5.setVisibility(View.GONE);
 
 
-
-
         if (myOfferModule.getStatus().equals("new")) {//new->sending_code->accepted_customer
 
 
@@ -135,7 +133,7 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
             status_x5.setVisibility(View.GONE);
 
 
-            if(demandsModules.getStart_at()!=null){
+            if (demandsModules.getStart_at() != null) {
                 date_1.setText(demandsModules.getStart_at() + "");
 
             }
@@ -145,11 +143,11 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
 // status 1
 
 
-            if(demandsModules.getStart_at()!=null){
+            if (demandsModules.getStart_at() != null) {
                 date_1.setText(demandsModules.getStart_at() + "");
 
             }
-            if(demandsModules.getReview_at()!=null){
+            if (demandsModules.getReview_at() != null) {
                 date_2.setText(demandsModules.getReview_at() + "");
 
             }
@@ -208,7 +206,7 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
                 }
             });
 
-            whats_up_number.setText(MainActivity.ordersModules.getBeneficiaryMobile() + "");
+//            whats_up_number.setText(MainActivity.ordersModules.getBeneficiaryMobile() + "");
 
             whats_up_number.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -228,15 +226,15 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
 
 // status 1
 
-            if(demandsModules.getStart_at()!=null){
+            if (demandsModules.getStart_at() != null) {
                 date_1.setText(demandsModules.getStart_at() + "");
 
             }
-            if(demandsModules.getReview_at()!=null){
+            if (demandsModules.getReview_at() != null) {
                 date_2.setText(demandsModules.getReview_at() + "");
 
             }
-            if(demandsModules.getAccept_review_at()!=null){
+            if (demandsModules.getAccept_review_at() != null) {
                 date_3.setText(demandsModules.getAccept_review_at() + "");
 
             }
@@ -355,19 +353,19 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
         } else if (myOfferModule.getStatus().equals("rejected_customer")) {
 
 
-            if(demandsModules.getStart_at()!=null){
+            if (demandsModules.getStart_at() != null) {
                 date_1.setText(demandsModules.getStart_at() + "");
 
             }
-            if(demandsModules.getReview_at()!=null){
+            if (demandsModules.getReview_at() != null) {
                 date_2.setText(demandsModules.getReview_at() + "");
 
             }
-            if(demandsModules.getAccept_review_at()!=null){
+            if (demandsModules.getAccept_review_at() != null) {
                 date_3.setText(demandsModules.getAccept_review_at() + "");
 
             }
-            if(demandsModules.getCancel_at()!=null){
+            if (demandsModules.getCancel_at() != null) {
                 date_4.setText(demandsModules.getCancel_at() + "");
 
             }
@@ -418,23 +416,23 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
         } else if (myOfferModule.getStatus().equals("accepted_customer")) {
 
             cancleorder.setVisibility(View.GONE);
-            if(demandsModules.getStart_at()!=null){
+            if (demandsModules.getStart_at() != null) {
                 date_1.setText(demandsModules.getStart_at() + "");
 
             }
-            if(demandsModules.getReview_at()!=null){
+            if (demandsModules.getReview_at() != null) {
                 date_2.setText(demandsModules.getReview_at() + "");
 
             }
-            if(demandsModules.getAccept_review_at()!=null){
+            if (demandsModules.getAccept_review_at() != null) {
                 date_3.setText(demandsModules.getAccept_review_at() + "");
 
             }
-            if(demandsModules.getCancel_at()!=null){
+            if (demandsModules.getCancel_at() != null) {
                 date_4.setText(demandsModules.getCancel_at() + "");
 
             }
-            if(demandsModules.getAccepted_at()!=null){
+            if (demandsModules.getAccepted_at() != null) {
                 date_5.setText(demandsModules.getAccepted_at() + "");
 
             }
@@ -483,24 +481,23 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
         } else if (myOfferModule.getStatus().equals("close")) {
 
 
-
-            if(demandsModules.getStart_at()!=null){
+            if (demandsModules.getStart_at() != null) {
                 date_1.setText(demandsModules.getStart_at() + "");
 
             }
-            if(demandsModules.getReview_at()!=null){
+            if (demandsModules.getReview_at() != null) {
                 date_2.setText(demandsModules.getReview_at() + "");
 
             }
-            if(demandsModules.getAccept_review_at()!=null){
+            if (demandsModules.getAccept_review_at() != null) {
                 date_3.setText(demandsModules.getAccept_review_at() + "");
 
             }
-            if(demandsModules.getCancel_at()!=null){
+            if (demandsModules.getCancel_at() != null) {
                 date_4.setText(demandsModules.getCancel_at() + "");
 
             }
-            if(demandsModules.getAccepted_at()!=null){
+            if (demandsModules.getAccepted_at() != null) {
                 date_5.setText(demandsModules.getAccepted_at() + "");
 
             }
@@ -564,6 +561,7 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
                         try {
 
                             sendObj.put("uuid", myOfferModule.getId() + "");//form operation list api in setting
+                            sendObj.put("reason", reseon + "");//form operation list api in setting
 //                    sendObj.put("estate_id", is_selected);//form estate type list api in setting
                         } catch (Exception e) {
                             e.printStackTrace();

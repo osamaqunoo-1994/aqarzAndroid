@@ -49,12 +49,12 @@ public class BottomSheetDialogFragment_delete_offer extends BottomSheetDialogFra
             public void onClick(View v) {
                 if (a1.isChecked()) {
                     if (mItemClickListener != null) {
-                        mItemClickListener.onItemClick("", note.getText().toString());
+                        mItemClickListener.onItemClick("", a1.getText().toString());
                     }
                 }
                 if (a2.isChecked()) {
                     if (mItemClickListener != null) {
-                        mItemClickListener.onItemClick("", note.getText().toString());
+                        mItemClickListener.onItemClick("", a2.getText().toString());
                     }
                 }
                 if (a3.isChecked()) {
