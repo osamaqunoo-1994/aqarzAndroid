@@ -35,8 +35,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".NewAqarz.OprationOrder.DetailsStatusOrderActivity"
+        <activity
+            android:name=".NewAqarz.MyChatsActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".NewAqarz.OprationOrder.DetailsStatusOrderActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".NewAqarz.OprationOrder.DetailsOrderActivity" />
         <activity
             android:name=".NewAqarz.WebViewActivity"

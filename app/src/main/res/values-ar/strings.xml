@@ -792,6 +792,8 @@
  مع العلم انه لايمكنك التراجع عن هذه الخطوة لاحقاً ؟</string>
     <string name="add_note">أضف ملاحظاتك  عن العقار</string>
     <string name="canclee">الغاء</string>
+    <string name="canclee1">الغاء العرض</string>
+
     <string name="estati_like">عقارات مشابهة</string>
     <string name="coments">آراء العملاء</string>
     <string name="share_account">مشاركة حسابي</string>
@@ -1320,6 +1322,8 @@
 
 
     <string name="confirm_sst">قبول</string>
+    <string name="confirm_sst1">تحقق</string>
+
     <string name="receive_title">في حال عدم وصول الكود بإمكانك </string>
     <string name="resend_title">اعادة الارسال </string>
 
@@ -1333,7 +1337,7 @@
     <string name="number_order5">العميل يطلب معاينة العقار تواصل معه الآن بشكل
 .مباشر لتحديد الموعد</string>
     <string name="number_order6">حالة الطلب</string>
-    <string name="number_order7">إدخل كود التفعيل الذي حصلت عليه وأكد حالة الطلب بعد معاينة العقار بالقبول أو الرفض؟</string>
+    <string name="number_order7">إدخل كود التحقق الذي حصلت عليه وأكد حالة الطلب بعد معاينة العقار بالقبول أو الرفض؟</string>
 
 
     <string name="number_order8">نعم,اطلب كود</string>

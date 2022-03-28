@@ -17,8 +17,8 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationViewdiscount"
-            android:layout_width="300dp"
-            android:layout_height="220dp"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
             android:visibility="visible"
 
 

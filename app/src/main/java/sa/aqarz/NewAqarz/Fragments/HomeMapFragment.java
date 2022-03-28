@@ -2,6 +2,7 @@ package sa.aqarz.NewAqarz.Fragments;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
@@ -105,6 +106,7 @@ import sa.aqarz.NewAqarz.FillterActivity;
 import sa.aqarz.NewAqarz.ListAqarzActivity;
 import sa.aqarz.NewAqarz.MainAqarzActivity;
 import sa.aqarz.NewAqarz.ManageOrderActivity;
+import sa.aqarz.NewAqarz.MyChatsActivity;
 import sa.aqarz.R;
 import sa.aqarz.Settings.AutoCompleteAdapter;
 import sa.aqarz.Settings.CustomInfoWindowGoogleMapEstatMaps;
@@ -125,8 +127,8 @@ public class HomeMapFragment extends Fragment {
     ImageView convert_to_list;
     ImageView fillter;
     static ProgressBar loading_city;
-    ImageView notfication;
-    ImageView chat;
+    CardView notfication;
+    CardView chat;
     ImageView notfication_dote;
     ImageView chat_dote;
     static SupportMapFragment mapFragment;
@@ -439,6 +441,16 @@ public class HomeMapFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), ManageOrderActivity.class);
                 intent.putExtra("type_filtter", type_filtter);
                 intent.putExtra("from", "is_rent");
+                startActivity(intent);
+
+
+            }
+        });
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MyChatsActivity.class);
+
                 startActivity(intent);
 
 

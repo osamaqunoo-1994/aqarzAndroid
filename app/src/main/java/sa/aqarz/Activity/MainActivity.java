@@ -888,7 +888,7 @@ public class MainActivity extends AppCompatActivity {
 
                             jsonObject.put("is_emp", "yes");
                             jsonObject.put("mobile", Settings.GetUser().getMobile() + "");
-                            jsonObject.put("country_code", "+966");
+                            jsonObject.put("country_code", "966");
 
                         } catch (Exception e) {
 

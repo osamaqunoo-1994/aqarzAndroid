@@ -264,9 +264,16 @@ public class MoreFragment extends Fragment {
             aqarz_offer.setVisibility(View.VISIBLE);
             all_area.setVisibility(View.VISIBLE);
 
-            if (Settings.GetUser().getIs_iam_complete().equals("2")) {
+            if (Settings.GetUser().getIs_employee().equals("2")) {
                 employee.setVisibility(View.GONE);
             }
+//            if (Settings.GetUser().getIs_employee().equals("2")) {
+//                employee.setVisibility(View.VISIBLE);
+//
+//
+//            }else{
+//
+//            }
         } else {
             offer.setVisibility(View.GONE);
             employee.setVisibility(View.GONE);

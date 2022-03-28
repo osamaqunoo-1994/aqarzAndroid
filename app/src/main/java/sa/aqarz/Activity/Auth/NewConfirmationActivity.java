@@ -223,7 +223,7 @@ public class NewConfirmationActivity extends AppCompatActivity {
 
                         sendObj.put("password", password.getText().toString());
                         sendObj.put("password_confirmation", Cpassword.getText().toString());
-                        sendObj.put("country_code", "+966");
+                        sendObj.put("country_code", "966");
 
 //                        sendObj.put("device_token", "157");
 //                        sendObj.put("type", type);

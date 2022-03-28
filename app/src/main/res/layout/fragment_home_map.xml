@@ -124,6 +124,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="45dp"
+                    android:id="@+id/notfication"
+
                     android:layout_height="45dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp">
@@ -134,7 +136,6 @@
 
 
                         <ImageView
-                            android:id="@+id/notfication"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
                             android:padding="10dp"
@@ -162,6 +163,8 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="45dp"
                     android:layout_height="45dp"
+                    android:id="@+id/chat"
+
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp">
 
@@ -171,7 +174,6 @@
 
 
                         <ImageView
-                            android:id="@+id/chat"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
                             android:padding="12dp"
@@ -228,10 +230,10 @@
                     android:orientation="vertical">
 
                     <RelativeLayout
-                        android:visibility="gone"
                         android:layout_width="41dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/back_search_home">
+                        android:background="@drawable/back_search_home"
+                        android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/fillter"
@@ -258,8 +260,7 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/back_search_home"
                         android:gravity="center"
-                        android:orientation="vertical"
-                       >
+                        android:orientation="vertical">
 
                         <ImageView
                             android:layout_width="30dp"
@@ -270,10 +271,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/din_bold"
-                            android:text="@string/RentalinstallmentService"
                             android:layout_marginStart="7dp"
                             android:layout_marginEnd="7dp"
+                            android:fontFamily="@font/din_bold"
+                            android:text="@string/RentalinstallmentService"
                             android:textSize="12dp"
                             android:textStyle="bold" />
 

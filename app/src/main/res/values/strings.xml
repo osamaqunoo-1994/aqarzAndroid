@@ -556,6 +556,7 @@ Your request and reply in the fastest time</string>
   Knowing that you cannot undo this step later?</string>
     <string name="add_note">Add your notes about the property</string>
     <string name="canclee">cancle</string>
+    <string name="canclee1">cancle</string>
     <string name="estati_like">Similar properties</string>
     <string name="coments">Customer reviews</string>
     <string name="share_account">Share my account</string>
@@ -1377,6 +1378,7 @@ Direct to schedule an appointment</string>
 
 
     <string name="confirm_sst">confirm</string>
+    <string name="confirm_sst1">confirm</string>
     <string name="receive_title">If you do not receive the code, you can </string>
     <string name="resend_title">resend </string>
     <string name="authorized_add_mobile">authorized number</string>

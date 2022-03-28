@@ -113,7 +113,7 @@ public class NewSiginUpActivity extends AppCompatActivity {
                         sendObj.put("device_token", refreshedToken);
 
                         sendObj.put("type", type);
-                        sendObj.put("country_code", "+966");
+                        sendObj.put("country_code", "966");
 
                         System.out.println(sendObj.toString());
                         mVolleyService.postDataVolley("Register", WebService.register, sendObj);

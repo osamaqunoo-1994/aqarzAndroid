@@ -173,6 +173,8 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
                     try {
 
                         sendObj.put("uuid", myOfferModule.getUuid() + "");//form operation list api in setting
+                        sendObj.put("offer_id", myOfferModule.getId());//form estate type list api in setting
+
 //                    sendObj.put("estate_id", is_selected);//form estate type list api in setting
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -284,6 +286,7 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
                             sendObj.put("uuid", myOfferModule.getId());//form operation list api in setting
                             sendObj.put("code", code2);//form estate type list api in setting
                             sendObj.put("estate_id", myOfferModule.getEstateId());//form estate type list api in setting
+                            sendObj.put("offer_id", myOfferModule.getId());//form estate type list api in setting
                             sendObj.put("status", "accepted_customer");//form estate type list api in setting
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -326,6 +329,8 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
                             sendObj.put("uuid", myOfferModule.getId());//form operation list api in setting
                             sendObj.put("code", code2);//form estate type list api in setting
                             sendObj.put("estate_id", myOfferModule.getEstateId());//form estate type list api in setting
+                            sendObj.put("offer_id", myOfferModule.getId());//form estate type list api in setting
+
                             sendObj.put("status", "rejected_customer");//form estate type list api in setting
                         } catch (Exception e) {
                             e.printStackTrace();

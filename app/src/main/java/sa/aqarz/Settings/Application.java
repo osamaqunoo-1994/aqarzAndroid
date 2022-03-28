@@ -11,6 +11,8 @@ import android.os.Build;
 import android.os.LocaleList;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.google.android.libraries.places.api.Places;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -51,6 +53,13 @@ public class Application extends android.app.Application {
 //
         activity = this;
         Hawk.init(this).build();
+
+        try{
+
+
+        }catch (Exception e){
+
+        }
 
 //        if (!Places.isInitialized()) {
 //            Places.initialize(Application.this, "AIzaSyCX9U6fj5-Tt5lK_23d2RFsr4Nlp3yqdoM", Locale.UK);

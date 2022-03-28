@@ -180,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     try {
 
-                        sendObj.put("country_code", "+966");
+                        sendObj.put("country_code", "966");
                         sendObj.put("username", phone_ed.getText().toString());
                         sendObj.put("password", password.getText().toString());
                         String refreshedToken = FirebaseInstanceId.getInstance().getToken();

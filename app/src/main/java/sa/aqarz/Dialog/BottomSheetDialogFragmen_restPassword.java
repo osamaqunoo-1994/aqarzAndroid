@@ -70,7 +70,7 @@ public class BottomSheetDialogFragmen_restPassword extends BottomSheetDialogFrag
                     JSONObject sendObj = new JSONObject();
 
                     sendObj.put("mobile", Settings.GetUser().getMobile() + "");
-                    sendObj.put("country_code", "+966");
+                    sendObj.put("country_code", "966");
 
 
                     System.out.println(sendObj.toString());
