@@ -96,7 +96,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     try {
 
                         sendObj.put("mobile", email_ed.getText().toString());
-                        sendObj.put("country_code", "+966");
+                        sendObj.put("country_code", "966");
 
 
                         System.out.println(sendObj.toString());

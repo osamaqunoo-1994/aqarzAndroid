@@ -119,6 +119,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
     TextView yes, no;
     String type_yes_no = "0";
+    String type_yes_no_fund = "0";
+    String type_yes_no_branch = "0";
     String type_experiencex = "";
 
     TextView real_1_yes;
@@ -131,6 +133,20 @@ public class EditProfileActivity extends AppCompatActivity {
 
     EditText Bio;
     Handler handler;
+
+
+    TextView Company_;
+    TextView founder_;
+    TextView entrepreneurs_;
+    EditText Commercial_Registration_No;
+
+
+    String type_c_f_e = "company";
+
+
+    TextView yes_branch, no_branch;
+
+    TextView yes_fund, no_fund;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,6 +165,14 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     public void init() {
+        no_branch = findViewById(R.id.no_branch);
+        yes_branch = findViewById(R.id.yes_branch);
+        yes_fund = findViewById(R.id.yes_fund);
+        no_fund = findViewById(R.id.no_fund);
+        Commercial_Registration_No = findViewById(R.id.Commercial_Registration_No);
+        entrepreneurs_ = findViewById(R.id.entrepreneurs_);
+        founder_ = findViewById(R.id.founder_);
+        Company_ = findViewById(R.id.Company_);
         less_than_5 = findViewById(R.id.less_than_5);
         form_5_to_10 = findViewById(R.id.form_5_to_10);
         more_than_10 = findViewById(R.id.more_than_10);
@@ -191,7 +215,7 @@ public class EditProfileActivity extends AppCompatActivity {
             Address_t = Settings.GetUser().getAddress();
 
             address.setText(Address_t + "");
-            link.setText(Settings.GetUser().getUser_name() + "");
+//            link.setText(Settings.GetUser().getUser_name() + "");
 
         } catch (Exception e) {
 
@@ -296,7 +320,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
             if (Settings.GetUser().getUser_name() != null) {
+            if (!Settings.GetUser().getUser_name().equals("null")) {
                 link.setText(Settings.GetUser().getUser_name() + "");
+
+            }
 
             }
             if (Settings.GetUser().getEmail() != null) {
@@ -308,8 +335,11 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
 
+            if (Settings.GetUser().getBio() != null) {
+                Bio.setText(Settings.GetUser().getBio() + "");
 
-            Bio.setText(Settings.GetUser().getBio() + "");
+            }
+
 
             Glide.with(EditProfileActivity.this).load(Settings.GetUser().getLogo() + "").error(getResources().getDrawable(R.drawable.ic_user_un)).diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true).into(image_profile);
@@ -743,6 +773,9 @@ public class EditProfileActivity extends AppCompatActivity {
                 } else if (link.toString().equals("")) {
                     WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.site_hint) + "", "error");
 
+                } else if (Commercial_Registration_No.getText().toString().equals("")) {
+                    WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.Commercial_Registration_No_req) + "", "error");
+
                 } else {
                     init_volley();
                     WebService.loading(EditProfileActivity.this, true);
@@ -770,8 +803,11 @@ public class EditProfileActivity extends AppCompatActivity {
                         sendObj.put("user_name", link.getText().toString());
                         sendObj.put("experience", type_experiencex);
                         sendObj.put("office_staff", type_yes_no);
+                        sendObj.put("account_type", type_c_f_e);
+                        sendObj.put("is_fund_certified", type_yes_no_fund);
                         sendObj.put("experiences_id", exp_te);
                         sendObj.put("courses_id", cour_te);
+                        sendObj.put("license_number", Commercial_Registration_No.getText().toString());
                         sendObj.put("bio", Bio.getText().toString());
 
 
@@ -787,6 +823,117 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
         });
+
+
+        //-------------------------------------------------------------------------------------------------------------------------------------
+
+
+        Company_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Company_.setTextColor(getResources().getColor(R.color.white));
+                founder_.setTextColor(getResources().getColor(R.color.textColor));
+                entrepreneurs_.setTextColor(getResources().getColor(R.color.textColor));
+
+                Company_.setBackground(getResources().getDrawable(R.drawable.back_search_home_selected));
+                founder_.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
+                entrepreneurs_.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
+                type_c_f_e = "company";
+            }
+        });
+
+
+        founder_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Company_.setTextColor(getResources().getColor(R.color.textColor));
+                founder_.setTextColor(getResources().getColor(R.color.white));
+                entrepreneurs_.setTextColor(getResources().getColor(R.color.textColor));
+
+                Company_.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
+                founder_.setBackground(getResources().getDrawable(R.drawable.back_search_home_selected));
+                entrepreneurs_.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
+                type_c_f_e = "institution";
+
+            }
+        });
+
+
+        entrepreneurs_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Company_.setTextColor(getResources().getColor(R.color.textColor));
+                founder_.setTextColor(getResources().getColor(R.color.textColor));
+                entrepreneurs_.setTextColor(getResources().getColor(R.color.white));
+
+                Company_.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
+                founder_.setBackground(getResources().getDrawable(R.drawable.back_search_homecc));
+                entrepreneurs_.setBackground(getResources().getDrawable(R.drawable.back_search_home_selected));
+                type_c_f_e = "owner";
+
+            }
+        });
+
+
+        //-------------------------------------------------------------------------------------------------------------------------------------
+        yes_fund.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                yes_fund.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                yes_fund.setTextColor(getResources().getColor(R.color.white));
+
+                no_fund.setBackground(null);
+                type_yes_no_fund = "1";
+                no_fund.setTextColor(getResources().getColor(R.color.textColor));
+            }
+        });
+        no_fund.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                no_fund.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                no_fund.setTextColor(getResources().getColor(R.color.white));
+                type_yes_no_fund = "0";
+
+
+                yes_fund.setBackground(null);
+
+                yes_fund.setTextColor(getResources().getColor(R.color.textColor));
+
+            }
+        });
+        //-------------------------------------------------------------------------------------------------------------------------------------
+        yes_branch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                yes_branch.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                yes_branch.setTextColor(getResources().getColor(R.color.white));
+
+                yes_branch.setBackground(null);
+                type_yes_no_branch = "1";
+                yes_branch.setTextColor(getResources().getColor(R.color.textColor));
+            }
+        });
+        yes_branch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                yes_branch.setBackground(getResources().getDrawable(R.drawable.button_login));
+
+                yes_branch.setTextColor(getResources().getColor(R.color.white));
+                type_yes_no_branch = "0";
+
+
+                yes_branch.setBackground(null);
+
+                yes_branch.setTextColor(getResources().getColor(R.color.textColor));
+
+            }
+        });
+        //-------------------------------------------------------------------------------------------------------------------------------------
+
+
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

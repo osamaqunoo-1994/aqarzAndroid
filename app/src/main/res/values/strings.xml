@@ -1395,5 +1395,16 @@ Direct to schedule an appointment</string>
 
     <string name="number_order8">Yes, ask for a code</string>
     <string name="noResultFound">No Result Found</string>
+    <string name="ask_1">Do you have more than one branch?</string>
+    <string name="activate_oo0">Do you want to activate the fund requests service?</string>
+    <string name="Type_Type">Type</string>
+    <string name="Commercial_Registration_No">Commercial Registration No</string>
+    <string name="Company_">Company</string>
+    <string name="founder_">founder</string>
+    <string name="entrepreneurs_">entrepreneurs</string>
+    <string name="Commercial_Registration_No_req">رقم السجل التجاري مطلوب</string>
+
+
+
 
 </resources>

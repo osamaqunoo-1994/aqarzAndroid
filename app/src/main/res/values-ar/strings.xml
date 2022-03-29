@@ -1342,4 +1342,15 @@
 
     <string name="number_order8">نعم,اطلب كود</string>
     <string name="noResultFound">لا يوجد نتائج</string>
+    <string name="ask_1">هل لديك اكثر من فرع؟</string>
+    <string name="activate_oo0">هل ترغب بتفعيل خدمة طلبات الصندوق؟</string>
+
+
+    <string name="Type_Type">النوع</string>
+    <string name="Commercial_Registration_No">رقم السجل التجاري</string>
+    <string name="Company_">شركة</string>
+    <string name="founder_">مؤسسه</string>
+    <string name="entrepreneurs_">رواد اعمال</string>
+
+
 </resources>
