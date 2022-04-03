@@ -81,6 +81,9 @@ public class User {
     @SerializedName("password")
     @Expose
     private String password;
+    @SerializedName("license_number")
+    @Expose
+    private String license_number;
     @SerializedName("confirmation_code")
     @Expose
     private String confirmation_code;
@@ -214,6 +217,10 @@ public class User {
 
     public User getEmp() {
         return emp;
+    }
+
+    public String getLicense_number() {
+        return license_number;
     }
 
     public String getCount_fund_offer() {

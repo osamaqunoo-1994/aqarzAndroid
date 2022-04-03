@@ -215,6 +215,15 @@ public class EditProfileActivity extends AppCompatActivity {
             Address_t = Settings.GetUser().getAddress();
 
             address.setText(Address_t + "");
+
+
+            if (Settings.GetUser().getLicense_number() != null) {
+                if (!Settings.GetUser().getLicense_number().equals("null")) {
+                    Commercial_Registration_No.setText(Settings.GetUser().getLicense_number() + "");
+
+                }
+
+            }
 //            link.setText(Settings.GetUser().getUser_name() + "");
 
         } catch (Exception e) {
@@ -320,10 +329,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
             if (Settings.GetUser().getUser_name() != null) {
-            if (!Settings.GetUser().getUser_name().equals("null")) {
-                link.setText(Settings.GetUser().getUser_name() + "");
+                if (!Settings.GetUser().getUser_name().equals("null")) {
+                    link.setText(Settings.GetUser().getUser_name() + "");
 
-            }
+                }
 
             }
             if (Settings.GetUser().getEmail() != null) {
