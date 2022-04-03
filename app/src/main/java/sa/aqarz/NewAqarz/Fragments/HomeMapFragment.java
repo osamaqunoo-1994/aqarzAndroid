@@ -244,7 +244,7 @@ public class HomeMapFragment extends Fragment {
         //LastPostionLat
         //LastPostionLan
         if (!Places.isInitialized()) {
-            Places.initialize(getContext(), "AIzaSyCX9U6fj5-Tt5lK_23d2RFsr4Nlp3yqdoM", Locale.UK);
+            Places.initialize(getContext(), getResources().getString(R.string.google_key3), Locale.UK);
         }
 
 

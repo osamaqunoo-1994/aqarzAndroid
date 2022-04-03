@@ -2,6 +2,14 @@
 
 
     <string name="app_name">Aqarz</string>
+
+
+
+    <string name="google_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBw6QmlOdBAItUnbgrONR0qTuun4Rx9kT8</string>
+    <string name="google_key2" templateMergeStrategy="preserve" translatable="false">AIzaSyA6E2L_Feqp6HMD85eQ1RP06WnykHJj7Mc</string>
+    <string name="google_key3" templateMergeStrategy="preserve" translatable="false">AIzaSyCX9U6fj5-Tt5lK_23d2RFsr4Nlp3yqdoM</string>
+
+
     <string name="empty_label">Required field !</string>
     <string name="invalid_mobile"> The mobile number is only 14 digits ! </string>
     <string name="does_not_match"> The two passwords  do not match </string>

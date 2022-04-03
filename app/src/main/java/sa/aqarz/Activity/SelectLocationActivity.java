@@ -169,7 +169,7 @@ public class SelectLocationActivity extends AppCompatActivity {
 //        }
 
         if (!Places.isInitialized()) {
-            Places.initialize(SelectLocationActivity.this, "AIzaSyBw6QmlOdBAItUnbgrONR0qTuun4Rx9kT8", Locale.UK);
+            Places.initialize(SelectLocationActivity.this, getResources().getString(R.string.google_key), Locale.UK);
         }
 
 //        auto_search_text.setOnClickListener(new View.OnClickListener() {
@@ -262,7 +262,7 @@ public class SelectLocationActivity extends AppCompatActivity {
 //        initAutoCompleteTextView();
         if (!Places.isInitialized()) {
 //            Places.initialize(SelectLocationActivity.this, "AIzaSyBw6QmlOdBAItUnbgrONR0qTuun4Rx9kT8", Locale.UK);
-            Places.initialize(SelectLocationActivity.this, "AIzaSyCX9U6fj5-Tt5lK_23d2RFsr4Nlp3yqdoM", Locale.UK);
+            Places.initialize(SelectLocationActivity.this, getResources().getString(R.string.google_key3), Locale.UK);
         }
 
 

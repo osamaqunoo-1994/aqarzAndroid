@@ -110,7 +110,7 @@ public class type6Fragment extends Fragment {
         For_sale = v.findViewById(R.id.For_sale);
         rent = v.findViewById(R.id.rent);
         investment = v.findViewById(R.id.investment);
-        mMapView = (MapView) v.findViewById(R.id.mapViewxx);
+        mMapView = v.findViewById(R.id.mapViewxx);
 
         mMapView.onCreate(getArguments());
 
@@ -169,7 +169,7 @@ public class type6Fragment extends Fragment {
 
             }
         });
-        Places.initialize(getContext(), "AIzaSyA6E2L_Feqp6HMD85eQ1RP06WnykHJj7Mc");
+        Places.initialize(getContext(), getResources().getString(R.string.google_key2));
         placesClient = Places.createClient(getContext());
 
         //---------------------------------------------------------------------------------------------
@@ -290,7 +290,7 @@ public class type6Fragment extends Fragment {
                 if (name.getText().toString().equals("") |
                         email.getText().toString().equals("") |
                         phone.getText().toString().equals("") |
-                        lat.toString().equals("") |
+                        lat.equals("") |
 
 
                         description.getText().toString().equals("")

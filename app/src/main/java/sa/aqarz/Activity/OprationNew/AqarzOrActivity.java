@@ -291,7 +291,7 @@ public class AqarzOrActivity extends AppCompatActivity {
 
             }
         });
-        Places.initialize(AqarzOrActivity.this, "AIzaSyA6E2L_Feqp6HMD85eQ1RP06WnykHJj7Mc");
+        Places.initialize(AqarzOrActivity.this, getResources().getString(R.string.google_key2));
         placesClient = Places.createClient(AqarzOrActivity.this);
 
         //---------------------------------------------------------------------------------------------

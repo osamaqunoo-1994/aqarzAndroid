@@ -100,7 +100,7 @@ public class type3Fragment extends Fragment {
         map_select = v.findViewById(R.id.map_select);
 
 
-        mMapView = (MapView) v.findViewById(R.id.mapViewxx);
+        mMapView = v.findViewById(R.id.mapViewxx);
 
         mMapView.onCreate(getArguments());
 
@@ -159,7 +159,7 @@ public class type3Fragment extends Fragment {
 
             }
         });
-        Places.initialize(getContext(), "AIzaSyA6E2L_Feqp6HMD85eQ1RP06WnykHJj7Mc");
+        Places.initialize(getContext(), getResources().getString(R.string.google_key2));
         placesClient = Places.createClient(getContext());
 
         //---------------------------------------------------------------------------------------------

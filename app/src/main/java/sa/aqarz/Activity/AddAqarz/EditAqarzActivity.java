@@ -1136,7 +1136,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
             }
         });
-        Places.initialize(EditAqarzActivity.this, "AIzaSyA6E2L_Feqp6HMD85eQ1RP06WnykHJj7Mc");
+        Places.initialize(EditAqarzActivity.this, getResources().getString(R.string.google_key2));
         placesClient = Places.createClient(EditAqarzActivity.this);
 
 

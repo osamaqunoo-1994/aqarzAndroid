@@ -196,7 +196,7 @@ public class EditProfileActivity extends AppCompatActivity {
         course_recycle = findViewById(R.id.course_rec);
         Bio = findViewById(R.id.Bio);
 
-        Places.initialize(EditProfileActivity.this, "AIzaSyA6E2L_Feqp6HMD85eQ1RP06WnykHJj7Mc");
+        Places.initialize(EditProfileActivity.this, getResources().getString(R.string.google_key2));
 //        PlacesClient placesClient = Places.createClient(EditProfileActivity.this);
 
 

@@ -101,7 +101,7 @@ public class type4Fragment extends Fragment {
         hide = v.findViewById(R.id.hide);
 
 
-        mMapView = (MapView) v.findViewById(R.id.mapViewxx);
+        mMapView = v.findViewById(R.id.mapViewxx);
 
 
         //---------------------------------------------------------------------------------------------
@@ -197,7 +197,7 @@ public class type4Fragment extends Fragment {
 
             }
         });
-        Places.initialize(getContext(), "AIzaSyA6E2L_Feqp6HMD85eQ1RP06WnykHJj7Mc");
+        Places.initialize(getContext(), getResources().getString(R.string.google_key2));
         placesClient = Places.createClient(getContext());
 
         //---------------------------------------------------------------------------------------------
