@@ -769,63 +769,109 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (area_text.getText().toString().equals("") |
-                        room_text.getText().toString().equals("0") |
-                        lengths_add_text.getText().toString().equals("") |
-                        streetwidthadd_text.getText().toString().equals("") |
-                        Date_of_construction_text.getText().toString().equals("") |
-                        sale_price_text.getText().toString().equals("")
-                ) {
+                if (addAqarezObject.getEstate_type_id().equals("3") | addAqarezObject.getEstate_type_id().equals("7")) {//ارض -مزرعه
+
+                    if (area_text.getText().toString().equals("") |
+                            lengths_add_text.getText().toString().equals("") |
+                            streetwidthadd_text.getText().toString().equals("") |
+                            sale_price_text.getText().toString().equals("")
+                    ) {
 
 
-                    if (area_text.getText().toString().equals("")) {
-                        area_text.setError(getResources().getString(R.string.is_requred));
+                        if (area_text.getText().toString().equals("")) {
+                            area_text.setError(getResources().getString(R.string.is_requred));
+                        }
+
+
+                        if (lengths_add_text.getText().toString().equals("")) {
+                            lengths_add_text.setError(getResources().getString(R.string.is_requred));
+
+                        }
+
+
+                        if (streetwidthadd_text.getText().toString().equals("")) {
+                            streetwidthadd_text.setError(getResources().getString(R.string.is_requred));
+
+                        }
+
+
+                        if (sale_price_text.getText().toString().equals("")) {
+                            sale_price_text.setError(getResources().getString(R.string.is_requred));
+
+                        }
+
+
+                    } else {
+
+
+                        lay_1.setVisibility(View.GONE);
+                        lay_2.setVisibility(View.GONE);
+                        lay_3.setVisibility(View.GONE);
+                        lay_4.setVisibility(View.VISIBLE);
+                        title.setText(getResources().getString(R.string.title7));
+
+
                     }
-
-
-                    if (room_text.getText().toString().equals("0")) {
-                        rommes.setError(getResources().getString(R.string.is_requred));
-
-                    }
-
-
-                    if (lengths_add_text.getText().toString().equals("")) {
-                        lengths_add_text.setError(getResources().getString(R.string.is_requred));
-
-                    }
-
-
-                    if (streetwidthadd_text.getText().toString().equals("")) {
-                        streetwidthadd_text.setError(getResources().getString(R.string.is_requred));
-
-                    }
-
-
-                    if (Date_of_construction_text.getText().toString().equals("")) {
-                        Date_of_construction_text.setError(getResources().getString(R.string.is_requred));
-
-                    }
-
-
-                    if (sale_price_text.getText().toString().equals("")) {
-                        sale_price_text.setError(getResources().getString(R.string.is_requred));
-
-                    }
-
 
                 } else {
 
+                    if (area_text.getText().toString().equals("") |
+                            room_text.getText().toString().equals("0") |
+                            lengths_add_text.getText().toString().equals("") |
+                            streetwidthadd_text.getText().toString().equals("") |
+                            Date_of_construction_text.getText().toString().equals("") |
+                            sale_price_text.getText().toString().equals("")
+                    ) {
 
-                    lay_1.setVisibility(View.GONE);
-                    lay_2.setVisibility(View.GONE);
-                    lay_3.setVisibility(View.GONE);
-                    lay_4.setVisibility(View.VISIBLE);
-                    title.setText(getResources().getString(R.string.title7));
 
+                        if (area_text.getText().toString().equals("")) {
+                            area_text.setError(getResources().getString(R.string.is_requred));
+                        }
+
+
+                        if (room_text.getText().toString().equals("0")) {
+                            rommes.setError(getResources().getString(R.string.is_requred));
+
+                        }
+
+
+                        if (lengths_add_text.getText().toString().equals("")) {
+                            lengths_add_text.setError(getResources().getString(R.string.is_requred));
+
+                        }
+
+
+                        if (streetwidthadd_text.getText().toString().equals("")) {
+                            streetwidthadd_text.setError(getResources().getString(R.string.is_requred));
+
+                        }
+
+
+                        if (Date_of_construction_text.getText().toString().equals("")) {
+                            Date_of_construction_text.setError(getResources().getString(R.string.is_requred));
+
+                        }
+
+
+                        if (sale_price_text.getText().toString().equals("")) {
+                            sale_price_text.setError(getResources().getString(R.string.is_requred));
+
+                        }
+
+
+                    } else {
+
+
+                        lay_1.setVisibility(View.GONE);
+                        lay_2.setVisibility(View.GONE);
+                        lay_3.setVisibility(View.GONE);
+                        lay_4.setVisibility(View.VISIBLE);
+                        title.setText(getResources().getString(R.string.title7));
+
+
+                    }
 
                 }
-
-
             }
         });
 
