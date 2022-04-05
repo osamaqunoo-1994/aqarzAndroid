@@ -102,5 +102,16 @@ public class ForceUpdateAsync extends AsyncTask<String, String, JSONObject> {
             }
         });
         alertDialogBuilder.show();
+
+
+
+
+
+
+
+
+
+
+        
     }
 }

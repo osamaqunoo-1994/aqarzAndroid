@@ -4,7 +4,6 @@
     <string name="app_name">Aqarz</string>
 
 
-
     <string name="google_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBw6QmlOdBAItUnbgrONR0qTuun4Rx9kT8</string>
     <string name="google_key2" templateMergeStrategy="preserve" translatable="false">AIzaSyA6E2L_Feqp6HMD85eQ1RP06WnykHJj7Mc</string>
     <string name="google_key3" templateMergeStrategy="preserve" translatable="false">AIzaSyCX9U6fj5-Tt5lK_23d2RFsr4Nlp3yqdoM</string>
@@ -1413,6 +1412,7 @@ Direct to schedule an appointment</string>
     <string name="Commercial_Registration_No_req">رقم السجل التجاري مطلوب</string>
 
 
+    <string name="seccess_add">The Aqarz has been successfully added</string>
 
 
 </resources>

@@ -2709,7 +2709,14 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
                             BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(AddAqarzStepsActivity.this);
                             View parentView = getLayoutInflater().inflate(R.layout.success_message, null);
+
+
+
                             Button close = parentView.findViewById(R.id.close);
+                            TextView text = parentView.findViewById(R.id.text);
+
+                            text.setText(getResources().getString(R.string.seccess_add));
+
                             close.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
