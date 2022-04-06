@@ -876,8 +876,8 @@
     <string name="title_market">طلبات السوق</string>
     <string name="des_market">الطلبات القادمة من المشتركين</string>
 
-    <string name="youAreNotUpdatedTitle">تحديث متوفر</string>
-    <string name="youAreNotUpdatedMessage">يتوفر اصدار جديد من تطبيق عقارز يرجى التحديث الى الاصدار </string>
+    <string name="youAreNotUpdatedTitle">تحديث متاح</string>
+    <string name="youAreNotUpdatedMessage">يتوفر إصدار جديد من التطبيق ، قم بالتحديث الآن للحصول على تجربة أفضل </string>
     <string name="youAreNotUpdatedMessage1"> الان </string>
     <string name="update">تحديث</string>
 
@@ -1353,5 +1353,6 @@
     <string name="entrepreneurs_">رواد اعمال</string>
 
     <string name="seccess_add">تمت اضافة العقار بنجاح</string>
+    <string name="Remindmelater">تذكير لاحقا</string>
 
 </resources>

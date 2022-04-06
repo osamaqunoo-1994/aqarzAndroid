@@ -60,6 +60,7 @@ import sa.aqarz.Modules.ObjectFiltterOrder;
 import sa.aqarz.Modules.Object_filtter;
 import sa.aqarz.Modules.imagemodules;
 import sa.aqarz.NewAqarz.AqqAqarz.AddAqarzStepsActivity;
+import sa.aqarz.NewAqarz.BottomDialog.BottomSheetDialogFragment_forceUpdate;
 import sa.aqarz.NewAqarz.Fragments.ChatFragment;
 import sa.aqarz.NewAqarz.Fragments.HomeMapFragment;
 import sa.aqarz.NewAqarz.Fragments.MoreFragment;
@@ -944,6 +945,18 @@ public class MainAqarzActivity extends AppCompatActivity {
 
         activity.getBaseContext().getResources().updateConfiguration(config,
                 activity.getBaseContext().getResources().getDisplayMetrics());
+
+    }
+    public static void show_dialog() {
+//        if (!BuildConfig.DEBUG)
+//            Thread.setDefaultUncaughtExceptionHandler(new DefaultExceptionHandler(activity));
+//        if (!BuildConfig.ENGLISH) {
+
+        BottomSheetDialogFragment_forceUpdate bottomSheetDialogFragment_forceUpdate
+                =new BottomSheetDialogFragment_forceUpdate("");
+        bottomSheetDialogFragment_forceUpdate.show(fragmentManager,"");
+
+
 
     }
 

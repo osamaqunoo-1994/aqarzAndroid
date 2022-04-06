@@ -887,7 +887,7 @@ Two working days to complete your order</string>
 
 
     <string name="youAreNotUpdatedTitle">Update Available</string>
-    <string name="youAreNotUpdatedMessage">A new version of Aqarez is available. Please update to version\s</string>
+    <string name="youAreNotUpdatedMessage">there a new version of the app available , update now for a better experience</string>
     <string name="youAreNotUpdatedMessage1">\s now</string>
     <string name="update">Update</string>
 
@@ -1413,6 +1413,7 @@ Direct to schedule an appointment</string>
 
 
     <string name="seccess_add">The Aqarz has been successfully added</string>
+    <string name="Remindmelater">Remind me later</string>
 
 
 </resources>
