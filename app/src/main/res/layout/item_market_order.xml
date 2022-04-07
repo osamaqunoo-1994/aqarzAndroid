@@ -131,6 +131,7 @@
                     <ImageView
                         android:id="@+id/hide"
                         android:layout_width="30dp"
+                        android:visibility="gone"
                         android:layout_height="30dp"
                         android:background="@drawable/circle_filter"
                         android:padding="9dp"
