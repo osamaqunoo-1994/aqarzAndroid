@@ -377,9 +377,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     public void show_data() {
 
-
         service_types_listss = Settings.getSettings().getService_types();
-
 
         for (int i = 0; i < service_types_listss.size(); i++) {
             for (int j = 0; j < Settings.GetUser().getService_name().size(); j++) {
@@ -389,16 +387,17 @@ public class EditProfileActivity extends AppCompatActivity {
                     service_types_listss.get(i).setChecked(true);
                 }
             }
-
         }
 
         service_types_te = "";
         for (int i = 0; i < service_types_listss.size(); i++) {
             if (service_types_listss.get(i).isChecked()) {
                 if (service_types_te.equals("")) {
+
                     service_types_te = service_types_listss.get(i).getId() + "";
 
                 } else {
+
                     service_types_te = service_types_te + "," + service_types_listss.get(i).getId() + "";
 
                 }
@@ -571,7 +570,7 @@ public class EditProfileActivity extends AppCompatActivity {
         }
 
 
-        RecyclerView_Course recyclerView_course = new RecyclerView_Course(EditProfileActivity.this, experince_list);
+        RecyclerView_Course recyclerView_course = new RecyclerView_Course(EditProfileActivity.this, course_list);
         recyclerView_course.addItemClickListener(new RecyclerView_Course.ItemClickListener() {
             @Override
             public void onItemClick(List<SettingsModules.service_types> service_types) {
