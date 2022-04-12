@@ -66,12 +66,13 @@
 
                 <LinearLayout
                     android:id="@+id/lay_1"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
 
                     <TextView
@@ -1498,7 +1499,7 @@
                     android:layout_marginEnd="15dp"
                     android:orientation="vertical"
                     android:paddingTop="10dp"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <LinearLayout
                         android:id="@+id/step_3"
@@ -2092,12 +2093,14 @@
 
 
                     <LinearLayout
-
+                        android:id="@+id/authorized_add_lay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:paddingBottom="5dp">
+                        android:orientation="vertical"
+                        android:paddingBottom="5dp"
+                        android:visibility="gone">
 
 
                         <EditText
@@ -2114,7 +2117,40 @@
                             android:text=""
                             android:textColorHint="@color/hint_color"
                             android:textSize="@dimen/_10sdp"
-                            android:visibility="gone" />
+                            android:visibility="visible" />
+
+
+                        <EditText
+                            android:id="@+id/advertiser_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="42dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/mash"
+                            android:gravity="center_vertical"
+                            android:hint="@string/advertiser_number"
+                            android:inputType="number"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text=""
+                            android:textColorHint="@color/hint_color"
+                            android:textSize="@dimen/_10sdp"
+                            android:visibility="visible" />
+
+
+                        <TextView
+                            android:id="@+id/advertiser_numberlink"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/din_bold"
+                            android:text="@string/advertiser_number2"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="13dp" />
 
 
                     </LinearLayout>

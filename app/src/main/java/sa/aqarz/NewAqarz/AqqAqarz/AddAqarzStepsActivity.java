@@ -30,6 +30,7 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
@@ -232,6 +233,9 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
     boolean west_selected = false;
     LinearLayout all_details;
     EditText authorized_add;
+    EditText advertiser_number;
+    TextView advertiser_numberlink;
+    LinearLayout authorized_add_lay;
     ImageView back;
     LinearLayout step_3;
     LinearLayout rental_period_lay;
@@ -252,8 +256,6 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         addAqarezObject = new AddAqarezObject();
 
         init();
-
-
         step_1();
         select_image_and_video();
         step_3();
@@ -266,14 +268,12 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         select_view();
         price();
 
-
         try {
-            owner_edt.setText(Settings.GetUser().getName() + "");
+            owner_edt.setText(Settings.GetUser().getOnwer_name() + "");
             mobile_edt.setText(Settings.GetUser().getMobile() + "");
         } catch (Exception e) {
 
         }
-
 
     }
 
@@ -284,6 +284,9 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         f2 = findViewById(R.id.f2);
         f3 = findViewById(R.id.f3);
         authorized_add = findViewById(R.id.authorized_add);
+        authorized_add_lay = findViewById(R.id.authorized_add_lay);
+        advertiser_numberlink = findViewById(R.id.advertiser_numberlink);
+        advertiser_number = findViewById(R.id.advertiser_number);
         yes = findViewById(R.id.yes);
         no = findViewById(R.id.no);
         rental_period_lay = findViewById(R.id.rental_period_lay);
@@ -300,7 +303,6 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         addImage = findViewById(R.id.addImage);
         Advertiser_side_add = findViewById(R.id.Advertiser_side_add);
         Advertiser_adjective_add = findViewById(R.id.Advertiser_adjective_add);
-
 
         images_RecyclerView = findViewById(R.id.images_RecyclerView);
         rommes = findViewById(R.id.rommes);
@@ -363,7 +365,6 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         lifts_mins = findViewById(R.id.lifts_mins);
         lifts_txt = findViewById(R.id.lifts_txt);
 
-
         parking_lay = findViewById(R.id.parking_lay);
         parking_plus = findViewById(R.id.parking_plus);
         parking_mins = findViewById(R.id.parking_mins);
@@ -401,12 +402,9 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 if (lay_1.getVisibility() == View.VISIBLE) {
 
-
                     finish();
-
 
                 } else if (lay_2.getVisibility() == View.VISIBLE) {
                     lay_1.setVisibility(View.VISIBLE);
@@ -2093,7 +2091,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                 authorized_txt.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                 authorized_txt.setTextColor(getResources().getColor(R.color.black));
 
-                authorized_add.setVisibility(View.GONE);
+                authorized_add_lay.setVisibility(View.GONE);
             }
         });
         authorized_txt.setOnClickListener(new View.OnClickListener() {
@@ -2105,8 +2103,18 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                 owner_txt.setBackground(getResources().getDrawable(R.drawable.back_edittext_add_aqarz));
                 owner_txt.setTextColor(getResources().getColor(R.color.black));
 
-                authorized_add.setVisibility(View.VISIBLE);
+                authorized_add_lay.setVisibility(View.VISIBLE);
 
+            }
+        });
+
+        advertiser_numberlink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://eservices.rega.gov.sa";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
             }
         });
 
@@ -2501,6 +2509,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             sendObj.put("full_address", addAqarezObject.getAddress() + "");
             sendObj.put("unit_counter", number_units_text.getText().toString() + "");
             sendObj.put("unit_number", unit_number_text.getText().toString() + "");
+            sendObj.put("advertiser_number", advertiser_number.getText().toString() + "");
 
 
             String interface_ = "";
@@ -2709,7 +2718,6 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 
                             BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(AddAqarzStepsActivity.this);
                             View parentView = getLayoutInflater().inflate(R.layout.success_message, null);
-
 
 
                             Button close = parentView.findViewById(R.id.close);

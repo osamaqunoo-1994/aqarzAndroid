@@ -99,7 +99,6 @@ public class MoreFragment extends Fragment {
     LinearLayout favorit;
     LinearLayout all_area;
 
-
     TextView name;
     ScaleRatingBar rate;
     CircleImageView iamge;
@@ -110,7 +109,6 @@ public class MoreFragment extends Fragment {
     TextView aqarz_offer_num;
     TextView offer_num;
     TextView rang_profile;
-
 
     LinearLayout st_100;
     LinearLayout st_25;

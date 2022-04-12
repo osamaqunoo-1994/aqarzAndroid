@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -147,6 +148,8 @@ public class EditProfileActivity extends AppCompatActivity {
     TextView yes_branch, no_branch;
 
     TextView yes_fund, no_fund;
+    TextView advertiser_numberlink;
+    EditText advertiser_number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,6 +169,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
     public void init() {
         no_branch = findViewById(R.id.no_branch);
+        advertiser_numberlink = findViewById(R.id.advertiser_numberlink);
+        advertiser_number = findViewById(R.id.advertiser_number);
         yes_branch = findViewById(R.id.yes_branch);
         yes_fund = findViewById(R.id.yes_fund);
         no_fund = findViewById(R.id.no_fund);
@@ -226,6 +231,15 @@ public class EditProfileActivity extends AppCompatActivity {
             }
 //            link.setText(Settings.GetUser().getUser_name() + "");
 
+
+            if (Settings.GetUser().getAdvertiser_number() != null) {
+                if (!Settings.GetUser().getAdvertiser_number().equals("null")) {
+                    advertiser_number.setText(Settings.GetUser().getAdvertiser_number() + "");
+                }
+
+            }
+
+
         } catch (Exception e) {
 
         }
@@ -277,7 +291,16 @@ public class EditProfileActivity extends AppCompatActivity {
 ////                            flowLayoutManager.maxItemsPerLine(1);
 //        member_list.setLayoutManager(flowLayoutManager);
 
+        advertiser_numberlink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                String url = "https://eservices.rega.gov.sa";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
         if (Settings.CheckIsCompleate()) {
 
 
@@ -784,6 +807,9 @@ public class EditProfileActivity extends AppCompatActivity {
                 } else if (Commercial_Registration_No.getText().toString().equals("")) {
                     WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.Commercial_Registration_No_req) + "", "error");
 
+                } else if (advertiser_number.getText().toString().equals("")) {
+//                    WebService.Make_Toast_color(EditProfileActivity.this, getResources().getString(R.string.Commercial_Registration_No_req) + "", "error");
+                    advertiser_number.setError(getResources().getString(R.string.Required));
                 } else {
                     init_volley();
                     WebService.loading(EditProfileActivity.this, true);
@@ -817,6 +843,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         sendObj.put("courses_id", cour_te);
                         sendObj.put("license_number", Commercial_Registration_No.getText().toString());
                         sendObj.put("bio", Bio.getText().toString());
+                        sendObj.put("advertiser_number", advertiser_number.getText().toString());
 
 
                         System.out.println(sendObj.toString());

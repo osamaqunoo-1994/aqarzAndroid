@@ -219,10 +219,17 @@ new password</string>
     <string name="normal">normal</string>
 
 
-    <string name="north">north</string>
-    <string name="south">south</string>
-    <string name="east">east</string>
-    <string name="west">west</string>
+<!--    <string name="north">north</string>-->
+<!--    <string name="south">south</string>-->
+<!--    <string name="east">east</string>-->
+<!--    <string name="west">west</string>-->
+
+
+    <string name="north">شمال</string>
+    <string name="south">شرق</string>
+    <string name="east">غرب</string>
+    <string name="west">جنوب</string>
+
 
     <string name="unmarried">unmarried</string>
     <string name="married">married</string>
@@ -1417,5 +1424,11 @@ Direct to schedule an appointment</string>
 
 
     <string name="selectMemberships">Memberships</string>
+
+
+
+    <string name="advertiser_number">advertiser_number</string>
+    <string name="advertiser_number2">advertiser_number2</string>
+    <string name="Required">Required</string>
 
 </resources>

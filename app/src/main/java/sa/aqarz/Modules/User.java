@@ -166,6 +166,9 @@ public class User {
     @SerializedName("experience")
     @Expose
     private String experience;
+    @SerializedName("advertiser_number")
+    @Expose
+    private String advertiser_number;
     @SerializedName("member_name")
     @Expose
     private List<SettingsModules.service_types> member_name;
@@ -201,6 +204,10 @@ public class User {
 
     public int getProfile_percentage() {
         return profile_percentage;
+    }
+
+    public String getAdvertiser_number() {
+        return advertiser_number;
     }
 
     public String getIs_iam_complete() {

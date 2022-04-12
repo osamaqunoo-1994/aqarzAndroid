@@ -1357,5 +1357,8 @@
 
 
     <string name="selectMemberships">اختر العضويات</string>
+    <string name="advertiser_number">رقم التسجيل المعلن في الهيئه العامه للعقار</string>
+    <string name="advertiser_number2">ليس لديك رقم تسجيل معلن من هيئة العقار ؟</string>
+    <string name="Required">مطلوب</string>
 
 </resources>
