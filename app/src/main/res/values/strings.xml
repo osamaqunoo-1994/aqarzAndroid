@@ -984,6 +984,8 @@ Two working days to complete your order</string>
     <string name="report__s1">The data is incorrect</string>
     <string name="report__s2">The image is not appropriate</string>
     <string name="report__s3">other</string>
+    <string name="report__s4x">مشكلة في التواصل</string>
+
     <string name="report__s4">..Tell us more about the problem</string>
     <string name="report__title">Report a problem</string>
     <string name="report__button">Report</string>

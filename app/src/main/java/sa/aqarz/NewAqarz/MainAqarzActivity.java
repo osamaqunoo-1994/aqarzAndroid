@@ -250,9 +250,13 @@ public class MainAqarzActivity extends AppCompatActivity {
     }
 
     public void on_click_bottom_action() {
+
         lay_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
                 text_1.setTextColor(getResources().getColor(R.color.colorPrimary));
                 text_2.setTextColor(getResources().getColor(R.color.color_un_active));
                 text_3.setTextColor(getResources().getColor(R.color.color_un_active));
@@ -275,6 +279,7 @@ public class MainAqarzActivity extends AppCompatActivity {
 
             }
         });
+
 
 
         lay_2.setOnClickListener(new View.OnClickListener() {
@@ -489,7 +494,6 @@ public class MainAqarzActivity extends AppCompatActivity {
 
                                         init_volley();
                                         WebService.loading(MainAqarzActivity.this, true);
-
 
                                         VolleyService mVolleyService = new VolleyService(mResultCallback, MainAqarzActivity.this);
                                         mVolleyService.getDataVolley("IAM_login", WebService.IAM_login);

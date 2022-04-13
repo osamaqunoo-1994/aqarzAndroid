@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ReportAqarezActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/back_bottom"
+        android:fillViewport="true">
+
+
+        <LinearLayout
+            android:id="@+id/lay_"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:padding="13dp"
+                    android:src="@drawable/ic_clear_white_24dp"
+                    app:tint="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/din_bold"
+                    android:gravity="center"
+                    android:text="@string/report__title"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+
+                <ImageView
+
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:padding="13dp"
+                    app:tint="@color/white" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="@string/report_c"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical">
+
+
+                <RadioButton
+                    android:id="@+id/st_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:checked="true"
+                    android:text="@string/report__s1" />
+
+                <RadioButton
+                    android:id="@+id/st_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="5dp"
+                    android:text="@string/report__s2" />
+
+                <RadioButton
+                    android:id="@+id/st_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="5dp"
+                    android:text="@string/report__s4x" />
+
+                <RadioButton
+                    android:id="@+id/st_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="5dp"
+                    android:text="@string/report__s3" />
+
+
+            </RadioGroup>
+
+
+            <EditText
+                android:id="@+id/edt_des"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/edit_text_background"
+                android:gravity="start"
+                android:hint="@string/report__s4"
+                android:padding="10dp"
+                android:textSize="13dp" />
+
+
+            <Button
+                android:id="@+id/send"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/button_login"
+                android:text="@string/send__butt"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

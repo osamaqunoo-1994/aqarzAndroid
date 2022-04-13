@@ -74,6 +74,7 @@ import sa.aqarz.Adapter.home_viewPager_Adapter;
 import sa.aqarz.Modules.HomeModules_aqares;
 import sa.aqarz.Modules.imagemodules;
 import sa.aqarz.NewAqarz.AqqAqarz.AddRentalInstallmentActivity;
+import sa.aqarz.NewAqarz.BottomDialog.BottomSheetDialogFragment_report;
 import sa.aqarz.R;
 import sa.aqarz.Settings.Settings;
 import sa.aqarz.Settings.WebService;
@@ -357,11 +358,15 @@ public class DetaislAqarzActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+//
+//                Intent intent = new Intent(DetaislAqarzActivity.this, ReportAqarezActivity.class);
+//                intent.putExtra("id", id_or_aq + "");
+//                startActivity(intent);
 
-                Intent intent = new Intent(DetaislAqarzActivity.this, ReportAqarezActivity.class);
-                intent.putExtra("id", id_or_aq + "");
-                startActivity(intent);
 
+                BottomSheetDialogFragment_report bottomSheetDialogFragment_report = new BottomSheetDialogFragment_report(id_or_aq+"");
+
+                bottomSheetDialogFragment_report.show(getSupportFragmentManager(), "");
 
             }
         });

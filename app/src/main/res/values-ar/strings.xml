@@ -973,10 +973,11 @@
     <string name="name_city_select">ادخل اسم المدينة</string>
     <string name="report_c">ما هي المشكلة التي تريد الإبلاغ عنها؟</string>
     <string name="report__s1">البيانات غير صحيحة</string>
-    <string name="report__s2">الصورة غير ملائمة</string>
+    <string name="report__s2">الوحده غير متاحة</string>
+    <string name="report__s4x">مشكلة في التواصل</string>
     <string name="report__s3">أخرى</string>
     <string name="report__s4">..أخبرنا أكثر عن المشكلة</string>
-    <string name="report__title">الإبلاغ عن مشكلة</string>
+    <string name="report__title">الإبلاغ عن هذا الاعلان</string>
     <string name="report__button">ابلاغ</string>
     <string name="experiencsssse">اختار الخبرات</string>
     <string name="course">اختار الدورات</string>
