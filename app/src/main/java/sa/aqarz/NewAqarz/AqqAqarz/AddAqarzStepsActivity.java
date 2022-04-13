@@ -254,6 +254,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_aqarz_steps);
 
         addAqarezObject = new AddAqarezObject();
+        advertiser_number = findViewById(R.id.advertiser_number);
 
         init();
         step_1();
@@ -271,6 +272,13 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         try {
             owner_edt.setText(Settings.GetUser().getOnwer_name() + "");
             mobile_edt.setText(Settings.GetUser().getMobile() + "");
+
+            if (Settings.GetUser().getAdvertiser_number() != null) {
+                if (!Settings.GetUser().getAdvertiser_number().equals("null")) {
+                    advertiser_number.setText(Settings.GetUser().getAdvertiser_number() + "");
+                }
+
+            }
         } catch (Exception e) {
 
         }
@@ -286,7 +294,6 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         authorized_add = findViewById(R.id.authorized_add);
         authorized_add_lay = findViewById(R.id.authorized_add_lay);
         advertiser_numberlink = findViewById(R.id.advertiser_numberlink);
-        advertiser_number = findViewById(R.id.advertiser_number);
         yes = findViewById(R.id.yes);
         no = findViewById(R.id.no);
         rental_period_lay = findViewById(R.id.rental_period_lay);
@@ -2403,6 +2410,8 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                                 owner_edt.getText().toString().equals("") |
 
                                 !is_selected_view |
+                                (addAqarezObject.getAdvertiser_character().equals("authorized") & advertiser_number.getText().toString().equals("")) |
+                                (addAqarezObject.getAdvertiser_character().equals("authorized") & authorized_add.getText().toString().equals("")) |
 
 
                                 addAqarezObject.getAdvertiser_side().equals("") |
@@ -2414,6 +2423,18 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                     if (addAqarezObject.getLan().equals("")) {
 
                         s = s + "\n" + "اختر موقع العقار على الخريطه";
+
+                    }
+                    if ((addAqarezObject.getAdvertiser_character().equals("authorized") & advertiser_number.getText().toString().equals(""))
+                    ) {
+
+                        advertiser_number.setError(getResources().getString(R.string.Required));
+
+                    }
+                    if ((addAqarezObject.getAdvertiser_character().equals("authorized") & authorized_add.getText().toString().equals(""))
+                    ) {
+
+                        authorized_add.setError(getResources().getString(R.string.Required));
 
                     }
                     if (area_text.getText().toString().equals("")) {
@@ -2463,6 +2484,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                         Advertiser_side_add.setError(getResources().getString(R.string.is_requred));
 
                     }
+
 
                     System.out.println("^^^^^^" + s);
                     WebService.Make_Toast_color_info(AddAqarzStepsActivity.this, " " + s, "error");
@@ -2717,7 +2739,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                         try {
 
                             BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(AddAqarzStepsActivity.this);
-                            View parentView = getLayoutInflater().inflate(R.layout.success_message, null);
+                            View parentView = getLayoutInflater().inflate(R.layout.success_message2, null);
 
 
                             Button close = parentView.findViewById(R.id.close);
