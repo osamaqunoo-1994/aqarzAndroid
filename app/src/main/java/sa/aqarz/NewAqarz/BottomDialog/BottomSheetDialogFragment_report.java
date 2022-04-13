@@ -76,6 +76,7 @@ public class BottomSheetDialogFragment_report extends BottomSheetDialogFragment 
         st_1 = v.findViewById(R.id.st_1);
         st_2 = v.findViewById(R.id.st_2);
         st_3 = v.findViewById(R.id.st_3);
+        st_4 = v.findViewById(R.id.st_4);
         edt_des = v.findViewById(R.id.edt_des);
 
 
@@ -96,6 +97,9 @@ public class BottomSheetDialogFragment_report extends BottomSheetDialogFragment 
                     }
                     if (st_2.isChecked()) {
                         type = "error_image";
+
+                    } if (st_4.isChecked()) {
+                        type = "contact_error";
 
                     }
                     if (st_3.isChecked()) {
