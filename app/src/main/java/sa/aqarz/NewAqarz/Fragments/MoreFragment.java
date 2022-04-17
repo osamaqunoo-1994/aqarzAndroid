@@ -48,6 +48,7 @@ import sa.aqarz.Activity.Employee.DetailsEmployeeActivity;
 import sa.aqarz.Activity.FavoriteActivity;
 import sa.aqarz.Activity.MyInterestsActivity;
 import sa.aqarz.Activity.MyOrderActivity;
+import sa.aqarz.Activity.PrivecyActivity;
 import sa.aqarz.Activity.SettingsActivity;
 import sa.aqarz.Activity.SplashScreenActivity;
 import sa.aqarz.Activity.TermsActivity;
@@ -98,6 +99,7 @@ public class MoreFragment extends Fragment {
     LinearLayout myAccount;
     LinearLayout favorit;
     LinearLayout all_area;
+    LinearLayout privecy;
 
     TextView name;
     ScaleRatingBar rate;
@@ -168,6 +170,7 @@ public class MoreFragment extends Fragment {
         contact_us = view.findViewById(R.id.contact_us);
         Technical_support = view.findViewById(R.id.Technical_support);
         terms = view.findViewById(R.id.terms);
+        privecy = view.findViewById(R.id.privecy);
         all_aqarez_man = view.findViewById(R.id.all_aqarez_man);
         employee = view.findViewById(R.id.employee);
         aqarz_offer = view.findViewById(R.id.aqarz_offer);
@@ -442,6 +445,15 @@ public class MoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), TermsActivity.class);
+//                                intent.putExtra("from", "splash");
+                startActivity(intent);
+//                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
+
+            }
+        });  privecy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PrivecyActivity.class);
 //                                intent.putExtra("from", "splash");
                 startActivity(intent);
 //                overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);

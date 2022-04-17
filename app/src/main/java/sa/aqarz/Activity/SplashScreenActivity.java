@@ -69,7 +69,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
 //
-        animationView.setAnimation(R.raw.spd);
+        animationView.setAnimation(R.raw.t1);
         animationView.playAnimation();
         animationView.loop(false);
         animationView.addAnimatorListener(new Animator.AnimatorListener() {

@@ -22,7 +22,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:background="@color/colorPrimary"
                 android:gravity="center_vertical">
 
                 <ImageView
@@ -31,9 +30,8 @@
                     android:layout_height="45dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:padding="13dp"
-                    android:src="@drawable/ic_back"
-                    app:tint="@color/white" />
+                    android:padding="15dp"
+                    android:src="@drawable/ic_back" />
 
                 <TextView
                     android:id="@+id/title"
@@ -41,9 +39,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textSize="17dp"
                     android:text="@string/Privacy"
-                    android:textColor="@color/white" />
+                    android:textSize="17dp" />
 
                 <ImageView
 
@@ -65,18 +62,6 @@
                 android:layout_marginTop="35dp"
                 android:src="@drawable/ic_logo_move" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="@font/din_bold"
-                android:gravity="center"
-                android:text="@string/terms_title"
-
-                android:textColor="@color/colorPrimary"
-                android:textSize="17dp">
-
-            </TextView>
 
             <TextView
                 android:id="@+id/text"
@@ -87,9 +72,6 @@
 
 
                 android:textSize="15dp" />
-
-
-
 
 
         </LinearLayout>

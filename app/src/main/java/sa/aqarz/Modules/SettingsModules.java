@@ -15,6 +15,12 @@ public class SettingsModules {
     @SerializedName("allRequestFund")
     @Expose
     private String allRequestFund;
+    @SerializedName("privacy_and_confidentiality_statement")
+    @Expose
+    private String privacy_and_confidentiality_statement;
+    @SerializedName("terms_and_conditions")
+    @Expose
+    private String terms_and_conditions;
     @SerializedName("marketDemands")
     @Expose
     private String marketDemands;
@@ -108,6 +114,14 @@ public class SettingsModules {
 
     public List<SettingsModules.service_types> getService_types() {
         return service_types;
+    }
+
+    public String getPrivacy_and_confidentiality_statement() {
+        return privacy_and_confidentiality_statement;
+    }
+
+    public String getTerms_and_conditions() {
+        return terms_and_conditions;
     }
 
     public SettingsModules.OprationType getOprationType() {

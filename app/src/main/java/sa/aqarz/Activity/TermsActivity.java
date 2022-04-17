@@ -16,6 +16,7 @@ import sa.aqarz.Settings.Settings;
 
 public class TermsActivity extends AppCompatActivity {
     TextView text;
+    TextView title;
     ImageView back;
 
     @Override
@@ -24,9 +25,20 @@ public class TermsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_terms);
         text = findViewById(R.id.text);
         back = findViewById(R.id.back);
+        title = findViewById(R.id.title);
 
 
-        text.setText(getResources().getString(R.string.xsaa));
+        try {
+            title.setText(getResources().getString(R.string.terms_title));
+            text.setText(Html.fromHtml(Settings.getSettings().getTerms_and_conditions()));
+
+
+        } catch (Exception e) {
+
+        }
+
+
+//        text.setText(getResources().getString(R.string.xsaa));
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
