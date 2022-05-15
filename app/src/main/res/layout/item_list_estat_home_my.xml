@@ -93,7 +93,7 @@
                         android:paddingLeft="7dp"
                         android:paddingRight="7dp"
                         android:paddingBottom="1dp"
-                        android:text="5445"
+                        android:text=""
                         android:textColor="@color/black"
 
 
@@ -138,6 +138,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:fontFamily="@font/din_light"
+
 
                         android:textColor="@color/black"
                         android:textSize="10dp"
@@ -251,9 +252,46 @@
                         android:textSize="9dp" />
 
                     <LinearLayout
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"/>
+
+
+
+                    <ImageView
+                        android:id="@+id/staatus_dot"
+                        android:layout_marginTop="5dp"
+
+                        android:layout_width="7dp"
+                        android:layout_height="7dp"/>
+                    <TextView
+                        android:id="@+id/staatus"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+
+                        android:layout_marginTop="3dp"
+                        android:textStyle="bold"
+
+
+                        android:lines="1"
+                        android:text=""
+                        android:textColor="#AAABB3"
+                        android:textSize="11dp" />
+
+
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
+
+
+
+
+
+
+
 
 
                     <TextView
@@ -281,6 +319,17 @@
                         android:padding="4dp"
                         android:src="@drawable/ic_un_hide"
                         android:visibility="gone" />
+                    <ImageView
+                        android:id="@+id/info"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:visibility="gone"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        app:tint="#FE695A"
+                        android:background="@drawable/circle_ccc"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_info1" />
 
                     <ImageView
                         android:id="@+id/share"
@@ -291,6 +340,7 @@
                         android:background="@drawable/circle_filter"
                         android:padding="4dp"
                         android:src="@drawable/ic_send_" />
+
 
                     <ImageView
                         android:id="@+id/add_favorite"

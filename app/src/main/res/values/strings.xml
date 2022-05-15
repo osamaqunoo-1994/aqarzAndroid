@@ -1341,6 +1341,7 @@ Two working days to complete your order</string>
     <string name="not6">Rate offer</string>
     <string name="not7">Rate estate</string>
     <string name="not8">Employee</string>
+    <string name="not9">Aqarz</string>
 
     <string name="error_msg">Write identity</string>
 
@@ -1432,5 +1433,22 @@ Direct to schedule an appointment</string>
     <string name="advertiser_number">advertiser_number</string>
     <string name="advertiser_number2">advertiser_number2</string>
     <string name="Required">Required</string>
+
+
+
+
+
+    <string name="new_status">new</string>
+    <string name="completed_status">completed</string>
+    <string name="closed_status">closed</string>
+    <string name="expired_status">expired</string>
+    <string name="rejectingReason">Reason for rejecting property</string>
+    <string name="DeleteAqarezTitle">Delete Aqarez</string>
+
+
+    <string name="de_st1">تم البيع</string>
+    <string name="de_st2">تم التأجير</string>
+    <string name="de_st3">لا أرغب بعرض العقار</string>
+    <string name="de_st4">أخرى</string>
 
 </resources>

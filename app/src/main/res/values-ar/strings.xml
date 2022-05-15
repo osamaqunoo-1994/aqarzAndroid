@@ -1264,6 +1264,7 @@
     <string name="not6">تقييم العرض</string>
     <string name="not7">تقيم العقار</string>
     <string name="not8">موظف</string>
+    <string name="not9">اعلان</string>
 
 
     <string name="error_msg">اكتب رقم الهوية</string>
@@ -1361,5 +1362,24 @@
     <string name="advertiser_number">رقم التسجيل المعلن في الهيئه العامه للعقار</string>
     <string name="advertiser_number2">ليس لديك رقم تسجيل معلن من هيئة العقار ؟</string>
     <string name="Required">مطلوب</string>
+
+
+    <string name="new_status">قيد المراجعه</string>
+    <string name="completed_status">منشور</string>
+    <string name="closed_status">مرفوض</string>
+    <string name="expired_status">منتهي</string>
+
+
+    <string name="rejectingReason">سبب رفض العقار رقم</string>
+
+
+    <string name="DeleteAqarezTitle">حذف العقار</string>
+
+
+    <string name="de_st1">تم البيع</string>
+    <string name="de_st2">تم التأجير</string>
+    <string name="de_st3">لا أرغب بعرض العقار</string>
+    <string name="de_st4">أخرى</string>
+
 
 </resources>

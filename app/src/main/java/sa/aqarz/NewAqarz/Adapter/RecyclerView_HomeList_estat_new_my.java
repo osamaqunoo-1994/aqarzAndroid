@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -96,6 +97,9 @@ public class RecyclerView_HomeList_estat_new_my extends RecyclerView.Adapter<Rec
         TextView edit;
         TextView delete;
         TextView is_rent_installment;
+        TextView staatus;
+        ImageView staatus_dot;
+        ImageView info;
 
         public MyViewHolder(View view) {
             super(view);
@@ -115,6 +119,9 @@ public class RecyclerView_HomeList_estat_new_my extends RecyclerView.Adapter<Rec
 //            max_space = view.findViewById(R.id.max_space);
 //            viesw = view.findViewById(R.id.viesw);
 
+            info = view.findViewById(R.id.info);
+            staatus_dot = view.findViewById(R.id.staatus_dot);
+            staatus = view.findViewById(R.id.staatus);
             re_news = view.findViewById(R.id.re_news);
             edit = view.findViewById(R.id.edit);
             delete = view.findViewById(R.id.delete);
@@ -129,7 +136,7 @@ public class RecyclerView_HomeList_estat_new_my extends RecyclerView.Adapter<Rec
             date = view.findViewById(R.id.date);
             space = view.findViewById(R.id.space);
             rate = view.findViewById(R.id.rate);
-            num_id = view.findViewById(R.id.num_id);
+            num_id = view.findViewById(R.id.id);
             bathroom = view.findViewById(R.id.bathroom);
             room = view.findViewById(R.id.room);
 //            ratingbar = view.findViewById(R.id.ratingbar);
@@ -187,6 +194,69 @@ public class RecyclerView_HomeList_estat_new_my extends RecyclerView.Adapter<Rec
             }
         } else {
             holder.address.setText("");
+
+        }
+
+        holder.info.setVisibility(View.GONE);
+        if (alldata.get(position).getStatus() != null) {
+            if (alldata.get(position).getStatus().equals("new")) {
+
+
+                holder.staatus.setText(context.getResources().getString(R.string.new_status));
+                holder.staatus.setTextColor(context.getResources().getColor(R.color.colorAccent));
+                holder.staatus_dot.setImageDrawable(context.getResources().getDrawable(R.drawable.circle_blue));
+            } else if (alldata.get(position).getStatus().equals("closed")) {
+
+                holder.staatus.setText(context.getResources().getString(R.string.closed_status));
+                holder.staatus.setTextColor(context.getResources().getColor(R.color.red_btn_bg_color));
+                holder.staatus_dot.setImageDrawable(context.getResources().getDrawable(R.drawable.circle_red));
+
+                holder.info.setVisibility(View.VISIBLE);
+                holder.info.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        final View popupView = layoutInflater.inflate(R.layout.alert_resuon_aqarz, null);
+                        TextView id_aqarz = popupView.findViewById(R.id.id_aqarz);
+                        TextView reseon = popupView.findViewById(R.id.reseon);
+                        ImageView close = popupView.findViewById(R.id.close);
+                        id_aqarz.setText(alldata.get(position).getId() + "#");
+                        reseon.setText(alldata.get(position).getReason() + "");
+                        close.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                alertDialog.dismiss();
+                            }
+                        });
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+//            alertDialog_country =
+                        builder.setView(popupView);
+
+
+                        alertDialog = builder.show();
+
+                        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+                    }
+                });
+
+            } else if (alldata.get(position).getStatus().equals("expired")) {
+
+                holder.staatus.setText(context.getResources().getString(R.string.expired_status));
+                holder.staatus.setTextColor(context.getResources().getColor(R.color.color_title_text1));
+                holder.staatus_dot.setImageDrawable(context.getResources().getDrawable(R.drawable.circle_fill_un));
+
+            } else if (alldata.get(position).getStatus().equals("completed")) {
+
+                holder.staatus.setText(context.getResources().getString(R.string.completed_status));
+                holder.staatus.setTextColor(context.getResources().getColor(R.color._enable));
+                holder.staatus_dot.setImageDrawable(context.getResources().getDrawable(R.drawable.circle_fill_g));
+
+            }
+
 
         }
 

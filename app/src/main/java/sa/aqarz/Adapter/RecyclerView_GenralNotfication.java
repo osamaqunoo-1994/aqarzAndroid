@@ -145,6 +145,10 @@ public class RecyclerView_GenralNotfication extends RecyclerView.Adapter<Recycle
             holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_user_menu));
             holder.title.setText(context.getResources().getString(R.string.not8));
 
+        } else if (alldata.get(position).getType().equals("estate")) {
+            holder.image.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_home1122));
+            holder.title.setText(context.getResources().getString(R.string.not9));
+
         } else {
             holder.title.setText(alldata.get(position).getType());
 

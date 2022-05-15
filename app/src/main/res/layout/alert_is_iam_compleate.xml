@@ -11,8 +11,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -26,6 +25,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:src="@drawable/logo_login" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -46,13 +46,12 @@
                 </LinearLayout>
 
 
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
+                    android:gravity="center"
                     android:text="@string/activate_ac1"
                     android:textColor="@color/black"
 
@@ -61,8 +60,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_marginTop="25dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
                     android:gravity="center">
 
                     <TextView
@@ -71,25 +70,26 @@
                         android:layout_height="40dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
-                        android:gravity="center"
-                        android:text="@string/cancel"
                         android:layout_weight="1"
                         android:background="@drawable/button_loginc"
+                        android:gravity="center"
+                        android:text="@string/cancel"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
+
                     <LinearLayout
                         android:layout_width="15dp"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent" />
 
                     <TextView
                         android:id="@+id/ok"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:gravity="center"
                         android:layout_weight="1"
-                        android:paddingLeft="15dp"
-
                         android:background="@drawable/button_login1"
+                        android:gravity="center"
+
+                        android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:text="@string/activate_ac2"
                         android:textColor="@color/white"

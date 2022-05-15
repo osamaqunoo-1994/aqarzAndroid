@@ -1,6 +1,5 @@
 package sa.aqarz.Dialog;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,119 +11,79 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.hedgehog.ratingbar.RatingBar;
 
 import org.json.JSONObject;
 
+import sa.aqarz.Activity.Employee.DetailsEmployeeActivity;
 import sa.aqarz.R;
-import sa.aqarz.Settings.Application;
 import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
 
 
-public class BottomSheetDialogFragmen_delete_offer extends BottomSheetDialogFragment {
+public class BottomSheetDialogFragmen_deleteAqarz extends BottomSheetDialogFragment {
     IResult mResultCallback;
 
+    EditText name;
+    EditText phone;
+    ImageView back;
+    Button add_employee;
 
-    Button send;
-    Button sendd;
-    Button resend;
-    EditText comment;
-    RatingBar rate;
-    ImageView close;
-    String estate_id = "";
-    String ratee = "";
 
-    RadioButton s1, s2, s3, s4;
     private ItemClickListener mItemClickListener;
-    EditText note;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.bottom_sheets_delete_aqarz, container, false);
-        sendd = v.findViewById(R.id.sendd);
-        note = v.findViewById(R.id.note);
-//        resend = v.findViewById(R.id.resend);
-        close = v.findViewById(R.id.close);
-        s1 = v.findViewById(R.id.s1);
-        s2 = v.findViewById(R.id.s2);
-        s3 = v.findViewById(R.id.s3);
-        s4 = v.findViewById(R.id.s4);
+        View v = inflater.inflate(R.layout.bottom_details_aqarz, container, false);
 
 
-        sendd.setOnClickListener(new View.OnClickListener() {
+        name = v.findViewById(R.id.name);
+        phone = v.findViewById(R.id.phone);
+        add_employee = v.findViewById(R.id.add_employee);
+        back = v.findViewById(R.id.close);
+
+
+        add_employee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String reason = "";
+                if (name.getText().toString().equals("") |
+                        phone.getText().toString().equals("")) {
 
-                if (s1.isChecked()) {
-                    reason = "" + s1.getText().toString();
-                } else if (s2.isChecked()) {
-                    reason = "" + s2.getText().toString();
-
-                } else if (s3.isChecked()) {
-                    reason = "" + s3.getText().toString();
-
-                } else if (s4.isChecked()) {
-                    reason = "" + note.getText().toString();
-
-                }
-
-
-                if (s4.isChecked() && note.getText().toString().equals("")) {
-                    note.setError(getResources().getString(R.string.is_requred));
                 } else {
-
                     WebService.loading(getActivity(), true);
+                    init_volley();
 
-                    JSONObject jsonObject = new JSONObject();
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
+
+
+                    JSONObject sendObj = new JSONObject();
 
                     try {
-                        jsonObject.put("reason", reason + "");
+
+                        sendObj.put("emp_name", name.getText().toString());
+                        sendObj.put("emp_mobile", phone.getText().toString());
+                        sendObj.put("country_code", "966");
+
 
                     } catch (Exception e) {
-
+                        e.printStackTrace();
                     }
+                    mVolleyService.postDataVolley("add_employee", WebService.add_employee, sendObj);
 
 
-                    init_volley();
-                    VolleyService mVolleyServicex = new VolleyService(mResultCallback, getContext());
-                    mVolleyServicex.postDataVolley("delete", WebService.delete + "/" + estate_id + "/estate", jsonObject);
-
-                    if (mItemClickListener != null) {
-                        mItemClickListener.onItemClick(0);
-                    }
                 }
-//                init_volley();
-//                VolleyService mVolleyService = new VolleyService(mResultCallback, getContext());
-//
-//                mVolleyService.getDataVolley("make_up", WebService.make_up + "/" + estate_id + "/estate");
-//
-
-
             }
         });
-
-//        resend.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dismiss();
-//            }
-//        });
-
-        close.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
             }
         });
-
 
         return v;
 
@@ -135,8 +94,7 @@ public class BottomSheetDialogFragmen_delete_offer extends BottomSheetDialogFrag
 //    categories_bottomSheetDialogFragment = new Categories_BottomSheetDialogFragment("");
 //                categories_bottomSheetDialogFragment.show(getSupportFragmentManager(), "");
 
-    public BottomSheetDialogFragmen_delete_offer(String estate_idd) {
-        estate_id = estate_idd;
+    public BottomSheetDialogFragmen_deleteAqarz() {
     }
 
     @Override
@@ -180,22 +138,12 @@ public class BottomSheetDialogFragmen_delete_offer extends BottomSheetDialogFrag
                     if (status) {
 
                         String data = response.getString("data");
-//                        String message = response.getString("message");
                         dismiss();
-                        if (requestType.equals("delete")) {
-
-                            System.out.println("mItemClickListener");
-                            if (mItemClickListener != null) {
-                                mItemClickListener.onItemClick(Integer.valueOf(estate_id + ""));
-                            }
-
-                        } else if (requestType.equals("make_up")) {
-                            dismiss();
 
 
-                        }
+                        DetailsEmployeeActivity.openSuccess(name.getText().toString());
+
 //                        String message = response.getString("message");
-
 
 //                        WebService.Make_Toast_color((Activity) context, message, "success");
 

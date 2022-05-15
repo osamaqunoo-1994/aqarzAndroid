@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:hedgehog="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_b"
+
+        android:orientation="vertical"
+        android:paddingBottom="70dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/DeleteAqarezTitle"
+                android:textColor="@color/red_btn_bg_color"
+                android:fontFamily="@font/din_bold"
+
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:id="@+id/close"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_clear_white_24dp"
+                app:tint="@color/black" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rejectingReason"
+                android:textColor="@color/black"
+                android:fontFamily="@font/din_bold"
+
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/id_aqarz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:text=""
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="13dp" />
+
+
+        </LinearLayout>
+
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp">
+
+            <RadioButton
+                android:id="@+id/s1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/din_bold"
+                android:text="@string/de_st1"
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+
+            <RadioButton
+                android:id="@+id/s2"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/din_bold"
+
+                android:text="@string/de_st2"
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+
+            <RadioButton
+                android:id="@+id/s3"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+
+                android:fontFamily="@font/din_bold"
+                android:text="@string/de_st3"
+
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+
+            <RadioButton
+                android:id="@+id/s4"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/din_bold"
+
+                android:text="@string/de_st4"
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+
+
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/note"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/border_fillter_edit"
+            android:gravity="start"
+            android:hint="@string/WriteHeare"
+            android:fontFamily="@font/din_bold"
+            android:padding="10dp"
+            android:textSize="13dp" />
+
+
+        <Button
+            android:id="@+id/sendd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/button_login"
+            android:text="@string/send__butt"
+            android:fontFamily="@font/din_bold"
+
+            android:textColor="@color/white"
+            android:textSize="13dp" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

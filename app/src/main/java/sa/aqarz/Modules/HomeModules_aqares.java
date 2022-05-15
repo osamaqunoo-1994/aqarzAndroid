@@ -157,6 +157,9 @@ public class HomeModules_aqares {
     @SerializedName("status")
     @Expose
     private String status;
+    @SerializedName("reason")
+    @Expose
+    private String reason ;
     @SerializedName("elevators_number")
     @Expose
     private String elevators_number;
@@ -329,6 +332,10 @@ public class HomeModules_aqares {
 
     public Integer getId() {
         return id;
+    }
+
+    public String getReason() {
+        return reason;
     }
 
     public String getUnit_counter() {
