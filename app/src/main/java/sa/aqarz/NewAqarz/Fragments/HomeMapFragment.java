@@ -205,16 +205,22 @@ public class HomeMapFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home_map, container, false);
         is_first = true;
-        setup_type_(view);
+        try {
+
+            setup_type_(view);
 
 
-        activity = getActivity();
-        mapFragment =
-                (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-        if (mapFragment != null) {
-            mapFragment.getMapAsync(callback);
+            activity = getActivity();
+            mapFragment =
+                    (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+            if (mapFragment != null) {
+                mapFragment.getMapAsync(callback);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
 
         return view;
     }
