@@ -1381,5 +1381,7 @@
     <string name="de_st3">لا أرغب بعرض العقار</string>
     <string name="de_st4">أخرى</string>
 
+    <string name="AddOtherLocation">مكان اخر</string>
+    <string name="NextTiBtn">التالي</string>
 
 </resources>

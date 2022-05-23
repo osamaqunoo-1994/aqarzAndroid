@@ -49,13 +49,14 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true">
 
                 <ImageView
-                    android:layout_width="30dp"
+                    android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_group_location_group" />
+                    android:src="@drawable/ic_svgexport_location"
+                    app:tint="@color/colorPrimary" />
 
 
             </LinearLayout>
@@ -71,7 +72,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
 
-                    android:layout_height="138dp"
+                    android:layout_height="108dp"
                     android:background="@drawable/back_search_home"
                     android:orientation="vertical"
                     android:visibility="visible">
@@ -85,15 +86,17 @@
                         android:text="@string/Select_Location"
                         android:textColor="@color/black"
                         android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-
                         android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="15dp"
+
+                        android:layout_marginBottom="5dp"
 
                         android:background="@drawable/edit_text_background_new_design"
                         android:visibility="gone">
@@ -114,10 +117,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:visibility="visible"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
-                        android:background="@drawable/edit_text_background_b">
+                        android:background="@drawable/edit_text_background_b"
+                        android:visibility="visible">
 
                         <ImageView
                             android:layout_width="42dp"
@@ -131,13 +134,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:gravity="start|center"
                             android:background="@android:color/transparent"
+                            android:gravity="start|center"
+                            android:hint="@string/search"
                             android:imeOptions="actionSearch"
                             android:inputType="text"
-                            android:hint="@string/search"
-                            android:paddingStart="10dp"
                             android:lines="1"
+                            android:paddingStart="10dp"
                             android:textSize="13dp" />
 
                         <ImageView
@@ -145,9 +148,9 @@
 
                             android:layout_width="42dp"
                             android:layout_height="42dp"
-                            android:visibility="gone"
                             android:padding="10dp"
                             android:src="@drawable/ic_close_black_24dp"
+                            android:visibility="gone"
                             app:tint="@color/black" />
 
                         <ImageView
@@ -162,26 +165,26 @@
                     </LinearLayout>
 
 
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
+                        android:layout_marginStart="15dp"
                         android:layout_marginEnd="15dp"
-                        android:visibility="gone"
-                        android:orientation="vertical"
                         android:background="@drawable/edit_text_background_b"
+                        android:orientation="vertical"
 
-                        android:layout_marginStart="15dp">
+                        android:visibility="gone">
+
                         <AutoCompleteTextView
                             android:id="@+id/auto"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-                            android:visibility="gone"
-                            android:paddingStart="10dp"
                             android:background="@android:color/transparent"
-                            android:textSize="13dp"
+                            android:hint="@string/search"
                             android:maxLines="1"
-                            android:hint="@string/search" />
+                            android:paddingStart="10dp"
+                            android:textSize="13dp"
+                            android:visibility="gone" />
 
                     </LinearLayout>
 
@@ -232,7 +235,7 @@
                         <LinearLayout
                             android:id="@+id/select_location"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="32dp"
                             android:background="@drawable/back_search_home_selected"
                             android:gravity="center"
                             android:orientation="horizontal"
@@ -251,7 +254,7 @@
                                 android:layout_marginBottom="2dp"
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
-                                android:text="@string/title5"
+                                android:text="@string/AddOtherLocation"
                                 android:textColor="@color/white"
                                 android:textSize="13dp" />
 
@@ -282,19 +285,18 @@
                 </LinearLayout>
 
 
-                <Button
-                    android:id="@+id/select"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="20dp"
-                    android:background="@drawable/back_search_home_selected"
-                    android:text="@string/Select_Location"
-                    android:textColor="@color/white" />
-
             </LinearLayout>
 
 
+            <Button
+                android:id="@+id/select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="20dp"
+                android:background="@drawable/back_search_home_selected"
+                android:text="@string/NextTiBtn"
+                android:textColor="@color/white" />
 
         </RelativeLayout>
 

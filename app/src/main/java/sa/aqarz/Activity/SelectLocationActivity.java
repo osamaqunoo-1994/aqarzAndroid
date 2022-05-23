@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -24,6 +25,7 @@ import android.os.Handler;
 import android.text.Editable;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
@@ -85,7 +87,9 @@ import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares_orders;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Filtter;
 import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
+import sa.aqarz.Modules.CheckPoint;
 import sa.aqarz.Modules.CityModules;
+import sa.aqarz.Modules.Locations;
 import sa.aqarz.R;
 import sa.aqarz.Settings.AutoCompleteAdapter;
 import sa.aqarz.Settings.WebService;
@@ -102,6 +106,7 @@ public class SelectLocationActivity extends AppCompatActivity {
     String lat = "";
     String lang = "";
     List<CityModules> cityModules_list_filtter = new ArrayList<>();
+    AlertDialog alertDialog;
 
     TextView text_search;
     PlaceAutocompleteFragment placeAutoComplete;
@@ -326,6 +331,7 @@ public class SelectLocationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 if (address.equals("")) {
                     alert = new AlertDialog.Builder(SelectLocationActivity.this);
 
@@ -363,16 +369,20 @@ public class SelectLocationActivity extends AppCompatActivity {
                     alert.show();
 
                 } else if (!lat.equals("")) {
+
+
+                    init_volley();
+
+                    VolleyService mVolleyService = new VolleyService(mResultCallback, SelectLocationActivity.this);
+
+                    mVolleyService.getDataVolley("check_point", WebService.check_point + "?lat=" + lat + "&lan=" + lang);
+
+                    WebService.loading(SelectLocationActivity.this, true);
+
+
 //                    if (mItemClickListener != null) {
 ////                        mItemClickListener.onItemClick(lat, lang, text_search.getText().toString());
 ////                    }
-                    Intent resultIntent = new Intent();
-// TODO Add extras or a data URI to this intent as appropriate.
-                    resultIntent.putExtra("lat", lat);
-                    resultIntent.putExtra("lang", lang);
-                    resultIntent.putExtra("address", text_search.getText().toString());
-                    setResult(Activity.RESULT_OK, resultIntent);
-                    finish();
 
 
                 }
@@ -527,6 +537,15 @@ public class SelectLocationActivity extends AppCompatActivity {
 
                         try {
 
+
+//                            init_volley();
+//
+//                            VolleyService mVolleyService = new VolleyService(mResultCallback, SelectLocationActivity.this);
+//
+//                            mVolleyService.getDataVolley("select_lat_lang", "https://nominatim.openstreetmap.org/reverse?format=json&zoom=18&addressdetails=1&lat=" + lat + "&lon=" + lang);
+////
+
+
 //                            WebService.loading(SelectLocationActivity.this, true);
 
                             final Handler handler = new Handler();
@@ -549,45 +568,45 @@ public class SelectLocationActivity extends AppCompatActivity {
                                         text_search.setText("" + address);
 
 
-//                                        try {
-//                                            List<Address> addresses = geocoder.getFromLocationName(
-//                                                    "السعودية", 5);
-//                                            PolylineOptions polylineOptions = new PolylineOptions();
-//
-//                                            for (int i = 0; i < addresses.size(); i++) {
-//
-//                                                System.out.println("**&&^%%%" + addresses.get(i).getLatitude() + "--" + addresses.get(i).getLongitude());
-//                                                polylineOptions.add(new LatLng(addresses.get(i).getLatitude(), addresses.get(i).getLongitude()));
-//
-//
-//                                            }
-//
-//                                            Polyline polyline = googleMap.addPolyline(polylineOptions);
-//
-//
-//                                            if (addresses.size() > 0) {
-//                                                Log.d("TAG", "ADRESSE " + addresses.get(0) + ",LAT :" + addresses.get(0).getLatitude() + ", LONG :" + addresses.get(0).getLongitude());
-//                                            }
-//                                        } catch (IOException e) {
-//                                            e.printStackTrace();
-//                                        }
+                                        try {
+                                            List<Address> addresses = geocoder.getFromLocationName(
+                                                    "السعودية", 5);
+                                            PolylineOptions polylineOptions = new PolylineOptions();
 
-//                                        System.out.println("countrycountry" + country);
-////                                        String postalCode = addresses.get(0).getPostalCode();
-////                                        String knownName = addresses.get(0).getFeatureName(); // Onl
-//
-//
-////                                        text_search.setText(country + " - " + state);
-//
-//
-//                                        if (country.equals("السعودية")) {
-//
-//                                            select.setVisibility(View.VISIBLE);
-//
-//                                        } else {
-//                                            select.setVisibility(View.INVISIBLE);
-//
-//                                        }
+                                            for (int i = 0; i < addresses.size(); i++) {
+
+                                                System.out.println("**&&^%%%" + addresses.get(i).getLatitude() + "--" + addresses.get(i).getLongitude());
+                                                polylineOptions.add(new LatLng(addresses.get(i).getLatitude(), addresses.get(i).getLongitude()));
+
+
+                                            }
+
+                                            Polyline polyline = googleMap.addPolyline(polylineOptions);
+
+
+                                            if (addresses.size() > 0) {
+                                                Log.d("TAG", "ADRESSE " + addresses.get(0) + ",LAT :" + addresses.get(0).getLatitude() + ", LONG :" + addresses.get(0).getLongitude());
+                                            }
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        System.out.println("countrycountry" + country);
+//                                        String postalCode = addresses.get(0).getPostalCode();
+//                                        String knownName = addresses.get(0).getFeatureName(); // Onl
+
+
+//                                        text_search.setText(country + " - " + state);
+
+
+                                        if (country.equals("السعودية")) {
+
+                                            select.setVisibility(View.VISIBLE);
+
+                                        } else {
+                                            select.setVisibility(View.INVISIBLE);
+
+                                        }
 
 
                                     } catch (Exception e) {
@@ -654,34 +673,103 @@ public class SelectLocationActivity extends AppCompatActivity {
                 WebService.loading(SelectLocationActivity.this, false);
 //{"status":true,"code":200,"message":"User Profile","data"
                 try {
-                    boolean status = response.getBoolean("status");
-                    if (status) {
-                        String data = response.getString("data");
-//                        String next_page_url = response.getString("next_page_url");
-                        JSONObject jsonObject = new JSONObject(data);
-
-                        if (requestType.equals("cities_with_neb")) {
-                            String datadata = jsonObject.getString("data");
 
 
-                            JSONArray jsonArray = new JSONArray(datadata);
-                            cityModules_list_filtter.clear();
+                    if (requestType.equals("select_lat_lang")) {
+                        JsonParser parser = new JsonParser();
+                        JsonElement mJson = parser.parse(response.toString());
 
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JsonParser parser = new JsonParser();
-                                JsonElement mJson = parser.parse(jsonArray.getString(i));
+                        Gson gson = new Gson();
+                        Locations homeModule = gson.fromJson(mJson, Locations.class);
 
-                                Gson gson = new Gson();
+                        String add_d = "";
 
-                                CityModules homeModules_aqares = gson.fromJson(mJson, CityModules.class);
+                        if (homeModule.getAddress().getCity() != null) {
+                            add_d = add_d + homeModule.getAddress().getCity() + "";
+                        }
+                        if (homeModule.getAddress().getTourism() != null) {
+                            add_d = add_d + " , " + homeModule.getAddress().getTourism() + "";
 
-                                cityModules_list_filtter.add(homeModules_aqares);
+                        }
+                        if (homeModule.getAddress().getRoad() != null) {
+                            add_d = add_d + " , " + homeModule.getAddress().getRoad() + "";
+
+                        }
+
+
+                        text_search.setText(add_d + "");
+                    } else if (requestType.equals("check_point")) {
+
+                        JsonParser parser = new JsonParser();
+                        JsonElement mJson = parser.parse(response.toString());
+
+                        Gson gson = new Gson();
+                        CheckPoint checkPoint = gson.fromJson(mJson, CheckPoint.class);
+
+
+                        if (checkPoint.getStatus()) {
+
+                            if (checkPoint.getData().getDistrictId() != null) {
+
+
+                                if (!checkPoint.getData().getDistrictId().equals("null")) {
+
+
+                                    Intent resultIntent = new Intent();
+// TODO Add extras or a data URI to this intent as appropriate.
+                                    resultIntent.putExtra("lat", lat);
+                                    resultIntent.putExtra("lang", lang);
+                                    resultIntent.putExtra("address", text_search.getText().toString());
+                                    setResult(Activity.RESULT_OK, resultIntent);
+                                    finish();
+
+
+                                } else {
+                                    alert_dialog();
+                                }
+
+                            } else {
+                                alert_dialog();
+
                             }
 
-                            RecyclerView_city_side_menu recyclerView_city_bootom_sheets = new RecyclerView_city_side_menu(SelectLocationActivity.this, cityModules_list_filtter);
-                            recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_side_menu.ItemClickListener() {
-                                @Override
-                                public void onItemClick(int i) {
+
+                        } else {
+                            alert_dialog();
+
+                        }
+
+
+                    } else {
+                        boolean status = response.getBoolean("status");
+                        if (status) {
+
+                            String data = response.getString("data");
+//                        String next_page_url = response.getString("next_page_url");
+                            JSONObject jsonObject = new JSONObject(data);
+
+                            if (requestType.equals("cities_with_neb")) {
+                                String datadata = jsonObject.getString("data");
+
+
+                                JSONArray jsonArray = new JSONArray(datadata);
+                                cityModules_list_filtter.clear();
+
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JsonParser parser = new JsonParser();
+                                    JsonElement mJson = parser.parse(jsonArray.getString(i));
+
+                                    Gson gson = new Gson();
+
+                                    CityModules homeModules_aqares = gson.fromJson(mJson, CityModules.class);
+
+                                    cityModules_list_filtter.add(homeModules_aqares);
+                                }
+
+                                RecyclerView_city_side_menu recyclerView_city_bootom_sheets = new RecyclerView_city_side_menu(SelectLocationActivity.this, cityModules_list_filtter);
+                                recyclerView_city_bootom_sheets.addItemClickListener(new RecyclerView_city_side_menu.ItemClickListener() {
+                                    @Override
+                                    public void onItemClick(int i) {
 //                        cityModules_list = alldata;
 //                                    convert_city_to_filter();
 //                                    searh = false;
@@ -692,30 +780,30 @@ public class SelectLocationActivity extends AppCompatActivity {
 //                                    MapsFragmentNew.lat = cityModules_list_filtter.get(i).getLat() + "";
 //                                    MapsFragmentNew.lan = cityModules_list_filtter.get(i).getLan() + "";
 
-                                    selected.setVisibility(View.VISIBLE);
-                                    text_t.setText(cityModules_list_filtter.get(i).getSearch_name() + "");
+                                        selected.setVisibility(View.VISIBLE);
+                                        text_t.setText(cityModules_list_filtter.get(i).getSearch_name() + "");
 
-                                    LatLng sydney = new LatLng(Double.valueOf(cityModules_list_filtter.get(i).getLat()), Double.valueOf(cityModules_list_filtter.get(i).getLan()));
-                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 10));
-                                    text_search.setText(cityModules_list_filtter.get(i).getSearch_name());//+ "-" + cityModules_list_filtter.get(i).getCity().getName()
-                                    result.setVisibility(View.GONE);
+                                        LatLng sydney = new LatLng(Double.valueOf(cityModules_list_filtter.get(i).getLat()), Double.valueOf(cityModules_list_filtter.get(i).getLan()));
+                                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 10));
+                                        text_search.setText(cityModules_list_filtter.get(i).getSearch_name());//+ "-" + cityModules_list_filtter.get(i).getCity().getName()
+                                        result.setVisibility(View.GONE);
 
-                                }
-                            });
-                            allcity.setAdapter(recyclerView_city_bootom_sheets);
-                            result.setVisibility(View.VISIBLE);
-                            closr_tecxt.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    selected.setVisibility(View.GONE);
-                                    text_t.setText("");
+                                    }
+                                });
+                                allcity.setAdapter(recyclerView_city_bootom_sheets);
+                                result.setVisibility(View.VISIBLE);
+                                closr_tecxt.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        selected.setVisibility(View.GONE);
+                                        text_t.setText("");
 
-                                }
-                            });
+                                    }
+                                });
+
+                            }
 
                         }
-
-
                     }
 
 
@@ -742,15 +830,22 @@ public class SelectLocationActivity extends AppCompatActivity {
                     String message = jsonObject.getString("message");
 
 
-                    WebService.Make_Toast_color(SelectLocationActivity.this, message, "error");
+                    if (requestType.equals("check_point")) {
+
+                        System.out.println("%%%%%%%%%%%%%%%%%");
+                        alert_dialog();
+
+
+                    } else {
+                        WebService.Make_Toast_color(SelectLocationActivity.this, message, "error");
+
+                    }
 
                     Log.e("error response", response_data);
 
                 } catch (Exception e) {
 
                 }
-
-                WebService.loading(SelectLocationActivity.this, false);
 
 
             }
@@ -820,5 +915,31 @@ public class SelectLocationActivity extends AppCompatActivity {
             return;
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void alert_dialog() {
+
+
+        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View popupView = layoutInflater.inflate(R.layout.alert_is_in_address, null);
+        TextView ok = popupView.findViewById(R.id.ok);
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(SelectLocationActivity.this);
+
+//            alertDialog_country =
+        builder.setView(popupView);
+
+
+        alertDialog = builder.show();
+
+
     }
 }
