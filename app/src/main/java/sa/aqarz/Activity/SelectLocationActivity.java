@@ -37,6 +37,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
@@ -86,7 +87,13 @@ import sa.aqarz.Adapter.RecyclerView_city_side_menu;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_DetailsAqares_orders;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_Filtter;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectArea;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectArea_setting;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectNeighborhoods;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_Select_nib_setting;
 import sa.aqarz.Fragment.mapsHome.MapsFragmentNew;
+import sa.aqarz.Modules.AllCity_WithNib;
 import sa.aqarz.Modules.CheckPoint;
 import sa.aqarz.Modules.CityModules;
 import sa.aqarz.Modules.Locations;
@@ -126,7 +133,7 @@ public class SelectLocationActivity extends AppCompatActivity {
     TextView text_t;
     ImageView closr_tecxt;
     ImageView clear_city;
-
+    List<AllCity_WithNib.neighborhoods> All_neighborhoods = new ArrayList<>();
     //
 //    AutoCompleteTextView autoCompleteTextView;
 //    AutoCompleteAdapter adapter;
@@ -134,6 +141,7 @@ public class SelectLocationActivity extends AppCompatActivity {
 //    PlacesClient placesClient;
     String address = "";
     AlertDialog.Builder alert;
+    String id_city = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +161,8 @@ public class SelectLocationActivity extends AppCompatActivity {
         select_location = findViewById(R.id.select_location);
         clear_city = findViewById(R.id.clear_city);
 
+
+        All_neighborhoods.clear();
 
         mMapView.onCreate(savedInstanceState);
         mMapView.onResume(); // needed to get the map to display immediately
@@ -458,23 +468,27 @@ public class SelectLocationActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        if (ActivityCompat.checkSelfPermission(SelectLocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(SelectLocationActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                            // TODO: Consider calling
-                            //    ActivityCompat#requestPermissions
-                            // here to request the missing permissions, and then overriding
-                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                            //
-                            //                                          int[] grantResults)
-                            // to handle the case where the user grants the permission. See the documentation
-                            // for ActivityCompat#requestPermissions for more details.
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 101);
-                            }
+//                        if (ActivityCompat.checkSelfPermission(SelectLocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(SelectLocationActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                            // TODO: Consider calling
+//                            //    ActivityCompat#requestPermissions
+//                            // here to request the missing permissions, and then overriding
+//                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                            //
+//                            //                                          int[] grantResults)
+//                            // to handle the case where the user grants the permission. See the documentation
+//                            // for ActivityCompat#requestPermissions for more details.
+//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+//                            }
+//
+//                        } else {
+//                            googleMap.setMyLocationEnabled(true);
+//
+//                        }
 
-                        } else {
-                            googleMap.setMyLocationEnabled(true);
 
-                        }
+                        alert_dialog_other_();
+
 
                     }
                 });
@@ -928,6 +942,128 @@ public class SelectLocationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
+            }
+        });
+
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(SelectLocationActivity.this);
+
+//            alertDialog_country =
+        builder.setView(popupView);
+
+
+        alertDialog = builder.show();
+
+
+    }
+
+
+    public void alert_dialog_other_() {
+
+
+        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View popupView = layoutInflater.inflate(R.layout.alert_select_other_location, null);
+        TextView ok = popupView.findViewById(R.id.ok);
+        TextView select_cit_txt = popupView.findViewById(R.id.select_cit_txt);
+        TextView select_nib_txt = popupView.findViewById(R.id.select_nib_txt);
+        LinearLayout select_city = popupView.findViewById(R.id.select_city);
+        LinearLayout select_nib = popupView.findViewById(R.id.select_nib);
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                lat = "" + place.getLatLng().latitude;
+//                lang = "" + place.getLatLng().longitude;
+
+                clear_city.setVisibility(View.VISIBLE);
+
+                LatLng my_location = new LatLng(Double.valueOf(lat), Double.valueOf(lang));
+                CameraPosition cameraPosition = new CameraPosition.Builder().target(my_location).zoom(4).build();
+                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 8));
+                // Zoom in, animating the camera.
+                googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+//                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
+                googleMap.animateCamera(CameraUpdateFactory.zoomTo(9), 3000, null);
+
+
+                alertDialog.dismiss();
+            }
+        });
+
+        select_city.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                BottomSheetDialogFragment_SelectCity bottomSheetDialogFragment_selectCity = new BottomSheetDialogFragment_SelectCity("");
+
+                bottomSheetDialogFragment_selectCity.addItemClickListener(new BottomSheetDialogFragment_SelectCity.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_citys, String city_naem) {
+                        id_city = id_citys + "";
+                        select_cit_txt.setText(city_naem + "");
+                        All_neighborhoods.clear();
+                        select_nib_txt.setText("");
+//                        All_neighborhoods = neighborhoods;
+                        bottomSheetDialogFragment_selectCity.dismiss();
+                    }
+                });
+
+                bottomSheetDialogFragment_selectCity.show(getSupportFragmentManager(), "");
+//                BottomSheetDialogFragment_SelectArea_setting bottomSheetDialogFragment_selectArea = new BottomSheetDialogFragment_SelectArea_setting("");
+//                bottomSheetDialogFragment_selectArea.addItemClickListener(new BottomSheetDialogFragment_SelectArea_setting.ItemClickListener() {
+//                    @Override
+//                    public void onItemClick(int id_cityx, String city_naem, List<AllCity_WithNib.neighborhoods> neighborhoods) {
+//                        id_city=id_cityx+"";
+//                        select_cit_txt.setText(city_naem + "");
+//                        All_neighborhoods.clear();
+//                        select_nib_txt.setText("");
+//                        All_neighborhoods = neighborhoods;
+//                        bottomSheetDialogFragment_selectArea.dismiss();
+//                    }
+//                });
+//                bottomSheetDialogFragment_selectArea.show(getSupportFragmentManager(), "");
+            }
+        });
+
+        select_nib.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (All_neighborhoods.size() == 0) {
+
+
+                    Toast.makeText(SelectLocationActivity.this, "لا يوجد احياء في هذه المدينة", Toast.LENGTH_LONG).show();
+
+                } else {
+
+                    BottomSheetDialogFragment_SelectNeighborhoods bottomSheetDialogFragment_selectNeighborhoods = new BottomSheetDialogFragment_SelectNeighborhoods(id_city);
+                    bottomSheetDialogFragment_selectNeighborhoods.addItemClickListener(new BottomSheetDialogFragment_SelectNeighborhoods.ItemClickListener() {
+                        @Override
+                        public void onItemClick(String id_city, String city_naem, String lats, String lngs) {
+                            select_nib_txt.setText(city_naem + "");
+                            lat=lats;
+                            lang=lngs;
+                            bottomSheetDialogFragment_selectNeighborhoods.dismiss();
+
+
+
+                        }
+                    });
+                    bottomSheetDialogFragment_selectNeighborhoods.show(getSupportFragmentManager(), "");
+//                    BottomSheetDialogFragment_Select_nib_setting bottomSheetDialogFragment_select_nib_setting = new BottomSheetDialogFragment_Select_nib_setting(All_neighborhoods);
+//                    bottomSheetDialogFragment_select_nib_setting.addItemClickListener(new BottomSheetDialogFragment_Select_nib_setting.ItemClickListener() {
+//                        @Override
+//                        public void onItemClick(int id_city, String city_naem) {
+//
+//                            select_nib_txt.setText(city_naem + "");
+//                            bottomSheetDialogFragment_select_nib_setting.dismiss();
+//
+//                        }
+//                    });
+//                    bottomSheetDialogFragment_select_nib_setting.show(getSupportFragmentManager(), "");
+                }
             }
         });
 

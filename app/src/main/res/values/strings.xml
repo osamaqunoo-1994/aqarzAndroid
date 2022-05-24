@@ -1455,6 +1455,8 @@ Direct to schedule an appointment</string>
     <string name="AddOtherLocation">Add Location</string>
     <string name="NextTiBtn">Next</string>
     <string name="title_alert">الرجاء التقريب لتحديد الموقع بدقة اكبر</string>
+    <string name="SelectBtn">Select</string>
+    <string name="District">الحي</string>
 
 
 </resources>

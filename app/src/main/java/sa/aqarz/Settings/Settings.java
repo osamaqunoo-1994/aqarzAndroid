@@ -14,6 +14,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.orhanobut.hawk.Hawk;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +26,7 @@ import sa.aqarz.Activity.Auth.MyProfileInformationActivity;
 import sa.aqarz.Activity.DetailsAqarzManActivity;
 import sa.aqarz.Activity.OprationNew.AqarzOrActivity;
 import sa.aqarz.Fragment.mapsHome.MapsViewModel;
+import sa.aqarz.Modules.AllCity_WithNib;
 import sa.aqarz.Modules.AllRegionList;
 import sa.aqarz.Modules.RegionModules;
 import sa.aqarz.Modules.SettingsModules;
@@ -50,6 +54,49 @@ public class Settings {
         }
 
 
+    }
+
+
+    public static List<AllCity_WithNib.data> all_city = new ArrayList<>();
+
+    public static List<AllCity_WithNib.data> get_city_(Activity activity) {
+
+
+        if (all_city.size() == 0) {
+            String all_city_txt = loadJSONFromAsset(activity);
+
+
+            JsonParser parser = new JsonParser();
+            JsonElement mJson = parser.parse(all_city_txt);
+
+            Gson gson = new Gson();
+            AllCity_WithNib allCity_withNib = gson.fromJson(mJson, AllCity_WithNib.class);
+
+            all_city = allCity_withNib.getData();
+
+            return all_city;
+        } else {
+            return all_city;
+
+        }
+
+
+    }
+
+    public static String loadJSONFromAsset(Activity activity) {
+        String json = null;
+        try {
+            InputStream is = activity.getAssets().open("AllCites.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, StandardCharsets.UTF_8);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
     }
 
     public static List<RegionModules> getRegions() {

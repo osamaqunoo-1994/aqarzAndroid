@@ -1383,5 +1383,8 @@
 
     <string name="AddOtherLocation">مكان اخر</string>
     <string name="NextTiBtn">التالي</string>
+    <string name="title_alert">الرجاء التقريب لتحديد الموقع بدقة اكبر</string>
+    <string name="SelectBtn">تحديد</string>
+    <string name="District">الحي</string>
 
 </resources>
