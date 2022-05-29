@@ -142,6 +142,7 @@ public class SelectLocationActivity extends AppCompatActivity {
     String address = "";
     AlertDialog.Builder alert;
     String id_city = "";
+    String id_nib = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -733,6 +734,7 @@ public class SelectLocationActivity extends AppCompatActivity {
 // TODO Add extras or a data URI to this intent as appropriate.
                                     resultIntent.putExtra("lat", lat);
                                     resultIntent.putExtra("lang", lang);
+                                    resultIntent.putExtra("city_id", checkPoint.getData().getCityId()+"");
                                     resultIntent.putExtra("address", text_search.getText().toString());
                                     setResult(Activity.RESULT_OK, resultIntent);
                                     finish();
@@ -995,35 +997,35 @@ public class SelectLocationActivity extends AppCompatActivity {
         select_city.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                BottomSheetDialogFragment_SelectCity bottomSheetDialogFragment_selectCity = new BottomSheetDialogFragment_SelectCity("");
-
-                bottomSheetDialogFragment_selectCity.addItemClickListener(new BottomSheetDialogFragment_SelectCity.ItemClickListener() {
-                    @Override
-                    public void onItemClick(int id_citys, String city_naem) {
-                        id_city = id_citys + "";
-                        select_cit_txt.setText(city_naem + "");
-                        All_neighborhoods.clear();
-                        select_nib_txt.setText("");
-//                        All_neighborhoods = neighborhoods;
-                        bottomSheetDialogFragment_selectCity.dismiss();
-                    }
-                });
-
-                bottomSheetDialogFragment_selectCity.show(getSupportFragmentManager(), "");
-//                BottomSheetDialogFragment_SelectArea_setting bottomSheetDialogFragment_selectArea = new BottomSheetDialogFragment_SelectArea_setting("");
-//                bottomSheetDialogFragment_selectArea.addItemClickListener(new BottomSheetDialogFragment_SelectArea_setting.ItemClickListener() {
+//
+//                BottomSheetDialogFragment_SelectCity bottomSheetDialogFragment_selectCity = new BottomSheetDialogFragment_SelectCity("");
+//
+//                bottomSheetDialogFragment_selectCity.addItemClickListener(new BottomSheetDialogFragment_SelectCity.ItemClickListener() {
 //                    @Override
-//                    public void onItemClick(int id_cityx, String city_naem, List<AllCity_WithNib.neighborhoods> neighborhoods) {
-//                        id_city=id_cityx+"";
+//                    public void onItemClick(int id_citys, String city_naem) {
+//                        id_city = id_citys + "";
 //                        select_cit_txt.setText(city_naem + "");
 //                        All_neighborhoods.clear();
 //                        select_nib_txt.setText("");
-//                        All_neighborhoods = neighborhoods;
-//                        bottomSheetDialogFragment_selectArea.dismiss();
+////                        All_neighborhoods = neighborhoods;
+//                        bottomSheetDialogFragment_selectCity.dismiss();
 //                    }
 //                });
-//                bottomSheetDialogFragment_selectArea.show(getSupportFragmentManager(), "");
+//
+//                bottomSheetDialogFragment_selectCity.show(getSupportFragmentManager(), "");
+                BottomSheetDialogFragment_SelectArea_setting bottomSheetDialogFragment_selectArea = new BottomSheetDialogFragment_SelectArea_setting("");
+                bottomSheetDialogFragment_selectArea.addItemClickListener(new BottomSheetDialogFragment_SelectArea_setting.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_cityx, String city_naem, List<AllCity_WithNib.neighborhoods> neighborhoods) {
+                        id_city = id_cityx + "";
+                        select_cit_txt.setText(city_naem + "");
+                        All_neighborhoods.clear();
+                        select_nib_txt.setText("");
+                        All_neighborhoods = neighborhoods;
+                        bottomSheetDialogFragment_selectArea.dismiss();
+                    }
+                });
+                bottomSheetDialogFragment_selectArea.show(getSupportFragmentManager(), "");
             }
         });
 
@@ -1038,31 +1040,37 @@ public class SelectLocationActivity extends AppCompatActivity {
 
                 } else {
 
-                    BottomSheetDialogFragment_SelectNeighborhoods bottomSheetDialogFragment_selectNeighborhoods = new BottomSheetDialogFragment_SelectNeighborhoods(id_city);
-                    bottomSheetDialogFragment_selectNeighborhoods.addItemClickListener(new BottomSheetDialogFragment_SelectNeighborhoods.ItemClickListener() {
-                        @Override
-                        public void onItemClick(String id_city, String city_naem, String lats, String lngs) {
-                            select_nib_txt.setText(city_naem + "");
-                            lat=lats;
-                            lang=lngs;
-                            bottomSheetDialogFragment_selectNeighborhoods.dismiss();
-
-
-
-                        }
-                    });
-                    bottomSheetDialogFragment_selectNeighborhoods.show(getSupportFragmentManager(), "");
-//                    BottomSheetDialogFragment_Select_nib_setting bottomSheetDialogFragment_select_nib_setting = new BottomSheetDialogFragment_Select_nib_setting(All_neighborhoods);
-//                    bottomSheetDialogFragment_select_nib_setting.addItemClickListener(new BottomSheetDialogFragment_Select_nib_setting.ItemClickListener() {
+//                    BottomSheetDialogFragment_SelectNeighborhoods bottomSheetDialogFragment_selectNeighborhoods = new BottomSheetDialogFragment_SelectNeighborhoods(id_city);
+//                    bottomSheetDialogFragment_selectNeighborhoods.addItemClickListener(new BottomSheetDialogFragment_SelectNeighborhoods.ItemClickListener() {
 //                        @Override
-//                        public void onItemClick(int id_city, String city_naem) {
-//
+//                        public void onItemClick(String id_city, String city_naem, String lats, String lngs) {
 //                            select_nib_txt.setText(city_naem + "");
-//                            bottomSheetDialogFragment_select_nib_setting.dismiss();
+//                            lat=lats;
+//                            lang=lngs;
+//                            bottomSheetDialogFragment_selectNeighborhoods.dismiss();
+//
+//
 //
 //                        }
 //                    });
-//                    bottomSheetDialogFragment_select_nib_setting.show(getSupportFragmentManager(), "");
+//                    bottomSheetDialogFragment_selectNeighborhoods.show(getSupportFragmentManager(), "");
+                    BottomSheetDialogFragment_Select_nib_setting bottomSheetDialogFragment_select_nib_setting = new BottomSheetDialogFragment_Select_nib_setting(All_neighborhoods);
+                    bottomSheetDialogFragment_select_nib_setting.addItemClickListener(new BottomSheetDialogFragment_Select_nib_setting.ItemClickListener() {
+                        @Override
+                        public void onItemClick(int id_city, String city_naem, String lat_lang) {
+
+                            select_nib_txt.setText(city_naem + "");
+
+                            List<String> elephantList = Arrays.asList(lat_lang.split(","));
+
+                            lat = elephantList.get(0);
+                            lang = elephantList.get(1);
+
+                            bottomSheetDialogFragment_select_nib_setting.dismiss();
+
+                        }
+                    });
+                    bottomSheetDialogFragment_select_nib_setting.show(getSupportFragmentManager(), "");
                 }
             }
         });

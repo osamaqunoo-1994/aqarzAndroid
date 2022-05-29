@@ -246,6 +246,9 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
     EditText price_int_result;
     TextView f1, f2, f3;
     TextView yes, no;
+
+
+    String city_id_glo = "";
     public static List<String> selectedVideos;
 
     @Override
@@ -1079,8 +1082,10 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
                         // TODO Extract the data returned from the child Activity.
                         String lat_ = data.getStringExtra("lat");
                         String lang_ = data.getStringExtra("lang");
+                        String city_id = data.getStringExtra("city_id");
                         String address_ = data.getStringExtra("address");
 
+                        city_id_glo = city_id;
                         addAqarezObject.setLat("" + lat_);
                         addAqarezObject.setLan("" + lang_);
                         Toast.makeText(AddAqarzStepsActivity.this, "You selected the place: " + address_, Toast.LENGTH_SHORT).show();
@@ -2626,7 +2631,8 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 //            sendObj.put("exclusive_contract_file", addAqarezObject.isr + "");
 
             sendObj.put("state_id", addAqarezObject.getState_id());
-            sendObj.put("city_id", addAqarezObject.getCity_id());
+//            sendObj.put("city_id", addAqarezObject.getCity_id());
+            sendObj.put("city_id", city_id_glo);
             sendObj.put("neighborhood_id", addAqarezObject.getNeighborhood_id());
 //            sendObj.put("street_name", street.getText().toString());
             sendObj.put("lat", addAqarezObject.getLat());

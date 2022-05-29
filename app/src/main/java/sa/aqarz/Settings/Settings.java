@@ -86,7 +86,7 @@ public class Settings {
     public static String loadJSONFromAsset(Activity activity) {
         String json = null;
         try {
-            InputStream is = activity.getAssets().open("AllCites.json");
+            InputStream is = activity.getAssets().open("City.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);

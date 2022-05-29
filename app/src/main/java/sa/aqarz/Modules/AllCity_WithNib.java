@@ -76,6 +76,9 @@ public class AllCity_WithNib {
         @SerializedName("name")
         @Expose
         private String name;
+        @SerializedName("center")
+        @Expose
+        private String center;
 
         public String getDistrictId() {
             return districtId;
@@ -87,6 +90,10 @@ public class AllCity_WithNib {
 
         public Integer getCityId() {
             return cityId;
+        }
+
+        public String getCenter() {
+            return center;
         }
 
         public void setCityId(Integer cityId) {
