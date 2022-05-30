@@ -36,7 +36,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/din_bold"
                     android:gravity="center"
-                    android:text="@string/AqarsService"
+                    android:text="@string/RentalinstallmentService"
                     android:textColor="@color/textColor"
                     android:textSize="16dp"
                     android:textStyle="bold" />
@@ -351,6 +351,23 @@
                     android:textColorHint="@color/hint_color"
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/nibors"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/button_loginc"
+                    android:fontFamily="@font/din_bold"
+                    android:gravity="center_vertical"
+                    android:hint="@string/Neighborhoodname"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text=""
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+
 
 
                 <EditText

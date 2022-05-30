@@ -27,12 +27,16 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
 import sa.aqarz.Activity.OprationNew.RentActivity;
 import sa.aqarz.Activity.OprationNew.RequestServiceActivity;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectArea_setting;
 import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectCity;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_Select_nib_setting;
+import sa.aqarz.Modules.AllCity_WithNib;
 import sa.aqarz.Modules.TypeModules;
 import sa.aqarz.NewAqarz.Adapter.RecyclerView_All_type_in_Rent;
 import sa.aqarz.NewAqarz.Adapter.RecyclerView_All_type_in_home_List;
@@ -51,8 +55,10 @@ public class AddRentalInstallmentActivity extends AppCompatActivity {
     static String type_filtter = "";
     static String type_work = "";
     static String city_id = "";
+    static String nib_id = "";
 
     List<TypeModules> type_list_work = new ArrayList<>();
+    List<AllCity_WithNib.neighborhoods> All_neighborhoods = new ArrayList<>();
 
     TextView Bank;
     TextView finance_company_title;
@@ -102,6 +108,8 @@ public class AddRentalInstallmentActivity extends AppCompatActivity {
     LinearLayout a3;
     ImageView back;
 
+    TextView nibors;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,6 +141,7 @@ public class AddRentalInstallmentActivity extends AppCompatActivity {
         all_type_aqarz = findViewById(R.id.all_type_aqarz);
 
         Bank = findViewById(R.id.Bank);
+        nibors = findViewById(R.id.nibors);
         finance_company_title = findViewById(R.id.finance_company_title);
         seek_bar = findViewById(R.id.seek_bar);
         month = findViewById(R.id.month);
@@ -306,16 +315,73 @@ public class AddRentalInstallmentActivity extends AppCompatActivity {
         city.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bottomSheetDialogFragment_selectCity = new BottomSheetDialogFragment_SelectCity("");
-                bottomSheetDialogFragment_selectCity.addItemClickListener(new BottomSheetDialogFragment_SelectCity.ItemClickListener() {
+
+
+
+                BottomSheetDialogFragment_SelectArea_setting bottomSheetDialogFragment_selectArea = new BottomSheetDialogFragment_SelectArea_setting("");
+                bottomSheetDialogFragment_selectArea.addItemClickListener(new BottomSheetDialogFragment_SelectArea_setting.ItemClickListener() {
                     @Override
-                    public void onItemClick(int id_city, String city_naem) {
+                    public void onItemClick(int id_cityx, String city_naem, List<AllCity_WithNib.neighborhoods> neighborhoods) {
+
+
+                        city_id = id_cityx + "";
                         city.setText(city_naem);
-                        city_id = id_city + "";
-                        bottomSheetDialogFragment_selectCity.dismiss();
+
+
+                        nib_id = "";
+                        nibors.setText("");
+
+
+
+                        All_neighborhoods = neighborhoods;
+                        bottomSheetDialogFragment_selectArea.dismiss();
                     }
                 });
-                bottomSheetDialogFragment_selectCity.show(getSupportFragmentManager(), "");
+                bottomSheetDialogFragment_selectArea.show(getSupportFragmentManager(), "");
+
+
+
+//
+//                bottomSheetDialogFragment_selectCity = new BottomSheetDialogFragment_SelectCity("");
+//                bottomSheetDialogFragment_selectCity.addItemClickListener(new BottomSheetDialogFragment_SelectCity.ItemClickListener() {
+//                    @Override
+//                    public void onItemClick(int id_city, String city_naem) {
+//                        city.setText(city_naem);
+//                        city_id = id_city + "";
+//                        bottomSheetDialogFragment_selectCity.dismiss();
+//                    }
+//                });
+//                bottomSheetDialogFragment_selectCity.show(getSupportFragmentManager(), "");
+//
+
+            }
+        });
+        nibors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                BottomSheetDialogFragment_Select_nib_setting bottomSheetDialogFragment_select_nib_setting = new BottomSheetDialogFragment_Select_nib_setting(All_neighborhoods);
+                bottomSheetDialogFragment_select_nib_setting.addItemClickListener(new BottomSheetDialogFragment_Select_nib_setting.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_city, String city_naem, String lat_lang) {
+
+
+                        nib_id = id_city + "";
+
+
+                        nibors.setText(city_naem + "");
+
+                        List<String> elephantList = Arrays.asList(lat_lang.split(","));
+
+//                        lat = elephantList.get(0);
+//                        lng = elephantList.get(1);
+
+                        bottomSheetDialogFragment_select_nib_setting.dismiss();
+
+                    }
+                });
+                bottomSheetDialogFragment_select_nib_setting.show(getSupportFragmentManager(), "");
+
 
 
             }
