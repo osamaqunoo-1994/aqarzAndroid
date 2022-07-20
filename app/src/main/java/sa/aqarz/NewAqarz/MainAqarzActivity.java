@@ -256,7 +256,6 @@ public class MainAqarzActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-
                 text_1.setTextColor(getResources().getColor(R.color.colorPrimary));
                 text_2.setTextColor(getResources().getColor(R.color.color_un_active));
                 text_3.setTextColor(getResources().getColor(R.color.color_un_active));
@@ -279,7 +278,6 @@ public class MainAqarzActivity extends AppCompatActivity {
 
             }
         });
-
 
 
         lay_2.setOnClickListener(new View.OnClickListener() {
@@ -951,15 +949,15 @@ public class MainAqarzActivity extends AppCompatActivity {
                 activity.getBaseContext().getResources().getDisplayMetrics());
 
     }
+
     public static void show_dialog() {
 //        if (!BuildConfig.DEBUG)
 //            Thread.setDefaultUncaughtExceptionHandler(new DefaultExceptionHandler(activity));
 //        if (!BuildConfig.ENGLISH) {
 
         BottomSheetDialogFragment_forceUpdate bottomSheetDialogFragment_forceUpdate
-                =new BottomSheetDialogFragment_forceUpdate("");
-        bottomSheetDialogFragment_forceUpdate.show(fragmentManager,"");
-
+                = new BottomSheetDialogFragment_forceUpdate("");
+        bottomSheetDialogFragment_forceUpdate.show(fragmentManager, "");
 
 
     }
