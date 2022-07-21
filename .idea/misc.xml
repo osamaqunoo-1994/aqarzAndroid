@@ -3,10 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/activity_add_aqarz_steps.xml" value="0.2359375" />
+        <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/activity_fillter.xml" value="0.2359375" />
         <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/activity_full_screen_image.xml" value="0.25" />
         <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/activity_main_aqarz.xml" value="0.2359375" />
         <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/alert_is_iam_compleate.xml" value="0.25" />
+        <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/alert_is_in_address.xml" value="0.25" />
+        <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/alert_select_other_location.xml" value="0.25" />
         <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/card_viewpager_home.xml" value="0.25" />
+        <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/fragment_more2.xml" value="0.2359375" />
+        <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/item_list_estat_home_my.xml" value="0.2359375" />
       </map>
     </option>
   </component>

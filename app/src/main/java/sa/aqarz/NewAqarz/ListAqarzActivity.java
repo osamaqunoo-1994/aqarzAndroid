@@ -115,7 +115,7 @@ public class ListAqarzActivity extends AppCompatActivity {
         order_by_bathrooms_number = "0";
         order_by_rooms_number = "0";
 
-
+        page=1;
         init();
     }
 
@@ -607,6 +607,11 @@ public class ListAqarzActivity extends AppCompatActivity {
         if (!MainAqarzActivity.object_filtter.getType_aqarz().equals("")) {
             type_filtter_ = "&estate_type=" + MainAqarzActivity.object_filtter.getType_aqarz();
         }
+        String city_id = "";
+
+        if (!MainAqarzActivity.object_filtter.getId_city().equals("")) {
+//            city_id = "&city_id=" + MainAqarzActivity.object_filtter.getId_city();
+        }
 
 //
         String fil_by = "&" + "order_by=" + order_by_price;
@@ -621,7 +626,7 @@ public class ListAqarzActivity extends AppCompatActivity {
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + fil_by + is_list + lat + lan + distance + number_aqareza + state_id + kitchen_number + is_rent_installment + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
+        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + fil_by +city_id+ is_list + lat + lan + distance + number_aqareza + state_id + kitchen_number + is_rent_installment + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
 
 //        url_list = WebService.home_estate_custom_list + "?" + type_filtter_;
         mVolleyService.getAsync("home_estate_custom_list_more_1", url_list);

@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
@@ -32,16 +33,21 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import sa.aqarz.Activity.AddAqarz.AddAqarzActivity;
 import sa.aqarz.Activity.FiltterOrderActivity;
 import sa.aqarz.Activity.MainActivity;
 import sa.aqarz.Activity.QRCameraActivity;
+import sa.aqarz.Activity.SelectLocationActivity;
 import sa.aqarz.Activity.profile.AllclintActivity;
 import sa.aqarz.Adapter.RecyclerView_All_Comfort_in_fragment;
 import sa.aqarz.Adapter.RecyclerView_HomeList_estat_new;
 import sa.aqarz.Adapter.RecyclerView_search_aqarz;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_SelectArea_setting;
+import sa.aqarz.Dialog.BottomSheetDialogFragment_Select_nib_setting;
+import sa.aqarz.Modules.AllCity_WithNib;
 import sa.aqarz.Modules.AllEstate;
 import sa.aqarz.Modules.ComfortModules;
 import sa.aqarz.Modules.HomeModules_aqares;
@@ -175,6 +181,21 @@ public class FillterActivity extends AppCompatActivity {
     String is_rent_installment = "0";
     RecyclerView all_aq;
 
+
+    List<AllCity_WithNib.neighborhoods> All_neighborhoods = new ArrayList<>();
+    LinearLayout select_city;
+    LinearLayout select_nib;
+
+    TextView select_cit_txt;
+    TextView select_nib_txt;
+
+
+    String id_city = "";
+    String id_nib = "";
+    String lat = "";
+    String lang = "";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -192,6 +213,11 @@ public class FillterActivity extends AppCompatActivity {
         number_aqarez_line = findViewById(R.id.number_aqarez_line);
         number_aqarez = findViewById(R.id.number_aqarez);
         noResultFound = findViewById(R.id.noResultFound);
+
+        select_city = findViewById(R.id.select_city);
+        select_nib = findViewById(R.id.select_nib);
+        select_cit_txt = findViewById(R.id.select_cit_txt);
+        select_nib_txt = findViewById(R.id.select_nib_txt);
 
 
         lay1 = findViewById(R.id.lay1);
@@ -284,6 +310,12 @@ public class FillterActivity extends AppCompatActivity {
             Les_space.setText(MainAqarzActivity.object_filtter.getLess_space() + "");
             Date_of_construction_text.setText(MainAqarzActivity.object_filtter.getDate() + "");
 
+            select_cit_txt.setText(MainAqarzActivity.object_filtter.getName_city() + "");
+            select_nib_txt.setText(MainAqarzActivity.object_filtter.getName_nib() + "");
+
+            id_city = MainAqarzActivity.object_filtter.getId_city() + "";
+            id_nib = MainAqarzActivity.object_filtter.getId_nib() + "";
+
 
         } catch (Exception e) {
 
@@ -316,6 +348,79 @@ public class FillterActivity extends AppCompatActivity {
 
         WebService.loading(FillterActivity.this, false);
 
+        select_city_area();
+    }
+
+
+    public void select_city_area() {
+        select_city.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                BottomSheetDialogFragment_SelectArea_setting bottomSheetDialogFragment_selectArea = new BottomSheetDialogFragment_SelectArea_setting("");
+                bottomSheetDialogFragment_selectArea.addItemClickListener(new BottomSheetDialogFragment_SelectArea_setting.ItemClickListener() {
+                    @Override
+                    public void onItemClick(int id_cityx, String city_naem, List<AllCity_WithNib.neighborhoods> neighborhoods) {
+                        id_city = id_cityx + "";
+
+                        id_nib = "";
+
+                        select_cit_txt.setText(city_naem + "");
+                        All_neighborhoods.clear();
+                        select_nib_txt.setText("");
+                        All_neighborhoods = neighborhoods;
+                        bottomSheetDialogFragment_selectArea.dismiss();
+                    }
+                });
+                bottomSheetDialogFragment_selectArea.show(getSupportFragmentManager(), "");
+            }
+        });
+
+        select_nib.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (All_neighborhoods.size() == 0) {
+
+
+                    Toast.makeText(FillterActivity.this, "لا يوجد احياء في هذه المدينة", Toast.LENGTH_LONG).show();
+
+                } else {
+
+//                    BottomSheetDialogFragment_SelectNeighborhoods bottomSheetDialogFragment_selectNeighborhoods = new BottomSheetDialogFragment_SelectNeighborhoods(id_city);
+//                    bottomSheetDialogFragment_selectNeighborhoods.addItemClickListener(new BottomSheetDialogFragment_SelectNeighborhoods.ItemClickListener() {
+//                        @Override
+//                        public void onItemClick(String id_city, String city_naem, String lats, String lngs) {
+//                            select_nib_txt.setText(city_naem + "");
+//                            lat=lats;
+//                            lang=lngs;
+//                            bottomSheetDialogFragment_selectNeighborhoods.dismiss();
+//
+//
+//
+//                        }
+//                    });
+//                    bottomSheetDialogFragment_selectNeighborhoods.show(getSupportFragmentManager(), "");
+                    BottomSheetDialogFragment_Select_nib_setting bottomSheetDialogFragment_select_nib_setting = new BottomSheetDialogFragment_Select_nib_setting(All_neighborhoods);
+                    bottomSheetDialogFragment_select_nib_setting.addItemClickListener(new BottomSheetDialogFragment_Select_nib_setting.ItemClickListener() {
+                        @Override
+                        public void onItemClick(int id_city, String city_naem, String lat_lang) {
+
+                            select_nib_txt.setText(city_naem + "");
+                            id_nib = id_city + "";
+                            List<String> elephantList = Arrays.asList(lat_lang.split(","));
+
+                            lat = elephantList.get(0);
+                            lang = elephantList.get(1);
+
+                            bottomSheetDialogFragment_select_nib_setting.dismiss();
+
+                        }
+                    });
+                    bottomSheetDialogFragment_select_nib_setting.show(getSupportFragmentManager(), "");
+                }
+            }
+        });
 
     }
 
@@ -673,6 +778,8 @@ public class FillterActivity extends AppCompatActivity {
                 MainAqarzActivity.object_filtter.setNumber_Kitchens_plus(number_Kitchens_plus);
                 MainAqarzActivity.object_filtter.setNumber_Dining_rooms(number_Dining_rooms);
                 MainAqarzActivity.object_filtter.setIs_rent_installment(is_rent_installment);
+                MainAqarzActivity.object_filtter.setId_city(id_city);
+                MainAqarzActivity.object_filtter.setId_nib(id_nib);
 
 
                 MainAqarzActivity.object_filtter.setNumber_parking(number_parking);
@@ -702,6 +809,8 @@ public class FillterActivity extends AppCompatActivity {
                 MainAqarzActivity.object_filtter.setMax_price("");
                 MainAqarzActivity.object_filtter.setLess_space("");
                 MainAqarzActivity.object_filtter.setMax_space("");
+                MainAqarzActivity.object_filtter.setId_city("");
+                MainAqarzActivity.object_filtter.setId_city("");
 
                 MainAqarzActivity.object_filtter.setEast_selected(false);
                 MainAqarzActivity.object_filtter.setWest_selected(false);

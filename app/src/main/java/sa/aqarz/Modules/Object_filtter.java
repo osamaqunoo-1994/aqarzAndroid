@@ -18,6 +18,10 @@ public class Object_filtter {
     String estate_pay_type = "";
     String id_state = "";
     String is_rent_installment = "0";
+    String id_city = "";
+    String id_nib = "";
+    String name_nib = "";
+    String name_city = "";
 
     int number_Lounges = 0;
     int number_room = 0;
@@ -43,6 +47,38 @@ public class Object_filtter {
 
     public boolean isEast_selected() {
         return east_selected;
+    }
+
+    public void setId_city(String id_city) {
+        this.id_city = id_city;
+    }
+
+    public void setId_nib(String id_nib) {
+        this.id_nib = id_nib;
+    }
+
+    public String getId_city() {
+        return id_city;
+    }
+
+    public String getId_nib() {
+        return id_nib;
+    }
+
+    public String getName_city() {
+        return name_city;
+    }
+
+    public String getName_nib() {
+        return name_nib;
+    }
+
+    public void setName_city(String name_city) {
+        this.name_city = name_city;
+    }
+
+    public void setName_nib(String name_nib) {
+        this.name_nib = name_nib;
     }
 
     public boolean isNorth_selected() {
