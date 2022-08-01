@@ -171,7 +171,7 @@ public class AqarzOrActivity extends AppCompatActivity {
                 BottomSheetDialogFragment_SelectArea_setting bottomSheetDialogFragment_selectArea = new BottomSheetDialogFragment_SelectArea_setting("");
                 bottomSheetDialogFragment_selectArea.addItemClickListener(new BottomSheetDialogFragment_SelectArea_setting.ItemClickListener() {
                     @Override
-                    public void onItemClick(int id_cityx, String city_naem, List<AllCity_WithNib.neighborhoods> neighborhoods) {
+                    public void onItemClick(int id_cityx, String city_naem, List<AllCity_WithNib.neighborhoods> neighborhoods,String lat_, String lang_) {
 
 
                         city_id = id_cityx + "";
@@ -460,7 +460,7 @@ public class AqarzOrActivity extends AppCompatActivity {
                                             sendObj.put("note", description.getText().toString());
 
 
-                                            System.out.println(sendObj.toString());
+                                            System.out.println(sendObj);
                                             mVolleyService.postDataVolley("estate_Request", WebService.estate_Request, sendObj);
 
                                         } catch (Exception e) {
@@ -508,7 +508,7 @@ public class AqarzOrActivity extends AppCompatActivity {
                             sendObj.put("note", description.getText().toString());
 
 
-                            System.out.println(sendObj.toString());
+                            System.out.println(sendObj);
                             mVolleyService.postDataVolley("estate_Request", WebService.estate_Request, sendObj);
 
                         } catch (Exception e) {

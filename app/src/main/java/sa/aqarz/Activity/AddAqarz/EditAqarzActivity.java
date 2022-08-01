@@ -2308,7 +2308,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 //            }
 
 
-            System.out.println(sendObj.toString());
+            System.out.println(sendObj);
 
 
             AddAqersAsyncTask(sendObj);
@@ -2819,7 +2819,7 @@ public class EditAqarzActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        area_text.setText(homeModules_aqares.getUnit_number() + "");
+                        area_text.setText(homeModules_aqares.getTotalArea() + "");
                         if (homeModules_aqares.getPaceNumber() != null && !homeModules_aqares.getPaceNumber().equals("null")) {
                             land_number_text.setText(homeModules_aqares.getPaceNumber() + "");
                         }
@@ -2829,7 +2829,7 @@ public class EditAqarzActivity extends AppCompatActivity {
 
                         if (homeModules_aqares.getFloorNumber() != null && !homeModules_aqares.getFloorNumber().equals("null")) {
 
-                            System.out.println("%^%&^&^"+homeModules_aqares.getFloorNumber() + "");
+                            System.out.println("%^%&^&^" + homeModules_aqares.getFloorNumber() + "");
                             turn_number_text.setText(homeModules_aqares.getFloorNumber() + "");
                         }
                         if (homeModules_aqares.getUnit_number() != null && !homeModules_aqares.getUnit_number().equals("null")) {
@@ -2886,8 +2886,12 @@ public class EditAqarzActivity extends AppCompatActivity {
                         if (homeModules_aqares.getBedroom_number() != null && !homeModules_aqares.getBedroom_number().equals("null")) {
                             room_text.setText(homeModules_aqares.getBedroom_number() + "");
                             number_room = Integer.valueOf(homeModules_aqares.getBedroom_number());
+                            room_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
+                            room_text.setTextColor(getResources().getColor(R.color.white));
+
 
                         }
+
 
                         if (homeModules_aqares.getDiningRoomsNumber() != null && !homeModules_aqares.getDiningRoomsNumber().equals("null")) {
                             Dining_text.setText(homeModules_aqares.getDiningRoomsNumber() + "");
@@ -2912,6 +2916,9 @@ public class EditAqarzActivity extends AppCompatActivity {
                         if (homeModules_aqares.getElevators_number() != null && !homeModules_aqares.getElevators_number().equals("null")) {
                             lifts_txt.setText(homeModules_aqares.getElevators_number() + "");
                             number_lifts = Integer.valueOf(homeModules_aqares.getElevators_number());
+                            lifts_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
+                            lifts_txt.setTextColor(getResources().getColor(R.color.white));
+
 
                         }
 
@@ -2919,6 +2926,8 @@ public class EditAqarzActivity extends AppCompatActivity {
                         if (homeModules_aqares.getParking_spaces_numbers() != null && !homeModules_aqares.getParking_spaces_numbers().equals("null")) {
                             parking_txt.setText(homeModules_aqares.getParking_spaces_numbers() + "");
                             number_parking = Integer.valueOf(homeModules_aqares.getParking_spaces_numbers());
+                            parking_lay.setBackground(getResources().getDrawable(R.drawable.button_login1));
+                            parking_txt.setTextColor(getResources().getColor(R.color.white));
                         }
 
 

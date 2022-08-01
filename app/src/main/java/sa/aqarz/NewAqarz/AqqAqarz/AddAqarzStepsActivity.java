@@ -20,6 +20,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.icu.util.Currency;
 import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
@@ -67,10 +68,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.ref.WeakReference;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
+import me.abhinay.input.CurrencyEditText;
 import sa.aqarz.Activity.AddAqarz.AddAqarzActivity;
 import sa.aqarz.Activity.SelectLocationActivity;
 import sa.aqarz.Activity.SelectNewLocationActivity;
@@ -87,7 +94,7 @@ import sa.aqarz.Settings.WebService;
 import sa.aqarz.api.IResult;
 import sa.aqarz.api.VolleyService;
 
-public class AddAqarzStepsActivity extends AppCompatActivity {
+public class AddAqarzStepsActivity extends AppCompatActivity  {
 
     LinearLayout lay_1;
     LinearLayout lay_2;
@@ -407,6 +414,10 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         selectIamgeList.clear();
         images_path.clear();
         title.setText(getResources().getString(R.string.AqarTypeselect));
+
+
+        change_number_dash();
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -775,6 +786,10 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         button_step_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                System.out.println("sale_price_text" + sale_price_text.getText().toString());
+                System.out.println("area_text" + area_text.getText().toString());
 
 
                 if (addAqarezObject.getEstate_type_id().equals("3") | addAqarezObject.getEstate_type_id().equals("7")) {//ارض -مزرعه
@@ -2386,12 +2401,9 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                boolean is_selected_view = false;
+                boolean is_selected_view = north_selected;
 
 
-                if (north_selected) {
-                    is_selected_view = true;
-                }
                 if (south_selected) {
                     is_selected_view = true;
                 }
@@ -2696,7 +2708,7 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
 //            }
 
 
-            System.out.println(sendObj.toString());
+            System.out.println(sendObj);
 
 
             AddAqersAsyncTask(sendObj);
@@ -2707,6 +2719,52 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
         }
 
     }
+
+    private final String current = "";
+
+    public void change_number_dash() {
+
+//        area_text.setCurrency(Currency.);
+//        area_text.setDelimiter(false);
+        area_text.addTextChangedListener(onTextChangedListener());
+        sale_price_text.addTextChangedListener(onTextChangedListener2());
+
+//        area_text.setSpacing(false);
+//        area_text.setDecimals(false);
+//        //Make sure that Decimals is set as false if a custom Separator is used
+//        area_text.setSeparator(",");
+
+
+//        area_text.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
+
+
+//        area_text.setCurrency(Currency.);
+//        sale_price_text.setDelimiter(false);
+//        sale_price_text.setSpacing(false);
+//        sale_price_text.setDecimals(false);
+//        //Make sure that Decimals is set as false if a custom Separator is used
+//        sale_price_text.setSeparator(",");
+
+    }
+
 
     public void AddAqersAsyncTask(RequestParams requestParams) {
 
@@ -3073,5 +3131,197 @@ public class AddAqarzStepsActivity extends AppCompatActivity {
      */
     public static boolean isGooglePhotosUri(Uri uri) {
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
+    }
+    private TextWatcher onTextChangedListener() {
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                area_text.removeTextChangedListener(this);
+
+                try {
+                    String originalString = s.toString();
+
+                    Long longval;
+                    if (originalString.contains(",")) {
+                        originalString = originalString.replaceAll(",", "");
+                    }
+                    longval = Long.parseLong(originalString);
+
+                    DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+                    formatter.applyPattern("#,###,###,###");
+                    String formattedString = formatter.format(longval);
+
+                    //setting text after format to EditText
+                    area_text.setText(formattedString);
+                    area_text.setSelection(area_text.getText().length());
+                } catch (NumberFormatException nfe) {
+                    nfe.printStackTrace();
+                }
+
+                area_text.addTextChangedListener(this);
+            }
+        };
+//
+//    @Override
+//    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//        if (!area_text.getText().toString().equals("")) {
+//
+//            area_text.removeTextChangedListener(this);
+//
+////                    String[] ary = area_text.getText().toString().split(",");
+//            String cleanString = area_text.getText().toString().replaceAll("[$,.]", "");
+//
+//            System.out.println(cleanString);
+//            char[] chars = cleanString.toCharArray();
+//
+//            current = "";
+//
+//
+//            for (int i = 0; i < chars.length; i++) {
+//
+//                if (i == 2) {
+//                    current = current + chars[i] + ",";
+//                } else if (i == 5) {
+//                    current = current + chars[i] + ",";
+//
+//                } else if (i == 7) {
+//                    current = current + chars[i] + ",";
+//
+//                } else if (i == 9) {
+//                    current = current + chars[i] + ",";
+//
+//                } else if (i == 11) {
+//                    current = current + chars[i] + ",";
+//
+//                } else {
+//                    current = current + chars[i];
+//
+//                }
+//
+//                area_text.setText(current + "");
+//                area_text.addTextChangedListener(this);
+//
+//            }
+//
+//
+//        }
+//
+//    }
+//
+//    @Override
+//    public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//    }
+//
+//    @Override
+//    public void afterTextChanged(Editable s) {
+//
+//    }
+    }
+    private TextWatcher onTextChangedListener2() {
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                sale_price_text.removeTextChangedListener(this);
+
+                try {
+                    String originalString = s.toString();
+
+                    Long longval;
+                    if (originalString.contains(",")) {
+                        originalString = originalString.replaceAll(",", "");
+                    }
+                    longval = Long.parseLong(originalString);
+
+                    DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+                    formatter.applyPattern("#,###,###,###");
+                    String formattedString = formatter.format(longval);
+
+                    //setting text after format to EditText
+                    sale_price_text.setText(formattedString);
+                    sale_price_text.setSelection(sale_price_text.getText().length());
+                } catch (NumberFormatException nfe) {
+                    nfe.printStackTrace();
+                }
+
+                sale_price_text.addTextChangedListener(this);
+            }
+        };
+//
+//    @Override
+//    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//        if (!area_text.getText().toString().equals("")) {
+//
+//            area_text.removeTextChangedListener(this);
+//
+////                    String[] ary = area_text.getText().toString().split(",");
+//            String cleanString = area_text.getText().toString().replaceAll("[$,.]", "");
+//
+//            System.out.println(cleanString);
+//            char[] chars = cleanString.toCharArray();
+//
+//            current = "";
+//
+//
+//            for (int i = 0; i < chars.length; i++) {
+//
+//                if (i == 2) {
+//                    current = current + chars[i] + ",";
+//                } else if (i == 5) {
+//                    current = current + chars[i] + ",";
+//
+//                } else if (i == 7) {
+//                    current = current + chars[i] + ",";
+//
+//                } else if (i == 9) {
+//                    current = current + chars[i] + ",";
+//
+//                } else if (i == 11) {
+//                    current = current + chars[i] + ",";
+//
+//                } else {
+//                    current = current + chars[i];
+//
+//                }
+//
+//                area_text.setText(current + "");
+//                area_text.addTextChangedListener(this);
+//
+//            }
+//
+//
+//        }
+//
+//    }
+//
+//    @Override
+//    public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//    }
+//
+//    @Override
+//    public void afterTextChanged(Editable s) {
+//
+//    }
     }
 }

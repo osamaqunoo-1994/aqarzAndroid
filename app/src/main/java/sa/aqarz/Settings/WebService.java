@@ -23,8 +23,8 @@ public class WebService {
 
     public static KProgressHUD kProgressHUD;
     //    public static String Domain = "http://aqarz.heliohost.org/api/";
-    public static String Domain = "https://aqarz.sa/api/";
 //    public static String Domain = "https://aqarz.sa/api/";
+    public static String Domain = "https://aqarz.sa/api/";
 //    public static String Domain = "https://apibeta.aqarz.sa/api/";
     static String v_code = "v3";
 

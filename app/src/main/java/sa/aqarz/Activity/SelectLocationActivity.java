@@ -734,7 +734,7 @@ public class SelectLocationActivity extends AppCompatActivity {
 // TODO Add extras or a data URI to this intent as appropriate.
                                     resultIntent.putExtra("lat", lat);
                                     resultIntent.putExtra("lang", lang);
-                                    resultIntent.putExtra("city_id", checkPoint.getData().getCityId()+"");
+                                    resultIntent.putExtra("city_id", checkPoint.getData().getCityId() + "");
                                     resultIntent.putExtra("address", text_search.getText().toString());
                                     setResult(Activity.RESULT_OK, resultIntent);
                                     finish();
@@ -901,7 +901,7 @@ public class SelectLocationActivity extends AppCompatActivity {
                     // Zoom in, animating the camera.
                     googleMap.animateCamera(CameraUpdateFactory.zoomIn());
 //                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(9), 3000, null);
+                    googleMap.animateCamera(CameraUpdateFactory.zoomTo(14), 3000, null);
 
 //                get_Estate_from_api();
                     text_search.setText(place.getAddress());//+ "-" + cityModules_list_filtter.get(i).getCity().getName()
@@ -987,7 +987,7 @@ public class SelectLocationActivity extends AppCompatActivity {
                 // Zoom in, animating the camera.
                 googleMap.animateCamera(CameraUpdateFactory.zoomIn());
 //                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
-                googleMap.animateCamera(CameraUpdateFactory.zoomTo(9), 3000, null);
+                googleMap.animateCamera(CameraUpdateFactory.zoomTo(14), 3000, null);
 
 
                 alertDialog.dismiss();
@@ -1016,7 +1016,7 @@ public class SelectLocationActivity extends AppCompatActivity {
                 BottomSheetDialogFragment_SelectArea_setting bottomSheetDialogFragment_selectArea = new BottomSheetDialogFragment_SelectArea_setting("");
                 bottomSheetDialogFragment_selectArea.addItemClickListener(new BottomSheetDialogFragment_SelectArea_setting.ItemClickListener() {
                     @Override
-                    public void onItemClick(int id_cityx, String city_naem, List<AllCity_WithNib.neighborhoods> neighborhoods) {
+                    public void onItemClick(int id_cityx, String city_naem, List<AllCity_WithNib.neighborhoods> neighborhoods,String lat_, String lang_) {
                         id_city = id_cityx + "";
                         select_cit_txt.setText(city_naem + "");
                         All_neighborhoods.clear();

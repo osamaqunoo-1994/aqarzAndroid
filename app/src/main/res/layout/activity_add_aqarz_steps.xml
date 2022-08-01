@@ -616,6 +616,7 @@
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:text=""
+
                             android:textColor="@color/black"
                             android:textColorHint="@color/hint_color"
                             android:textSize="@dimen/_10sdp"
@@ -2118,7 +2119,6 @@
                             android:textColorHint="@color/hint_color"
                             android:textSize="@dimen/_10sdp"
                             android:visibility="visible" />
-
 
 
                     </LinearLayout>

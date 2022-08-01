@@ -149,6 +149,7 @@
                             android:layout_alignParentStart="true"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
+                            android:visibility="gone"
                             android:src="@drawable/circle_red" />
 
                     </RelativeLayout>
@@ -188,6 +189,8 @@
                             android:layout_alignParentStart="true"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
+                            android:visibility="gone"
+
                             android:src="@drawable/circle_red" />
 
                     </RelativeLayout>

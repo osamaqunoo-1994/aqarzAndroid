@@ -144,6 +144,7 @@ dependencies {
 
 
     // Import the BoM for the Firebase platform
+    implementation 'me.abhinay.input:currency-edittext:1.1'
 
 
     // Declare the dependencies for the Crashlytics and Analytics libraries

@@ -1040,6 +1040,167 @@ public class HomeMapFragment extends Fragment {
         });
     }
 
+    public static void get_Estate_from_apifiltter() {
+        loading.setVisibility(View.VISIBLE);
+        String lat_lan = "";
+
+        String distance = "50";
+
+        if (MainAqarzActivity.object_filtter.getLat().equals("")) {
+//            lat_lan = "&lan=" + lan + "&lat=" + lat;
+//
+             lat_lan = "&lan=" + lan + "&lat=" + lat;
+
+            MainAqarzActivity.object_filtter.setLan(lan + "");
+            MainAqarzActivity.object_filtter.setLat(lat + "");
+//            MainAqarzActivity.object_filtter.setLan(lan + "");
+//            MainAqarzActivity.object_filtter.setLat(lat + "");
+        } else {
+
+            System.out.println("88888888888");
+            lan = MainAqarzActivity.object_filtter.getLan() + "";
+            lat = MainAqarzActivity.object_filtter.getLat() + "";
+
+            lat_lan = "&lan=" + MainAqarzActivity.object_filtter.getLan() + "&lat=" + MainAqarzActivity.object_filtter.getLat();
+
+
+            LatLng my_location = new LatLng(Double.valueOf(lat), Double.valueOf(lan));
+            CameraPosition cameraPosition = new CameraPosition.Builder().target(my_location).zoom(4).build();
+            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(my_location, 9));
+            // Zoom in, animating the camera.
+            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+//                                 Zoom out to zoom level 10, animating with a duration of 2 seconds.
+            googleMap.animateCamera(CameraUpdateFactory.zoomTo(9), 3000, null);
+
+
+        }
+
+
+        MainAqarzActivity.object_filtter.setDistance(distance + "");
+
+
+//        float zoom = googleMap.getCameraPosition().zoom;
+//        if (zoom > 8) {
+//            distance = "50";
+//        } else if (zoom < 8 & zoom > 6) {
+//            distance = "150";
+//
+//        } else if (zoom < 5) {
+//            distance = "200";
+//
+//        }
+
+
+//estate_pay_type
+
+//state_id
+//
+//bedroom_number
+
+        String estate_pay_type = "";
+
+        if (!MainAqarzActivity.object_filtter.getEstate_pay_type().equals("")) {
+            estate_pay_type = "&estate_pay_type=" + MainAqarzActivity.object_filtter.getEstate_pay_type();
+        }
+
+        String price_to = "";
+
+        if (!MainAqarzActivity.object_filtter.getMax_price().equals("")) {
+            price_to = "&price_to=" + MainAqarzActivity.object_filtter.getMax_price();
+        }
+
+
+        String price_from = "";
+
+        if (!MainAqarzActivity.object_filtter.getLess_price().equals("")) {
+            price_from = "&price_from=" + MainAqarzActivity.object_filtter.getLess_price();
+        }
+
+
+        String is_rent_installment = "";
+
+        if (!MainAqarzActivity.object_filtter.getIs_rent_installment().equals("0")) {
+            is_rent_installment = "&is_rent_installment=" + MainAqarzActivity.object_filtter.getIs_rent_installment();
+        }
+        String area_from = "";
+
+        if (!MainAqarzActivity.object_filtter.getLess_space().equals("")) {
+            area_from = "&area_from=" + MainAqarzActivity.object_filtter.getLess_space();
+        }
+        String area_to = "";
+
+        if (!MainAqarzActivity.object_filtter.getMax_space().equals("")) {
+            area_to = "&area_to=" + MainAqarzActivity.object_filtter.getMax_space();
+        }
+
+
+        String room = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_room() != 0) {
+            room = "&room=" + MainAqarzActivity.object_filtter.getNumber_room();
+        }
+        String lounges_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_Lounges() != 0) {
+            lounges_number = "&lounges_number=" + MainAqarzActivity.object_filtter.getNumber_Lounges();
+        }
+        String bathrooms_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_Bathrooms() != 0) {
+            bathrooms_number = "&bathrooms_number=" + MainAqarzActivity.object_filtter.getNumber_Bathrooms();
+        }
+        String dining_rooms_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_Dining_rooms() != 0) {
+            dining_rooms_number = "&dining_rooms_number=" + MainAqarzActivity.object_filtter.getNumber_Dining_rooms();
+        }
+
+        String boards_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_Boards_plus() != 0) {
+            boards_number = "&boards_number=" + MainAqarzActivity.object_filtter.getNumber_Boards_plus();
+        }
+
+        String elevators_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_lifts() != 0) {
+            elevators_number = "&elevators_number=" + MainAqarzActivity.object_filtter.getNumber_lifts();
+        }
+        String kitchen_number = "";
+
+        if (MainAqarzActivity.object_filtter.getNumber_Kitchens_plus() != 0) {
+            kitchen_number = "&kitchen_number=" + MainAqarzActivity.object_filtter.getNumber_Kitchens_plus();
+        }
+        String estate_age = "";
+
+        if (!MainAqarzActivity.object_filtter.getDate().equals("")) {
+            estate_age = "&estate_age=" + MainAqarzActivity.object_filtter.getDate();
+        }
+        String is_list = "&is_list=" + 0;
+
+
+        String type_filtter_ = "";
+        if (!MainAqarzActivity.object_filtter.getType_aqarz().equals("")) {
+            type_filtter_ = "&estate_type=" + MainAqarzActivity.object_filtter.getType_aqarz();
+        }
+
+        String city_id = "";
+
+        if (!MainAqarzActivity.object_filtter.getId_city().equals("")) {
+//            city_id = "&city_id=" + MainAqarzActivity.object_filtter.getId_city();
+        }
+
+
+        init_volley();
+        VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
+
+        mVolleyService.getAsync("home_estate_custom_list", WebService.home_estate_custom_list + "?" + lat_lan + "&distance=" + distance + type_filtter_ + is_list + is_rent_installment + elevators_number + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type + city_id);
+//        urlEstat = WebService.home_estate_custom_list + "?" + filter + lat_lan + "&distance=" + distance + getId_region + getSerial_city;
+
+
+    }
+
     public static void get_Estate_from_api() {
         loading.setVisibility(View.VISIBLE);
         String lat_lan = "&lan=" + lan + "&lat=" + lat;
@@ -1164,7 +1325,7 @@ public class HomeMapFragment extends Fragment {
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-        mVolleyService.getAsync("home_estate_custom_list", WebService.home_estate_custom_list + "?" + lat_lan + "&distance=" + distance + type_filtter_ + is_list + is_rent_installment + elevators_number + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type+city_id);
+        mVolleyService.getAsync("home_estate_custom_list", WebService.home_estate_custom_list + "?" + lat_lan + "&distance=" + distance + type_filtter_ + is_list + is_rent_installment + elevators_number + kitchen_number + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type + city_id);
 //        urlEstat = WebService.home_estate_custom_list + "?" + filter + lat_lan + "&distance=" + distance + getId_region + getSerial_city;
 
 
@@ -1700,9 +1861,9 @@ public class HomeMapFragment extends Fragment {
         if (Settings.checkLogin()) {
             notfication.setVisibility(View.VISIBLE);
             chat.setVisibility(View.VISIBLE);
-            notfication_dote.setVisibility(View.VISIBLE);
-            chat_dote.setVisibility(View.VISIBLE);
-            notfication_dote.setVisibility(View.VISIBLE);
+//            notfication_dote.setVisibility(View.VISIBLE);
+//            chat_dote.setVisibility(View.VISIBLE);
+//            notfication_dote.setVisibility(View.VISIBLE);
             add_rent.setVisibility(View.VISIBLE);
 
             if (Settings.CheckIsAccountAqarzMan()) {
@@ -1716,7 +1877,7 @@ public class HomeMapFragment extends Fragment {
             notfication.setVisibility(View.INVISIBLE);
             chat.setVisibility(View.GONE);
             chat_dote.setVisibility(View.GONE);
-            notfication_dote.setVisibility(View.INVISIBLE);
+            notfication_dote.setVisibility(View.GONE);
             add_rent.setVisibility(View.GONE);
 
 

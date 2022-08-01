@@ -321,7 +321,7 @@ public class AddRentalInstallmentActivity extends AppCompatActivity {
                 BottomSheetDialogFragment_SelectArea_setting bottomSheetDialogFragment_selectArea = new BottomSheetDialogFragment_SelectArea_setting("");
                 bottomSheetDialogFragment_selectArea.addItemClickListener(new BottomSheetDialogFragment_SelectArea_setting.ItemClickListener() {
                     @Override
-                    public void onItemClick(int id_cityx, String city_naem, List<AllCity_WithNib.neighborhoods> neighborhoods) {
+                    public void onItemClick(int id_cityx, String city_naem, List<AllCity_WithNib.neighborhoods> neighborhoods,String lat_, String lang_) {
 
 
                         city_id = id_cityx + "";
@@ -626,7 +626,7 @@ public class AddRentalInstallmentActivity extends AppCompatActivity {
                         sendObj.put("stumble_amount", Amount_of_tripping.getText().toString());//
 
 
-                        System.out.println(sendObj.toString());
+                        System.out.println(sendObj);
                         mVolleyService.postDataasync_with_file("ADDREqust", WebService.deferredInstallment, sendObj);
 
                     } catch (Exception e) {

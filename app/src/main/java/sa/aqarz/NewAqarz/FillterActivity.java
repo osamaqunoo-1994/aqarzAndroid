@@ -303,12 +303,12 @@ public class FillterActivity extends AppCompatActivity {
 
         try {
 
-
             Maximum_price.setText(MainAqarzActivity.object_filtter.getMax_price() + "");
             Les_price.setText(MainAqarzActivity.object_filtter.getLess_price() + "");
             Maximum_space.setText(MainAqarzActivity.object_filtter.getMax_space() + "");
             Les_space.setText(MainAqarzActivity.object_filtter.getLess_space() + "");
             Date_of_construction_text.setText(MainAqarzActivity.object_filtter.getDate() + "");
+
 
             select_cit_txt.setText(MainAqarzActivity.object_filtter.getName_city() + "");
             select_nib_txt.setText(MainAqarzActivity.object_filtter.getName_nib() + "");
@@ -318,7 +318,7 @@ public class FillterActivity extends AppCompatActivity {
 
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
         LinearLayoutManager layoutManagerss
@@ -360,16 +360,23 @@ public class FillterActivity extends AppCompatActivity {
                 BottomSheetDialogFragment_SelectArea_setting bottomSheetDialogFragment_selectArea = new BottomSheetDialogFragment_SelectArea_setting("");
                 bottomSheetDialogFragment_selectArea.addItemClickListener(new BottomSheetDialogFragment_SelectArea_setting.ItemClickListener() {
                     @Override
-                    public void onItemClick(int id_cityx, String city_naem, List<AllCity_WithNib.neighborhoods> neighborhoods) {
+                    public void onItemClick(int id_cityx, String city_naem, List<AllCity_WithNib.neighborhoods> neighborhoods, String lat_, String lang_) {
                         id_city = id_cityx + "";
 
                         id_nib = "";
+
+                        lat = "" + lat_;
+                        lang = "" + lang_;
+                        System.out.println("latlatlat" + lat);
+                        System.out.println("langlanglang" + lang);
 
                         select_cit_txt.setText(city_naem + "");
                         All_neighborhoods.clear();
                         select_nib_txt.setText("");
                         All_neighborhoods = neighborhoods;
                         bottomSheetDialogFragment_selectArea.dismiss();
+
+
                     }
                 });
                 bottomSheetDialogFragment_selectArea.show(getSupportFragmentManager(), "");
@@ -779,7 +786,11 @@ public class FillterActivity extends AppCompatActivity {
                 MainAqarzActivity.object_filtter.setNumber_Dining_rooms(number_Dining_rooms);
                 MainAqarzActivity.object_filtter.setIs_rent_installment(is_rent_installment);
                 MainAqarzActivity.object_filtter.setId_city(id_city);
+                MainAqarzActivity.object_filtter.setName_city(select_cit_txt.getText().toString());
+                MainAqarzActivity.object_filtter.setName_nib(select_nib_txt.getText().toString());
                 MainAqarzActivity.object_filtter.setId_nib(id_nib);
+                MainAqarzActivity.object_filtter.setLan(lang);
+                MainAqarzActivity.object_filtter.setLat(lat);
 
 
                 MainAqarzActivity.object_filtter.setNumber_parking(number_parking);
@@ -787,7 +798,7 @@ public class FillterActivity extends AppCompatActivity {
                 Hawk.put("filtter", "yes");
 
                 if (from.equals("home")) {
-                    HomeMapFragment.get_Estate_from_api();
+                    HomeMapFragment.get_Estate_from_apifiltter();
                 } else {
                     ListAqarzActivity.get_data();
                 }
@@ -811,6 +822,8 @@ public class FillterActivity extends AppCompatActivity {
                 MainAqarzActivity.object_filtter.setMax_space("");
                 MainAqarzActivity.object_filtter.setId_city("");
                 MainAqarzActivity.object_filtter.setId_city("");
+                MainAqarzActivity.object_filtter.setLat("");
+                MainAqarzActivity.object_filtter.setLan("");
 
                 MainAqarzActivity.object_filtter.setEast_selected(false);
                 MainAqarzActivity.object_filtter.setWest_selected(false);
@@ -833,7 +846,7 @@ public class FillterActivity extends AppCompatActivity {
                 Hawk.put("filtter", "no");
 
                 if (from.equals("home")) {
-                    HomeMapFragment.get_Estate_from_api();
+                    HomeMapFragment.get_Estate_from_apifiltter();
                 } else {
                     ListAqarzActivity.get_data();
                 }

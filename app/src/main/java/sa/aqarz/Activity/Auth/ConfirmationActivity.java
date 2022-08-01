@@ -290,7 +290,7 @@ public class ConfirmationActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(ConfirmationActivity.this, ChoseTypeActivity.class);
                         intent.putExtra("mobile", mobilex);
-                        intent.putExtra("code", codex);
+                        intent.putExtra("code", code2);
                         startActivity(intent);
 //                        overridePendingTransition(R.anim.fade_in_info, R.anim.fade_out_info);
                         finish();

@@ -32,6 +32,12 @@ public class AllCity_WithNib {
         @SerializedName("city_name")
         @Expose
         private String city_name;
+        @SerializedName("lat")
+        @Expose
+        private String lat;
+        @SerializedName("lan")
+        @Expose
+        private String lan;
         @SerializedName("region_id")
         @Expose
         private Integer region_id;
@@ -49,6 +55,14 @@ public class AllCity_WithNib {
 
         public List<AllCity_WithNib.neighborhoods> getNeighborhoods() {
             return neighborhoods;
+        }
+
+        public String getLan() {
+            return lan;
+        }
+
+        public String getLat() {
+            return lat;
         }
 
         public String getCity_name() {
@@ -134,10 +148,6 @@ public class AllCity_WithNib {
 
 
     }
-
-
-
-
 
 
 }

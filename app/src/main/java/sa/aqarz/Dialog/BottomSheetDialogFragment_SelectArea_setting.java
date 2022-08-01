@@ -99,7 +99,7 @@ public class BottomSheetDialogFragment_SelectArea_setting extends BottomSheetDia
             @Override
             public void onItemClick(int position) {
                 if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(regionModules.get(position).getCity_id(), regionModules.get(position).getCity_name(),regionModules.get(position).getNeighborhoods());
+                    mItemClickListener.onItemClick(regionModules.get(position).getCity_id(), regionModules.get(position).getCity_name(),regionModules.get(position).getNeighborhoods(),regionModules.get(position).getLan(),regionModules.get(position).getLat());
                 }
             }
         });
@@ -198,7 +198,7 @@ public class BottomSheetDialogFragment_SelectArea_setting extends BottomSheetDia
 
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(int id_city, String city_naem,List<AllCity_WithNib.neighborhoods> neighborhoods);
+        void onItemClick(int id_city, String city_naem,List<AllCity_WithNib.neighborhoods> neighborhoods,String lat,String lang);
     }
 
     @Override
