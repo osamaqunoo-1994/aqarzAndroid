@@ -120,7 +120,15 @@ public class DetailsOrderActivity extends AppCompatActivity {
         name = findViewById(R.id.name);
 
 //        name.setText(myOfferModule.getBeneficiaryName() + "");
-        name.setText(MainActivity.ordersModules.getBeneficiaryName() + "");
+        try {
+            if (MainActivity.ordersModules.getBeneficiaryName() != null) {
+                name.setText(MainActivity.ordersModules.getBeneficiaryName() + "");
+
+            }
+
+        } catch (Exception e) {
+
+        }
 //        names.setText(myOfferModule.getBeneficiaryName() + "");
         number_order.setText(myOfferModule.getId() + "");
 //        number_order.setText(MainActivity.ordersModules.getBeneficiaryMobile() + "");
@@ -351,7 +359,7 @@ public class DetailsOrderActivity extends AppCompatActivity {
                     WebService.loading(DetailsOrderActivity.this, true);
                     VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsOrderActivity.this);
 
-                    System.out.println(sendObj.toString());
+                    System.out.println(sendObj);
 //                    mVolleyService.postDataVolley("send_offer_fund_Request", WebService.send_offer_fund_Request, sendObj);
                     mVolleyService.postDataVolley("send_customer_offer_status_1", WebService.send_customer_offer_status, sendObj);
 
@@ -393,7 +401,7 @@ public class DetailsOrderActivity extends AppCompatActivity {
                     WebService.loading(DetailsOrderActivity.this, true);
                     VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsOrderActivity.this);
 
-                    System.out.println(sendObj.toString());
+                    System.out.println(sendObj);
 //                    mVolleyService.postDataVolley("send_offer_fund_Request", WebService.send_offer_fund_Request, sendObj);
                     mVolleyService.postDataVolley("send_customer_offer_status_2", WebService.send_customer_offer_status, sendObj);
 
@@ -433,7 +441,7 @@ public class DetailsOrderActivity extends AppCompatActivity {
                         WebService.loading(DetailsOrderActivity.this, true);
                         VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsOrderActivity.this);
 
-                        System.out.println(sendObj.toString());
+                        System.out.println(sendObj);
                         mVolleyService.postDataasync_with_file("cancel//fund/offer", WebService.cancel + "/" + myOfferModule.getId() + "/" + WebService.rate_offer, sendObj);
 
 
@@ -481,7 +489,7 @@ public class DetailsOrderActivity extends AppCompatActivity {
                 WebService.loading(DetailsOrderActivity.this, true);
                 VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsOrderActivity.this);
 
-                System.out.println(sendObj.toString());
+                System.out.println(sendObj);
                 mVolleyService.postDataVolley("provider_code_send", WebService.provider_code_send, sendObj);
 
 

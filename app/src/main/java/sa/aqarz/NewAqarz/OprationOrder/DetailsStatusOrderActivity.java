@@ -124,466 +124,469 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
         status_x5.setVisibility(View.GONE);
 
 
-        if (myOfferModule.getStatus().equals("new")) {//new->sending_code->accepted_customer
+        if (myOfferModule != null) {
+
+            if (myOfferModule.getStatus() != null) {
+                if (myOfferModule.getStatus().equals("new")) {//new->sending_code->accepted_customer
 
 
-            status_x2.setVisibility(View.GONE);
-            status_x3.setVisibility(View.GONE);
-            status_x4.setVisibility(View.GONE);
-            status_x5.setVisibility(View.GONE);
+                    status_x2.setVisibility(View.GONE);
+                    status_x3.setVisibility(View.GONE);
+                    status_x4.setVisibility(View.GONE);
+                    status_x5.setVisibility(View.GONE);
 
 
-            if (demandsModules.getStart_at() != null) {
-                date_1.setText(demandsModules.getStart_at() + "");
+                    if (demandsModules.getStart_at() != null) {
+                        date_1.setText(demandsModules.getStart_at() + "");
 
-            }
+                    }
 
-        } else if (myOfferModule.getStatus().equals("sending_code")) {
+                } else if (myOfferModule.getStatus().equals("sending_code")) {
 
 // status 1
 
 
-            if (demandsModules.getStart_at() != null) {
-                date_1.setText(demandsModules.getStart_at() + "");
+                    if (demandsModules.getStart_at() != null) {
+                        date_1.setText(demandsModules.getStart_at() + "");
 
-            }
-            if (demandsModules.getReview_at() != null) {
-                date_2.setText(demandsModules.getReview_at() + "");
+                    }
+                    if (demandsModules.getReview_at() != null) {
+                        date_2.setText(demandsModules.getReview_at() + "");
 
-            }
-
-
-            date_1.setTextColor(getResources().getColor(R.color.gray_color));
-            status_1.setTextColor(getResources().getColor(R.color.gray_color));
-            details_1.setTextColor(getResources().getColor(R.color.gray_color));
+                    }
 
 
-            status_x2.setVisibility(View.VISIBLE);
-            status_x3.setVisibility(View.GONE);
-            status_x4.setVisibility(View.GONE);
-            status_x5.setVisibility(View.GONE);
+                    date_1.setTextColor(getResources().getColor(R.color.gray_color));
+                    status_1.setTextColor(getResources().getColor(R.color.gray_color));
+                    details_1.setTextColor(getResources().getColor(R.color.gray_color));
 
 
-            yes.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                    status_x2.setVisibility(View.VISIBLE);
+                    status_x3.setVisibility(View.GONE);
+                    status_x4.setVisibility(View.GONE);
+                    status_x5.setVisibility(View.GONE);
 
-                    JSONObject sendObj = new JSONObject();
 
-                    try {
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 
-                        sendObj.put("uuid", myOfferModule.getUuid() + "");//form operation list api in setting
-                        sendObj.put("offer_id", myOfferModule.getId());//form estate type list api in setting
+                            JSONObject sendObj = new JSONObject();
+
+                            try {
+
+                                sendObj.put("uuid", myOfferModule.getUuid() + "");//form operation list api in setting
+                                sendObj.put("offer_id", myOfferModule.getId());//form estate type list api in setting
 
 //                    sendObj.put("estate_id", is_selected);//form estate type list api in setting
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    init_volley();
-                    WebService.loading(DetailsStatusOrderActivity.this, true);
-                    VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsStatusOrderActivity.this);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            init_volley();
+                            WebService.loading(DetailsStatusOrderActivity.this, true);
+                            VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsStatusOrderActivity.this);
 
-                    System.out.println(sendObj.toString());
-                    mVolleyService.postDataVolley("provider_code_send", WebService.provider_code_send, sendObj);
+                            System.out.println(sendObj);
+                            mVolleyService.postDataVolley("provider_code_send", WebService.provider_code_send, sendObj);
 
 
-                }
-            });
+                        }
+                    });
 
-            no.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                    no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 //                request_code.setVisibility(View.GONE);
 //                error_message.setVisibility(View.VISIBLE);
 
-                    try {
-                        String phone = "" + MainActivity.ordersModules.getBeneficiaryMobile() + "";
-                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
-                        startActivity(intent);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                            try {
+                                String phone = "" + MainActivity.ordersModules.getBeneficiaryMobile() + "";
+                                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                                startActivity(intent);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
 
 
-                }
-            });
+                        }
+                    });
 
 //            whats_up_number.setText(MainActivity.ordersModules.getBeneficiaryMobile() + "");
 
-            whats_up_number.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String mobile = whats_up_number.getText().toString();
+                    whats_up_number.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String mobile = whats_up_number.getText().toString();
 //                    String ss = mobile.substring(2);
 
-                    String url = "https://api.whatsapp.com/send?phone=" + mobile;
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                }
-            });
+                            String url = "https://api.whatsapp.com/send?phone=" + mobile;
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(url));
+                            startActivity(i);
+                        }
+                    });
 
 
-        } else if (myOfferModule.getStatus().equals("waiting_code")) {
+                } else if (myOfferModule.getStatus().equals("waiting_code")) {
 
 // status 1
 
-            if (demandsModules.getStart_at() != null) {
-                date_1.setText(demandsModules.getStart_at() + "");
+                    if (demandsModules.getStart_at() != null) {
+                        date_1.setText(demandsModules.getStart_at() + "");
 
-            }
-            if (demandsModules.getReview_at() != null) {
-                date_2.setText(demandsModules.getReview_at() + "");
+                    }
+                    if (demandsModules.getReview_at() != null) {
+                        date_2.setText(demandsModules.getReview_at() + "");
 
-            }
-            if (demandsModules.getAccept_review_at() != null) {
-                date_3.setText(demandsModules.getAccept_review_at() + "");
+                    }
+                    if (demandsModules.getAccept_review_at() != null) {
+                        date_3.setText(demandsModules.getAccept_review_at() + "");
 
-            }
-            date_1.setTextColor(getResources().getColor(R.color.gray_color));
-            status_1.setTextColor(getResources().getColor(R.color.gray_color));
-            details_1.setTextColor(getResources().getColor(R.color.gray_color));
+                    }
+                    date_1.setTextColor(getResources().getColor(R.color.gray_color));
+                    status_1.setTextColor(getResources().getColor(R.color.gray_color));
+                    details_1.setTextColor(getResources().getColor(R.color.gray_color));
 
 
 // status 2
-            date_2.setTextColor(getResources().getColor(R.color.gray_color));
-            status_2.setTextColor(getResources().getColor(R.color.gray_color));
-            details_2.setTextColor(getResources().getColor(R.color.gray_color));
-            whats_up_number.setTextColor(getResources().getColor(R.color.gray_color));
-            qustion_2.setTextColor(getResources().getColor(R.color.gray_color));
-            no.setTextColor(getResources().getColor(R.color.gray_color));
-            yes.setBackground(getDrawable(R.drawable.button_login1_ccc));
-            whats_up.setColorFilter(ContextCompat.getColor(DetailsStatusOrderActivity.this, R.color.gray_color), android.graphics.PorterDuff.Mode.SRC_IN);
+                    date_2.setTextColor(getResources().getColor(R.color.gray_color));
+                    status_2.setTextColor(getResources().getColor(R.color.gray_color));
+                    details_2.setTextColor(getResources().getColor(R.color.gray_color));
+                    whats_up_number.setTextColor(getResources().getColor(R.color.gray_color));
+                    qustion_2.setTextColor(getResources().getColor(R.color.gray_color));
+                    no.setTextColor(getResources().getColor(R.color.gray_color));
+                    yes.setBackground(getDrawable(R.drawable.button_login1_ccc));
+                    whats_up.setColorFilter(ContextCompat.getColor(DetailsStatusOrderActivity.this, R.color.gray_color), android.graphics.PorterDuff.Mode.SRC_IN);
 
 
-            status_x2.setVisibility(View.VISIBLE);
-            status_x3.setVisibility(View.VISIBLE);
-            status_x4.setVisibility(View.GONE);
-            status_x5.setVisibility(View.GONE);
+                    status_x2.setVisibility(View.VISIBLE);
+                    status_x3.setVisibility(View.VISIBLE);
+                    status_x4.setVisibility(View.GONE);
+                    status_x5.setVisibility(View.GONE);
 
-            confirm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (a1.getText().toString().equals("") |
-                            a2.getText().toString().equals("") |
-                            a3.getText().toString().equals("") |
-                            a4.getText().toString().equals("") |
-                            a5.getText().toString().equals("")
+                    confirm.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (a1.getText().toString().equals("") |
+                                    a2.getText().toString().equals("") |
+                                    a3.getText().toString().equals("") |
+                                    a4.getText().toString().equals("") |
+                                    a5.getText().toString().equals("")
 
-                    ) {
+                            ) {
 
-                    } else {
-                        String code2 = a1.getText().toString() +
-                                a2.getText().toString() +
-                                a3.getText().toString() +
-                                a4.getText().toString() + a5.getText().toString() + "";
+                            } else {
+                                String code2 = a1.getText().toString() +
+                                        a2.getText().toString() +
+                                        a3.getText().toString() +
+                                        a4.getText().toString() + a5.getText().toString() + "";
 
 
-                        JSONObject sendObj = new JSONObject();
+                                JSONObject sendObj = new JSONObject();
 
-                        try {
+                                try {
 
-                            sendObj.put("uuid", myOfferModule.getId());//form operation list api in setting
-                            sendObj.put("code", code2);//form estate type list api in setting
-                            sendObj.put("estate_id", myOfferModule.getEstateId());//form estate type list api in setting
-                            sendObj.put("offer_id", myOfferModule.getId());//form estate type list api in setting
-                            sendObj.put("status", "accepted_customer");//form estate type list api in setting
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        init_volley();
-                        WebService.loading(DetailsStatusOrderActivity.this, true);
-                        VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsStatusOrderActivity.this);
+                                    sendObj.put("uuid", myOfferModule.getId());//form operation list api in setting
+                                    sendObj.put("code", code2);//form estate type list api in setting
+                                    sendObj.put("estate_id", myOfferModule.getEstateId());//form estate type list api in setting
+                                    sendObj.put("offer_id", myOfferModule.getId());//form estate type list api in setting
+                                    sendObj.put("status", "accepted_customer");//form estate type list api in setting
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                init_volley();
+                                WebService.loading(DetailsStatusOrderActivity.this, true);
+                                VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsStatusOrderActivity.this);
 
-                        System.out.println(sendObj.toString());
+                                System.out.println(sendObj);
 //                    mVolleyService.postDataVolley("send_offer_fund_Request", WebService.send_offer_fund_Request, sendObj);
-                        mVolleyService.postDataVolley("send_customer_offer_status_1", WebService.send_customer_offer_status, sendObj);
+                                mVolleyService.postDataVolley("send_customer_offer_status_1", WebService.send_customer_offer_status, sendObj);
 
+
+                            }
+
+                        }
+                    });
+                    cancle.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (a1.getText().toString().equals("") |
+                                    a2.getText().toString().equals("") |
+                                    a3.getText().toString().equals("") |
+                                    a4.getText().toString().equals("") |
+                                    a5.getText().toString().equals("")
+
+                            ) {
+
+                            } else {
+                                String code2 = a1.getText().toString() +
+                                        a2.getText().toString() +
+                                        a3.getText().toString() +
+                                        a4.getText().toString() + a5.getText().toString() + "";
+
+
+                                JSONObject sendObj = new JSONObject();
+
+                                try {
+
+                                    sendObj.put("uuid", myOfferModule.getId());//form operation list api in setting
+                                    sendObj.put("code", code2);//form estate type list api in setting
+                                    sendObj.put("estate_id", myOfferModule.getEstateId());//form estate type list api in setting
+                                    sendObj.put("offer_id", myOfferModule.getId());//form estate type list api in setting
+
+                                    sendObj.put("status", "rejected_customer");//form estate type list api in setting
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                init_volley();
+                                WebService.loading(DetailsStatusOrderActivity.this, true);
+                                VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsStatusOrderActivity.this);
+
+                                System.out.println(sendObj);
+//                    mVolleyService.postDataVolley("send_offer_fund_Request", WebService.send_offer_fund_Request, sendObj);
+                                mVolleyService.postDataVolley("send_customer_offer_status_2", WebService.send_customer_offer_status, sendObj);
+
+
+                            }
+
+                        }
+                    });
+                    resend.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+
+                        }
+                    });
+                } else if (myOfferModule.getStatus().equals("rejected_customer")) {
+
+
+                    if (demandsModules.getStart_at() != null) {
+                        date_1.setText(demandsModules.getStart_at() + "");
+
+                    }
+                    if (demandsModules.getReview_at() != null) {
+                        date_2.setText(demandsModules.getReview_at() + "");
+
+                    }
+                    if (demandsModules.getAccept_review_at() != null) {
+                        date_3.setText(demandsModules.getAccept_review_at() + "");
+
+                    }
+                    if (demandsModules.getCancel_at() != null) {
+                        date_4.setText(demandsModules.getCancel_at() + "");
 
                     }
 
-                }
-            });
-            cancle.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (a1.getText().toString().equals("") |
-                            a2.getText().toString().equals("") |
-                            a3.getText().toString().equals("") |
-                            a4.getText().toString().equals("") |
-                            a5.getText().toString().equals("")
+                    cancleorder.setVisibility(View.GONE);
 
-                    ) {
-
-                    } else {
-                        String code2 = a1.getText().toString() +
-                                a2.getText().toString() +
-                                a3.getText().toString() +
-                                a4.getText().toString() + a5.getText().toString() + "";
+// status 1
+                    date_1.setTextColor(getResources().getColor(R.color.gray_color));
+                    status_1.setTextColor(getResources().getColor(R.color.gray_color));
+                    details_1.setTextColor(getResources().getColor(R.color.gray_color));
 
 
-                        JSONObject sendObj = new JSONObject();
+// status 2
+                    date_2.setTextColor(getResources().getColor(R.color.gray_color));
+                    status_2.setTextColor(getResources().getColor(R.color.gray_color));
+                    details_2.setTextColor(getResources().getColor(R.color.gray_color));
+                    whats_up_number.setTextColor(getResources().getColor(R.color.gray_color));
+                    qustion_2.setTextColor(getResources().getColor(R.color.gray_color));
+                    no.setTextColor(getResources().getColor(R.color.gray_color));
+                    yes.setBackground(getDrawable(R.drawable.button_login1_ccc));
+                    whats_up.setColorFilter(ContextCompat.getColor(DetailsStatusOrderActivity.this, R.color.gray_color), android.graphics.PorterDuff.Mode.SRC_IN);
 
-                        try {
 
-                            sendObj.put("uuid", myOfferModule.getId());//form operation list api in setting
-                            sendObj.put("code", code2);//form estate type list api in setting
-                            sendObj.put("estate_id", myOfferModule.getEstateId());//form estate type list api in setting
-                            sendObj.put("offer_id", myOfferModule.getId());//form estate type list api in setting
+// status 3
+                    date_3.setTextColor(getResources().getColor(R.color.gray_color));
+                    status_3.setTextColor(getResources().getColor(R.color.gray_color));
+                    details_3.setTextColor(getResources().getColor(R.color.gray_color));
 
-                            sendObj.put("status", "rejected_customer");//form estate type list api in setting
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        init_volley();
-                        WebService.loading(DetailsStatusOrderActivity.this, true);
-                        VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsStatusOrderActivity.this);
+                    a1.setClickable(false);
+                    a2.setClickable(false);
+                    a3.setClickable(false);
+                    a4.setClickable(false);
+                    a5.setClickable(false);
 
-                        System.out.println(sendObj.toString());
-//                    mVolleyService.postDataVolley("send_offer_fund_Request", WebService.send_offer_fund_Request, sendObj);
-                        mVolleyService.postDataVolley("send_customer_offer_status_2", WebService.send_customer_offer_status, sendObj);
+                    confirm.setTextColor(getResources().getColor(R.color.gray_color));
+                    cancle.setTextColor(getResources().getColor(R.color.gray_color));
+                    confirm.setBackground(getDrawable(R.drawable.border_fillter_edit));
+                    cancle.setBackground(getDrawable(R.drawable.border_fillter_edit));
+                    qustion_3.setTextColor(getResources().getColor(R.color.gray_color));
+                    resend.setTextColor(getResources().getColor(R.color.gray_color));
 
+
+                    status_x2.setVisibility(View.VISIBLE);
+                    status_x3.setVisibility(View.VISIBLE);
+                    status_x4.setVisibility(View.GONE);
+                    status_x5.setVisibility(View.VISIBLE);
+
+                } else if (myOfferModule.getStatus().equals("accepted_customer")) {
+
+                    cancleorder.setVisibility(View.GONE);
+                    if (demandsModules.getStart_at() != null) {
+                        date_1.setText(demandsModules.getStart_at() + "");
 
                     }
+                    if (demandsModules.getReview_at() != null) {
+                        date_2.setText(demandsModules.getReview_at() + "");
 
+                    }
+                    if (demandsModules.getAccept_review_at() != null) {
+                        date_3.setText(demandsModules.getAccept_review_at() + "");
+
+                    }
+                    if (demandsModules.getCancel_at() != null) {
+                        date_4.setText(demandsModules.getCancel_at() + "");
+
+                    }
+                    if (demandsModules.getAccepted_at() != null) {
+                        date_5.setText(demandsModules.getAccepted_at() + "");
+
+                    }
+// status 1
+                    date_1.setTextColor(getResources().getColor(R.color.gray_color));
+                    status_1.setTextColor(getResources().getColor(R.color.gray_color));
+                    details_1.setTextColor(getResources().getColor(R.color.gray_color));
+
+
+// status 2
+                    date_2.setTextColor(getResources().getColor(R.color.gray_color));
+                    status_2.setTextColor(getResources().getColor(R.color.gray_color));
+                    details_2.setTextColor(getResources().getColor(R.color.gray_color));
+                    whats_up_number.setTextColor(getResources().getColor(R.color.gray_color));
+                    qustion_2.setTextColor(getResources().getColor(R.color.gray_color));
+                    no.setTextColor(getResources().getColor(R.color.gray_color));
+                    yes.setBackground(getDrawable(R.drawable.button_login1_ccc));
+                    whats_up.setColorFilter(ContextCompat.getColor(DetailsStatusOrderActivity.this, R.color.gray_color), android.graphics.PorterDuff.Mode.SRC_IN);
+
+
+// status 3
+                    date_3.setTextColor(getResources().getColor(R.color.gray_color));
+                    status_3.setTextColor(getResources().getColor(R.color.gray_color));
+                    details_3.setTextColor(getResources().getColor(R.color.gray_color));
+
+                    a1.setClickable(false);
+                    a2.setClickable(false);
+                    a3.setClickable(false);
+                    a4.setClickable(false);
+                    a5.setClickable(false);
+
+                    confirm.setTextColor(getResources().getColor(R.color.gray_color));
+                    cancle.setTextColor(getResources().getColor(R.color.gray_color));
+                    confirm.setBackground(getDrawable(R.drawable.border_fillter_edit));
+                    cancle.setBackground(getDrawable(R.drawable.border_fillter_edit));
+                    qustion_3.setTextColor(getResources().getColor(R.color.gray_color));
+                    resend.setTextColor(getResources().getColor(R.color.gray_color));
+
+
+                    status_x2.setVisibility(View.VISIBLE);
+                    status_x3.setVisibility(View.VISIBLE);
+                    status_x4.setVisibility(View.VISIBLE);
+                    status_x5.setVisibility(View.GONE);
+
+
+                } else if (myOfferModule.getStatus().equals("close")) {
+
+
+                    if (demandsModules.getStart_at() != null) {
+                        date_1.setText(demandsModules.getStart_at() + "");
+
+                    }
+                    if (demandsModules.getReview_at() != null) {
+                        date_2.setText(demandsModules.getReview_at() + "");
+
+                    }
+                    if (demandsModules.getAccept_review_at() != null) {
+                        date_3.setText(demandsModules.getAccept_review_at() + "");
+
+                    }
+                    if (demandsModules.getCancel_at() != null) {
+                        date_4.setText(demandsModules.getCancel_at() + "");
+
+                    }
+                    if (demandsModules.getAccepted_at() != null) {
+                        date_5.setText(demandsModules.getAccepted_at() + "");
+
+                    }
+                    cancleorder.setVisibility(View.GONE);
+
+// status 1
+                    date_1.setTextColor(getResources().getColor(R.color.gray_color));
+                    status_1.setTextColor(getResources().getColor(R.color.gray_color));
+                    details_1.setTextColor(getResources().getColor(R.color.gray_color));
+
+
+// status 2
+                    date_2.setTextColor(getResources().getColor(R.color.gray_color));
+                    status_2.setTextColor(getResources().getColor(R.color.gray_color));
+                    details_2.setTextColor(getResources().getColor(R.color.gray_color));
+                    whats_up_number.setTextColor(getResources().getColor(R.color.gray_color));
+                    qustion_2.setTextColor(getResources().getColor(R.color.gray_color));
+                    no.setTextColor(getResources().getColor(R.color.gray_color));
+                    yes.setBackground(getDrawable(R.drawable.button_login1_ccc));
+                    whats_up.setColorFilter(ContextCompat.getColor(DetailsStatusOrderActivity.this, R.color.gray_color), android.graphics.PorterDuff.Mode.SRC_IN);
+
+
+// status 3
+                    date_3.setTextColor(getResources().getColor(R.color.gray_color));
+                    status_3.setTextColor(getResources().getColor(R.color.gray_color));
+                    details_3.setTextColor(getResources().getColor(R.color.gray_color));
+
+                    a1.setClickable(false);
+                    a2.setClickable(false);
+                    a3.setClickable(false);
+                    a4.setClickable(false);
+                    a5.setClickable(false);
+
+                    confirm.setTextColor(getResources().getColor(R.color.gray_color));
+                    cancle.setTextColor(getResources().getColor(R.color.gray_color));
+                    confirm.setBackground(getDrawable(R.drawable.border_fillter_edit));
+                    cancle.setBackground(getDrawable(R.drawable.border_fillter_edit));
+                    qustion_3.setTextColor(getResources().getColor(R.color.gray_color));
+                    resend.setTextColor(getResources().getColor(R.color.gray_color));
+
+
+                    status_x2.setVisibility(View.VISIBLE);
+                    status_x3.setVisibility(View.VISIBLE);
+                    status_x4.setVisibility(View.GONE);
+                    status_x5.setVisibility(View.VISIBLE);
                 }
-            });
-            resend.setOnClickListener(new View.OnClickListener() {
+            }
+            cancleorder.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
 
-                }
-            });
-        } else if (myOfferModule.getStatus().equals("rejected_customer")) {
+                    BottomSheetDialogFragment_delete_offer bottomSheetDialogFragmen_delete_offer = new BottomSheetDialogFragment_delete_offer("");
+                    bottomSheetDialogFragmen_delete_offer.addItemClickListener(new BottomSheetDialogFragment_delete_offer.ItemClickListener() {
+                        @Override
+                        public void onItemClick(String type, String reseon) {
 
 
-            if (demandsModules.getStart_at() != null) {
-                date_1.setText(demandsModules.getStart_at() + "");
+                            RequestParams sendObj = new RequestParams();
 
-            }
-            if (demandsModules.getReview_at() != null) {
-                date_2.setText(demandsModules.getReview_at() + "");
+                            try {
 
-            }
-            if (demandsModules.getAccept_review_at() != null) {
-                date_3.setText(demandsModules.getAccept_review_at() + "");
-
-            }
-            if (demandsModules.getCancel_at() != null) {
-                date_4.setText(demandsModules.getCancel_at() + "");
-
-            }
-
-            cancleorder.setVisibility(View.GONE);
-
-// status 1
-            date_1.setTextColor(getResources().getColor(R.color.gray_color));
-            status_1.setTextColor(getResources().getColor(R.color.gray_color));
-            details_1.setTextColor(getResources().getColor(R.color.gray_color));
-
-
-// status 2
-            date_2.setTextColor(getResources().getColor(R.color.gray_color));
-            status_2.setTextColor(getResources().getColor(R.color.gray_color));
-            details_2.setTextColor(getResources().getColor(R.color.gray_color));
-            whats_up_number.setTextColor(getResources().getColor(R.color.gray_color));
-            qustion_2.setTextColor(getResources().getColor(R.color.gray_color));
-            no.setTextColor(getResources().getColor(R.color.gray_color));
-            yes.setBackground(getDrawable(R.drawable.button_login1_ccc));
-            whats_up.setColorFilter(ContextCompat.getColor(DetailsStatusOrderActivity.this, R.color.gray_color), android.graphics.PorterDuff.Mode.SRC_IN);
-
-
-// status 3
-            date_3.setTextColor(getResources().getColor(R.color.gray_color));
-            status_3.setTextColor(getResources().getColor(R.color.gray_color));
-            details_3.setTextColor(getResources().getColor(R.color.gray_color));
-
-            a1.setClickable(false);
-            a2.setClickable(false);
-            a3.setClickable(false);
-            a4.setClickable(false);
-            a5.setClickable(false);
-
-            confirm.setTextColor(getResources().getColor(R.color.gray_color));
-            cancle.setTextColor(getResources().getColor(R.color.gray_color));
-            confirm.setBackground(getDrawable(R.drawable.border_fillter_edit));
-            cancle.setBackground(getDrawable(R.drawable.border_fillter_edit));
-            qustion_3.setTextColor(getResources().getColor(R.color.gray_color));
-            resend.setTextColor(getResources().getColor(R.color.gray_color));
-
-
-            status_x2.setVisibility(View.VISIBLE);
-            status_x3.setVisibility(View.VISIBLE);
-            status_x4.setVisibility(View.GONE);
-            status_x5.setVisibility(View.VISIBLE);
-
-        } else if (myOfferModule.getStatus().equals("accepted_customer")) {
-
-            cancleorder.setVisibility(View.GONE);
-            if (demandsModules.getStart_at() != null) {
-                date_1.setText(demandsModules.getStart_at() + "");
-
-            }
-            if (demandsModules.getReview_at() != null) {
-                date_2.setText(demandsModules.getReview_at() + "");
-
-            }
-            if (demandsModules.getAccept_review_at() != null) {
-                date_3.setText(demandsModules.getAccept_review_at() + "");
-
-            }
-            if (demandsModules.getCancel_at() != null) {
-                date_4.setText(demandsModules.getCancel_at() + "");
-
-            }
-            if (demandsModules.getAccepted_at() != null) {
-                date_5.setText(demandsModules.getAccepted_at() + "");
-
-            }
-// status 1
-            date_1.setTextColor(getResources().getColor(R.color.gray_color));
-            status_1.setTextColor(getResources().getColor(R.color.gray_color));
-            details_1.setTextColor(getResources().getColor(R.color.gray_color));
-
-
-// status 2
-            date_2.setTextColor(getResources().getColor(R.color.gray_color));
-            status_2.setTextColor(getResources().getColor(R.color.gray_color));
-            details_2.setTextColor(getResources().getColor(R.color.gray_color));
-            whats_up_number.setTextColor(getResources().getColor(R.color.gray_color));
-            qustion_2.setTextColor(getResources().getColor(R.color.gray_color));
-            no.setTextColor(getResources().getColor(R.color.gray_color));
-            yes.setBackground(getDrawable(R.drawable.button_login1_ccc));
-            whats_up.setColorFilter(ContextCompat.getColor(DetailsStatusOrderActivity.this, R.color.gray_color), android.graphics.PorterDuff.Mode.SRC_IN);
-
-
-// status 3
-            date_3.setTextColor(getResources().getColor(R.color.gray_color));
-            status_3.setTextColor(getResources().getColor(R.color.gray_color));
-            details_3.setTextColor(getResources().getColor(R.color.gray_color));
-
-            a1.setClickable(false);
-            a2.setClickable(false);
-            a3.setClickable(false);
-            a4.setClickable(false);
-            a5.setClickable(false);
-
-            confirm.setTextColor(getResources().getColor(R.color.gray_color));
-            cancle.setTextColor(getResources().getColor(R.color.gray_color));
-            confirm.setBackground(getDrawable(R.drawable.border_fillter_edit));
-            cancle.setBackground(getDrawable(R.drawable.border_fillter_edit));
-            qustion_3.setTextColor(getResources().getColor(R.color.gray_color));
-            resend.setTextColor(getResources().getColor(R.color.gray_color));
-
-
-            status_x2.setVisibility(View.VISIBLE);
-            status_x3.setVisibility(View.VISIBLE);
-            status_x4.setVisibility(View.VISIBLE);
-            status_x5.setVisibility(View.GONE);
-
-
-        } else if (myOfferModule.getStatus().equals("close")) {
-
-
-            if (demandsModules.getStart_at() != null) {
-                date_1.setText(demandsModules.getStart_at() + "");
-
-            }
-            if (demandsModules.getReview_at() != null) {
-                date_2.setText(demandsModules.getReview_at() + "");
-
-            }
-            if (demandsModules.getAccept_review_at() != null) {
-                date_3.setText(demandsModules.getAccept_review_at() + "");
-
-            }
-            if (demandsModules.getCancel_at() != null) {
-                date_4.setText(demandsModules.getCancel_at() + "");
-
-            }
-            if (demandsModules.getAccepted_at() != null) {
-                date_5.setText(demandsModules.getAccepted_at() + "");
-
-            }
-            cancleorder.setVisibility(View.GONE);
-
-// status 1
-            date_1.setTextColor(getResources().getColor(R.color.gray_color));
-            status_1.setTextColor(getResources().getColor(R.color.gray_color));
-            details_1.setTextColor(getResources().getColor(R.color.gray_color));
-
-
-// status 2
-            date_2.setTextColor(getResources().getColor(R.color.gray_color));
-            status_2.setTextColor(getResources().getColor(R.color.gray_color));
-            details_2.setTextColor(getResources().getColor(R.color.gray_color));
-            whats_up_number.setTextColor(getResources().getColor(R.color.gray_color));
-            qustion_2.setTextColor(getResources().getColor(R.color.gray_color));
-            no.setTextColor(getResources().getColor(R.color.gray_color));
-            yes.setBackground(getDrawable(R.drawable.button_login1_ccc));
-            whats_up.setColorFilter(ContextCompat.getColor(DetailsStatusOrderActivity.this, R.color.gray_color), android.graphics.PorterDuff.Mode.SRC_IN);
-
-
-// status 3
-            date_3.setTextColor(getResources().getColor(R.color.gray_color));
-            status_3.setTextColor(getResources().getColor(R.color.gray_color));
-            details_3.setTextColor(getResources().getColor(R.color.gray_color));
-
-            a1.setClickable(false);
-            a2.setClickable(false);
-            a3.setClickable(false);
-            a4.setClickable(false);
-            a5.setClickable(false);
-
-            confirm.setTextColor(getResources().getColor(R.color.gray_color));
-            cancle.setTextColor(getResources().getColor(R.color.gray_color));
-            confirm.setBackground(getDrawable(R.drawable.border_fillter_edit));
-            cancle.setBackground(getDrawable(R.drawable.border_fillter_edit));
-            qustion_3.setTextColor(getResources().getColor(R.color.gray_color));
-            resend.setTextColor(getResources().getColor(R.color.gray_color));
-
-
-            status_x2.setVisibility(View.VISIBLE);
-            status_x3.setVisibility(View.VISIBLE);
-            status_x4.setVisibility(View.GONE);
-            status_x5.setVisibility(View.VISIBLE);
-        }
-
-        cancleorder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                BottomSheetDialogFragment_delete_offer bottomSheetDialogFragmen_delete_offer = new BottomSheetDialogFragment_delete_offer("");
-                bottomSheetDialogFragmen_delete_offer.addItemClickListener(new BottomSheetDialogFragment_delete_offer.ItemClickListener() {
-                    @Override
-                    public void onItemClick(String type, String reseon) {
-
-
-                        RequestParams sendObj = new RequestParams();
-
-                        try {
-
-                            sendObj.put("uuid", myOfferModule.getId() + "");//form operation list api in setting
-                            sendObj.put("reason", reseon + "");//form operation list api in setting
+                                sendObj.put("uuid", myOfferModule.getId() + "");//form operation list api in setting
+                                sendObj.put("reason", reseon + "");//form operation list api in setting
 //                    sendObj.put("estate_id", is_selected);//form estate type list api in setting
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            init_volley();
+                            WebService.loading(DetailsStatusOrderActivity.this, true);
+                            VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsStatusOrderActivity.this);
+
+                            System.out.println(sendObj);
+                            mVolleyService.postDataasync_with_file("cancelfundoffer", WebService.cancel + "/" + myOfferModule.getId() + "/" + WebService.rate_offer1, sendObj);
+
+
                         }
-                        init_volley();
-                        WebService.loading(DetailsStatusOrderActivity.this, true);
-                        VolleyService mVolleyService = new VolleyService(mResultCallback, DetailsStatusOrderActivity.this);
-
-                        System.out.println(sendObj.toString());
-                        mVolleyService.postDataasync_with_file("cancelfundoffer", WebService.cancel + "/" + myOfferModule.getId() + "/" + WebService.rate_offer1, sendObj);
+                    });
 
 
-                    }
-                });
-
-
-                bottomSheetDialogFragmen_delete_offer.show(getSupportFragmentManager(), "");
+                    bottomSheetDialogFragmen_delete_offer.show(getSupportFragmentManager(), "");
 
 
 //                RequestParams sendObj = new RequestParams();
@@ -603,8 +606,11 @@ public class DetailsStatusOrderActivity extends AppCompatActivity {
 //                mVolleyService.postDataasync_with_file("cancel//fund/offer", WebService.cancel + "/" + myOfferModule.getId() + "/" + WebService.rate_offer, sendObj);
 
 
-            }
-        });
+                }
+            });
+        }
+
+
     }
 
     public void init_volley() {

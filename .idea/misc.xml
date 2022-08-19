@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/drawable/ic_back.xml" value="0.1915" />
+        <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/drawable/splash_screen_background.xml" value="0.1915" />
         <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/activity_add_aqarz_steps.xml" value="0.2359375" />
+        <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/activity_details_status_order.xml" value="0.2359375" />
         <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/activity_edit_aqarz.xml" value="0.176" />
         <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/activity_fillter.xml" value="0.2359375" />
         <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/activity_full_screen_image.xml" value="0.25" />
+        <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/activity_login.xml" value="0.2359375" />
         <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/activity_main_aqarz.xml" value="0.2359375" />
+        <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
         <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/alert_is_iam_compleate.xml" value="0.25" />
         <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/alert_is_in_address.xml" value="0.25" />
         <entry key="..\:/Android Studio/Experto/Aqarz/app/src/main/res/layout/alert_select_other_location.xml" value="0.25" />

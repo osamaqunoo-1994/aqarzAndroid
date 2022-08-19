@@ -58,7 +58,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     IResult mResultCallback;
     View parentLayout;
     LottieAnimationView animationView;
-    boolean is_fin = false;
+        boolean is_fin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
