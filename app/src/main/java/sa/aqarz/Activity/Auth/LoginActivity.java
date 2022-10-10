@@ -187,7 +187,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         System.out.println("refreshedToken " + refreshedToken);
 
-                        sendObj.put("device_token", refreshedToken);
+                            sendObj.put("device_token", refreshedToken);
                         sendObj.put("device_type", "android");
 
                     } catch (Exception e) {

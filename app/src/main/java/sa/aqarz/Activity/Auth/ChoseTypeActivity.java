@@ -287,14 +287,14 @@ public class ChoseTypeActivity extends AppCompatActivity {
 
                         sendObj.put("type", type_man + "");
 //                        sendObj.put("password_confirmation", Cpassword.getText().toString());
-                        sendObj.put("country_code", "966");
+                            sendObj.put("country_code", "966");
 
 //                        sendObj.put("device_token", "157");
 //                        sendObj.put("type", type);
 //                        sendObj.put("country_code", "+972");
 //                        sendObj.put("device_type", "android");
 
-                        System.out.println(sendObj.toString());
+                        System.out.println(sendObj);
                         mVolleyService.postDataVolley_without_token("verifyNew", WebService.verifyNew, sendObj);
 
                     } catch (JSONException e) {

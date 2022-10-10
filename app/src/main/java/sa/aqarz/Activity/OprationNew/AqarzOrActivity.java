@@ -91,7 +91,7 @@ public class AqarzOrActivity extends AppCompatActivity {
     String Id_eastate = "";
     private static GoogleMap googleMap;
     public GoogleApiClient mGoogleApiClient;
-    MapView mMapView;
+//    MapView mMapView;
     TextView nibors;
 
     ImageView back;
@@ -115,12 +115,12 @@ public class AqarzOrActivity extends AppCompatActivity {
         setContentView(R.layout.activity_aqarz_or);
 //        Id_eastate = getArguments().getString("Id_eastate");
 
-        mMapView = findViewById(R.id.mapViewxx);
-        mMapView = findViewById(R.id.mapViewxx);
-
-        mMapView.onCreate(savedInstanceState);
-
-        mMapView.onResume(); // needed to get the map to display immediately
+//        mMapView = findViewById(R.id.mapViewxx);
+//        mMapView = findViewById(R.id.mapViewxx);
+//
+//        mMapView.onCreate(savedInstanceState);
+//
+//        mMapView.onResume(); // needed to get the map to display immediately
 
         init();
     }
@@ -166,13 +166,13 @@ public class AqarzOrActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-
-
                 BottomSheetDialogFragment_SelectArea_setting bottomSheetDialogFragment_selectArea = new BottomSheetDialogFragment_SelectArea_setting("");
                 bottomSheetDialogFragment_selectArea.addItemClickListener(new BottomSheetDialogFragment_SelectArea_setting.ItemClickListener() {
                     @Override
-                    public void onItemClick(int id_cityx, String city_naem, List<AllCity_WithNib.neighborhoods> neighborhoods,String lat_, String lang_) {
+                    public void onItemClick(int id_cityx, String city_naem, List<AllCity_WithNib.neighborhoods> neighborhoods, String lat_, String lang_) {
 
+
+//                        System.out.println("city_id"+city_id);
 
                         city_id = id_cityx + "";
                         city_l.setText(city_naem);
@@ -182,7 +182,6 @@ public class AqarzOrActivity extends AppCompatActivity {
                         lng = "0.0";
                         nib_id = "";
                         nibors.setText("");
-
 
 
                         All_neighborhoods = neighborhoods;
@@ -222,7 +221,7 @@ public class AqarzOrActivity extends AppCompatActivity {
                     BottomSheetDialogFragment_Select_nib_setting bottomSheetDialogFragment_select_nib_setting = new BottomSheetDialogFragment_Select_nib_setting(All_neighborhoods);
                     bottomSheetDialogFragment_select_nib_setting.addItemClickListener(new BottomSheetDialogFragment_Select_nib_setting.ItemClickListener() {
                         @Override
-                        public void onItemClick(int id_city, String city_naem, String lat_lang) {
+                        public void onItemClick(String id_city, String city_naem, String lat_lang) {
 
 
                             nib_id = id_city + "";
@@ -287,63 +286,63 @@ public class AqarzOrActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mMapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap mMap) {
-                googleMap = mMap;
-                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-
-//                googleMap.getUiSettings().setRotateGesturesEnabled(true);
-
-
-                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-                    @Override
-                    public void onMapClick(LatLng latLng) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            if (ContextCompat.checkSelfPermission(AqarzOrActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-
-                                // No explanation needed, we can request the permission.
-
-                                ActivityCompat.requestPermissions(AqarzOrActivity.this,
-                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                        11);
-
-                            } else {
-
-                                Intent intent = new Intent(AqarzOrActivity.this, SelectLocationActivity.class);
-
-
-                                intent.putExtra("lat", lat + "");
-                                intent.putExtra("lan", lng + "");
-                                intent.putExtra("address", nibors.getText().toString() + "");
-                                startActivityForResult(intent, 11);
-
+//        mMapView.getMapAsync(new OnMapReadyCallback() {
+//            @Override
+//            public void onMapReady(GoogleMap mMap) {
+//                googleMap = mMap;
+//                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 //
-//                                PingPlacePicker.IntentBuilder builder = new PingPlacePicker.IntentBuilder();
-//                                builder.setAndroidApiKey("AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc")
-//                                        .setMapsApiKey("AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc");
+////                googleMap.getUiSettings().setRotateGesturesEnabled(true);
 //
-//                                // If you want to set a initial location rather then the current device location.
-//                                // NOTE: enable_nearby_search MUST be true.
-//                                // builder.setLatLng(new LatLng(37.4219999, -122.0862462))
 //
-//                                try {
-//                                    Intent placeIntent = builder.build(AqarzOrActivity.this);
-//                                    startActivityForResult(placeIntent, 11);
-//                                } catch (Exception ex) {
-//                                    // Google Play services is not available...
-//                                }
-                            }
-                        } else {
-
-
-                        }
-                    }
-                });
-
-            }
-        });
+//                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+//                    @Override
+//                    public void onMapClick(LatLng latLng) {
+//                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                            if (ContextCompat.checkSelfPermission(AqarzOrActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//
+//
+//                                // No explanation needed, we can request the permission.
+//
+//                                ActivityCompat.requestPermissions(AqarzOrActivity.this,
+//                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+//                                        11);
+//
+//                            } else {
+//
+//                                Intent intent = new Intent(AqarzOrActivity.this, SelectLocationActivity.class);
+//
+//
+//                                intent.putExtra("lat", lat + "");
+//                                intent.putExtra("lan", lng + "");
+//                                intent.putExtra("address", nibors.getText().toString() + "");
+//                                startActivityForResult(intent, 11);
+//
+////
+////                                PingPlacePicker.IntentBuilder builder = new PingPlacePicker.IntentBuilder();
+////                                builder.setAndroidApiKey("AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc")
+////                                        .setMapsApiKey("AIzaSyDWtJ0cgqHXouF5I5YdPjLzztWQzXM4zQc");
+////
+////                                // If you want to set a initial location rather then the current device location.
+////                                // NOTE: enable_nearby_search MUST be true.
+////                                // builder.setLatLng(new LatLng(37.4219999, -122.0862462))
+////
+////                                try {
+////                                    Intent placeIntent = builder.build(AqarzOrActivity.this);
+////                                    startActivityForResult(placeIntent, 11);
+////                                } catch (Exception ex) {
+////                                    // Google Play services is not available...
+////                                }
+//                            }
+//                        } else {
+//
+//
+//                        }
+//                    }
+//                });
+//
+//            }
+//        });
         Places.initialize(AqarzOrActivity.this, getResources().getString(R.string.google_key2));
         placesClient = Places.createClient(AqarzOrActivity.this);
 
@@ -363,7 +362,7 @@ public class AqarzOrActivity extends AppCompatActivity {
             public void onItemClick(int position) {
                 opration_select = type_list.get(position).getId().toString() + "";
 
-                System.out.println("opration_select"+opration_select);
+                System.out.println("opration_select" + opration_select);
 
                 if (opration_select.equals("1")) {//فيلا
 
@@ -497,7 +496,7 @@ public class AqarzOrActivity extends AppCompatActivity {
                             sendObj.put("lat", lat);
                             sendObj.put("lan", lng);
                             sendObj.put("city_id", city_id + "");
-//                        sendObj.put("neighborhood_id", nib_id + "");
+                            sendObj.put("neighborhood_id", nib_id + "");
                             sendObj.put("price_from", Les_price.getText().toString());
                             sendObj.put("price_to", Maximum_price.getText().toString());
                             sendObj.put("room_numbers", room_number);
@@ -638,25 +637,27 @@ public class AqarzOrActivity extends AppCompatActivity {
                         String data = response.getString("data");
 
 
-                        System.out.println("lfmdlfjdklfk");
-
 //                        Hawk.put("user", data);
 
-                        String message = response.getString("message");
-                        BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(AqarzOrActivity.this);
-                        View parentView = getLayoutInflater().inflate(R.layout.success_message, null);
-                        Button close = parentView.findViewById(R.id.close);
-                        close.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                RequestServiceActivity.close();
+                        try {
+                            String message = response.getString("message");
+                            BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(AqarzOrActivity.this);
+                            View parentView = getLayoutInflater().inflate(R.layout.success_message, null);
+                            Button close = parentView.findViewById(R.id.close);
+                            close.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+//                                  RequestServiceActivity.close();
 
-                                finish();
-                            }
-                        });
-                        bottomSheerDialog.setContentView(parentView);
-                        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
-                        bottomSheerDialog.show();
+                                    finish();
+                                }
+                            });
+                            bottomSheerDialog.setContentView(parentView);
+                            TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
+                            bottomSheerDialog.show();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 //                        WebService.Make_Toast_color(AqarzOrActivity.this, message, "success");
                     } else {
                         String message = response.getString("message");

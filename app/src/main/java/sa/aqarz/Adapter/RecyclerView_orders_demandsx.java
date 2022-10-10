@@ -148,7 +148,20 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
 
         if (alldata.get(position).getAreaFrom() != null) {
             if (!alldata.get(position).getAreaFrom().equals("null")) {
-                holder.space.setText(alldata.get(position).getAreaFrom() + " - " + alldata.get(position).getAreaTo());
+
+                if (alldata.get(position).getAreaTo() != null) {
+                    if (alldata.get(position).getAreaTo().equals("null")) {
+                        holder.space.setText(alldata.get(position).getAreaFrom() + "");
+
+                    } else {
+                        holder.space.setText(alldata.get(position).getAreaFrom() + " - " + alldata.get(position).getAreaTo());
+
+                    }
+
+                } else {
+                    holder.space.setText(alldata.get(position).getAreaFrom() + "");
+
+                }
 
             } else {
                 holder.space.setText("");
@@ -194,7 +207,13 @@ public class RecyclerView_orders_demandsx extends RecyclerView.Adapter<RecyclerV
 
         } else {
             if (alldata.get(position).getCity_name() != null) {
-                holder.address.setText(alldata.get(position).getCity_name() + " , " + alldata.get(position).getNeighborhood_name());
+                if (alldata.get(position).getNeighborhood_name() != null) {
+                    holder.address.setText(alldata.get(position).getCity_name() + " , " + alldata.get(position).getNeighborhood_name());
+
+                } else {
+                    holder.address.setText(alldata.get(position).getCity_name());
+
+                }
 
             }
 

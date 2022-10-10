@@ -91,7 +91,7 @@ public class BottomSheetDialogFragment_Select_nib_setting extends BottomSheetDia
             @Override
             public void onItemClick(int position) {
                 if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(neighborhoods_.get(position).getCityId(), neighborhoods_.get(position).getName(),neighborhoods_.get(position).getCenter());
+                    mItemClickListener.onItemClick(neighborhoods_.get(position).getDistrictId(), neighborhoods_.get(position).getName(),neighborhoods_.get(position).getCenter());
                 }
             }
         });
@@ -190,7 +190,7 @@ public class BottomSheetDialogFragment_Select_nib_setting extends BottomSheetDia
 
     //Define your Interface method here
     public interface ItemClickListener {
-        void onItemClick(int id_city, String city_naem,String lat_lang);
+        void onItemClick(String id_city, String city_naem,String lat_lang);
     }
 
     @Override

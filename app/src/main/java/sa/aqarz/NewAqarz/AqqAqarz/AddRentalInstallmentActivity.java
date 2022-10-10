@@ -363,7 +363,7 @@ public class AddRentalInstallmentActivity extends AppCompatActivity {
                 BottomSheetDialogFragment_Select_nib_setting bottomSheetDialogFragment_select_nib_setting = new BottomSheetDialogFragment_Select_nib_setting(All_neighborhoods);
                 bottomSheetDialogFragment_select_nib_setting.addItemClickListener(new BottomSheetDialogFragment_Select_nib_setting.ItemClickListener() {
                     @Override
-                    public void onItemClick(int id_city, String city_naem, String lat_lang) {
+                    public void onItemClick(String id_city, String city_naem, String lat_lang) {
 
 
                         nib_id = id_city + "";
