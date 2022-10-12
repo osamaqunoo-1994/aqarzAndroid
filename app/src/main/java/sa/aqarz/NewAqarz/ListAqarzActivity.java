@@ -115,7 +115,7 @@ public class ListAqarzActivity extends AppCompatActivity {
         order_by_bathrooms_number = "0";
         order_by_rooms_number = "0";
 
-        page=1;
+        page = 1;
         init();
     }
 
@@ -626,10 +626,10 @@ public class ListAqarzActivity extends AppCompatActivity {
         init_volley();
         VolleyService mVolleyService = new VolleyService(mResultCallback, activity);
 
-        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + fil_by +city_id+ is_list + lat + lan + distance + number_aqareza + state_id + kitchen_number + is_rent_installment + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
+        url_list = WebService.home_estate_custom_list + "?" + type_filtter_ + elevators_number + fil_by + city_id + is_list + lat + lan + distance + number_aqareza + state_id + kitchen_number + is_rent_installment + estate_age + boards_number + dining_rooms_number + bathrooms_number + lounges_number + room + area_from + area_to + price_to + price_from + estate_pay_type;
 
 //        url_list = WebService.home_estate_custom_list + "?" + type_filtter_;
-        mVolleyService.getAsync("home_estate_custom_list_more_1", url_list);
+        mVolleyService.getAsync("home_estate_custom_list_more_", url_list);
 
     }
 
@@ -664,7 +664,32 @@ public class ListAqarzActivity extends AppCompatActivity {
                     if (status) {
                         WebService.loading(activity, false);
 
-                        if (requestType.equals("home_estate_custom_list_more_1")) {
+                        if (requestType.equals("home_estate_custom_list_more_")) {
+
+                            JsonParser parser = new JsonParser();
+                            JsonElement mJson = parser.parse(response.toString());
+
+                            Gson gson = new Gson();
+
+                            homeModules_aqares_list.clear();
+
+                            AllEstate allNeigbers = gson.fromJson(mJson, AllEstate.class);
+
+                            homeModules_aqares_list.addAll(allNeigbers.getData().getData());
+
+                            recyclerView_homeList_estat_new.Refr();
+
+                            if (homeModules_aqares_list.size() == 0) {
+                                nodata.setVisibility(View.VISIBLE);
+                            } else {
+                                nodata.setVisibility(View.GONE);
+
+                            }
+//                            set_locationEstate(allNeigbers.getData().getData());
+//                            all_estate_size.setVisibility(View.VISIBLE);
+
+
+                        } else if (requestType.equals("home_estate_custom_list_more_1")) {
 
                             JsonParser parser = new JsonParser();
                             JsonElement mJson = parser.parse(response.toString());

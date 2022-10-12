@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -50,6 +53,7 @@ public class AllOfferOrderMarket_demandsActivity extends AppCompatActivity {
 
     RecyclerView all_my_state;
     AlertDialog alertDialog;
+    static BottomSheetDialog bottomSheerDialog;
 
     LinearLayout confirm;
     LinearLayout addAqares;
@@ -204,8 +208,8 @@ public class AllOfferOrderMarket_demandsActivity extends AppCompatActivity {
                         if (requestType.equals("send_offer_fund_Request")) {
 
 
-                            String message = response.getString("message");
-                            RecyclerView_ordersx.send_done();
+//                            String message = response.getString("message");
+                            send_done();
 
 //                            RecyclerView_ordersx.send_done();
 
@@ -360,5 +364,44 @@ public class AllOfferOrderMarket_demandsActivity extends AppCompatActivity {
 
 
     }
+
+    public void getpo(){
+
+    }
+    public  void send_done() {
+
+
+//        bottomSheetDialogFragment_myEstate.dismiss();
+
+        bottomSheerDialog = new BottomSheetDialog(AllOfferOrderMarket_demandsActivity.this);
+        LayoutInflater li = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View parentView = li.inflate(R.layout.success_sandoq, null);
+        Button ok = parentView.findViewById(R.id.ok);
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                                    finish();
+                bottomSheerDialog.dismiss();
+            }
+        });
+        bottomSheerDialog.setContentView(parentView);
+
+
+        Window window = bottomSheerDialog.getWindow();
+        window.findViewById(com.google.android.material.R.id.container).setFitsSystemWindows(false);
+        // dark navigation bar icons
+        View decorView = window.getDecorView();
+        decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
+
+
+//        ((View) decorView.getParent()).setBackgroundColor(context.getResources().getColor(android.R.color.transparent));
+
+
+        bottomSheerDialog.show();
+    }
+
+    //gffgfgfgfg
 
 }

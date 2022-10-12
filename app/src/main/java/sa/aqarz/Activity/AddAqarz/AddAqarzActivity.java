@@ -98,7 +98,7 @@ import static sa.aqarz.Activity.OprationAqarz.AddAqarsActivity.createThumbnail;
 
 public class AddAqarzActivity extends AppCompatActivity {
 
-
+    String ff = "";
     LinearLayout step_1;
     LinearLayout step_2;
     LinearLayout step_3;
